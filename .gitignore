@@ -5,6 +5,7 @@ node_modules
 *.un~
 
 app/dist
+test/browser/test.js
 
 # env file
 .env

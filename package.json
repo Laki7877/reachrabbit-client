@@ -11,7 +11,11 @@
   "dependencies": {
     "angular": "^1.4.7",
     "angular-route": "^1.4.7",
+<<<<<<< HEAD
     "bootstrap-sass": "^3.3.6",
+=======
+    "angular-ui-router": "^0.3.1",
+>>>>>>> a955602db977738fe3790accb0a799ad6d67de4b
     "es5-shim": "^4.3.1",
     "font-awesome": "^4.6.3",
     "jquery": "^2.2.4",

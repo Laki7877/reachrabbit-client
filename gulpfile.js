@@ -8,21 +8,24 @@
 
 require('dotenv').config();
 
-var browserify = require('browserify'),
-    parcelify = require('parcelify'),
-    ngannotate = require('browserify-ngannotate'),
-    envify = require('loose-envify'),
-    merge = require('merge2'),
-    del = require('del'),
-    glob = require('glob'),
-    gulp = require('gulp-help')(require('gulp')),
-    Server = require('karma').Server,
-    source = require('vinyl-source-stream'),
-    vinylPaths = require('vinyl-paths'),
-    gulpif = require('gulp-if'),
-    _ = require('lodash'),
-    args = require('yargs').argv,
-    path = require('path');
+var browserify      = require('browserify'),
+    parcelify       = require('parcelify'),
+    buffer          = require('vinyl-buffer'),
+    ngannotate      = require('browserify-ngannotate'),
+    envify          = require('loose-envify'),
+    bulkify         = require('bulkify'),
+    merge           = require('merge2'),
+    bowerFiles      = require('bower-files')(),
+    del             = require('del'),
+    glob            = require('glob'),
+    gulp            = require('gulp-help')(require('gulp')),
+    Server          = require('karma').Server,
+    source          = require('vinyl-source-stream'),
+    vinylPaths      = require('vinyl-paths'),
+    gulpif          = require('gulp-if'),
+    _               = require('lodash'),
+    args            = require('yargs').argv,
+    path            = require('path');
 
 // load all gulp plugins
 var plugins = require('gulp-load-plugins')({
@@ -36,33 +39,26 @@ var plugins = require('gulp-load-plugins')({
 // define file path variables
 var paths = {
   root: 'app/',      // App root path
-  src:  'app/js/',   // Source path
-  dist: 'app/dist/', // Distribution path
-  sass: 'app/sass/**/*.scss', // Sass path
-  css:  'app/css/**/*.css',  // Css path
+  dist: {
+    root: 'public/assets/',
+    js: 'public/assets/js/',
+    css: 'public/assets/css/'
+  },
+  src: {
+    sass: 'app/styles/**/*.scss',
+    css: 'app/styles/**/*.css',
+    html: 'app/**/*.html',
+    vendor: 'app/vendor.js',
+    app: 'app/app.js'
+  },
   test: 'test/'      // Test path
 };
 
 var liveReload = true;
 
-// clean
-gulp.task('clean', 'Clean distribution files', function () {
-  return gulp
-  .src([paths.dist], {read: false})
-  .pipe(vinylPaths(del));
-});
-
-// lint
-gulp.task('lint', 'Lint all client js', function () {
-  return gulp
-  .src(['gulpfile.js',
-      paths.src + '**/*.js',
-      paths.test + '**/*.js',
-      '!' + paths.test + 'browser/**',
-  ])
-  .pipe(plugins.jshint())
-  .pipe(plugins.jshint.reporter(require('jshint-stylish')));
-});
+/*******************************************
+ * Test
+ *******************************************/
 
 // all test
 gulp.task('test', 'Run all test', ['test:unit', 'test:e2e', 'test:browser']);
@@ -98,79 +94,123 @@ gulp.task('test:browser', 'Run karma test', ['browserify:test'], function (done)
   }, done).start();
 });
 
-// build all stuffs (css, js, etc.)
-gulp.task('build:all', 'Bundle ', ['build:vendor', 'build:css', 'build']);
+/***********************************************
+ * Build
+ ***********************************************/
+// build all modules
+gulp.task('build:all', 'Build all modules (core and vendors)', ['build:vendor', 'build']);
+
+// build core (css, js, etc.)
+gulp.task('build', 'Build core modules', ['build:templates', 'build:styles', 'build:scripts']);
 
 // bundle app.js
-gulp.task('build', 'Bundle app.js', function () {
-  return browserify(paths.src + 'app.js', {
+gulp.task('build:scripts', 'Bundle scripts from src', function () {
+  return browserify(paths.src.app, {
     debug: true,
-    transform: [ngannotate, envify]
+    transform: [ngannotate, envify, bulkify]
   })
   .bundle()
   .pipe(source('bundle.js'))
-  .pipe(gulpif(args.min, plugins.streamify(plugins.uglify())))
-  .pipe(gulp.dest(paths.dist))
-  .pipe(plugins.connect.reload());
-  }, {
-    aliases: ['b', 'B'],
-    options: {
-      'min': 'Apply minify'
-    }
+  .pipe(buffer())
+  .pipe(plugins.sourcemaps.init({loadMaps: true}))
+  .pipe(plugins.uglify())
+  .pipe(plugins.sourcemaps.write('./'))
+  .pipe(gulp.dest(paths.dist.js));
+}, {
+  aliases: ['b', 'B'],
+   options: {
+    'min': 'Apply minify'
+  }
+});
+
+gulp.task('build:templates', 'Build angular templates', function() {
+  return gulp.src(paths.src.html)
+    .pipe(plugins.minifyHtml({
+      quotes: true
+    }))
+    .pipe(plugins.angularTemplatecache('templates.js', {
+      module: 'ng',
+      transformUrl: function(url) {
+        var x = url.split('\\');
+        x.splice(0, 2);
+        return x.join('\\');
+      }
+    }))
+    .pipe(plugins.sourcemaps.init({loadMaps: true}))
+    .pipe(plugins.uglify())
+    .pipe(plugins.sourcemaps.write('./'))
+    .pipe(gulp.dest(paths.dist.js));
 });
 
 // compile custom scss and css to app.css
-gulp.task('build:css', 'Build sass to css', function() {
+gulp.task('build:styles', 'Build styles from src', function() {
   return merge(
-    gulp.src(paths.sass).pipe(plugins.sass().on('error', plugins.sass.logError)),
-    gulp.src(paths.css)
+    gulp.src(paths.src.css),
+    gulp.src(paths.src.sass).pipe(plugins.sass().on('error', plugins.sass.logError))
   )
   .pipe(plugins.concat('app.css'))
-  //.pipe(plugins.sourcemaps.init())
+  .pipe(plugins.sourcemaps.init())
   .pipe(plugins.autoprefixer())
   .pipe(plugins.cssmin())
-  //.pipe(plugins.sourcemaps.write())
-  .pipe(gulp.dest(paths.dist));
+  .pipe(plugins.sourcemaps.write('./'))
+  .pipe(gulp.dest(paths.dist.css));
 });
 
-// compile js and css third party library to vendor.css/.js
-gulp.task('build:vendor', 'Build all vendor library', function(done) {
-  var vendorScriptPath = path.join(paths.src, 'vendor.js');
-  var vendorStylePath = path.join(paths.dist, 'vendor.css');
+gulp.task('build:vendor', 'Build vendor lib', ['build:vendor:styles', 'build:vendor:scripts']);
 
-  //compile js
-  var b = browserify(vendorScriptPath, {
-    debug: false,
-  });
+// compile 3rd party npm packages
+gulp.task('build:vendor:scripts', 'Build scripts from npm', function(done) {
+  var vendorScriptPath = paths.src.vendor;
 
-  //compile css
-  var p = parcelify(b, {
-    bundles: {
-      style: vendorStylePath,
-    }
-  }).on('bundleWritten', function() {
-    //apply autoprefix and cssmin to result
-    return gulp.src(vendorStylePath, {base: './'})
-      .on('error', done)
-      .pipe(plugins.autoprefixer())
-      .pipe(plugins.cssmin())
-      .pipe(gulp.dest('./'));
-  });
-
-  //bundling browserify
+  // browserify
+  var b = browserify(vendorScriptPath, { debug: false });
   return b.bundle()
     .on('error', done)
     .pipe(source('vendor.js'))
-    .pipe(plugins.streamify(plugins.uglify()))
-    .pipe(gulp.dest(paths.dist));
+    .pipe(buffer())
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.uglify())
+    .pipe(plugins.sourcemaps.write('./'))
+    .pipe(gulp.dest(paths.dist.js));
+});
+
+// compile bower styles
+gulp.task('build:vendor:styles', 'Build styles from bower', function(done) {
+  var rebaseOpts = {
+    copyFiles: {
+      publicPath: '../',
+      filePath: paths.dist.root,
+      fileTypes: [
+          {
+              test: /\.(png|jpg|gif)$/,
+              folder: 'img'
+          },
+          {
+              test: /\.(woff|woff2|eot|ttf|svg)(\?.*?|)$/,
+              folder: 'fonts'
+          }
+      ]
+    }
+  };
+  // compile 3rd party bower styles
+  return merge(
+      gulp.src(bowerFiles.ext('css').files),
+      gulp.src(bowerFiles.ext('scss').files).pipe(plugins.sass())
+    )
+    .pipe(plugins.cssUrlRebase(rebaseOpts))
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.concat('vendor.css'))
+    .pipe(plugins.cssmin())
+    .pipe(plugins.sourcemaps.write('./'))
+    .pipe(gulp.dest(paths.dist.css));
 });
 
 // compile app.js to test.js for karma test
-gulp.task('browserify:test', 'Browserify all js to test.js', function () {
+gulp.task('build:test', 'Build all js to test.js', function () {
   //bundle browserify
   var bundler = browserify({
       debug: true,
-      transform: [ngannotate, envify]
+      transform: [ngannotate, envify, bulkify]
     });
   // add all unit tests
   glob.sync(paths.test + 'unit/**/*.js')
@@ -184,6 +224,10 @@ gulp.task('browserify:test', 'Browserify all js to test.js', function () {
   .pipe(source('test.js'))
   .pipe(gulp.dest(paths.test + 'browser'));
 });
+
+/***************************************************
+ * Application
+ ***************************************************/
 
 // start http server
 gulp.task('server', 'Start application on httpserver', ['browserify'], function () {
@@ -202,7 +246,7 @@ gulp.task('watch', 'Watch and compile js and scss on change', function () {
   gulp.watch([paths.src + '/sass/**/*.scss'], ['sass']);
 });
 
-// bump versioning
+// bump version
 gulp.task('bump', 'Update repository semver version (X.X.X)', function() {
   // should only be either of these values
   // otherwise, default to "patch"
@@ -216,6 +260,26 @@ gulp.task('bump', 'Update repository semver version (X.X.X)', function() {
     version: 'One of bump version type (minor, major, patch, prerelease). default: patch'
   }
 });
+
+// clean
+gulp.task('clean', 'Clean distribution files', function () {
+  return gulp
+  .src([paths.dist.root], {read: false})
+  .pipe(vinylPaths(del));
+});
+
+// lint
+gulp.task('lint', 'Lint all client js', function () {
+  return gulp
+  .src(['gulpfile.js',
+      paths.root + '**/*.js',
+      paths.test + '**/*.js',
+      '!' + paths.test + 'browser/**',
+  ])
+  .pipe(plugins.jshint())
+  .pipe(plugins.jshint.reporter(require('jshint-stylish')));
+});
+
 
 // default
 gulp.task('default', 'Run build', ['build']);

@@ -16,9 +16,13 @@
     "angular-ui-router": "^0.3.1",
     "bootstrap": "^3.3.6",
     "bulk-require": "^0.2.1",
+    "dotenv": "^2.0.0",
+    "ejs": "^2.4.2",
     "es5-shim": "^4.3.1",
+    "express": "^4.14.0",
     "jquery": "^2.2.4",
     "lodash": "^4.13.1",
+    "morgan": "^1.7.0"
   },
   "devDependencies": {
     "bower-files": "^3.13.1",

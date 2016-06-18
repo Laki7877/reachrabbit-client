@@ -10,3 +10,6 @@ test/browser/test.js
 
 # env file
 .env
+
+# coverage test
+coverage

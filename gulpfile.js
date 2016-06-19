@@ -8,7 +8,8 @@
 
 require('dotenv').config();
 
-var browserify      = require('browserify'),
+var _               = require('lodash'),
+    browserify      = require('browserify'),
     parcelify       = require('parcelify'),
     buffer          = require('vinyl-buffer'),
     ngannotate      = require('browserify-ngannotate'),
@@ -19,11 +20,11 @@ var browserify      = require('browserify'),
     del             = require('del'),
     glob            = require('glob'),
     gulp            = require('gulp-help')(require('gulp')),
+    guppy           = require('git-guppy')(gulp),
     Server          = require('karma').Server,
     source          = require('vinyl-source-stream'),
     vinylPaths      = require('vinyl-paths'),
     gulpif          = require('gulp-if'),
-    _               = require('lodash'),
     args            = require('yargs').argv,
     path            = require('path');
 
@@ -60,6 +61,13 @@ var paths = {
 };
 
 var liveReload = true;
+
+/***************************************************
+ * Git hook
+ ***************************************************/
+
+// git precommit
+gulp.task('pre-commit', 'Git hook pre-commit', ['lint']);
 
 /*******************************************
  * Test
@@ -292,15 +300,13 @@ gulp.task('clean', 'Clean distribution files', function () {
 // lint
 gulp.task('lint', 'Lint all client js', function () {
   return gulp
-  .src(['gulpfile.js',
-      paths.root + '**/*.js',
-      paths.test + '**/*.js',
-      '!' + paths.test + 'browser/**',
-  ])
-  .pipe(plugins.jshint())
-  .pipe(plugins.jshint.reporter(require('jshint-stylish')));
+    .src(['gulpfile.js',
+        paths.src.root + '**/*.js',
+        paths.test + '**/*.js',
+        '!' + paths.test + 'browser/**'])
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter(require('jshint-stylish')));
 });
-
 
 // default
 gulp.task('default', 'Run build', ['build']);

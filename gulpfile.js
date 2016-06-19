@@ -114,7 +114,7 @@ gulp.task('test:browser', 'Run karma test', ['browserify:test'], function (done)
 gulp.task('build:all', 'Build all modules (core and vendors)', ['build:vendor', 'build']);
 
 // build core (css, js, etc.)
-gulp.task('build', 'Build core modules', ['build:templates', 'build:styles', 'build:scripts']);
+gulp.task('build', 'Build core modules', ['build:styles', 'build:scripts']);
 
 
 // build core js
@@ -134,10 +134,10 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
     var b = browserify(paths.tmp.app, {
       debug: true,
       transform: [ngannotate, envify, bulkify]
-    })
+    });
 
     return b.bundle()
-    .pipe(source('bundle.js'))
+    .pipe(source('app.js'))
     .pipe(buffer())
     .pipe(plugins.sourcemaps.init({loadMaps: true}))
     .pipe(plugins.uglify())

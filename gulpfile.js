@@ -259,13 +259,16 @@ gulp.task('build:test', 'Build all js to test.js', function () {
  ***************************************************/
 
 // start http server
-gulp.task('server', 'Start application on httpserver', ['browserify'], function () {
-    plugins.connect.server({
-      root: 'app',
-      livereload: liveReload,
+gulp.task('server', 'Start express server', ['browserify'], function () {
+    var server = plugins.liveServer.new('app.js');
+    server.start();
+
+    // notify server for livereload
+    gulp.watch([path.resolve(__dirname, 'api/**/*.js')], function(file) {
+      server.start.bind(server)();
     });
   }, {
-    aliases: ['start']
+    aliases: ['start', 'run', 'serve']
 });
 
 // watch js and sass

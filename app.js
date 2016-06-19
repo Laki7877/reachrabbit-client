@@ -9,10 +9,12 @@
 // set process env from .env
 require('dotenv').config();
 
-var app   = require('express')(),
-    path  = require('path'),
-    http  = require('http'),
-    morgan= require('morgan');
+var express   = require('express'),
+    path      = require('path'),
+    http      = require('http'),
+    morgan    = require('morgan');
+
+var app = express();
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');

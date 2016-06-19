@@ -45,11 +45,16 @@ var paths = {
     css: 'public/assets/css/'
   },
   src: {
+    root: 'app/',
     sass: 'app/styles/**/*.scss',
     css: 'app/styles/**/*.css',
     html: 'app/**/*.html',
     vendor: 'app/vendor.js',
     app: 'app/app.js'
+  },
+  tmp: {
+    root: 'tmp/',
+    app: 'tmp/app.js'
   },
   test: 'test/'      // Test path
 };
@@ -103,26 +108,42 @@ gulp.task('build:all', 'Build all modules (core and vendors)', ['build:vendor', 
 // build core (css, js, etc.)
 gulp.task('build', 'Build core modules', ['build:templates', 'build:styles', 'build:scripts']);
 
-// bundle app.js
-gulp.task('build:scripts', 'Bundle scripts from src', function () {
-  return browserify(paths.src.app, {
-    debug: true,
-    transform: [ngannotate, envify, bulkify]
-  })
-  .bundle()
-  .pipe(source('bundle.js'))
-  .pipe(buffer())
-  .pipe(plugins.sourcemaps.init({loadMaps: true}))
-  .pipe(plugins.uglify())
-  .pipe(plugins.sourcemaps.write('./'))
-  .pipe(gulp.dest(paths.dist.js));
-}, {
-  aliases: ['b', 'B'],
-   options: {
-    'min': 'Apply minify'
-  }
-});
 
+// build core js
+gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:scripts']);
+
+  // process scripts to tmp
+  gulp.task('build:tmp:scripts', false, function() {
+    return gulp.src(path.resolve(paths.src.root, '**/*.js'))
+      .pipe(plugins.angularEmbedTemplates({
+        minimize: require('minimize')
+      }))
+      .pipe(gulp.dest(paths.tmp.root));
+  });
+
+  // bundle tmp/app.js
+  gulp.task('build:bundle:scripts', false, ['build:tmp:scripts'], function () {
+    var b = browserify(paths.tmp.app, {
+      debug: true,
+      transform: [ngannotate, envify, bulkify]
+    })
+
+    return b.bundle()
+    .pipe(source('bundle.js'))
+    .pipe(buffer())
+    .pipe(plugins.sourcemaps.init({loadMaps: true}))
+    .pipe(plugins.uglify())
+    .pipe(plugins.sourcemaps.write('./'))
+    .pipe(gulp.dest(paths.dist.js));
+  });
+
+  // clean tmp folder
+  gulp.task('build:clean:scripts', false, ['build:bundle:scripts'], function() {
+    return gulp.src([paths.tmp.root], {read: false})
+    .pipe(vinylPaths(del));
+  });
+
+/* depreciated
 gulp.task('build:templates', 'Build angular templates', function() {
   return gulp.src(paths.src.html)
     .pipe(plugins.minifyHtml({
@@ -140,10 +161,10 @@ gulp.task('build:templates', 'Build angular templates', function() {
     .pipe(plugins.uglify())
     .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(paths.dist.js));
-});
+});*/
 
-// compile custom scss and css to app.css
-gulp.task('build:styles', 'Build styles from src', function() {
+// build custom scss and css
+gulp.task('build:styles', 'Build core styles', function() {
   return merge(
     gulp.src(paths.src.css),
     gulp.src(paths.src.sass).pipe(plugins.sass().on('error', plugins.sass.logError))
@@ -158,8 +179,8 @@ gulp.task('build:styles', 'Build styles from src', function() {
 
 gulp.task('build:vendor', 'Build vendor lib', ['build:vendor:styles', 'build:vendor:scripts']);
 
-// compile 3rd party npm packages
-gulp.task('build:vendor:scripts', 'Build scripts from npm', function(done) {
+// build 3rd party vendor
+gulp.task('build:vendor:scripts', 'Build scripts from npm vendor', function(done) {
   var vendorScriptPath = paths.src.vendor;
 
   // browserify
@@ -174,8 +195,8 @@ gulp.task('build:vendor:scripts', 'Build scripts from npm', function(done) {
     .pipe(gulp.dest(paths.dist.js));
 });
 
-// compile bower styles
-gulp.task('build:vendor:styles', 'Build styles from bower', function(done) {
+// build 3rd party bower styles
+gulp.task('build:vendor:styles', 'Build styles from bower vendor', function(done) {
   var rebaseOpts = {
     copyFiles: {
       publicPath: '../',
@@ -205,7 +226,7 @@ gulp.task('build:vendor:styles', 'Build styles from bower', function(done) {
     .pipe(gulp.dest(paths.dist.css));
 });
 
-// compile app.js to test.js for karma test
+// build js for test
 gulp.task('build:test', 'Build all js to test.js', function () {
   //bundle browserify
   var bundler = browserify({

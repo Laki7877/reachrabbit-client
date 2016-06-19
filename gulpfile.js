@@ -48,7 +48,7 @@ var paths = {
   src: {
     root: 'app/',
     sass: 'app/styles/**/*.scss',
-    css: 'app/styles/**/*.css',
+    css: ['app/styles/**/*.css', 'app/components/**/*.css'],
     html: 'app/**/*.html',
     vendor: 'app/vendor.js',
     app: 'app/app.js'
@@ -174,8 +174,9 @@ gulp.task('build:templates', 'Build angular templates', function() {
 // build custom scss and css
 gulp.task('build:styles', 'Build core styles', function() {
   return merge(
-    gulp.src(paths.src.css),
-    gulp.src(paths.src.sass).pipe(plugins.sass().on('error', plugins.sass.logError))
+    gulp.src(paths.src.css[0]),
+    gulp.src(paths.src.sass).pipe(plugins.sass().on('error', plugins.sass.logError)),
+    gulp.src(paths.src.css[1])
   )
   .pipe(plugins.concat('app.css'))
   .pipe(plugins.sourcemaps.init())
@@ -224,6 +225,7 @@ gulp.task('build:vendor:styles', 'Build styles from bower vendor', function(done
   // compile 3rd party bower styles
   return merge(
       gulp.src(bowerFiles.ext('css').files),
+      gulp.src(bowerFiles.ext('less').files).pipe(plugins.less()),
       gulp.src(bowerFiles.ext('scss').files).pipe(plugins.sass())
     )
     .pipe(plugins.cssUrlRebase(rebaseOpts))
@@ -238,7 +240,7 @@ gulp.task('build:vendor:styles', 'Build styles from bower vendor', function(done
 gulp.task('build:test', 'Build all js to test.js', function () {
   //bundle browserify
   var bundler = browserify({
-      debug: true,
+      debug: false,
       transform: [ngannotate, envify, bulkify]
     });
   // add all unit tests
@@ -259,23 +261,29 @@ gulp.task('build:test', 'Build all js to test.js', function () {
  ***************************************************/
 
 // start http server
-gulp.task('server', 'Start express server', ['browserify'], function () {
+gulp.task('server', 'Start express server', function () {
     var server = plugins.liveServer.new('app.js');
     server.start();
 
     // notify server for livereload
-    gulp.watch([path.resolve(__dirname, 'api/**/*.js')], function(file) {
+    gulp.watch([path.resolve(__dirname, 'public/asset/**/*')], function(file) {
       server.start.bind(server)();
     });
   }, {
     aliases: ['start', 'run', 'serve']
 });
 
+gulp.task('server:test', 'Start test server', function() {
+  return plugins.connect.server({
+    root: 'public',
+    livereload: true
+  });
+});
+
 // watch js and sass
 gulp.task('watch', 'Watch and compile js and scss on change', function () {
   gulp.start('server');
-  gulp.watch([paths.src + '**/*.js'], ['browserify']);
-  gulp.watch([paths.src + '/sass/**/*.scss'], ['sass']);
+  gulp.watch([paths.src.root + '**/*'], ['build']);
 });
 
 // bump version

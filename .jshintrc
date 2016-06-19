@@ -94,6 +94,7 @@
     "prototypejs"   : false,    // Enable globals exposed by Prototype JavaScript framework.
     "rhino"         : false,    // Enable globals available when your code is running inside of the Rhino runtime environment.
     "wsh"           : false,    // Enable globals available when your code is running as a script for the Windows Script Host.
+    "mocha"         : true,
 
     // == JSLint Legacy ===================================================
     //
@@ -114,12 +115,21 @@
 
     "maxerr"        : 100,      // Maximum errors before stopping.
     "predef"        : [         // Extra globals.
-        //"exampleVar",
-        //"anotherCoolGlobal",
-        //"iLoveDouglas"
+        "protractor",
+        "browser",
+        "by",
+        "element",
+        "it",
+        "describe",
+        "beforeEach",
+        "afterEach"
     ],
     "globals": {
-        "angular": false
+        "angular": false,
+        "async": true,
+        "CJSON": true,
+        "errors": true,
+        "httpStatus": true
     },
     "indent"        : 4         // Specify indentation spacing
 }

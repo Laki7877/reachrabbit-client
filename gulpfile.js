@@ -122,10 +122,10 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
 
   // process scripts to tmp
   gulp.task('build:tmp:scripts', false, function() {
-    return gulp.src(path.resolve(paths.src.root, '**/*.js'))
-      .pipe(plugins.angularEmbedTemplates({
+    return gulp.src(path.resolve(paths.src.root, '**/*'))
+      /*.pipe(plugins.angularEmbedTemplates({
         minimize: require('minimize')
-      }))
+      }))*/
       .pipe(gulp.dest(paths.tmp.root));
   });
 
@@ -134,6 +134,11 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
     var b = browserify(paths.tmp.app, {
       debug: true,
       transform: [ngannotate, envify, bulkify]
+    });
+
+    require('./lib/poonify')(b, {
+      output: path.resolve(paths.dist.js, 'template.js'),
+      excludes: ['app']
     });
 
     return b.bundle()
@@ -175,8 +180,7 @@ gulp.task('build:templates', 'Build angular templates', function() {
 gulp.task('build:styles', 'Build core styles', function() {
   return merge(
     gulp.src(paths.src.css[0]),
-    gulp.src(paths.src.sass).pipe(plugins.sass().on('error', plugins.sass.logError)),
-    gulp.src(paths.src.css[1])
+    gulp.src(paths.src.sass).pipe(plugins.sass().on('error', plugins.sass.logError))
   )
   .pipe(plugins.concat('app.css'))
   .pipe(plugins.sourcemaps.init())

@@ -1,0 +1,101 @@
+$bg_color: #0f122a;
+$fg_color: #fffcf7;
+$white: #ffffff;
+$btn-yellow: #fed136;
+$btn-yellow-hover: #fec503;
+$btn-yellow-hover-border: #f6bf01;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+canvas {
+  display: block;
+}
+
+header {
+  height: 760px;
+  position: relative;
+}
+
+section {
+  margin-top: 70px;
+}
+
+[data-particles].particles {
+  background-color: $bg_color;
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+
+}
+
+.intro {
+  height: 100%;
+  left:0%;
+  top:35%;
+  position: relative;
+  z-index: 10;
+  .welcome {
+    width: 100%;
+    text-align: center;
+    color: $fg_color;
+    font-size: 68px;
+    font-weight: 200;
+    strong {
+      font-size: 74px;
+      font-weight: 600;
+    }
+  }
+  .signup {
+    margin-top: 40px;
+    text-align: center;
+  }
+}
+
+.navbar-default {
+  background-color: transparent;
+  border: none;
+  padding: 25px 0;
+  .navbar-brand {
+    font-size: 28px;
+    color: $fg_color;
+    &:hover {
+      color: $fg_color;
+    }
+  }
+}
+
+.navbar-default {
+  .navbar-nav {
+    > li {
+      > a {
+        font-size: 16px;
+        font-weight: 200;
+        color: $fg_color;
+        &:hover {
+          color: $fg_color;
+        }
+      }
+    }
+  }
+}
+.btn.btn-xl.btn-yellow {
+    color: $white;
+    background-color: $btn-yellow;
+    border-color: $btn-yellow;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 3px;
+    font-size: 21px;
+    padding: 20px 40px;
+    display: inline-block;
+    text-align: center;
+
+    &:hover, &:focus, &:active, &.active {
+      color: $white;
+      background-color: $btn-yellow-hover;
+      border-color: $btn-yellow-hover-border;
+    }
+}

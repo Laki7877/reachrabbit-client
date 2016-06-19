@@ -6,9 +6,10 @@
  */
 'use strict';
 
+require('./components/common');
 require('./components/landing');
 
-angular.module('app', ['app.landing'])
+angular.module('app', ['app.common', 'app.landing'])
   .run(function($state) {
     $state.go('landing');
   });

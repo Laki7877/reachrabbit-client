@@ -1,6 +1,5 @@
 angular.module('app.common')
     .directive('particles', function($window) {
-
         return {
             restrict: 'A',
             replace: true,

@@ -55,7 +55,8 @@ var paths = {
   },
   tmp: {
     root: 'tmp/',
-    app: 'tmp/app.js'
+    app: 'tmp/app.js',
+    components: 'tmp/components/'
   },
   test: 'test/'      // Test path
 };
@@ -136,11 +137,25 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
       transform: [ngannotate, envify, bulkify]
     });
 
-    require('./lib/poonify')(b, {
+    var p = require('./lib/poonify');
+
+    // create template for angular
+    p.templatify(b, {
       output: path.resolve(paths.dist.js, 'template.js'),
       excludes: ['app']
     });
 
+    // change css path for components
+    p.rebasify(b, {
+      workingDir: 'tmp',
+      baseDir: '../css'
+    });
+
+    // copy components css to dist
+    gulp.src(path.resolve(paths.tmp.components, '**/!(*.js|*.html)'))
+      .pipe(gulp.dest(path.join(paths.dist.css, 'components')));
+
+    // browserify
     return b.bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
@@ -153,6 +168,7 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
   // clean tmp folder
   gulp.task('build:clean:scripts', false, ['build:bundle:scripts'], function() {
     return gulp.src([paths.tmp.root], {read: false})
+    .pipe(plugins.wait(200))
     .pipe(vinylPaths(del));
   });
 

@@ -1,6 +1,9 @@
 body{
   margin-top: 30px;
 }
+.body-inf{
+  background: #a4c2e6;
+}
 .clear{
   clear: both;
 }

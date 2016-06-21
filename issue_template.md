@@ -13,4 +13,4 @@ Tell us what happens instead in detail (or with screenshot and label)
 
 **Browser:** Chrome
 
-**Operating System:** Window
+**Operating System:** Window 7

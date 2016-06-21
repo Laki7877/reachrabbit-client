@@ -26,7 +26,8 @@ var _               = require('lodash'),
     vinylPaths      = require('vinyl-paths'),
     gulpif          = require('gulp-if'),
     args            = require('yargs').argv,
-    path            = require('path');
+    path            = require('path'),
+    es              = require('event-stream');
 
 // load all gulp plugins
 var plugins = require('gulp-load-plugins')({
@@ -47,16 +48,16 @@ var paths = {
   },
   src: {
     root: 'app/',
-    sass: 'app/styles/**/*.scss',
-    css: ['app/styles/**/*.css', 'app/components/**/*.css'],
+    styles: 'app/styles/',
     html: 'app/**/*.html',
-    vendor: 'app/vendor.js',
-    app: 'app/app.js'
+    vendor: 'app/vendors/',
+    app: 'app/*.js'
   },
   tmp: {
     root: 'tmp/',
-    app: 'tmp/app.js',
-    components: 'tmp/components/'
+    tmp: 'tmp/tmp',
+    components: 'tmp/components/',
+    modules: 'tmp/modules'
   },
   test: 'test/'      // Test path
 };
@@ -124,79 +125,96 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
   // process scripts to tmp
   gulp.task('build:tmp:scripts', false, function() {
     return gulp.src(path.resolve(paths.src.root, '**/*'))
-      /*.pipe(plugins.angularEmbedTemplates({
-        minimize: require('minimize')
-      }))*/
       .pipe(gulp.dest(paths.tmp.root));
   });
 
   // bundle tmp/app.js
-  gulp.task('build:bundle:scripts', false, ['build:tmp:scripts'], function () {
-    var b = browserify(paths.tmp.app, {
-      debug: true,
-      transform: [ngannotate, envify, bulkify]
-    });
+  gulp.task('build:bundle:scripts', false, ['build:tmp:scripts'], function (done) {
+    function build(entry) {
+      var b = browserify(entry, {
+        debug: true,
+        transform: [ngannotate, envify, bulkify]
+      });
 
-    var p = require('./lib/poonify');
+      var filename = path.basename(entry); //with ext
 
-    // create template for angular
-    p.templatify(b, {
-      output: path.resolve(paths.dist.js, 'template.js'),
-      excludes: ['app']
-    });
+      var p = require('./lib/poonify');
 
-    // change css path for components
-    p.rebasify(b, {
-      workingDir: 'tmp',
-      baseDir: '../css'
-    });
+      // create template for angular
+      p.templatify(b, {
+        output: path.resolve(paths.tmp.tmp, filename + '.tmp'),
+        excludes: ['app']
+      });
 
-    // copy components css to dist
-    gulp.src(path.resolve(paths.tmp.components, '**/!(*.js|*.html)'))
+      // change css path for components
+      p.rebasify(b, {
+        workingDir: 'tmp',
+        baseDir: '../css'
+      });
+
+      // rename to .css
+      var renamer = function(ext) {
+        return function(path) {
+          path.basename += '.' + ext;
+        };
+      };
+
+      // concat components and output to components folder
+      merge(
+        gulp.src(path.resolve(paths.tmp.components, '**/!(*.js|*.html|*.scss|*.less)')),
+        gulp.src(path.resolve(paths.tmp.components, '**/*.scss')).pipe(plugins.sass()).pipe(plugins.rename(renamer('scss'))),
+        gulp.src(path.resolve(paths.tmp.components, '**/*.less')).pipe(plugins.less()).pipe(plugins.rename(renamer('less')))
+      )
       .pipe(gulp.dest(path.join(paths.dist.css, 'components')));
+      merge(
+        gulp.src(path.resolve(paths.tmp.modules, '**/!(*.js|*.html|*.scss|*.less)')),
+        gulp.src(path.resolve(paths.tmp.modules, '**/*.scss')).pipe(plugins.sass()).pipe(plugins.rename(renamer('scss'))),
+        gulp.src(path.resolve(paths.tmp.modules, '**/*.less')).pipe(plugins.less()).pipe(plugins.rename(renamer('less')))
+      )
+      .pipe(gulp.dest(path.join(paths.dist.css, 'modules')));
 
-    // browserify
-    return b.bundle()
-    .pipe(source('app.js'))
-    .pipe(buffer())
-    .pipe(plugins.sourcemaps.init({loadMaps: true}))
-    .pipe(plugins.uglify())
-    .pipe(plugins.sourcemaps.write('./'))
-    .pipe(gulp.dest(paths.dist.js));
+      // browserify
+      return b.bundle()
+        .pipe(source(filename))
+        .pipe(buffer())
+        .pipe(gulp.dest(paths.tmp.tmp));
+    }
+
+    glob(paths.src.app, function(err, files) {
+      var tasks = files.map(build);
+      es.merge(tasks).on('end', done);
+    });
+  });
+
+  gulp.task('build:concat:scripts', false, ['build:bundle:scripts'], function(done) {
+    glob(path.resolve(paths.tmp.tmp, '*.js'), function(err, files) {
+      var tasks = files.map(function(entry) {
+        var filename = path.basename(entry);
+        return gulp.src([entry, entry + '.tmp'])
+          .pipe(plugins.concat(filename))
+          .pipe(plugins.sourcemaps.init({loadMaps: true}))
+          //.pipe(plugins.uglify())
+          .pipe(plugins.sourcemaps.write('./'))
+          .pipe(gulp.dest(paths.dist.js));
+      });
+
+      es.merge(tasks).on('end', done);
+    });
   });
 
   // clean tmp folder
-  gulp.task('build:clean:scripts', false, ['build:bundle:scripts'], function() {
+  gulp.task('build:clean:scripts', false, ['build:concat:scripts'], function() {
     return gulp.src([paths.tmp.root], {read: false})
     .pipe(plugins.wait(200))
     .pipe(vinylPaths(del));
   });
 
-/* depreciated
-gulp.task('build:templates', 'Build angular templates', function() {
-  return gulp.src(paths.src.html)
-    .pipe(plugins.minifyHtml({
-      quotes: true
-    }))
-    .pipe(plugins.angularTemplatecache('templates.js', {
-      module: 'ng',
-      transformUrl: function(url) {
-        var x = url.split('\\');
-        x.splice(0, 2);
-        return x.join('\\');
-      }
-    }))
-    .pipe(plugins.sourcemaps.init({loadMaps: true}))
-    .pipe(plugins.uglify())
-    .pipe(plugins.sourcemaps.write('./'))
-    .pipe(gulp.dest(paths.dist.js));
-});*/
-
 // build custom scss and css
 gulp.task('build:styles', 'Build core styles', function() {
   return merge(
-    gulp.src(paths.src.css[0]),
-    gulp.src(paths.src.sass).pipe(plugins.sass().on('error', plugins.sass.logError))
+    gulp.src(path.join(paths.src.styles, '**/*.css')),
+    gulp.src(path.join(paths.src.styles, '**/*.scss')).pipe(plugins.sass()),
+    gulp.src(path.join(paths.src.styles, '**/*.less')).pipe(plugins.less())
   )
   .pipe(plugins.concat('app.css'))
   .pipe(plugins.sourcemaps.init())
@@ -210,7 +228,7 @@ gulp.task('build:vendor', 'Build vendor lib', ['build:vendor:styles', 'build:ven
 
 // build 3rd party vendor
 gulp.task('build:vendor:scripts', 'Build scripts from npm vendor', function(done) {
-  var vendorScriptPath = paths.src.vendor;
+  var vendorScriptPath = path.join(paths.src.vendor, 'index.js');
 
   // browserify
   var b = browserify(vendorScriptPath, { debug: false });
@@ -236,7 +254,7 @@ gulp.task('build:vendor:styles', 'Build styles from bower vendor', function(done
               folder: 'img'
           },
           {
-              test: /\.(woff|woff2|eot|ttf|svg)(\?.*?|)$/,
+              test: /\.(woff|woff2|eot|ttf|svg)(\?.*?|#.*?|)$/,
               folder: 'fonts'
           }
       ]
@@ -244,9 +262,9 @@ gulp.task('build:vendor:styles', 'Build styles from bower vendor', function(done
   };
   // compile 3rd party bower styles
   return merge(
-      gulp.src(bowerFiles.ext('css').files),
-      gulp.src(bowerFiles.ext('less').files).pipe(plugins.less()),
-      gulp.src(bowerFiles.ext('scss').files).pipe(plugins.sass())
+      gulp.src(_.concat(path.join(paths.src.vendor, '**/*.css'), bowerFiles.ext('css').files)),
+      gulp.src(_.concat(path.join(paths.src.vendor, '**/*.less'), bowerFiles.ext('less').files)).pipe(plugins.less()),
+      gulp.src(_.concat(path.join(paths.src.vendor, '**/*.scss'), bowerFiles.ext('scss').files)).pipe(plugins.sass())
     )
     .pipe(plugins.cssUrlRebase(rebaseOpts))
     .pipe(plugins.sourcemaps.init())
@@ -336,7 +354,8 @@ gulp.task('lint', 'Lint all client js', function () {
         paths.test + '**/*.js',
         '!' + paths.test + 'browser/**'])
     .pipe(plugins.jshint())
-    .pipe(plugins.jshint.reporter(require('jshint-stylish')));
+    .pipe(plugins.jshint.reporter(require('jshint-stylish')))
+    .pipe(plugins.jshint.reporter('fail'));
 });
 
 // default

@@ -4,9 +4,9 @@
   "description": "Yet another example project with Angular, Browserify and Gulp",
   "license": "MIT",
   "scripts": {
-    "postinstall": "webdriver-manager update",
+    "postinstall": "webdriver-manager update && node node_modules/bower/lib/bin/bower.js install && node node_modules/guppy-cli/bin/index.js pre-commit",
     "pretest": "webdriver-manager start",
-    "test": "gulp"
+    "test": "gulp test"
   },
   "dependencies": {
     "angular": "^1.4.7",
@@ -14,7 +14,9 @@
     "angular-route": "^1.4.7",
     "angular-ui-bootstrap": "^1.3.3",
     "angular-ui-router": "^0.3.1",
+    "bluebird": "^3.4.1",
     "bootstrap": "^3.3.6",
+    "bower": "^1.7.9",
     "bulk-require": "^0.2.1",
     "dotenv": "^2.0.0",
     "ejs": "^2.4.2",
@@ -35,6 +37,7 @@
     "chai": "^3.4.1",
     "del": "^2.1.0",
     "dotenv": "^2.0.0",
+    "event-stream": "^3.3.3",
     "git-guppy": "^1.2.1",
     "glob": "^6.0.4",
     "gulp": "^3.9.0",
@@ -45,8 +48,10 @@
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.0.5",
     "gulp-css-url-rebase": "git+https://github.com/gitawego/gulp-css-url-rebase.git",
+    "gulp-filter": "^4.0.0",
     "gulp-help": "^1.6.1",
     "gulp-if": "^2.0.1",
+    "gulp-insert": "^0.5.0",
     "gulp-jshint": "^2.0.1",
     "gulp-less": "^3.1.0",
     "gulp-live-server": "0.0.30",
@@ -57,6 +62,7 @@
     "gulp-ng-annotate": "^1.1.0",
     "gulp-plumber": "^1.1.0",
     "gulp-protractor": "1.0.0",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-streamify": "1.0.2",

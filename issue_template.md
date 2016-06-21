@@ -11,6 +11,6 @@ Tell us what happens instead in detail (or with screenshot and label)
 
 ### Environment
 
-**Browser:**
+**Browser:** Chrome
 
-**Operating System:**
+**Operating System:** Window

@@ -1,3 +1,4 @@
+/* jshint quotmark: true */
 module.exports = {
   "particles": {
     "number": {
@@ -108,3 +109,5 @@ module.exports = {
   },
   "retina_detect": true
 }
+/* jshint quotmark:single */
+

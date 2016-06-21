@@ -27,9 +27,16 @@ app.use(express.static(path.resolve(__dirname, 'public/assets')));
  ************************************/
 
 app.get('/', function(req, res) {
-  return res.render('index');
+  return res.render('landing');
 });
 
+app.get('/b', function(req, res) {
+  return res.render('brand');
+});
+
+app.get('/i', function(req, res) {
+  return res.render('influencer');
+});
 
 /************************************
  * Start server

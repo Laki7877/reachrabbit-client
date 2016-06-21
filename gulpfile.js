@@ -199,7 +199,7 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
         return gulp.src([entry, entry + '.tmp'])
           .pipe(plugins.concat(filename))
           .pipe(plugins.sourcemaps.init({loadMaps: true}))
-          //.pipe(plugins.uglify())
+          .pipe(plugins.uglify())
           .pipe(plugins.sourcemaps.write('./'))
           .pipe(gulp.dest(paths.dist.js));
       });

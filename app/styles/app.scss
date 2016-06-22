@@ -1,101 +1,40 @@
-$bg_color: #0f122a;
-$fg_color: #fffcf7;
-$white: #ffffff;
-$btn-yellow: #fed136;
-$btn-yellow-hover: #fec503;
-$btn-yellow-hover-border: #f6bf01;
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
+body{
+  margin-top: 30px;
+}
+.body-inf{
+  background: #a4c2e6;
+}
+.clear{
+  clear: both;
+}
+.page-header button{
+  margin-top: 20px;
 }
 
-canvas {
-  display: block;
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 }
 
-header {
-  height: 760px;
-  position: relative;
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
 }
 
-section {
-  margin-top: 70px;
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
-[data-particles].particles {
-  background-color: $bg_color;
-  height: 100%;
-  width: 100%;
-  display: block;
-  position: absolute;
-
-}
-
-.intro {
-  height: 100%;
-  left:0%;
-  top:35%;
-  position: relative;
-  z-index: 10;
-  .welcome {
-    width: 100%;
-    text-align: center;
-    color: $fg_color;
-    font-size: 68px;
-    font-weight: 200;
-    strong {
-      font-size: 74px;
-      font-weight: 600;
-    }
-  }
-  .signup {
-    margin-top: 40px;
-    text-align: center;
-  }
-}
-
-.navbar-default {
-  background-color: transparent;
-  border: none;
-  padding: 25px 0;
-  .navbar-brand {
-    font-size: 28px;
-    color: $fg_color;
-    &:hover {
-      color: $fg_color;
-    }
-  }
-}
-
-.navbar-default {
-  .navbar-nav {
-    > li {
-      > a {
-        font-size: 16px;
-        font-weight: 200;
-        color: $fg_color;
-        &:hover {
-          color: $fg_color;
-        }
-      }
-    }
-  }
-}
-.btn.btn-xl.btn-yellow {
-    color: $white;
-    background-color: $btn-yellow;
-    border-color: $btn-yellow;
-    text-transform: uppercase;
-    font-weight: 700;
-    border-radius: 3px;
-    font-size: 21px;
-    padding: 20px 40px;
-    display: inline-block;
-    text-align: center;
-
-    &:hover, &:focus, &:active, &.active {
-      color: $white;
-      background-color: $btn-yellow-hover;
-      border-color: $btn-yellow-hover-border;
-    }
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }

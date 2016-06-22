@@ -30,12 +30,12 @@ app.get('/', function(req, res) {
   return res.render('landing');
 });
 
-app.get('/b', function(req, res) {
+app.get('/brand', function(req, res) {
   return res.render('brand');
 });
 
-app.get('/i', function(req, res) {
-  return res.render('influencer');
+app.get('/inf', function(req, res) {
+  return res.render('inf');
 });
 
 /************************************

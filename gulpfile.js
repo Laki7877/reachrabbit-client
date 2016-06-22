@@ -172,6 +172,8 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
         gulp.src(path.resolve(paths.tmp.components, '**/*.less')).pipe(plugins.less()).pipe(plugins.rename(renamer('less')))
       )
       .pipe(gulp.dest(path.join(paths.dist.css, 'components')));
+      
+      // concat modules and output to modules folder
       merge(
         gulp.src(path.resolve(paths.tmp.modules, '**/!(*.js|*.html|*.scss|*.less)')),
         gulp.src(path.resolve(paths.tmp.modules, '**/*.scss')).pipe(plugins.sass()).pipe(plugins.rename(renamer('scss'))),
@@ -199,7 +201,7 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
         return gulp.src([entry, entry + '.tmp'])
           .pipe(plugins.concat(filename))
           .pipe(plugins.sourcemaps.init({loadMaps: true}))
-          .pipe(plugins.uglify())
+          //.pipe(plugins.uglify())
           .pipe(plugins.sourcemaps.write('./'))
           .pipe(gulp.dest(paths.dist.js));
       });
@@ -211,7 +213,6 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
   // clean tmp folder
   gulp.task('build:clean:scripts', false, ['build:concat:scripts'], function() {
     return gulp.src([paths.tmp.root], {read: false})
-    .pipe(plugins.wait(200))
     .pipe(vinylPaths(del));
   });
 
@@ -310,11 +311,12 @@ gulp.task('server', 'Start express server', function () {
     server.start();
 
     // notify server for livereload
-    gulp.watch([path.resolve(__dirname, 'public/asset/**/*')], function(file) {
+    gulp.watch([path.resolve(__dirname, 'public/asset/**/*'), path.resolve(__dirname, paths.src.root, '**/*')], function(file) {
+      gulp.start('build');
       server.start.bind(server)();
     });
   }, {
-    aliases: ['start', 'run', 'serve']
+    aliases: ['start', 'run', 'serve', 'watch']
 });
 
 gulp.task('server:test', 'Start test server', function() {
@@ -322,12 +324,6 @@ gulp.task('server:test', 'Start test server', function() {
     root: 'public',
     livereload: true
   });
-});
-
-// watch js and sass
-gulp.task('watch', 'Watch and compile js and scss on change', function () {
-  gulp.start('server');
-  gulp.watch([paths.src.root + '**/*'], ['build']);
 });
 
 // bump version

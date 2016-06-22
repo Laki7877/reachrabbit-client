@@ -1,6 +1,18 @@
+/**
+ * common components
+ *
+ * @author     Poon Wu <poon.wuthi@gmail.com
+ * @since      0.0.1
+ */
 'use strict';
 
-angular.module('app.common', ['angularCSS', 'ui.router']);
+var components = [
+	'ui.router',
+	'angularCSS',
+	'satellizer'
+];
+
+angular.module('app.common', components);
 
 var bulk = require('bulk-require');
 bulk(__dirname, ['**/*.js', '!index.js']);

@@ -1,6 +1,16 @@
+/**
+ * landing module
+ *
+ * @author     Poon Wu <poon.wuthi@gmail.com
+ * @since      0.0.1
+ */
 'use strict';
 
-angular.module('app.landing', ['app.common'])
+var components = [
+	require('../../components/common')
+];
+
+angular.module('app.landing', components)
 	.config(function($stateProvider) {
 		$stateProvider
 			.state('brand', {
@@ -8,14 +18,13 @@ angular.module('app.landing', ['app.common'])
 				controller: 'landingBrandController',
 				templateUrl: 'landing-brand.html'
 			})
-			.state('influencer', {
-				url: '/influencer',
-				controller: 'landingInfluencerController',
-				templateUrl: 'landing-influencer.html'
+			.state('inf', {
+				url: '/inf',
+				controller: 'landingInfController',
+				templateUrl: 'landing-inf.html'
 			});
 	});
 
-var bulk = require('bulk-require');
-bulk(__dirname, ['**/*.js', '!index.js']);
+require('bulk-require')(__dirname, ['**/*.js', '!index.js']);
 
 module.exports = 'app.landing';

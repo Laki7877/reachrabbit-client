@@ -8,9 +8,17 @@
 
 angular.module('app.landing')
 	.controller('landingBrandController', function() {
-
+		
 	})
-	.controller('landingInfluencerController', function() {
-
+	.controller('landingInfController', function($scope, $auth) {
+		$scope.loginWithFB = function() {
+			$auth.authenticate('facebook')
+				.then(function(data) {
+					console.log(data);
+				})
+				.catch(function(err) {
+					console.error(err);
+				});
+		}
 	});
 

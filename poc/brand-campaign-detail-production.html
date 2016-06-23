@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -47,31 +47,62 @@
       <div class="page-header">
         <h2 class="pull-left">Campaign Detail (PRODUCTION)</h2>
         <div class="pull-right">
-          <a href="brand-campaign-list.html">
-            <button type="button" name="button" class="btn btn-default">Back to Campaign List</button>
+          <a href="brand-campaign-list.html" class="btn btn-default">
+            Back to Campaign List
           </a>
         </div>
         <div class="clear"></div>
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-body">
-          Pokemon Campaign
-          <div class="pull-right">
-            Status: PRODUCTION
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object" src="images/campaign-pokeland.jpg"  class="img-responsive">
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">
+              Pokeland Summer Campaign <i class="fa fa-instagram"></i>
+            </h4>
+            <div class="media-item">
+              <h5>Status:</h5>
+              <h4>Production</h4>
+            </div>
+            <div class="media-item">
+              <h5>Reward:</h5>
+              <h4>500-1,5000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Production Deadline:</h5>
+              <h4>30/06/2016 (30 Days left)</h4>
+            </div>
+            <div class="media-item">
+              <h5>Category:</h5>
+              <h4>Beauty</h4>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="pull-left">
-            Selected Proposal: 2<br>
-            Current Budget: 1900
-          </div>
-          <div class="pull-right">
-            Submission Deadline:<br>
-            January 13, 2017
+        <div class="media">
+          <div class="media-body">
+            <div class="media-item">
+              <h5>Selected Proposals:</h5>
+              <h4>2</h4>
+            </div>
+            <div class="media-item">
+              <h5>Posted:</h5>
+              <h4>0</h4>
+            </div>
+            <div class="media-item">
+              <h5>Budget:</h5>
+              <h4>1,000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Potential Reach</h5>
+              <h4>2.5 Million+ Users</h4>
+            </div>
+
           </div>
         </div>
       </div>
@@ -79,39 +110,53 @@
 
       <div class="page-header">
         <h3 class="pull-left">Proposals</h3>
+        <div class="pull-right">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Sort by Date
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Sort by Most Followers</a></li>
+              <li><a href="#">Sort by Cost per Follower</a></li>
+            </ul>
+          </div>
+        </div>
         <div class="clear"></div>
       </div>
 
-      <div class="panel panel-default">
-        <a href="brand-submission-detail.html">
-        <div class="panel-body">
-          <div class="pull-left">
-            My Pikachu Video by John Snow <br>Status: Pending
-          </div>
-          <div class="pull-right">
-            Submission on:<br>
-            January 10, 2017
-          </div>
-        </div>
-        </a>
+      <div class="filter">
+        Filter: <a href="#">Wait for Submission (1)</a> | <a href="#" class="active">Wait for Review (1)</a> | <a href="#">Accepted (0)</a> | <a href="#">Posted (0)</a>
+        <br><br>
+      </div>
+
+      <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        You have approved something.
       </div>
 
       <div class="panel panel-default">
-        <a href="brand-submission-detail.html">
-        <div class="panel-body">
-          <div class="pull-left">
-            My Charamander Video by Jamie Lanister <br>Status: Pending
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object" src="images/submission-jon.jpg"  class="img-responsive">
           </div>
-          <div class="pull-right">
-            Submission on:<br>
-            January 10, 2017
+          <div class="media-body">
+            <a href="brand-submission-detail.html">
+              <h4 class="media-heading">
+                  Jon Snow's Submission #1
+                  <span class="pull-right">Status: Wait for Review</span>
+              </h4>
+            </a>
+            <div class="media-item">
+              <h5>Submitted from:</h5>
+              <h4>Jon Snow</h4>
+            </div>
+            <div class="media-item">
+              <h5>Submitted on:</h5>
+              <h4>10/10/16</h4>
+            </div>
+
           </div>
         </div>
-        </a>
       </div>
-
-
-
     </div>
 
 

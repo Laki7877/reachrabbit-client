@@ -14,6 +14,9 @@ body{
 a.active{
   text-decoration: underline;
 }
+.color-red{
+  color: #ff0000;
+}
 
 .text-center{
     text-align: center;
@@ -27,7 +30,12 @@ a.active{
 .filter a{
   margin: 0px 5px;
 }
-
+.table-price{
+  border-bottom: 2px solid #cccccc;
+}
+.table-price .item-price{
+  text-align: right;
+}
 
 
 /* Media Object */

@@ -55,26 +55,71 @@
       </div>
 
       <div class="panel panel-default">
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object" src="images/profile-pic-jon.jpg"  class="img-responsive">
+          </div>
+          <div class="media-body">
+            <a href="brand-proposal-detail.html">
+              <h4 class="media-heading">
+                  Jon Snow
+              </h4>
+            </a>
+            <p>
+              Jon Snow is a major character in the first, second, third, fourth, fifth, and sixth seasons. He is played by starring cast member Kit Harington, and debuts in the series premiere.
+            </p>
+            <br>
+            <span>Facebook Follower: <strong>1,250</strong> | Instagram Follower: <strong>15,250</strong> | YouTube Follower: <strong>15,250</strong> </span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="panel panel-default">
         <div class="panel-body">
-          <h2>John Snow</h2>
-          Facebook Follower: 1,250 | Instagram Follower: 15,250 | YouTube Follower: 15,250
+          <h3>Proposal Detail</h3>
+          Very unusually, Eddard announced that he would raise Jon at his home castle Winterfell, alongside his trueborn children with Catelyn. Robb was always treated as Eddard's heir, but otherwise, Jon wasn't treated much differently than his younger half-brothers Bran and Rickon. Jon's mere presence at Winterfell was an understandable source of friction between Eddard and his wife Catelyn.
           <br><br>
+          <h3>Proposed Price: 1,000 Baht</h3>
+          <h4>Status: Wait for Review</h4><br>
           <div class="pull-left">
-            <a href="brand-campaign-detail-open.html">
-              <button type="button" name="button" class="btn btn-primary">Select Proposal</button>
+            <a href="brand-campaign-detail-open.html" class="btn btn-primary">
+              Select Proposal
             </a>
             &nbsp
-            <a href="brand-campaign-detail-open.html">
-              <button type="button" name="button" class="btn btn-default">Ask for Revision</button>
+            <a href="#" class="btn btn-default" data-toggle="modal" data-target="#modal-revision-proposal">
+              Ask for Revision
             </a>
           </div>
           <br><br>
         </div>
       </div>
 
+    </div>
 
+    <!-- modal-revision-proposal -->
+    <div id="modal-revision-proposal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
 
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Ask for Revision</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="comment">Which part do you want the influencer to revise:</label>
+              <textarea class="form-control" rows="3" id="comment"></textarea>
 
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-default" data-dismiss="modal">Cancel</a>
+            <a href="brand-campaign-detail-open.html" class="btn btn-primary">Submit</a>
+          </div>
+        </div>
+
+      </div>
     </div>
 
 

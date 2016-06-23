@@ -9,7 +9,8 @@
 var components = [
 	'ui.router',
 	'angularCSS',
-	'satellizer'
+	'satellizer',
+  'ngFileUpload'
 ];
 
 angular.module('app.common', components);

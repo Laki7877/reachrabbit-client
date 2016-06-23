@@ -1,3 +1,4 @@
+'use strict';
 angular.module('app.common')
     .directive('particles', function($window) {
         return {
@@ -5,7 +6,7 @@ angular.module('app.common')
             replace: true,
             template: '<div class="particles" id="particles"></div>',
             link: function(scope, element, attrs, fn) {
-              var opts = require('./particlesConfig.js');
+              var opts = require('../config/particlesConfig.js');
               $window.particlesJS('particles', opts);
             }
         };

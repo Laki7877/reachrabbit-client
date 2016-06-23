@@ -20,7 +20,18 @@ angular.module('app.inf', components)
 						templateUrl: 'layout.html'
 					},
 					'menu@index': {
-						templateUrl: 'menu.html'
+						templateUrl: 'menu.html',
+            resolve: {
+              profile: function($api) {
+                return $api({
+                  url: '/me',
+                  method: 'GET'
+                });
+              }
+            },
+            controller: function($scope, profile) {
+              $scope.profile = profile;
+            }
 					}
 				}
 			})
@@ -65,7 +76,23 @@ angular.module('app.inf', components)
             },
             'menu@index': {}
           }
-        });
+        })
+      .state('confirm', {
+        parent: 'index',
+        url: '/confirm?q',
+        views: {
+          '@index': {
+            controller: 'infAccountConfirmController'
+          },
+          'menu@index': {}
+        }
+      })
+      .state('campaign', {
+        parent: 'index',
+        url: '/campaign',
+        controller: 'infCampaignListController',
+        templateUrl: 'campaign/inf-campaign-list.html'
+      });
 	});
 
 require('bulk-require')(__dirname, ['**/*.js', '!index.js']);

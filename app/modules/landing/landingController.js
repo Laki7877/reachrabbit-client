@@ -14,10 +14,15 @@ angular.module('app.landing')
 		$scope.loginWithFB = function() {
 			$auth.authenticate('facebook')
 				.then(function(res) {
-          $storage.put('fblogin', res.data);
-          //console.log($storage.get('fblogin'));
-          $window.location.href = '/inf#signup';
-				})
+          console.log(res.data);
+          if(res.data.isLogin) {
+            $storage.put('auth', res.data.token);
+            $window.location.href= '/inf#/campaign';
+          } else {
+            $storage.put('fblogin', res.data);
+            $window.location.href = '/inf#/signup';
+				  }
+        })
 				.catch(function(err) {
           console.log(err);
         });

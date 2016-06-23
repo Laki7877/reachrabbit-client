@@ -12,5 +12,4 @@ var components = [
 
 angular.module('app', components)
   .run(function($state) {
-  	$state.go('inf');
   });

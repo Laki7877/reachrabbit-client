@@ -22,14 +22,14 @@ angular.module('app.common')
           return CJSON.parse(obj);
         }
         catch(e) {
-          return undefined;
+          return obj;
         }
       }
-      return undefined;
+      return obj;
     };
 
     service.put = function(key, object) {
-      var obj = CJSON.stringify(object);
+      var obj = _.isPlainObject(object) ? CJSON.stringify(object) : object;
       $window.localStorage.setItem(uniqueKey + key, obj);
     };
 

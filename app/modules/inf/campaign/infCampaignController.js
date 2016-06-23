@@ -7,6 +7,6 @@
 'use strict';
 
 angular.module('app.inf')
-	.controller('infCampaignController', function($scope) {
-		
+	.controller('infCampaignListController', function($scope) {
+
 	});

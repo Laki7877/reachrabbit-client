@@ -8,7 +8,10 @@
 
 angular.module('app.inf')
 	.controller('infAccountSigninController', function($scope) {
+    $scope.formData = {};
+    $scope.submit = function() {
 
+    };
 	})
 	.controller('infAccountSignupController', function($scope, $state, fbProfile) {
 		$scope.formData = {
@@ -41,4 +44,19 @@ angular.module('app.inf')
         $scope.message = err.message;
       });
     };
+  })
+  .controller('infAccountConfirmController', function($state, $stateParams, $api, $storage) {
+    //confirm endpoint
+    $api({
+      method: 'POST',
+      url: '/confirm',
+      data: {
+        token: $stateParams.q
+      }
+    }).then(function(data) {
+      $storage.put('auth', data.token);
+      $state.go('campaign'); //goto campaign list
+    }).catch(function(err) {
+      console.log(err);
+    });
   });

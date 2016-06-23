@@ -19,9 +19,17 @@ angular.module('app.brand', components)
 					'@': {
 						templateUrl: 'layout.html'
 					},
-					'menu@index': {
-						templateUrl: 'menu.html'
-					}
+          'menu@index': {
+            templateUrl: 'menu.html',
+            controller: function($scope, $api) {
+              $api({
+                url: '/me',
+                method: 'GET'
+              }).then(function(profile) {
+                $scope.profile = profile;
+              });
+            }
+          }
 				}
 			})
 			// accounts
@@ -47,6 +55,28 @@ angular.module('app.brand', components)
 					'menu@index': {}
 				}
 			})
+        .state('signup.detail', {
+          params: {
+            data: null
+          },
+          views: {
+            '@index': {
+              controller: 'brandAccountSignupDetailController',
+              templateUrl: 'account/brand-account-signup-detail.html'
+            },
+            'menu@index': {}
+          }
+        })
+      .state('confirm', {
+        parent: 'index',
+        url: '/confirm?q',
+        views: {
+          '@index': {
+            controller: 'brandAccountConfirmController'
+          },
+          'menu@index': {}
+        }
+      })
 			// submission
 			.state('submission', {
 				parent: 'index',
@@ -92,11 +122,11 @@ angular.module('app.brand', components)
 							templateUrl: 'campaign/brand-campaign-detail-title.html'
 						}
 					}
-				})				
+				})
 					.state('campaign.detail.draft', {
 						controller: 'brandCampaignDetailController',
 						templateUrl: 'campaign/brand-campaign-detail-draft.html'
-					})				
+					})
 					.state('campaign.detail.open', {
 						controller: 'brandCampaignDetailController',
 						templateUrl: 'campaign/brand-campaign-detail-open.html'

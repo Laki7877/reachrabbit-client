@@ -39,6 +39,13 @@ angular.module('app.inf', components)
 			.state('signup', {
 				parent: 'index',
 				url: '/signup',
+        resolve: {
+          fbProfile: function($storage) {
+            var profile = $storage.get('fblogin');
+            $storage.remove('fblogin');
+            return profile;
+          }
+        },
 				views: {
 					'': {
 						controller: 'infAccountSignupController',
@@ -46,7 +53,19 @@ angular.module('app.inf', components)
 					},
 					'menu@index': {}
 				}
-			});
+			})
+        .state('signup.detail', {
+          params: {
+            data: null
+          },
+          views: {
+            '@index': {
+              controller: 'infAccountSignupDetailController',
+              templateUrl: 'account/inf-account-signup-detail.html'
+            },
+            'menu@index': {}
+          }
+        });
 	});
 
 require('bulk-require')(__dirname, ['**/*.js', '!index.js']);

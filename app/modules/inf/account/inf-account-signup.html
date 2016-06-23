@@ -1,24 +1,27 @@
 <div class="row">
   <div class="col-md-6">
-    <form class="form-horizontal" action="" method="POST">
+    <form name="form" class="form-horizontal" novalidate>
       <fieldset>
         <div id="legend">
           <legend class="">Influencer sign up</legend>
         </div>
         <div class="fileinput fileinput-new" data-provides="fileinput">
           <div class="fileinput-new thumbnail" style="width: 120px; height: 120px;">
-            <img src="images/square.jpg">
+            <img src="{{formData.picture}}" width="120">
           </div>
           <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
           <div>
-            <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+            <span class="btn btn-default btn-file">
+                <span class="fileinput-new">Select image</span>
+                <span class="fileinput-exists">Change</span>
+                <input type="file" name="..."></span>
             <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
           </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="username">Name</label>
           <div class="controls">
-            <input type="text" id="username" name="username" placeholder="" class="form-control">
+            <input type="text" id="username" name="username" placeholder="" class="form-control" data-ng-model="formData.name">
           </div>
         </div>
         <div class="control-group">
@@ -31,7 +34,11 @@
         <div class="control-group">
           <label class="control-label" for="email">E-mail</label>
           <div class="controls">
-            <input type="email" id="email" name="email" placeholder="" class="form-control">
+            <input type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              data-ng-model="formData.email">
           </div>
         </div>
         <div class="control-group">
@@ -44,7 +51,7 @@
       </fieldset>
     </form>
     <div class="controls">
-      <a href="inf-signup-detail.html"><button class="btn btn-success">Continue</button></a>
+      <a data-ng-click="submit()"><button class="btn btn-success">Continue</button></a>
     </div>
   </div>
 </div>

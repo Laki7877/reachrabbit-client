@@ -30,10 +30,12 @@ a.active{
 .filter a{
   margin: 0px 5px;
 }
+
+/* Table */
 .table-price{
   border-bottom: 2px solid #cccccc;
 }
-.table-price .item-price{
+.table-item-price{
   text-align: right;
 }
 

@@ -14,7 +14,12 @@ a.active{
 .color-red{
   color: #ff0000;
 }
-
+.color-yellow{
+  color: #ffbb00;
+}
+.color-green{
+  color: #119933;
+}
 .text-center{
     text-align: center;
 }

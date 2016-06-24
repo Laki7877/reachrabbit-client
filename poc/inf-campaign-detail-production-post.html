@@ -23,8 +23,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="inf-open-campaign-list.html">Open Campaign</a></li>
-            <li><a href="inf-my-campaign-list.html">My Campaign</a></li>
+            <li><a href="inf-open-campaign-list.html">Open Campaign</a></li>
+            <li class="active"><a href="inf-my-campaign-list.html">My Campaign</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -45,9 +45,9 @@
     <div class="container">
 
       <div class="page-header">
-        <h2 class="pull-left">Campaign Detail (OPEN)</h2>
+        <h2 class="pull-left">Campaign Detail (PRODUCTION)</h2>
         <div class="pull-right">
-          <a href="inf-open-campaign-list.html" class="btn btn-default">
+          <a href="inf-my-campaign-list.html" class="btn btn-default">
             Back to Campaign List
           </a>
         </div>
@@ -61,7 +61,14 @@
           </div>
           <div class="media-body">
             <h4 class="media-heading">
-              Pokeland Summer Campaign <i class="fa fa-instagram"></i>
+              <div class="pull-left">
+                Pokeland Summer Campaign <i class="fa fa-instagram"></i>
+              </div>
+              <div class="pull-right">
+                <a href="#">View Detail</a>
+              </div>
+              <div class="clear">
+              </div>
             </h4>
             <div class="media-item">
               <h5>Status:</h5>
@@ -93,29 +100,31 @@
 
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="row">
-            <div class="col-md-8">
-              <h3>Campaign Detail</h3>
-              <ol>
-                <li>Crease SSH key</li>
-                <li>On DigitalOcean adds it to setting > security</li>
-                <li>Open terminal</li>
-                <li>ssh root@130.203…</li>
-                <li>Edit permission in conf</li>
-                <li>Crt+X & Save</li>
-                <li>Access FTP through root@130.203...</li>
-                <li>Put file under var/www/html/...</li>
-              </ol>
-              <h3>Media to Post</h3>
-              <ul>
-                <li>Instagram</li>
-              </ul>
-              <br>
-              <img src="images/campaign-pokeland.jpg" alt="" class="img-responsive" />
-              <br>
-              <img src="images/campaign-pokeland-2.jpg" alt="" class="img-responsive" />
-            </div>
-          </div>
+          <h3>Brand Comment on your Submission #2</h3>
+          <blockquote>
+            Yo Jon. We love it.
+          </blockquote>
+          <h4>Posting Date: 10/10/2016</h4>
+          <h4>Posting Time: Anytime</h4>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>Jon Snow's Submission #2</h3>
+          Here is me and my pikachu trying to conquer the north back. Hope you like it.
+          <br><br>
+          <img src="images/submission-jon.jpg" alt="" />
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>Proposal Detail</h3>
+          Very unusually, Eddard announced that he would raise Jon at his home castle Winterfell, alongside his trueborn children with Catelyn. Robb was always treated as Eddard's heir, but otherwise, Jon wasn't treated much differently than his younger half-brothers Bran and Rickon. Jon's mere presence at Winterfell was an understandable source of friction between Eddard and his wife Catelyn.
+          <br><br>
+          <h3>Proposed Price: 1,000 Baht</h3>
+          <h4>Status: Wait for Review</h4><br>
         </div>
       </div>
 
@@ -124,22 +133,13 @@
             <div class="row">
               <div class="col-md-8">
                 <form class="form-horizontal" action="" method="POST">
-                    <h3>Apply for this Campaign</h3>
+                    <h3>Post Evidence</h3>
                     <fieldset>
                       <div class="control-group">
-                        <label class="control-label" for="brandname">Why should it be you?</label>
+                        <label class="control-label" for="brandname">Link</label>
                         <div class="controls">
-                          <textarea type="text" placeholder="" class="form-control" rows="3"></textarea>
-                          <span>Ex: "I'm so handsome and you know it."</span>
+                          <input type="text" placeholder="" class="form-control"></input>
                         </div>
-                      </div>
-                      <br>
-                      <div class="control-group">
-                        <label class="control-label" for="brandname">Proposed Price</label>
-                        <div class="controls">
-                          <input type="text" placeholder="" class="form-control">
-                        </div>
-                        <span class="color-red">You will be charge 18% [NOTE: We need to work on this.]</span>
                       </div>
                       <br>
                       <label for="attachment">Image Attachment:</label>
@@ -148,10 +148,10 @@
                         <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
                         <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                       </div>
-                      <br>
                       <p>
-                        Term and condition: I agree that...
+                        You will get money in 3 days after providing the evidence.
                       </p>
+
 
                     </fieldset>
                   </form>

@@ -22,7 +22,6 @@ angular.module('app.common')
       }
       opts.skipAuthorization = true;
 
-      console.log(opts);
       // endpoint
       $http(opts).then(function(result) {
         defer.resolve(result.data);

@@ -8,7 +8,7 @@
 
 angular.module('app.brand')
 	.controller('brandCampaignCreateController', 	function($scope) {
-		
+
 	})
 	.controller('brandCampaignDetailController', 	function($scope) {
 
@@ -18,4 +18,7 @@ angular.module('app.brand')
 	})
 	.controller('brandCampaignPaymentController', 	function($scope) {
 
-	});
+	})
+  .controller('brandCampaignCreateController',   function($scope) {
+
+  });

@@ -13,13 +13,12 @@ angular.module('app.inf')
 
     };
 	})
-	.controller('infAccountSignupController', function($scope, $state, fbProfile) {
+	.controller('infAccountSignupController', function($scope, $state, $uploader, fbProfile) {
 		$scope.formData = {
       facebookId: fbProfile.id,
       facebookToken: fbProfile.token,
       name: fbProfile.name,
-      email: fbProfile.email,
-      picture: fbProfile.picture.data.url
+      email: fbProfile.email
     };
 
     // pass forward info
@@ -27,6 +26,13 @@ angular.module('app.inf')
       $state.go('.detail', {
         data: $scope.formData
       });
+    };
+
+    $scope.upload = function(file) {
+      $uploader.upload('/file_demo', file)
+        .then(function(data) {
+          $scope.formData.picture = data.url;
+        });
     };
 	})
   .controller('infAccountSignupDetailController', function($scope, $api, $stateParams) {

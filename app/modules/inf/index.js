@@ -53,7 +53,6 @@ angular.module('app.inf', components)
         resolve: {
           fbProfile: function($storage) {
             var profile = $storage.get('fblogin');
-            $storage.remove('fblogin');
             return profile;
           }
         },

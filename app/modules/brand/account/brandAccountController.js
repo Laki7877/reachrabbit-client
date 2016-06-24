@@ -45,7 +45,6 @@ angular.module('app.brand')
         token: $stateParams.q
       }
     }).then(function(data, s) {
-      console.log(data, s);
       $storage.put('auth', data.token);
       $state.go('campaign.list'); //goto campaign list
     }).catch(function(err) {

@@ -7,13 +7,23 @@
 'use strict';
 
 angular.module('app.common')
-  .factory('$uploader', function() {
+  .factory('$uploader', function(Upload, $q) {
     var service = {};
 
     service.upload = function(url, file, data, opts) {
-      return Upload.upload(_.extend({
+      var deferred = $q.defer();
+
+      // upload on url
+      Upload.upload(_.extend({
         url: process.env.API_URI + url,
         data: _.extend({}, data, { file: file }),
-      }, opts));
+        skipAuthorization: true
+      }, opts)).then(function(data) {
+        deferred.resolve(data.data);
+      }, deferred.reject);
+
+      return deferred.promise;
     };
+
+    return service
   });

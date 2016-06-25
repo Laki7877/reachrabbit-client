@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-6">
+    <form class="form-horizontal" action="" method="POST">
+      <fieldset>
+        <div id="legend">
+          <legend class="">Brand sign up</legend>
+        </div>
+        <div>{{message}}</div>
+        <div class="control-group">
+          <label class="control-label" for="brandname">Brand Name</label>
+          <div class="controls">
+            <input type="text" id="brandname" name="brandname" placeholder="" class="form-control" data-ng-model="formData.brandName">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="username">Name</label>
+          <div class="controls">
+            <input type="text" id="username" name="username" placeholder="" class="form-control" data-ng-model="formData.name">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="contactnumber">Contact Number</label>
+          <div class="controls">
+            <input type="text" id="contactnumber" name="contactnumber" placeholder="" class="form-control" data-ng-model="formData.contactNumber">
+          </div>
+        </div>
+        <br>
+        <div class="control-group">
+          <label class="control-label" for="email">E-mail</label>
+          <div class="controls">
+            <input type="email" id="email" name="email" placeholder="" class="form-control" data-ng-model="formData.email">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="email">Confirm E-mail</label>
+          <div class="controls">
+            <input type="email" id="emailconfirm" name="emailconfirm" placeholder="" class="form-control">
+          </div>
+        </div>
+        <br>
+        <div class="control-group">
+          <label class="control-label" for="password">Password</label>
+          <div class="controls">
+            <input type="password" id="password" name="password" placeholder="" class="form-control" data-ng-model="formData.password">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="password_confirm">Password (Confirm)</label>
+          <div class="controls">
+            <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="form-control">
+          </div>
+        </div>
+        <br>
+      </fieldset>
+    </form>
+    <div class="controls">
+      <a data-ng-click="submit()"><button class="btn btn-success">Sign Up</button></a>
+    </div>
+  </div>
+</div>

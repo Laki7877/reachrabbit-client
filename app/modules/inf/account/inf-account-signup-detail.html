@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-6">
+    <form class="form-horizontal" action="" method="POST">
+      <fieldset>
+        <div id="legend">
+          <legend class="">Influencer sign up detail</legend>
+        </div>
+        <div>{{message}}</div>
+        <div class="controls">
+          <label class="control-label">Sync with</label>
+          <a href="brand-campaign-list.html"><button class="btn btn-default disabled">Facebook</button></a>
+          <a href="brand-campaign-list.html"><button class="btn btn-default">Instagram</button></a>
+          <a href="brand-campaign-list.html"><button class="btn btn-default">YouTube</button></a>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="username">About Yourself</label>
+          <div class="controls">
+            <input type="text" id="username" name="username" placeholder="" class="form-control">
+          </div>
+        </div>
+        <br>
+        <div class="control-group">
+          <label class="control-label" for="email">Bank</label>
+          <div class="controls">
+            <input  type="text" placeholder="" class="form-control">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="email">Bank Account Number</label>
+          <div class="controls">
+            <input  type="text" placeholder="" class="form-control">
+          </div>
+        </div>
+        <br>
+      </fieldset>
+    </form>
+    <div class="controls">
+      <a data-ng-click="submit()"><button class="btn btn-success">Sign Up</button></a>
+    </div>
+  </div>
+</div>

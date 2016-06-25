@@ -1,0 +1,24 @@
+{
+  "name": "projectx-client",
+  "description": "Yet another example project with Angular, Browserify and Gulp",
+  "main": "app.js",
+  "authors": [
+    "Poon <poon.wuthi@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Laki7877/projectx-client",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.6.3",
+    "normalize-css": "normalize.css#^4.1.1",
+    "jasny-bootstrap": "^3.1.3"
+  }
+}

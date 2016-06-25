@@ -4,9 +4,12 @@
   "description": "Yet another example project with Angular, Browserify and Gulp",
   "license": "MIT",
   "scripts": {
-    "postinstall": "webdriver-manager update && node node_modules/bower/lib/bin/bower.js install && node node_modules/guppy-cli/bin/index.js pre-commit",
+    "postinstall": "node node_modules/bower/lib/bin/bower.js install && node node_modules/guppy-cli/bin/index.js pre-commit",
     "pretest": "webdriver-manager start",
     "test": "gulp test",
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+    "prestart": "npm install",
     "start": "gulp serve"
   },
   "dependencies": {

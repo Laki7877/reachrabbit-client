@@ -2,47 +2,47 @@
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>Project X</title>
+    <title>Project X Brand</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <div class="container">
 
-      <!-- Static navbar -->
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="brand-landing.html">Project X</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="brand-campaign-list.html">My Campaign</a></li>
-              <li><a href="#">Influencers</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  Nattamoto (Brand) <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Payment</a></li>
-                  <li><a href="#">Notification</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="brand-landing.html">Project X Brand</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="brand-campaign-list.html">My Campaign</a></li>
+            <li><a href="brand-influencer-list.html">Influencers</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Nattamoto<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="brand-profile.html">Profile</a></li>
+                <li><a href="brand-transaction-list.html">Transactions</a></li>
+                <li><a href="#">Notification</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container-fluid -->
+    </nav>
+
+    <div class="container">
 
       <div class="page-header">
         <h2 class="pull-left">Submission Detail</h2>
@@ -55,33 +55,130 @@
       </div>
 
       <div class="panel panel-default">
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object" src="images/profile-pic-jon.jpg"  class="img-responsive">
+          </div>
+          <div class="media-body">
+            <a href="brand-proposal-detail.html">
+              <h4 class="media-heading">
+                  Jon Snow
+              </h4>
+            </a>
+            <p>
+              Jon Snow is a major character in the first, second, third, fourth, fifth, and sixth seasons. He is played by starring cast member Kit Harington, and debuts in the series premiere.
+            </p>
+            <br>
+            <span>Facebook Follower: <strong>1,250</strong> | Instagram Follower: <strong>15,250</strong> | YouTube Follower: <strong>15,250</strong> </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
         <div class="panel-body">
-          <h2>John Snow</h2>
-          Facebook Follower: 1,250 | Instagram Follower: 15,250 | YouTube Follower: 15,250
+          <h3>Jon Snow's Submission #1</h3>
+          Here is me and my pikachu trying to conquer the north back. Hope you like it.
           <br><br>
-          <img src="images/jon-snow.jpg" class="img-responsive" />
+          <img src="images/submission-jon.jpg" alt="" />
+        </div>
+      </div>
 
-          <br>
-          <p>
-            Here is a screenshot from my video.
-          </p>
-
-          <br>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h3>Proposal Detail</h3>
+          Very unusually, Eddard announced that he would raise Jon at his home castle Winterfell, alongside his trueborn children with Catelyn. Robb was always treated as Eddard's heir, but otherwise, Jon wasn't treated much differently than his younger half-brothers Bran and Rickon. Jon's mere presence at Winterfell was an understandable source of friction between Eddard and his wife Catelyn.
+          <br><br>
+          <h3>Proposed Price: 1,000 Baht</h3>
+          <h4>Status: Wait for Review</h4><br>
           <div class="pull-left">
-            <a href="brand-campaign-detail-production.html">
-              <button type="button" name="button" class="btn btn-primary">Approve Submission</button>
+            <a href="#" class="btn btn-primary"  data-toggle="modal" data-target="#modal-approve-proposal">
+              Approve Submission
             </a>
             &nbsp
-            <a href="brand-campaign-detail-production.html">
-              <button type="button" name="button" class="btn btn-default">Ask for Revision</button>
+            <a href="#" class="btn btn-default" data-toggle="modal" data-target="#modal-revision-proposal">
+              Ask for Revision
             </a>
           </div>
           <br><br>
         </div>
       </div>
 
+    </div>
+
+    <!-- modal-approve-proposal -->
+    <div id="modal-approve-proposal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Approve Submission</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="comment">Compliment of the influencer work:</label>
+              <textarea class="form-control" rows="3" id="comment"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="attachment">Image Attachment:</label>
+              <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+              </div>
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="comment">Date that the influencer has to post this content:</label>
+              <input class="form-control" type="text"></input>
+              <label class="checkbox-inline"><input type="checkbox" value="">Can post on any date</label>
+            </div>
+            <div class="form-group">
+              <label for="comment">Time that the influencer has to post this content:</label>
+              <input class="form-control" type="text"></input>
+              <label class="checkbox-inline"><input type="checkbox" value="">Can post on any time</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-default" data-dismiss="modal">Cancel</a>
+            <a href="brand-campaign-detail-production.html" class="btn btn-primary">Submit</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
 
+    <!-- modal-revision-proposal -->
+    <div id="modal-revision-proposal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Ask for Revision</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="comment">Which part do you want the influencer to revise:</label>
+              <textarea class="form-control" rows="3" id="comment"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="attachment">Image Attachment:</label>
+              <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-default" data-dismiss="modal">Cancel</a>
+            <a href="brand-campaign-detail-production.html" class="btn btn-primary">Submit</a>
+          </div>
+        </div>
+
+      </div>
     </div>
 
 

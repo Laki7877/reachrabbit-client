@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -22,11 +23,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="brand-campaign-list.html">My Campaign</a></li>
+            <li><a href="brand-campaign-list.html">My Campaign</a></li>
             <li><a href="brand-influencer-list.html">Influencers</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
+            <li class="dropdown active">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 Nattamoto<span class="caret"></span>
               </a>
@@ -44,51 +45,58 @@
     <div class="container">
 
       <div class="page-header">
-        <h2 class="pull-left">Create Campaign</h2>
+        <h2 class="pull-left">Pokeland Summer Campaign (ID: 12356)</h2>
+        <div class="pull-right">
+          <a href="brand-transaction-list.html">
+            <button type="button" name="button" class="btn btn-default">Back to Transaction List</button>
+          </a>
+        </div>
         <div class="clear"></div>
       </div>
 
-
-      <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-6">
-                <form class="form-horizontal" action="" method="POST">
-                    <fieldset>
-                      <div class="control-group">
-                        <label class="control-label" for="brandname">Campaign Name</label>
-                        <div class="controls">
-                          <input type="text" placeholder="" class="form-control">
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label" for="brandname">Campaign Category</label>
-                        <div class="controls">
-                          <input type="text" placeholder="" class="form-control">
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label" for="brandname">Media</label>
-                        <div class="controls">
-                          <input type="text" placeholder="" class="form-control">
-                        </div>
-                      </div>
-
-                    </fieldset>
-                  </form>
-
-                  <br>
-
-                  <div class="controls">
-                    <a href="brand-campaign-detail-draft.html" class="btn btn-success">Create Campaign</a>
-                    &nbsp
-                    <a href="brand-campaign-list.html" class="btn btn-default">Cancel</a>
-                  </div>
-                </div>
-            </div>
-          </div>
+      <div class="filter">
+        Filter: <a href="#" class="active">All (2)</a> | <a href="#">Paid (2)</a> | <a href="#">On Hold (0)</a> | <a href="#">Refund (0)</a>
+        <br><br>
       </div>
 
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Influencer</th>
+                    <th>Status</th>
+                    <th>Date & Time</th>
+                    <th class="table-item-price">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a href="#">Jon Snow</a></td>
+                    <td>Paid</td>
+                    <td>30/07/2016 at 10:15</td>
+                    <td class="table-item-price">1,000</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#">Daenerys Targaryen</a></td>
+                    <td>Paid</td>
+                    <td>30/07/2016 at 10:15</td>
+                    <td class="table-item-price">10,000</td>
+                  </tr>
+                  <tr>
+                    <td>Total</a></td>
+                    <td></td>
+                    <td></td>
+                    <td class="table-item-price">11,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
 

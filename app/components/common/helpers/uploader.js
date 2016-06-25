@@ -12,18 +12,19 @@ angular.module('app.common')
 
     service.upload = function(url, file, data, opts) {
       var deferred = $q.defer();
-
-      // upload on url
-      Upload.upload(_.extend({
+      var options = _.extend({
         url: process.env.API_URI + url,
         data: _.extend({}, data, { file: file }),
         skipAuthorization: true
-      }, opts)).then(function(data) {
+      }, opts);
+
+      // upload on url
+      Upload.upload(options).then(function(data) {
         deferred.resolve(data.data);
       }, deferred.reject);
 
       return deferred.promise;
     };
 
-    return service
+    return service;
   });

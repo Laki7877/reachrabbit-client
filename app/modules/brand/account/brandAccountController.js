@@ -34,7 +34,7 @@ angular.module('app.brand')
       }).catch(function(err) {
         $scope.message = err.message;
       });
-    }
+    };
 	})
   .controller('brandAccountConfirmController', function($state, $stateParams, $api, $storage) {
     //confirm endpoint

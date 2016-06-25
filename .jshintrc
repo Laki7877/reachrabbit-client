@@ -129,7 +129,8 @@
         "async": true,
         "CJSON": true,
         "errors": true,
-        "httpStatus": true
+        "httpStatus": true,
+        "_": true
     },
     "indent"        : 4         // Specify indentation spacing
 }

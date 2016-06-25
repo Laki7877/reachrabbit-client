@@ -108,6 +108,6 @@ module.exports = {
     }
   },
   "retina_detect": true
-}
+};
 /* jshint quotmark:single */
 

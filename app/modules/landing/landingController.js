@@ -26,6 +26,6 @@ angular.module('app.landing')
 				.catch(function(err) {
           console.log(err);
         });
-		}
+		};
 	});
 

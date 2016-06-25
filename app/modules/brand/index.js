@@ -111,8 +111,8 @@ angular.module('app.brand', components)
 					controller: 'brandCampaignListController',
 					templateUrl: 'campaign/brand-campaign-list.html'
 				})
-        .state('campaign.list', {
-          url: '',
+        .state('campaign.create', {
+          url: '/create',
           controller: 'brandCampaignCreateController',
           templateUrl: 'campaign/brand-campaign-create.html'
         })

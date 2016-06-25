@@ -6,7 +6,8 @@
   "scripts": {
     "postinstall": "webdriver-manager update && node node_modules/bower/lib/bin/bower.js install && node node_modules/guppy-cli/bin/index.js pre-commit",
     "pretest": "webdriver-manager start",
-    "test": "gulp test"
+    "test": "gulp test",
+    "start": "gulp serve"
   },
   "dependencies": {
     "angular": "^1.4.7",

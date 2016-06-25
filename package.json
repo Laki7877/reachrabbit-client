@@ -20,6 +20,7 @@
     "bulk-require": "^0.2.1",
     "circular-json": "^0.3.0",
     "dotenv": "^2.0.0",
+    "dotenv-extended": "^1.0.1",
     "ejs": "^2.4.2",
     "es5-shim": "^4.3.1",
     "express": "^4.14.0",

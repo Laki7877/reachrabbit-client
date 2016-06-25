@@ -22,11 +22,15 @@ angular.module('app.inf', components)
 					'menu@index': {
 						templateUrl: 'menu.html',
             resolve: {
-              profile: function($api) {
-                return $api({
+              profile: function($api, $q) {
+                var deferred = $q.defer();
+                $api({
                   url: '/me',
                   method: 'GET'
+                }).then(deferred.resolve, function() {
+                  deferred.resolve({});
                 });
+                return deferred.promise;
               }
             },
             controller: function($scope, profile) {

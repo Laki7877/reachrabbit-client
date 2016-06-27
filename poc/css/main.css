@@ -18,6 +18,10 @@ a.active{
 .color-green{
   color: #119933;
 }
+.grayscale {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
 .text-center{
     text-align: center;
 }

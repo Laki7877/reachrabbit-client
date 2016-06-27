@@ -18,10 +18,10 @@ angular.module('app.landing', components)
 				controller: 'landingBrandController',
 				templateUrl: 'landing-brand.html'
 			})
-			.state('inf', {
-				url: '/inf',
-				controller: 'landingInfController',
-				templateUrl: 'landing-inf.html'
+			.state('influencer', {
+				url: '/influencer',
+				controller: 'landingInfluencerController',
+				templateUrl: 'landing-influencer.html'
 			});
 	});
 

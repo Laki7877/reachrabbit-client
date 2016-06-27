@@ -7,7 +7,7 @@
 'use strict';
 
 var components = [
-	require('./modules/inf')
+	require('./modules/influencer')
 ];
 
 angular.module('app', components)

@@ -10,7 +10,7 @@ var components = [
 	require('../../components/common')
 ];
 
-angular.module('app.inf', components)
+angular.module('app.influencer', components)
 	.config(function($stateProvider) {
 		$stateProvider
 			.state('index', {
@@ -45,8 +45,8 @@ angular.module('app.inf', components)
 				url: '/signin',
 				views: {
 					'': {
-						controller: 'infAccountSigninController',
-						templateUrl: 'account/inf-account-signin.html'
+						controller: 'influencerAccountSigninController',
+						templateUrl: 'account/influencer-account-signin.html'
 					},
 					'menu@index': {}
 				}
@@ -62,8 +62,8 @@ angular.module('app.inf', components)
         },
 				views: {
 					'': {
-						controller: 'infAccountSignupController',
-						templateUrl: 'account/inf-account-signup.html'
+						controller: 'influencerAccountSignupController',
+						templateUrl: 'account/influencer-account-signup.html'
 					},
 					'menu@index': {}
 				}
@@ -74,8 +74,8 @@ angular.module('app.inf', components)
           },
           views: {
             '@index': {
-              controller: 'infAccountSignupDetailController',
-              templateUrl: 'account/inf-account-signup-detail.html'
+              controller: 'influencerAccountSignupDetailController',
+              templateUrl: 'account/influencer-account-signup-detail.html'
             },
             'menu@index': {}
           }
@@ -85,7 +85,7 @@ angular.module('app.inf', components)
         url: '/confirm?q',
         views: {
           '@index': {
-            controller: 'infAccountConfirmController'
+            controller: 'influencerAccountConfirmController'
           },
           'menu@index': {}
         }
@@ -93,11 +93,11 @@ angular.module('app.inf', components)
       .state('campaign', {
         parent: 'index',
         url: '/campaign',
-        controller: 'infCampaignListController',
-        templateUrl: 'campaign/inf-campaign-list.html'
+        controller: 'influencerCampaignListController',
+        templateUrl: 'campaign/influencer-campaign-list.html'
       });
 	});
 
 require('bulk-require')(__dirname, ['**/*.js', '!index.js']);
 
-module.exports = 'app.inf';
+module.exports = 'app.influencer';

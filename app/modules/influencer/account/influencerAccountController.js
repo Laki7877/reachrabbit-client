@@ -6,14 +6,14 @@
  */
 'use strict';
 
-angular.module('app.inf')
-	.controller('infAccountSigninController', function($scope) {
+angular.module('app.influencer')
+	.controller('influencerAccountSigninController', function($scope) {
     $scope.formData = {};
     $scope.submit = function() {
 
     };
 	})
-	.controller('infAccountSignupController', function($scope, $state, $uploader, fbProfile) {
+	.controller('influencerAccountSignupController', function($scope, $state, $uploader, fbProfile) {
 		$scope.formData = {
       facebookId: fbProfile.id,
       facebookToken: fbProfile.token,
@@ -35,7 +35,7 @@ angular.module('app.inf')
         });
     };
 	})
-  .controller('infAccountSignupDetailController', function($scope, $api, $stateParams) {
+  .controller('influencerAccountSignupDetailController', function($scope, $api, $stateParams) {
     $scope.formData = $stateParams.data;
     $scope.message = '';
 
@@ -51,7 +51,7 @@ angular.module('app.inf')
       });
     };
   })
-  .controller('infAccountConfirmController', function($state, $stateParams, $api, $storage) {
+  .controller('influencerAccountConfirmController', function($state, $stateParams, $api, $storage) {
     //confirm endpoint
     $api({
       method: 'POST',

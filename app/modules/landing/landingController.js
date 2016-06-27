@@ -10,17 +10,17 @@ angular.module('app.landing')
 	.controller('landingBrandController', function() {
 
 	})
-	.controller('landingInfController', function($scope, $window, $auth, $storage) {
+	.controller('landingInfluencerController', function($scope, $window, $auth, $storage) {
 		$scope.loginWithFB = function() {
 			$auth.authenticate('facebook')
 				.then(function(res) {
           console.log(res.data);
           if(res.data.isLogin) {
             $storage.put('auth', res.data.token);
-            $window.location.href= '/inf#/campaign';
+            $window.location.href= '/influencer#/campaign';
           } else {
             $storage.put('fblogin', res.data);
-            $window.location.href = '/inf#/signup';
+            $window.location.href = '/influencer#/signup';
 				  }
         })
 				.catch(function(err) {

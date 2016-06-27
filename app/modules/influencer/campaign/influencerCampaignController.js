@@ -6,7 +6,7 @@
  */
 'use strict';
 
-angular.module('app.inf')
+angular.module('app.influencer')
 	.controller('infCampaignListController', function($scope) {
 
 	});

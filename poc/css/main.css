@@ -21,6 +21,12 @@ a.active{
 .text-center{
     text-align: center;
 }
+.another-state{
+    opacity: 0.5;
+}
+.another-state:hover{
+    opacity: 1;
+}
 
 
 /* Layout */

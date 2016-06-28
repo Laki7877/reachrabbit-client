@@ -1,5 +1,4 @@
 exports.config = {
-
   chromeOnly: true,
   chromeDriver: './node_modules/protractor/selenium/chromedriver',
 

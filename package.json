@@ -4,7 +4,7 @@
   "description": "Yet another example project with Angular, Browserify and Gulp",
   "license": "MIT",
   "scripts": {
-    "postinstall": "node node_modules/bower/lib/bin/bower.js install && gulp build:all",
+    "postinstall": "node node_modules/bower/lib/bin/bower.js install",
     "pretest": "webdriver-manager start",
     "test": "node node_modules/gulp/bin/gulp test",
     "preupdate-webdriver": "npm install",

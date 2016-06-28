@@ -6,7 +6,7 @@
  */
 'use strict';
 
-require('dotenv').config();
+// require('dotenv').config();
 
 var _               = require('lodash'),
     browserify      = require('browserify'),
@@ -172,7 +172,7 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
         gulp.src(path.resolve(paths.tmp.components, '**/*.less')).pipe(plugins.less()).pipe(plugins.rename(renamer('less')))
       )
       .pipe(gulp.dest(path.join(paths.dist.css, 'components')));
-      
+
       // concat modules and output to modules folder
       merge(
         gulp.src(path.resolve(paths.tmp.modules, '**/!(*.js|*.html|*.scss|*.less)')),

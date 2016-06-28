@@ -7,7 +7,7 @@
 'use strict';
 
 // set process env from .env
-require('dotenv').config();
+// require('dotenv').config();
 
 var express   = require('express'),
     path      = require('path'),

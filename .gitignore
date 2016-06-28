@@ -14,5 +14,5 @@ test/browser/test.js
 # coverage test
 coverage
 
-public/assets
+#public/assets
 tmp

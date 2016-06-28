@@ -46,7 +46,7 @@ angular.module('app.inf', components)
 				views: {
 					'': {
 						controller: 'infAccountSigninController',
-						templateUrl: 'account/inf-account-signin.html'
+						templateUrl: 'account/influencer-account-signin.html'
 					},
 					'menu@index': {}
 				}
@@ -63,7 +63,7 @@ angular.module('app.inf', components)
 				views: {
 					'': {
 						controller: 'infAccountSignupController',
-						templateUrl: 'account/inf-account-signup.html'
+						templateUrl: 'account/influencer-account-signup.html'
 					},
 					'menu@index': {}
 				}
@@ -75,7 +75,7 @@ angular.module('app.inf', components)
           views: {
             '@index': {
               controller: 'infAccountSignupDetailController',
-              templateUrl: 'account/inf-account-signup-detail.html'
+              templateUrl: 'account/influencer-account-signup-detail.html'
             },
             'menu@index': {}
           }
@@ -94,7 +94,7 @@ angular.module('app.inf', components)
         parent: 'index',
         url: '/campaign',
         controller: 'infCampaignListController',
-        templateUrl: 'campaign/inf-campaign-list.html'
+        templateUrl: 'campaign/influencer-campaign-list.html'
       });
 	});
 

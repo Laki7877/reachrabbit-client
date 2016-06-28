@@ -19,21 +19,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="inf-landing.html">Project X Influencer</a>
+          <a class="navbar-brand" href="influencer-landing.html">Project X Influencer</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="inf-open-campaign-list.html">Open Campaign</a></li>
-            <li><a href="inf-my-campaign-list.html">My Campaign</a></li>
+            <li class="active"><a href="influencer-open-campaign-list.html">Open Campaign</a></li>
+            <li><a href="influencer-my-campaign-list.html">My Campaign</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown active">
+            <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                  Jon Snow<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="inf-profile.html">Profile</a></li>
-                <li><a href="inf-transaction-list.html">Transactions</a></li>
+                <li><a href="influencer-profile.html">Profile</a></li>
+                <li><a href="influencer-transaction-list.html">Transactions</a></li>
                 <li><a href="#">Notification</a></li>
               </ul>
             </li>
@@ -43,43 +43,32 @@
     </nav>
 
     <div class="container">
-
       <div class="page-header">
-        <h2 class="pull-left">Transaction List</h2>
+        <h2 class="pull-left">Open Campaign</h2>
         <div class="clear"></div>
       </div>
 
-      <div class="filter">
-        Filter: <a href="#" class="active">All (1)</a> | <a href="#">Wait to Pay (0)</a> | <a href="#"> Paid (1)</a> | <a href="#">Refund (0)</a>
-        <br><br>
+      <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> you have done something positive.
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-12">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Campaign</th>
-                    <th>Status</th>
-                    <th>Date & Time</th>
-                    <th class="table-item-price">Reward</th>
-                    <th class="table-item-price">Fee (18%)</th>
-                    <th class="table-item-price">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a href="inf-transaction-detail.html">Pokeland Summer Campaign</a></td>
-                    <td>Paid</td>
-                    <td>30/07/2016 at 10:15</td>
-                    <td class="table-item-price">1,000</td>
-                    <td class="table-item-price">180</td>
-                    <td class="table-item-price">820</td>
-                  </tr>
-                </tbody>
-              </table>
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object" src="images/campaign-pokeland.jpg"  >
+          </div>
+          <div class="media-body">
+            <a href="influencer-campaign-detail-open.html">
+              <h4 class="media-heading">Pokeland Summer Campaign <i class="fa fa-instagram"></i><span class="pull-right">Campaign Status: Open</span></h4>
+            </a>
+            <div class="media-item">
+              <h5>Reward:</h5>
+              <h4>500-1,5000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Deadline:</h5>
+              <h4>16/06/2016 (30 Days left)</h4>
             </div>
           </div>
         </div>

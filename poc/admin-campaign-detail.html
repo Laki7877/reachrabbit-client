@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Project X Admin</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="brand-landing.html">Project X Admin</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="admin-all-campaign-list.html">All Campaign</a></li>
+            <li><a href="admin-all-submission-list.html">All Submission</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Admin<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Setting</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container-fluid -->
+    </nav>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h2 class="pull-left">Campaign Detail (Wait Admin to Confirm)</h2>
+        <div class="pull-right">
+          <a href="admin-all-campaign-list.html" class="btn btn-default">
+            Back to Campaign List
+          </a>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object" src="images/campaign-pokeland.jpg"  >
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">
+              Pokeland Summer Campaign <i class="fa fa-instagram"></i>
+              <span class="pull-right">
+                <a href="#"  data-toggle="modal" data-target="#modal-view-detail">View Detail</a>
+              </span>
+            </h4>
+            <div class="media-item">
+              <h5>Status:</h5>
+              <h4>Open</h4>
+            </div>
+            <div class="media-item">
+              <h5>Reward:</h5>
+              <h4>500-1,5000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Proposal Deadline:</h5>
+              <h4>16/06/2016 (30 Days left)</h4>
+            </div>
+            <div class="media-item">
+              <h5>Category:</h5>
+              <h4>Beauty</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="media">
+          <div class="media-body">
+            <div class="media-item">
+              <h5>All Proposals:</h5>
+              <h4>3</h4>
+            </div>
+            <div class="media-item">
+              <h5>Selected:</h5>
+              <h4>1</h4>
+            </div>
+            <div class="media-item">
+              <h5>Budget:</h5>
+              <h4>1,000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Potential Reach</h5>
+              <h4>2.5 Million+ Users</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="panel panel-default panel-admin">
+        <div class="media">
+          <div class="media-body">
+            <h3>Campaign Detail</h3>
+            Campaign ID: 001<br>
+            Brand Name: Double A<br>
+            Contact Name: Pong D<br>
+            Contact Number: 0851239999<br>
+            Contact Email: pong@gmail.com<br>
+            <br>
+            <h3>Payment</h3>
+            Total Amount Due: <strong>11,000 Baht</strong><br>
+            Need to pay by: <strong>10/10/2015 (3 Days 3 Hour 46 Minutes Left)</strong><br>
+            Date Brand Confirm Payment: <strong>10/10/2015 at 2:15 pm</strong><br>
+            <br>
+            <h3>Payment Evidence</h3>
+            <img src="images/transfer-slip.jpg" alt="" class="img-responsive"/>
+            <br>
+            <div class="controls">
+              <a href="#" class="btn btn-success">Confirm Payment</a>
+              &nbsp
+              <a href="#" class="btn btn-danger">Delete Campaign</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <!-- modal-view-detail -->
+    <div id="modal-view-detail" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">View Detail</h4>
+          </div>
+          <div class="modal-body">
+
+            <div class="panel panel-default">
+              <div class="media">
+
+                <div class="media-body">
+                  <h4 class="media-heading">
+                    Pokeland Summer Campaign <i class="fa fa-instagram"></i>
+                  </h4>
+                  <div class="media-item">
+                    <h5>Status:</h5>
+                    <h4>Open</h4>
+                  </div>
+                  <div class="media-item">
+                    <h5>Reward:</h5>
+                    <h4>500-1,5000</h4>
+                  </div>
+                  <div class="media-item">
+                    <h5>Category:</h5>
+                    <h4>Beauty</h4>
+                  </div>
+                  <div class="media-item">
+                    <h5>Proposal Deadline:</h5>
+                    <h4>16/06/2016</h4>
+                  </div>
+                  <div class="media-item">
+                    <h5>Proposal Result:</h5>
+                    <h4>22/06/2016</h4>
+                  </div>
+                  <div class="media-item">
+                    <h5>Working Period:</h5>
+                    <h4>30 Days</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>Campaign Detail</h3>
+                    <ol>
+                      <li>Crease SSH key</li>
+                      <li>On DigitalOcean adds it to setting > security</li>
+                      <li>Open terminal</li>
+                      <li>ssh root@130.203…</li>
+                      <li>Edit permission in conf</li>
+                      <li>Crt+X & Save</li>
+                      <li>Access FTP through root@130.203...</li>
+                      <li>Put file under var/www/html/...</li>
+                    </ol>
+                    <h3>Media to Post</h3>
+                    <ul>
+                      <li>Instagram</li>
+                    </ul>
+                    <br>
+                    <img src="images/campaign-pokeland.jpg" alt="" class="img-responsive" />
+                    <br>
+                    <img src="images/campaign-pokeland-2.jpg" alt="" class="img-responsive" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-body">
+                To be fair with influencers who have seen this campaign, we would like you to contact us if you want to edit the campaign detail. If you like to close the campaign
+                <a href="#"> click here</a>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-default" data-dismiss="modal">Close View Detail</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
+  </body>
+</html>

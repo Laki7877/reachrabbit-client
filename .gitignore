@@ -16,3 +16,6 @@ coverage
 
 public/assets
 tmp
+
+# eclipse project file
+.project

@@ -14,7 +14,6 @@ angular.module('app.landing')
 		$scope.loginWithFB = function() {
 			$auth.authenticate('facebook')
 				.then(function(res) {
-          console.log(res.data);
           if(res.data.isLogin) {
             $storage.put('auth', res.data.token);
             $window.location.href= '/influencer#/campaign';

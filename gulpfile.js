@@ -40,18 +40,18 @@ var plugins = require('gulp-load-plugins')({
 
 // define file path variables
 var paths = {
-  root: 'app/',      // App root path
+  root: 'src/',      // App root path
   dist: {
     root: 'public/assets/',
     js: 'public/assets/js/',
     css: 'public/assets/css/'
   },
   src: {
-    root: 'app/',
-    styles: 'app/styles/',
-    html: 'app/**/*.html',
-    vendor: 'app/vendors/',
-    app: 'app/*.js'
+    root: 'src/',
+    styles: 'src/styles/',
+    html: 'src/**/*.html',
+    vendor: 'src/vendors/',
+    app: 'src/*.js'
   },
   tmp: {
     root: 'tmp/',

@@ -9,9 +9,13 @@ require('es5-sham');
 require('jquery');
 
 require('particles.js');
-
-require('angular-css');
-require('angular-ui-router');
-require('angular-ui-bootstrap');
 require('satellizer');
 require('ng-file-upload');
+
+require('angular-css');
+require('angular-strap');
+require('angular-ui-router');
+require('angular-ui-bootstrap');
+require('angular-schema-form');
+require('angular-schema-form-bootstrap');
+require('./angular-schema-form-datetimepicker');

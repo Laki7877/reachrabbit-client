@@ -31,9 +31,14 @@ angular.module('app.brand', components)
             }
           }
 				}
-			})
-			// accounts
-			.state('signin', {
+			});
+
+
+    /**
+     * Account
+     */
+    $stateProvider
+      .state('signin', {
 				parent: 'index',
 				url: '/signin',
 				views: {
@@ -66,18 +71,12 @@ angular.module('app.brand', components)
             },
             'menu@index': {}
           }
-        })
-      .state('confirm', {
-        parent: 'index',
-        url: '/confirm?q',
-        views: {
-          '@index': {
-            controller: 'brandAccountConfirmController'
-          },
-          'menu@index': {}
-        }
-      })
-			// submission
+        });
+
+    /**
+     * Others
+     */
+    $stateProvider
 			.state('submission', {
 				parent: 'index',
 				url: '/submission/:id',

@@ -2,68 +2,57 @@
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>Project X</title>
+    <title>Project X Brand</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <div class="container">
 
-      <!-- Static navbar -->
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="brand-landing.html">Project X</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="brand-campaign-list.html">My Campaign</a></li>
-              <li><a href="#">Influencers</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  Nattamoto (Brand) <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Payment</a></li>
-                  <li><a href="#">Notification</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="brand-landing.html">Project X Brand</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="brand-campaign-list.html">My Campaign</a></li>
+            <li><a href="brand-influencer-list.html">Influencers</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Nattamoto<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="brand-profile.html">Profile</a></li>
+                <li><a href="brand-transaction-list.html">Transactions</a></li>
+                <li><a href="#">Notification</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container-fluid -->
+    </nav>
+
+    <div class="container">
 
       <div class="page-header">
         <h2 class="pull-left">Campaign Detail (DRAFT)</h2>
         <div class="pull-right">
-          <a href="brand-campaign-list.html">
-            <button type="button" name="button" class="btn btn-default">Back to Campaign List</button>
+          <a href="brand-campaign-list.html" class="btn btn-default">
+            Back to Campaign List
           </a>
         </div>
         <div class="clear"></div>
       </div>
-
-      <div class="panel panel-default">
-        <div class="panel-body">
-          Pokemon Campaign
-          <div class="pull-right">
-            Status: DRAFT
-          </div>
-        </div>
-      </div>
-
-
 
       <div class="panel panel-default">
           <div class="panel-body">
@@ -72,10 +61,38 @@
                 <form class="form-horizontal" action="" method="POST">
                     <fieldset>
                       <div class="control-group">
-                        <label class="control-label" for="brandname">Budget per Influencer</label>
+                        <label class="control-label" for="brandname">Campaign Name</label>
                         <div class="controls">
                           <input type="text" placeholder="" class="form-control">
                         </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label" for="brandname">Campaign Category</label>
+                        <select class="form-control" id="bankname">
+                          <option>- Select Category -</option>
+                          <option>Category A</option>
+                          <option>Category B</option>
+                          <option>Category C</option>
+                        </select>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label" for="bankname">Media</label>
+                          <select class="form-control" id="bankname">
+                            <option>- Select Media -</option>
+                            <option>Instagram</option>
+                            <option>Facebook</option>
+                            <option>YouTube</option>
+                          </select>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label" for="bankname">Budget per Influencer</label>
+                          <select class="form-control" id="bankname">
+                            <option>- Select Budget -</option>
+                            <option>500-1,000</option>
+                            <option>1,000-5,000</option>
+                            <option>5,000-10,000</option>
+                            <option>10,000+</option>
+                          </select>
                       </div>
                       <div class="control-group">
                         <label class="control-label" for="brandname">Campaign Image</label>
@@ -90,11 +107,31 @@
                       <div class="control-group">
                         <label class="control-label" for="brandname">Campaign Description</label>
                         <div class="controls">
-                          <input type="text" placeholder="" class="form-control">
+                          <textarea type="text" placeholder="" class="form-control" rows="3"></textarea>
                         </div>
                       </div>
                       <div class="control-group">
-                        <label class="control-label" for="brandname">Additional Image</label>
+                        <label class="control-label" for="brandname">Additional Image 1 (Optional)</label>
+
+                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                          <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                          <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                          <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        </div>
+
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label" for="brandname">Additional Image 2 (Optional)</label>
+
+                        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                          <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                          <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                          <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        </div>
+
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label" for="brandname">Additional Image 3 (Optional)</label>
 
                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                           <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
@@ -126,7 +163,13 @@
                   <br>
 
                   <div class="controls">
-                    <a href="brand-campaign-list.html"><button class="btn btn-success">Create Campaign</button></a>
+                    <a href="brand-campaign-list.html" class="btn btn-success">
+                      Publish
+                    </a>
+                    &nbsp
+                    <a href="brand-campaign-list.html" class="btn btn-default">
+                      Save as Draft
+                    </a>
                   </div>
               </div>
             </div>

@@ -2,50 +2,50 @@
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>Project X</title>
+    <title>Project X Brand</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="brand-landing.html">Project X Brand</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="brand-campaign-list.html">My Campaign</a></li>
+            <li><a href="brand-influencer-list.html">Influencers</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Nattamoto<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="brand-profile.html">Profile</a></li>
+                <li><a href="brand-transaction-list.html">Transactions</a></li>
+                <li><a href="#">Notification</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container-fluid -->
+    </nav>
+
     <div class="container">
 
-      <!-- Static navbar -->
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="brand-landing.html">Project X</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="brand-campaign-list.html">My Campaign</a></li>
-              <li><a href="#">Influencers</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  Nattamoto (Brand) <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Payment</a></li>
-                  <li><a href="#">Notification</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav>
-
       <div class="page-header">
-        <h2 class="pull-left">Pay for Campaign</h2>
+        <h2 class="pull-left">Review & Pay</h2>
         <div class="pull-right">
           <a href="brand-campaign-detail-open.html">
             <button type="button" name="button" class="btn btn-default">Back to Campaign Detail</button>
@@ -55,27 +55,61 @@
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-body">
-          Pokemon Campaign
-          <div class="pull-right">
-            Status: OPEN
+        <div class="media">
+          <div class="media-body">
+            <div class="media-item">
+              <h5>All Proposals:</h5>
+              <h4>3</h4>
+            </div>
+            <div class="media-item">
+              <h5>Selected:</h5>
+              <h4>1</h4>
+            </div>
+            <div class="media-item">
+              <h5>Budget:</h5>
+              <h4>1,000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Potential Reach</h5>
+              <h4>2.5 Million+ Users</h4>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="pull-left">
-            Selected Proposal: 0<br>
-            Current Budget: 0
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table table-price">
+                <thead>
+                  <tr>
+                    <th>Proposal</th>
+                    <th class="table-item-price">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Jon Snow</td>
+                    <td class="table-item-price">1,000</td>
+                  </tr>
+                  <tr>
+                    <td>Daenerys Targaryen</td>
+                    <td class="table-item-price">10,000</td>
+                  </tr>
+                  <tr>
+                    <td>Fee</td>
+                    <td class="table-item-price">0</td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td class="table-item-price"><strong>11,000</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
-
-
-      <div class="page-header">
-        <h3 class="pull-left">Confirm Payment</h3>
-        <div class="clear"></div>
       </div>
 
       <div class="panel panel-default">
@@ -86,7 +120,42 @@
                     <fieldset>
 
                       <div class="control-group">
-                        <label class="control-label" for="brandname">Upload your slip</label>
+                        <h3>Payment Method</h3>
+                        <p>
+                          Very unusually, Eddard announced that he would raise Jon at his home castle Winterfell, alongside his trueborn children with Catelyn. Robb was always treated as Eddard's heir, but otherwise, Jon wasn't treated much differently than his younger half-brothers Bran and Rickon. Jon's mere presence at Winterfell was an understandable source of friction between Eddard and his wife Catelyn.
+                        </p>
+
+                      </div>
+
+                    </fieldset>
+                  </form>
+
+                  <br>
+
+                  <div class="controls">
+                    <a href="brand-campaign-list.html"><button class="btn btn-success">Ready to Pay</button></a>
+                  </div>
+                </div>
+            </div>
+          </div>
+      </div>
+
+
+      <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-6">
+                <form class="form-horizontal" action="" method="POST">
+                    <fieldset>
+
+                      <div class="control-group">
+
+                        <h3>Confirm Payment</h3>
+
+                        <label class="control-label">Remaining Time</label><br>
+                        <h4 class="color-red">3 Days 1 hour 46 minutes left</h4>
+
+                        <label class="control-label">Upload your slip</label>
 
                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                           <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
@@ -102,7 +171,7 @@
                   <br>
 
                   <div class="controls">
-                    <a href="brand-campaign-list.html"><button class="btn btn-success">I have completed my payment</button></a>
+                    <a href="brand-campaign-list.html"><button class="btn btn-success">Confirm Payment</button></a>
                   </div>
                 </div>
             </div>

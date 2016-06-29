@@ -2,77 +2,114 @@
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>Project X</title>
+    <title>Project X Brand</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <div class="container">
 
-      <!-- Static navbar -->
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="brand-landing.html">Project X</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="brand-campaign-list.html">My Campaign</a></li>
-              <li><a href="#">Influencers</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  Nattamoto (Brand) <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Payment</a></li>
-                  <li><a href="#">Notification</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="brand-landing.html">Project X Brand</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="brand-campaign-list.html">My Campaign</a></li>
+            <li><a href="brand-influencer-list.html">Influencers</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Nattamoto<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="brand-profile.html">Profile</a></li>
+                <li><a href="brand-transaction-list.html">Transactions</a></li>
+                <li><a href="#">Notification</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container-fluid -->
+    </nav>
+
+    <div class="container">
 
       <div class="page-header">
         <h2 class="pull-left">Campaign Detail (OPEN)</h2>
         <div class="pull-right">
-          <a href="brand-campaign-list.html">
-            <button type="button" name="button" class="btn btn-default">Back to Campaign List</button>
+          <a href="brand-campaign-list.html" class="btn btn-default">
+            Back to Campaign List
           </a>
         </div>
         <div class="clear"></div>
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-body">
-          Pokemon Campaign
-          <div class="pull-right">
-            Status: OPEN
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object" src="images/campaign-pokeland.jpg"  >
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">
+              Pokeland Summer Campaign <i class="fa fa-instagram"></i>
+              <span class="pull-right">
+                <a href="#"  data-toggle="modal" data-target="#modal-view-detail">View Detail</a>
+              </span>
+            </h4>
+            <div class="media-item">
+              <h5>Status:</h5>
+              <h4>Open</h4>
+            </div>
+            <div class="media-item">
+              <h5>Reward:</h5>
+              <h4>500-1,5000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Proposal Deadline:</h5>
+              <h4>16/06/2016 (30 Days left)</h4>
+            </div>
+            <div class="media-item">
+              <h5>Category:</h5>
+              <h4>Beauty</h4>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="pull-left">
-            Selected Proposal: 0<br>
-            Current Budget: 0
-          </div>
-          <div class="pull-right">
-            <a href="brand-campaign-pay.html">
-              <button type="button" name="button" class="btn btn-primary">Review & Pay</button>
-            </a>
+        <div class="media">
+          <div class="media-body">
+            <div class="media-item">
+              <h5>All Proposals:</h5>
+              <h4>3</h4>
+            </div>
+            <div class="media-item">
+              <h5>Selected:</h5>
+              <h4>1</h4>
+            </div>
+            <div class="media-item">
+              <h5>Budget:</h5>
+              <h4>1,000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Potential Reach</h5>
+              <h4>2.5 Million+ Users</h4>
+            </div>
+            <div class="media-item pull-right">
+              <a href="brand-campaign-pay.html" class="btn btn-primary">
+                Review & Pay
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -80,33 +117,216 @@
 
       <div class="page-header">
         <h3 class="pull-left">Proposals</h3>
+        <div class="pull-right">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Sort by Date
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Sort by Most Followers</a></li>
+              <li><a href="#">Sort by Quotation</a></li>
+              <li><a href="#">Sort by Cost per Follower</a></li>
+            </ul>
+          </div>
+        </div>
         <div class="clear"></div>
       </div>
 
-      <div class="panel panel-default">
-        <a href="brand-proposal-detail.html">
-        <div class="panel-body">
-          John Snow | Status: Pending
-          <div class="pull-right">
-            View Detail
-          </div>
-        </div>
-        </a>
+      <div class="filter">
+        Filter: <a href="#" class="active">All (3)</a> | <a href="#">Wait for Review (0)</a> | <a href="#">Need Revision (0)</a> | <a href="#">Selected (0)</a>
+        <br><br>
       </div>
 
       <div class="panel panel-default">
-        <a href="brand-proposal-detail.html">
-        <div class="panel-body">
-          Jamie Lanister | Status: Pending
-          <div class="pull-right">
-            View Detail
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object" src="images/profile-pic-jon.jpg"  >
+          </div>
+          <div class="media-body">
+            <a href="brand-proposal-detail.html">
+              <h4 class="media-heading">
+                  Jon Snow
+                  <span class="pull-right">Status: Wait for Review</span>
+              </h4>
+            </a>
+            <div class="media-item">
+              <h5>Instagram Followers:</h5>
+              <h4>1.5m+</h4>
+            </div>
+            <div class="media-item">
+              <h5>Submitted on:</h5>
+              <h4>10/10/16</h4>
+            </div>
+            <br><br>
+            <div class="media-item">
+              <h5>Quotation:</h5>
+              <h4>1,000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Cost per Follower:</h5>
+              <h4>Less than 0.01 Baht</h4>
+            </div>
           </div>
         </div>
-        </a>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object" src="images/profile-pic-jaime.jpg">
+          </div>
+          <div class="media-body">
+            <a href="brand-proposal-detail.html">
+              <h4 class="media-heading">
+                  Jaime Lanister
+                  <span class="pull-right">Status: Wait for Review</span>
+              </h4>
+            </a>
+            <div class="media-item">
+              <h5>Instagram Followers:</h5>
+              <h4>10,000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Submitted on:</h5>
+              <h4>10/10/16</h4>
+            </div>
+            <br><br>
+            <div class="media-item">
+              <h5>Quotation:</h5>
+              <h4>500</h4>
+            </div>
+            <div class="media-item">
+              <h5>Cost per Follower:</h5>
+              <h4>0.05 Baht</h4>
+            </div>
+          </div>
+        </div>
       </div>
 
 
 
+      <div class="panel panel-default">
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object" src="images/profile-pic-daenerys.jpg">
+          </div>
+          <div class="media-body">
+            <a href="brand-proposal-detail.html">
+              <h4 class="media-heading">
+                  Daenerys Targaryen
+                  <span class="pull-right">Status: Wait for Review</span>
+              </h4>
+            </a>
+            <div class="media-item">
+              <h5>Instagram Followers:</h5>
+              <h4>10,000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Submitted on:</h5>
+              <h4>10/10/16</h4>
+            </div>
+            <br><br>
+            <div class="media-item">
+              <h5>Quotation:</h5>
+              <h4>10,000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Cost per Follower:</h5>
+              <h4>1.00 Baht</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- modal-view-detail -->
+    <div id="modal-view-detail" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">View Detail</h4>
+          </div>
+          <div class="modal-body">
+
+            <div class="panel panel-default">
+              <div class="media">
+
+                <div class="media-body">
+                  <h4 class="media-heading">
+                    Pokeland Summer Campaign <i class="fa fa-instagram"></i>
+                  </h4>
+                  <div class="media-item">
+                    <h5>Status:</h5>
+                    <h4>Open</h4>
+                  </div>
+                  <div class="media-item">
+                    <h5>Reward:</h5>
+                    <h4>500-1,5000</h4>
+                  </div>
+                  <div class="media-item">
+                    <h5>Category:</h5>
+                    <h4>Beauty</h4>
+                  </div>
+                  <div class="media-item">
+                    <h5>Proposal Deadline:</h5>
+                    <h4>16/06/2016</h4>
+                  </div>
+                  <div class="media-item">
+                    <h5>Proposal Result:</h5>
+                    <h4>22/06/2016</h4>
+                  </div>
+                  <div class="media-item">
+                    <h5>Working Period:</h5>
+                    <h4>30 Days</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3>Campaign Detail</h3>
+                    <ol>
+                      <li>Crease SSH key</li>
+                      <li>On DigitalOcean adds it to setting > security</li>
+                      <li>Open terminal</li>
+                      <li>ssh root@130.203…</li>
+                      <li>Edit permission in conf</li>
+                      <li>Crt+X & Save</li>
+                      <li>Access FTP through root@130.203...</li>
+                      <li>Put file under var/www/html/...</li>
+                    </ol>
+                    <h3>Media to Post</h3>
+                    <ul>
+                      <li>Instagram</li>
+                    </ul>
+                    <br>
+                    <img src="images/campaign-pokeland.jpg" alt="" class="img-responsive" />
+                    <br>
+                    <img src="images/campaign-pokeland-2.jpg" alt="" class="img-responsive" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-body">
+                To be fair with influencers who have seen this campaign, we would like you to contact us if you want to edit the campaign detail. If you like to close the campaign
+                <a href="#"> click here</a>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-default" data-dismiss="modal">Close View Detail</a>
+          </div>
+        </div>
+      </div>
     </div>
 
 

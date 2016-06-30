@@ -6,7 +6,7 @@
  */
 'use strict';
 
-// require('dotenv').config();
+require('dotenv-extended').load();
 
 var _               = require('lodash'),
     browserify      = require('browserify'),

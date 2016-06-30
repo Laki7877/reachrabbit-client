@@ -10,7 +10,7 @@ angular.module('app.common')
   .factory('$api', function($http, $storage, $q) {
     var service = function(opts) {
       var defer = $q.defer();
-      var token = $storage.get('auth');
+      var token = $storage.getAuth();
       if(!opts.headers) {
         opts.headers = {};
       }

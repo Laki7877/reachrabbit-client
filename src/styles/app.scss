@@ -38,3 +38,9 @@ body{
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.form-signin {
+  .has-feedback label~.form-control-feedback {
+      top: 28px;
+  }
+}

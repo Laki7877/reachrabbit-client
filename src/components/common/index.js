@@ -7,6 +7,7 @@
 'use strict';
 
 var components = [
+  'ngSanitize',
 	'ui.router',
 	'angularCSS',
 	'satellizer',

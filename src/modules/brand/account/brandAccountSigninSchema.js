@@ -8,6 +8,13 @@
 
 module.exports = function() {
   return {
+    options: {
+      formDefaults: {
+        ngModelOptions: {
+          updateOn: 'blur'
+        }
+      }
+    },
     schema: {
       type: 'object',
       properties: {
@@ -24,16 +31,26 @@ module.exports = function() {
           type: 'boolean',
           title: 'Remember me'
         }
-      }
+      },
+      required: ['email', 'password']
     },
     form: [
       {
         type: 'template',
         template: '<h2 class="form-signin-heading">Please sign in</h2>'
       },
-      'email',
-      'password',
-      'rememberMe',
+      {
+        key: 'email'
+      },
+      {
+        key: 'password',
+        type: 'password'
+      },
+      {
+        key: 'rememberMe',
+        disableErrorState: true,
+        disableSuccessState: true
+      },
       {
         type: 'submit',
         style: 'btn-primary btn-block btn-lg',

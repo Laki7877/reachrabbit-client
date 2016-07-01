@@ -38,6 +38,11 @@ app.get('/influencer', function(req, res) {
   return res.render('influencer');
 });
 
+app.get('/compotest', function(req, res) {
+  return res.render('compotest');
+});
+
+
 /************************************
  * Start server
  ************************************/

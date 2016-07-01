@@ -24,3 +24,5 @@ require('./angular-schema-form-datetimepicker');
 
 require('tv4').addFormat(require('tv4-formats'));
 require('tv4').addFormat(require('./rr-tv4-formats'));
+require('./jquery.vide.min.js');
+require('video.js');

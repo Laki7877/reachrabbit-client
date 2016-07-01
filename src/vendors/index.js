@@ -24,3 +24,4 @@ require('angular-schema-form');
 require('angular-schema-form-bootstrap');
 require('./angular-schema-form-datetimepicker');
 require('./jquery.vide.min.js');
+require('video.js');

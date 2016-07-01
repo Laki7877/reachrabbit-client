@@ -9,7 +9,11 @@
 module.exports = function() {
   return {
     options: {
-
+      formDefaults: {
+        ngModelOptions: {
+          updateOn: 'blur'
+        }
+      }
     },
     schema: {
       type: 'object',
@@ -49,9 +53,15 @@ module.exports = function() {
     },
     form: [
       {
-        type: 'template',
-        template: '<legend>Brand sign up</legend>'
-      },
+        type: 'section',
+        htmlClass: 'form-group',
+        items: [
+          {
+            type: 'template',
+            template: '<legend>Brand sign up</legend>'
+          }
+        ]  
+    },
       'brandName',
       'name',
       'contactNumber',

@@ -12,4 +12,11 @@ angular.module('app.common')
 		$authProvider.facebook({
 			clientId: process.env.FACEBOOK_APP_ID
 		});
+
+    $authProvider.google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      scope: 'https://www.googleapis.com/auth/youtube',
+      redirectUri: 'http://localhost:3000/auth/google'
+    });
+
 	});

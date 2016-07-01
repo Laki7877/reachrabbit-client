@@ -209,4 +209,9 @@ body {
 
 .lucent{
   opacity: 0.8;
+
+.form-signin {
+  .has-feedback label~.form-control-feedback {
+      top: 28px;
+  }
 }

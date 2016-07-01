@@ -12,7 +12,11 @@ require('particles.js');
 require('satellizer');
 require('ng-file-upload');
 
+require('tv4').addFormat(require('tv4-formats'));
+require('tv4').addFormat(require('./rr-tv4-formats'));
+
 require('angular-css');
+require('angular-sanitize');
 require('angular-strap');
 require('angular-ui-router');
 require('angular-ui-bootstrap');

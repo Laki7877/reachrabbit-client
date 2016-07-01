@@ -7,42 +7,36 @@
 'use strict';
 
 var signinSchema = require('./brandAccountSigninSchema');
+var signupSchema = require('./brandAccountSignupSchema');
 
 angular.module('app.brand')
 	.controller('brandAccountSignupController', function($scope, $state, $api) {
-    $scope.formData = {};
-    $scope.form = {};
+    $scope.schema = signupSchema();
+
+    $scope.submit = function(form) {
+
+    };
+	})
+	.controller('brandAccountSigninController', function($scope, $state, $storage, $api) {
     $scope.schema = signinSchema();
 
     // on form submit
     $scope.submit = function(form) {
+      $scope.$broadcast('schemaFormValidate', 'form');
+
+      // validate form
       if(form.$valid) {
+        // call api
         $api({
           method: 'POST',
-          url: '/register/brand',
+          url: '/login',
           data: $scope.formData
         }).then(function(data) {
-          $scope.message = 'Please check your email';
+          $storage.putAuth(data.token);
+          $state.go('campaign.list');
         }).catch(function(err) {
-          $scope.message = err.message;
+          console.error(err);
         });
-      } else {
-        $scope.broadcast('schemaFormValidate', 'form');
       }
-    };
-	})
-	.controller('brandAccountSigninController', function($scope, $state, $storage, $api) {
-    $scope.formData = {};
-    $scope.submit = function() {
-      $api({
-        method: 'POST',
-        url: '/login',
-        data: $scope.formData
-      }).then(function(data) {
-        $storage.put('auth', data.token);
-        $state.go('campaign.list');
-      }).catch(function(err) {
-        $scope.message = err.message;
-      });
     };
 	});

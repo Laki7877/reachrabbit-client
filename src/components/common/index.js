@@ -12,7 +12,7 @@ var components = [
 	'angularCSS',
 	'satellizer',
   'ngFileUpload',
-  'schemaForm'
+  'ngMaterial'
 ];
 
 angular.module('app.common', components);

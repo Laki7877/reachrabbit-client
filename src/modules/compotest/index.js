@@ -7,7 +7,8 @@
 'use strict';
 
 var components = [
-  require('../../components/common')
+  require('../../components/common'),
+  require('../../components/rrForm')
 ];
 
 angular.module('app.compotest', components)

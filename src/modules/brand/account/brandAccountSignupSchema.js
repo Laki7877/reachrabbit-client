@@ -60,7 +60,7 @@ module.exports = function() {
             type: 'template',
             template: '<legend>Brand sign up</legend>'
           }
-        ]  
+        ]
     },
       'brandName',
       'name',

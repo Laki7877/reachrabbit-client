@@ -16,7 +16,6 @@ require('angular-messages');
 require('angular-material');
 require('angular-css');
 require('angular-sanitize');
-require('angular-strap');
 require('angular-ui-router');
 require('angular-ui-bootstrap');
 

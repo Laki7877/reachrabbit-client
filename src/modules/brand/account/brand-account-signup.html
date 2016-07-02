@@ -1,12 +1,48 @@
-<div class="row">
-  <div class="col-md-6">
-    <form class="form-horizontal"
-      name="form"
-      data-sf-model="formData"
-      data-sf-form="schema.form"
-      data-sf-schema="schema.schema"
-      data-sf-options="schema.options"
-      data-ng-submit="submit(form)">
-    </form>
-  </div>
+<div layout="column" class="md-inline-form">
+  <form name="form" md-form>
+    <md-content layout-padding>
+      <div>
+        <legend>Brand sign up</legend>
+      </div>
+      <div>
+        <div md-image ng-model="formData.profilePicture"></div>
+        <md-input-container class="md-block">
+          <label>Brand Name</label>
+          <input name="brandName" ng-model="formData.brandName" ng-model-options="{ updateOn: 'blur' }" required />
+          <div md-messages="brandName"></div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Name</label>
+          <input name="name" ng-model="formData.name" required />
+          <div md-messages="name"></div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Contact Number</label>
+          <input name="contactNumber" ng-model="formData.contactNumber" required />
+          <div md-messages="contactNumber"></div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Email</label>
+          <input type="email" name="email" ng-model="formData.email" required />
+          <div md-messages="email"></div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Email (Confirm)</label>
+          <input type="email" name="confirmEmail" ng-model="formData.confirmEmail" required />
+          <div md-messages="confirmEmail"></div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Password</label>
+          <input type="password" name="password" ng-model="formData.password" required />
+          <div md-messages="password"></div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Password (Confirm)</label>
+          <input type="password" name="confirmPassword" ng-model="formData.confirmPassword" required />
+          <div md-messages="confirmPassword"></div>
+        </md-input-container>
+        <md-button class="md-raised md-primary" ng-click="submit(form)">Sign Up</md-button>
+      </div>
+    </md-content>
+  </form>
 </div>

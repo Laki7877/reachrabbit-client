@@ -5,25 +5,16 @@
  * @since      0.0.1
  */
 'use strict';
-
-var signinSchema = require('./brandAccountSigninSchema');
-var signupSchema = require('./brandAccountSignupSchema');
-
 angular.module('app.brand')
 	.controller('brandAccountSignupController', function($scope, $state, $api) {
-    $scope.schema = signupSchema();
 
     $scope.submit = function(form) {
 
     };
 	})
 	.controller('brandAccountSigninController', function($scope, $state, $storage, $api) {
-    $scope.schema = signinSchema();
-
     // on form submit
     $scope.submit = function(form) {
-      $scope.$broadcast('schemaFormValidate', 'form');
-
       // validate form
       if(form.$valid) {
         // call api

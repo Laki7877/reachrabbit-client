@@ -8,7 +8,7 @@
 
 var components = [
   require('../../components/common'),
-  require('../../components/rrForm')
+  require('../../components/mdForm')
 ];
 
 angular.module('app.compotest', components)

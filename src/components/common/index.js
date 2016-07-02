@@ -12,7 +12,8 @@ var components = [
 	'angularCSS',
 	'satellizer',
   'ngFileUpload',
-  'ngMaterial'
+  'ngMaterial',
+  require('../mdForm')
 ];
 
 angular.module('app.common', components);

@@ -1,3 +1,20 @@
-<form name="form"
-  data-ng-submit="submit(form)"
-></form>
+<div>
+  <form name="form" md-form class="form-signin">
+    <md-content layout-padding>
+    <div layout="column" layout-align="center none" class="md-inline-form">
+      <h3 class="form-signin-heading text-center">Please sign in</h3>
+      <md-input-container class="md-block">
+        <label>Email</label>
+        <input name="email" ng-model="formData.email" required />
+        <div md-messages="email"></div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Password</label>
+        <input type="password" name="password" ng-model="formData.password" required />
+        <div md-messages="password"></div>
+      </md-input-container>
+      <md-button class="md-raised md-primary" ng-click="submit(form)">Sign in</md-button>
+    </div>
+    </md-content>
+  </form>
+</div>

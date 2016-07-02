@@ -1,52 +1,73 @@
 'use strict';
 
 angular.module('mdForm', ['ngMaterial', 'ngMessages'])
-	.directive('mdForm', function() {
+  .provider('mdForm', function() {
+    this.defaultOptions = {
+      ngModelOptions: {
+        updateOn: 'blur'
+      },
+      $error: {
+        required: 'This is required',
+        email: 'Please enter a valid email'
+      }
+    };
+    this.setDefaultMdFormOptions = function(options) {
+      this.defaultOptions = options;
+    };
+    this.$get = function() {
+      return this;
+    };
+  })
+	.directive('mdForm', function(mdForm) {
 		return {
 			restrict: 'A',
 			require: 'form',
-			scope: {
-				mdForm: '='
-			},
 			link: function(scope, elem, attrs, form) {
-				scope.getForm = function() {
+        scope.formOptions = {};
+        attrs.$observe('mdFormOptions', function(value) {
+          scope.$watch(value, function(newValue) {
+            scope.formOptions = newValue || {};
+          }, true);
+        });
+
+        scope.getForm = function() {
 					return form;
 				};
+
+        // set ng model options
+        _.forOwn(form, function(v, k) {
+          if(!_.startsWith(k, '$') && mdForm.defaultOptions['ngModelOptions']) {
+            v.$$setOptions(mdForm.defaultOptions['ngModelOptions']);
+          }
+        });
 			},
 			controller: function($scope) {
 				this.getModel = function(name) {
 					return $scope.getForm()[name];
 				};
 				this.getMessages = function(name, type) {
-					return $scope.mdForm[name] ? $scope.mdForm[name][type] : undefined;
+					return $scope.formOptions[name] ? ($scope.formOptions[name][type] || mdForm.defaultOptions[type]) : mdForm.defaultOptions[type];
 				}
 			}
 		}
 	})
-	.directive('mdError', function() {
+	.directive('mdMessages', function() {
 		return {
 			restrict: 'A',
 			require: '^^mdForm',
-			templateUrl: 'md-errors.html',
+      scope: true,
+			templateUrl: 'md-messages.html',
 			link: function(scope, elem, attrs, form) {
+        scope.name = attrs.mdMessages;
 				scope.getModel = function() {
-					return form.getModel(attrs.rrError);
+					return form.getModel(scope.name);
 				};
-				scope.getMessages = function() {
-					return form.getMessages(attrs.rrError, 'error');
+				scope.getMessages = function(type) {
+					return form.getMessages(scope.name, type);
 				};
-			}
-		};
-	})
-	.directive('mdHint', function() {
-		return {
-			restrict: 'A',
-			require: '^^mdForm',
-			templateUrl: 'md-hints.html',
-			link: function(scope, elem, attrs, form) {
-				scope.getMessages = function() {
-					return form.getMessages(attrs.mdForm, 'hint');
-				};
+        scope.hasError = function() {
+          return !_.isEmpty(scope.getModel().$error);
+        };
 			}
 		};
 	});

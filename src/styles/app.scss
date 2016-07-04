@@ -1,9 +1,11 @@
+@import "mixins/_gradient.scss";
+
 body{
-  margin-top: 30px;
+  padding-top: 30px;
+  font-family: 'Sukhumvit Set', 'Tahoma';
+  @include gradient-directional(#20155a, #214f78, 45deg);
 }
-.body-inf{
-  background: #a4c2e6;
-}
+
 .clear{
   clear: both;
 }

@@ -2,8 +2,15 @@
 
 body{
   padding-top: 30px;
-  font-family: 'Sukhumvit Set', 'Tahoma';
   @include gradient-directional(#20155a, #214f78, 45deg);
+}
+
+.btn-america{
+    @include gradient-directional(#30ba6e, #46954f, 45deg);
+}
+
+.btn-japan{
+    @include gradient-directional(#ec7e40, #ec611d, 45deg);
 }
 
 .clear{

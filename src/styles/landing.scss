@@ -1,5 +1,8 @@
+@import "mixins/_gradient.scss";
+
 body{
   margin-top: 30px;
+  @include gradient-directional(#6e6369, #231f21, 45deg);
 }
 .body-inf{
   background: #a4c2e6;

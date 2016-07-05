@@ -1,20 +1,20 @@
-<div>
-  <form name="form" md-form class="form-signin">
-    <md-content layout-padding>
-    <div layout="column" layout-align="center none" class="md-inline-form">
-      <h3 class="form-signin-heading text-center">Please sign in</h3>
-      <md-input-container class="md-block">
-        <label>Email</label>
-        <input name="email" ng-model="formData.email" required />
-        <div md-messages="email"></div>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label>Password</label>
-        <input type="password" name="password" ng-model="formData.password" required />
-        <div md-messages="password"></div>
-      </md-input-container>
-      <md-button class="md-raised md-primary" ng-click="submit(form)">Sign in</md-button>
-    </div>
-    </md-content>
-  </form>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <form name="form" class="form-horizontal" novalidate>
+      <fieldset>
+          <md-input-container class="md-block">
+            <label>Email</label>
+            <input required md-no-asterisk name="email" ng-model="formData.email">
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Password</label>
+            <input required md-no-asterisk name="email" ng-model="formData.password">
+          </md-input-container>
+          <div flex-xs flex="50">
+            <md-checkbox md-no-ink class="md-primary" ng-model="formData.rememberMe">Remember me</md-checkbox>
+          </div>
+          <md-button class="md-raised md-primary">Sign-in</md-button>
+      </fieldset>
+    </form>
+  </div>
 </div>

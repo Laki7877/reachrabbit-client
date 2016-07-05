@@ -10,7 +10,6 @@ angular.module('app.influencer')
 	.controller('influencerAccountSigninController', function($scope) {
     $scope.formData = {};
     $scope.submit = function() {
-
     };
 	})
 	.controller('influencerAccountSignupController', function($scope, $state, $uploader, fbProfile) {

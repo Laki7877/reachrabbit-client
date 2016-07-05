@@ -7,14 +7,13 @@
 'use strict';
 angular.module('app.brand')
 	.controller('brandAccountSignupController', function($scope, $state, $api) {
-
-    $scope.submit = function(form) {
+    $scope.submit = function() {
 
     };
 	})
 	.controller('brandAccountSigninController', function($scope, $state, $storage, $api) {
     // on form submit
-    $scope.submit = function(form) {
+    $scope.submit = function() {
       // validate form
       if(form.$valid) {
         // call api

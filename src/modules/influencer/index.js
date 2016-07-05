@@ -23,14 +23,7 @@ angular.module('app.influencer', components)
 						templateUrl: 'menu.html',
             resolve: {
               profile: function($api, $q) {
-                var deferred = $q.defer();
-                $api({
-                  url: '/me',
-                  method: 'GET'
-                }).then(deferred.resolve, function() {
-                  deferred.resolve({});
-                });
-                return deferred.promise;
+                return {};
               }
             },
             controller: function($scope, profile) {
@@ -47,8 +40,7 @@ angular.module('app.influencer', components)
 					'': {
 						controller: 'influencerAccountSigninController',
 						templateUrl: 'account/influencer-account-signin.html'
-					},
-					'menu@index': {}
+					}
 				}
 			})
 			.state('signup', {
@@ -76,8 +68,7 @@ angular.module('app.influencer', components)
             '@index': {
               controller: 'influencerAccountSignupDetailController',
               templateUrl: 'account/influencer-account-signup-detail.html'
-            },
-            'menu@index': {}
+            }
           }
         })
       .state('confirm', {

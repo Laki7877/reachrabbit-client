@@ -9,7 +9,6 @@
 
 //Load Social Profile
 function loadSocialProfile(soPro, formData) {
-  console.log(soPro);
   formData.socialAccounts[soPro.provider] = {
     id: soPro.data.id,
     token: soPro.data.token
@@ -21,7 +20,6 @@ function loadSocialProfile(soPro, formData) {
 
   if(!formData.profilePicture){
     formData.profilePicture = soPro.data.picture;
-    console.log(formData)
   }
 
   if(!formData.name){
@@ -33,42 +31,18 @@ function loadSocialProfile(soPro, formData) {
 angular.module('app.influencer')
   .controller('influencerAccountSigninController', function($scope) {
     $scope.formData = {};
-    $scope.submit = function() {
+    $scope.submit = function(form) {
     };
   })
-  .controller('influencerAccountSignupController', function($scope, $storage, $state, $uploader, socialProfile) {
-    $scope.formData = {
-      socialAccounts: {}
-    };
-
+  .controller('influencerAccountSignupController', function($scope, $storage, $state, $uploader, $auth, $mdToast, socialProfile) {
+    $scope.formData = $scope.formData || { socialAccounts: {} };
     $scope.loadingImage = false;
-
-    // pass forward info
-    $scope.submit = function() {
-      $state.go('.detail', {
-        data: $scope.formData
-      });
-    };
-
-    $scope.upload = function(file) {
-      $scope.loadingImage = true;
-      $uploader.upload('/file', file)
-        .then(function(data) {
-          $scope.loadingImage = false;
-          $scope.formData.profilePicture = data.url;
-        });
-    };
-
-    loadSocialProfile(socialProfile, $scope.formData);
-  })
-  .controller('influencerAccountSignupDetailController', function($scope, $api, $state, $auth, $stateParams,  $mdToast) {
-    $scope.formData = $stateParams.data;
     $scope.message = '';
 
     //Other functions
     $scope.linkedWith = function(key) {
       return key in $scope.formData.socialAccounts;
-    }
+    };
 
     $scope.linkWith = function(key) {
       $auth.authenticate(key)
@@ -84,22 +58,23 @@ angular.module('app.influencer')
               .position('top right' )
               .hideDelay(3000)
           );
-
         })
         .catch(function(err) {
           console.log(err);
         });
 
-    }
+    };
 
+    // go back
     $scope.back = function(){
-      $state.go('signup' , {
-        data: $scope.formData
-      });
-    }
+      $state.go('^.1');
+    };
+    // go next
+    $scope.next = function() {
+      $state.go('^.2');
+    };
 
     $scope.submit = function() {
-      return console.log(JSON.stringify($scope.formData));
       $api({
         method: 'POST',
         url: '/register/influencer',
@@ -110,6 +85,17 @@ angular.module('app.influencer')
         $scope.message = err.message;
       });
     };
+
+    $scope.upload = function(file) {
+      $scope.loadingImage = true;
+      $uploader.upload('/file', file)
+        .then(function(data) {
+          $scope.loadingImage = false;
+          $scope.formData.profilePicture = data.url;
+        });
+    };
+
+    loadSocialProfile(socialProfile, $scope.formData);
   })
   .controller('influencerAccountConfirmController', function($state, $stateParams, $api, $storage) {
     //confirm endpoint

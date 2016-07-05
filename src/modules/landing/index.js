@@ -15,8 +15,7 @@ angular.module('app.landing', components)
 		$stateProvider
 			.state('home', {
 				url: '',
-				controller: 'landingController',
-				templateUrl: 'landing.html'
+				controller: 'landingController'
 			})
 			.state('brand', {
 				url: '/brand',

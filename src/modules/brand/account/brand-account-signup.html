@@ -1,48 +1,66 @@
-<div layout="column" class="md-inline-form">
-  <form name="form" md-form>
-    <md-content layout-padding>
-      <div>
-        <legend>Brand sign up</legend>
+<md-card style="margin:auto">
+  <md-toolbar class="md-primary">
+    <div class="md-toolbar-tools">
+      <h3 class="md-flex">Profile</h3>
+    </div>
+  </md-toolbar>
+  <md-card-content class="md-padding" layout="row" layout-align="left none">
+      <div class="fileinput fileinput-new" data-provides="fileinput">
+            <div class="fileinput-new" style="width: 250px; height: 250px;">
+
+            <img ng-show="!loadingImage" src="{{formData.profilePicture.url || 'http://orig03.deviantart.net/561f/f/2014/315/9/c/rabbit_doubt_mask_avatar_for_facebook_by_facebookavatars-d8622bz.png'}}" height="250" width="250">
+
+            <div layout="row" layout-sm="column" ng-show="loadingImage" layout-align="space-around" style="padding-top: 100px">
+              <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+              </div>
+
+            </div>
+            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+              <md-button md-raised class="btn-file">
+                  <span class="fileinput-new"><i class="glyphicon glyphicon-open-file"></i> Upload from PC</span>
+                  <span class="fileinput-exists">Change</span>
+                  <input type="file" name="slip" data-ngf-select="upload($file)"></span>
+              <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+            </md-button>
       </div>
-      <div>
-        <div md-image ng-model="formData.profilePicture"></div>
-        <md-input-container class="md-block">
-          <label>Brand Name</label>
-          <input name="brandName" ng-model="formData.brandName" ng-model-options="{ updateOn: 'blur' }" required />
-          <div md-messages="brandName"></div>
-        </md-input-container>
-        <md-input-container class="md-block">
-          <label>Name</label>
-          <input name="name" ng-model="formData.name" required />
-          <div md-messages="name"></div>
-        </md-input-container>
-        <md-input-container class="md-block">
-          <label>Contact Number</label>
-          <input name="contactNumber" ng-model="formData.contactNumber" required />
-          <div md-messages="contactNumber"></div>
-        </md-input-container>
-        <md-input-container class="md-block">
-          <label>Email</label>
-          <input type="email" name="email" ng-model="formData.email" required />
-          <div md-messages="email"></div>
-        </md-input-container>
-        <md-input-container class="md-block">
-          <label>Email (Confirm)</label>
-          <input type="email" name="confirmEmail" ng-model="formData.confirmEmail" required />
-          <div md-messages="confirmEmail"></div>
-        </md-input-container>
-        <md-input-container class="md-block">
-          <label>Password</label>
-          <input type="password" name="password" ng-model="formData.password" required />
-          <div md-messages="password"></div>
-        </md-input-container>
-        <md-input-container class="md-block">
-          <label>Password (Confirm)</label>
-          <input type="password" name="confirmPassword" ng-model="formData.confirmPassword" required />
-          <div md-messages="confirmPassword"></div>
-        </md-input-container>
-        <md-button class="md-raised md-primary" ng-click="submit(form)">Sign Up</md-button>
+      <div class="md-padding" flex>
+        <form name="form"
+          class="form-horizontal"
+          ng-submit="submit(form)"
+          novalidate>
+          <fieldset>
+              <md-input-container class="md-block">
+                <label>Brand Name</label>
+                <input required md-no-asterisk name="brandName" ng-model="formData.brandName">
+              </md-input-container>
+              <md-input-container class="md-block">
+                <label>Name</label>
+                <input required md-no-asterisk name="name" ng-model="formData.name">
+              </md-input-container>
+               <md-input-container class="md-block">
+                <label>Contact Number</label>
+                <input md-maxlength="10" required md-no-asterisk name="contactNumber" ng-model="formData.contactNumber">
+              </md-input-container>
+               <md-input-container class="md-block">
+                <label>E-mail</label>
+                <input required md-no-asterisk name="email" ng-model="formData.email">
+              </md-input-container>
+              <md-input-container class="md-block">
+                <label>Confirm E-mail</label>
+                <input required md-no-asterisk name="emailConfirm" ng-model="formData.emailConfirm">
+              </md-input-container>
+               <md-input-container class="md-block">
+                <label>Password</label>
+                <input type="password" required md-no-asterisk name="password" ng-model="formData.password">
+              </md-input-container>
+              <md-input-container class="md-block">
+                <label>Confirm Password</label>
+                <input type="password" required md-no-asterisk name="passwordConfirm" ng-model="formData.passwordConfirm">
+              </md-input-container>
+
+               <md-button class="md-raised md-primary pull-right" ng-disabled="!formData.profilePicture">Sign up</md-button>
+          </fieldset>
+        </form>
       </div>
-    </md-content>
-  </form>
-</div>
+  </md-card-content>
+</md-card>

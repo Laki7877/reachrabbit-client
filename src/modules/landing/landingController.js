@@ -8,8 +8,16 @@
 'use strict';
 
 angular.module('app.landing')
-	.controller('landingBrandController', function() {
-
+  .controller('landingController', function($state) {
+    $state.go('brand');
+  })
+	.controller('landingBrandController', function($scope, $window) {
+    $scope.signup = function() {
+      $window.location.href = '/brand#/signup';
+    };
+    $scope.signin = function() {
+      $window.location.href = '/brand#/signin';
+    };
 	})
 	.controller('landingInfluencerController', function($scope, $window, $mdMedia, $auth, $mdDialog, $storage) {
     $scope.loadingTop = false;
@@ -19,7 +27,6 @@ angular.module('app.landing')
             $storage.put('auth', res.data.token);
             $window.location.href= '/influencer#/campaign';
           } else {
-
             $storage.put('profile-signup', {
               'provider': res.data.provider,
               'data': res.data

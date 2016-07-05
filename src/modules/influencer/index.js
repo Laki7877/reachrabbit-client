@@ -45,30 +45,28 @@ angular.module('app.influencer', components)
 			})
 			.state('signup', {
 				parent: 'index',
+        abstract: true,
 				url: '/signup',
         resolve: {
           socialProfile: function($storage) {
             return $storage.get('profile-signup');
           }
         },
+        redirectTo: 'signup.1',
 				views: {
-					'': {
+					'@index': {
 						controller: 'influencerAccountSignupController',
 						templateUrl: 'account/influencer-account-signup.html'
 					},
 					'menu@index': {}
 				}
 			})
-        .state('signup.detail', {
-          params: {
-            data: null
-          },
-          views: {
-            '@index': {
-              controller: 'influencerAccountSignupDetailController',
-              templateUrl: 'account/influencer-account-signup-detail.html'
-            }
-          }
+        .state('signup.1', {
+          url: '',
+          templateUrl: 'account/influencer-account-signup-1.html'
+        })
+        .state('signup.2', {
+          templateUrl: 'account/influencer-account-signup-2.html'
         })
       .state('confirm', {
         parent: 'index',

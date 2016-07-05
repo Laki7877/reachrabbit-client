@@ -14,15 +14,50 @@ angular.module('app.landing')
 	.controller('landingInfluencerController', function($scope, $window, $mdMedia, $auth, $mdDialog, $storage) {
     $scope.loadingTop = false;
 
+    function authOK(res) {
+          if(res.data.isLogin) {
+            $storage.put('auth', res.data.token);
+            $window.location.href= '/influencer#/campaign';
+          } else {
+
+            $storage.put('profile-signup', {
+              'provider': res.data.provider,
+              'data': res.data
+            });
+            $window.location.href = '/influencer#/signup';
+          }
+    }
+    function authNOK(err) {
+          console.log(err);
+          if(err.data.display){
+            $scope.loadingTop = false;
+            console.log("showing alert");
+            $mdDialog.show(
+            $mdDialog.alert()
+            .title(err.data.display.title + " (" +  err.data.exception_code + ")")
+            .textContent(err.data.display.message)
+            .ok('Got it!'));
+          }
+    }
+
     function showFbPageChooser(dataObject) {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
       $mdDialog.show({
-        controller: function($scope, dataObject){
+        controller: function($scope, dataObject, authOK){
           console.log(dataObject)
           $scope.pages = dataObject.accounts;
+          $scope.choose = function(item){
+            console.log("You picked", item);
+            item.provider = 'facebook';
+            var dd = _.extend(dataObject, item);
+            authOK({
+              data: dd
+            });
+          }
         },
         locals: {
-          dataObject: dataObject
+          dataObject: dataObject,
+          authOK: authOK
         },
         templateUrl: 'fb.pages.dialog1.tmpl.html',
         parent: angular.element(document.body),
@@ -37,32 +72,6 @@ angular.module('app.landing')
     };
 
 
-    function authOK(res) {
-          if(res.data.isLogin) {
-            $storage.put('auth', res.data.token);
-            $window.location.href= '/influencer#/campaign';
-          } else {
-
-            $storage.put('profile-signup', {
-              'provider': res.data.provider,
-              'data': res.data
-            });
-            $window.location.href = '/influencer#/signup';
-          }
-    }
-
-    function authNOK(err) {
-          console.log(err);
-          if(err.data.display){
-            $scope.loadingTop = false;
-            console.log("showing alert");
-            $mdDialog.show(
-            $mdDialog.alert()
-            .title(err.data.display.title + " (" +  err.data.exception_code + ")")
-            .textContent(err.data.display.message)
-            .ok('Got it!'));
-          }
-    }
 
     function authOK_FB(res) {
       showFbPageChooser(res.data);

@@ -8,7 +8,7 @@
 angular.module('app.brand')
 	.controller('brandAccountSignupController', function($scope, $state, $api) {
     $scope.submit = function() {
-
+      
     };
 	})
 	.controller('brandAccountSigninController', function($scope, $state, $storage, $api) {

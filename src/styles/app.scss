@@ -12,7 +12,9 @@ body{
 .btn-japan{
     @include gradient-directional(#ec7e40, #ec611d, 45deg);
 }
-
+.panel{
+  border-radius: 0px!important;
+}
 .clear{
   clear: both;
 }

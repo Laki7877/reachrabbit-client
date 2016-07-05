@@ -8,7 +8,7 @@
 'use strict';
 
 angular.module('app.common')
-	.config(function($authProvider) {
+	.config(function($authProvider, $mdIconProvider) {
 		$authProvider.baseUrl = process.env.API_URI;
 		$authProvider.facebook({
 			clientId: process.env.FACEBOOK_APP_ID
@@ -19,5 +19,5 @@ angular.module('app.common')
       clientId: process.env.GOOGLE_CLIENT_ID,
       scope: 'https://www.googleapis.com/auth/youtube'
     });
-
+    $mdIconProvider.fontSet("material-icons")
 	});

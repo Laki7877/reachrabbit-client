@@ -348,7 +348,6 @@ gulp.task('lint', 'Lint all client js', function () {
   return gulp
     .src(['gulpfile.js',
         paths.src.root + '**/*.js',
-        paths.test + '**/*.js',
         '!' + paths.test + 'browser/**'])
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter(require('jshint-stylish')))

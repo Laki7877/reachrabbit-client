@@ -97,9 +97,6 @@ angular.module('app.influencer')
 
     loadSocialProfile(socialProfile, $scope.formData);
   })
-  .controller('influencerAccountSignupDetailController', function($scope, $api, $state, $auth, $mdToast) {
-
-  })
   .controller('influencerAccountConfirmController', function($state, $stateParams, $api, $storage) {
     //confirm endpoint
     $api({

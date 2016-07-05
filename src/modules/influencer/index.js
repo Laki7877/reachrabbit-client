@@ -55,9 +55,8 @@ angular.module('app.influencer', components)
 				parent: 'index',
 				url: '/signup',
         resolve: {
-          fbProfile: function($storage) {
-            var profile = $storage.get('fblogin');
-            return profile;
+          socialProfile: function($storage) {
+            return $storage.get('profile-signup');
           }
         },
 				views: {

@@ -21,16 +21,22 @@
 
           <md-input-container class="md-block">
             <label>Confirm E-mail</label>
-            <input required md-no-asterisk name="email" ng-model="formData.email">
+            <input required md-no-asterisk name="email" ng-model="formData.emailConfirm">
           </md-input-container>
       </fieldset>
     </form>
 
   </div>
-  <div class="col-md-4">
+  <div class="col-md-6" style="text-align:right">
     <div class="fileinput fileinput-new" data-provides="fileinput" style="text-align:center">
           <div class="fileinput-new" style="width: 250px; height: 250px;">
-            <img src="{{formData.picture || 'http://orig03.deviantart.net/561f/f/2014/315/9/c/rabbit_doubt_mask_avatar_for_facebook_by_facebookavatars-d8622bz.png'}}" width="250">
+
+          <img ng-show="!loadingImage" src="{{formData.profilePicture || 'http://orig03.deviantart.net/561f/f/2014/315/9/c/rabbit_doubt_mask_avatar_for_facebook_by_facebookavatars-d8622bz.png'}}" width="250">
+
+          <div layout="row" layout-sm="column" ng-show="loadingImage" layout-align="space-around" style="padding-top: 100px">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+
           </div>
           <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
             <md-button md-raised class=" btn-file">
@@ -40,7 +46,7 @@
             <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
           </md-button>
           <div class="controls" style="text-align:right">
-       <md-button data-ng-click="submit()" class="md-raised md-primary">Next</md-button>
+       <md-button data-ng-click="submit()" class="md-raised md-primary" ng-disabled="!formData.profilePicture">Next</md-button>
     </div>
   </div>
 </div>

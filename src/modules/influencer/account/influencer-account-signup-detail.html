@@ -1,69 +1,44 @@
-        <div class="controls">
-          <label class="control-label">Sync with</label><br/>
-          <a href="brand-campaign-list.html"><button disabled class="btn disabled btn-sm btn-default">Facebook</button></a>
-          <a href="brand-campaign-list.html"><button class="btn btn-sm btn-default">Instagram</button></a>
-          <a href="brand-campaign-list.html"><button class="btn btn-sm btn-default">YouTube</button></a>
-        </div>
-<br/>
-  <md-content>
-    <div>
-      <form name="userForm">
-        <div layout-gt-lg="row">
-          <md-input-container class="md-block">
-            <label>About Yourself</label>
-            <input ng-model="formData.about" />
-          </md-input-container>
-        </div>
-       <div layout-gt-lg="row">
-          <md-input-container class="md-block">
-            <label>Bank Account #</label>
-            <input ng-model="formData.bankAccount" />
-          </md-input-container>
-        </div>
-      </form>
-    </div>
-    <div style="text-align: right">
-      <md-button data-ng-click="submit()" class="md-raised md-primary">Sign Up</md-button>
-    </div>
-  </md-content>
-
-
-<div class="row">
-  <div class="col-md-10">
-    <form class="form-horizontal" action="" method="POST">
-      <fieldset>
-        {{message}}
-        <div class="controls">
-          <label class="control-label">Sync with</label>
-          <a href="brand-campaign-list.html"><button class="btn btn-default disabled">Facebook</button></a>
-          <a href="brand-campaign-list.html"><button class="btn btn-default">Instagram</button></a>
-          <a href="brand-campaign-list.html"><button class="btn btn-default">YouTube</button></a>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="username">About Yourself</label>
-          <div class="controls">
-            <input type="text" id="username" name="username" placeholder="" class="form-control">
-          </div>
-        </div>
-
-
-        <br>
-        <div class="control-group">
-          <label class="control-label" for="email">Bank</label>
-          <div class="controls">
-            <input  type="text" placeholder="" class="form-control">
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="email">Bank Account Number</label>
-          <div class="controls">
-            <input  type="text" placeholder="" class="form-control">
-          </div>
-        </div>
-        <br>
-      </fieldset>
-      <md-button data-ng-click="submit()" class="md-raised md-primary">Sign Up</md-button>
-
-    </form>
-  </div>
+<div class="controls">
+  <label class="control-label">Connect with</label><br/>
+  <button ng-disabled="linkedWith('facebook')" ng-click="linkWith('facebook')" class="btn btn-primary btn-sm btn-default">
+  <i class="fa fa-facebook" aria-hidden="true"></i> Facebook</button>
+  <button ng-disabled="linkedWith('instagram')" class="btn btn-sm btn-default">
+  <i class="fa fa-instagram" aria-hidden="true"></i> Instagram </button>
+  <button ng-disabled="linkedWith('google')" ng-click="linkWith('google')" class="btn btn-sm btn-danger">
+  <i class="fa fa-youtube" aria-hidden="true"></i> YouTube
+  </button>
 </div>
+<hr/>
+<md-content>
+<div>
+  <form name="userForm">
+    <div layout-gt-lg="row">
+      <md-input-container class="md-block">
+      <label>About Yourself</label>
+      <textarea ng-model="formData.about" md-maxlength="150" rows="2" placeholder="Who are you? What do you like?"></textarea>
+      </md-input-container>
+    </div>
+    <div layout-gt-lg="row">
+      <md-input-container class="md-block">
+      <label>Bank</label>
+      <md-select ng-model="size">
+      <md-option >Bangkok Bank</md-option>
+      <md-option >Bank of Ayudhya</md-option>
+      <md-option >Siam Commercial Bank</md-option>
+      <md-option >Kasikorn Bank</md-option>
+      </md-select>
+      </md-input-container>
+    </div>
+    <br/>
+    <div layout-gt-lg="row">
+      <md-input-container class="md-block">
+      <label>Bank Account Number</label>
+      <input ng-model="formData.bankAccount" />
+      </md-input-container>
+    </div>
+  </form>
+</div>
+<div style="text-align: right">
+  <md-button data-ng-click="submit()" class="md-raised md-primary">Sign Up</md-button>
+</div>
+</md-content>

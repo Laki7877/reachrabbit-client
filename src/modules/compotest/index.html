@@ -16,3 +16,17 @@
     <div md-error="email"></div>
   </div>
 </form>
+
+  <div>
+    <h1 class="md-title">Pick your pizza below</h1>
+    <div layout="row">
+      <md-input-container style="margin-right: 10px;">
+        <label>Size</label>
+        <md-select ng-model="size">
+          <md-option value="XX">XX</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+    <p ng-if="selectedToppings">You ordered a {{size.toLowerCase()}} pizza with
+    {{printSelectedToppings()}}.</p>
+  </div>

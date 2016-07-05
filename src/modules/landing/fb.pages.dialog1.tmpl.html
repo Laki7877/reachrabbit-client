@@ -1,0 +1,14 @@
+<md-toolbar class="md-primary">
+ <div class="md-toolbar-tools">
+ <h3>Choose Facebook Page you want to associate</h3>
+ </div>
+</md-toolbar>
+<md-list>
+  <md-list-item class="md-2-line" ng-repeat="item in pages" ng-click="null">
+  <img ng-src="{{item.picture.data.url}}" class="md-avatar"  />
+    <div class="md-list-item-text">
+      <h3>{{item.name}}</h3>
+      <p>{{item.id}}</p>
+    </div>
+  </md-list-item>
+</md-list>

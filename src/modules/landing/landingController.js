@@ -3,7 +3,7 @@
  *
  * @author     Poon Wu <poon.wuthi@gmail.com>
  * @author     Pat Sabpisal <ssabpisa@me.com>
- * @since      0.0.1
+ * @since      0.0.2
  */
 'use strict';
 
@@ -11,8 +11,31 @@ angular.module('app.landing')
 	.controller('landingBrandController', function() {
 
 	})
-	.controller('landingInfluencerController', function($scope, $window, $auth, $mdDialog, $storage) {
+	.controller('landingInfluencerController', function($scope, $window, $mdMedia, $auth, $mdDialog, $storage) {
     $scope.loadingTop = false;
+
+    function showFbPageChooser(dataObject) {
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
+      $mdDialog.show({
+        controller: function($scope, dataObject){
+          console.log(dataObject)
+          $scope.pages = dataObject.accounts;
+        },
+        locals: {
+          dataObject: dataObject
+        },
+        templateUrl: 'fb.pages.dialog1.tmpl.html',
+        parent: angular.element(document.body),
+        clickOutsideToClose:false,
+        fullscreen: useFullScreen
+      })
+      .then(function(answer) {
+        $scope.status = 'You said the information was "' + answer + '".';
+      }, function() {
+        $scope.status = 'You cancelled the dialog.';
+      });
+    };
+
 
     function authOK(res) {
           if(res.data.isLogin) {
@@ -29,9 +52,7 @@ angular.module('app.landing')
     }
 
     function authNOK(err) {
-
           console.log(err);
-
           if(err.data.display){
             $scope.loadingTop = false;
             console.log("showing alert");
@@ -41,7 +62,10 @@ angular.module('app.landing')
             .textContent(err.data.display.message)
             .ok('Got it!'));
           }
+    }
 
+    function authOK_FB(res) {
+      showFbPageChooser(res.data);
     }
 
     $scope.loginWithYT = function(){
@@ -59,10 +83,14 @@ angular.module('app.landing')
         .catch(authNOK);
     }
 
+    //Facebook flow OAuth is more
+    //retarded (less standard)
+    //we need to handle with more impl effort
+
 		$scope.loginWithFB = function() {
       $scope.loadingTop = true;
 			$auth.authenticate('facebook')
-				.then(authOK)
+				.then(authOK_FB)
 				.catch(authNOK);
 		};
 	});

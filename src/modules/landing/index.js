@@ -13,6 +13,11 @@ var components = [
 angular.module('app.landing', components)
 	.config(function($stateProvider) {
 		$stateProvider
+			.state('home', {
+				url: '',
+				controller: 'landingController',
+				templateUrl: 'landing.html'
+			})
 			.state('brand', {
 				url: '/brand',
 				controller: 'landingBrandController',

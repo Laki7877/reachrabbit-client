@@ -1,3 +1,12 @@
+<md-card style="width: 550px; margin:auto">
+ <md-toolbar class="md-primary">
+    <div class="md-toolbar-tools">
+      <h2 class="md-flex">More about yourself</h2>
+    </div>
+  </md-toolbar>
+
+
+<md-content class="md-padding">
 <div class="controls">
   <label class="control-label">Connect with</label><br/>
   <button ng-disabled="linkedWith('facebook')" ng-click="linkWith('facebook')" class="btn btn-primary btn-sm btn-default">
@@ -8,8 +17,8 @@
   <i class="fa fa-youtube" aria-hidden="true"></i> YouTube
   </button>
 </div>
+
 <hr/>
-<md-content>
 <div>
   <form name="userForm">
     <div layout-gt-lg="row">
@@ -39,6 +48,8 @@
   </form>
 </div>
 <div style="text-align: right">
+  <md-button data-ng-click="back()" class="md-raised">Back</md-button>
   <md-button data-ng-click="submit()" class="md-raised md-primary">Sign Up</md-button>
 </div>
 </md-content>
+</md-card>

@@ -57,7 +57,7 @@ angular.module('app.influencer')
 
     loadSocialProfile(socialProfile, $scope.formData);
   })
-  .controller('influencerAccountSignupDetailController', function($scope, $api,  $auth, $stateParams,  $mdToast) {
+  .controller('influencerAccountSignupDetailController', function($scope, $api, $state, $auth, $stateParams,  $mdToast) {
     $scope.formData = $stateParams.data;
     $scope.message = '';
 
@@ -86,6 +86,12 @@ angular.module('app.influencer')
           console.log(err);
         });
 
+    }
+
+    $scope.back = function(){
+      $state.go('signup' , {
+        data: $scope.formData
+      });
     }
 
     $scope.submit = function() {

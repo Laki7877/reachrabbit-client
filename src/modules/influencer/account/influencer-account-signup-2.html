@@ -3,7 +3,7 @@
   <label class="control-label">Connect with</label><br/>
   <button ng-disabled="linkedWith('facebook')" ng-click="linkWith('facebook')" class="btn btn-primary btn-sm btn-default">
   <i class="fa fa-facebook" aria-hidden="true"></i> Facebook</button>
-  <button ng-disabled="linkedWith('instagram')" class="btn btn-sm btn-default">
+  <button ng-disabled="linkedWith('instagram')" ng-click="linkWith('instagram')" class="btn btn-sm btn-default">
   <i class="fa fa-instagram" aria-hidden="true"></i> Instagram </button>
   <button ng-disabled="linkedWith('google')" ng-click="linkWith('google')" class="btn btn-sm btn-danger">
   <i class="fa fa-youtube" aria-hidden="true"></i> YouTube
@@ -15,7 +15,7 @@
     <div layout-gt-lg="row">
       <md-input-container class="md-block">
       <label>About Yourself</label>
-      <textarea ng-model="formData.about" md-maxlength="150" rows="2"></textarea>
+      <textarea ng-model="formData.about" md-maxlength="150" rows="1"></textarea>
       </md-input-container>
     </div>
     <div layout-gt-lg="row">

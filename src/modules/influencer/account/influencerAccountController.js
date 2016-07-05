@@ -34,10 +34,23 @@ angular.module('app.influencer')
     $scope.submit = function(form) {
     };
   })
-  .controller('influencerAccountSignupController', function($scope, $storage, $state, $uploader, $auth, $mdToast, socialProfile) {
+  .controller('influencerAccountSignupController', function($scope, $storage, $state, $mdDialog, $uploader, $auth, $mdToast, socialProfile) {
     $scope.formData = $scope.formData || { socialAccounts: {} };
     $scope.loadingImage = false;
     $scope.message = '';
+    $scope.hideTitle = true;
+
+   function authNOK(err) {
+          console.log(err);
+          if(err.data.display){
+            $mdDialog.show(
+            $mdDialog.alert()
+            .title(err.data.display.title + " (" +  err.data.exception_code + ")")
+            .textContent(err.data.display.message)
+            .ok('Got it!'));
+          }
+    }
+
 
     //Other functions
     $scope.linkedWith = function(key) {
@@ -59,19 +72,19 @@ angular.module('app.influencer')
               .hideDelay(3000)
           );
         })
-        .catch(function(err) {
-          console.log(err);
-        });
+        .catch(authNOK);
 
     };
 
     // go back
     $scope.back = function(){
       $state.go('^.1');
+       $scope.hideTitle = true;
     };
     // go next
     $scope.next = function() {
       $state.go('^.2');
+      $scope.hideTitle = false;
     };
 
     $scope.submit = function() {

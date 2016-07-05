@@ -1,3 +1,33 @@
+        <div class="controls">
+          <label class="control-label">Sync with</label><br/>
+          <a href="brand-campaign-list.html"><button disabled class="btn disabled btn-sm btn-default">Facebook</button></a>
+          <a href="brand-campaign-list.html"><button class="btn btn-sm btn-default">Instagram</button></a>
+          <a href="brand-campaign-list.html"><button class="btn btn-sm btn-default">YouTube</button></a>
+        </div>
+<br/>
+  <md-content>
+    <div>
+      <form name="userForm">
+        <div layout-gt-lg="row">
+          <md-input-container class="md-block">
+            <label>About Yourself</label>
+            <input ng-model="formData.about" />
+          </md-input-container>
+        </div>
+       <div layout-gt-lg="row">
+          <md-input-container class="md-block">
+            <label>Bank Account #</label>
+            <input ng-model="formData.bankAccount" />
+          </md-input-container>
+        </div>
+      </form>
+    </div>
+    <div style="text-align: right">
+      <md-button data-ng-click="submit()" class="md-raised md-primary">Sign Up</md-button>
+    </div>
+  </md-content>
+
+
 <div class="row">
   <div class="col-md-10">
     <form class="form-horizontal" action="" method="POST">
@@ -15,6 +45,8 @@
             <input type="text" id="username" name="username" placeholder="" class="form-control">
           </div>
         </div>
+
+
         <br>
         <div class="control-group">
           <label class="control-label" for="email">Bank</label>
@@ -30,9 +62,8 @@
         </div>
         <br>
       </fieldset>
+      <md-button data-ng-click="submit()" class="md-raised md-primary">Sign Up</md-button>
+
     </form>
-    <div class="controls">
-      <a data-ng-click="submit()"><button class="btn btn-success">Sign Up</button></a>
-    </div>
   </div>
 </div>

@@ -12,14 +12,17 @@ angular.module('app.landing')
 
 	})
 	.controller('landingInfluencerController', function($scope, $window, $auth, $storage) {
+    $scope.loadingTop = false;
 
     $scope.loginWithYT = function(){
+      $scope.loadingTop = true;
       $auth.authenticate('google')
         .then(function(res) {
           if(res.data.isLogin) {
             $storage.put('auth', res.data.token);
             $window.location.href= '/influencer#/campaign';
           } else {
+
             $storage.put('profile-signup', {
               'provider': 'google',
               'data': res.data
@@ -34,6 +37,7 @@ angular.module('app.landing')
     }
 
 		$scope.loginWithFB = function() {
+      $scope.loadingTop = true;
 			$auth.authenticate('facebook')
 				.then(function(res) {
           if(res.data.isLogin) {

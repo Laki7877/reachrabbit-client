@@ -19,6 +19,11 @@ function loadSocialProfile(soPro, formData) {
     formData.email = soPro.data.email;
   }
 
+  if(!formData.profilePicture){
+    formData.profilePicture = soPro.data.picture;
+    console.log(formData)
+  }
+
   if(!formData.name){
     formData.name = soPro.data.name;　
   }

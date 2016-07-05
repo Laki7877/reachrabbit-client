@@ -22,7 +22,8 @@ angular.module('app.common')
 
     //Instagram
     $authProvider.instagram({
-      clientId: process.env.INSTAGRAM_CLIENT_ID
+      clientId: process.env.INSTAGRAM_CLIENT_ID,
+      scope: ['likes', 'public_content', 'basic']
     });
 
 

@@ -11,7 +11,7 @@ angular.module('app.landing')
 	.controller('landingBrandController', function() {
 
 	})
-	.controller('landingInfluencerController', function($scope, $window, $auth, $storage) {
+	.controller('landingInfluencerController', function($scope, $window, $auth, $mdDialog, $storage) {
     $scope.loadingTop = false;
 
     function authOK(res) {
@@ -28,13 +28,27 @@ angular.module('app.landing')
           }
     }
 
+    function authNOK(err) {
+
+          console.log(err);
+
+          if(err.data.display){
+            $scope.loadingTop = false;
+            console.log("showing alert");
+            $mdDialog.show(
+            $mdDialog.alert()
+            .title(err.data.display.title + " (" +  err.data.exception_code + ")")
+            .textContent(err.data.display.message)
+            .ok('Got it!'));
+          }
+
+    }
+
     $scope.loginWithYT = function(){
       $scope.loadingTop = true;
       $auth.authenticate('google')
         .then(authOK)
-        .catch(function(err) {
-          console.log(err);
-        });
+        .catch(authNOK);
 
     }
 
@@ -42,18 +56,14 @@ angular.module('app.landing')
       $scope.loadingTop = true;
       $auth.authenticate('instagram')
         .then(authOK)
-        .catch(function(err) {
-          console.log(err);
-        });
+        .catch(authNOK);
     }
 
 		$scope.loginWithFB = function() {
       $scope.loadingTop = true;
 			$auth.authenticate('facebook')
 				.then(authOK)
-				.catch(function(err) {
-          console.log(err);
-        });
+				.catch(authNOK);
 		};
 	});
 

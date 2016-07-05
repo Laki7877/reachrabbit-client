@@ -1,5 +1,9 @@
 @import "mixins/_gradient.scss";
-
+md-dialog{
+  color: black !important;
+  text-align: left !important;
+  text-shadow: none !important;
+}
 body{
   margin-top: 30px;
   @include gradient-directional(#20155a, #1d94ba, 45deg);

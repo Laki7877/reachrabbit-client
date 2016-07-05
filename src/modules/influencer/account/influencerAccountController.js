@@ -52,7 +52,7 @@ angular.module('app.influencer')
 
     $scope.upload = function(file) {
       $scope.loadingImage = true;
-      $uploader.upload('/file_demo', file)
+      $uploader.upload('/file', file)
         .then(function(data) {
           $scope.loadingImage = false;
           $scope.formData.profilePicture = data.url;

@@ -19,4 +19,11 @@ angular.module('app.common')
       clientId: process.env.GOOGLE_CLIENT_ID,
       scope: ['https://www.googleapis.com/auth/youtube', 'https://www.googleapis.com/auth/userinfo.email']
     });
+
+    //Instagram
+    $authProvider.instagram({
+      clientId: process.env.INSTAGRAM_CLIENT_ID
+    });
+
+
 	});

@@ -23,7 +23,6 @@ angular.module('app.brand')
         });
     };
     $scope.submit = function(form) {
-      console.log(form);
       // invalid form
       if(form.$invalid) {
         $mdToast.show(

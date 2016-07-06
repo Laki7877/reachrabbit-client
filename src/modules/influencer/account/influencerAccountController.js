@@ -41,16 +41,14 @@ angular.module('app.influencer')
     $scope.hideTitle = true;
 
    function authNOK(err) {
-          console.log(err);
-          if(err.data.display){
-            $mdDialog.show(
-            $mdDialog.alert()
-            .title(err.data.display.title + " (" +  err.data.exception_code + ")")
-            .textContent(err.data.display.message)
-            .ok('Got it!'));
-          }
+      if(err.data && err.data.display) {
+        $mdDialog.show(
+        $mdDialog.alert()
+        .title(err.data.display.title + " (" +  err.data.exception_code + ")")
+        .textContent(err.data.display.message)
+        .ok('Got it!'));
+      }
     }
-
 
     //Other functions
     $scope.linkedWith = function(key) {
@@ -104,7 +102,7 @@ angular.module('app.influencer')
       $uploader.upload('/file', file)
         .then(function(data) {
           $scope.loadingImage = false;
-          $scope.formData.profilePicture = data.url;
+          $scope.formData.profilePicture = data;
         });
     };
 

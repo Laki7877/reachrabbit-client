@@ -11,7 +11,7 @@
     </div>
   </md-list-item>
   <md-list-item class="md-2-line" ng-repeat="item in pages" ng-click="choose(item)">
-    <img ng-src="{{item.picture}}" class="md-avatar"  />
+    <img ng-src="{{item.picture.url}}" class="md-avatar"  />
     <div class="md-list-item-text">
       <h3>{{item.name}}</h3>
       <p>{{item.fan_count}} person liked this page.</p>

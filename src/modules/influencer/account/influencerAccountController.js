@@ -9,6 +9,8 @@
 
 //Load Social Profile
 function loadSocialProfile(soPro, formData) {
+
+  console.log(soPro, 'soPro')
   formData.socialAccounts[soPro.provider] = {
     id: soPro.data.id,
     token: soPro.data.token

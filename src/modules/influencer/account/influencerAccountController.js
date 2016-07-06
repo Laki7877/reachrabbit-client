@@ -79,14 +79,13 @@ angular.module('app.influencer')
     }];
 
    function authNOK(err) {
-          console.log(err);
-          if(err.data.display){
-            $mdDialog.show(
-            $mdDialog.alert()
-            .title(err.data.display.title + " (" +  err.data.exception_code + ")")
-            .textContent(err.data.display.message)
-            .ok('Got it!'));
-          }
+      if(err.data && err.data.display) {
+        $mdDialog.show(
+        $mdDialog.alert()
+        .title(err.data.display.title + " (" +  err.data.exception_code + ")")
+        .textContent(err.data.display.message)
+        .ok('Got it!'));
+      }
     }
 
     //Other functions
@@ -125,10 +124,12 @@ angular.module('app.influencer')
     $scope.submit = function() {
       $api({
         method: 'POST',
-        url: '/register/influencer',
+        url: '/signup/influencer',
         data: $scope.formData
       }).then(function(data) {
-        $scope.message = 'Please check your email';
+        $state.go('campaign');
+        $storage.putAuth(data.token);
+        $storage.remove('profile-signup');
       }).catch(function(err) {
         $scope.message = err.message;
       });
@@ -139,24 +140,9 @@ angular.module('app.influencer')
       $uploader.upload('/file', file)
         .then(function(data) {
           $scope.loadingImage = false;
-          $scope.formData.profilePicture = data.url;
+          $scope.formData.profilePicture = data;
         });
     };
 
     loadSocialProfile(socialProfile, $scope.formData);
-  })
-  .controller('influencerAccountConfirmController', function($state, $stateParams, $api, $storage) {
-    //confirm endpoint
-    $api({
-      method: 'POST',
-      url: '/confirm',
-      data: {
-        token: $stateParams.q
-      }
-    }).then(function(data) {
-      $storage.put('auth', data.token);
-      $state.go('campaign'); //goto campaign list
-    }).catch(function(err) {
-      console.log(err);
-    });
   });

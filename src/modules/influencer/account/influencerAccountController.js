@@ -36,7 +36,7 @@ angular.module('app.influencer')
     $scope.submit = function(form) {
     };
   })
-  .controller('influencerAccountSignupController', function($scope, $storage, $state, $mdDialog, $uploader, $auth, $mdToast, socialProfile) {
+  .controller('influencerAccountSignupController', function($scope, $api, $storage, $state, $mdDialog, $uploader, $auth, $mdToast, socialProfile) {
     $scope.formData = $scope.formData || { socialAccounts: {} , selectedTopics : []};
     $scope.loadingImage = false;
     $scope.message = '';

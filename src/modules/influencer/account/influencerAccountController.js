@@ -31,12 +31,18 @@ function loadSocialProfile(soPro, formData) {
 }
 
 angular.module('app.influencer')
+  .controller('influencerAccountConfirmController', function($scope) {
+    $scope.formData = {};
+  })
+  .controller('influencerAccountProfileController', function($scope) {
+    $scope.formData = {};
+  })
   .controller('influencerAccountSigninController', function($scope) {
     $scope.formData = {};
     $scope.submit = function(form) {
     };
   })
-  .controller('influencerAccountSignupController', function($scope, $storage, $state, $mdDialog, $uploader, $auth, $mdToast, socialProfile) {
+  .controller('influencerAccountSignupController', function($scope, $storage, $state, $api, $mdDialog, $uploader, $auth, $mdToast, socialProfile) {
     $scope.formData = $scope.formData || { socialAccounts: {} , selectedTopics : []};
     $scope.loadingImage = false;
     $scope.message = '';

@@ -32,7 +32,17 @@ angular.module('app.influencer', components)
 					}
 				}
 			})
-			//account
+      .state('profile', {
+        parent: 'index',
+        url: '/signup',
+        views: {
+          '': {
+            controller: 'influencerAccountProfileController',
+            templateUrl: 'account/influencer-profile.html'
+          },
+          'menu@index': {}
+        }
+      })
 			.state('signin', {
 				parent: 'index',
 				url: '',
@@ -71,22 +81,10 @@ angular.module('app.influencer', components)
         })
       .state('confirm', {
         parent: 'index',
-        url: '/profile',
+        url: '/confirm',
         views: {
           '@index': {
             controller: 'influencerAccountConfirmController'
-          },
-          'menu@index': {}
-        }
-      })
-      .state('profile', {
-        parent: 'index',
-        abstract: true,
-        url: '/signup',
-        views: {
-          '@index': {
-            controller: 'influencerAccountSignupController',
-            templateUrl: 'account/influencer-profile.html'
           },
           'menu@index': {}
         }

@@ -35,10 +35,48 @@ angular.module('app.influencer')
     };
   })
   .controller('influencerAccountSignupController', function($scope, $storage, $state, $mdDialog, $uploader, $auth, $mdToast, socialProfile) {
-    $scope.formData = $scope.formData || { socialAccounts: {} };
+    $scope.formData = $scope.formData || { socialAccounts: {} , selectedTopics : []};
     $scope.loadingImage = false;
     $scope.message = '';
     $scope.hideTitle = true;
+
+    $scope.topicExists = function(item, selected){
+      return selected.indexOf(item.id) !== -1;
+    }
+
+    $scope.topicDisabled = function(item, selected){
+      return selected.length >= 3 && !$scope.topicExists(item, selected)
+    }
+    $scope.topicToggle = function(item, selected){
+      if($scope.topicDisabled(item,selected)) return;
+      if($scope.topicExists(item,selected)){
+        _.remove(selected, function(x){ return x == item.id })
+      }else{
+        selected.push(item.id)
+      }
+    }
+    $scope.topics = [
+    {
+      name: "Travel",id: 1
+    },
+    {
+      name: "Beauty", id: 2
+    },
+    {
+      name: "Food", id: 3
+    },
+    {
+      name: "Cooking", id : 4
+    },
+    {
+      name: "Gaming", id:5
+    },
+    {
+      name: "Gadget", id :6
+    },
+    {
+      name: "Educational", id:9
+    }];
 
    function authNOK(err) {
           console.log(err);
@@ -50,7 +88,6 @@ angular.module('app.influencer')
             .ok('Got it!'));
           }
     }
-
 
     //Other functions
     $scope.linkedWith = function(key) {
@@ -79,12 +116,10 @@ angular.module('app.influencer')
     // go back
     $scope.back = function(){
       $state.go('^.1');
-       $scope.hideTitle = true;
     };
     // go next
     $scope.next = function() {
       $state.go('^.2');
-      $scope.hideTitle = false;
     };
 
     $scope.submit = function() {

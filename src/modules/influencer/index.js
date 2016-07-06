@@ -70,10 +70,22 @@ angular.module('app.influencer', components)
         })
       .state('confirm', {
         parent: 'index',
-        url: '/confirm?q',
+        url: '/profile',
         views: {
           '@index': {
             controller: 'influencerAccountConfirmController'
+          },
+          'menu@index': {}
+        }
+      })
+      .state('profile', {
+        parent: 'index',
+        abstract: true,
+        url: '/signup',
+        views: {
+          '@index': {
+            controller: 'influencerAccountSignupController',
+            templateUrl: 'account/influencer-profile.html'
           },
           'menu@index': {}
         }

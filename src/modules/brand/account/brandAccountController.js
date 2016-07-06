@@ -7,10 +7,13 @@
 'use strict';
 angular.module('app.brand')
 	.controller('brandAccountSignupController', function($scope, $state, $api, $mdToast, $uploader, $storage) {
-    $scope.formData = {
-      profilePicture: {}
-    };
+    $scope.formData = $storage.get('brandAccountSignupFormData') || {};
     $scope.loadingImage = false;
+
+    $scope.$watch('formData', function(newObject) {
+      $storage.put('brandAccountSignupFormData', newObject);
+    });
+
     $scope.upload = function(file) {
       $scope.loadingImage = true;
       $uploader.upload('/file', file)
@@ -20,6 +23,7 @@ angular.module('app.brand')
         });
     };
     $scope.submit = function(form) {
+      console.log(form);
       // invalid form
       if(form.$invalid) {
         $mdToast.show(
@@ -38,6 +42,7 @@ angular.module('app.brand')
         data: $scope.formData
       }).then(function(data) {
         $storage.putAuth(data.token);
+        $storage.remove('brandAccountSignupFormData');
         $state.go('campaign.list');
       }).catch(function(err) {
         console.error(err);

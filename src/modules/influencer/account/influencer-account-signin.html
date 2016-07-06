@@ -1,13 +1,20 @@
-<form class="form-signin">
-  <h2 class="form-signin-heading">Please sign in</h2>
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" value="remember-me"> Remember me
-    </label>
-  </div>
-  <a data-ng-click="submit()"><button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button></a>
-</form>
+<md-card style="margin:auto">
+ <md-toolbar class="md-primary">
+    <div class="md-toolbar-tools" >
+      <h3 class="md-flex">Login</h3>
+    </div>
+  </md-toolbar>
+  <md-card-content>
+    <p class="lead">
+      <a class="btn btn-md btn-primary" role="button" data-ng-click="loginWithFB()">
+      <i class="fa fa-facebook"></i>
+      <strong>สมัครด้วย Facebook</strong></a>
+      <a class="btn btn-md btn-danger" role="button" data-ng-click="loginWithYT()"><strong>
+      <i class="fa fa-youtube"></i>
+      สมัครด้วย YouTube</strong></a>
+      <a class="btn btn-md btn-default" role="button" data-ng-click="loginWithIG()">
+      <i class="fa fa-instagram"></i>
+      <strong>สมัครด้วย IG</strong></a>
+    </p>
+  </md-card-content>
+</md-card>

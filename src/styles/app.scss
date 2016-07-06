@@ -5,6 +5,10 @@ body{
   @include gradient-directional(#20155a, #1d94ba, 45deg);
 }
 
+a, a:hover, a:focus {
+  color: #fff;
+}
+
 .btn-america{
     @include gradient-directional(#30ba6e, #46954f, 45deg);
 }
@@ -56,3 +60,15 @@ body{
       top: 28px;
   }
 }
+
+.layout-footer {
+  width: 100%;
+  color: #999; /* IE8 proofing */
+  color: rgba(255,255,255,.5);
+  padding-top: 30px;
+
+  .inner {
+    text-align: center;
+  }
+}
+

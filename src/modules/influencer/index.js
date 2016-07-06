@@ -35,12 +35,13 @@ angular.module('app.influencer', components)
 			//account
 			.state('signin', {
 				parent: 'index',
-				url: '/signin',
+				url: '',
 				views: {
 					'': {
 						controller: 'influencerAccountSigninController',
 						templateUrl: 'account/influencer-account-signin.html'
-					}
+					},
+          'menu@index': {}
 				}
 			})
 			.state('signup', {

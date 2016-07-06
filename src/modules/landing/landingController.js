@@ -102,7 +102,6 @@ angular.module('app.landing')
     //Facebook flow OAuth is more
     //retarded (less standard)
     //we need to handle with more impl effort
-
 		$scope.loginWithFB = function() {
       $scope.loadingTop = true;
 			$auth.authenticate('facebook')

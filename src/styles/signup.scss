@@ -1,7 +1,7 @@
 @import "mixins/_gradient.scss";
 
 body{
-  // padding-top: 30px;
+  padding-top: 30px;
   @include gradient-directional(#20155a, #1d94ba, 45deg);
 }
 

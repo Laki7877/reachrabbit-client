@@ -8,8 +8,8 @@
 
 angular.module('app.common')
   .config(function($mdThemingProvider, $mdIconProvider) {
-    $mdThemingProvider.theme('lightTheme')
-    .primaryPalette('light-blue') // specify primary color, all
+    $mdThemingProvider.theme('default')
+    .accentPalette('deep-orange');
     $mdIconProvider.fontSet("material-icons")
 
   });

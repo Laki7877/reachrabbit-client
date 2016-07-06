@@ -1,46 +1,7 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="influencer-landing.html">Project X Influencer</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="influencer-open-campaign-list.html">Open Campaign</a></li>
-            <li><a href="influencer-my-campaign-list.html">My Campaign</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown active">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                 Jon Snow<span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="influencer-profile.html">Profile</a></li>
-                <li><a href="influencer-transaction-list.html">Transactions</a></li>
-                <li><a href="#">Notification</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div><!--/.container-fluid -->
-    </nav>
-
-    <div class="container">
-
-      <div class="page-header">
-        <h2 class="pull-left">Influencer Profile</h2>
-        <div class="clear"></div>
-      </div>
-
-      <div class="row">
-    <div class="col-md-6">
-
-      <form class="form-horizontal" action="" method="POST">
+<md-content  class="md-padding md-whiteframe-15dp">
+  <div class="row">
+      <div class="col-md-6">
+        <form class="form-horizontal" action="" method="POST">
           <fieldset>
             <div class="fileinput fileinput-new" data-provides="fileinput">
               <div class="fileinput-new thumbnail" style="width:160x; height:160px;">
@@ -58,7 +19,6 @@
                 <input type="text" id="username" name="username" placeholder="" class="form-control">
               </div>
             </div>
-
             <br>
             <div class="control-group">
               <label class="control-label" for="email">E-mail</label>
@@ -72,7 +32,6 @@
                 <input type="email" id="emailconfirm" name="emailconfirm" placeholder="" class="form-control">
               </div>
             </div>
-
             <br>
             <div class="control-group">
               <label class="control-label" for="contactnumber">Contact Number</label>
@@ -80,9 +39,7 @@
                 <input type="text" id="contactnumber" name="contactnumber" placeholder="" class="form-control">
               </div>
             </div>
-
             <br><br>
-
             <div class="controls">
               <label class="control-label">Sync with</label>
               <a href="brand-campaign-list.html"><button class="btn btn-default disabled">Facebook</button></a>
@@ -101,15 +58,14 @@
                 <textarea type="text" id="aboutyourself" name="username" placeholder="" class="form-control" rows="3"></textarea>
               </div>
             </div>
-
             <div class="control-group">
               <label class="control-label" for="bankname">Gender</label>
-                <select class="form-control" id="bankname">
-                  <option>- Select Gender -</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Not Specified</option>
-                </select>
+              <select class="form-control" id="bankname">
+                <option>- Select Gender -</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Not Specified</option>
+              </select>
             </div>
             <br>
             <div class="control-group">
@@ -158,18 +114,16 @@
                   <label><input type="checkbox" value="">Educational</label>
                 </div>
               </div>
-
             </div>
-
             <br>
             <div class="control-group">
               <label class="control-label" for="bankname">Bank Name</label>
-                <select class="form-control" id="bankname">
-                  <option>Bank 1</option>
-                  <option>Bank 2</option>
-                  <option>Bank 3</option>
-                  <option>Bank 4</option>
-                </select>
+              <select class="form-control" id="bankname">
+                <option>Bank 1</option>
+                <option>Bank 2</option>
+                <option>Bank 3</option>
+                <option>Bank 4</option>
+              </select>
             </div>
             <div class="control-group">
               <label class="control-label" for="banknumber">Bank Account Number</label>
@@ -177,17 +131,12 @@
                 <input  type="text" placeholder="" class="form-control">
               </div>
             </div>
-
-
             <br>
           </fieldset>
         </form>
-
         <div class="controls">
           <a href="influencer-profile.html"><button class="btn btn-success">Save</button></a>
         </div>
-
-        </div>
       </div>
-
     </div>
+    </md-content>

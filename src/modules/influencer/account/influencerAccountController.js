@@ -35,6 +35,9 @@ angular.module('app.influencer')
     $scope.formData = {};
   })
   .controller('influencerAccountProfileController', function($scope) {
+    document.getElementsByTagName("body")[0].style.backgroundImage = "none";
+    document.getElementsByTagName("body")[0].style.backgroundColor = "#ebebeb";
+
     $scope.formData = {};
   })
   .controller('influencerAccountSigninController', function($scope) {

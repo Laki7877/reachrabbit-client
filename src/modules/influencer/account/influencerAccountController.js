@@ -88,10 +88,12 @@ angular.module('app.influencer')
     $scope.submit = function() {
       $api({
         method: 'POST',
-        url: '/register/influencer',
+        url: '/signup/influencer',
         data: $scope.formData
       }).then(function(data) {
-        $scope.message = 'Please check your email';
+        $state.go('campaign');
+        $storage.putAuth(data.token);
+        $storage.remove('profile-signup');
       }).catch(function(err) {
         $scope.message = err.message;
       });
@@ -107,19 +109,4 @@ angular.module('app.influencer')
     };
 
     loadSocialProfile(socialProfile, $scope.formData);
-  })
-  .controller('influencerAccountConfirmController', function($state, $stateParams, $api, $storage) {
-    //confirm endpoint
-    $api({
-      method: 'POST',
-      url: '/confirm',
-      data: {
-        token: $stateParams.q
-      }
-    }).then(function(data) {
-      $storage.put('auth', data.token);
-      $state.go('campaign'); //goto campaign list
-    }).catch(function(err) {
-      console.log(err);
-    });
   });

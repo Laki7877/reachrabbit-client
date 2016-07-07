@@ -23,16 +23,16 @@ angular.module('app.landing')
     $scope.loadingTop = false;
 
     function authOK(res) {
-          if(res.data.isLogin) {
-            $storage.put('auth', res.data.token);
-            $window.location.href= '/influencer#/campaign';
-          } else {
-            $storage.put('profile-signup', {
-              'provider': res.data.provider,
-              'data': res.data
-            });
-            $window.location.href = '/influencer#/signup';
-          }
+      if(res.data.isLogin) {
+        $storage.putAuth(res.data.token);
+        $window.location.href= '/influencer#/profile';
+      } else {
+        $storage.put('profile-signup', {
+          'provider': res.data.provider,
+          'data': res.data
+        });
+        $window.location.href = '/influencer#/signup';
+      }
     }
     function authNOK(err) {
           console.log(err);
@@ -85,7 +85,14 @@ angular.module('app.landing')
 
     function authOK_FB(res) {
       //res.data is endpoint's object
-      showFbPageChooser(res.data);
+        console.log(res.data);
+      if(res.data.isLogin) {
+        console.log(res.data);
+        $storage.putAuth(res.data.token);
+        $window.location.href= '/influencer#/profile';
+      } else {
+        showFbPageChooser(res.data);
+      }
     }
 
     $scope.loginWithYT = function(){

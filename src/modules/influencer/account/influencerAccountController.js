@@ -8,7 +8,7 @@
 'use strict';
 
 //Load Social Profile
-function loadSocialProfile(soPro, formData) {
+function loadSocialProfile(soPro,$api, formData) {
 
   console.log(soPro, 'soPro')
   formData.socialAccounts[soPro.provider] = {
@@ -21,7 +21,21 @@ function loadSocialProfile(soPro, formData) {
   }
 
   if (!formData.profilePicture) {
-    formData.profilePicture = soPro.data.picture;
+
+    //Save as resource
+    $api({
+      method: 'POST',
+      url: '/file/remote',
+      data: {
+        url: soPro.data.picture.url,
+        mimetype: 'image/png'
+      }
+    }).then(function(data) {
+      formData.profilePicture = data;
+    }).catch(function(err) {
+      console.log(err);
+    });
+
   }
 
   if (!formData.name) {
@@ -122,6 +136,8 @@ angular.module('app.influencer')
       id: 9
     }];
 
+
+
     function authNOK(err) {
       if (err.data && err.data.display) {
         $mdDialog.show(
@@ -143,7 +159,7 @@ angular.module('app.influencer')
           loadSocialProfile({
             'provider': key,
             'data': res.data
-          }, $scope.formData);
+          }, $api, $scope.formData);
 
           $mdToast.show(
             $mdToast.simple()
@@ -189,5 +205,5 @@ angular.module('app.influencer')
         });
     };
 
-    loadSocialProfile(socialProfile, $scope.formData);
+    loadSocialProfile(socialProfile, $api, $scope.formData);
   });

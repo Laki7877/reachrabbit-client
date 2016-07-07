@@ -56,6 +56,9 @@ angular.module('app.landing')
           $scope.choose = function(item){
             console.log("You picked", item);
             item.provider = 'facebook';
+            //item.id is page ID
+            item.pageId = item.id;
+            delete item.id;
             var dd = _.extend(dataObject, item);
             authOK({
               data: dd
@@ -81,6 +84,7 @@ angular.module('app.landing')
 
 
     function authOK_FB(res) {
+      //res.data is endpoint's object
       showFbPageChooser(res.data);
     }
 

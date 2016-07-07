@@ -1,7 +1,7 @@
 <md-content  class="md-padding">
 <form class="form-horizontal" action="" method="POST">
   <div layout="row" layout-sm="column">
-    <div flex="40" >
+    <div layout="column" >
       <!-- file input TODO : move to directive -->
       <div class="fileinput fileinput-new" data-provides="fileinput">
         <div class="fileinput-new" style="width: 250px; height: 250px;">
@@ -20,7 +20,7 @@
       </div>
       <!-- file input -->
     </div>
-    <div flex="60" layout="column" >
+    <div layout="column" style="margin-left: 15px" flex>
       <md-input-container>
       <label>Name</label>
       <input type="text" ng-model="formData.name" required>

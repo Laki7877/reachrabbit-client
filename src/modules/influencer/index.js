@@ -38,8 +38,7 @@ angular.module('app.influencer', components)
         views: {
           '@': {
             templateUrl: 'layout-private.html'
-          },
-          'menu@index': {}
+          }
         }
       })
       .state('profile', {
@@ -50,7 +49,9 @@ angular.module('app.influencer', components)
             controller: 'influencerAccountProfileController',
             templateUrl: 'account/influencer-profile.html'
           },
-          'menu@index': {}
+          'title@index-private': {
+            templateUrl: 'account/title-profile.html'
+          }
         }
       })
       .state('signin', {

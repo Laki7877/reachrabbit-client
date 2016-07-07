@@ -16,15 +16,15 @@ function loadSocialProfile(soPro, formData) {
     token: soPro.data.token
   };
 
-  if(!formData.email){
+  if (!formData.email) {
     formData.email = soPro.data.email;
   }
 
-  if(!formData.profilePicture){
+  if (!formData.profilePicture) {
     formData.profilePicture = soPro.data.picture;
   }
 
-  if(!formData.name){
+  if (!formData.name) {
     formData.name = soPro.data.name;　
   }
 
@@ -34,69 +34,101 @@ angular.module('app.influencer')
   .controller('influencerAccountConfirmController', function($scope) {
     $scope.formData = {};
   })
-  .controller('influencerAccountProfileController', function($scope) {
+  /*
+  * Influencer Profile
+  *
+  */
+  .controller('influencerAccountProfileController', function($scope,$uploader, $api) {
     //Hacky, will change after TODO: Friday
     document.getElementsByTagName("body")[0].style.backgroundImage = "none";
     document.getElementsByTagName("body")[0].style.backgroundColor = "#ebebeb";
 
     $scope.formData = {};
+
+    $scope.upload = function(file) {
+      $scope.loadingImage = true;
+      $uploader.upload('/file', file)
+        .then(function(data) {
+          $scope.loadingImage = false;
+          $scope.formData.profilePicture = data;
+        });
+    };
+
+    $api({
+      method: 'GET',
+      url: '/me'
+    }).then(function(data) {
+      $scope.formData = _.extend($scope.formData, data);
+    }).catch(function(err) {
+      console.log(err);
+    });
+
   })
+  /*
+  *
+  *  Influencer Sign In
+  *
+  */
   .controller('influencerAccountSigninController', function($scope) {
     $scope.formData = {};
-    $scope.submit = function(form) {
-    };
+    $scope.submit = function(form) {};
   })
   .controller('influencerAccountSignupController', function($scope, $storage, $state, $api, $mdDialog, $uploader, $auth, $mdToast, socialProfile) {
-    $scope.formData = $scope.formData || { socialAccounts: {} , selectedTopics : []};
+    $scope.formData = $scope.formData || {
+      socialAccounts: {},
+      selectedTopics: []
+    };
     $scope.loadingImage = false;
     $scope.message = '';
     $scope.hideTitle = true;
 
-    $scope.topicExists = function(item, selected){
+    $scope.topicExists = function(item, selected) {
       return selected.indexOf(item.id) !== -1;
     }
 
-    $scope.topicDisabled = function(item, selected){
+    $scope.topicDisabled = function(item, selected) {
       return selected.length >= 3 && !$scope.topicExists(item, selected)
     }
-    $scope.topicToggle = function(item, selected){
-      if($scope.topicDisabled(item,selected)) return;
-      if($scope.topicExists(item,selected)){
-        _.remove(selected, function(x){ return x == item.id })
-      }else{
+    $scope.topicToggle = function(item, selected) {
+      if ($scope.topicDisabled(item, selected)) return;
+      if ($scope.topicExists(item, selected)) {
+        _.remove(selected, function(x) {
+          return x == item.id
+        })
+      } else {
         selected.push(item.id)
       }
     }
-    $scope.topics = [
-    {
-      name: "Travel",id: 1
-    },
-    {
-      name: "Beauty", id: 2
-    },
-    {
-      name: "Food", id: 3
-    },
-    {
-      name: "Cooking", id : 4
-    },
-    {
-      name: "Gaming", id:5
-    },
-    {
-      name: "Gadget", id :6
-    },
-    {
-      name: "Educational", id:9
+    $scope.topics = [{
+      name: "Travel",
+      id: 1
+    }, {
+      name: "Beauty",
+      id: 2
+    }, {
+      name: "Food",
+      id: 3
+    }, {
+      name: "Cooking",
+      id: 4
+    }, {
+      name: "Gaming",
+      id: 5
+    }, {
+      name: "Gadget",
+      id: 6
+    }, {
+      name: "Educational",
+      id: 9
     }];
 
-   function authNOK(err) {
-      if(err.data && err.data.display) {
+    function authNOK(err) {
+      if (err.data && err.data.display) {
         $mdDialog.show(
-        $mdDialog.alert()
-        .title(err.data.display.title + " (" +  err.data.exception_code + ")")
-        .textContent(err.data.display.message)
-        .ok('Got it!'));
+          $mdDialog.alert()
+          .title(err.data.display.title + " (" + err.data.exception_code + ")")
+          .textContent(err.data.display.message)
+          .ok('Got it!'));
       }
     }
 
@@ -115,9 +147,9 @@ angular.module('app.influencer')
 
           $mdToast.show(
             $mdToast.simple()
-              .textContent('Linked to ' + key + ' account')
-              .position('top right' )
-              .hideDelay(3000)
+            .textContent('Linked to ' + key + ' account')
+            .position('top right')
+            .hideDelay(3000)
           );
         })
         .catch(authNOK);
@@ -125,7 +157,7 @@ angular.module('app.influencer')
     };
 
     // go back
-    $scope.back = function(){
+    $scope.back = function() {
       $state.go('^.1');
     };
     // go next
@@ -134,6 +166,7 @@ angular.module('app.influencer')
     };
 
     $scope.submit = function() {
+      console.log('$scope.formData', $scope.formData);
       $api({
         method: 'POST',
         url: '/signup/influencer',

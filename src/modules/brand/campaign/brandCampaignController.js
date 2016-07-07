@@ -14,6 +14,10 @@ angular.module('app.brand')
 
 	})
 	.controller('brandCampaignListController', 		function($scope) {
+    //Hacky, will change after TODO: Friday
+    console.log("C")
+    document.getElementsByTagName("body")[0].style.backgroundImage = "none";
+    document.getElementsByTagName("body")[0].style.backgroundColor = "#ebebeb";
 
 	})
 	.controller('brandCampaignPaymentController', 	function($scope) {

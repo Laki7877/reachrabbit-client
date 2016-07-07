@@ -43,16 +43,9 @@
                 <label>Confirm E-mail</label>
                 <input required md-no-asterisk name="emailConfirm" ng-model="formData.emailConfirm">
               </md-input-container>
-               <md-input-container class="md-block">
-                <label>Password</label>
-                <input type="password" required md-no-asterisk name="password" ng-model="formData.password">
-              </md-input-container>
-              <md-input-container class="md-block">
-                <label>Confirm Password</label>
-                <input type="password" required md-no-asterisk name="passwordConfirm" ng-model="formData.passwordConfirm">
-              </md-input-container>
 
-               <md-button type="submit" class="md-raised md-primary pull-right" ng-disabled="!formData.profilePicture">Sign up</md-button>
+                <md-button type="submit" class="md-raised pull-right" ng-disabled="true">Change Password</md-button>
+               <md-button type="submit" class="md-raised md-primary pull-right" ng-disabled="true">Save</md-button>
           </fieldset>
         </form>
       </div>

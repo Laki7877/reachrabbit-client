@@ -2,10 +2,40 @@
  * brand module
  *
  * @author     Poon Wu <poon.wuthi@gmail.com
+ * @author     Pat Sabpisal <ecegrid@gmail.com
  * @since      0.0.1
  */
 'use strict';
 angular.module('app.brand')
+  .controller('brandAccountProfileController', function($scope, $state, $api, $mdToast, $uploader, $storage){
+    //Hacky, will change after TODO: Friday
+    document.getElementsByTagName("body")[0].style.backgroundImage = "none";
+    document.getElementsByTagName("body")[0].style.backgroundColor = "#ebebeb";
+    $scope.formData = {
+      socialAccounts: {}, selectedTopics: []
+    };
+
+    $scope.upload = function(file) {
+      $scope.loadingImage = true;
+      $uploader.upload('/file', file)
+        .then(function(data) {
+          $scope.loadingImage = false;
+          $scope.formData.profilePicture = data;
+        });
+    };
+
+    //get user info
+    $api({
+      method: 'GET',
+      url: '/me'
+    }).then(function(data) {
+      $scope.formData = _.extend($scope.formData, data);
+    }).catch(function(err) {
+      console.log(err);
+    });
+
+
+  })
 	.controller('brandAccountSignupController', function($scope, $state, $api, $mdToast, $uploader, $storage) {
     $scope.formData = $storage.get('brandAccountSignupFormData') || {};
     $scope.loadingImage = false;

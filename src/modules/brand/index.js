@@ -2,7 +2,8 @@
  * brand module
  *
  * @author     Poon Wu <poon.wuthi@gmail.com
- * @since      0.0.1
+ * @author     Pat Sabpisal <ecegrid@gmail.com
+ * @since      0.0.2
  */
 'use strict';
 
@@ -25,7 +26,16 @@ angular.module('app.brand', components)
 		          	  }
 		          	}
 				  }
-			});
+			})
+      .state('index-private', {
+        abstract: true,
+        views: {
+            '@': {
+              templateUrl: 'layout-private.html'
+            }
+          }
+      });
+
 	    /**
 	     * Account
 	     */
@@ -41,6 +51,19 @@ angular.module('app.brand', components)
 						'menu@index': {}
 					}
 				})
+        .state('profile', {
+          parent: 'index-private',
+          url: '/profile',
+          views: {
+            '': {
+              controller: 'brandAccountProfileController',
+              templateUrl: 'account/brand-account-profile.html'
+            },
+            'title@index-private': {
+              templateUrl: 'account/title.html'
+            }
+          }
+        })
 				.state('signup', {
 					parent: 'index',
 					url: '/signup',

@@ -14,7 +14,10 @@ test/browser/test.js
 # coverage test
 coverage
 
-public/assets
+!public/assets/css/vendor.*
+!public/assets/fonts
+!public/assets/js/vendor.*
+
 tmp
 
 # eclipse project file

@@ -1,142 +1,87 @@
-<md-content  class="md-padding md-whiteframe-15dp">
-  <div class="row">
-      <div class="col-md-6">
-        <form class="form-horizontal" action="" method="POST">
-          <fieldset>
-            <div class="fileinput fileinput-new" data-provides="fileinput">
-              <div class="fileinput-new thumbnail" style="width:160x; height:160px;">
-                <img src="images/square.jpg">
-              </div>
-              <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 160px;"></div>
-              <div>
-                <span class="btn btn-default btn-file"><span class="fileinput-new">Select Profile Picutre</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
-                <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="username">Name</label>
-              <div class="controls">
-                <input type="text" id="username" name="username" placeholder="" class="form-control">
-              </div>
-            </div>
-            <br>
-            <div class="control-group">
-              <label class="control-label" for="email">E-mail</label>
-              <div class="controls">
-                <input type="email" id="email" name="email" placeholder="" class="form-control">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="email">Confirm E-mail</label>
-              <div class="controls">
-                <input type="email" id="emailconfirm" name="emailconfirm" placeholder="" class="form-control">
-              </div>
-            </div>
-            <br>
-            <div class="control-group">
-              <label class="control-label" for="contactnumber">Contact Number</label>
-              <div class="controls">
-                <input type="text" id="contactnumber" name="contactnumber" placeholder="" class="form-control">
-              </div>
-            </div>
-            <br><br>
-            <div class="controls">
-              <label class="control-label">Sync with</label>
-              <a href="brand-campaign-list.html"><button class="btn btn-default disabled">Facebook</button></a>
-              <a href="brand-campaign-list.html"><button class="btn btn-default">Instagram</button></a>
-              <a href="brand-campaign-list.html"><button class="btn btn-default">YouTube</button></a>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="email">Your Website</label>
-              <div class="controls">
-                <input  type="text" placeholder="" class="form-control">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="aboutyourself">About Yourself</label>
-              <div class="controls">
-                <textarea type="text" id="aboutyourself" name="username" placeholder="" class="form-control" rows="3"></textarea>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="bankname">Gender</label>
-              <select class="form-control" id="bankname">
-                <option>- Select Gender -</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Not Specified</option>
-              </select>
-            </div>
-            <br>
-            <div class="control-group">
-              <label class="control-label" for="aboutyourself">Your Interest (Can select up to 3)</label>
-              <p>
-                You will be notified according to the interest that you selected.
-              </p>
-              <div class="controls">
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">Beauty & Fashion</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">Travel</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">Health & Fitness</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">Lifestyle</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">Food</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">Cook & Bakery</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">Music</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">Gaming</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">Comedy</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">DIY</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">Mom & Kid</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">Gadget</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" value="">Educational</label>
-                </div>
-              </div>
-            </div>
-            <br>
-            <div class="control-group">
-              <label class="control-label" for="bankname">Bank Name</label>
-              <select class="form-control" id="bankname">
-                <option>Bank 1</option>
-                <option>Bank 2</option>
-                <option>Bank 3</option>
-                <option>Bank 4</option>
-              </select>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="banknumber">Bank Account Number</label>
-              <div class="controls">
-                <input  type="text" placeholder="" class="form-control">
-              </div>
-            </div>
-            <br>
-          </fieldset>
-        </form>
-        <div class="controls">
-          <a href="influencer-profile.html"><button class="btn btn-success">Save</button></a>
+<md-content  class="md-padding">
+<form class="form-horizontal" action="" method="POST">
+  <div layout="row" layout-sm="column">
+    <div flex="40" >
+      <!-- file input TODO : move to directive -->
+      <div class="fileinput fileinput-new" data-provides="fileinput">
+        <div class="fileinput-new" style="width: 250px; height: 250px;">
+          <img ng-show="!loadingImage" src="{{formData.profilePicture.url || 'http://orig03.deviantart.net/561f/f/2014/315/9/c/rabbit_doubt_mask_avatar_for_facebook_by_facebookavatars-d8622bz.png'}}" height="250" width="250">
+          <div layout="row" layout-sm="column" ng-show="loadingImage" layout-align="space-around" style="padding-top: 100px">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+          </div>
         </div>
+        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+        <md-button md-raised class=" btn-file">
+        <span class="fileinput-new"><i class="glyphicon glyphicon-open-file"></i> Upload from PC</span>
+        <span class="fileinput-exists">Change</span>
+        <input type="file" name="slip" data-ngf-select="upload($file)"></span>
+        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+        </md-button>
       </div>
+      <!-- file input -->
     </div>
-    </md-content>
+    <div flex="60" layout="column" >
+      <md-input-container>
+      <label>Name</label>
+      <input type="text" ng-model="formData.name" required>
+      </md-input-container>
+      <md-input-container>
+      <label>E-mail</label>
+      <input type="text" ng-model="formData.email" required>
+      </md-input-container>
+      <md-input-container>
+      <label>Contact Number</label>
+      <input type="text" ng-model="formData.contactNumber" required>
+      </md-input-container>
+      <div class="controls">
+        <button ng-disabled="linkedWith('facebook')" ng-click="linkWith('facebook')" class="btn btn-primary btn-sm btn-default">
+        <i class="fa fa-facebook" aria-hidden="true"></i> Facebook</button>
+        <button ng-disabled="linkedWith('instagram')" ng-click="linkWith('instagram')" class="btn btn-sm btn-default">
+        <i class="fa fa-instagram" aria-hidden="true"></i> Instagram </button>
+        <button ng-disabled="linkedWith('google')" ng-click="linkWith('google')" class="btn btn-sm btn-danger">
+        <i class="fa fa-youtube" aria-hidden="true"></i> YouTube
+        </button>
+        <hr/>
+      </div>
+      <div flex>
+        <form name="userForm" layout="column" >
+          <md-input-container class="md-block">
+          <label>About Yourself</label>
+          <textarea ng-model="formData.about" md-maxlength="150" rows="1"></textarea>
+          </md-input-container>
+          <label>Wot you rykeee</label> (Pick up to 3)
+          <div layout="row" layout-wrap flex class="md-padding">
+            <div flex="25" ng-repeat="item in topics">
+              <md-checkbox class="md-primary" ng-disabled="topicDisabled(item, formData.selectedTopics)"
+              ng-checked="topicExists(item, formData.selectedTopics)"
+              ng-click="topicToggle(item, formData.selectedTopics)">
+              {{ item.name }}
+              </md-checkbox>
+            </div>
+          </div>
+          <md-input-container class="md-block">
+          <label>Bank Name</label>
+          <md-select ng-model="size">
+          <md-option >Bangkok Bank</md-option>
+          <md-option >Bank of Ayudhya</md-option>
+          <md-option >Siam Commercial Bank</md-option>
+          <md-option >Kasikorn Bank</md-option>
+          </md-select>
+          </md-input-container>
+          <md-input-container class="md-block">
+          <label>Bank Account Number</label>
+          <input ng-model="formData.bankAccount" />
+          </md-input-container>
+        </form>
+      </div>
+      <md-checkbox ng-model="agreeTerm">
+      I agree with term and condition.
+      </md-checkbox>
+    </div>
+  </div>
+</form>
+</md-content>
+<md-content layout="row" class="md-padding" layout-sm="column" layout-wrap>
+<div flex></div>
+<md-button class="md-raised md-primary">Save</md-button>
+</md-content>

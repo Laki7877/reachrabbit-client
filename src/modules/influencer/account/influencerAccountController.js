@@ -35,6 +35,7 @@ angular.module('app.influencer')
     $scope.formData = {};
   })
   .controller('influencerAccountProfileController', function($scope) {
+    //Hacky, will change after TODO: Friday
     document.getElementsByTagName("body")[0].style.backgroundImage = "none";
     document.getElementsByTagName("body")[0].style.backgroundColor = "#ebebeb";
 

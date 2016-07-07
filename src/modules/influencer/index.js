@@ -18,7 +18,7 @@ angular.module('app.influencer', components)
         abstract: true,
         views: {
           '@': {
-            templateUrl: 'layout.html'
+            templateUrl: 'layout-public.html'
           },
           'menu@index': {
             templateUrl: 'menu.html',
@@ -100,10 +100,18 @@ angular.module('app.influencer', components)
         }
       })
       .state('campaign', {
-        parent: 'index',
+        parent: 'index-private',
         url: '/campaign',
-        controller: 'influencerCampaignListController',
-        templateUrl: 'campaign/influencer-campaign-list.html'
+        views: {
+          'title@index-private': {
+            templateUrl : 'campaign/title.html'
+          },
+          '': {
+            controller: 'influencerCampaignListController',
+            templateUrl: 'campaign/influencer-campaign-list.html'
+          }
+        }
+
       });
   });
 

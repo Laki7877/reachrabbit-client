@@ -22,7 +22,7 @@ angular.module('app.common')
     $mdThemingProvider.theme('duck')
      .primaryPalette('blue-grey', {
       'default': '900'
-    })
+    }).dark();
 
 
   });

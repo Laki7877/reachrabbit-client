@@ -34,9 +34,14 @@ app.get('/brand', function(req, res) {
   return res.render('brand');
 });
 
-app.get('/inf', function(req, res) {
-  return res.render('inf');
+app.get('/influencer', function(req, res) {
+  return res.render('influencer');
 });
+
+app.get('/compotest', function(req, res) {
+  return res.render('compotest');
+});
+
 
 /************************************
  * Start server

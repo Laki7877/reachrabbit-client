@@ -6,7 +6,7 @@
  */
 'use strict';
 
-// require('dotenv').config();
+require('dotenv-extended').load();
 
 var _               = require('lodash'),
     browserify      = require('browserify'),
@@ -40,18 +40,18 @@ var plugins = require('gulp-load-plugins')({
 
 // define file path variables
 var paths = {
-  root: 'app/',      // App root path
+  root: 'src/',      // App root path
   dist: {
     root: 'public/assets/',
     js: 'public/assets/js/',
     css: 'public/assets/css/'
   },
   src: {
-    root: 'app/',
-    styles: 'app/styles/',
-    html: 'app/**/*.html',
-    vendor: 'app/vendors/',
-    app: 'app/*.js'
+    root: 'src/',
+    styles: 'src/styles/',
+    html: 'src/**/*.html',
+    vendor: 'src/vendors/',
+    app: 'src/*.js'
   },
   tmp: {
     root: 'tmp/',
@@ -218,12 +218,7 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
 
 // build custom scss and css
 gulp.task('build:styles', 'Build core styles', function() {
-  return merge(
-    gulp.src(path.join(paths.src.styles, '**/*.css')),
-    gulp.src(path.join(paths.src.styles, '**/*.scss')).pipe(plugins.sass()),
-    gulp.src(path.join(paths.src.styles, '**/*.less')).pipe(plugins.less())
-  )
-  .pipe(plugins.concat('app.css'))
+  return gulp.src(path.join(paths.src.styles, '**/*.scss')).pipe(plugins.sass())
   .pipe(plugins.sourcemaps.init())
   .pipe(plugins.autoprefixer())
   .pipe(plugins.cssmin())
@@ -353,7 +348,6 @@ gulp.task('lint', 'Lint all client js', function () {
   return gulp
     .src(['gulpfile.js',
         paths.src.root + '**/*.js',
-        paths.test + '**/*.js',
         '!' + paths.test + 'browser/**'])
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter(require('jshint-stylish')))

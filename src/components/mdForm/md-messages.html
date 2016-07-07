@@ -1,0 +1,4 @@
+<div ng-messages="getModel().$error" role="alert">
+    <div ng-repeat="(key, value) in getMessages('$error')" ng-message-exp="key">{{value}}</div>
+</div>
+<div class="hint" ng-if="!hasError()">{{getMessages('hint')}}</div>

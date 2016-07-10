@@ -1,12 +1,20 @@
 @import "mixins/_gradient.scss";
 @import "global.scss";
+
 body{
-  // padding-top: 30px;
-  @include gradient-directional(#20155a, #1d94ba, 45deg);
+  background-color: #ebebeb;
 }
 
 a, a:hover, a:focus {
   color: #fff;
+}
+
+.md-card-panel{
+  background-image: url(/img/nattamoto.png);
+}
+
+md-tabs-wrapper{
+  background-color: rgba(0, 0, 0, 0.5)  !important;
 }
 
 .panel{
@@ -64,4 +72,3 @@ a, a:hover, a:focus {
     text-align: center;
   }
 }
-

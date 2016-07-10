@@ -14,30 +14,11 @@ var components = [
 angular.module('app.influencer', components)
   .config(function($stateProvider) {
     $stateProvider
-      .state('index', {
-        abstract: true,
-        views: {
-          '@': {
-            templateUrl: 'layout-public.html'
-          },
-          'menu@index': {
-            templateUrl: 'menu.html',
-            resolve: {
-              profile: function($api, $q) {
-                return {};
-              }
-            },
-            controller: function($scope, profile) {
-              $scope.profile = profile;
-            }
-          }
-        }
-      })
       .state('index-private', {
         abstract: true,
         views: {
           '@': {
-            templateUrl: 'layout-private.html'
+            templateUrl: 'layouts/layout-private.html'
           }
         }
       })
@@ -61,41 +42,6 @@ angular.module('app.influencer', components)
           '': {
             controller: 'influencerAccountSigninController',
             templateUrl: 'account/influencer-account-signin.html'
-          },
-          'menu@index': {}
-        }
-      })
-      .state('signup', {
-        parent: 'index',
-        abstract: true,
-        url: '/signup',
-        resolve: {
-          socialProfile: function($storage) {
-            return $storage.get('profile-signup');
-          }
-        },
-        redirectTo: 'signup.1',
-        views: {
-          '@index': {
-            controller: 'influencerAccountSignupController',
-            templateUrl: 'account/influencer-account-signup.html'
-          },
-          'menu@index': {}
-        }
-      })
-      .state('signup.1', {
-        url: '',
-        templateUrl: 'account/influencer-account-signup-1.html'
-      })
-      .state('signup.2', {
-        templateUrl: 'account/influencer-account-signup-2.html'
-      })
-      .state('confirm', {
-        parent: 'index',
-        url: '/confirm',
-        views: {
-          '@index': {
-            controller: 'influencerAccountConfirmController'
           },
           'menu@index': {}
         }

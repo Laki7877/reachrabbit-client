@@ -9,6 +9,14 @@ body{
   margin-top: 30px;
   @include gradient-directional(#20155a, #1d94ba, 45deg);
 }
+
+body .cover-container{
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+
 .body-inf{
   background: #a4c2e6;
 }
@@ -85,11 +93,6 @@ body {
   height: 100%;
   overflow:hidden;
   margin-top: 0px;
-}
-body {
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */

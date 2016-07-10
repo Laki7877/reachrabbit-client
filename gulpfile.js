@@ -2,7 +2,8 @@
  * gulp entry point
  *
  * @author     Poon Wu <poon.wuthi@gmail.com>
- * @since      0.0.1
+ * @author     Pat Sabpisal <ecegrid@gmail.com>
+ * @since      0.0.2
  */
 'use strict';
 
@@ -44,14 +45,16 @@ var paths = {
   dist: {
     root: 'public/assets/',
     js: 'public/assets/js/',
-    css: 'public/assets/css/'
+    css: 'public/assets/css/',
+    static: 'public/assets/static'
   },
   src: {
     root: 'src/',
     styles: 'src/styles/',
     html: 'src/**/*.html',
     vendor: 'src/vendors/',
-    app: 'src/*.js'
+    app: 'src/*.js',
+    static: 'public/static/'
   },
   tmp: {
     root: 'tmp/',
@@ -122,7 +125,7 @@ gulp.task('test:browser', 'Run karma test', ['browserify:test'], function (done)
 gulp.task('build:all', 'Build all modules (core and vendors)', ['build:vendor', 'build']);
 
 // build core (css, js, etc.)
-gulp.task('build', 'Build core modules', ['build:styles', 'build:scripts']);
+gulp.task('build', 'Build core modules', ['build:styles', 'build:scripts', 'build:static']);
 
 
 // build core js
@@ -242,6 +245,12 @@ gulp.task('build:vendor:scripts', 'Build scripts from npm vendor', function(done
     .pipe(plugins.uglify())
     .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(paths.dist.js));
+});
+
+
+gulp.task('build:static', 'Copy static files', function(done){
+  gulp.src(path.join(paths.src.static, '**/*'))
+   .pipe(gulp.dest(paths.dist.static));
 });
 
 // build 3rd party bower styles

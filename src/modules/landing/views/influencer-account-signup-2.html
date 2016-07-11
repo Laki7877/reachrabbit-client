@@ -1,7 +1,7 @@
 <md-card-content class="md-padding" layout-padding layout="column">
 <div class="controls">
   <label class="control-label">Connect with</label><br/>
-  <button ng-disabled="linkedWith('facebook')" ng-click="linkWith('facebook')" class="btn btn-primary btn-sm btn-default">
+  <button ng-disabled="linkedWith('facebook')" ng-click="linkWith('facebook')" class="btn btn-primary btn-sm btn-primary">
   <i class="fa fa-facebook" aria-hidden="true"></i> Facebook</button>
   <button ng-disabled="linkedWith('instagram')" ng-click="linkWith('instagram')" class="btn btn-sm btn-default">
   <i class="fa fa-instagram" aria-hidden="true"></i> Instagram </button>
@@ -12,33 +12,35 @@
 </div>
 <div flex>
   <form name="userForm" layout="column" >
-    <md-input-container class="md-block">
-    <label>About Yourself</label>
-    <textarea ng-model="formData.about" md-maxlength="150" rows="1"></textarea>
-    </md-input-container>
-     <label>Wot you rykeee</label> (Pick up to 3)
+      <md-input-container class="md-block">
+        <label>About Yourself</label>
+        <textarea ng-model="formData.about" md-maxlength="150" rows="1"></textarea>
+      </md-input-container>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Website</label>
+          <input ng-model="formData.website" type="url"/>
+        </md-input-container>
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Gender</label>
+        <md-select ng-model="formData.gender">
+            <md-option>Male</md-option>
+            <md-option>Female</md-option>
+            <md-option>LGBT</md-option>
+            <md-option>Other</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+     <label>Categories / Topics</label> (Pick up to 3)
      <div layout="row" layout-wrap flex class="md-padding">
               <div flex="25" ng-repeat="item in topics">
                 <md-checkbox class="md-primary" ng-disabled="topicDisabled(item, formData.selectedTopics)"
                 ng-checked="topicExists(item, formData.selectedTopics)"
                 ng-click="topicToggle(item, formData.selectedTopics)">
-                  {{ item.name }}
+                  {{ item.categoryName }}
                 </md-checkbox>
               </div>
       </div>
-      <md-input-container class="md-block">
-        <label>Bank Name</label>
-        <md-select ng-model="size">
-        <md-option >Bangkok Bank</md-option>
-        <md-option >Bank of Ayudhya</md-option>
-        <md-option >Siam Commercial Bank</md-option>
-        <md-option >Kasikorn Bank</md-option>
-        </md-select>
-      </md-input-container>
-      <md-input-container class="md-block">
-        <label>Bank Account Number</label>
-        <input ng-model="formData.bankAccount" />
-      </md-input-container>
     </form>
 </div>
 <div style="text-align: right">

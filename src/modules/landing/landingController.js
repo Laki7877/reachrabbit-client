@@ -17,10 +17,10 @@ angular.module('app.landing')
   })
 	.controller('landingBrandController', function($scope, $window) {
     $scope.signup = function() {
-      $window.location.href = '/brand#/signup';
+      $window.location.href = '/#/brand/signup';
     };
     $scope.signin = function() {
-      $window.location.href = '/brand#/signin';
+      $window.location.href = '/#/brand/signin';
     };
 	})
 	.controller('landingInfluencerController', function($scope, $window, $mdMedia, $auth, $mdDialog, $storage) {
@@ -35,7 +35,7 @@ angular.module('app.landing')
           'provider': res.data.provider,
           'data': res.data
         });
-        $window.location.href = '/influencer#/signup';
+        $window.location.href = '/#/influencer/signup';
       }
     }
     function authNOK(err) {
@@ -134,6 +134,7 @@ angular.module('app.landing')
     $scope.submit = function(form) {};
   })
   .controller('influencerAccountSignupController', function($scope, $storage, $state, $api, $mdDialog, $uploader, $auth, $mdToast, socialProfile) {
+
     $scope.formData = $scope.formData || {
       socialAccounts: {},
       selectedTopics: []
@@ -143,8 +144,19 @@ angular.module('app.landing')
     $scope.hideTitle = true;
 
     $scope.topicExists = function(item, selected) {
-      return selected.indexOf(item.id) !== -1;
+      return selected.indexOf(item.categoryId) !== -1;
     }
+    $scope.topics = []
+    //get cat list
+    $api({
+      method: 'GET',
+      url: '/data/categories'
+    }).then(function(data) {
+      $scope.topics = data;
+    }).catch(function(err) {
+      console.log(err);
+    });
+
 
     $scope.topicDisabled = function(item, selected) {
       return selected.length >= 3 && !$scope.topicExists(item, selected)
@@ -153,34 +165,13 @@ angular.module('app.landing')
       if ($scope.topicDisabled(item, selected)) return;
       if ($scope.topicExists(item, selected)) {
         _.remove(selected, function(x) {
-          return x == item.id
+          return x == item.categoryId
         })
       } else {
-        selected.push(item.id)
+        selected.push(item.categoryId)
       }
     }
-    $scope.topics = [{
-      name: "Travel",
-      id: 1
-    }, {
-      name: "Beauty",
-      id: 2
-    }, {
-      name: "Food",
-      id: 3
-    }, {
-      name: "Cooking",
-      id: 4
-    }, {
-      name: "Gaming",
-      id: 5
-    }, {
-      name: "Gadget",
-      id: 6
-    }, {
-      name: "Educational",
-      id: 9
-    }];
+
 
 
 
@@ -233,7 +224,7 @@ angular.module('app.landing')
         url: '/signup/influencer',
         data: $scope.formData
       }).then(function(data) {
-        $state.go('campaign');
+        window.location.href = '/influencer#/profile'
         $storage.putAuth(data.token);
         $storage.remove('profile-signup');
       }).catch(function(err) {
@@ -251,4 +242,46 @@ angular.module('app.landing')
     };
 
     loadSocialProfile(socialProfile, $api, $scope.formData);
-  });
+  })
+	.controller('brandAccountSignupController', function($scope, $state, $api, $mdToast, $uploader, $storage) {
+    $scope.formData = $storage.get('brandAccountSignupFormData') || {};
+    $scope.loadingImage = false;
+
+    $scope.$watch('formData', function(newObject) {
+      $storage.put('brandAccountSignupFormData', newObject);
+    });
+
+    $scope.upload = function(file) {
+      $scope.loadingImage = true;
+      $uploader.upload('/file', file)
+        .then(function(data) {
+          $scope.loadingImage = false;
+          $scope.formData.profilePicture = data;
+        });
+    };
+    $scope.submit = function(form) {
+      // invalid form
+      if(form.$invalid) {
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Please enter required fields')
+            .position('top right')
+            .hideDelay(3000)
+        );
+        return;
+      }
+
+      //post to brand signup
+      $api({
+        method: 'POST',
+        url: '/signup/brand',
+        data: $scope.formData
+      }).then(function(data) {
+        $storage.putAuth(data.token);
+        $storage.remove('brandAccountSignupFormData');
+        window.location.href = '/brand#/profile'
+      }).catch(function(err) {
+        console.error(err);
+      });
+    };
+	})

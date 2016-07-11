@@ -62,30 +62,8 @@ angular.module('app.brand', components)
             templateUrl: 'account/title.html'
           }
         }
-      })
-      .state('signup', {
-        parent: 'index',
-        url: '/signup',
-        views: {
-          '': {
-            controller: 'brandAccountSignupController',
-            templateUrl: 'account/brand-account-signup.html'
-          },
-          'menu@index': {}
-        }
-      })
-      .state('signup.detail', {
-        params: {
-          data: null
-        },
-        views: {
-          '@index': {
-            controller: 'brandAccountSignupDetailController',
-            templateUrl: 'account/brand-account-signup-detail.html'
-          },
-          'menu@index': {}
-        }
       });
+
 
     /**
      * Others ui.router

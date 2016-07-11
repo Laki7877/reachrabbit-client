@@ -56,7 +56,7 @@ angular.module('app.landing', components)
 						return $storage.get('profile-signup');
 					}
 				},
-				redirectTo: 'signup.1',
+				redirectTo: 'influencer-signup.1',
 				views: {
 					'': {
 						controller: 'influencerAccountSignupController',
@@ -69,16 +69,30 @@ angular.module('app.landing', components)
 			*/
 			.state('influencer-signup.1', {
 				url: '',
-				parent: 'abstract-signup',
+				parent: 'influencer-signup',
 				templateUrl: 'views/influencer-account-signup-1.html'
 			})
 			/*
 			* Influencer Signup page 2
 			*/
 			.state('influencer-signup.2', {
-				parent: 'abstract-signup',
+				parent: 'influencer-signup',
 				templateUrl: 'views/influencer-account-signup-2.html'
-			});
+			})
+			/*
+			* Brand Sign up pages
+			*/
+			.state('signup', {
+        parent: 'abstract-signup',
+        url: '/brand/signup',
+        views: {
+          '': {
+            controller: 'brandAccountSignupController',
+            templateUrl: 'views/brand-account-signup.html'
+          },
+          'menu@index': {}
+        }
+      });
 
 	});
 

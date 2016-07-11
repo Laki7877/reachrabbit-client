@@ -22,13 +22,15 @@ angular.module('app.influencer')
   *
   */
   .controller('influencerAccountProfileController', function($scope,$uploader, $auth, $mdToast, $mdDialog, $api) {
-    //Hacky, will change after TODO: Friday
-    document.getElementsByTagName("body")[0].style.backgroundImage = "none";
-    document.getElementsByTagName("body")[0].style.backgroundColor = "#ebebeb";
+
+    $scope.S3_PUBLIC_URL = process.env.S3_PUBLIC_URL;
 
     $scope.formData = {
       socialAccounts: {}, selectedTopics: []
     };
+
+    $scope.banks = [];
+
 
     $scope.upload = function(file) {
       $scope.loadingImage = true;
@@ -40,7 +42,7 @@ angular.module('app.influencer')
     };
 
     $scope.topicExists = function(item, selected) {
-      return selected.indexOf(item.id) !== -1;
+      return selected.indexOf(item.categoryId) !== -1;
     }
 
     $scope.topicDisabled = function(item, selected) {
@@ -50,41 +52,41 @@ angular.module('app.influencer')
       if ($scope.topicDisabled(item, selected)) return;
       if ($scope.topicExists(item, selected)) {
         _.remove(selected, function(x) {
-          return x == item.id
+          return x == item.categoryId
         })
       } else {
-        selected.push(item.id)
+        selected.push(item.categoryId)
       }
     }
-    $scope.topics = [{
-      name: "Travel",
-      id: 1
-    }, {
-      name: "Beauty",
-      id: 2
-    }, {
-      name: "Food",
-      id: 3
-    }, {
-      name: "Cooking",
-      id: 4
-    }, {
-      name: "Gaming",
-      id: 5
-    }, {
-      name: "Gadget",
-      id: 6
-    }, {
-      name: "Educational",
-      id: 9
-    }];
+    $scope.topics = [];
 
+
+    //get bank list
+    $api({
+      method: 'GET',
+      url: '/data/categories'
+    }).then(function(data) {
+      $scope.topics = data;
+    }).catch(function(err) {
+      console.log(err);
+    });
+
+    //get bank list
+    $api({
+      method: 'GET',
+      url: '/data/banks'
+    }).then(function(data) {
+      $scope.banks = data;
+    }).catch(function(err) {
+      console.log(err);
+    });
 
     //get user info
     $api({
       method: 'GET',
       url: '/me'
     }).then(function(data) {
+      console.log(data)
       $scope.formData = _.extend($scope.formData, data);
     }).catch(function(err) {
       console.log(err);

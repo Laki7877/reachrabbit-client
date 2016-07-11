@@ -10,7 +10,7 @@ a, a:hover, a:focus {
 }
 
 .md-card-panel{
-  background-image: url(/img/nattamoto.png);
+  @include gradient-directional(darken(#13897b, 5%), lighten(#13897b, 15%), 45deg);
 }
 
 md-tabs-wrapper{

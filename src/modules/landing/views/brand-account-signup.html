@@ -1,61 +1,66 @@
-<md-card flex="80" flex-xs="100">
-  <md-card-content class="md-padding" layout-xs="column" layout="row" layout-align-xs="center none" layout-align="left none">
-      <div class="fileinput fileinput-new" data-provides="fileinput" layout="column" layout-align="start center" flex-xs="100" flex="50">
-            <div class="fileinput-new" layout="column" layout-align="start center">
-              <img flex-xs="nogrow" flex ng-show="!loadingImage" src="{{formData.profilePicture.url || 'http://orig03.deviantart.net/561f/f/2014/315/9/c/rabbit_doubt_mask_avatar_for_facebook_by_facebookavatars-d8622bz.png'}}" width="300" height="300">
-              <div ng-show="loadingImage" flex-xs="nogrow" flex style="width:300px; height:300px">
-                <div layout-fill layout="row" layout-align="center center">
-                  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-                </div>
-              </div>
-            </div>
-            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
-            </div>
-            <md-button md-raised class="btn-file">
-                  <span class="fileinput-new"><i class="glyphicon glyphicon-open-file"></i> Upload from PC</span>
-                  <span class="fileinput-exists">Change</span>
-                  <input type="file" name="slip" data-ngf-select="upload($file)"></span>
-              <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-            </md-button>
+<form class="form-horizontal" action="" method="POST">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Brand sign up</legend>
+    </div>
+    <div class="fileinput fileinput-new" data-provides="fileinput">
+      <div class="fileinput-new thumbnail" style="width:160x; height:160px;">
+        <img src="images/square.jpg">
       </div>
-      <div class="md-padding" flex="100">
-        <form name="form"
-          class="form-horizontal"
-          ng-submit="submit(form)"
-          novalidate>
-          <fieldset>
-              <md-input-container class="md-block">
-                <label>Brand Name</label>
-                <input required md-no-asterisk name="brandName" ng-model="formData.brandName">
-              </md-input-container>
-              <md-input-container class="md-block">
-                <label>Name</label>
-                <input required md-no-asterisk name="name" ng-model="formData.name">
-              </md-input-container>
-               <md-input-container class="md-block">
-                <label>Contact Number</label>
-                <input md-maxlength="10" required md-no-asterisk name="contactNumber" ng-model="formData.contactNumber">
-              </md-input-container>
-               <md-input-container class="md-block">
-                <label>E-mail</label>
-                <input required md-no-asterisk name="email" ng-model="formData.email">
-              </md-input-container>
-              <md-input-container class="md-block">
-                <label>Confirm E-mail</label>
-                <input required md-no-asterisk name="emailConfirm" ng-model="formData.emailConfirm">
-              </md-input-container>
-               <md-input-container class="md-block">
-                <label>Password</label>
-                <input type="password" required md-no-asterisk name="password" ng-model="formData.password">
-              </md-input-container>
-              <md-input-container class="md-block">
-                <label>Confirm Password</label>
-                <input type="password" required md-no-asterisk name="passwordConfirm" ng-model="formData.passwordConfirm">
-              </md-input-container>
+      <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 160px;"></div>
+      <div>
+        <span class="btn btn-default btn-file"><span class="fileinput-new">Upload Profile Picture</span><span class="fileinput-exists">Change</span>
+        <input
+          type="file" name="..."></span>
+          <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="brandname">Brand Name</label>
+      <div class="controls">
+        <input type="text" id="brandname" name="brandname" placeholder="" class="form-control">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="username">Name</label>
+      <div class="controls">
+        <input type="text" id="username" name="username" placeholder="" class="form-control">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="contactnumber">Contact Number</label>
+      <div class="controls">
+        <input type="text" id="contactnumber" name="contactnumber" placeholder="" class="form-control">
+      </div>
+    </div>
 
-               <md-button type="submit" class="md-raised md-primary pull-right" ng-disabled="!formData.profilePicture">Sign up</md-button>
-          </fieldset>
-        </form>
+    <br>
+    <div class="control-group">
+      <label class="control-label" for="email">E-mail</label>
+      <div class="controls">
+        <input type="email" id="email" name="email" placeholder="" class="form-control">
       </div>
-  </md-card-content>
-</md-card>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="email">Confirm E-mail</label>
+      <div class="controls">
+        <input type="email" id="emailconfirm" name="emailconfirm" placeholder="" class="form-control">
+      </div>
+    </div>
+
+    <br>
+    <div class="control-group">
+      <label class="control-label" for="password">Password</label>
+      <div class="controls">
+        <input type="password" id="password" name="password" placeholder="" class="form-control">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="password_confirm">Password (Confirm)</label>
+      <div class="controls">
+        <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="form-control">
+      </div>
+    </div>
+    <br>
+  </fieldset>
+</form>

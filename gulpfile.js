@@ -222,7 +222,7 @@ gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:s
 
 // build custom scss and css
 gulp.task('build:styles', 'Build core styles', function() {
-  return gulp.src(path.join(paths.src.styles, '**/*.scss')).pipe(plugins.sass())
+  return gulp.src(path.join(paths.src.styles, '**/*.less')).pipe(plugins.less())
   .pipe(plugins.sourcemaps.init())
   .pipe(plugins.autoprefixer())
   .pipe(plugins.cssmin())

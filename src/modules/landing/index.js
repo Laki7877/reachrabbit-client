@@ -12,7 +12,7 @@ var components = [
 ];
 
 angular.module('app.landing', components)
-	.config(function($stateProvider) {
+	.config(function ($stateProvider) {
 		$stateProvider
 			/*
 			* Abstract Sign Up Layout
@@ -52,7 +52,7 @@ angular.module('app.landing', components)
 				abstract: true,
 				url: '/influencer/signup',
 				resolve: {
-					socialProfile: function($storage) {
+					socialProfile: function ($storage) {
 						return $storage.get('profile-signup');
 					}
 				},
@@ -82,17 +82,17 @@ angular.module('app.landing', components)
 			/*
 			* Brand Sign up pages
 			*/
-			.state('signup', {
-        parent: 'abstract-signup',
-        url: '/brand/signup',
-        views: {
-          '': {
-            controller: 'brandAccountSignupController',
-            templateUrl: 'views/brand-account-signup.html'
-          },
-          'menu@index': {}
-        }
-      });
+			.state('brand-signup', {
+				parent: 'abstract-signup',
+				url: '/brand/signup',
+				views: {
+					'': {
+						controller: 'brandAccountSignupController',
+						templateUrl: 'views/brand-account-signup.html'
+					},
+					'menu@index': {}
+				}
+			});
 
 	});
 

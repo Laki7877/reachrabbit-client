@@ -3,7 +3,7 @@
  *
  * @author     Poon Wu <poon.wuthi@gmail.com
  * @author     Pat Sabpisal <ecegrid@gmail.com>
- * @since      0.0.1
+ * @since      0.0.2
  */
 'use strict';
 

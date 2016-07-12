@@ -9,12 +9,20 @@
 var loadSocialProfile = require('./socialProfile');
 
 angular.module('app.landing')
-  .controller('signInController', function($state, $scope) {
-
-  })
+  /*
+  *
+  *  Landing top level
+  *
+  */
   .controller('landingController', function($state) {
-    $state.go('brand');
+    //redirect to influencer
+    $state.go('influencer');
   })
+  /*
+  *
+  *  Brand Landing
+  *
+  */
 	.controller('landingBrandController', function($scope, $window) {
     $scope.signup = function() {
       $window.location.href = '/#/brand/signup';
@@ -23,7 +31,12 @@ angular.module('app.landing')
       $window.location.href = '/#/brand/signin';
     };
 	})
-	.controller('landingInfluencerController', function($scope, $window, $mdMedia, $auth, $mdDialog, $storage) {
+  /*
+  *
+  *  Influencer Landing
+  *
+  */
+  .controller('landingInfluencerController', function($scope, $window, $mdMedia, $auth, $mdDialog, $uibModal, $storage) {
     $scope.loadingTop = false;
 
     function authOK(res) {
@@ -44,48 +57,46 @@ angular.module('app.landing')
             $scope.loadingTop = false;
             console.log("showing alert");
             $mdDialog.show(
-            $mdDialog.alert()
-            .title(err.data.display.title + " (" +  err.data.exception_code + ")")
-            .textContent(err.data.display.message)
-            .ok('Got it!'));
+              $mdDialog.alert()
+              .title(err.data.display.title + " (" +  err.data.exception_code + ")")
+              .textContent(err.data.display.message)
+              .ok('Got it!')
+            );
           }
     }
 
     function showFbPageChooser(dataObject) {
-      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
-      $mdDialog.show({
-        controller: function($scope, dataObject, authOK){
-          console.log(dataObject)
-          $scope.pages = dataObject.accounts;
-          $scope.choose = function(item){
-            console.log("You picked", item);
-            item.provider = 'facebook';
-            //item.id is page ID
-            item.pageId = item.id;
-            delete item.id;
-            var dd = _.extend(dataObject, item);
-            authOK({
-              data: dd
-            });
-          }
-        },
-        locals: {
-          dataObject: dataObject,
-          authOK: authOK
-        },
-        templateUrl: 'partials/fb.pages.dialog1.tmpl.html',
-        parent: angular.element(document.body),
-        clickOutsideToClose:false,
-        fullscreen: useFullScreen
-      })
-      .then(function(answer) {
-        $scope.status = 'You said the information was "' + answer + '".';
-      }, function() {
-        $scope.status = 'You cancelled the dialog.';
-      });
+        var modalInstance = $uibModal.open({
+          animation: true,
+          templateUrl: 'partials/fb.pages.dialog1.tmpl.html',
+          controller: function($scope, dataObject, $uibModalInstance, authOK){
+              console.log(dataObject);
+              $scope.pages = dataObject.accounts;
+              $scope.choose = function(item){
+                console.log("You picked", item);
+                item.provider = 'facebook';
+                //item.id is page ID
+                item.pageId = item.id;
+                delete item.id;
+                var dd = _.extend(dataObject, item);
+                authOK({
+                  data: dd
+                });
+                $uibModalInstance.close();
+              }
+            },
+          size: 'lg',
+          resolve: {
+              dataObject: function(){
+                  return dataObject;
+              },
+              authOK: function(){
+                return authOK;
+              }
+            }
+        });
+     
     };
-
-
 
     function authOK_FB(res) {
       //res.data is endpoint's object
@@ -133,6 +144,11 @@ angular.module('app.landing')
     $scope.formData = {};
     $scope.submit = function(form) {};
   })
+  /*
+  *
+  *  Influencer Sign Up
+  *
+  */
   .controller('influencerAccountSignupController', function($scope, $storage, $state, $api, $mdDialog, $uploader, $auth, $mdToast, socialProfile) {
 
     $scope.formData = $scope.formData || {
@@ -171,9 +187,6 @@ angular.module('app.landing')
         selected.push(item.categoryId)
       }
     }
-
-
-
 
     function authNOK(err) {
       if (err.data && err.data.display) {
@@ -243,6 +256,11 @@ angular.module('app.landing')
 
     loadSocialProfile(socialProfile, $api, $scope.formData);
   })
+  /*
+  *
+  *  Brand Sign Up
+  *
+  */
 	.controller('brandAccountSignupController', function($scope, $state, $api, $mdToast, $uploader, $storage) {
     $scope.formData = $storage.get('brandAccountSignupFormData') || {};
     $scope.loadingImage = false;
@@ -284,4 +302,4 @@ angular.module('app.landing')
         console.error(err);
       });
     };
-	})
+	});

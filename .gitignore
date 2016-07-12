@@ -8,16 +8,11 @@ bower_components
 app/dist
 test/browser/test.js
 
+# env file
+.env
 
 # coverage test
 coverage
 
-!public/assets/css/vendor.*
-!public/assets/fonts
-!public/assets/js/vendor.*
-
+public/assets
 tmp
-
-# eclipse project file
-.project
-.vscode

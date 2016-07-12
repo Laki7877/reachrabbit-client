@@ -1,7 +1,7 @@
 # ProjectX client
 
 ## Usage
-.
+
 1. copy and rename .env-sample to .env
 2. fill in environment variable
 3. run the following

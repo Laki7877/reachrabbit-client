@@ -95,7 +95,7 @@ angular.module('app.landing')
               }
             }
         });
-     
+
     };
 
     function authOK_FB(res) {
@@ -243,15 +243,6 @@ angular.module('app.landing')
       }).catch(function(err) {
         $scope.message = err.message;
       });
-    };
-
-    $scope.upload = function(file) {
-      $scope.loadingImage = true;
-      $uploader.upload('/file', file)
-        .then(function(data) {
-          $scope.loadingImage = false;
-          $scope.formData.profilePicture = data;
-        });
     };
 
     loadSocialProfile(socialProfile, $api, $scope.formData);

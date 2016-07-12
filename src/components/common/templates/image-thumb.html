@@ -1,7 +1,7 @@
 <div class="fileinput fileinput-new" data-provides="fileinput">
-    <div class="fileinput-new" style="width: 250px; height: 250px;">
-        <img ng-show="!loadingImage" src="{{formData.profilePicture.url || 'http://orig03.deviantart.net/561f/f/2014/315/9/c/rabbit_doubt_mask_avatar_for_facebook_by_facebookavatars-d8622bz.png'}}"
-            height="250" width="250">
+    <div class="fileinput-new" style="width: {{width}}px; height:{{height}}px;">
+        <img ng-show="!loadingImage" src="{{ accessor(model) }}"
+            height="{{width}}" width="{{height}}">
         <div layout="row" layout-sm="column" ng-show="loadingImage" layout-align="space-around" style="padding-top: 100px">
             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         </div>
@@ -13,5 +13,5 @@
         <span class="fileinput-exists">Change</span>
         <input type="file" name="slip" data-ngf-select="upload($file)"></span>
         <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-      </label>
+    </label>
 </div>

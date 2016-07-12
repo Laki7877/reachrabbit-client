@@ -40,6 +40,9 @@ a.active{
 .filter a{
   margin: 0px 5px;
 }
+.panel-admin{
+  background: #FFFFF0;
+}
 
 /* Table */
 .table-price{

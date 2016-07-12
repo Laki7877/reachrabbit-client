@@ -2,13 +2,13 @@
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>Project X</title>
+    <title>Project X Influencer</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
   </head>
-  <body class="body-inf">
+  <body>
     <div class="container">
       <div class="row">
   	<div class="col-md-6">
@@ -25,33 +25,102 @@
               <a href="brand-campaign-list.html"><button class="btn btn-default">YouTube</button></a>
             </div>
             <div class="control-group">
-              <label class="control-label" for="username">About Yourself</label>
+              <label class="control-label" for="email">Your Website</label>
               <div class="controls">
-                <input type="text" id="username" name="username" placeholder="" class="form-control">
+                <input  type="text" placeholder="" class="form-control">
               </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="aboutyourself">About Yourself</label>
+              <div class="controls">
+                <textarea type="text" id="aboutyourself" name="username" placeholder="" class="form-control" rows="3"></textarea>
+              </div>
+            </div>
+            <br>
+            <div class="control-group">
+              <label class="control-label" for="bankname">Gender</label>
+                <select class="form-control" id="bankname">
+                  <option>- Select Gender -</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Not Specified</option>
+                </select>
+            </div>
+            <br>
+            <div class="control-group">
+              <label class="control-label" for="aboutyourself">Your Interest (Can select up to 3)</label>
+              <p>
+                You will be notified according to the interest that you selected.
+              </p>
+              <div class="controls">
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Beauty & Fashion</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Travel</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Health & Fitness</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Lifestyle</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Food</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Cook & Bakery</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Music</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Gaming</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Comedy</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">DIY</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Mom & Kid</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Gadget</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="">Educational</label>
+                </div>
+              </div>
+
             </div>
 
             <br>
             <div class="control-group">
-              <label class="control-label" for="email">Bank</label>
-              <div class="controls">
-                <input  type="text" placeholder="" class="form-control">
-              </div>
+              <label class="control-label" for="bankname">Bank Name</label>
+                <select class="form-control" id="bankname">
+                  <option>- Select Bank -</option>
+                  <option>Bank 1</option>
+                  <option>Bank 2</option>
+                  <option>Bank 3</option>
+                  <option>Bank 4</option>
+                </select>
             </div>
             <div class="control-group">
-              <label class="control-label" for="email">Bank Account Number</label>
+              <label class="control-label" for="banknumber">Bank Account Number</label>
               <div class="controls">
                 <input  type="text" placeholder="" class="form-control">
               </div>
             </div>
-
-
             <br>
           </fieldset>
         </form>
 
         <div class="controls">
-          <a href="inf-campaign-list.html"><button class="btn btn-success">Sign Up</button></a>
+          <a href="influencer-open-campaign-list.html"><button class="btn btn-success">Save</button></a>
+          &nbsp
+          <a href="influencer-open-campaign-list.html"><button class="btn btn-default">Skip</button></a>
         </div>
 
         </div>

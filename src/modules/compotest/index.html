@@ -1,0 +1,32 @@
+<h1>Video Player</h1>
+<video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+  poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+    <source src="https://s3-ap-southeast-1.amazonaws.com/projectxtest/rabbit_CLIPCHAMP_360p.mp4" type='video/mp4'>
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+</video>
+
+<h1>Form validation test</h1>
+<form name="validationForm" md-form="messages">
+  <div md-input-container>
+    <label>Email</label>
+    <input name="email" ng-model="email" md-maxlength="5" required />
+    <div md-error="email"></div>
+  </div>
+</form>
+
+  <div>
+    <h1 class="md-title">Pick your pizza below</h1>
+    <div layout="row">
+      <md-input-container style="margin-right: 10px;">
+        <label>Size</label>
+        <md-select ng-model="size">
+          <md-option value="XX">XX</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+    <p ng-if="selectedToppings">You ordered a {{size.toLowerCase()}} pizza with
+    {{printSelectedToppings()}}.</p>
+  </div>

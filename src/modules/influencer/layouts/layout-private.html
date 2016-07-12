@@ -1,34 +1,33 @@
-<div layout="column" layout-fill>
-  <md-toolbar class="md-hue-2" md-theme="duck">
-    <div class="md-toolbar-tools" style="margin-left:100px; margin-right:100px">
-      <img src="/static/logo.png" style="width:150px;margin-right: 15px"/>
-      <md-button>
-        My Campaign
-      </md-button>
-      <md-button>
-        Open Campaign
-      </md-button>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="brand-landing.html">ReachRabbit Brand</a>
     </div>
-  </md-toolbar>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="brand-campaign-list.html">My Campaign</a></li>
+        <li><a href="brand-influencer-list.html">Influencers</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown active">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Nattamoto<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="brand-profile.html">Profile</a></li>
+            <li><a href="brand-transaction-list.html">Transactions</a></li>
+            <li><a href="#">Notification</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container-fluid -->
+</nav>
 
-  <md-toolbar class="md-card-panel md-tall md-primary" layout="column" layout-align="end">
-
-    <div class="md-toolbar-tools">
-      <div data-ui-view="title" style="margin-left:100px; margin-right:100px"></div>
-      <!-- fill up the space between left and right area -->
-      <span flex></span>
-    </div>
-    <md-tabs class="md-primary md-hue-3 " style="margin-left:100px; margin-right:100px">
-      <md-tab label="Open Campaign"></md-tab>
-      <md-tab label="Prepare Campaign"></md-tab>
-      <md-tab label="Registration"></md-tab>
-    </md-tabs>
-
-  </md-toolbar>
-
-
-  <md-card class="md-whiteframe-5dp" style='margin-left:100px; margin-right: 100px'>
-      <div data-ui-view>
-      </div>
-  </md-card>
-</div>
+<div data-ui-view>

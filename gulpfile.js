@@ -46,7 +46,8 @@ var paths = {
     root: 'public/assets/',
     js: 'public/assets/js/',
     css: 'public/assets/css/',
-    static: 'public/assets/static'
+    static: 'public/assets/static',
+    layouts: 'public/'
   },
   src: {
     root: 'src/',
@@ -54,7 +55,8 @@ var paths = {
     html: 'src/**/*.html',
     vendor: 'src/vendors/',
     app: 'src/*.js',
-    static: 'public/static/'
+    static: 'src/static/',
+    layouts: 'src/layouts/'
   },
   tmp: {
     root: 'tmp/',
@@ -122,11 +124,10 @@ gulp.task('test:browser', 'Run karma test', ['browserify:test'], function (done)
  * Build
  ***********************************************/
 // build all modules
-gulp.task('build:all', 'Build all modules (core and vendors)', ['build:vendor', 'build']);
+gulp.task('build:all', 'Build all modules (core and vendors)', ['build:vendor', 'build:static', 'build']);
 
 // build core (css, js, etc.)
-gulp.task('build', 'Build core modules', ['build:styles', 'build:scripts', 'build:static']);
-
+gulp.task('build', 'Build core modules', ['build:styles', 'build:scripts']);
 
 // build core js
 gulp.task('build:scripts', 'Build core scripts with browserify', ['build:clean:scripts']);
@@ -251,6 +252,10 @@ gulp.task('build:vendor:scripts', 'Build scripts from npm vendor', function(done
 gulp.task('build:static', 'Copy static files', function(done){
   gulp.src(path.join(paths.src.static, '**/*'))
    .pipe(gulp.dest(paths.dist.static));
+
+  gulp.src(path.join(paths.src.layouts, '**/*'))
+    .pipe(gulp.dest(paths.dist.layouts));
+
 });
 
 // build 3rd party bower styles

@@ -58,12 +58,14 @@ angular.module('app.brand', components)
             controller: 'brandAccountProfileController',
             templateUrl: 'account/brand-account-profile.html'
           },
+          'menu@index-private': {
+            templateUrl: 'fragments/account-profile-menu.html'
+          },
           'title@index-private': {
-            templateUrl: 'account/title.html'
+            templateUrl: 'fragments/account-profile-title.html'
           }
         }
       });
-
 
     /**
      * Others ui.router

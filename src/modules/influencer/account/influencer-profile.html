@@ -1,92 +1,134 @@
-<md-content  class="md-padding">
-<form class="form-horizontal" action="" method="POST">
-  <div layout="row" layout-sm="column">
-    <div layout="column" >
-      <!-- file input TODO : move to directive -->
-      <div class="fileinput fileinput-new" data-provides="fileinput">
-        <div class="fileinput-new" style="width: 250px; height: 250px;">
-          <img ng-show="!loadingImage" src="{{ S3_PUBLIC_URL + formData.profilePicture.resourcePath || 'http://orig03.deviantart.net/561f/f/2014/315/9/c/rabbit_doubt_mask_avatar_for_facebook_by_facebookavatars-d8622bz.png'}}" height="250" width="250">
-          <div layout="row" layout-sm="column" ng-show="loadingImage" layout-align="space-around" style="padding-top: 100px">
-            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+<div class="container">
+
+  <div class="page-header">
+    <h2 class="pull-left">Influencer Profile</h2>
+    <div class="clear"></div>
+  </div>
+
+  <div class="row">
+<div class="col-md-6">
+
+  <form class="form-horizontal" action="" method="POST">
+      <fieldset>
+        <div class="fileinput fileinput-new" data-provides="fileinput">
+          <div class="fileinput-new" style="width: 250px; height: 250px;">
+            <img ng-show="!loadingImage" src="{{ S3_PUBLIC_URL + formData.profilePicture.resourcePath || 'http://orig03.deviantart.net/561f/f/2014/315/9/c/rabbit_doubt_mask_avatar_for_facebook_by_facebookavatars-d8622bz.png'}}" height="250" width="250">
+            <div layout="row" layout-sm="column" ng-show="loadingImage" layout-align="space-around" style="padding-top: 100px">
+              <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+          </div>
+          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+          <label class="btn btn-default btn-file">
+            <span class="fileinput-new"><i class="glyphicon glyphicon-open-file"></i> Upload from PC</span>
+            <span class="fileinput-exists">Change</span>
+            <input type="file" name="slip" data-ngf-select="upload($file)"></span>
+            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+          </label>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="username">Name</label>
+          <div class="controls">
+            <input type="text" id="username"  ng-model="formData.name" name="username" placeholder="" class="form-control">
           </div>
         </div>
-        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-        <md-button md-raised class=" btn-file">
-        <span class="fileinput-new"><i class="glyphicon glyphicon-open-file"></i> Upload from PC</span>
-        <span class="fileinput-exists">Change</span>
-        <input type="file" name="slip" data-ngf-select="upload($file)"></span>
-        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-        </md-button>
-      </div>
-      <!-- file input -->
-    </div>
-    <div layout="column" style="margin-left: 15px" flex>
-      <md-input-container>
-      <label>Name</label>
-      <input type="text" ng-model="formData.name" required>
-      </md-input-container>
-      <md-input-container>
-      <label>E-mail</label>
-      <input type="text" ng-model="formData.email" required>
-      </md-input-container>
-      <md-input-container>
-      <label>Contact Number</label>
-      <input type="text" ng-model="formData.contactNumber" required>
-      </md-input-container>
-      <div class="controls">
-        <button ng-disabled="linkedWith('facebook')" ng-click="linkWith('facebook')" class="btn btn-primary btn-sm btn-default">
-        <i class="fa fa-facebook" aria-hidden="true"></i> Facebook</button>
-        <button ng-disabled="linkedWith('instagram')" ng-click="linkWith('instagram')" class="btn btn-sm btn-default">
-        <i class="fa fa-instagram" aria-hidden="true"></i> Instagram </button>
-        <button ng-disabled="linkedWith('google')" ng-click="linkWith('google')" class="btn btn-sm btn-danger">
-        <i class="fa fa-youtube" aria-hidden="true"></i> YouTube
-        </button>
-        <hr/>
-      </div>
 
+        <br>
+        <div class="control-group">
+          <label class="control-label" for="email">E-mail</label>
+          <div class="controls">
+            <input type="email" id="email" name="email" ng-model="formData.email" placeholder="" class="form-control">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="email">Confirm E-mail</label>
+          <div class="controls">
+            <input type="email" id="emailconfirm" ng-model="formData.emailConfirm" name="emailconfirm" placeholder="" class="form-control">
+          </div>
+        </div>
 
+        <br>
+        <div class="control-group">
+          <label class="control-label" for="contactnumber">Contact Number</label>
+          <div class="controls">
+            <input type="text" id="contactnumber" ng-model="formData.contactNumber" name="contactnumber" placeholder="" class="form-control">
+          </div>
+        </div>
 
+        <br><br>
 
-      <div flex>
-        <form name="userForm" layout="column" >
-          <md-input-container class="md-block">
-          <label>About Yourself</label>
-          <textarea ng-model="formData.about" md-maxlength="150" rows="1"></textarea>
-          </md-input-container>
+        <div class="controls">
+          <label class="control-label">Sync with</label>
+          <button ng-disabled="linkedWith('facebook')" ng-click="linkWith('facebook')" class="btn btn-primary btn-sm btn-default">
+          <i class="fa fa-facebook" aria-hidden="true"></i> Facebook</button>
+          <button ng-disabled="linkedWith('instagram')" ng-click="linkWith('instagram')" class="btn btn-sm btn-default">
+          <i class="fa fa-instagram" aria-hidden="true"></i> Instagram </button>
+          <button ng-disabled="linkedWith('google')" ng-click="linkWith('google')" class="btn btn-sm btn-danger">
+          <i class="fa fa-youtube" aria-hidden="true"></i> YouTube
+          </button>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="email">Your Website</label>
+          <div class="controls">
+            <input type="text" placeholder="" ng-model="formData.website" class="form-control">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="aboutyourself">About Yourself</label>
+          <div class="controls">
+            <textarea type="text" id="aboutyourself" ng-model="formData.about" name="username" placeholder="" class="form-control" rows="3"></textarea>
+          </div>
+        </div>
 
-          <div layout="column" style="margin-left: 15px" flex>
-             <label>Categories/Topics</label> (Pick up to 3)
-             <div layout="row" layout-wrap flex class="md-padding">
-                      <div flex="25" ng-repeat="item in topics">
-                        <md-checkbox class="md-primary" ng-disabled="topicDisabled(item, formData.selectedTopics)"
-                        ng-checked="topicExists(item, formData.selectedTopics)"
-                        ng-click="topicToggle(item, formData.selectedTopics)">
-                          {{ item.categoryName }}
-                        </md-checkbox>
-                      </div>
-              </div>
+        <div class="control-group">
+          <label class="control-label" for="gender">Gender</label>
+            <select class="form-control" id="gender" ng-model="formData.gender">
+              <option>- Select Gender -</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Not Specified</option>
+            </select>
+        </div>
+        <br>
+        <div class="control-group">
+          <label class="control-label" for="aboutyourself">Your Interest (Can select up to 3)</label>
+          <p>
+            You will be notified according to the interest that you selected.
+          </p>
+          <div class="controls">
+            <div class="checkbox" ng-repeat="item in topics" >
+              <label><input ng-disabled="topicDisabled(item, formData.selectedTopics)"
+              ng-checked="topicExists(item, formData.selectedTopics)"
+              ng-click="topicToggle(item, formData.selectedTopics)"
+              type="checkbox" value="">{{ item.categoryName }}</label>
+            </div>
           </div>
 
-          <md-select placeholder="Choose a bank" ng-model="formData.bank">
-              <md-option ng-repeat="bank in banks" value="{{bank.bankId}}">
-                {{bank.bankName}}
-              </md-option>
-          </md-select>
+        </div>
 
-          <md-input-container class="md-block">
-          <label>Bank Account Number</label>
-          <input ng-model="formData.bankAccount" />
-          </md-input-container>
-        </form>
-      </div>
-      <md-checkbox ng-model="agreeTerm">
-      I agree with term and condition.
-      </md-checkbox>
+        <br>
+        <div class="control-group">
+          <label class="control-label" for="bankname">Bank Name</label>
+            <select class="form-control" ng-model="formData.bankName" id="bankname">
+              <option ng-repeat="bank in banks" value="{{bank.bankId}}">{{ bank.bankName }}</option>
+            </select>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="banknumber">Bank Account Number</label>
+          <div class="controls">
+            <input  type="text" placeholder="" class="form-control">
+          </div>
+        </div>
+
+
+        <br>
+      </fieldset>
+    </form>
+
+    <div class="controls">
+      <a href="influencer-profile.html"><button class="btn btn-success">Save</button></a>
+    </div>
+
     </div>
   </div>
-</form>
-</md-content>
-<md-content layout="row" class="md-padding" layout-sm="column" layout-wrap>
-<div flex></div>
-<md-button class="md-raised md-primary">Save</md-button>
-</md-content>
+
+</div>

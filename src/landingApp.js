@@ -7,8 +7,7 @@
 'use strict';
 
 var components = [
-	require('./modules/landing'),
-  'ui.bootstrap'
+	require('./modules/landing')
 ];
 
 angular.module('app', components)

@@ -1,0 +1,7 @@
+<div class="control-group">
+  <label class="control-label" for="bankname">Bank Name</label>
+  <select class="form-control"
+  ng-model="model"
+  ng-options="bank as bank.bankName for bank in banks track by bank.bankId" id="bankname">
+  </select>
+</div>

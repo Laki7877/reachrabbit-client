@@ -1,0 +1,10 @@
+<div class="controls">
+  <label class="control-label">Connect with</label><br/>
+  <button ng-repeat="media in medium" style="margin-right:5px" ng-disabled="linkedWith(media.mediaId)"
+    ng-click="linkWith(media.mediaId)"
+    class="btn btn-primary btn-sm btn-primary">
+
+    <i class="fa fa-{{ media.mediaId }}" aria-hidden="true"></i> {{ media.mediaName }}</button>
+  </button>
+  <hr/>
+</div>

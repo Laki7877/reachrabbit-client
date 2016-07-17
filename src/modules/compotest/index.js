@@ -7,8 +7,7 @@
 'use strict';
 
 var components = [
-  require('../../components/common'),
-  require('../../components/mdForm')
+  require('../../components/common')
 ];
 
 angular.module('app.compotest', components)

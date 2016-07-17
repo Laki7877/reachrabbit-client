@@ -3,18 +3,7 @@
     <div id="legend">
       <legend class="">Brand sign up</legend>
     </div>
-    <div class="fileinput fileinput-new" data-provides="fileinput">
-      <div class="fileinput-new thumbnail" style="width:160x; height:160px;">
-        <img src="images/square.jpg">
-      </div>
-      <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 160px;"></div>
-      <div>
-        <span class="btn btn-default btn-file"><span class="fileinput-new">Upload Profile Picture</span><span class="fileinput-exists">Change</span>
-        <input
-          type="file" name="..."></span>
-          <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-      </div>
-    </div>
+    <image-thumb width="250" height="250" ng-model="formData.profilePicture"></image-thumb>
     <div class="control-group">
       <label class="control-label" for="brandname">Brand Name</label>
       <div class="controls">
@@ -62,5 +51,6 @@
       </div>
     </div>
     <br>
+    <button class="btn btn-success">Sign Up</button>
   </fieldset>
 </form>

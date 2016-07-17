@@ -1,5 +1,5 @@
 /**
- * brand module
+ * Brand module
  *
  * @author     Poon Wu <poon.wuthi@gmail.com
  * @author     Pat Sabpisal <ecegrid@gmail.com
@@ -13,24 +13,15 @@ var components = [
 
 angular.module('app.brand', components)
   .config(function($stateProvider) {
+    /*
+    * Main Layout
+    */
     $stateProvider
-      .state('index', { //root level state
+      .state('main', {
         abstract: true,
         views: {
           '@': {
-            templateUrl: 'layout.html'
-          },
-          'menu@index': {
-            templateUrl: 'menu.html',
-            controller: function($scope, $api) {}
-          }
-        }
-      })
-      .state('index-private', {
-        abstract: true,
-        views: {
-          '@': {
-            templateUrl: 'layout-private.html'
+            templateUrl: 'layouts/main.html'
           }
         }
       });
@@ -40,29 +31,29 @@ angular.module('app.brand', components)
      */
     $stateProvider
       .state('signin', {
-        parent: 'index',
+        parent: 'main',
         url: '/signin',
         views: {
           '': {
             controller: 'brandAccountSigninController',
-            templateUrl: 'account/brand-account-signin.html'
+            templateUrl: 'views/brand-account-signin.html'
           },
-          'menu@index': {}
+          'menu@main': {}
         }
       })
       .state('profile', {
-        parent: 'index-private',
+        parent: 'main',
         url: '/profile',
         views: {
           '': {
             controller: 'brandAccountProfileController',
-            templateUrl: 'account/brand-account-profile.html'
+            templateUrl: 'views/brand-account-profile.html'
           },
-          'menu@index-private': {
-            templateUrl: 'fragments/account-profile-menu.html'
+          'menu@main': {
+            templateUrl: 'partials/account-profile-menu.html'
           },
-          'title@index-private': {
-            templateUrl: 'fragments/account-profile-title.html'
+          'title@main': {
+            templateUrl: 'partials/account-profile-title.html'
           }
         }
       });
@@ -72,19 +63,19 @@ angular.module('app.brand', components)
      */
     $stateProvider
       .state('submission', {
-        parent: 'index',
+        parent: 'main',
         url: '/submission/:id',
         templateUrl: 'submission/brand-submission-detail.html'
       })
       // proposal
       .state('proposal', {
-        parent: 'index',
+        parent: 'main',
         url: '/proposal/:id',
         templateUrl: 'proposal/brand-proposal-detail.html'
       })
       // campaign
       .state('campaign', {
-        parent: 'index-private',
+        parent: 'main',
         url: '/campaign',
         abstract: true
       })
@@ -101,11 +92,11 @@ angular.module('app.brand', components)
       .state('campaign.list', {
         url: '',
         views: {
-          '@index-private': {
+          '@main': {
             controller: 'brandCampaignListController',
             templateUrl: 'campaign/brand-campaign-list.html'
           },
-          'title@index-private': {
+          'title@main': {
             templateUrl: 'campaign/title.html'
           }
         }
@@ -151,6 +142,6 @@ angular.module('app.brand', components)
       });
   });
 
-require('bulk-require')(__dirname, ['**/*.js', '!index.js']);
+require('bulk-require')(__dirname, ['**/*.js', '!main.js']);
 
 module.exports = 'app.brand';

@@ -3,7 +3,7 @@
  *
  * @author     Poon Wu <poon.wuthi@gmail.com
  * @author     Pat Sabpisal <ecegrid@gmail.com
- * @since      0.0.2
+ * @since      0.0.3
  */
 'use strict';
 
@@ -19,7 +19,7 @@ angular.module('app.landing', components)
 			*/
 			.state('abstract-signup', {
 				abstract: true,
-				templateUrl: 'layouts/layout-signup.html'
+				templateUrl: 'abstract/signup.html'
 			})
 			/*
 			* Top level Landing page
@@ -60,7 +60,7 @@ angular.module('app.landing', components)
 				views: {
 					'': {
 						controller: 'influencerAccountSignupController',
-						templateUrl: 'views/influencer-account-signup.html'
+						templateUrl: 'abstract/signup-influencer.html'
 					}
 				}
 			})
@@ -70,14 +70,14 @@ angular.module('app.landing', components)
 			.state('influencer-signup.1', {
 				url: '',
 				parent: 'influencer-signup',
-				templateUrl: 'views/influencer-account-signup-1.html'
+				templateUrl: 'views/signup-influencer-1.html'
 			})
 			/*
 			* Influencer Signup page 2
 			*/
 			.state('influencer-signup.2', {
 				parent: 'influencer-signup',
-				templateUrl: 'views/influencer-account-signup-2.html'
+				templateUrl: 'views/signup-influencer-2.html'
 			})
 			/*
 			* Brand Sign up pages
@@ -88,9 +88,8 @@ angular.module('app.landing', components)
 				views: {
 					'': {
 						controller: 'brandAccountSignupController',
-						templateUrl: 'views/brand-account-signup.html'
-					},
-					'menu@index': {}
+						templateUrl: 'views/signup-brand.html'
+					}
 				}
 			});
 

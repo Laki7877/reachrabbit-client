@@ -1,7 +1,8 @@
 /**
- * Some social profile loader
+ * helper -
+ * Some social profile loader (for influencer signup)
  * load into controller's $scope
- * Note: only apply for signup
+ * Note: only apply for signup (used once)
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com
  * @since      0.0.1
@@ -10,13 +11,8 @@
 'use strict';
 
 module.exports = function(soPro,$api, formData) {
-  formData.socialAccounts[soPro.provider] = {
-    id: soPro.data.id,
-    token: soPro.data.token
-  };
-
   if (!formData.email) {
-    formData.email = soPro.data.email;
+    formData.email = soPro.data.user.email;
   }
 
   if (!formData.profilePicture) {
@@ -26,19 +22,21 @@ module.exports = function(soPro,$api, formData) {
       method: 'POST',
       url: '/file/remote',
       data: {
-        url: soPro.data.picture.url,
+        url: soPro.data.user.picture.url,
         mimetype: 'image/png'
       }
-    }).then(function(data) {
-      formData.profilePicture = data;
+    }).then(function(resource) {
+      formData.profilePicture = resource;
     }).catch(function(err) {
       console.log(err);
     });
 
   }
 
+  formData.influencer.influencerMedia[soPro.data.modelBind.mediaId] = soPro.data.modelBind;
+
   if (!formData.name) {
-    formData.name = soPro.data.name;　
+    formData.name = soPro.data.user.name;　
   }
 
 }

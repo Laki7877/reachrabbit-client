@@ -8,70 +8,15 @@
     <h2>ReachRabbit Influencer</h2>
     <p class="lead">
       Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.
-      <a href="brand-landing.html">I'm Brand.</a>
+      <a href="/#/brand">I'm Brand.</a>
     </p>
-    <p>
-        <a class="btn btn-md btn-primary" role="button" data-ng-click="loginWithFB()">
-        <i class="fa fa-facebook"></i>
-        <strong>สมัครด้วย Facebook</strong></a>
-        <a class="btn btn-md btn-danger" role="button" data-ng-click="loginWithYT()"><strong>
-        <i class="fa fa-youtube"></i>
-        สมัครด้วย YouTube</strong></a>
-        <a class="btn btn-md btn-default" role="button" data-ng-click="loginWithIG()">
-        <i class="fa fa-instagram"></i>
-        <strong>สมัครด้วย IG</strong></a>
-        <a  class="btn btn-md" href="brand-signin.html" data-toggle="modal" data-target="#modal-influencer-signin">Sign in</a>
-    </p>
-  </div>
 
-</div>
+    <social-linker
+      on-already-logged-in="onAlreadyLoggedIn"
+      on-success="socialSelectionDone"
+      ng-model="socialAcc"></social-linker>
 
-<!-- modal-influencer-signup -->
-<div id="modal-influencer-signup" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Use account with at least 5,000 followers to sign up</h4>
-      </div>
-      <div class="modal-body text-center">
-        <a class="btn btn-md btn-primary" role="button" data-ng-click="loginWithFB()">
-        <i class="fa fa-facebook"></i>
-        <strong>สมัครด้วย Facebook</strong></a>
-        <a class="btn btn-md btn-danger" role="button" data-ng-click="loginWithYT()"><strong>
-        <i class="fa fa-youtube"></i>
-        สมัครด้วย YouTube</strong></a>
-        <a class="btn btn-md btn-default" role="button" data-ng-click="loginWithIG()">
-        <i class="fa fa-instagram"></i>
-        <strong>สมัครด้วย IG</strong></a>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-default" data-dismiss="modal">Cancel</a>
-      </div>
-    </div>
 
   </div>
-</div>
 
-<!-- modal-influencer-signin -->
-<div id="modal-influencer-signin" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Login with your social media</h4>
-      </div>
-      <div class="modal-body text-center">
-        <a class="btn btn-lg btn-primary" href="influencer-open-campaign-list.html" style="width:300px;">Login with Facebook</a><br><br>
-        <a class="btn btn-lg btn-default" href="influencer-open-campaign-list.html" style="width:300px;">Login with Instagram</a><br><br>
-        <a class="btn btn-lg btn-danger" href="influencer-open-campaign-list.html" style="width:300px;">Login with YouTube</a>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-default" data-dismiss="modal">Cancel</a>
-      </div>
-    </div>
-
-  </div>
 </div>

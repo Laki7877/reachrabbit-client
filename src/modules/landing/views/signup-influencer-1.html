@@ -1,4 +1,3 @@
-<form class="form-horizontal" action="" method="POST">
   <fieldset>
     <div id="legend">
       <legend class="">Influencer Sign Up</legend>
@@ -9,7 +8,7 @@
     <div class="control-group">
       <label class="control-label" for="username">Name</label>
       <div class="controls">
-        <input type="text" id="username" name="username" placeholder="" class="form-control">
+        <input type="text" id="username" name="username" ng-model="formData.name" placeholder="" class="form-control">
       </div>
     </div>
 
@@ -17,7 +16,7 @@
     <div class="control-group">
       <label class="control-label" for="email">E-mail</label>
       <div class="controls">
-        <input type="email" id="email" name="email" placeholder="" class="form-control">
+        <input type="email" id="email" name="email" ng-model="formData.email" placeholder="" class="form-control">
       </div>
     </div>
     <div class="control-group">
@@ -31,10 +30,9 @@
     <div class="control-group">
       <label class="control-label" for="contactnumber">Contact Number</label>
       <div class="controls">
-        <input type="text" id="contactnumber" name="contactnumber" placeholder="" class="form-control">
+        <input type="text" id="contactnumber" name="contactnumber" ng-model="formData.contactNumber" placeholder="" class="form-control">
       </div>
     </div>
-
 
     <br>
   </fieldset>
@@ -46,7 +44,6 @@
   </div>
   <br/>
   <div class="controls">
-    <a href="influencer-signup-detail.html"><button class="btn btn-success">Sign Up</button></a>
+      <button class="btn btn-primary" data-ng-click="next()" >Next</button>
   </div>
 
-</form>

@@ -14,45 +14,38 @@ var components = [
 angular.module('app.influencer', components)
   .config(function($stateProvider) {
     $stateProvider
-      .state('index-private', {
+      .state('main', {
         abstract: true,
         views: {
           '@': {
-            templateUrl: 'layouts/layout-private.html'
+            templateUrl: 'abstract/main.html'
           }
         }
       })
       .state('profile', {
-        parent: 'index-private',
+        parent: 'main',
         url: '/profile',
         views: {
           '': {
             controller: 'influencerAccountProfileController',
-            templateUrl: 'account/influencer-profile.html'
-          },
-          'title@index-private': {
-            templateUrl: 'account/title-profile.html'
+            templateUrl: 'views/influencer-profile.html'
           }
         }
       })
       .state('signin', {
-        parent: 'index',
+        parent: 'main',
         url: '',
         views: {
           '': {
             controller: 'influencerAccountSigninController',
-            templateUrl: 'account/influencer-account-signin.html'
-          },
-          'menu@index': {}
+            templateUrl: 'views/influencer-account-signin.html'
+          }
         }
       })
       .state('campaign', {
-        parent: 'index-private',
+        parent: 'main',
         url: '/campaign',
         views: {
-          'title@index-private': {
-            templateUrl : 'campaign/title.html'
-          },
           '': {
             controller: 'influencerCampaignListController',
             templateUrl: 'campaign/influencer-campaign-list.html'

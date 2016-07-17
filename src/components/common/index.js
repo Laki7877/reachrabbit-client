@@ -13,7 +13,7 @@ var components = [
 	'satellizer',
   'ngFileUpload',
   'ngMaterial',
-  require('../mdForm')
+  'ui.bootstrap'
 ];
 
 angular.module('app.common', components);

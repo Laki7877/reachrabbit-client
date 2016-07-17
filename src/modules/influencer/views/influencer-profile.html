@@ -10,21 +10,7 @@
 
   <form class="form-horizontal" action="" method="POST">
       <fieldset>
-        <div class="fileinput fileinput-new" data-provides="fileinput">
-          <div class="fileinput-new" style="width: 250px; height: 250px;">
-            <img ng-show="!loadingImage" src="{{ S3_PUBLIC_URL + formData.profilePicture.resourcePath || 'http://orig03.deviantart.net/561f/f/2014/315/9/c/rabbit_doubt_mask_avatar_for_facebook_by_facebookavatars-d8622bz.png'}}" height="250" width="250">
-            <div layout="row" layout-sm="column" ng-show="loadingImage" layout-align="space-around" style="padding-top: 100px">
-              <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-            </div>
-          </div>
-          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-          <label class="btn btn-default btn-file">
-            <span class="fileinput-new"><i class="glyphicon glyphicon-open-file"></i> Upload from PC</span>
-            <span class="fileinput-exists">Change</span>
-            <input type="file" name="slip" data-ngf-select="upload($file)"></span>
-            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-          </label>
-        </div>
+        <image-thumb width="250" height="250" ng-model="formData.profilePicture"></image-thumb>
         <div class="control-group">
           <label class="control-label" for="username">Name</label>
           <div class="controls">

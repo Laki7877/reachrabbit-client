@@ -41,7 +41,7 @@ angular.module('app.landing')
       console.log('$scope.formData', $scope.formData);
       $api({
         method: 'POST',
-        url: '/signup/influencer',
+        url: '/users/influencer',
         data: $scope.formData
       }).then(function(data) {
         window.location.href = '/influencer#/profile'

@@ -11,7 +11,7 @@ angular.module('app.landing')
 
     $scope.formData = $scope.formData || {
       influencer: {
-        influencerMedia: {},
+        socialAccounts: {},
         interests: []
       }
     };

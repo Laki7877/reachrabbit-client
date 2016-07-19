@@ -59,22 +59,14 @@ angular.module('app.brand', components)
       .state('campaign', {
         parent: 'main',
         url: '/campaign',
-        views: {
-          '': {
-            controller: 'brandCampaignListController',
-            templateUrl: 'views/brand-campaign-list.html'
-          }
-        }
+        controller: 'brandCampaignListController',
+        templateUrl: 'views/brand-campaign-list.html'
       })
       .state('campaign.create', {
         parent: 'main',
         url: '/campaign/create',
-        views: {
-          '': {
-            controller: 'brandCampaignCreateController',
-            templateUrl: 'views/brand-campaign-create.html'
-          }
-        }
+        controller: 'brandCampaignCreateController',
+        templateUrl: 'views/brand-campaign-create.html'
       });
 
   });

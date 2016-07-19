@@ -11,7 +11,7 @@ angular.module('app.brand')
 	.controller('brandCampaignCreateController', function ($scope, $api) {
 		$scope.formData = {
 			resource: [],
-			media: []
+			medium: []
 		};
 
 		function save() {

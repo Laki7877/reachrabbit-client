@@ -8,29 +8,35 @@
 'use strict';
 
 angular.module('app.brand')
-  .controller('brandCampaignCreateController', function($scope, $api) {
-    $scope.formData = {
-      resource: []
-    };
+	.controller('brandCampaignCreateController', function ($scope, $api) {
+		$scope.formData = {
+			resource: []
+		};
 
-    function save() {
-      $api({
-        method: 'POST',
-        url: '/campaigns',
-        data: $scope.formData
-      }).then(function(data) {
-        alert("Done")
-      }).catch(function(err) {
-        console.error("bad stuff happened", err);
-      });
-    }
+		function save() {
+			$api({
+				method: 'POST',
+				url: '/campaigns',
+				data: $scope.formData
+			}).then(function (data) {
+				alert("Done")
+			}).catch(function (err) {
+				console.error("bad stuff happened", err);
+			});
+		}
 
-    $scope.saveDraft = function(){
-      console.log("Saving as Draft")
-      save();
-    }
+		$scope.saveDraft = function () {
+			console.log("Saving as Draft")
+			save();
+		}
 
-  })
-  .controller('brandCampaignListController', function($scope, $api) {
-
-  });
+	})
+	.controller('brandCampaignListController', function ($scope, $api) {
+		$scope.campaigns = [];
+		$api({
+			method: 'GET',
+			url: '/mycampaigns'
+		}).then(function (data) {
+			$scope.campaigns = data;
+		});
+	});

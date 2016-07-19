@@ -1,8 +1,8 @@
 <div class="fileinput fileinput-new" data-provides="fileinput">
-    <div class="fileinput-new" style="width: {{width}}px; height:{{height}}px;">
+    <div class="fileinput-new" style="width: {{width}}px; height:{{height}}px; text-align:center">
         <img ng-show="!loadingImage" src="{{ accessor(model) }}"
-            height="{{width}}" width="{{height}}">
-        <div layout="row" layout-sm="column" ng-show="loadingImage" layout-align="space-around" style="padding-top: 100px">
+            height="{{height}}" width="{{width}}">
+        <div layout="row" layout-sm="column" ng-show="loadingImage" layout-align="space-around" style="padding-top: 100px;">
             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         </div>
     </div>

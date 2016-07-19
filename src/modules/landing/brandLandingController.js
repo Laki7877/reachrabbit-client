@@ -2,12 +2,13 @@
  * Brand Landing page controllers
  *
  * @author     Pat Sabpisal <ssabpisa@me.com>
- * @since      0.0.1
+ * @since      0.0.2
  */
  var loadSocialProfile = require('./socialProfile');
 angular.module('app.landing')
 .controller('brandAccountSignupController', function($scope, $state, $api, $mdToast, $uploader, $storage) {
     $scope.formData = $storage.get('brandAccountSignupFormData') || {};
+    $scope.formData.brand = {};
     $scope.loadingImage = false;
 
     $scope.$watch('formData', function(newObject) {
@@ -22,22 +23,12 @@ angular.module('app.landing')
           $scope.formData.profilePicture = data;
         });
     };
-    $scope.submit = function(form) {
-      // invalid form
-      if(form.$invalid) {
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent('Please enter required fields')
-            .position('top right')
-            .hideDelay(3000)
-        );
-        return;
-      }
+    $scope.submit = function() {
 
       //post to brand signup
       $api({
         method: 'POST',
-        url: '/signup/brand',
+        url: '/users/brand',
         data: $scope.formData
       }).then(function(data) {
         $storage.putAuth(data.token);

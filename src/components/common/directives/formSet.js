@@ -74,4 +74,49 @@ angular.module('app.common')
 
         }
       }
+    })
+    .directive('fsMediaSelector', function ($api) {
+      return {
+        restrict: 'AE',
+        scope: {
+          model: '=ngModel'
+        },
+        templateUrl: 'templates/fs-media-selector.html',
+        link: function(scope, elem, attrs, form){
+                scope.medium = [];
+
+                $api({
+                  method: 'GET',
+                  url: '/data/medium'
+                }).then(function(data) {
+                  scope.medium = data;
+                }).catch(function(err) {
+                  console.error("fsMediaSelector", err);
+                });
+
+        }
+      }
+    })
+    .directive('fsCampaignCategorySelector', function ($api) {
+      return {
+        restrict: 'AE',
+        scope: {
+          model: '=ngModel'
+        },
+        templateUrl: 'templates/fs-campaign-category-selector.html',
+        link: function(scope, elem, attrs, form){
+                scope.categories = [];
+
+                $api({
+                  method: 'GET',
+                  url: '/data/categories'
+                }).then(function(data) {
+                  scope.categories = data;
+                }).catch(function(err) {
+                  console.error("fsCampaignCategorySelector", err);
+                });
+
+        }
+      }
     });
+

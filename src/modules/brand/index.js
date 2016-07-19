@@ -21,7 +21,7 @@ angular.module('app.brand', components)
         abstract: true,
         views: {
           '@': {
-            templateUrl: 'layouts/main.html'
+            templateUrl: 'abstract/main-brand.html'
           }
         }
       });
@@ -48,98 +48,35 @@ angular.module('app.brand', components)
           '': {
             controller: 'brandAccountProfileController',
             templateUrl: 'views/brand-account-profile.html'
-          },
-          'menu@main': {
-            templateUrl: 'partials/account-profile-menu.html'
-          },
-          'title@main': {
-            templateUrl: 'partials/account-profile-title.html'
           }
         }
       });
 
     /**
-     * Others ui.router
+     * Campaign
      */
     $stateProvider
-      .state('submission', {
-        parent: 'main',
-        url: '/submission/:id',
-        templateUrl: 'submission/brand-submission-detail.html'
-      })
-      // proposal
-      .state('proposal', {
-        parent: 'main',
-        url: '/proposal/:id',
-        templateUrl: 'proposal/brand-proposal-detail.html'
-      })
-      // campaign
       .state('campaign', {
         parent: 'main',
         url: '/campaign',
-        abstract: true
-      })
-      .state('campaign.proposal', {
-        url: '/proposal/:id',
-        controller: 'brandProposalController',
-        templateUrl: 'proposal/brand-proposal-detail.html'
-      })
-      .state('campaign.submission', {
-        url: '/payment/:id',
-        controller: 'brandSubmissionController',
-        templateUrl: 'submission/brand-submission-detail.html'
-      })
-      .state('campaign.list', {
-        url: '',
         views: {
-          '@main': {
+          '': {
             controller: 'brandCampaignListController',
-            templateUrl: 'campaign/brand-campaign-list.html'
-          },
-          'title@main': {
-            templateUrl: 'campaign/title.html'
+            templateUrl: 'views/brand-campaign-list.html'
           }
         }
       })
       .state('campaign.create', {
-        url: '/create',
-        controller: 'brandCampaignCreateController',
-        templateUrl: 'campaign/brand-campaign-create.html'
-      })
-      .state('campaign.detail', {
-        url: '/:id',
+        parent: 'main',
+        url: '/campaign/create',
         views: {
           '': {
-            controller: 'brandCampaignDetailController',
-            templateUrl: 'campaign/brand-campaign-detail.html'
-          },
-          'menu': {
-            templateUrl: 'campaign/brand-campaign-detail-title.html'
+            controller: 'brandCampaignCreateController',
+            templateUrl: 'views/brand-campaign-create.html'
           }
         }
-      })
-      .state('campaign.detail.draft', {
-        controller: 'brandCampaignDetailController',
-        templateUrl: 'campaign/brand-campaign-detail-draft.html'
-      })
-      .state('campaign.detail.open', {
-        controller: 'brandCampaignDetailController',
-        templateUrl: 'campaign/brand-campaign-detail-open.html'
-      })
-      .state('campaign.detail.open.payment', {
-        url: '/payment',
-        views: {
-          'menu@campaign.detail': {},
-          '@campaign-detail': {
-            controller: 'brandCampaignPaymentController',
-            templateUrl: 'campaign/brand-campaign-pay.html'
-          }
-        }
-      })
-      .state('campaign.detail.production', {
-        controller: 'brandCampaignDetailController',
-        templateUrl: 'campaign/brand-campaign-production.html'
       });
+
   });
 
 require('bulk-require')(__dirname, ['**/*.js', '!main.js']);

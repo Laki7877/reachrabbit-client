@@ -31,19 +31,19 @@
             <div class="control-group">
               <label class="control-label" for="brandname">Brand Name</label>
               <div class="controls">
-                <input type="text" id="brandname" name="brandname" placeholder="" class="form-control">
+                <input type="text" id="brandname" name="brandname" ng-model="formData.brand.brandName" placeholder="" class="form-control">
               </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="username">Name</label>
               <div class="controls">
-                <input type="text" id="username" name="username" placeholder="" class="form-control">
+                <input type="text" id="username" name="username" placeholder="" ng-model="formData.name" class="form-control">
               </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="contactnumber">Contact Number</label>
               <div class="controls">
-                <input type="text" id="contactnumber" name="contactnumber" placeholder="" class="form-control">
+                <input type="text" id="contactnumber" name="contactnumber" ng-model="formData.contactNumber" placeholder="" class="form-control">
               </div>
             </div>
 
@@ -51,7 +51,7 @@
             <div class="control-group">
               <label class="control-label" for="email">E-mail</label>
               <div class="controls">
-                <input type="email" id="email" name="email" placeholder="" class="form-control">
+                <input type="email" id="email" name="email" placeholder="" ng-model="formData.email" class="form-control">
               </div>
             </div>
             <div class="control-group">
@@ -65,7 +65,7 @@
             <div class="control-group">
               <label class="control-label" for="password">Password</label>
               <div class="controls">
-                <input type="password" id="password" name="password" placeholder="" class="form-control">
+                <input type="password" id="password" name="password" ng-model="formData.password" placeholder="" class="form-control">
               </div>
             </div>
             <div class="control-group">
@@ -79,7 +79,7 @@
         </form>
 
         <div class="controls">
-          <a href="brand-influencer-list.html"><button class="btn btn-success">Sign Up</button></a>
+          <button ng-click="submit()" class="btn btn-success">Sign Up</button>
         </div>
 
         </div>

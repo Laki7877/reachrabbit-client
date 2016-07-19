@@ -8,9 +8,15 @@
 'use strict';
 
 angular.module('app.influencer')
-	.controller('influencerCampaignListController', function($scope) {
-    //Hacky, will change after TODO: Friday
-    document.getElementsByTagName("body")[0].style.backgroundImage = "none";
-    document.getElementsByTagName("body")[0].style.backgroundColor = "#ebebeb";
+	.controller('influencerCampaignListController', function($scope, $api) {
+    $scope.moderu = [{}, {}];
+    $api({
+        method: 'GET',
+        url: '/campaigns'
+      }).then(function(data) {
+        console.log(data.rows);
+      }).catch(function(err) {
+        $scope.message = err.message;
+      });
 
 	});

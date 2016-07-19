@@ -1,28 +1,36 @@
 /**
  * brand module
  *
- * @author     Poon Wu <poon.wuthi@gmail.com
+ * @author     Poon Wu <poon.wuthi@gmail.com>
+ * @author     Pat Sabpisal <ecegrid@gmail.com>
  * @since      0.0.1
  */
 'use strict';
 
 angular.module('app.brand')
-	.controller('brandCampaignCreateController', 	function($scope) {
+  .controller('brandCampaignCreateController', function($scope, $api) {
+    $scope.formData = {
+      resource: []
+    };
 
-	})
-	.controller('brandCampaignDetailController', 	function($scope) {
+    function save() {
+      $api({
+        method: 'POST',
+        url: '/campaigns',
+        data: $scope.formData
+      }).then(function(data) {
+        alert("Done")
+      }).catch(function(err) {
+        console.error("bad stuff happened", err);
+      });
+    }
 
-	})
-	.controller('brandCampaignListController', 		function($scope) {
-    //Hacky, will change after TODO: Friday
-    console.log("C")
-    document.getElementsByTagName("body")[0].style.backgroundImage = "none";
-    document.getElementsByTagName("body")[0].style.backgroundColor = "#ebebeb";
+    $scope.saveDraft = function(){
+      console.log("Saving as Draft")
+      save();
+    }
 
-	})
-	.controller('brandCampaignPaymentController', 	function($scope) {
-
-	})
-  .controller('brandCampaignCreateController',   function($scope) {
+  })
+  .controller('brandCampaignListController', function($scope, $api) {
 
   });

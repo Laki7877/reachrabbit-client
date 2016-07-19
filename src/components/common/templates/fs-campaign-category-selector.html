@@ -1,0 +1,9 @@
+<div class="control-group">
+  <label class="control-label" for="camcat">
+    Campaign Category
+  </label>
+  <select class="form-control" ng-model="model"
+  ng-options="category as category.categoryName for category in categories track by category.categoryId"
+  id="camcat">
+  </select>
+</div>

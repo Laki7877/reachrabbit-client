@@ -18,7 +18,7 @@ angular.module('app.influencer', components)
         abstract: true,
         views: {
           '@': {
-            templateUrl: 'abstract/main.html'
+            templateUrl: 'abstract/main-influencer.html'
           }
         }
       })
@@ -42,17 +42,27 @@ angular.module('app.influencer', components)
           }
         }
       })
-      .state('campaign', {
+      .state('open-campaign', {
         parent: 'main',
-        url: '/campaign',
+        url: '/campaign/open',
         views: {
           '': {
             controller: 'influencerCampaignListController',
-            templateUrl: 'campaign/influencer-campaign-list.html'
+            templateUrl: 'views/influencer-open-campaign-list.html'
           }
         }
-
+      })
+      .state('my-campaign', {
+        parent: 'main',
+        url: '/campaign/my',
+        views: {
+          '': {
+            controller: 'influencerCampaignListController',
+            templateUrl: 'views/influencer-campaign-my.html'
+          }
+        }
       });
+
   });
 
 require('bulk-require')(__dirname, ['**/*.js', '!index.js']);

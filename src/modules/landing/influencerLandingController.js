@@ -44,7 +44,7 @@ angular.module('app.landing')
         url: '/users/influencer',
         data: $scope.formData
       }).then(function(data) {
-        window.location.href = '/influencer#/profile'
+        window.location.href = '/influencer#/campaign'
         $storage.putAuth(data.token);
         $storage.remove('profile-signup');
       }).catch(function(err) {

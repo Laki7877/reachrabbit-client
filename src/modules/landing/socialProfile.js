@@ -33,7 +33,7 @@ module.exports = function(soPro,$api, formData) {
 
   }
 
-  formData.influencer.influencerMedia[soPro.data.modelBind.mediaId] = soPro.data.modelBind;
+  formData.influencer.socialAccounts[soPro.data.modelBind.mediaId] = soPro.data.modelBind;
 
   if (!formData.name) {
     formData.name = soPro.data.user.name;　

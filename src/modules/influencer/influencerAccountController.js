@@ -3,7 +3,7 @@
  *
  * @author     Poon Wu <poon.wuthi@gmail.com
  * @author     Pat Sabpisal <ecegrid@gmail.com
- * @since      0.0.1
+ * @since      0.0.2
  */
 'use strict';
 
@@ -23,10 +23,8 @@ angular.module('app.influencer')
   */
   .controller('influencerAccountProfileController', function($scope,$uploader, $auth, $mdToast, $mdDialog, $api) {
 
-    $scope.S3_PUBLIC_URL = process.env.S3_PUBLIC_URL;
-
     $scope.formData = {
-      socialAccounts: {}, selectedTopics: []
+      selectedTopics: []
     };
 
 
@@ -43,7 +41,7 @@ angular.module('app.influencer')
     //Get user info
     $api({
       method: 'GET',
-      url: '/me'
+      url: '/profiles'
     }).then(function(data) {
       console.log(data)
       $scope.formData = _.extend($scope.formData, data);

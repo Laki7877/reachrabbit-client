@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="page-header">
+      <h2 class="pull-left">Meet Our Influencers</h2>
+      <div class="pull-right">
+        <a href="/brand#/campaign/create" class="btn btn-primary">
+          + Create New Campaign
+        </a>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+    <div ng-repeat="user in users" class="panel panel-default">
+      <div class="media">
+        <div class="media-left">
+          <img class="media-object" ng-src="{{user.profilePicture.url}}"  >
+        </div>
+        <div class="media-body">
+          <a href="/brand#/influencer/{{user.userId}}">
+            <h4 class="media-heading">{{user.name}}</h4>
+          </a>
+          <p>{{user.influencer.about}}</p>
+          <br>
+          <span>Facebook Follower: <strong>{{user.influencer.socialAccounts.facebook.follower || '-'}}</strong> | Instagram Follower: <strong>{{user.influencer.socialAccounts.instagram.follower || '-'}}</strong> | YouTube Follower: <strong>{{user.influencer.socialAccounts.youtube.follower || '-'}}</strong> </span>
+        </div>
+      </div>
+    </div>
+</div>

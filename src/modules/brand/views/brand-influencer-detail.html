@@ -1,0 +1,38 @@
+
+<div class="container">
+  <div class="page-header">
+    <h2 class="pull-left">Influencer Detail</h2>
+    <div class="pull-right">
+      <a href="/brand#/influencer" class="btn btn-default">
+        Back to Influencer List
+      </a>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  <div class="panel panel-default">
+      <div class="media">
+        <div class="media-left">
+          <img class="media-object" src="{{user.profilePicture.url}}"  >
+        </div>
+        <div class="media-body">
+          <a href="#">
+            <h4 class="media-heading">{{user.name}}</h4>
+          </a>
+          <p>{{user.influencer.about}}</p>
+          <br>
+          <span>Facebook Follower: <strong>{{user.influencer.socialAccounts.facebook.follower || '-'}}</strong> | Instagram Follower: <strong>{{user.influencer.socialAccounts.instagram.follower || '-'}}</strong> | YouTube Follower: <strong>{{user.influencer.socialAccounts.youtube.follower || '-'}}</strong> </span>
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3" ng-repeat="work in user.influencer.campaignSubmission | filter:{ status:'paid' }">
+      <div class="panel panel-default">
+        <img ng-src="{{work.resources[0].url}}" alt="" class="img-responsive" />
+        <br>
+        <p class="text-center">{{work.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>

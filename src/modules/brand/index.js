@@ -38,7 +38,9 @@ angular.module('app.brand', components)
             controller: 'brandAccountSigninController',
             templateUrl: 'views/brand-account-signin.html'
           },
-          'menu@main': {}
+          'menu@main': {
+            template: ''
+          }
         }
       })
       .state('profile', {
@@ -52,22 +54,38 @@ angular.module('app.brand', components)
         }
       });
     /**
-     * Campaign 
+     * Influencer
      */
     $stateProvider
-      .state('campaign', { 
+      .state('influencer', {
+        parent: 'main',
+        url: '/influencer',
+        controller: 'brandInfluencerListController',
+        templateUrl: 'views/brand-influencer-list.html'
+      })
+      .state('influencer-detail', {
+        parent: 'main',
+        url: '/influencer/:id',
+        controller: 'brandInfluencerDetailController',
+        templateUrl: 'views/brand-influencer-detail.html'
+      });
+    /**
+     * Campaign
+     */
+    $stateProvider
+      .state('campaign', {
         parent: 'main',
         url: '/campaign',
         controller: 'brandCampaignListController',
         templateUrl: 'views/brand-campaign-list.html'
       })
       .state('campaign-create', {
-        parent: 'main', 
+        parent: 'main',
         url: '/campaign/create',
         controller: 'brandCampaignDetailDraftController',
         templateUrl: 'views/brand-campaign-detail-draft.html'
       })
-      .state('campaign-detail-draft', { 
+      .state('campaign-detail-draft', {
         parent: 'main',
         url: '/campaign/draft/:campaignId',
         controller: 'brandCampaignDetailDraftController',
@@ -103,8 +121,6 @@ angular.module('app.brand', components)
         controller: 'brandCampaignSubmissionController',
         templateUrl: 'views/brand-campaign-detail-production.html'
       });
-     
- 
   });
 
 require('bulk-require')(__dirname, ['**/*.js', '!main.js']);

@@ -1,0 +1,9 @@
+<div class="panel panel-default" ng-repeat="card in model">
+    <div class="media">
+        <div class="media-left"><img class="media-object" src="{{ card.user.profilePicture.url }}"></div>
+        <div class="media-body">
+            <h4 class="media-heading">{{ card.user.name }} </h4>
+            <p>{{card.about}}</p><br><span>Facebook Follower: <strong>1,250</strong> | Instagram Follower: <strong>15,250</strong> | YouTube Follower: <strong>15,250</strong></span><br>Interest:
+            <strong>Beauty, Food, Travel</strong></div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+ <div class="container">
+
+      <div class="page-header">
+        <h2 class="pull-left">Proposal Detail</h2>
+        <div class="pull-right">
+          <a ng-click="goBack()">
+            <button type="button" name="button" class="btn btn-default">Back to Campaign Detail</button>
+          </a>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        You have selected Someone. When you are satisfy with your selections, you can click <a href="brand-campaign-pay.html">"Review & Pay"</a>
+      </div>
+
+     <scientific-card card-type="influencer" ng-model="influencers"></scientific-card>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4>
+            Proposal Detail
+            <span class="pull-right">Status: {{ proposal.status }}</span>
+          </h4>
+          {{ proposal.description }}
+          <br><br>
+          <h4>Proposed Price: {{ proposal.proposePrice | number: 2}} Baht</h4>
+          <div class="pull-left" ng-if="proposal.status != 'accept'">
+            <a href="brand-campaign-detail-open.html" class="btn btn-primary">
+              Select Proposal
+            </a>
+            &nbsp
+            <a href="#" class="btn btn-default" ng-click="askForRevision(proposal)">
+              Ask for Revision
+            </a>
+          </div>
+          <div class="pull-left" ng-if="proposal.status == 'accept'">
+            <a href="#">
+              Unselect this Proposal
+            </a>
+          </div>
+          <br><br>
+        </div>
+      </div>
+
+    

@@ -82,20 +82,38 @@ angular.module('app.brand', components)
       .state('campaign-create', {
         parent: 'main',
         url: '/campaign/create',
-        controller: 'brandCampaignDetailController',
+        controller: 'brandCampaignDetailDraftController',
         templateUrl: 'views/brand-campaign-detail-draft.html'
       })
       .state('campaign-detail-draft', {
         parent: 'main',
-        url: '/campaign/draft/:id',
-        controller: 'brandCampaignDetailController',
+        url: '/campaign/draft/:campaignId',
+        controller: 'brandCampaignDetailDraftController',
         templateUrl: 'views/brand-campaign-detail-draft.html'
       })
       .state('campaign-detail-open', {
         parent: 'main',
-        url: '/campaign/open/:id',
-        controller: 'brandCampaignProposalController',
-        templateUrl: 'views/brand-campaign-detail-open.html'
+        url: '/campaign/open',
+        abstract: true
+      })
+      .state('campaign-detail-open.detail', {
+        url: '/:campaignId',
+        views: {
+          '@main': {
+            controller: 'brandCampaignDetailOpenController',
+            templateUrl: 'views/brand-campaign-detail-open.html'
+          }
+        }
+      })
+      .state('campaign-detail-open.detail.proposal', {
+        url: '/proposal',
+        params: {proposal: null},
+        views: {
+          '@main': {
+            controller: 'brandCampaignProposalDetailController',
+            templateUrl: 'views/brand-campaign-proposal-detail.html'
+          }
+        }
       })
       .state('campaign-detail-production', {
         parent: 'main',
@@ -103,7 +121,6 @@ angular.module('app.brand', components)
         controller: 'brandCampaignSubmissionController',
         templateUrl: 'views/brand-campaign-detail-production.html'
       });
-
   });
 
 require('bulk-require')(__dirname, ['**/*.js', '!main.js']);

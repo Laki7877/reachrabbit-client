@@ -11,6 +11,12 @@ var components = [
 ];
 
 angular.module('app', components)
-  .run(function($state, $json) {
-     
+  .run(function($state, $json, $rootScope) { 
+      $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+       console.error('Router change error', event, toState, toParams, fromState, error);
+      });
+
+      $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams, error) {
+       console.log('Router change success', event, toState, toParams, fromState, error);
+      });
   });

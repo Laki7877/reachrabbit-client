@@ -1,13 +1,13 @@
-<div class="panel panel-default">
+<div class="panel panel-default" ng-repeat="card in model">
     <div class="media">
         <div class="media-left">
-            <img class="media-object" src="images/profile-pic-jon.jpg">
+            <img class="media-object" src="{{ card.influencer.user.profilePicture.url }}">
         </div>
         <div class="media-body">
-            <a href="brand-proposal-detail.html">
+            <a ui-sref="campaign-detail-open.detail.proposal({proposal: card})">
                 <h4 class="media-heading">
-                    Jon Snow
-                    <span class="pull-right">Status: Wait for Review</span>
+                    {{ card.influencer.user.name }}
+                    <span class="pull-right">Status: {{ card.status }}</span>
                 </h4>
             </a>
             <div class="media-item">
@@ -21,7 +21,7 @@
             <br><br>
             <div class="media-item">
                 <h5>Quotation:</h5>
-                <h4>1,000</h4>
+                <h4>{{ card.proposePrice | number: 2 }}</h4>
             </div>
             <div class="media-item">
                 <h5>Cost per Follower:</h5>
@@ -29,4 +29,5 @@
             </div>
         </div>
     </div>
+    
 </div>

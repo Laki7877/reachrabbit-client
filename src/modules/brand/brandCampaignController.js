@@ -8,16 +8,68 @@
 'use strict';
 
 angular.module('app.brand')
-	.controller('brandCampaignProposalController', function ($scope, $api, $stateParams) {
+	.controller('brandCampaignProposalDetailController', function ($scope, $state, $api, $window, $uibModal, $stateParams) {
+		$scope.goBack = function () {
+			//go back
+			$state.go('^');
+		}
+		if (!$stateParams.proposal) {
+			return alert("You're not supposed to be here bitch.");
+		}
+
+		$scope.proposal = $stateParams.proposal;
+		$scope.influencers = [$stateParams.proposal.influencer];
+
+		$scope.askForRevision = function (proposal) {
+			var tmpl = 'partials/modal-revision-proposal.html';
+			var modalInstance = $uibModal.open({
+				animation: true,
+				templateUrl: tmpl,
+				controller: function($scope, $api, proposal){
+					$scope.formData = proposal;
+					$scope.saveComment = function(){
+						console.log("Saving")
+						$api({
+							url: '/campaigns/' + proposal.proposalId + '/proposals',
+							method: 'POST',
+							data: $scope.formData
+						}).then(function(data){
+							console.log(data);
+						})
+					}
+				},
+				size: 'lg',
+				resolve: {
+					'proposal': function(){
+						return proposal;
+					}
+				}
+			});
+
+			modalInstance.result.then(function (selectedItem) {
+				$scope.selected = selectedItem;
+			}, function () {
+				console.log('Modal dismissed at: ' + new Date());
+			});
+
+		}
+
+		$scope.selectProposal = function (proposalId) {
+
+		}
+
+	})
+	.controller('brandCampaignDetailOpenController', function ($scope, $api, $state, $stateParams) {
 		$scope.formData = {};
 		$scope.formDataArray = [];
 		$scope.proposals = [];
-		if (!$stateParams.id) {
+		if (!$stateParams.campaignId) {
 			alert("Fuk you");
 		}
+
 		$api({
 			method: 'GET',
-			url: '/campaigns/' + $stateParams.id
+			url: '/campaigns/' + $stateParams.campaignId
 		}).then(function (data) {
 			$scope.formData = data;
 			$scope.formDataArray = [$scope.formData];
@@ -27,17 +79,15 @@ angular.module('app.brand')
 
 		$api({
 			method: 'GET',
-			url: '/campaigns/' + $stateParams.id + '/proposals'
+			url: '/campaigns/' + $stateParams.campaignId + '/proposals'
 		}).then(function (data) {
-			$scope.proposals = data;
+			$scope.proposals = data.rows;
 		}).catch(function (err) {
 			console.error("can't get proposals", err);
 		});
 
-
-		
 	})
-	.controller('brandCampaignDetailController', function ($scope, $api, $stateParams) {
+	.controller('brandCampaignDetailDraftController', function ($scope, $api, $stateParams) {
 		var method = 'POST';
 		var url = '/campaigns';
 
@@ -47,14 +97,14 @@ angular.module('app.brand')
 			media: []
 		};
 
-		if ($stateParams.id) {
+		if ($stateParams.campaignId) {
 			$api({
 				method: 'GET',
-				url: '/campaigns/' + $stateParams.id
+				url: '/campaigns/' + $stateParams.campaignId
 			}).then(function (data) {
 				$scope.formData = data;
 				method = 'PUT';
-				url = url + '/' + $stateParams.id;
+				url = url + '/' + $stateParams.campaignId;
 			}).catch(function (err) {
 				console.error("bad stuff happened", err);
 			});

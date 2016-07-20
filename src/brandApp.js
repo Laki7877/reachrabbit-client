@@ -11,5 +11,6 @@ var components = [
 ];
 
 angular.module('app', components)
-  .run(function($state) {
+  .run(function($state, $json) {
+     
   });

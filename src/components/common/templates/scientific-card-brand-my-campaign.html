@@ -2,17 +2,36 @@
 
   <div class="media" >
     <div class="media-left">
-      <img class="media-object" src="images/campaign-pokeland.jpg"  >
+      <img ng-if="card.resources.length > 0" class="media-object" src="{{ card.resources[0].url }}"  >
     </div>
     <div class="media-body">
-      <a href="influencer-campaign-detail-open.html">
-        <h4 class="media-heading">{{ card.title }} <i class="fa fa-{{card.media.mediaId}}"></i>
-        <span class="pull-right">Campaign Status: {{ card.status }}</span></h4>
+      <a href="/brand#/campaign/{{card.status}}/{{ card.campaignId }}">
+        <h4 class="media-heading">{{ card.title }} <i class="fa fa-{{card.media[0].mediaId}}"></i>
+        <span class="pull-right">Campaign Status: {{ card.status | uppercase }}</span></h4>
       </a>
       <div class="media-item">
         <h5>Reward</h5>
-        <h4>No reward</h4>
+        <h4>{{ card.budget }}</h4>
       </div>
+      <div class="media-item">
+        <h5>Deadline</h5>
+        <h4 ng-if="card.status == 'draft'">-</h4>
+        <h4 ng-if="card.status == 'open'">{{ card.proposalDeadline | date: 'd/M/y' }}</h4>
+        <h4 ng-if="card.status == 'production'">{{ card.submissionDeadline | date: 'd/M/y' }}</h4>
+      </div>
+      <div class="media-item">
+        <h5>Wait for Review</h5>
+        <h4>-</h4>
+      </div>
+      <div class="media-item">
+        <h5>Selected</h5>
+        <h4>-</h4>
+      </div>
+      <div class="media-item" ng-if="card.category">
+        <h5>Category</h5>
+        <h4>{{ card.category.categoryName }}</h4>
+      </div>
+
     </div>
   </div>
 </div>

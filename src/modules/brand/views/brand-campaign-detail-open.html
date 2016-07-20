@@ -1,37 +1,67 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="pull-left">
-      Selected Proposal: 0<br>
-      Current Budget: 0
-    </div>
-    <div class="pull-right">
-      <a data-ui-sref=".payment">
-        <button type="button" name="button" class="btn btn-primary">Review & Pay</button>
-      </a>
-    </div>
-  </div>
-</div>
-<div class="page-header">
-  <h3 class="pull-left">Proposals</h3>
-  <div class="clear"></div>
-</div>
-<div class="panel panel-default">
-  <a data-ui-sref="campaign.proposal">
-    <div class="panel-body">
-      John Snow | Status: Pending
-      <div class="pull-right">
-        View Detail
+ <div class="container">
+      <div class="page-header">
+        <h2 class="pull-left">Campaign Detail (OPEN)</h2>
+        <div class="pull-right">
+          <a ui-shref="campaign" href="/brand#/campaign" class="btn btn-default">
+            Back to Campaign List
+          </a>
+        </div>
+        <div class="clear"></div>
       </div>
-    </div>
-  </a>
-</div>
-<div class="panel panel-default">
-  <a data-ui-sref="campaign.proposal">
-    <div class="panel-body">
-      Jamie Lanister | Status: Pending
-      <div class="pull-right">
-        View Detail
+
+      <scientific-card card-type="brand-my-campaign" ng-model="formDataArray"></scientific-card>
+
+      <div class="panel panel-default">
+        <div class="media">
+          <div class="media-body">
+            <div class="media-item">
+              <h5>All Proposals:</h5>
+              <h4>3</h4>
+            </div>
+            <div class="media-item">
+              <h5>Selected:</h5>
+              <h4>1</h4>
+            </div>
+            <div class="media-item">
+              <h5>Budget:</h5>
+              <h4>1,000</h4>
+            </div>
+            <div class="media-item">
+              <h5>Potential Reach</h5>
+              <h4>2.5 Million+ Users</h4>
+            </div>
+            <div class="media-item pull-right">
+              <a href="brand-campaign-pay.html" class="btn btn-primary">
+                Review & Pay
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
+
+
+      <div class="page-header">
+        <h3 class="pull-left">Proposals</h3>
+        <div class="pull-right">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Sort by Date
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Sort by Most Followers</a></li>
+              <li><a href="#">Sort by Quotation</a></li>
+              <li><a href="#">Sort by Cost per Follower</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <div class="filter">
+        Filter: <a href="#" class="active">All (3)</a> | <a href="#">Wait for Review (0)</a> | <a href="#">Need Revision (0)</a> | <a href="#">Selected (0)</a>
+        <br><br>
+      </div>
+
+      <scientific-card card-type="brand-proposals" ng-model="proposals"></scientific-card>
+      
+
     </div>
-  </a>
-</div>

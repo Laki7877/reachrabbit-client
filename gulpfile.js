@@ -320,7 +320,7 @@ gulp.task('server', 'Start express server', function () {
     server.start();
 
     // notify server for livereload
-    gulp.watch([path.resolve(__dirname, 'public/asset/**/*'), path.resolve(__dirname, paths.src.root, '**/*')], function(file) {
+    gulp.watch([path.resolve(__dirname, 'public/asset/**/*'), path.resolve(__dirname, paths.src.root, '**/*'), path.resolve(__dirname, paths.src.root, '**/**/*')], function(file) {
       gulp.start('build');
       server.start.bind(server)();
     });

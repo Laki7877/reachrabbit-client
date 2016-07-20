@@ -3,11 +3,11 @@
  *
  * @author     Poon Wu <poon.wuthi@gmail.com
  * @author     Pat Sabpisal <ecegrid@gmail.com
- * @since      0.0.1
+ * @since      0.0.2
  */
 'use strict';
 angular.module('app.brand')
-  .controller('brandAccountProfileController', function($scope, $state, $api, $mdToast, $uploader, $storage){
+  .controller('brandAccountProfileController', function ($scope, $state, $api, $mdToast, $uploader, $storage) {
     //Hacky, will change after TODO: Friday
     document.getElementsByTagName("body")[0].style.backgroundImage = "none";
     document.getElementsByTagName("body")[0].style.backgroundColor = "#ebebeb";
@@ -15,10 +15,10 @@ angular.module('app.brand')
       socialAccounts: {}, selectedTopics: []
     };
 
-    $scope.upload = function(file) {
+    $scope.upload = function (file) {
       $scope.loadingImage = true;
       $uploader.upload('/file', file)
-        .then(function(data) {
+        .then(function (data) {
           $scope.loadingImage = false;
           $scope.formData.profilePicture = data;
         });
@@ -27,20 +27,19 @@ angular.module('app.brand')
     //get user info
     $api({
       method: 'GET',
-      url: '/me'
-    }).then(function(data) {
+      url: '/profiles'
+    }).then(function (data) {
       $scope.formData = _.extend($scope.formData, data);
-    }).catch(function(err) {
+    }).catch(function (err) {
       console.log(err);
     });
 
-
   })
-	.controller('brandAccountSigninController', function($scope, $state, $storage, $api, $mdToast) {
+  .controller('brandAccountSigninController', function ($scope, $state, $storage, $api, $mdToast) {
     // on form submit
-    $scope.submit = function(form) {
+    $scope.submit = function (form) {
       // invalid form
-      if(form.$invalid) {
+      if (form.$invalid) {
         $mdToast.show(
           $mdToast.simple()
             .textContent('Please enter required fields')
@@ -55,11 +54,11 @@ angular.module('app.brand')
         method: 'POST',
         url: '/login',
         data: $scope.formData
-      }).then(function(data) {
-        $storage.putAuth(data.token);
-        $state.go('campaign.list');
-      }).catch(function(err) {
+      }).then(function (data) {
+        $storage.put('auth', data.token);
+        $state.go('campaign');
+      }).catch(function (err) {
         console.error(err);
       });
     };
-	});
+  });

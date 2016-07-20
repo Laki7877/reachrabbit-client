@@ -51,24 +51,41 @@ angular.module('app.brand', components)
           }
         }
       });
-
     /**
-     * Campaign
+     * Campaign 
      */
     $stateProvider
-      .state('campaign', {
+      .state('campaign', { 
         parent: 'main',
         url: '/campaign',
         controller: 'brandCampaignListController',
         templateUrl: 'views/brand-campaign-list.html'
       })
-      .state('campaign.create', {
-        parent: 'main',
+      .state('campaign-create', {
+        parent: 'main', 
         url: '/campaign/create',
-        controller: 'brandCampaignCreateController',
-        templateUrl: 'views/brand-campaign-create.html'
+        controller: 'brandCampaignDetailController',
+        templateUrl: 'views/brand-campaign-detail-draft.html'
+      })
+      .state('campaign-detail-draft', { 
+        parent: 'main',
+        url: '/campaign/draft/:id',
+        controller: 'brandCampaignDetailController',
+        templateUrl: 'views/brand-campaign-detail-draft.html'
+      })
+      .state('campaign-detail-open', {
+        parent: 'main',
+        url: '/campaign/open/:id',
+        controller: 'brandCampaignProposalController',
+        templateUrl: 'views/brand-campaign-detail-open.html'
+      })
+      .state('campaign-detail-production', {
+        parent: 'main',
+        url: '/campaign/production/:id',
+        controller: 'brandCampaignSubmissionController',
+        templateUrl: 'views/brand-campaign-detail-production.html'
       });
-
+ 
   });
 
 require('bulk-require')(__dirname, ['**/*.js', '!main.js']);

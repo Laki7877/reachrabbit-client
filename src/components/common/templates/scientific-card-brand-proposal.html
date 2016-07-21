@@ -1,33 +1,33 @@
 <div class="panel panel-default" ng-repeat="card in model">
     <div class="media">
         <div class="media-left">
-            <img class="media-object" src="{{ card.influencer.user.profilePicture.url }}">
+            <img class="media-object" src="{{ card.profilePicture.url }}">
         </div>
         <div class="media-body">
-            <a ui-sref="campaign-detail-open.detail.proposal({proposal: card})">
+            <a ui-sref="campaign-detail-open.detail.proposal({ user: card })">
                 <h4 class="media-heading">
-                    {{ card.influencer.user.name }}
-                    <span class="pull-right">Status: {{ card.status }}</span>
+                    {{ card.name }}
+                    <span class="pull-right">Status: {{ card.influencer.campaignProposals[0].status }}</span>
                 </h4>
             </a>
             <div class="media-item">
                 <h5>Instagram Followers:</h5>
-                <h4>1.5m+</h4>
+                <h4>0</h4>
             </div>
             <div class="media-item">
                 <h5>Submitted on:</h5>
-                <h4>10/10/16</h4>
+                <h4>{{ card.influencer.campaignProposals[0].updatedAt  | date: 'd/M/y HH:mm' }}</h4>
             </div>
             <br><br>
             <div class="media-item">
                 <h5>Quotation:</h5>
-                <h4>{{ card.proposePrice | number: 2 }}</h4>
+                <h4>{{ card.influencer.campaignProposals[0].proposePrice | number: 2 }}</h4>
             </div>
             <div class="media-item">
                 <h5>Cost per Follower:</h5>
-                <h4>Less than 0.01 Baht</h4>
+                <h4>Less than 0.00 Baht</h4>
             </div>
         </div>
     </div>
-    
+
 </div>

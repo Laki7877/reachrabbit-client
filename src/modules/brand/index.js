@@ -107,7 +107,7 @@ angular.module('app.brand', components)
       })
       .state('campaign-detail-open.detail.proposal', {
         url: '/proposal',
-        params: {proposal: null},
+        params: { user : null},
         views: {
           '@main': {
             controller: 'brandCampaignProposalDetailController',

@@ -19,12 +19,13 @@ angular.module('app.brand')
 			//go back
 			$state.go('^');
 		}
-		if (!$stateParams.proposal) {
+		if (!$stateParams.user) {
 			return alert("You're not supposed to be here bitch.");
 		}
+    console.log($stateParams.user)
 
-		$scope.proposal = $stateParams.proposal;
-		$scope.influencers = [$stateParams.proposal.influencer];
+		$scope.proposal = $stateParams.user.influencer.campaignProposals[0];
+		$scope.influencers = [$stateParams.user];
 
 		$scope.askForRevision = function (proposal) {
 			var tmpl = 'partials/modal-revision-proposal.html';
@@ -66,7 +67,7 @@ angular.module('app.brand')
 		}
 
 		$scope.selectProposal = function (proposalId) {
-			
+
 		}
 
 	})

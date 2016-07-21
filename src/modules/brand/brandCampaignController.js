@@ -8,12 +8,49 @@
 'use strict';
 
 angular.module('app.brand')
-	.controller('brandCampaignPaymentController', function($scope, $state, $stateParams, campaign){
+  .controller('brandTransactionListController', function($scope, $state, $stateParams,  $api){
+      console.log("Transaction loaded");
+      $scope.transactions = [];
+      $api({
+        url: "/transactions",
+        "method": "GET"
+      }).then(function(data){
+        $scope.transactions = data.rows;
+      })
+  })
+	.controller('brandCampaignPaymentController', function($scope, $state, $stateParams,  $api, campaign){
 		$scope.campaign = campaign;
-		$scope.campaign.selectedProposals = _.map($scope.campaign.campaignProposals, ['isSelected', true]);
+    $scope.paymentObject = {};
+		$scope.campaign.selectedProposals = _.compact($scope.campaign.campaignProposals.map(function(o){ if(o.isSelected) return o; }));
+
+    $scope.sumFee = $scope.campaign.selectedProposals.reduce(function(total, num){
+      return total + num.proposePrice;
+    },0);
+
 		$scope.goBack = function() {
 			$state.go('^');
 		}
+
+    $scope.readyToPay = function(){
+      console.log('readyToPay')
+      $api({
+        method: "POST",
+        url: "/campaigns/" + $stateParams.campaignId + '/transactions'
+      }).then(function(success){
+        alert("Ready!");
+      })
+    }
+
+    $scope.sendSlip = function(p){
+      $api({
+        method: "PUT",
+        url: "/campaigns/" + $stateParams.campaignId + '/transactions',
+        data: p
+      }).then(function(success){
+        alert("Done!");
+      })
+    }
+
 	})
 	.controller('brandCampaignProposalDetailController', function ($scope, $mdToast, $state, $api, $window, $uibModal, $stateParams) {
 		$scope.goBack = function () {
@@ -78,7 +115,7 @@ angular.module('app.brand')
 			$api({
 				method: 'PUT',
 				url: '/campaigns/' + $stateParams.campaignId + '/proposals/' + proposal.proposalId,
-				data: _.extend({}, proposal, {status: 'accept'})
+				data: _.extend({}, proposal, {isSelected: true})
 			})
 			.then(function(data) {
 				$scope.proposal = data;

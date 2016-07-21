@@ -23,6 +23,16 @@ angular.module('app.influencer')
       });
 
 	})
+  .controller('influencerTransactionListController', function($scope, $state, $stateParams,  $api){
+      console.log("Transaction loaded");
+      $scope.transactions = [];
+      $api({
+        url: "/transactions",
+        "method": "GET"
+      }).then(function(data){
+        $scope.transactions = data.rows;
+      })
+  })
   .controller('influencerCampaignMyListController', function($scope, $api) {
     $scope.campaigns = [];
     $api({
@@ -35,13 +45,12 @@ angular.module('app.influencer')
       });
 
   })
-  .controller('influencerCampaignProductionDetailController', function($scope, $stateParams, $api, $state, $mdToast){
+  .controller('influencerCampaignProductionDetailController', function($scope, $stateParams, $api, $state, $storage){
     $scope.campaigns = [];
     $scope.campaign = {};
     $scope.submission = {
       resources: []
     };
-    $scope.proposal = {};
 
       $api({
         method: 'GET',
@@ -49,15 +58,7 @@ angular.module('app.influencer')
       }).then(function(data) {
         $scope.campaigns = [data];
         $scope.campaign = data;
-      }).catch(function(err) {
-        $scope.message = err.message;
-      });
 
-      $api({
-        method: 'GET',
-        url: '/campaigns/' + $stateParams.campaignId + '/proposals'
-      }).then(function(data) {
-        $scope.proposal = data;
       }).catch(function(err) {
         $scope.message = err.message;
       });
@@ -67,11 +68,10 @@ angular.module('app.influencer')
         $api({
           method: 'POST',
           url: '/campaigns/' + $stateParams.campaignId + '/submissions',
-          data: proposal
+          data: submission
         }).then(function(data) {
-          var el = document.getElementsByTagName("body")[0];
-          $mdToast.show($mdToast.simple().textContent('Work submitted!')
-          .position('top right').parent(el));
+          alert("Work submitted");
+          $state.go('production-campaign');
         }).catch(function(err) {
           $scope.message = err.message;
         });

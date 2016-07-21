@@ -15,10 +15,10 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <h3>Proposal Detail</h3>
-          Very unusually, Eddard announced that he would raise Jon at his home castle Winterfell, alongside his trueborn children with Catelyn. Robb was always treated as Eddard's heir, but otherwise, Jon wasn't treated much differently than his younger half-brothers Bran and Rickon. Jon's mere presence at Winterfell was an understandable source of friction between Eddard and his wife Catelyn.
+          {{ campaign.campaignProposals[0].description }}
           <br><br>
-          <h3>Proposed Price: 1,000 Baht</h3>
-          <h4>Status: Wait for Review</h4><br>
+          <h3>Proposed Price: {{ campaign.campaignProposals[0].proposePrice | number : 2}} Baht</h3>
+          <h4>Status: {{ campaign.campaignProposals[0].status }}</h4><br>
         </div>
       </div>
 
@@ -48,19 +48,15 @@
                     <h3>Submission #2</h3>
                     <fieldset>
                       <div class="control-group">
-                        <label class="control-label" for="brandname">Description</label>
+                        <label class="control-label" >Description</label>
                         <div class="controls">
-                          <textarea type="text" placeholder="" class="form-control" rows="3"></textarea>
+                          <textarea type="text" placeholder="" class="form-control" ng-model="submission.description" rows="3"></textarea>
                         </div>
                       </div>
                       <br>
 
-                      <label for="attachment">Image Attachment:</label>
-                      <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                        <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
-                        <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
-                        <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                      </div>
+                      <label for="attachment">Image Attachment:</label><br/>
+                      <image-thumb ng-model="submission.resources[0]" height="300" width="auto"></image-thumb>
                       <br>
                       <label for="attachment">Video Attachment:</label>
                       <div class="fileinput fileinput-new input-group" data-provides="fileinput">
@@ -69,13 +65,13 @@
                         <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                       </div>
                       <br>
-                      <div class="control-group">
+<!--                       <div class="control-group">
                         <label class="control-label" for="brandname">Link Attachment</label>
                         <div class="controls">
-                          <input type="text" placeholder="" class="form-control"></input>
+                          <input type="text" placeholder="" ng-model="submission.resources[1]" class="form-control"></input>
                         </div>
                       </div>
-
+ -->
 
                     </fieldset>
                   </form>
@@ -83,7 +79,7 @@
                   <br>
 
                   <div class="controls">
-                    <a href="influencer-my-campaign-list.html" class="btn btn-success">Submit</a>
+                    <a ng-click="submitWork(submission)" class="btn btn-success">Submit</a>
                   </div>
                 </div>
             </div>

@@ -71,6 +71,16 @@ angular.module('app.influencer', components)
           }
         }
       })
+     .state('transaction-list', {
+        parent: 'main',
+        url: '/transaction',
+        views: {
+          '': {
+            controller: 'influencerTransactionListController',
+            templateUrl: 'views/influencer-transaction-list.html'
+          }
+        }
+      })
       .state('production-campaign.detail', {
         url: '/:campaignId',
         views: {

@@ -69,6 +69,18 @@ angular.module('app.brand', components)
         controller: 'brandInfluencerDetailController',
         templateUrl: 'views/brand-influencer-detail.html'
       });
+
+    /**
+     * Transaction
+    */
+    $stateProvider
+      .state('transaction-list', {
+        parent: 'main',
+        url: '/transactions',
+        controller: 'brandTransactionListController',
+        templateUrl: 'views/brand-transaction-list.html'
+    });
+
     /**
      * Campaign
      */
@@ -117,7 +129,7 @@ angular.module('app.brand', components)
       })
       .state('campaign-detail-production', {
         parent: 'main',
-        url: '/campaign/production/:id',
+        url: '/campaign/production/:campaignId',
         controller: 'brandCampaignSubmissionController',
         templateUrl: 'views/brand-campaign-detail-production.html'
       })

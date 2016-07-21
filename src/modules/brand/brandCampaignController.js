@@ -85,7 +85,6 @@ angular.module('app.brand')
 			});
 		}
 
-<<<<<<< HEAD
 		$scope.unselectProposal = function (proposal) {
 			$api({
 				method: 'PUT',
@@ -95,10 +94,6 @@ angular.module('app.brand')
 			.then(function(data) {
 				$scope.proposal = data;
 			});
-=======
-		$scope.selectProposal = function (proposalId) {
-
->>>>>>> aa267f149f37a73cb5a2f8f6bf2f0c8f7e94bb63
 		}
 
 	})

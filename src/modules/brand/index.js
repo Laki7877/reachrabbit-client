@@ -131,7 +131,7 @@ angular.module('app.brand', components)
               url: '/campaigns/' + $stateParams.campaignId
             });
           }
-        }
+        },
         views: {
           '@main': {
             controller: 'brandCampaignPaymentController',

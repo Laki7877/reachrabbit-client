@@ -4,7 +4,7 @@
       <img class="media-object" src="{{ card.resources[0].url }}"  >
     </div>
     <div class="media-body">
-      <a ui-sref="open-campaign.detail({ campaignId: card.campaignId })">
+      <a ui-sref="{{card.status}}-campaign.detail({ campaignId: card.campaignId })">
         <h4 class="media-heading">{{ card.title }} <i class="fa fa-{{card.media[0].mediaId}}"></i>
         <span class="pull-right">Campaign Status: {{ card.status }}</span></h4>
       </a>

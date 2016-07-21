@@ -61,13 +61,22 @@ angular.module('app.influencer', components)
           }
         }
       })
-      .state('my-campaign', {
+      .state('production-campaign', {
         parent: 'main',
         url: '/campaign/my',
         views: {
           '': {
-            controller: 'influencerCampaignMyController',
-            templateUrl: 'views/influencer-campaign-my.html'
+            controller: 'influencerCampaignMyListController',
+            templateUrl: 'views/influencer-production-campaign.html'
+          }
+        }
+      })
+      .state('production-campaign.detail', {
+        url: '/:campaignId',
+        views: {
+          '@main': {
+            controller: 'influencerCampaignProductionDetailController',
+            templateUrl: 'views/influencer-production-campaign-detail.html'
           }
         }
       });

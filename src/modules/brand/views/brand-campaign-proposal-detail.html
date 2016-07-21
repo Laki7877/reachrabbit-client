@@ -27,7 +27,7 @@
           <br><br>
           <h4>Proposed Price: {{ proposal.proposePrice | number: 2}} Baht</h4>
           <div class="pull-left" ng-if="proposal.status != 'accept'">
-            <a href="" class="btn btn-primary">
+            <a ng-click="selectProposal(proposal)" class="btn btn-primary">
               Select Proposal
             </a>
             &nbsp
@@ -35,7 +35,7 @@
               Ask for Revision
             </a>
           </div>
-          <div class="pull-left" ng-if="proposal.status == 'accept'">
+          <div class="pull-left" ng-if="proposal.status == 'accept'" ng-click="unselectProposal(proposal)">
             <a href="#">
               Unselect this Proposal
             </a>

@@ -51,11 +51,36 @@ angular.module('app.brand')
 			}, function () {
 				console.log('Modal dismissed at: ' + new Date());
 			});
-
+			$api({
+				method: 'PUT',
+				url: '/campaigns/' + $stateParams.campaignId + '/proposals/' + proposal.proposalId,
+				data: _.extend({}, proposal, {status: 'need revision'})
+			})
+			.then(function(data) {
+				$scope.proposal = data;
+			});
 		}
 
-		$scope.selectProposal = function (proposalId) {
+		$scope.selectProposal = function (proposal) {
+			$api({
+				method: 'PUT',
+				url: '/campaigns/' + $stateParams.campaignId + '/proposals/' + proposal.proposalId,
+				data: _.extend({}, proposal, {status: 'accept'})
+			})
+			.then(function(data) {
+				$scope.proposal = data;
+			});
+		}
 
+		$scope.unselectProposal = function (proposal) {
+			$api({
+				method: 'PUT',
+				url: '/campaigns/' + $stateParams.campaignId + '/proposals/' + proposal.proposalId,
+				data: _.extend({}, proposal, {status: 'wait for review'})
+			})
+			.then(function(data) {
+				$scope.proposal = data;
+			});
 		}
 
 	})

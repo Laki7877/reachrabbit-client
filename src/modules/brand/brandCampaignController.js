@@ -126,7 +126,7 @@ angular.module('app.brand')
 			$api({
 				method: 'PUT',
 				url: '/campaigns/' + $stateParams.campaignId + '/proposals/' + proposal.proposalId,
-				data: _.extend({}, proposal, {status: 'wait for review'})
+				data: _.extend({}, proposal, {isSelected: false})
 			})
 			.then(function(data) {
 				$scope.proposal = data;

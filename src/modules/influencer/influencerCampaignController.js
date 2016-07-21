@@ -104,6 +104,7 @@ angular.module('app.influencer')
           var el = document.getElementsByTagName("body")[0];
           $mdToast.show($mdToast.simple().textContent('Applied!')
           .position('top right').parent(el));
+          alert('Applied!');
         }).catch(function(err) {
           $scope.message = err.message;
         });

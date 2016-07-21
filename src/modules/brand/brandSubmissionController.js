@@ -8,7 +8,21 @@
 'use strict';
 
 angular.module('app.brand')
-	.controller('brandCampaignSubmissionController', function($scope, $api, $stateParams) {
+  .controller('brandCampaignSubmissionDetailController', function($scope, $api, $stateParams) {
+    $scope.influencerArray = [];
+    $scope.formData = {};
+    $api({
+      method: 'GET',
+      url: '/submissions/' + $stateParams.submissionId
+    }).then(function (data) {
+      $scope.formData = data;
+      $scope.influencerArray = [$scope.formData.influencer];
+    }).catch(function (err) {
+      console.error("cant get campaign data", err);
+    });
+
+  })
+	.controller('brandCampaignSubmissionListController', function($scope, $api, $stateParams) {
     $scope.formDataArray = [];
     $scope.formData = {};
 

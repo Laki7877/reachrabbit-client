@@ -130,8 +130,17 @@ angular.module('app.brand', components)
       .state('campaign-detail-production', {
         parent: 'main',
         url: '/campaign/production/:campaignId',
-        controller: 'brandCampaignSubmissionController',
+        controller: 'brandCampaignSubmissionListController',
         templateUrl: 'views/brand-campaign-detail-production.html'
+      })
+      .state('campaign-detail-production.submission-detail', {
+        url: '/submission/:submissionId',
+        views: {
+          '@main': {
+             controller: 'brandCampaignSubmissionDetailController',
+              templateUrl: 'views/brand-submission-detail.html'
+          }
+        }
       })
       .state('campaign-detail-open.detail.pay', {
         url: '/payment',

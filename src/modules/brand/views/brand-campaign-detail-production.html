@@ -54,7 +54,7 @@
             <img class="media-object" src="{{ card.influencer.user.profilePicture.url }}">
           </div>
           <div class="media-body">
-            <a href="brand-submission-detail.html">
+            <a ui-sref="campaign-detail-production.submission-detail({ submissionId: card.submissionId })">
               <h4 class="media-heading">
                   {{ card.influencer.user.name }}
                   <span class="pull-right">Status: {{ card.status }}</span>

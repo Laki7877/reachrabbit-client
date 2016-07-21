@@ -26,6 +26,11 @@ angular.module('app.common')
       $http(opts).then(function(result) {
         defer.resolve(result.data);
       }).catch(function(err) {
+        console.log("Error", err);
+        if(err.status == 401){
+          alert("Not logged in");
+        }
+
         defer.reject(err);
       });
 

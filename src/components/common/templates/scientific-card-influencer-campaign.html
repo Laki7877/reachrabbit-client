@@ -1,12 +1,12 @@
  <div class="panel panel-default" ng-repeat="card in model">
   <div class="media" >
     <div class="media-left">
-      <img class="media-object" src="{{ card.resources[0].url }}"  >
+      <img ng-if="card.resources.length > 0" class="media-object" src="{{ card.resources[0].url }}"  >
     </div>
     <div class="media-body">
       <a ui-sref="{{card.status}}-campaign.detail({ campaignId: card.campaignId })">
         <h4 class="media-heading">{{ card.title }} <i class="fa fa-{{card.media[0].mediaId}}"></i>
-        <span class="pull-right">Campaign Status: {{ card.status }}</span></h4>
+        <span class="pull-right">Campaign Status: {{ getStatus(card) }}</span></h4>
       </a>
       <div class="media-item">
         <h5>Reward</h5>
@@ -15,6 +15,14 @@
        <div class="media-item">
         <h5>Submission Deadline</h5>
         <h4>{{ card.submissionDeadline | date }}</h4>
+      </div>
+      <div class="media-item" ng-show="card.category">
+        <h5>Category</h5>
+        <h4>{{ card.category }}</h4>
+      </div>
+      <div class="media-item">
+        <h5>Proposal Result</h5>
+        <h4>Soon</h4>
       </div>
     </div>
   </div>

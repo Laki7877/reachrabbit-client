@@ -85,9 +85,12 @@ angular.module('app.brand', components)
      * Campaign
      */
     $stateProvider
-      .state('campaign', {
+      .state('campaign-list', {
         parent: 'main',
         url: '/campaign',
+        params: {
+          alert: null
+        },
         controller: 'brandCampaignListController',
         templateUrl: 'views/brand-campaign-list.html'
       })

@@ -21,7 +21,7 @@ angular.module('app.influencer')
   * Influencer Profile
   *
   */
-  .controller('influencerAccountProfileController', function($scope,$uploader, $auth, $mdToast, $mdDialog, $api) {
+  .controller('influencerAccountProfileController', function($scope,$uploader, $auth, $api) {
 
     $scope.formData = {
       selectedTopics: []

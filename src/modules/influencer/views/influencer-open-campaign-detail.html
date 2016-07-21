@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="page-header">
-        <h2 class="pull-left">Campaign Detail (OPEN)</h2>
+        <h2 class="pull-left">Campaign Detail ({{ campaign.status | uppercase }})</h2>
         <div class="pull-right">
             <a ui-sref="^" class="btn btn-default">
             Back to Campaign List
@@ -11,8 +11,10 @@
     </div>
 
     <scientific-card ng-model="campaigns" card-type="influencer-campaign-detail"></scientific-card>
+    <scientific-card ng-model="proposals" card-type="influencer-proposal"></scientific-card>
+    <scientific-card card-type="brand-comment" ng-model="comments"></scientific-card>
 
-    <div class="panel panel-default">
+    <div ng-show="!isApplied" class="panel panel-default">
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-8">
@@ -26,8 +28,7 @@
             </div>
         </div>
     </div>
-
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-if="!isApplied">
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-8">

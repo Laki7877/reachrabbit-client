@@ -3,7 +3,7 @@
  *
  * @author     Poon Wu <poon.wuthi@gmail.com
  * @author     Pat Sabpisal <ecegrid@gmail.com
- * @since      0.0.2
+ * @since      0.0.3
  */
 'use strict';
 
@@ -47,7 +47,7 @@ angular.module('app.influencer', components)
         url: '/campaign/open',
         views: {
           '': {
-            controller: 'influencerCampaignListController',
+            controller: 'influencerOpenCampaignListController',
             templateUrl: 'views/influencer-open-campaign-list.html'
           }
         }
@@ -61,17 +61,44 @@ angular.module('app.influencer', components)
           }
         }
       })
-      .state('production-campaign', {
+      .state('my-campaign', {
         parent: 'main',
         url: '/campaign/my',
         views: {
           '': {
-            controller: 'influencerCampaignMyListController',
-            templateUrl: 'views/influencer-production-campaign.html'
+            controller: 'influencerMyCampaignListController',
+            templateUrl: 'views/influencer-my-campaign-list.html'
           }
         }
       })
-     .state('transaction-list', {
+      .state('my-campaign.applied', {
+        url: '/:campaignId',
+        views: {
+          '@main': {
+            controller: 'influencerCampaignDetailController',
+            templateUrl: 'views/influencer-my-campaign-applied.html'
+          }
+        }
+      })
+      .state('my-campaign.production', {
+        url: '/:campaignId',
+        views: {
+          '@main': {
+            controller: 'influencerCampaignDetailController',
+            templateUrl: 'views/influencer-my-campaign-production.html'
+          }
+        }
+      })
+      .state('my-campaign.complete', {
+        url: '/:campaignId',
+        views: {
+          '@main': {
+            controller: 'influencerCampaignDetailController',
+            templateUrl: 'views/influencer-my-campaign-complete.html'
+          }
+        }
+      })
+      .state('transaction-list', {
         parent: 'main',
         url: '/transaction',
         views: {
@@ -81,15 +108,6 @@ angular.module('app.influencer', components)
           }
         }
       })
-      .state('production-campaign.detail', {
-        url: '/:campaignId',
-        views: {
-          '@main': {
-            controller: 'influencerCampaignProductionDetailController',
-            templateUrl: 'views/influencer-production-campaign-detail.html'
-          }
-        }
-      });
 
   });
 

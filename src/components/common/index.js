@@ -12,7 +12,6 @@ var components = [
 	'angularCSS',
 	'satellizer',
   'ngFileUpload',
-  'ngMaterial',
   'ui.bootstrap'
 ];
 

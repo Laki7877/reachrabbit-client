@@ -52,7 +52,7 @@ angular.module('app.brand')
     }
 
 	})
-	.controller('brandCampaignProposalDetailController', function ($scope, $mdToast, $state, $api, $window, $uibModal, $stateParams) {
+	.controller('brandCampaignProposalDetailController', function ($scope, $state, $api, $window, $uibModal, $stateParams) {
 		$scope.goBack = function () {
 			//go back
 			$state.go('^');
@@ -72,6 +72,7 @@ angular.module('app.brand')
 				templateUrl: tmpl,
 				controller: function ($scope, $api, $uibModalInstance, proposal) {
 					$scope.formData = proposal;
+          $scope.formData.status = "need revision";
 					$scope.saveComment = function () {
 						console.log("Saving")
 						$api({
@@ -95,9 +96,6 @@ angular.module('app.brand')
 
 			modalInstance.result.then(function (data) {
 				console.log(data);
-				var el = document.getElementsByTagName("body")[0];
-				$mdToast.show($mdToast.simple().textContent('Message Sent!')
-					.position('top right').parent(el));
 			}, function () {
 				console.log('Modal dismissed at: ' + new Date());
 			});
@@ -166,7 +164,7 @@ angular.module('app.brand')
 		});
 
 	})
-	.controller('brandCampaignDetailDraftController', function ($scope, $api, $stateParams) {
+	.controller('brandCampaignDetailDraftController', function ($scope, $state, $api, $stateParams) {
 		var method = 'POST';
 		var url = '/campaigns';
 
@@ -195,7 +193,7 @@ angular.module('app.brand')
 				url: url,
 				data: $scope.formData
 			}).then(function (data) {
-				alert("Done")
+				$state.go('campaign-list', { alert : "Campaign saved successfully. "});
 			}).catch(function (err) {
 				console.error("bad stuff happened", err);
 			});
@@ -214,13 +212,16 @@ angular.module('app.brand')
 		}
 
 	})
-	.controller('brandCampaignListController', function ($scope, $api) {
+	.controller('brandCampaignListController', function ($scope, $api, $stateParams, NcAlert) {
 		$scope.campaigns = [];
-
 		$api({
 			method: 'GET',
 			url: '/campaigns'
 		}).then(function (data) {
 			$scope.campaigns = data;
+      $scope.alert = new NcAlert();
+      if($stateParams.alert){
+          $scope.alert.success($stateParams.alert);
+      }
 		});
 	});

@@ -8,8 +8,10 @@
 'use strict';
 
 angular.module('app.influencer')
-	.controller('influencerCampaignListController', function($scope, $api) {
+	.controller('influencerOpenCampaignListController', function($scope, $api,VirtualStatus, NcAlert) {
     $scope.campaigns = [];
+    $scope.alert = new NcAlert();
+
     $api({
         method: 'GET',
         url: '/campaigns',
@@ -18,10 +20,17 @@ angular.module('app.influencer')
         }
       }).then(function(data) {
         $scope.campaigns = data.rows;
+        $scope.campaigns.forEach(function(c){
+          var mine = VirtualStatus.isApplied(c);
+          //applied
+          if(mine){
+            c.virtualStatus = 'applied';
+          }
+        });
+
       }).catch(function(err) {
         $scope.message = err.message;
       });
-
 	})
   .controller('influencerTransactionListController', function($scope, $state, $stateParams,  $api){
       console.log("Transaction loaded");
@@ -33,7 +42,7 @@ angular.module('app.influencer')
         $scope.transactions = data.rows;
       })
   })
-  .controller('influencerCampaignMyListController', function($scope, $api) {
+  .controller('influencerMyCampaignListController', function($scope, $api) {
     $scope.campaigns = [];
     $api({
         method: 'GET',
@@ -43,26 +52,61 @@ angular.module('app.influencer')
       }).catch(function(err) {
         $scope.message = err.message;
       });
-
   })
-  .controller('influencerCampaignProductionDetailController', function($scope, $stateParams, $api, $state, $storage){
+  .controller('influencerCampaignDetailController', function($scope, VirtualStatus, $storage, $stateParams, $state, $api){
     $scope.campaigns = [];
+    $scope.proposals = [];
+
     $scope.campaign = {};
+
+    $scope.proposal = {
+      resources: []
+    };
     $scope.submission = {
       resources: []
     };
 
-      $api({
+    $scope.comments = [];
+
+    $scope.isApplied = false;
+
+
+    $api({
         method: 'GET',
         url: '/campaigns/' + $stateParams.campaignId
       }).then(function(data) {
         $scope.campaigns = [data];
         $scope.campaign = data;
 
+        var mine = VirtualStatus.isApplied(data);
+        //applied
+        if(mine){
+          $scope.campaign.status = 'applied';
+          $scope.isApplied = true;
+          if(mine.comment){
+            $scope.comments.push(mine.comment);
+          }
+          $scope.proposal = mine;
+          $scope.proposals = [mine];
+        }
+
       }).catch(function(err) {
         $scope.message = err.message;
       });
 
+
+      $scope.applyCampaign = function(proposal){
+        $api({
+          method: 'POST',
+          url: '/campaigns/' + $stateParams.campaignId + '/proposals',
+          data: proposal
+        }).then(function(data) {
+          var el = document.getElementsByTagName("body")[0];
+          alert('Applied!');
+        }).catch(function(err) {
+          $scope.message = err.message;
+        });
+      }
 
       $scope.submitWork = function(submission){
         $api({
@@ -76,37 +120,5 @@ angular.module('app.influencer')
           $scope.message = err.message;
         });
       }
-  })
-  .controller('influencerCampaignDetailController', function($scope, $mdToast, $stateParams, $state, $api){
-    $scope.campaigns = [];
-    $scope.campaign = {};
-    $scope.proposal = {
-      resources: []
-    };
 
-    $api({
-        method: 'GET',
-        url: '/campaigns/' + $stateParams.campaignId
-      }).then(function(data) {
-        $scope.campaigns = [data];
-        $scope.campaign = data;
-      }).catch(function(err) {
-        $scope.message = err.message;
-      });
-
-
-      $scope.applyCampaign = function(proposal){
-        $api({
-          method: 'POST',
-          url: '/campaigns/' + $stateParams.campaignId + '/proposals',
-          data: proposal
-        }).then(function(data) {
-          var el = document.getElementsByTagName("body")[0];
-          $mdToast.show($mdToast.simple().textContent('Applied!')
-          .position('top right').parent(el));
-          alert('Applied!');
-        }).catch(function(err) {
-          $scope.message = err.message;
-        });
-      }
   });

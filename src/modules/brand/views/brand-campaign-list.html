@@ -14,13 +14,10 @@
     <br><br>
   </div>
 
-  <div class="alert alert-success">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Success!</strong> you have done something positive.
-  </div>
+  <nc-alert nc-model="alert"></nc-alert>
 
 
-  <div class="panel panel-default">
+  <div class="panel panel-default" ng-if="campaigns.row.length > 0">
     <div class="panel-body text-center">
       You do not have any campaign. <a href="/brand#/campaign/create">Click here to create campaign</a>
     </div>

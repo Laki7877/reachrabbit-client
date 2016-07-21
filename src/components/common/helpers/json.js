@@ -121,5 +121,6 @@ angular.module('app.common')
                 return nullDateVal;
             };
         JSON.useDateParser();
+        console.log("Init $json")
         return JSON.parse;
     });

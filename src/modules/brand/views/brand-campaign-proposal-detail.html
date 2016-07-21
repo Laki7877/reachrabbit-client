@@ -10,6 +10,10 @@
         <div class="clear"></div>
       </div>
 
+      <div ng-show="showAlertProposal" class="alert alert-success">
+        Message Sent!
+      </div>
+
       <div class="alert alert-success">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         You have selected Someone. When you are satisfy with your selections, you can click <a href="brand-campaign-pay.html">"Review & Pay"</a>
@@ -26,7 +30,7 @@
           {{ proposal.description }}
           <br><br>
           <h4>Proposed Price: {{ proposal.proposePrice | number: 2}} Baht</h4>
-          <div class="pull-left" ng-if="proposal.status != 'accept'">
+          <div class="pull-left" ng-if="!proposal.isSelected">
             <a href="brand-campaign-detail-open.html" class="btn btn-primary">
               Select Proposal
             </a>
@@ -35,7 +39,7 @@
               Ask for Revision
             </a>
           </div>
-          <div class="pull-left" ng-if="proposal.status == 'accept'">
+          <div class="pull-left" ng-if="proposal.isSelected">
             <a href="#">
               Unselect this Proposal
             </a>

@@ -8,9 +8,13 @@
 'use strict';
 
 angular.module('app.influencer')
-	.controller('influencerOpenCampaignListController', function($scope, $api,VirtualStatus, NcAlert) {
+	.controller('influencerOpenCampaignListController', function($scope, $stateParams, $api,VirtualStatus, NcAlert) {
     $scope.campaigns = [];
     $scope.alert = new NcAlert();
+
+    if($stateParams.alert){
+      $scope.alert.success($stateParams.alert);
+    }
 
     $api({
         method: 'GET',
@@ -95,14 +99,14 @@ angular.module('app.influencer')
       });
 
 
-      $scope.applyCampaign = function(proposal){
+      $scope.postProposal = function(proposal){
+        proposal.status = 'wait for review';
         $api({
           method: 'POST',
           url: '/campaigns/' + $stateParams.campaignId + '/proposals',
           data: proposal
         }).then(function(data) {
-          var el = document.getElementsByTagName("body")[0];
-          alert('Applied!');
+          $state.go('open-campaign', { alert: 'Applied to campaign'});
         }).catch(function(err) {
           $scope.message = err.message;
         });
@@ -114,8 +118,7 @@ angular.module('app.influencer')
           url: '/campaigns/' + $stateParams.campaignId + '/submissions',
           data: submission
         }).then(function(data) {
-          alert("Work submitted");
-          $state.go('production-campaign');
+          $state.go('open-campaign', {alert: "Your work has been submitted and is being reviewed."});
         }).catch(function(err) {
           $scope.message = err.message;
         });

@@ -44,6 +44,7 @@ angular.module('app.influencer', components)
       })
       .state('open-campaign', {
         parent: 'main',
+        params: {alert: null},
         url: '/campaign/open',
         views: {
           '': {

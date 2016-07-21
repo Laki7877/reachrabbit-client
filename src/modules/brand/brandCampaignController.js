@@ -8,7 +8,14 @@
 'use strict';
 
 angular.module('app.brand')
-	.controller('brandCampaignProposalDetailController', function ($scope, $state, $api, $window, $uibModal, $stateParams) {
+	.controller('brandCampaignPaymentController', function($scope, $state, $stateParams, campaign){
+		$scope.campaign = campaign;
+		$scope.campaign.selectedProposals = _.map($scope.campaign.campaignProposals, ['isSelected', true]);
+		$scope.goBack = function() {
+			$state.go('^');
+		}
+	})
+	.controller('brandCampaignProposalDetailController', function ($scope, $mdToast, $state, $api, $window, $uibModal, $stateParams) {
 		$scope.goBack = function () {
 			//go back
 			$state.go('^');
@@ -25,29 +32,34 @@ angular.module('app.brand')
 			var modalInstance = $uibModal.open({
 				animation: true,
 				templateUrl: tmpl,
-				controller: function($scope, $api, proposal){
+				controller: function ($scope, $api, $uibModalInstance, proposal) {
 					$scope.formData = proposal;
-					$scope.saveComment = function(){
+					$scope.saveComment = function () {
 						console.log("Saving")
 						$api({
-							url: '/campaigns/' + proposal.proposalId + '/proposals',
-							method: 'POST',
+							url: '/campaigns/' + proposal.campaignId + '/proposals/' + proposal.proposalId,
+							method: 'PUT',
 							data: $scope.formData
-						}).then(function(data){
-							console.log(data);
-						})
+						}).then(function (data) {
+							$uibModalInstance.close(data);
+						}).catch(function (err) {
+							alert("Can't save! Nien.")
+						});
 					}
 				},
 				size: 'lg',
 				resolve: {
-					'proposal': function(){
+					'proposal': function () {
 						return proposal;
 					}
 				}
 			});
 
-			modalInstance.result.then(function (selectedItem) {
-				$scope.selected = selectedItem;
+			modalInstance.result.then(function (data) {
+				console.log(data);
+				var el = document.getElementsByTagName("body")[0];
+				$mdToast.show($mdToast.simple().textContent('Message Sent!')
+					.position('top right').parent(el));
 			}, function () {
 				console.log('Modal dismissed at: ' + new Date());
 			});
@@ -90,6 +102,10 @@ angular.module('app.brand')
 		$scope.proposals = [];
 		if (!$stateParams.campaignId) {
 			alert("Fuk you");
+		}
+
+		$scope.reviewAndPay = function(){
+			$state.go('campaign-detail-open.detail.pay', { campaign: $scope.formData });
 		}
 
 		$api({

@@ -120,6 +120,24 @@ angular.module('app.brand', components)
         url: '/campaign/production/:id',
         controller: 'brandCampaignSubmissionController',
         templateUrl: 'views/brand-campaign-detail-production.html'
+      })
+      .state('campaign-detail-open.detail.pay', {
+        url: '/payment',
+        params: { campaign : null},
+        resolve: {
+          campaign: function($stateParams, $api) {
+            return $api({
+              method: 'GET',
+              url: '/campaigns/' + $stateParams.campaignId
+            });
+          }
+        }
+        views: {
+          '@main': {
+            controller: 'brandCampaignPaymentController',
+            templateUrl: 'views/brand-campaign-pay.html'
+          }
+        }
       });
   });
 

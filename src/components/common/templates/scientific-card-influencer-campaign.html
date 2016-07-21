@@ -1,17 +1,16 @@
  <div class="panel panel-default" ng-repeat="card in model">
-
   <div class="media" >
     <div class="media-left">
-      <img class="media-object" src="images/campaign-pokeland.jpg"  >
+      <img class="media-object" src="{{ card.resources[0].url }}"  >
     </div>
     <div class="media-body">
-      <a href="influencer-campaign-detail-open.html">
-        <h4 class="media-heading">{{ card.title }} <i class="fa fa-{{card.media.mediaId}}"></i>
+      <a ui-sref="open-campaign.detail({ campaignId: card.campaignId })">
+        <h4 class="media-heading">{{ card.title }} <i class="fa fa-{{card.media[0].mediaId}}"></i>
         <span class="pull-right">Campaign Status: {{ card.status }}</span></h4>
       </a>
       <div class="media-item">
         <h5>Reward</h5>
-        <h4>No reward</h4>
+        <h4>{{ card.budget }}</h4>
       </div>
     </div>
   </div>

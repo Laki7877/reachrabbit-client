@@ -2,7 +2,7 @@
  * influencer module
  *
  * @author     Poon Wu <poon.wuthi@gmail.com
- * @author     Pat Sabpisal <ecegrid@gmail.com
+ * @author     Pat Sabpisal <ecegrid@gmail.com  
  * @since      0.0.2
  */
 'use strict';
@@ -49,6 +49,15 @@ angular.module('app.influencer', components)
           '': {
             controller: 'influencerCampaignListController',
             templateUrl: 'views/influencer-open-campaign-list.html'
+          }
+        }
+      })
+      .state('open-campaign.detail', {
+        url: '/:campaignId', 
+        views: { 
+          '@main': {
+            controller: 'influencerCampaignDetailController',
+            templateUrl: 'views/influencer-open-campaign-detail.html'
           }
         }
       })

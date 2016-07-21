@@ -1,0 +1,72 @@
+<div class="container">
+
+    <div class="page-header">
+        <h2 class="pull-left">Campaign Detail (OPEN)</h2>
+        <div class="pull-right">
+            <a ui-sref="^" class="btn btn-default">
+            Back to Campaign List
+          </a>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <scientific-card ng-model="campaigns" card-type="influencer-campaign-detail"></scientific-card>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>Campaign Detail</h3>
+                    {{ campaign.description}}
+
+                    <div ng-repeat="resource in campaign.resources" ng-if="$index > 0">
+                        <img src="{{resource.url}}" alt="" class="img-responsive" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <form class="form-horizontal" action="" method="POST">
+                        <h3>Apply for this Campaign</h3>
+                        <fieldset>
+                            <div class="control-group">
+                                <label class="control-label" for="brandname">Why should it be you?</label>
+                                <div class="controls">
+                                    <textarea type="text" placeholder="" ng-model="proposal.description" class="form-control" rows="3"></textarea>
+                                    <span>Ex: "I'm so handsome and you know it."</span>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="control-group">
+                                <label class="control-label" for="brandname">Proposed Price</label>
+                                <div class="controls">
+                                    <input type="text" ng-model="proposal.proposePrice" placeholder="" class="form-control">
+                                </div>
+                                <span class="color-red">You will be charge 18% [NOTE: We need to work on this.]</span>
+                            </div>
+                            <br>
+                            <label for="attachment">Image Attachment (Optional):</label>
+                            <br/>
+                            <image-thumb width="auto" height="200"
+                            no-image-url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/No_image_available_600_x_200.svg/600px-No_image_available_600_x_200.svg.png"
+                            ng-model="proposal.resources[0]"></image-thumb>
+                        </fieldset>
+                    </form>
+
+                    <br>
+
+                    <div class="controls">
+                        <a ng-click="applyCampaign(proposal)" class="btn btn-success">Submit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -91,7 +91,16 @@ angular.module('app.landing', components)
 						templateUrl: 'views/signup-brand.html'
 					}
 				}
-			});
+			})
+      .state('admin-signin', {
+        url: '/admin',
+        views: {
+          '': {
+            controller: 'adminAccountSigninController',
+            templateUrl: 'views/signin-admin.html'
+          }
+        }
+      });
 
 	});
 

@@ -63,4 +63,20 @@ angular.module('app.landing')
   .controller('influencerAccountSigninController', function($scope) {
     $scope.formData = {};
     $scope.submit = function(form) {};
+  })
+  /**
+   * Admin Sign In
+   */
+  .controller('adminAccountSigninController', function($scope, $api, $window) {
+    $scope.formData = {};
+    $scope.submit = function(form) {
+      $api({
+        method: 'POST',
+        url: '/login/admin'
+      })
+      .then(function(data) {
+        $storage.putAuth(data.token);
+        $window.location.href="/admin";
+      });
+    };
   });

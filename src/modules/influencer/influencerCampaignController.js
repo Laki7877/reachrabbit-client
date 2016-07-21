@@ -26,7 +26,9 @@ angular.module('app.influencer')
   .controller('influencerCampaignDetailController', function($scope, $mdToast, $stateParams, $state, $api){
     $scope.campaigns = [];
     $scope.campaign = {};
-    $scope.proposal = {};
+    $scope.proposal = {
+      resources: []
+    };
 
     $api({
         method: 'GET',
@@ -41,8 +43,8 @@ angular.module('app.influencer')
 
       $scope.applyCampaign = function(proposal){
         $api({
-          method: 'GET',
-          url: '/campaigns/' + $stateParams.campaignId + '/proposal',
+          method: 'POST',
+          url: '/campaigns/' + $stateParams.campaignId + '/proposals',
           data: proposal
         }).then(function(data) {
           var el = document.getElementsByTagName("body")[0];

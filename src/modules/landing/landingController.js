@@ -42,6 +42,7 @@ angular.module('app.landing')
 
     $scope.onAlreadyLoggedIn = function(d){
       console.log('onAlreadyLoggedIn', d);
+      $storage.putAuth(d.token);
       $window.location.href= '/influencer#/profile';
     }
 

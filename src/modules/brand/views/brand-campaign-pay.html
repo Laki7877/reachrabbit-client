@@ -45,9 +45,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr ng-repeat="">
                                 <td>Jon Snow</td>
                                 <td class="table-item-price">1,000</td>
+                            </tr>
+                            <tr>
+                                <td>Daenerys Targaryen</td>
+                                <td class="table-item-price">10,000</td>
+                            </tr>
+                            <tr>
+                                <td>Fee</td>
+                                <td class="table-item-price">0</td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td class="table-item-price"><strong>11,000</strong></td>
                             </tr>
                         </tbody>
                     </table>
@@ -80,15 +92,13 @@
                     <br>
 
                     <div class="controls">
-                        <a href="brand-campaign-list.html"><button class="btn btn-success">Ready to Pay</button></a>
+                        <a ng-click="readyToPay()"><button class="btn btn-success">Ready to Pay</button></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <div class="panel panel-default">
+    <div ng-if="" class="panel panel-default">
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">

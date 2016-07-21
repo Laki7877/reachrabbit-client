@@ -65,6 +65,7 @@ angular.module('app.influencer', components)
       .state('my-campaign', {
         parent: 'main',
         url: '/campaign/my',
+        params: { alert: null},
         views: {
           '': {
             controller: 'influencerMyCampaignListController',

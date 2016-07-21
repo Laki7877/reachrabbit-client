@@ -27,7 +27,6 @@ angular.module('app.influencer')
       selectedTopics: []
     };
 
-
     $scope.upload = function(file) {
       $scope.loadingImage = true;
       $uploader.upload('/file', file)

@@ -11,7 +11,6 @@ angular.module('app.influencer')
 	.controller('influencerOpenCampaignListController', function($scope, $stateParams, $api,VirtualStatus, NcAlert) {
     $scope.campaigns = [];
     $scope.alert = new NcAlert();
-
     if($stateParams.alert){
       $scope.alert.success($stateParams.alert);
     }
@@ -46,8 +45,12 @@ angular.module('app.influencer')
         $scope.transactions = data.rows;
       })
   })
-  .controller('influencerMyCampaignListController', function($scope, $api) {
+  .controller('influencerMyCampaignListController', function($scope, NcAlert, $stateParams, $api) {
     $scope.campaigns = [];
+    $scope.alert = new NcAlert();
+    if($stateParams.alert){
+      $scope.alert.success($stateParams.alert);
+    }
     $api({
         method: 'GET',
         url: '/mycampaigns'
@@ -106,7 +109,11 @@ angular.module('app.influencer')
           url: '/campaigns/' + $stateParams.campaignId + '/proposals',
           data: proposal
         }).then(function(data) {
-          $state.go('open-campaign', { alert: 'Applied to campaign'});
+          if(proposal.proposalId){
+            $state.go('my-campaign', { alert: 'Updated campaign.'});
+          }else{
+            $state.go('open-campaign', { alert: 'Applied to campaign.'});
+          }
         }).catch(function(err) {
           $scope.message = err.message;
         });

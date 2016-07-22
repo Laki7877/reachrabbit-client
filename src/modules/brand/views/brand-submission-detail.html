@@ -36,7 +36,7 @@
           <br><br>
           <img ng-repeat="res in formData.resources" src="{{res.url}}" width="500" alt="" />
           <br><br>
-          <div class="pull-left">
+          <div class="pull-left" ng-if="formData.status != 'posted'">
             <a ng-click="waitForPost(formData)" class="btn btn-primary" data-toggle="modal" data-target="#modal-approve-submission">
               Approve Proposal
             </a>
@@ -46,5 +46,16 @@
           </div>
         </div>
       </div>
+
+    <div class="panel panel-default">
+
+      <div class="panel-body">
+          <h3>Your Feedback</h3>
+          <blockquote>
+            {{  formData.comment }}
+          </blockquote>
+          <h4>Posting Time: {{ formData.proof[0].updatedAt  | date: 'd/M/y H:m'}}</h4>
+        </div>
+    </div>
 
     </div>

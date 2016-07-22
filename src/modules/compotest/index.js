@@ -15,6 +15,21 @@ angular.module('app.compotest', components)
     $stateProvider
       .state('compotest', {
         url: '/',
+        resolve: {
+        	admin: function($api, $storage) {
+        		return $api({
+  			      method: 'POST',
+  			      url: '/login/admin',
+  			      data: {
+  			        email: 'admin@reachrabbit.com',
+  			        password: '1234'
+  			      }
+  			    })
+  			    .then(function(result) {
+  			      $storage.putAuth(result.token);
+  			    });
+        	}
+        },
         controller: 'compotestController',
         templateUrl: 'index.html'
       });

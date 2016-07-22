@@ -23,7 +23,7 @@ angular.module('app', components)
 
       $rootScope.getRouteByStatusApplied = function(card){
         if(card.status == 'payment pending' ||
-          card.status == 'wait for payment' ||
+          card.status == 'wait for payment' || card.status == 'open' ||
           card.status == 'wait for confirm'){
           return 'applied';
         }

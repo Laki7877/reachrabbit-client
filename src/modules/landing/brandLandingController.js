@@ -6,7 +6,7 @@
  */
  var loadSocialProfile = require('./socialProfile');
 angular.module('app.landing')
-.controller('brandAccountSignupController', function($scope, $state, $api, $mdToast, $uploader, $storage) {
+.controller('brandAccountSignupController', function($scope, $state, $api, $uploader, $storage) {
     $scope.formData = $storage.get('brandAccountSignupFormData') || {};
     $scope.formData.brand = {};
     $scope.loadingImage = false;

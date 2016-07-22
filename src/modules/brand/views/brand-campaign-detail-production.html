@@ -3,59 +3,30 @@
       <div class="page-header">
         <h2 class="pull-left">Campaign Detail (PRODUCTION)</h2>
         <div class="pull-right">
-          <a href="brand-campaign-list.html" class="btn btn-default">
+          <a  href="/brand#/campaign" class="btn btn-default">
             Back to Campaign List
           </a>
         </div>
         <div class="clear"></div>
       </div>
 
-      <div class="panel panel-default">
-        <div class="media">
-          <div class="media-left">
-            <img class="media-object" src="images/campaign-pokeland.jpg">
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">
-              Pokeland Summer Campaign <i class="fa fa-instagram"></i>
-              <span class="pull-right">
-                <a href="#"  data-toggle="modal" data-target="#modal-view-detail">View Detail</a>
-              </span>
-            </h4>
-            <div class="media-item">
-              <h5>Status:</h5>
-              <h4>Production</h4>
-            </div>
-            <div class="media-item">
-              <h5>Reward:</h5>
-              <h4>500-1,5000</h4>
-            </div>
-            <div class="media-item">
-              <h5>Production Deadline:</h5>
-              <h4>30/06/2016 (30 Days left)</h4>
-            </div>
-            <div class="media-item">
-              <h5>Category:</h5>
-              <h4>Beauty</h4>
-            </div>
-          </div>
-        </div>
-      </div>
+      <scientific-card card-type="brand-my-campaign" ng-model="formDataArray"></scientific-card>
+
 
       <div class="panel panel-default">
         <div class="media">
           <div class="media-body">
             <div class="media-item">
               <h5>Selected Proposals:</h5>
-              <h4>2</h4>
+              <h4>{{ formData.campaignProposals.length }}</h4>
             </div>
             <div class="media-item">
               <h5>Posted:</h5>
-              <h4>0</h4>
+              <h4>{{ formData.campaignSubmissions.length }}</h4>
             </div>
             <div class="media-item">
               <h5>Budget:</h5>
-              <h4>1,000</h4>
+              <h4>{{ formData.budget }}</h4>
             </div>
             <div class="media-item">
               <h5>Potential Reach</h5>
@@ -77,16 +48,16 @@
         <br><br>
       </div>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default" ng-repeat="card in formData.campaignSubmissions">
         <div class="media">
           <div class="media-left">
-            <img class="media-object" src="images/profile-pic-jon.jpg">
+            <img class="media-object" src="{{ card.influencer.user.profilePicture.url }}">
           </div>
           <div class="media-body">
-            <a href="brand-submission-detail.html">
+            <a ui-sref="campaign-detail-production.submission-detail({ submissionId: card.submissionId })">
               <h4 class="media-heading">
-                  Jon Snow
-                  <span class="pull-right">Status: Wait for Review</span>
+                  {{ card.influencer.user.name }}
+                  <span class="pull-right">Status: {{ card.status }}</span>
               </h4>
             </a>
 
@@ -97,73 +68,13 @@
             <br>
             <div class="media-item">
               <h5>Submitted on:</h5>
-              <h4>10/10/16</h4>
+              <h4>{{ card.updatedAt | date: 'd/m/y' }}</h4>
             </div>
 
           </div>
         </div>
       </div>
 
-      <div class="panel panel-default">
-        <div class="media">
-          <div class="media-left">
-            <img class="media-object" src="images/profile-pic-daenerys.jpg">
-          </div>
-          <div class="media-body">
-            <a href="brand-submission-detail-revised.html">
-              <h4 class="media-heading">
-                  Daenerys Targaryen
-                  <span class="pull-right">Status: Need Revision</span>
-              </h4>
-            </a>
 
-            <div class="media-item">
-              <h5>Submission Number:</h5>
-              <h4>5</h4>
-            </div>
-            <br>
-            <div class="media-item">
-              <h5>Submitted on:</h5>
-              <h4>10/10/16</h4>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="panel panel-default another-state">
-        <div class="media">
-          <div class="media-left">
-            <img class="media-object" src="images/profile-pic-daenerys.jpg">
-          </div>
-          <div class="media-body">
-            <a href="brand-submission-detail-revised.html">
-              <h4 class="media-heading">
-                  Daenerys Targaryen
-                  <span class="pull-right">Status: Posted</span>
-              </h4>
-            </a>
-
-            <div class="media-item">
-              <h5>Submission Number:</h5>
-              <h4>6</h4>
-            </div>
-            <br>
-            <div class="media-item">
-              <h5>Submitted on:</h5>
-              <h4>10/10/16</h4>
-            </div>
-            <div class="media-item">
-              <h5>Post by:</h5>
-              <h4>20/10/16</h4>
-            </div>
-            <div class="media-item">
-              <h5>Post on:</h5>
-              <h4>20/10/16</h4>
-            </div>
-
-          </div>
-        </div>
-      </div>
 
     </div>

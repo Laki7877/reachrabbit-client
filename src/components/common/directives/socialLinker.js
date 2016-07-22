@@ -7,7 +7,7 @@
 'use strict';
 
 angular.module('app.common')
-  .directive('socialLinker', function($mdToast, $mdDialog, $api, $storage, $uibModal, $auth) {
+  .directive('socialLinker', function($api, $storage, $uibModal, $auth) {
     return {
       restrict: 'AE',
       scope: {
@@ -57,12 +57,7 @@ angular.module('app.common')
                   pageId: page.id
                 };
 
-                $mdToast.show(
-                    $mdToast.simple()
-                    .textContent('Linked to Facebook account')
-                    .position('top right')
-                    .hideDelay(3000)
-                );
+                alert('Linked to Facebook account');
 
                 if (scope.onSuccess) {
                   scope.onSuccess({
@@ -102,12 +97,7 @@ angular.module('app.common')
                   //Flow not over yet
                   showFbPageChooser(res.data);
                 } else {
-                  $mdToast.show(
-                    $mdToast.simple()
-                    .textContent('Linked to ' + key + ' account')
-                    .position('top right')
-                    .hideDelay(3000)
-                  );
+                  alert('Linked to ' + key + ' account');
 
                   //Other case, flow is over
                   //set social profile model
@@ -136,11 +126,7 @@ angular.module('app.common')
 
                 //TODO replace with generic error handler
                 if (err.data && err.data.display) {
-                  $mdDialog.show(
-                    $mdDialog.alert()
-                    .title(err.data.display.title + " (" + err.data.exception_code + ")")
-                    .textContent(err.data.display.message)
-                    .ok('Got it!'));
+                  alert(err.data.display.title);
                 }
                 console.warn(err);
                 if (scope.onFail) scope.onFail(err);

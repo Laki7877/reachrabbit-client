@@ -3,7 +3,7 @@
  *
  * @author     Poon Wu <poon.wuthi@gmail.com
  * @author     Pat Sabpisal <ecegrid@gmail.com
- * @since      0.0.2
+ * @since      0.0.3
  */
 'use strict';
 
@@ -44,16 +44,17 @@ angular.module('app.influencer', components)
       })
       .state('open-campaign', {
         parent: 'main',
-        url: '/campaign/open',
+        params: {alert: null},
+        url: '/campaign/open', //done
         views: {
           '': {
-            controller: 'influencerCampaignListController',
+            controller: 'influencerOpenCampaignListController',
             templateUrl: 'views/influencer-open-campaign-list.html'
           }
         }
       })
       .state('open-campaign.detail', {
-        url: '/:campaignId',
+        url: '/:campaignId', //done
         views: {
           '@main': {
             controller: 'influencerCampaignDetailController',
@@ -63,14 +64,61 @@ angular.module('app.influencer', components)
       })
       .state('my-campaign', {
         parent: 'main',
-        url: '/campaign/my',
+        url: '/campaign/my', //done
+        params: { alert: null},
         views: {
           '': {
-            controller: 'influencerCampaignMyController',
-            templateUrl: 'views/influencer-campaign-my.html'
+            controller: 'influencerMyCampaignListController',
+            templateUrl: 'views/influencer-my-campaign-list.html'
           }
         }
-      });
+      })
+      // .state('my-campaign.open', {
+      //   url: '/open/:campaignId', //done
+      //   views: {
+      //     '@main': {
+      //       controller: 'influencerCampaignDetailController',
+      //       templateUrl: 'views/influencer-my-campaign-applied.html'
+      //     }
+      //   }
+      // })
+      .state('my-campaign.applied', {
+        url: '/:campaignId', //done
+        views: {
+          '@main': {
+            controller: 'influencerCampaignDetailController',
+            templateUrl: 'views/influencer-my-campaign-applied.html'
+          }
+        }
+      })
+      .state('my-campaign.production', {
+        url: '/production/:campaignId',
+        views: {
+          '@main': {
+            controller: 'influencerCampaignDetailController',
+            templateUrl: 'views/influencer-my-campaign-production.html'
+          }
+        }
+      })
+      .state('my-campaign.complete', {
+        url: '/complete/:campaignId',
+        views: {
+          '@main': {
+            controller: 'influencerCampaignDetailController',
+            templateUrl: 'views/influencer-my-campaign-complete.html'
+          }
+        }
+      })
+      .state('transaction-list', {
+        parent: 'main',
+        url: '/transaction',
+        views: {
+          '': {
+            controller: 'influencerTransactionListController',
+            templateUrl: 'views/influencer-transaction-list.html'
+          }
+        }
+      })
 
   });
 

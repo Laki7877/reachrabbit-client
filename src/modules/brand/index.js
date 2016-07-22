@@ -69,35 +69,52 @@ angular.module('app.brand', components)
         controller: 'brandInfluencerDetailController',
         templateUrl: 'views/brand-influencer-detail.html'
       });
+
+    /**
+     * Transaction
+    */
+    $stateProvider
+      .state('transaction-list', {
+        parent: 'main',
+        url: '/transactions',
+        controller: 'brandTransactionListController',
+        templateUrl: 'views/brand-transaction-list.html'
+    });
+
     /**
      * Campaign
      */
     $stateProvider
-      .state('campaign', {
+      .state('campaign-list', {
         parent: 'main',
         url: '/campaign',
+        params: {
+          alert: null
+        },
         controller: 'brandCampaignListController',
         templateUrl: 'views/brand-campaign-list.html'
       })
-      .state('campaign-create', {
-        parent: 'main',
-        url: '/campaign/create',
-        controller: 'brandCampaignDetailDraftController',
-        templateUrl: 'views/brand-campaign-detail-draft.html'
+      .state('campaign-list.create', {
+        url: '/create',
+        views: {
+           '@main': {
+              controller: 'brandCampaignDetailDraftController',
+              templateUrl: 'views/brand-campaign-detail-draft.html'
+            }
+        }
       })
-      .state('campaign-detail-draft', {
-        parent: 'main',
-        url: '/campaign/draft/:campaignId',
-        controller: 'brandCampaignDetailDraftController',
-        templateUrl: 'views/brand-campaign-detail-draft.html'
+      .state('campaign-list.draft', {
+        url: '/draft/:campaignId',
+         views: {
+          '@main': {
+            controller: 'brandCampaignDetailDraftController',
+            templateUrl: 'views/brand-campaign-detail-draft.html'
+          }
+        }
       })
-      .state('campaign-detail-open', {
-        parent: 'main',
-        url: '/campaign/open',
-        abstract: true
-      })
-      .state('campaign-detail-open.detail', {
-        url: '/:campaignId',
+      .state('campaign-list.open', {
+        url: '/open/:campaignId',
+        params: {'alert': null},
         views: {
           '@main': {
             controller: 'brandCampaignDetailOpenController',
@@ -105,8 +122,8 @@ angular.module('app.brand', components)
           }
         }
       })
-      .state('campaign-detail-open.detail.proposal', {
-        url: '/proposal',
+      .state('campaign-list.open.proposal-detail', {
+        url: '/open/:campaignId',
         params: { user : null},
         views: {
           '@main': {
@@ -115,15 +132,28 @@ angular.module('app.brand', components)
           }
         }
       })
-      .state('campaign-detail-production', {
-        parent: 'main',
-        url: '/campaign/production/:id',
-        controller: 'brandCampaignSubmissionController',
-        templateUrl: 'views/brand-campaign-detail-production.html'
+      .state('campaign-list.production', {
+        url: '/campaign/production/:campaignId',
+        params: { alert : null},
+        views: {
+          '@main': {
+            controller: 'brandCampaignSubmissionListController',
+            templateUrl: 'views/brand-campaign-detail-production.html'
+          }
+        }
       })
-      .state('campaign-detail-open.detail.pay', {
+      .state('campaign-list.production.submission-detail', {
+        url: '/submission/:submissionId',
+        views: {
+          '@main': {
+             controller: 'brandCampaignSubmissionDetailController',
+             templateUrl: 'views/brand-submission-detail.html'
+          }
+        }
+      })
+      .state('campaign-list.open.pay', {
         url: '/payment',
-        params: { campaign : null},
+        params: { campaign : null, allProposals: null, selected: null, budget: null, reach: null},
         resolve: {
           campaign: function($stateParams, $api) {
             return $api({
@@ -131,7 +161,7 @@ angular.module('app.brand', components)
               url: '/campaigns/' + $stateParams.campaignId
             });
           }
-        }
+        },
         views: {
           '@main': {
             controller: 'brandCampaignPaymentController',

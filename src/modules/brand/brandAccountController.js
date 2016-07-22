@@ -7,7 +7,7 @@
  */
 'use strict';
 angular.module('app.brand')
-  .controller('brandAccountProfileController', function ($scope, $state, $api, $mdToast, $uploader, $storage) {
+  .controller('brandAccountProfileController', function ($scope, $state, $api, $uploader, $storage) {
     //Hacky, will change after TODO: Friday
     document.getElementsByTagName("body")[0].style.backgroundImage = "none";
     document.getElementsByTagName("body")[0].style.backgroundColor = "#ebebeb";
@@ -35,29 +35,27 @@ angular.module('app.brand')
     });
 
   })
-  .controller('brandAccountSigninController', function ($scope, $state, $storage, $api, $mdToast) {
+  .controller('brandAccountSigninController', function ($scope, $state, $storage, $api) {
     // on form submit
     $scope.submit = function (form) {
-      // invalid form
-      if (form.$invalid) {
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent('Please enter required fields')
-            .position('top right')
-            .hideDelay(3000)
-        );
-        return;
-      }
-
       // call api
       $api({
         method: 'POST',
         url: '/login',
         data: $scope.formData
       }).then(function (data) {
+        $storage.put('profile', data);
         $storage.put('auth', data.token);
-        $state.go('campaign');
-      }).catch(function (err) {
+        //Get user info
+        return $api({
+          method: 'GET',
+          url: '/profiles'
+        });
+      })
+      .then(function(data) {
+          $state.go('campaign-list');
+      })
+      .catch(function (err) {
         console.error(err);
       });
     };

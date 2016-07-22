@@ -10,13 +10,11 @@
         <div class="clear"></div>
       </div>
 
-      <div ng-show="showAlertProposal" class="alert alert-success">
-        Message Sent!
-      </div>
-
-      <div class="alert alert-success">
+      <nc-alert nc-model="alert"></nc-alert>
+      <div class="alert alert-success" ng-if="proposal.isSelected">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        You have selected Someone. When you are satisfy with your selections, you can click <a href="brand-campaign-pay.html">"Review & Pay"</a>
+        You have selected Someone. When you are satisfy with your selections, you can <a ui-sref="^">go back</a>  to campaign detail and click
+        "Review & Pay"
       </div>
 
      <scientific-card card-type="user-influencer" ng-model="influencers"></scientific-card>
@@ -25,12 +23,23 @@
         <div class="panel-body">
           <h4>
             Proposal Detail
-            <span class="pull-right">Status: {{ proposal.status }}</span>
+            <span class="pull-right">Status:
+            <span ng-if="proposal.status === 'wait for review' && !proposal.isSelected">Wait for Review</span>
+            <span ng-if="proposal.isSelected">Selected</span>
+            <span ng-if="proposal.status === 'need revision' && !proposal.isSelected">Need Revision</span>
+            </span>
           </h4>
           {{ proposal.description }}
+          <br/>
+          <div ng-repeat="res in proposal.resources">
+          <h4>Attachment</h4>
+          <img src="{{res.url}}" width="300"/>
+          <br/>
+          </div>
+
           <br><br>
           <h4>Proposed Price: {{ proposal.proposePrice | number: 2}} Baht</h4>
-          <div class="pull-left" ng-if="proposal.status != 'accept'">
+          <div class="pull-left" ng-if="!proposal.isSelected">
             <a ng-click="selectProposal(proposal)" class="btn btn-primary">
               Select Proposal
             </a>
@@ -39,8 +48,8 @@
               Ask for Revision
             </a>
           </div>
-          <div class="pull-left" ng-if="proposal.status == 'accept'" ng-click="unselectProposal(proposal)">
-            <a href="#">
+          <div class="pull-left" ng-if="proposal.isSelected" >
+            <a ng-click="unselectProposal(proposal)">
               Unselect this Proposal
             </a>
           </div>

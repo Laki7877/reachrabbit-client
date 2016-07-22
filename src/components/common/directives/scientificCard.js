@@ -8,17 +8,23 @@
 'use strict';
 
 angular.module('app.common')
-  .directive('scientificCard', function($mdToast, $mdDialog, $api, $storage, $uibModal, $auth) {
+  .directive('scientificCard', function($api, $storage, $uibModal, $auth) {
     return {
       restrict: 'AE',
       scope: {
-        model: '=ngModel'
+        model: '=ngModel',
+        getStatus: '=?getStatus'
       },
       templateUrl: function(tElement, tAttrs) {
             return "templates/scientific-card-" + tAttrs.cardType + ".html";
       },
       link: function(scope, elem, attrs, form) {
-
+        if(!scope.getStatus){
+          scope.getStatus = function(card){
+            var status = card.virtualStatus || card.status;
+            return status[0].toUpperCase() + status.substr(1);
+          }
+        }
       }
     }
   });

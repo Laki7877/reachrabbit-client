@@ -1,0 +1,14 @@
+<div class="panel panel-default" ng-repeat="card in model">
+        <div class="panel-body">
+          <h3>Proposal Detail</h3>
+          {{card.description}}
+          <br/>
+          <h3>Proposed Price: {{card.proposePrice}} <small>Baht</small></h3>
+          <strong>Status:</strong> {{card.status}}
+          <div ng-repeat="resource in card.resources">
+            <h3>Image Attachment</h3>
+            <img src="{{resource.url}}" width="500"/>
+          </div>
+
+        </div>
+    </div>

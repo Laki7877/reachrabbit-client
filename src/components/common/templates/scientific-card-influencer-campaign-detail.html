@@ -1,7 +1,7 @@
  <div class="panel panel-default" ng-repeat="card in model">
   <div class="media" >
     <div class="media-left">
-      <img class="media-object" src="{{ card.resources[0].url }}"  >
+      <img ng-if="card.resources.length > 0" class="media-object" src="{{ card.resources[0].url }}"  >
     </div>
     <div class="media-body">
       <a ui-sref="open-campaign.detail({ campaignId: card.campaignId })">
@@ -9,8 +9,8 @@
       </a>
       <div class="media-item">
         <h5>Status</h5>
-        <h4>{{ card.status }}</h4>
-      </div> 
+        <h4>{{ getStatus(card) }}</h4>
+      </div>
       <div class="media-item">
         <h5>Reward</h5>
         <h4>{{ card.budget }}</h4>

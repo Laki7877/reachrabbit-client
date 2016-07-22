@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="page-header">
-        <h2 class="pull-left">Campaign Detail ({{ $root.getRouteByStatus(campaign) | uppercase }})</h2>
+        <h2 class="pull-left">Campaign Detail ({{ $root.getRouteByStatusApplied(campaign) | uppercase }})</h2>
         <div class="pull-right">
             <a ui-sref="^" class="btn btn-default">
             Back to Campaign List
@@ -9,7 +9,6 @@
         </div>
         <div class="clear"></div>
     </div>
-
 
     <!-- campaign title-->
      <div class="panel panel-default" >
@@ -21,7 +20,7 @@
           <h4 class="media-heading">{{ campaign.title }} <i class="fa fa-{{campaign.media[0].mediaId}}"></i></h4>
           <div class="media-item">
             <h5>Status</h5>
-            <h4>{{ $root.getRouteByStatus(campaign) }}</h4>
+            <h4>{{ $root.getRouteByStatusApplied(campaign) }}</h4>
           </div>
           <div class="media-item">
             <h5>Reward</h5>
@@ -45,7 +44,15 @@
 
 
     <scientific-card ng-model="proposals" card-type="influencer-proposal"></scientific-card>
-    <scientific-card card-type="brand-comment" ng-model="comments"></scientific-card>
+
+    <div class="panel panel-default" ng-repeat="msg in comments">
+        <div class="panel-body">
+          <h3>Brand Comment</h3>
+          <blockquote>
+            {{msg}}
+          </blockquote>
+        </div>
+    </div>
 
     <div ng-show="!isApplied" class="panel panel-default">
         <div class="panel-body">
@@ -54,14 +61,14 @@
                 <div class="col-md-8">
                     {{ campaign.description}}
                     <div ng-repeat="resource in campaign.resources" ng-if="$index > 0">
-                        <img src="{{resource.url}}" alt="" class="img-responsive" />
+                        <img src="{{resource.url}}" alt=""  width="550" class="img-responsive" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-if="needRevision()">
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-8">

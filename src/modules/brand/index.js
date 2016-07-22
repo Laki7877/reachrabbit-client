@@ -133,7 +133,7 @@ angular.module('app.brand', components)
         }
       })
       .state('campaign-list.production', {
-        url: '/campaign/production/:campaignId',
+        url: '/production/:campaignId',
         params: { alert : null},
         views: {
           '@main': {

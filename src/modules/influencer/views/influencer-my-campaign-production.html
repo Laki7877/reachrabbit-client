@@ -22,12 +22,15 @@
         </div>
       </div>
 
-      <div class="panel panel-default" ng-repeat-start="submission in campaign.campaignSubmissions">
+      <div class="panel panel-default" ng-repeat-start="submission in campaign.campaignSubmissions | reverse">
         <div class="panel-body">
-          <h3>Jon Snow's Submission #{{$index + 1}}</h3>
-          Here is me and my pikachu trying to conquer the north back. Hope you like it.
+          <h4>Your Submission #{{$index + 1}}</h4>
+          {{ submission.description }}
           <br><br>
-          <img src="images/submission-jon.jpg" alt="" />
+          <img ng-repeat="res in  submission.resources" src="{{ res.url }}" width="550" alt="" />
+          <p>
+          <small>Submitted on {{submission.createdAt | date: 'd/M/y H:m'}}
+          </p>
         </div>
       </div>
 
@@ -40,7 +43,9 @@
         </div>
       </div>
 
-      <div class="panel panel-default">
+
+      <!-- submit work -->
+      <div class="panel panel-default" ng-if="campaign.campaignSubmissions[0].status != 'wait for post'">
           <div class="panel-body">
             <div class="row">
               <div class="col-md-8">
@@ -80,6 +85,43 @@
 
                   <div class="controls">
                     <a ng-click="submitWork(submission)" class="btn btn-success">Submit</a>
+                  </div>
+                </div>
+            </div>
+          </div>
+      </div>
+
+       <!-- submit work -->
+      <div class="panel panel-default" ng-if="campaign.campaignSubmissions[0].status == 'wait for post'">
+        <div class="panel-body">
+            <div class="row">
+              <div class="col-md-8">
+                <form class="form-horizontal" action="" method="POST">
+                    <h3>Post Evidence</h3>
+                    <fieldset>
+<!--                       <div class="control-group">
+                        <label class="control-label" for="brandname">Link</label>
+                        <div class="controls">
+                          <input type="text" placeholder="" ng-model="proof.resourcePath" class="form-control">
+                        </div>
+                      </div>
+                      <br>
+ -->
+                      <label for="attachment">Image Attachment:</label>
+                      <br/>
+                      <image-thumb ng-model="proof.proof" height="300" width="auto"></image-thumb>
+                      <p>
+                        You will get money in 3 days after providing the evidence.
+                      </p>
+
+
+                    </fieldset>
+                  </form>
+
+                  <br>
+
+                  <div class="controls">
+                    <a ng-click="postEvidence(proof.proof, campaign.campaignSubmissions[0])" class="btn btn-success">Submit</a>
                   </div>
                 </div>
             </div>

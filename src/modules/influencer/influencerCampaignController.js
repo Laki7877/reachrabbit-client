@@ -69,10 +69,9 @@ angular.module('app.influencer')
         $scope.message = err.message;
       });
   })
-  .controller('influencerCampaignDetailController', function($scope, VirtualStatus, $storage, $stateParams, $state, $api){
+  .controller('influencerCampaignDetailController', function($scope, VirtualStatus, NcAlert, $storage, $stateParams, $state, $api){
     $scope.campaigns = [];
     $scope.proposals = [];
-
     $scope.campaign = {};
 
     $scope.proposal = {
@@ -81,6 +80,20 @@ angular.module('app.influencer')
     $scope.submission = {
       resources: []
     };
+
+    $scope.proof = {
+      proof: {}
+    };
+
+    $scope.postEvidence = function(proof,submission){
+      $api({
+        method: 'POST',
+        url: '/submissions/' + submission.submissionId + '/proofs',
+        data: proof
+      }).then(function(data){
+        $state.go('my-campaign', {alert: "Evidence Posted"})
+      });
+    }
 
     $scope.comments = [];
 

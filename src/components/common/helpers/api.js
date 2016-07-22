@@ -38,4 +38,9 @@ angular.module('app.common')
     };
 
     return service;
+  })
+  .filter('reverse', function() {
+    return function(items) {
+      return items.slice().reverse();
+    };
   });

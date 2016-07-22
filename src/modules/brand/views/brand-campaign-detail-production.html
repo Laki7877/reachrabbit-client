@@ -12,6 +12,7 @@
 
       <scientific-card card-type="brand-my-campaign" ng-model="formDataArray"></scientific-card>
 
+      <nc-alert nc-model="alert"></nc-alert>
 
       <div class="panel panel-default">
         <div class="media">
@@ -48,27 +49,29 @@
         <br><br>
       </div>
 
-      <div class="panel panel-default" ng-repeat="card in formData.campaignSubmissions">
+      <div class="panel panel-default" ng-repeat="card in submissions">
         <div class="media">
           <div class="media-left">
-            <img class="media-object" src="{{ card.influencer.user.profilePicture.url }}">
+            <img class="media-object" src="{{ card.profilePicture.url }}">
           </div>
           <div class="media-body">
-            <a ui-sref="campaign-detail-production.submission-detail({ submissionId: card.submissionId })">
+            <a ui-sref="campaign-list.production.submission-detail({ submissionId: card.influencer.campaignSubmissions[0].submissionId })">
               <h4 class="media-heading">
-                  {{ card.influencer.user.name }}
-                  <span class="pull-right">Status: {{ card.status }}</span>
+                  {{ card.name }}'s Submission
+                  <span class="pull-right">Status:
+                  <span ng-class="{'color-red' :card.influencer.campaignSubmissions[0].status =='need revision'}">{{ card.influencer.campaignSubmissions[0].status }}</span>
+                  </span>
               </h4>
             </a>
 
             <div class="media-item">
               <h5>Submission Number:</h5>
-              <h4>1</h4>
+              <h4>{{ card.influencer.campaignSubmissions.length }}</h4>
             </div>
             <br>
             <div class="media-item">
               <h5>Submitted on:</h5>
-              <h4>{{ card.updatedAt | date: 'd/m/y' }}</h4>
+              <h4>{{ card.influencer.campaignSubmissions[0].updatedAt | date: 'd/m/y' }}</h4>
             </div>
 
           </div>

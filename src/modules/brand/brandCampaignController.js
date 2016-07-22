@@ -20,16 +20,17 @@ angular.module('app.brand')
   })
 	.controller('brandCampaignPaymentController', function($scope, $state, $stateParams,  $api, campaign){
 		$scope.campaign = campaign;
-	    $scope.paymentObject = {};
-			$scope.campaign.selectedProposals = _.compact($scope.campaign.campaignProposals.map(function(o){ if(o.isSelected) return o; }));
-	    $scope.sumFee = $scope.campaign.selectedProposals.reduce(function(total, num){
-	      return total + Number(num.proposePrice);
-	    },0);
+    $scope.paymentObject = {};
+		$scope.campaign.selectedProposals = _.compact($scope.campaign.campaignProposals.map(function(o){ if(o.isSelected) return o; }));
+    $scope.sumFee = $scope.campaign.selectedProposals.reduce(function(total, num){
+      return total + Number(num.proposePrice);
+    },0);
 
-	    $scope.allProposals = $stateParams.allProposals || 0;
-	    $scope.countSelected = $stateParams.selected || 0;
-	    $scope.countBudget = $stateParams.budget || 0;
-	    $scope.countReach = $stateParams.reach || 0;
+    $scope.allProposals = $stateParams.allProposals || 0;
+    $scope.countSelected = $stateParams.selected || 0;
+    $scope.countBudget = $stateParams.budget || 0;
+    $scope.countReach = $stateParams.reach || 0;
+
 		$scope.goBack = function() {
 			$state.go('^');
 		}
@@ -65,14 +66,15 @@ angular.module('app.brand')
 			$state.go('^');
 		}
 
-    	$scope.alert = new NcAlert();
+    $scope.alert = new NcAlert();
 
 		if (!$stateParams.user) {
 			return alert("You're not supposed to be here bitch.");
 		}
+    console.log($stateParams.user)
 
-		$scope.proposal = $stateParams.proposal;
-		$scope.influencers = [$stateParams.proposal.influencer];
+		$scope.proposal = $stateParams.user.influencer.campaignProposals[0];
+		$scope.influencers = [$stateParams.user];
 
 		$scope.askForRevision = function (proposal) {
 			var tmpl = 'partials/modal-revision-proposal.html';
@@ -191,6 +193,7 @@ angular.module('app.brand')
 		}).catch(function (err) {
 			console.error("can't get proposals", err);
 		});
+
 	})
 	.controller('brandCampaignDetailDraftController', function ($scope, $state, $api, $stateParams) {
 		var method = 'POST';
@@ -214,6 +217,7 @@ angular.module('app.brand')
 				console.error("bad stuff happened", err);
 			});
 		}
+
 		function save() {
 			$api({
 				method: method,
@@ -237,6 +241,7 @@ angular.module('app.brand')
 			console.log("Saving as Publish")
 			save();
 		}
+
 	})
 	.controller('brandCampaignListController', function ($scope, $api, $stateParams, NcAlert) {
 		$scope.campaigns = [];

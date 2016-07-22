@@ -31,7 +31,7 @@ angular.module('app.compotest', components)
         	}
         },
         controller: 'compotestController',
-        templateUrl: 'index.html'
+        templateUrl: 'views/index.html'
       });
   });
 

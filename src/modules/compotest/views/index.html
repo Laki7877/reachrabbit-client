@@ -1,6 +1,6 @@
 <div class="container">
   <div class="page-header">
-    <h2 class="pull-left">Transaction List</h2>
+    <h2 class="pull-left">All stuff you need to know</h2>
     <div class="clear"></div>
   </div>
 
@@ -14,7 +14,6 @@
                 <th>Campaign</th>
                 <th>Status</th>
                 <th>Date & Time</th>
-                <th class="table-item-price">Price</th>
                 <th></th>
               </tr>
             </thead>
@@ -23,8 +22,7 @@
                 <td>{{row.title}}</td>
                 <td>{{row.status}}</td>
                 <td>{{row.createdAt | date}}</td>
-                <td class="table-item-price">{{getPrice(row)}}</td>
-                <td><button ng-click="confirmPayment(row)" ng-disabled="row.status !== 'wait for confirm'">Approve</button></td>
+                <td><button class="btn btn-primary" ng-click="confirmPayment(row)" ng-disabled="row.status !== 'wait for confirm'">Confirm payment</button></td>
               </tr>
             </tbody>
           </table>
@@ -52,8 +50,39 @@
                 <td>{{row.title}}</td>
                 <td>{{row.status}}</td>
                 <td>{{row.createdAt | date}}</td>
-                <td class="table-item-price"><img ng-if="row.proofs.length > 0" src="{{row.proofs[0].url}}"/><span ng-if="row.proofs.length == 0">Not yet</span></td>
-                <td><button ng-click="approveSubmission(row)" ng-disabled="row.proofs.length == 0">Approve</button></td>
+                <td><img ng-if="row.proof.length > 0" ng-src="{{row.proof[0].url}}"/><span ng-if="row.proof.length == 0">Not yet</span></td>
+                <td><button class="btn btn-primary" ng-click="approveSubmission(row)" ng-disabled="row.status != 'posted'">Confirm post</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Campaign</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Status</th>
+                <th>Date & Time</th>
+                <th class="table-item-price">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="row in payments">
+                <td>{{row.campaign.title}}</td>
+                <td>{{row.source.name}}</td>
+                <td>{{row.target.name}}</td>
+                <td>{{row.status}}</td>
+                <td>{{row.createdAt | date}}</td>
+                <td class="table-item-price">{{row.amount}}</td>
               </tr>
             </tbody>
           </table>

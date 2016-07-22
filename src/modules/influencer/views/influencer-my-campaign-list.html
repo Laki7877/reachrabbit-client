@@ -11,6 +11,9 @@
 
       <nc-alert nc-model="alert"></nc-alert>
 
+      <span ng-if="campaigns.length == 0">
+        No open campaign available.
+      </span>
        <div class="panel panel-default" ng-repeat="card in campaigns">
           <div class="media" >
             <div class="media-left">

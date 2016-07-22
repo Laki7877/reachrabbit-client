@@ -11,6 +11,13 @@ angular.module('app.brand')
 	.controller('brandCampaignPaymentController', function($scope, $state, $stateParams, campaign){
 		$scope.campaign = campaign;
 		$scope.campaign.selectedProposals = _.map($scope.campaign.campaignProposals, ['isSelected', true]);
+		
+		
+		$scope.sum = 0;
+
+		_.forEach($scope.campaign.selectedProposals, function() {
+
+		});
 		$scope.goBack = function() {
 			$state.go('^');
 		}
@@ -20,13 +27,12 @@ angular.module('app.brand')
 			//go back
 			$state.go('^');
 		}
-		if (!$stateParams.user) {
+		if (!$stateParams.proposal) {
 			return alert("You're not supposed to be here bitch.");
 		}
-    console.log($stateParams.user)
 
-		$scope.proposal = $stateParams.user.influencer.campaignProposals[0];
-		$scope.influencers = [$stateParams.user];
+		$scope.proposal = $stateParams.proposal;
+		$scope.influencers = [$stateParams.proposal.influencer];
 
 		$scope.askForRevision = function (proposal) {
 			var tmpl = 'partials/modal-revision-proposal.html';
@@ -85,7 +91,6 @@ angular.module('app.brand')
 			});
 		}
 
-<<<<<<< HEAD
 		$scope.unselectProposal = function (proposal) {
 			$api({
 				method: 'PUT',
@@ -95,10 +100,6 @@ angular.module('app.brand')
 			.then(function(data) {
 				$scope.proposal = data;
 			});
-=======
-		$scope.selectProposal = function (proposalId) {
-
->>>>>>> aa267f149f37a73cb5a2f8f6bf2f0c8f7e94bb63
 		}
 
 	})
@@ -132,7 +133,6 @@ angular.module('app.brand')
 		}).catch(function (err) {
 			console.error("can't get proposals", err);
 		});
-
 	})
 	.controller('brandCampaignDetailDraftController', function ($scope, $api, $stateParams) {
 		var method = 'POST';
@@ -156,7 +156,6 @@ angular.module('app.brand')
 				console.error("bad stuff happened", err);
 			});
 		}
-
 		function save() {
 			$api({
 				method: method,
@@ -180,7 +179,6 @@ angular.module('app.brand')
 			console.log("Saving as Publish")
 			save();
 		}
-
 	})
 	.controller('brandCampaignListController', function ($scope, $api) {
 		$scope.campaigns = [];

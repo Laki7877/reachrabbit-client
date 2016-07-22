@@ -44,6 +44,7 @@ angular.module('app.landing')
         url: '/users/influencer',
         data: $scope.formData
       }).then(function(data) {
+        $storage.putAuth(data.token);
         //Get user info
         return $api({
           method: 'GET',
@@ -52,7 +53,6 @@ angular.module('app.landing')
       })
       .then(function(data) {
           $storage.put('profile', data);
-          $storage.putAuth(data.token);
           $storage.remove('profile-signup');
           window.location.href = '/influencer#/campaign/open'
       })

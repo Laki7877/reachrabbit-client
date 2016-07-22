@@ -51,6 +51,15 @@ angular.module('app.influencer')
     if($stateParams.alert){
       $scope.alert.success($stateParams.alert);
     }
+
+    $scope.getMyLatestProposal = function(card){
+      return card.campaignProposals[0];
+    }
+
+    $scope.getMyLatestSubmission = function(card){
+      return card.campaignSubmissions[0];
+    }
+
     $api({
         method: 'GET',
         url: '/mycampaigns'
@@ -77,6 +86,12 @@ angular.module('app.influencer')
 
     $scope.isApplied = false;
 
+    $scope.needRevision = function(){
+      if($scope.proposal.status == 'need revision'){
+        return true;
+      }
+      return false;
+    }
 
     $api({
         method: 'GET',
@@ -86,6 +101,7 @@ angular.module('app.influencer')
         $scope.campaign = data;
 
         var mine = VirtualStatus.isApplied(data);
+        console.log('mine', mine);
         //applied
         if(mine){
           $scope.campaign.status = 'applied';
@@ -109,10 +125,10 @@ angular.module('app.influencer')
           url: '/campaigns/' + $stateParams.campaignId + '/proposals',
           data: proposal
         }).then(function(data) {
-          if(proposal.proposalId){
-            $state.go('my-campaign', { alert: 'Updated campaign.'});
+          if(data.proposalId){
+            $state.go('my-campaign', { alert: '<strong>Success</strong> - Proposal updated.'});
           }else{
-            $state.go('open-campaign', { alert: 'Applied to campaign.'});
+            $state.go('open-campaign', { alert: '<strong>Success</strong> - Applied to Campaign.'});
           }
         }).catch(function(err) {
           $scope.message = err.message;

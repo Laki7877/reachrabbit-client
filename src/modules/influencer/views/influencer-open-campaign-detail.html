@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="page-header">
-        <h2 class="pull-left">Campaign Detail ({{ campaign.status | uppercase }})</h2>
+        <h2 class="pull-left">Campaign Detail ({{ $root.getRouteByStatus(campaign) | uppercase }})</h2>
         <div class="pull-right">
             <a ui-sref="^" class="btn btn-default">
             Back to Campaign List
@@ -10,17 +10,49 @@
         <div class="clear"></div>
     </div>
 
-    <scientific-card ng-model="campaigns" card-type="influencer-campaign-detail"></scientific-card>
+
+    <!-- campaign title-->
+     <div class="panel panel-default" >
+      <div class="media" >
+        <div class="media-left">
+          <img ng-if="campaign.resources.length > 0" class="media-object" src="{{ campaign.resources[0].url }}"  >
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{ campaign.title }} <i class="fa fa-{{campaign.media[0].mediaId}}"></i></h4>
+          <div class="media-item">
+            <h5>Status</h5>
+            <h4>{{ $root.getRouteByStatus(campaign) }}</h4>
+          </div>
+          <div class="media-item">
+            <h5>Reward</h5>
+            <h4>{{ campaign.budget || 'N/A' }}</h4>
+          </div>
+          <div class="media-item">
+            <h5>Category</h5>
+            <h4>{{ campaign.category.categoryName }}</h4>
+          </div>
+          <div class="media-item">
+            <h5>Proposal Deadline</h5>
+            <h4>{{ campaign.proposalDeadline | date : "d/M/y H:m:s" }}</h4>
+          </div>
+          <div class="media-item">
+            <h5>Proposal Result</h5>
+            <h4>Not Supported</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <scientific-card ng-model="proposals" card-type="influencer-proposal"></scientific-card>
     <scientific-card card-type="brand-comment" ng-model="comments"></scientific-card>
 
     <div ng-show="!isApplied" class="panel panel-default">
         <div class="panel-body">
+          <strong style="font-size:16px">Campaign Detail</strong>
             <div class="row">
                 <div class="col-md-8">
-                    <h3>Campaign Detail</h3>
                     {{ campaign.description}}
-
                     <div ng-repeat="resource in campaign.resources" ng-if="$index > 0">
                         <img src="{{resource.url}}" alt="" class="img-responsive" />
                     </div>
@@ -34,7 +66,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <form class="form-horizontal" action="" method="POST">
-                        <h3 ng-if="!isApplied">Apply for this Campaign</h3>
+                        <strong ng-if="!isApplied" style="font-size:16px">Apply for this campaign</strong>
                         <h3 ng-if="isApplied">Revise Proposal</h3>
                         <fieldset>
                             <div class="control-group">

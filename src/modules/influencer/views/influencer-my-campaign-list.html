@@ -17,19 +17,43 @@
               <img ng-if="card.resources.length > 0" class="media-object" src="{{ card.resources[0].url }}"  >
             </div>
             <div class="media-body">
-              <a ui-sref="{{card.status}}-campaign.detail({ campaignId: card.campaignId })">
+              <a ui-sref="my-campaign.{{ $root.getRouteByStatusApplied(card) }}({ campaignId: card.campaignId })">
                 <h4 class="media-heading">{{ card.title }} <i class="fa fa-{{card.media[0].mediaId}}"></i>
                 <span class="pull-right">Campaign Status:
-                <span ng-if="card.status == 'open'">Applied</span>
-                <span ng-if="card.status == 'production'">Production</span>
-                <span ng-if="card.status == 'complete'">Complete</span>
+                <span ng-if="card.status === 'payment pending'">Applied</span>
+                <span ng-if="card.status === 'open'">Applied</span>
+                <span ng-if="card.status === 'production'">Production</span>
+                <span ng-if="card.status === 'complete'">Complete</span>
+                <span ng-if="card.status === 'wait for payment'">Applied</span>
+                <span ng-if="card.status === 'wait for confirm'">Applied</span>
                 </span></h4>
               </a>
               <div class="media-item">
                 <h5>Reward</h5>
-                <h4>{{ card.budget }}</h4>
+                <h4>{{ card.budget || 'N/A' }}</h4>
               </div>
-               <div class="media-item">
+              <div class="media-item" ng-if="card.status != 'production'">
+                <h5>Proposal Status</h5>
+                <h4 ng-class="{'color-red': getMyLatestProposal(card).status == 'need revision',
+                'color-yellow': getMyLatestProposal(card).status == 'wait for review'
+                }">
+                  {{ getMyLatestProposal(card).status }}
+                </h4>
+              </div>
+              <div class="media-item" ng-if="card.status == 'production'">
+                <h5>Submission Status</h5>
+                <h4 ng-if="getMyLatestSubmission(card)">
+                  {{ getMyLatestSubmission(card).status }}
+                </h4>
+                <h4 ng-if="!getMyLatestSubmission(card)">
+                  Wait for Submission
+                </h4>
+              </div>
+              <div class="media-item" ng-if="card.status != 'production'">
+                <h5>Proposal Deadline</h5>
+                <h4>{{ card.proposalDeadline | date }}</h4>
+              </div>
+              <div class="media-item" ng-if="card.status == 'production'">
                 <h5>Submission Deadline</h5>
                 <h4>{{ card.submissionDeadline | date }}</h4>
               </div>

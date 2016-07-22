@@ -9,31 +9,83 @@
         <div class="clear"></div>
       </div>
 
-      <scientific-card card-type="brand-my-campaign" ng-model="formDataArray"></scientific-card>
+      <nc-alert nc-model="alert"></nc-alert>
+
+      <div class="alert alert-success" ng-if="formData.status == 'wait for confirm'">
+      <strong>Pending Payment Confirmation</strong> Administrator will approve your submission.
+      </div>
+
+      <div class="alert alert-success" ng-if="formData.status == 'payment pending'">
+        <strong>Pending Payment </strong> Please confirm your payment by clicking on 'Review & Pay'.
+      </div>
+
+
+      <div class="panel panel-default" data-name='campaign-detail' ng-repeat="card in formDataArray">
+        <div class="media" >
+          <div class="media-left">
+            <img ng-if="card.resources.length > 0" class="media-object" ng-src="{{ card.resources[0].url }}"  >
+          </div>
+          <div class="media-body">
+            <a ui-sref="campaign-detail-{{ getStatus(card).toLowerCase()}}.detail({ campaignId: card.campaignId })">
+              <h4 class="media-heading">{{ card.title }} <i class="fa fa-{{card.media[0].mediaId}}"></i>
+              <span class="pull-right">View Detail</span></h4>
+            </a>
+            <div class="media-item">
+              <h5>Reward</h5>
+              <h4>{{ card.budget || 'N/A' }}</h4>
+            </div>
+            <div class="media-item">
+              <h5>Deadline</h5>
+              <h4 ng-if="card.status != 'production'">{{ card.proposalDeadline | date: 'd/M/y' }}</h4>
+              <h4 ng-if="card.status == 'production'">{{ card.submissionDeadline | date: 'd/M/y' }}</h4>
+            </div>
+            <div class="media-item">
+              <h5>Wait for Review</h5>
+              <h4>-</h4>
+            </div>
+            <div class="media-item">
+              <h5>Selected</h5>
+              <h4>-</h4>
+            </div>
+            <div class="media-item" ng-if="card.category">
+              <h5>Category</h5>
+              <h4>{{ card.category.categoryName }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 
       <div class="panel panel-default">
         <div class="media">
           <div class="media-body">
             <div class="media-item">
               <h5>All Proposals:</h5>
-              <h4>3</h4>
+              <h4>{{ proposals.length }}</h4>
             </div>
             <div class="media-item">
               <h5>Selected:</h5>
-              <h4>1</h4>
+              <h4>{{ countSelected(proposals) }}</h4>
             </div>
             <div class="media-item">
               <h5>Budget:</h5>
-              <h4>1,000</h4>
+              <h4>{{ sumBudgetSelected(proposals) | number:2}}</h4>
             </div>
             <div class="media-item">
               <h5>Potential Reach</h5>
-              <h4>2.5 Million+ Users</h4>
+              <h4>{{ countSelected(proposals)* 365 |  number :0}} People</h4>
             </div>
             <div class="media-item pull-right">
-              <a ng-click="reviewAndPay()" class="btn btn-primary">
+              <button
+              ng-disabled="formData.status == 'wait for confirm' || countSelected(proposals) == 0"
+              ui-sref="campaign-list.open.pay({campaign: formData,
+                          allProposals: proposals.length,
+                          selected: countSelected(proposals),
+                          budget: sumBudgetSelected(proposals) ,
+                          reach: countSelected(proposals)* 365 })" class="btn btn-primary">
                 Review & Pay
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -57,11 +109,48 @@
       </div>
 
       <div class="filter">
-        Filter: <a href="#" class="active">All (3)</a> | <a href="#">Wait for Review (0)</a> | <a href="#">Need Revision (0)</a> | <a href="#">Selected (0)</a>
+        Filter: <a href="#" class="active">All (3)</a> | <a href="#">Wait for Review (0)</a> | <a href="#">Need Revision (0)</a> | <a href="#">Selected ({{countSelected(proposals)}})</a>
         <br><br>
       </div>
 
-      <scientific-card card-type="brand-proposal" ng-model="proposals"></scientific-card>
-      
+      <div class="panel panel-default" ng-repeat="card in proposals">
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" src="{{ card.profilePicture.url }}">
+            </div>
+            <div class="media-body">
+                <a ui-sref="campaign-list.open.proposal-detail({ user: card })">
+                    <h4 class="media-heading">
+                        {{ card.name }}
+                        <span class="pull-right">Status:
+                        <span ng-if="card.influencer.campaignProposals[0].status === 'wait for review' && !card.influencer.campaignProposals[0].isSelected">Wait for Review</span>
+                        <span ng-if="card.influencer.campaignProposals[0].isSelected">Selected</span>
+                        <span ng-if="card.influencer.campaignProposals[0].status === 'need revision' && !card.influencer.campaignProposals[0].isSelected">Need Revision</span>
+                        </span>
+
+                    </h4>
+                </a>
+                <div class="media-item">
+                    <h5>Instagram Followers:</h5>
+                    <h4>0</h4>
+                </div>
+                <div class="media-item">
+                    <h5>Submitted on:</h5>
+                    <h4>{{ card.influencer.campaignProposals[0].updatedAt  | date: 'd/M/y HH:mm' }}</h4>
+                </div>
+                <br><br>
+                <div class="media-item">
+                    <h5>Quotation:</h5>
+                    <h4>{{ card.influencer.campaignProposals[0].proposePrice | number: 2 }}</h4>
+                </div>
+                <div class="media-item">
+                    <h5>Cost per Follower:</h5>
+                    <h4>Less than 0.00 Baht</h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 
     </div>

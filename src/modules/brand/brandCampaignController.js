@@ -22,10 +22,14 @@ angular.module('app.brand')
 		$scope.campaign = campaign;
     $scope.paymentObject = {};
 		$scope.campaign.selectedProposals = _.compact($scope.campaign.campaignProposals.map(function(o){ if(o.isSelected) return o; }));
-
     $scope.sumFee = $scope.campaign.selectedProposals.reduce(function(total, num){
-      return total + num.proposePrice;
+      return total + Number(num.proposePrice);
     },0);
+
+    $scope.allProposals = $stateParams.allProposals || 0;
+    $scope.countSelected = $stateParams.selected || 0;
+    $scope.countBudget = $stateParams.budget || 0;
+    $scope.countReach = $stateParams.reach || 0;
 
 		$scope.goBack = function() {
 			$state.go('^');
@@ -37,7 +41,9 @@ angular.module('app.brand')
         method: "POST",
         url: "/campaigns/" + $stateParams.campaignId + '/transactions'
       }).then(function(success){
-        alert("Ready!");
+        $state.go("campaign-list", { alert: "Campaign now waiting for payment. "})
+      }).catch(function(err){
+        console.error(err);
       })
     }
 
@@ -47,16 +53,21 @@ angular.module('app.brand')
         url: "/campaigns/" + $stateParams.campaignId + '/transactions',
         data: p
       }).then(function(success){
-        alert("Done!");
+        $state.go("^", {
+          campaignId: $stateParams.campaignId,
+          alert: "Thank you for the slip. Your campaign status will be updated when our system administrator approves your transaction."})
       })
     }
 
 	})
-	.controller('brandCampaignProposalDetailController', function ($scope, $state, $api, $window, $uibModal, $stateParams) {
+	.controller('brandCampaignProposalDetailController', function ($scope, NcAlert, $state, $api, $window, $uibModal, $stateParams) {
 		$scope.goBack = function () {
 			//go back
 			$state.go('^');
 		}
+
+    $scope.alert = new NcAlert();
+
 		if (!$stateParams.user) {
 			return alert("You're not supposed to be here bitch.");
 		}
@@ -96,17 +107,20 @@ angular.module('app.brand')
 
 			modalInstance.result.then(function (data) {
 				console.log(data);
+        $state.go("campaign-list.open", { alert: 'Revision requested'});
+        $api({
+          method: 'PUT',
+          url: '/campaigns/' + $stateParams.campaignId + '/proposals/' + proposal.proposalId,
+          data: _.extend({}, proposal, {status: 'need revision'})
+        })
+        .then(function(data) {
+          $scope.proposal = data;
+        });
 			}, function () {
 				console.log('Modal dismissed at: ' + new Date());
 			});
-			$api({
-				method: 'PUT',
-				url: '/campaigns/' + $stateParams.campaignId + '/proposals/' + proposal.proposalId,
-				data: _.extend({}, proposal, {status: 'need revision'})
-			})
-			.then(function(data) {
-				$scope.proposal = data;
-			});
+
+
 		}
 
 		$scope.selectProposal = function (proposal) {
@@ -132,16 +146,33 @@ angular.module('app.brand')
 		}
 
 	})
-	.controller('brandCampaignDetailOpenController', function ($scope, $api, $state, $stateParams) {
+	.controller('brandCampaignDetailOpenController', function ($scope, NcAlert, $api, $state, $stateParams) {
 		$scope.formData = {};
+    $scope.alert = new NcAlert();
 		$scope.formDataArray = [];
 		$scope.proposals = [];
 		if (!$stateParams.campaignId) {
-			alert("Fuk you");
+			$scope.alert.error("No campaign ID provided");
 		}
 
+    if($stateParams.alert){
+      $scope.alert.success($stateParams.alert);
+    }
+
+    $scope.sumBudgetSelected = function(x){
+      return x.reduce(function(prev, cur){
+        return prev + Number(cur.influencer.campaignProposals[0].proposePrice);
+      }, 0);
+    }
+
+    $scope.countSelected = function(x){
+      return x.reduce(function(prev, cur){
+        return prev + Number(cur.influencer.campaignProposals[0].isSelected ? 1 : 0);
+      }, 0);
+    }
+
 		$scope.reviewAndPay = function(){
-			$state.go('campaign-detail-open.detail.pay', { campaign: $scope.formData });
+			$state.go('campaign-list.open.pay', { campaign: $scope.formData });
 		}
 
 		$api({

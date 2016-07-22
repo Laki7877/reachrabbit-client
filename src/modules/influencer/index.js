@@ -45,7 +45,7 @@ angular.module('app.influencer', components)
       .state('open-campaign', {
         parent: 'main',
         params: {alert: null},
-        url: '/campaign/open',
+        url: '/campaign/open', //done
         views: {
           '': {
             controller: 'influencerOpenCampaignListController',
@@ -54,7 +54,7 @@ angular.module('app.influencer', components)
         }
       })
       .state('open-campaign.detail', {
-        url: '/:campaignId',
+        url: '/:campaignId', //done
         views: {
           '@main': {
             controller: 'influencerCampaignDetailController',
@@ -64,7 +64,7 @@ angular.module('app.influencer', components)
       })
       .state('my-campaign', {
         parent: 'main',
-        url: '/campaign/my',
+        url: '/campaign/my', //done
         params: { alert: null},
         views: {
           '': {
@@ -73,8 +73,17 @@ angular.module('app.influencer', components)
           }
         }
       })
+      // .state('my-campaign.open', {
+      //   url: '/open/:campaignId', //done
+      //   views: {
+      //     '@main': {
+      //       controller: 'influencerCampaignDetailController',
+      //       templateUrl: 'views/influencer-my-campaign-applied.html'
+      //     }
+      //   }
+      // })
       .state('my-campaign.applied', {
-        url: '/:campaignId',
+        url: '/:campaignId', //done
         views: {
           '@main': {
             controller: 'influencerCampaignDetailController',
@@ -83,7 +92,7 @@ angular.module('app.influencer', components)
         }
       })
       .state('my-campaign.production', {
-        url: '/:campaignId',
+        url: '/production/:campaignId',
         views: {
           '@main': {
             controller: 'influencerCampaignDetailController',
@@ -92,7 +101,7 @@ angular.module('app.influencer', components)
         }
       })
       .state('my-campaign.complete', {
-        url: '/:campaignId',
+        url: '/complete/:campaignId',
         views: {
           '@main': {
             controller: 'influencerCampaignDetailController',

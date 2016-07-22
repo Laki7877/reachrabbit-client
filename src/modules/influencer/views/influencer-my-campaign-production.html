@@ -22,20 +22,20 @@
         </div>
       </div>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default" ng-repeat-start="submission in campaign.campaignSubmissions">
         <div class="panel-body">
-          <h3>Jon Snow's Submission #1</h3>
+          <h3>Jon Snow's Submission #{{$index + 1}}</h3>
           Here is me and my pikachu trying to conquer the north back. Hope you like it.
           <br><br>
           <img src="images/submission-jon.jpg" alt="" />
         </div>
       </div>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default" ng-repeat-end="" ng-if="submission.comment">
         <div class="panel-body">
-          <h3>Brand Comment on your Submission #1</h3>
+          <h3>Brand Comment on your Submission #{{$index + 1}}</h3>
           <blockquote>
-            Yo Jon. We kind of like your crazy look. But you steal the scene from our Pikachu. Can you step back a little bit?
+            {{ submission.comment }}
           </blockquote>
         </div>
       </div>
@@ -45,7 +45,7 @@
             <div class="row">
               <div class="col-md-8">
                 <form class="form-horizontal" action="" method="POST">
-                    <h3>Submission #2</h3>
+                    <h3>Submission #{{ campaign.campaignSubmissions.length + 1}}</h3>
                     <fieldset>
                       <div class="control-group">
                         <label class="control-label" >Description</label>
@@ -65,7 +65,7 @@
                         <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                       </div>
                       <br>
-<!--                       <div class="control-group">
+<!--                  <div class="control-group">
                         <label class="control-label" for="brandname">Link Attachment</label>
                         <div class="controls">
                           <input type="text" placeholder="" ng-model="submission.resources[1]" class="form-control"></input>

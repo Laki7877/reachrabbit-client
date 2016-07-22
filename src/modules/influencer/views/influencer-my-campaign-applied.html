@@ -1,0 +1,114 @@
+<div class="container">
+
+    <div class="page-header">
+        <h2 class="pull-left">Campaign Detail ({{ $root.getRouteByStatusApplied(campaign) | uppercase }})</h2>
+        <div class="pull-right">
+            <a ui-sref="^" class="btn btn-default">
+            Back to Campaign List
+          </a>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <!-- campaign title-->
+     <div class="panel panel-default" >
+      <div class="media" >
+        <div class="media-left">
+          <img ng-if="campaign.resources.length > 0" class="media-object" src="{{ campaign.resources[0].url }}"  >
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{ campaign.title }} <i class="fa fa-{{campaign.media[0].mediaId}}"></i></h4>
+          <div class="media-item">
+            <h5>Status</h5>
+            <h4>{{ $root.getRouteByStatusApplied(campaign) }}</h4>
+          </div>
+          <div class="media-item">
+            <h5>Reward</h5>
+            <h4>{{ campaign.budget || 'N/A' }}</h4>
+          </div>
+          <div class="media-item">
+            <h5>Category</h5>
+            <h4>{{ campaign.category.categoryName }}</h4>
+          </div>
+          <div class="media-item">
+            <h5>Proposal Deadline</h5>
+            <h4>{{ campaign.proposalDeadline | date : "d/M/y H:m:s" }}</h4>
+          </div>
+          <div class="media-item">
+            <h5>Proposal Result</h5>
+            <h4>Not Supported</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <scientific-card ng-model="proposals" card-type="influencer-proposal"></scientific-card>
+
+    <div class="panel panel-default" ng-repeat="msg in comments">
+        <div class="panel-body">
+          <h3>Brand Comment</h3>
+          <blockquote>
+            {{msg}}
+          </blockquote>
+        </div>
+    </div>
+
+    <div ng-show="!isApplied" class="panel panel-default">
+        <div class="panel-body">
+          <strong style="font-size:16px">Campaign Detail</strong>
+            <div class="row">
+                <div class="col-md-8">
+                    {{ campaign.description}}
+                    <div ng-repeat="resource in campaign.resources" ng-if="$index > 0">
+                        <img src="{{resource.url}}" alt=""  width="550" class="img-responsive" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default" ng-if="needRevision()">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <form class="form-horizontal" action="" method="POST">
+                        <strong ng-if="!isApplied" style="font-size:16px">Apply for this campaign</strong>
+                        <h3 ng-if="isApplied">Revise Proposal</h3>
+                        <fieldset>
+                            <div class="control-group">
+                                <label class="control-label" for="brandname">Why should it be you?</label>
+                                <div class="controls">
+                                    <textarea type="text" placeholder="" ng-model="proposal.description" class="form-control" rows="3"></textarea>
+                                    <span>Ex: "I'm so handsome and you know it."</span>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="control-group">
+                                <label class="control-label" for="brandname">Proposed Price</label>
+                                <div class="controls">
+                                    <input type="text" ng-model="proposal.proposePrice" placeholder="" class="form-control">
+                                </div>
+                                <span class="color-red">You will be charge 18% [NOTE: We need to work on this.]</span>
+                            </div>
+                            <br>
+                            <label for="attachment">Image Attachment (Optional):</label>
+                            <br/>
+                            <image-thumb width="auto" height="200"
+                            no-image-url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/No_image_available_600_x_200.svg/600px-No_image_available_600_x_200.svg.png"
+                            ng-model="proposal.resources[0]"></image-thumb>
+                        </fieldset>
+                    </form>
+
+                    <br>
+
+                    <div class="controls">
+                        <a ng-click="postProposal(proposal)" class="btn btn-success">Submit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

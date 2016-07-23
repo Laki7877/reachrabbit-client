@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-git merge -s ours master
+git merge -m "" -s ours master 
 git checkout master
 git checkout develop
 cp .env.heroku .env

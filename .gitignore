@@ -15,7 +15,6 @@ test/browser/test.js
 # coverage test
 coverage
 
-public/assets
 tmp
 
 # eclipse project file

@@ -70,7 +70,8 @@ angular.module('app.common')
 
               }
             },
-            size: 'lg',
+            backdrop:'static',
+            size: 'md',
             resolve: {
               fbUser: function() {
                 return fbUser;

@@ -11,26 +11,6 @@ var components = [
 ];
 
 angular.module('app', components)
-  .run(function($state, $json, $rootScope, $storage) {
-      $rootScope.getProfile = function(){
-        return $storage.get('profile');
-      }
-
-      $rootScope.getRouteByStatus = function(card){
-        if(card.status == 'payment pending' ||
-          card.status == 'wait for payment' ||
-          card.status == 'wait for confirm'){
-          return 'open';
-        }
-        return (card.status || '').toLowerCase();
-      }
-
-      $rootScope.getRouteByStatusApplied = function(card){
-        if(card.status == 'payment pending' ||
-          card.status == 'wait for payment' || card.status == 'open' ||
-          card.status == 'wait for confirm'){
-          return 'applied';
-        }
-        return (card.status || '').toLowerCase();
-      }
+  .run(function($state, $rootScope, $storage) {
+      
   });

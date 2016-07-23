@@ -9,4 +9,5 @@ git add -A
 git commit -m "Heroku Deployment $1"
 git push heroku
 git push origin
+rm .env
 git checkout develop

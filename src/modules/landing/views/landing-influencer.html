@@ -1,22 +1,16 @@
-<md-progress-linear ng-if="loadingTop" class="md-warn"  md-mode="indeterminate" style="position:absolute; top:-30px; width:100%; left:0"></md-progress-linear>
-
-<div class="container">
-
-  <div class="alert alert-warning" role="alert">After Milestone 1, we will move from Window 95 to Material Design.</div>
-
-  <div class="jumbotron">
-    <h2>ReachRabbit Influencer</h2>
-    <p class="lead">
-      Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.
-      <a href="/#/brand">I'm Brand.</a>
+<div class="container darkg">
+        
+      <div class="jumbotron">
+        <h1><i class="fa fa-pied-piper"></i> </h1>
+        <h2>ReachRabbit <small>Influencers</small></h2>
+          <p class="lead"><h4>Earn quick underground cash.</h4>
+      <a href="/#/brand">I'm a brand, looking for influencers.</a>
     </p>
-
-    <social-linker
-      on-already-logged-in="onAlreadyLoggedIn"
-      on-success="socialSelectionDone"
-      ng-model="socialAcc"></social-linker>
-
-
-  </div>
-
+        <p>
+          <social-linker on-already-logged-in="onAlreadyLoggedIn" on-success="socialSelectionDone" ng-model="socialAcc"></social-linker>
+        </p>
+      </div>
 </div>
+<p>
+<br/>
+</p>

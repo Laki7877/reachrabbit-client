@@ -1,6 +1,6 @@
 <div class="container">
   <div class="page-header">
-    <h2 class="pull-left">All stuff you need to know</h2>
+    <h2><i class="fa fa-pied-piper"></i>  ReachRabbit <small>A/B Team</small></h2>
     <div class="clear"></div>
   </div>
 
@@ -8,7 +8,8 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-12">
-          <table class="table">
+          <span ng-if="campaigns.length ==0">No Campaign for you to review</span>
+          <table class="table" ng-if="campaigns.length > 0">
             <thead>
               <tr>
                 <th>Campaign</th>
@@ -35,7 +36,8 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-12">
-          <table class="table">
+          <span ng-if="submissions.length == 0">No submission for you to review</span>
+          <table class="table" ng-if="submissions.length > 0">
             <thead>
               <tr>
                 <th>Submission</th>
@@ -64,7 +66,8 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-12">
-          <table class="table">
+          <span ng-if="payments.length == 0">No payment for you to review</span>
+          <table class="table" ng-if="payments.length > 0">
             <thead>
               <tr>
                 <th>Campaign</th>

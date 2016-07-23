@@ -83,7 +83,6 @@
     "browserify-bower": "^0.6.1",
     "browserify-ngannotate": "^2.0.0",
     "browserify-shim": "^3.8.2",
-    "particles.js": "^2.0.0",
     "protractor": "^2.5.1",
     "sass-lint": "^1.7.0",
     "satellizer": "^0.14.1",

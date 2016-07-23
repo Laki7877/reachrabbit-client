@@ -8,7 +8,6 @@ require('es5-shim');
 require('es5-sham');
 require('jquery');
 
-require('particles.js');
 require('satellizer');
 require('ng-file-upload');
 

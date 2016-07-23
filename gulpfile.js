@@ -76,7 +76,7 @@ var liveReload = true;
 // git precommit
 gulp.task('pre-commit', 'Git hook pre-commit', function() {
   return gulp.src(guppy.src('pre-commit'))
-    .pipe(plugins.filter(['*.js']))
+    .pipe(plugins.filter(['**/*.js']))
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter(require('jshint-stylish')))
     .pipe(plugins.jshint.reporter('fail'));

@@ -17,13 +17,13 @@
         <li><a href="/influencer#/campaign/my">My Campaign</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown active">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            {{ $root.getProfile().name }} <small>({{ $root.getProfile().email }})</small <span class="caret"></span>
+        <li class="dropdown" uib-dropdown>
+          <a class="dropdown-toggle" uib-dropdown-toggle>
+            {{ $root.getProfile().name }} <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu">
-            <li><a href="brand-profile.html">Profile</a></li>
-            <li><a href="brand-transaction-list.html">Transactions</a></li>
+          <ul class="dropdown-menu" uib-dropdown-menu>
+            <li><a ui-sref="profile()">Profile</a></li>
+            <li><a ui-sref="transaction-list()">Transactions</a></li>
             <li><a href="#">Notification</a></li>
           </ul>
         </li>
@@ -31,5 +31,8 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </nav>
+
+
+
 
 <div data-ui-view>

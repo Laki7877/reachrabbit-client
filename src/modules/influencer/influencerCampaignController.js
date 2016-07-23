@@ -53,10 +53,17 @@ angular.module('app.influencer')
     }
 
     $scope.getMyLatestProposal = function(card){
+      if(!card.campaignProposals){
+         return { status: 'Wait for Backend'};
+      }
+
       return card.campaignProposals[0];
     }
 
     $scope.getMyLatestSubmission = function(card){
+      if(!card.campaignSubmissions){
+        return { status: 'Wait for Backend'};
+      }
       return card.campaignSubmissions[0];
     }
 
@@ -84,6 +91,21 @@ angular.module('app.influencer')
     $scope.proof = {
       proof: {}
     };
+
+    $scope.getMyLatestProposal = function(card){
+      if(!card.campaignProposals){
+        return { status: "Wait for Backend"};
+      }
+
+      return card.campaignProposals[0];
+    }
+
+    $scope.getMyLatestSubmission = function(card){
+      if(!card.campaignSubmissions){
+        return { status: "Wait for Backend"};
+      }
+      return card.campaignSubmissions[0];
+    }
 
     $scope.postEvidence = function(proof,submission){
       $api({

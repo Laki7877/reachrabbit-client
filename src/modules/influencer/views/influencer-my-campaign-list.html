@@ -11,13 +11,16 @@
 
       <nc-alert nc-model="alert"></nc-alert>
 
-      <span ng-if="campaigns.length == 0">
-        No open campaign available.
-      </span>
+      <div ng-if="campaigns.length == 0" class="panel panel-default">
+        <div class="panel-body">
+          No open campaign available.
+        </div>
+      </div>
+
        <div class="panel panel-default" ng-repeat="card in campaigns">
           <div class="media" >
             <div class="media-left">
-              <img ng-if="card.resources.length > 0" class="media-object" src="{{ card.resources[0].url }}"  >
+              <img ng-if="card.resources.length > 0" class="media-object" ng-src="{{ card.resources[0].url }}"  >
             </div>
             <div class="media-body">
               <a ui-sref="my-campaign.{{ $root.getRouteByStatusApplied(card) }}({ campaignId: card.campaignId })">

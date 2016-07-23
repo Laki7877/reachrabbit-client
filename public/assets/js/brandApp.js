@@ -47,9 +47,9 @@ angular.module('app', components)
 
 angular.module('app.common')
 	.config(["$authProvider", function($authProvider) {
-		$authProvider.baseUrl = "http://localhost:3000";
+		$authProvider.baseUrl = "http://px-api.herokuapp.com";
 		$authProvider.facebook({
-			clientId: "1650450825280716",
+			clientId: "1648733485452450",
       scope: ['pages_show_list', 'manage_pages']
 		});
 
@@ -568,7 +568,7 @@ angular.module('app.common')
         opts.headers.Authorization = 'JWT ' + token;
       }
       if(opts.url.indexOf('http') !== 0) {
-        opts.url = "http://localhost:3000" + opts.url;
+        opts.url = "http://px-api.herokuapp.com" + opts.url;
       }
       opts.skipAuthorization = true;
 
@@ -788,7 +788,7 @@ angular.module('app.common')
     service.upload = function(url, file, data, opts) {
       var deferred = $q.defer();
       var options = _.extend({
-        url: "http://localhost:3000" + url,
+        url: "http://px-api.herokuapp.com" + url,
         data: _.extend({}, data, { file: file }),
         skipAuthorization: true
       }, opts);

@@ -12,7 +12,8 @@ var components = [
 	'angularCSS',
 	'satellizer',
   'ngFileUpload',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angular-loading-bar'
 ];
 
 angular.module('app.common', components);

@@ -7,7 +7,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="brand-landing.html">ReachRabbit Inf</a>
+      <a class="navbar-brand" href="brand-landing.html">
+        <i class="fa fa-pied-piper" aria-hidden="true"></i>
+        ReachRabbit <small>Influencers</small></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -17,7 +19,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown active">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            Influencer<span class="caret"></span>
+            {{ $root.getProfile().name }} <small>({{ $root.getProfile().email }})</small <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
             <li><a href="brand-profile.html">Profile</a></li>

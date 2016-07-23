@@ -18,6 +18,7 @@ require('angular-css');
 require('angular-sanitize');
 require('angular-ui-router');
 require('angular-ui-bootstrap');
+require('angular-loading-bar');
 
 require('./jquery.vide.min.js');
 require('video.js');

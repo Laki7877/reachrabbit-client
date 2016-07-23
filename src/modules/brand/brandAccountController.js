@@ -44,7 +44,6 @@ angular.module('app.brand')
         url: '/login',
         data: $scope.formData
       }).then(function (data) {
-        $storage.put('profile', data);
         $storage.put('auth', data.token);
         //Get user info
         return $api({
@@ -53,6 +52,7 @@ angular.module('app.brand')
         });
       })
       .then(function(data) {
+          $storage.put('profile', data);
           $state.go('campaign-list');
       })
       .catch(function (err) {

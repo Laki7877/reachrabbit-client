@@ -12,3 +12,4 @@ git push heroku
 git push origin
 rm .env
 git checkout develop
+gulp build:all

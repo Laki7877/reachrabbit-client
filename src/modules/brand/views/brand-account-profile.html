@@ -1,36 +1,58 @@
-  <md-card-content class="md-padding" layout-xs="column" layout="row" layout-align-xs="center none" layout-align="left none">
+<div class="container">
+  <div class="page-header">
+    <h2 class="pull-left">Brand Profile</h2>
+    <div class="clear"></div>
+  </div>
+  <nc-alert nc-model="alert"></nc-alert>
+  <div class="panel panel-default">
+    <div class="panel-body container">
       <image-thumb width="250" height="250" ng-model="formData.profilePicture"></image-thumb>
-      <div class="md-padding" flex="100">
-        <form name="form"
-          class="form-horizontal"
-          ng-submit="submit(form)"
-          novalidate>
-          <fieldset>
-              <md-input-container class="md-block">
-                <label>Brand Name</label>
-                <input required md-no-asterisk name="brandName" ng-model="formData.brandName">
-              </md-input-container>
-              <md-input-container class="md-block">
-                <label>Name</label>
-                <input required md-no-asterisk name="name" ng-model="formData.name">
-              </md-input-container>
-               <md-input-container class="md-block">
-                <label>Contact Number</label>
-                <input md-maxlength="10" required md-no-asterisk name="contactNumber" ng-model="formData.contactNumber">
-              </md-input-container>
-               <md-input-container class="md-block">
-                <label>E-mail</label>
-                <input required md-no-asterisk name="email" ng-model="formData.email">
-              </md-input-container>
-              <md-input-container class="md-block">
-                <label>Confirm E-mail</label>
-                <input required md-no-asterisk name="emailConfirm" ng-model="formData.emailConfirm">
-              </md-input-container>
+      <form name="form"
+        ng-submit="submit(form)"
+        novalidate>
+        <fieldset>
+          <div class="row">
+          <div class="col-md-6">
+          <div class="control-group">
+            <label class="control-label" for="brandname">Brand Name</label>
+            <div class="controls">
+              <input required md-no-asterisk name="brandName" class="form-control" ng-model="formData.brand.brandName">
+            </div>
+          </div>
+          <div class="control-group">
+            <label>Name</label>
+            <div class="controls">
+              <input required md-no-asterisk name="name" class="form-control" ng-model="formData.name">
+            </div>
+          </div>
+          <div class="control-group">
+            <label>Contact Number</label>
+            <div class="controls">
+              <input required md-no-asterisk name="contactNumber" class="form-control" ng-model="formData.contactNumber">
+            </div>
+          </div>
+          <div class="control-group">
+            <label>Email</label>
+            <div class="controls">
+              <input required md-no-asterisk name="email" class="form-control" ng-model="formData.email">
+            </div>
+          </div>
+          <div class="control-group">
+            <label>Confirm Email</label>
+            <div class="controls">
+              <input required md-no-asterisk name="email" class="form-control" ng-model="formData.emailConfirm">
+            </div>
+          </div>
+          <br/>
+          </div>
+          </div>
 
-                <md-button type="submit" class="md-raised pull-right" ng-disabled="true">Change Password</md-button>
-               <md-button type="submit" class="md-raised md-primary pull-right" ng-disabled="true">Save</md-button>
-          </fieldset>
-        </form>
-      </div>
-  </md-card-content>
-</md-card>
+        </fieldset>
+      </form>
+    </div>
+
+
+  </div>
+   <button class="btn btn-default "><i class="fa fa-lock"></i> Change Password</button>
+  <button class="btn btn-primary " ng-click="saveProfile()">Save Profile</button>
+</div>

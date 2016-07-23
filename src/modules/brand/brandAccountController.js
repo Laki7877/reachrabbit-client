@@ -7,22 +7,30 @@
  */
 'use strict';
 angular.module('app.brand')
-  .controller('brandAccountProfileController', function ($scope, $state, $api, $uploader, $storage) {
+  .controller('brandAccountProfileController', function ($scope, NcAlert, $state, $api, $uploader, $storage) {
     //Hacky, will change after TODO: Friday
     document.getElementsByTagName("body")[0].style.backgroundImage = "none";
     document.getElementsByTagName("body")[0].style.backgroundColor = "#ebebeb";
     $scope.formData = {
-      socialAccounts: {}, selectedTopics: []
-    };
 
-    $scope.upload = function (file) {
-      $scope.loadingImage = true;
-      $uploader.upload('/file', file)
-        .then(function (data) {
-          $scope.loadingImage = false;
-          $scope.formData.profilePicture = data;
-        });
     };
+    $scope.alert = new NcAlert();
+
+    $scope.saveProfile = function(){
+      //get user info
+      $api({
+        method: 'PUT',
+        url: '/profiles',
+        data: $scope.formData
+      }).then(function (data) {
+        $scope.formData = _.extend($scope.formData, data);
+        $scope.alert.success("Profile Updated");
+      }).catch(function (err) {
+        console.log(err);
+        $scope.alert.error("Oops! Blame the D Team");
+      });
+
+    }
 
     //get user info
     $api({
@@ -32,6 +40,7 @@ angular.module('app.brand')
       $scope.formData = _.extend($scope.formData, data);
     }).catch(function (err) {
       console.log(err);
+      $scope.alert.error("Oops! Blame the D Team");
     });
 
   })

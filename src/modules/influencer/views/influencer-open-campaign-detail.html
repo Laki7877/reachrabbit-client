@@ -21,7 +21,7 @@
           <h4 class="media-heading">{{ campaign.title }} <i class="fa fa-{{campaign.media[0].mediaId}}"></i></h4>
           <div class="media-item">
             <h5>Status</h5>
-            <h4>{{ $root.getRouteByStatus(campaign) }}</h4>
+            <h4>{{ $root.getRouteByStatus(campaign) |capitalize }}</h4>
           </div>
           <div class="media-item">
             <h5>Reward</h5>
@@ -37,7 +37,7 @@
           </div>
           <div class="media-item">
             <h5>Proposal Result</h5>
-            <h4>Not Supported</h4>
+            <h4>N/S</h4>
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@
                             <label for="attachment">Image Attachment (Optional):</label>
                             <br/>
                             <image-thumb width="auto" height="200"
-                            no-image-url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/No_image_available_600_x_200.svg/600px-No_image_available_600_x_200.svg.png"
+                            no-image-url="/static/image-square-placeholder.png"
                             ng-model="proposal.resources[0]"></image-thumb>
                         </fieldset>
                     </form>

@@ -117,7 +117,7 @@
                       <br>
 
                       <label for="attachment">Image Attachment:</label><br/>
-                      <image-thumb ng-model="submission.resources[0]" height="300" width="auto"></image-thumb>
+                      <image-thumb no-image-url="/static/image-square-placeholder.png" ng-model="submission.resources[0]" height="300" width="auto"></image-thumb>
                       <br>
                       <label for="attachment">Video Attachment:</label>
                       <div class="fileinput fileinput-new input-group" data-provides="fileinput">
@@ -165,7 +165,9 @@
  -->
                       <label for="attachment">Image Attachment:</label>
                       <br/>
-                      <image-thumb ng-model="proof.proof" height="300" width="auto"></image-thumb>
+                      <image-thumb ng-model="proof.proof"
+                      no-image-url="/static/image-square-placeholder.png"
+                      height="300" width="auto"></image-thumb>
                       <p>
                         You will get money in 3 days after providing the evidence.
                       </p>

@@ -2,12 +2,13 @@
  * API service
  *
  * @author     Poon Wu <poon.wuthi@gmail.com
- * @since      0.0.1
+ * @author     Pat Sabpisal <ecegrid@gmail.com
+ * @since      0.0.3
  */
 'use strict';
 
 angular.module('app.common')
-  .factory('$api', function($http, $storage, $q) {
+  .factory('$api', function($http, $storage, $q, $state) {
     var service = function(opts) {
       var defer = $q.defer();
       var token = $storage.getAuth();
@@ -28,9 +29,8 @@ angular.module('app.common')
       }).catch(function(err) {
         console.log("Error", err);
         if(err.status == 401){
-          alert("Not logged in");
+          $state.go('error', {code: 401, description: err });
         }
-
         defer.reject(err);
       });
 

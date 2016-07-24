@@ -43,29 +43,4 @@ angular.module('app.brand')
       $scope.alert.error("Oops! Blame the D Team");
     });
 
-  })
-  .controller('brandAccountSigninController', function ($scope, $state, $storage, $api) {
-    // on form submit
-    $scope.submit = function (form) {
-      // call api
-      $api({
-        method: 'POST',
-        url: '/login',
-        data: $scope.formData
-      }).then(function (data) {
-        $storage.put('auth', data.token);
-        //Get user info
-        return $api({
-          method: 'GET',
-          url: '/profiles'
-        });
-      })
-      .then(function(data) {
-          $storage.put('profile', data);
-          $state.go('campaign-list');
-      })
-      .catch(function (err) {
-        console.error(err);
-      });
-    };
   });

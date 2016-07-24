@@ -13,6 +13,18 @@ var components = [
 
 angular.module('app.brand', components)
   .config(function($stateProvider) {
+
+    $stateProvider
+    .state('error', {
+      params: {code: null, description: null},
+      views: {
+          '@': {
+            controller: 'errorController',
+            templateUrl: 'views/common-error.html'
+          }
+      }
+    });
+
     /*
     * Main Layout
     */
@@ -30,19 +42,6 @@ angular.module('app.brand', components)
      * Account
      */
     $stateProvider
-      .state('signin', {
-        parent: 'main',
-        url: '/signin',
-        views: {
-          '': {
-            controller: 'brandAccountSigninController',
-            templateUrl: 'views/brand-account-signin.html'
-          },
-          'menu@main': {
-            template: ''
-          }
-        }
-      })
       .state('profile', {
         parent: 'main',
         url: '/profile',

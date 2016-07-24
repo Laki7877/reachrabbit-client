@@ -17,6 +17,11 @@ var components = [
 ];
 
 angular.module('app.common', components)
+.controller('errorController', function($scope, $state){
+  console.log($state.params);
+  $scope.code = $state.params.code;
+  $scope.description = $state.params.description;
+})
 .run(function($json, $rootScope, $storage) {
 
       $rootScope.getProfile = function(){
@@ -48,6 +53,8 @@ angular.module('app.common', components)
       $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams, error) {
        console.log('Router change success', event, toState, toParams, fromState, error);
       });
+
+
   });
 
 

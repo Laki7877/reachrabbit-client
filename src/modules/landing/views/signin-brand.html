@@ -1,0 +1,36 @@
+<h1><i class="fa fa-pied-piper"></i> </h1>
+<h2>ReachRabbit <small>Brands Login</small></h2>
+<form name="form"
+          class="form-horizontal"
+          ng-submit="submit(form)"
+          novalidate>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default" >
+      <div class="panel-body">
+        <nc-alert nc-model="alert"></nc-alert>
+
+          <fieldset>
+            <div class="control-group">
+              <div class="controls">
+                <input required placeholder="Email" name="email" class="form-control" ng-model="formData.email">
+              </div>
+            </div>
+            <br/>
+            <div class="control-group">
+              <div class="controls">
+                <input type="password" class="form-control"  required placeholder="Password"  name="password" ng-model="formData.password">
+              </div>
+            </div>
+          </fieldset>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <button class="btn btn-primary" type="submit">Sign-in</button>
+  </div>
+</div>
+</form>

@@ -34,12 +34,12 @@ angular.module('app.landing', components)
 			.state('brand', {
 				url: '/brand',
 				controller: 'landingBrandController',
-				templateUrl: 'views/landing-brand.html' 
+				templateUrl: 'views/landing-brand.html'
 			})
 			/*
 			* Influencer Landing Page
 			*/
-			.state('influencer', { 
+			.state('influencer', {
 				url: '/influencer',
 				controller: 'landingInfluencerController',
 				templateUrl: 'views/landing-influencer.html'
@@ -100,8 +100,16 @@ angular.module('app.landing', components)
             templateUrl: 'views/signin-admin.html'
           }
         }
+      })
+      .state('brand-signin', {
+        url: '/brand/signin',
+        views: {
+          '': {
+            controller: 'brandAccountSigninController',
+            templateUrl: 'views/signin-brand.html'
+          }
+        }
       });
-
 	});
 
 require('bulk-require')(__dirname, ['**/*.js', '!index.js']);

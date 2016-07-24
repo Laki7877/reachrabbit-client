@@ -2,7 +2,8 @@
  * Influencer app
  *
  * @author     Poon Wu <poon.wuthi@gmail.com
- * @since      0.0.1
+ * @author     Pat Sabpisal <ecegrid@gmail.com
+ * @since      0.0.3
  */
 'use strict';
 
@@ -12,6 +13,5 @@ var components = [
 
 angular.module('app', components)
   .run(function($state, $rootScope, $storage) {
-
-   
+    $state.go('campaign-list');
   });

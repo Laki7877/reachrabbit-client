@@ -6,7 +6,6 @@ bower_components
 *.swp
 *.un~
 
-app/dist
 test/browser/test.js
 
 # env file
@@ -15,7 +14,6 @@ test/browser/test.js
 # coverage test
 coverage
 
-public/assets
 tmp
 
 # eclipse project file

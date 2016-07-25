@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="page-header">
-        <h2 class="pull-left">Campaign Detail ({{ $root.getRouteByStatusApplied(campaign) | uppercase }})</h2>
+        <h2 class="pull-left">Campaign Detail</h2>
         <div class="pull-right">
             <a ui-sref="^" class="btn btn-default">
             Back to Campaign List
@@ -20,11 +20,12 @@
           <h4 class="media-heading">{{ campaign.title }} <i class="fa fa-{{campaign.media[0].mediaId}}"></i></h4>
           <div class="media-item">
             <h5>Status</h5>
-            <h4>{{ $root.getRouteByStatusApplied(campaign) }}</h4>
+            <h4 ng-class="{'color-green': $root.getRouteByStatusApplied(campaign)}">
+            {{ $root.getRouteByStatusApplied(campaign) | capitalize }}</h4>
           </div>
           <div class="media-item">
             <h5>Reward</h5>
-            <h4>{{ campaign.budget || 'N/A' }}</h4>
+            <h4>{{ campaign.budget || 'N/A' }} <small>บาท</small></h4>
           </div>
           <div class="media-item">
             <h5>Category</h5>
@@ -32,11 +33,7 @@
           </div>
           <div class="media-item">
             <h5>Proposal Deadline</h5>
-            <h4>{{ campaign.proposalDeadline | date : "d/M/y H:m:s" }}</h4>
-          </div>
-          <div class="media-item">
-            <h5>Proposal Result</h5>
-            <h4>Not Supported</h4>
+            <h4>{{ campaign.proposalDeadline | date : "d/M/y HH:mm" }}</h4>
           </div>
         </div>
       </div>

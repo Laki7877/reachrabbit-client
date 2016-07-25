@@ -36,7 +36,7 @@
                 <h4 ng-class="{'color-red': getMyLatestProposal(card).status == 'need revision',
                 'color-yellow': getMyLatestProposal(card).status == 'wait for review'
                 }">
-                  {{ getMyLatestProposal(card).status }}
+                  {{ getMyLatestProposal(card).status | capitalize }}
                 </h4>
               </div>
               <div class="media-item" ng-if="card.status == 'production'">

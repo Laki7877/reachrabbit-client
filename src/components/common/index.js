@@ -48,10 +48,12 @@ angular.module('app.common', components)
 
       $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
        console.error('Router change error', event, toState, toParams, fromState, error);
+       $state.go('error', { 'code': 0, 'description':  error})
       });
 
       $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams, error) {
        console.log('Router change success', event, toState, toParams, fromState, error);
+       $state.go('error', { 'code': 0, 'description':  error})
       });
 
 

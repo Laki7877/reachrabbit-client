@@ -21,7 +21,7 @@
           <h4 class="media-heading">{{ campaign.title }} <i class="fa fa-{{campaign.media[0].mediaId}}"></i></h4>
           <div class="media-item">
             <h5>Status</h5>
-            <h4>{{ $root.getRouteByStatus(campaign) |capitalize }}</h4>
+            <h4>{{ $root.getRouteByStatus(campaign) | capitalize }}</h4>
           </div>
           <div class="media-item">
             <h5>Reward</h5>
@@ -34,10 +34,6 @@
           <div class="media-item">
             <h5>Proposal Deadline</h5>
             <h4>{{ campaign.proposalDeadline | date : "d/M/y H:m:s" }}</h4>
-          </div>
-          <div class="media-item">
-            <h5>Proposal Result</h5>
-            <h4>N/S</h4>
           </div>
         </div>
       </div>

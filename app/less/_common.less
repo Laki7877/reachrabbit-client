@@ -1,0 +1,53 @@
+/* General */
+
+body{
+  color: @color-black;
+}
+
+h1{
+  font-family: 'Kanit', sans-serif;
+  font-weight: 300;
+}
+
+
+label{
+  font-weight: normal;
+}
+.form-control{
+  border-radius: 0px;
+  border-color:@color-grey;
+}
+
+/* Card */
+
+.card-grey{
+  &:extend(.panel);
+  border: 0px;
+  background-color:@color-grey-ligther;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.20);
+}
+.card-grey:hover{
+  box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.20);
+}
+
+.card-body{
+  &:extend(.panel-body);
+  padding: 30px;
+}
+
+/* Button */
+
+.btn-call-to-action {
+  &:extend(.btn);
+  .button-variant(@color-white, @color-theme-primary, @color-btn-border);
+  width: 100%;
+  padding: 6px;
+  margin: auto;
+}
+.btn-clear {
+  &:extend(.btn);
+  .button-variant(@color-theme-primary, @color-clear, @color-clear);
+  width: 100%;
+  padding: 6px;
+  margin: auto;
+}

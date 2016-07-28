@@ -3,18 +3,18 @@
 angular.module('myApp.view', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/login', {
-    templateUrl: 'view/login.html',
+  $routeProvider.when('/404', {
+    templateUrl: 'view/404.html',
     controller: 'EmptyController'
   });
 
-  $routeProvider.when('/view2', {
-    templateUrl: 'view/view2.html',
+  $routeProvider.when('/brand-login', {
+    templateUrl: 'view/brand-login.html',
     controller: 'EmptyController'
   });
 
-  $routeProvider.when('/viewx', {
-    templateUrl: 'view/viewx.html',
+  $routeProvider.when('/brand-campaign-list', {
+    templateUrl: 'view/brand-campaign-list.html',
     controller: 'EmptyController'
   });
 

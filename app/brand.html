@@ -6,18 +6,45 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>Brand</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="css/app.css">
 </head>
-<body>
+<body class="layout-brand">
 
-  <!-- <ul class="menu">
-    <li><a href="#!/view2">view2</a></li>
-    <li><a href="#!/viewx">view x</a></li>
-  </ul> -->
+  <nav class="navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="brand-landing.html"><img src="images/logo-nav-inverse.png" alt="ReachRabbit" /></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="brand-campaign-list.html">My Campaign</a></li>
+            <li><a href="brand-influencer-list.html">Influencers</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Nattamoto<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="brand-profile.html">Profile</a></li>
+                <li><a href="brand-transaction-list.html">Transactions</a></li>
+                <li><a href="#">Notification</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container-fluid -->
+    </nav>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

@@ -1,9 +1,8 @@
-/* Layout */
-
-.layout-login{
-  background: url("../images/bg-layout-login.png") #019386;
-  .view-login{
-    .logo-brand{
+/* Layout Portal */
+.layout-portal{
+  background: url("../images/bg-layout-login.png") @color-theme-secondary-darker;
+  .view-brand-login{
+    .logo{
       width: 344px;
       margin: auto;
       text-align: center;
@@ -21,9 +20,18 @@
       margin-top: 140px;
       max-width: 374px;
     }
-    .btn-call-to-action{
+    .btn-primary{
       margin-top: 20px;
       margin-bottom: 5px;
+      width: 100%;
+    }
+    .btn-clear{
+      width: 100%;
     }
   }
+}
+
+/* Layout Brand */
+.layout-brand{
+  background: @color-grey-ligther;
 }

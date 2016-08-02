@@ -6,6 +6,7 @@ input:-webkit-autofill {
 /* General */
 body{
   color: @color-black;
+  font-family: 'Tahoma', sans-serif;
 }
 h1{
   font-family: 'Kanit', sans-serif;
@@ -18,7 +19,10 @@ label{
   border-radius: 0px;
   border-color:@color-grey;
 }
-
+.info-text{
+  &:extend(.small);
+  color: @color-grey-darker;
+}
 .input-group-addon{
   background-color: @color-grey-lighter;
   border-color:@color-grey;
@@ -28,6 +32,7 @@ label{
 
 a{
   color: @color-theme-primary;
+  cursor: pointer;
 }
 a:hover{
   color: darken( @color-theme-primary, 25%);
@@ -68,6 +73,7 @@ a:active, a:focus, a:visited{
   &:extend(.btn);
   .button-variant(@color-theme-primary, @color-clear, @color-clear);
 }
+
 
 
 /* Nav */

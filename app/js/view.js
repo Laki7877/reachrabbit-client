@@ -13,13 +13,14 @@ angular.module('myApp.view', ['ngRoute'])
     controller: 'EmptyController'
   });
 
+  $routeProvider.when('/brand-signup', {
+    templateUrl: 'view/brand-signup.html',
+    controller: 'EmptyController'
+  });
+
   $routeProvider.when('/brand-campaign-list', {
     templateUrl: 'view/brand-campaign-list.html',
     controller: 'EmptyController'
   });
-
-}])
-
-.controller('EmptyController', [function() {
 
 }]);

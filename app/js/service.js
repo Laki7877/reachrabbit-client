@@ -2,7 +2,7 @@
 
 angular.module('myApp.service', [])
 .value('config', {
-  'apiBaseUri': 'http://localhost:8080'
+  'apiBaseUri': 'http://bella.reachrabbit.co'
 })
 .factory('baseUrlInjector', ['config', function(config){
     var inj = {

@@ -1111,7 +1111,7 @@ img {
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img,
-.layout-portal .view-brand-login .logo img {
+.layout-portal .card-grey .logo img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -7225,24 +7225,24 @@ fieldset[disabled] .btn-clear.active {
 .layout-portal {
   background: url("../images/bg-layout-login.png") #019386;
 }
+.layout-portal .card-grey {
+  margin: 140px auto 0 auto;
+  max-width: 430px;
+}
 .layout-portal .card-grey .card-body {
   padding: 30px 60px 30px 60px;
 }
-.layout-portal .view-brand-login .logo {
+.layout-portal .card-grey .logo {
   width: 100%;
   margin: auto;
   text-align: center;
 }
-.layout-portal .view-brand-login .logo h1 {
+.layout-portal .card-grey .logo h1 {
   font-size: 18px;
   margin-top: 10px;
   margin-bottom: 20px;
   font-style: italic;
   color: #8692a8;
-}
-.layout-portal .view-brand-login .container {
-  margin-top: 140px;
-  max-width: 430px;
 }
 .layout-portal .view-brand-login .btn-primary {
   margin-top: 20px;

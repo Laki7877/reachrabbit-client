@@ -4,9 +4,11 @@
   "version": "0.0.1",
   "description": "Reach Rabbit Client",
   "license": "MIT",
+  "dependencies": {
+    "http-server": "^0.9.0"
+  },
   "devDependencies": {
     "bower": "^1.7.7",
-    "http-server": "^0.9.0",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",
@@ -19,8 +21,7 @@
     "postinstall": "bower install",
     "less" : "autoless app/less app/css",
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000 -c-1 ./app ",
-
+    "start": "node_modules/http-server/bin/http-server -a localhost -p $PORT -c-1 ./app ",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",

@@ -1,5 +1,5 @@
 @import "../bower_components/font-awesome/css/font-awesome.min.css";
-@import 'https://fonts.googleapis.com/css?family=Kanit:300,400&subset=thai';
+@import "https://fonts.googleapis.com/css?family=Kanit:300,300i,400,400i&subset=thai";
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -7225,20 +7225,24 @@ fieldset[disabled] .btn-clear.active {
 .layout-portal {
   background: url("../images/bg-layout-login.png") #019386;
 }
+.layout-portal .card-grey .card-body {
+  padding: 30px 60px 30px 60px;
+}
 .layout-portal .view-brand-login .logo {
-  width: 344px;
+  width: 100%;
   margin: auto;
   text-align: center;
 }
 .layout-portal .view-brand-login .logo h1 {
-  font-size: 24px;
+  font-size: 18px;
   margin-top: 10px;
   margin-bottom: 20px;
-  color: #ffffff;
+  font-style: italic;
+  color: #8692a8;
 }
 .layout-portal .view-brand-login .container {
   margin-top: 140px;
-  max-width: 374px;
+  max-width: 430px;
 }
 .layout-portal .view-brand-login .btn-primary {
   margin-top: 20px;

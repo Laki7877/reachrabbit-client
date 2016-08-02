@@ -1,24 +1,30 @@
 /* Layout Portal */
 .layout-portal{
   background: url("../images/bg-layout-login.png") @color-theme-secondary-darker;
+  .card-grey{
+    .card-body{
+      padding: 30px 60px 30px 60px;
+    }
+  }
   .view-brand-login{
     .logo{
-      width: 344px;
+      width: 100%;
       margin: auto;
       text-align: center;
       img{
         &:extend(.img-responsive);
       }
       h1{
-        font-size: 24px;
+        font-size: 18px;
         margin-top: 10px;
         margin-bottom: 20px;
-        color: @color-white;
+        font-style: italic;
+        color: @color-grey-darker;
       }
     }
     .container{
       margin-top: 140px;
-      max-width: 374px;
+      max-width: 430px;
     }
     .btn-primary{
       margin-top: 20px;

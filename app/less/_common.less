@@ -78,14 +78,41 @@ a:active, a:focus, a:visited{
 
 /* Nav */
 .navbar {
-  border-radius: 0px;
   background: @color-black;
-  a{
-    color: @color-white;
-  }
+  border-radius: 0px;
+  border: 0px;
+  margin-bottom: 0px;
   .navbar-brand{
+    padding-right: 20px;
     img{
       height: 20px;
     }
+  }
+  li > a{
+    padding: 15px 20px;
+    color: @color-white;
+  }
+  li > a:hover, li > a:focus{
+    background-color: @color-black;
+    color: @color-theme-primary;
+  }
+  .navbar-right{
+    li > a{
+      padding:10px 15px;
+    }
+    .profile-picture{
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+  }
+  .dropdown-menu{
+    background-color: @color-grey-darker;
+    border: 0px;
+    border-radius: 0px;
+  }
+  .open > a, .open > a:hover, .open > a:focus{
+    background: @color-black;
+    border: 0px;
   }
 }

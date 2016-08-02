@@ -6979,10 +6979,6 @@ button.close {
     display: none !important;
   }
 }
-/* Change the white to any color ;) */
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px white inset;
-}
 /* General */
 body {
   color: #3e4a5e;
@@ -6994,30 +6990,33 @@ h1 {
 label {
   font-weight: normal;
 }
-.form-control {
-  border-radius: 0px;
-  border-color: #d8dfe7;
-}
-.info-text {
-  color: #8692a8;
-}
-.input-group-addon {
-  background-color: #f9f9fb;
-  border-color: #d8dfe7;
-  border-right: none;
-  color: #8692a8;
-}
 a {
   color: #ff773e;
   cursor: pointer;
 }
 a:hover {
-  color: #be3800;
+  color: #ff773e;
 }
 a:active,
 a:focus,
 a:visited {
-  color: #ff530b;
+  color: #ff773e;
+}
+.info-text {
+  color: #8692a8;
+}
+/* Form & Input */
+.form-control {
+  border-radius: 0px;
+  border-color: #d8dfe7;
+  box-shadow: none;
+}
+.input-group-addon {
+  border-radius: 0px;
+  background-color: #f9f9fb;
+  border-color: #d8dfe7;
+  border-right: none;
+  color: #8692a8;
 }
 /* Card */
 .card,
@@ -7267,6 +7266,9 @@ fieldset[disabled] .btn-clear.active {
   padding: 10px 0px;
   margin: 0px;
 }
+.navbar .navbar-right li > a .caret {
+  margin-left: 5px;
+}
 .navbar .navbar-right .profile-picture {
   width: 30px;
   height: 30px;
@@ -7290,8 +7292,14 @@ fieldset[disabled] .btn-clear.active {
 .layout-portal {
   background: url("../images/bg-layout-login.png") #019386;
 }
+.layout-portal .view-brand-login {
+  margin-top: 140px;
+}
+.layout-portal .view-brand-signup {
+  margin-top: 60px;
+}
 .layout-portal .card-grey {
-  margin: 140px auto 0 auto;
+  margin: auto;
   max-width: 400px;
 }
 .layout-portal .card-grey .card-body {
@@ -7309,22 +7317,22 @@ fieldset[disabled] .btn-clear.active {
   font-style: italic;
   color: #8692a8;
 }
-.layout-portal .view-brand-login .btn-primary {
+.layout-portal .btn-primary {
   margin-top: 15px;
   margin-bottom: 5px;
   width: 100%;
 }
-.layout-portal .view-brand-login .btn-clear {
-  width: 100%;
+.layout-portal .info-text {
+  text-align: center;
+  margin-top: 5px;
 }
 .layout-portal .signup-pill {
   text-align: center;
-  padding: 8px;
+  padding: 5px;
   margin: 25px auto 0 auto;
   width: 250px;
-  font-weight: normal;
   color: white;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(62, 74, 94, 0.8);
   border-radius: 25px;
 }
 /* Layout Brand */

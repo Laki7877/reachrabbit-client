@@ -1,8 +1,3 @@
-/* Change the white to any color ;) */
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px white inset;
-}
-
 /* General */
 body{
   color: @color-black;
@@ -14,31 +9,39 @@ h1{
 label{
   font-weight: normal;
 }
-.form-control{
-  border-radius: 0px;
-  border-color:@color-grey;
-}
-.info-text{
-  &:extend(.small);
-  color: @color-grey-darker;
-}
-.input-group-addon{
-  background-color: @color-grey-lighter;
-  border-color:@color-grey;
-  border-right: none;
-  color: @color-grey-darker;
-}
-
 a{
   color: @color-theme-primary;
   cursor: pointer;
 }
 a:hover{
-  color: darken( @color-theme-primary, 25%);
+  color: @color-theme-primary;
 }
 a:active, a:focus, a:visited{
-  color: darken( @color-theme-primary, 10%);
+  color: @color-theme-primary;
 }
+
+.info-text{
+  &:extend(.small);
+  color: @color-grey-darker;
+}
+
+/* Form & Input */
+.form-control{
+  border-radius: 0px;
+  border-color: @color-grey;
+  box-shadow: none;
+}
+.input-group-addon{
+  border-radius: 0px;
+  background-color: @color-grey-lighter;
+  border-color:@color-grey;
+  border-right: none;
+  color: @color-grey-darker;
+}
+// input:-webkit-autofill {
+//     -webkit-box-shadow: 0 0 0px 1000px white inset;
+// }
+
 
 /* Card */
 .card{
@@ -104,6 +107,9 @@ a:active, a:focus, a:visited{
     li > a{
       padding:10px 0px;
       margin: 0px;
+      .caret{
+        margin-left: 5px;
+      }
     }
     .profile-picture{
       width: 30px;

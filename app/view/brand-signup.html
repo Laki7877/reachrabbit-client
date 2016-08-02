@@ -1,73 +1,73 @@
-<div class="view-brand-signup">
-  <div class="container">
+<form name="form" no-validate>
+  <div class="view-brand-signup">
+    <div class="container">
 
-    <div class="alert alert-danger">
-      <div class="alert-icon">
-        <img src="images/icon-rabbit-sad.png" alt="Rabbit is Sad" />
-      </div>
-      <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <div class="alert-text">
-        <strong>Warning!</strong> Shift happens.
-      </div>
-    </div>
-
-    <div class="card-grey">
-      <div class="card-body">
-        <div class="logo">
-          <img src="images/logo-reachrabbit.png" alt="ReachRabbit logo" />
-          <h1>มาโปรโมทสินค้าผ่าน Influencer กัน</h1>
+      <div class="alert alert-danger">
+        <div class="alert-icon">
+          <img src="images/icon-rabbit-sad.png" alt="Rabbit is Sad" />
         </div>
-
-        <div class="form-group">
-          <label>ชื่อ Brand</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-building fa-fw"></i></span>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>ชื่อผู้สมัคร</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>เบอร์ติดต่อ</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>อีเมล์</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-            <input type="email" class="form-control" >
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>ตั้งรหัสผ่าน</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-            <input type="password" class="form-control">
-          </div>
-        </div>
-
-        <a href="brand-signup">
-          <button class="btn-primary">สมัครสมาชิก</button>
-        </a>
-        <div class="info-text">
-          เห็นด้วยกับ <a href="#">เงื่อนไขการใช้งาน</a> โดยการสมัครสมาชิก
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <div class="alert-text">
+          <strong>Warning!</strong> Shift happens.
         </div>
       </div>
-    </div>
-    <div class="signup-pill">
-      มี Account อยู่แล้ว? <a ng-click="$root.goTo('brand-login')">เข้าสู่ระบบ</a>
+
+      <div class="card-grey">
+        <div class="card-body">
+          <div class="logo">
+            <img src="images/logo-reachrabbit.png" alt="ReachRabbit logo" />
+            <h1>มาโปรโมทสินค้าผ่าน Influencer กัน</h1>
+          </div>
+
+          <div class="form-group">
+            <label>ชื่อ Brand</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-building fa-fw"></i></span>
+              <input type="text" ng-model="formData.brandName" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>ชื่อผู้สมัคร</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+              <input type="text" class="form-control" ng-model="formData.user.name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>เบอร์ติดต่อ</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
+              <input type="text" class="form-control" ng-model="formData.user.phoneNumber">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>อีเมล์</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+              <input type="email" class="form-control" ng-model="formData.user.email">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>ตั้งรหัสผ่าน</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+              <input type="password" class="form-control" ng-model="formData.password">
+            </div>
+          </div>
+
+          <button class="btn-primary" ng-click="submit(formData)">สมัครสมาชิก</button>
+          <div class="info-text">
+            เห็นด้วยกับ <a href="#">เงื่อนไขการใช้งาน</a> โดยการสมัครสมาชิก
+          </div>
+        </div>
+      </div>
+      <div class="signup-pill">
+        มี Account อยู่แล้ว? <a ng-click="$root.goTo('brand-login')">เข้าสู่ระบบ</a>
+      </div>
     </div>
   </div>
-</div>
+</form>

@@ -15,7 +15,7 @@ angular.module('myApp.view', ['ngRoute'])
 
   $routeProvider.when('/brand-signup', {
     templateUrl: 'view/brand-signup.html',
-    controller: 'EmptyController'
+    controller: 'BrandSignupController'
   });
 
   $routeProvider.when('/brand-campaign-list', {

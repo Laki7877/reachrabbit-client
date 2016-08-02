@@ -6986,7 +6986,6 @@ input:-webkit-autofill {
 /* General */
 body {
   color: #3e4a5e;
-  font-family: 'Tahoma', sans-serif;
 }
 h1 {
   font-family: 'Kanit', sans-serif;
@@ -7251,7 +7250,8 @@ fieldset[disabled] .btn-clear.active {
   height: 20px;
 }
 .navbar li > a {
-  padding: 15px 20px;
+  padding: 15px 0px;
+  margin: 0px 20px;
   color: #ffffff;
 }
 .navbar li > a:hover,
@@ -7259,8 +7259,13 @@ fieldset[disabled] .btn-clear.active {
   background-color: #3e4a5e;
   color: #ff773e;
 }
+.navbar li.active > a {
+  padding-bottom: 12px;
+  border-bottom: #ff773e 3px solid;
+}
 .navbar .navbar-right li > a {
-  padding: 10px 15px;
+  padding: 10px 0px;
+  margin: 0px;
 }
 .navbar .navbar-right .profile-picture {
   width: 30px;
@@ -7271,6 +7276,9 @@ fieldset[disabled] .btn-clear.active {
   background-color: #8692a8;
   border: 0px;
   border-radius: 0px;
+}
+.navbar .dropdown-menu li > a {
+  padding-left: 15px;
 }
 .navbar .open > a,
 .navbar .open > a:hover,

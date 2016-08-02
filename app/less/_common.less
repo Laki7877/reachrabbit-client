@@ -6,7 +6,6 @@ input:-webkit-autofill {
 /* General */
 body{
   color: @color-black;
-  font-family: 'Tahoma', sans-serif;
 }
 h1{
   font-family: 'Kanit', sans-serif;
@@ -89,16 +88,22 @@ a:active, a:focus, a:visited{
     }
   }
   li > a{
-    padding: 15px 20px;
+    padding: 15px 0px;
+    margin: 0px 20px;
     color: @color-white;
   }
   li > a:hover, li > a:focus{
     background-color: @color-black;
     color: @color-theme-primary;
   }
+  li.active > a{
+    padding-bottom: 12px;
+    border-bottom: @color-theme-primary 3px solid;
+  }
   .navbar-right{
     li > a{
-      padding:10px 15px;
+      padding:10px 0px;
+      margin: 0px;
     }
     .profile-picture{
       width: 30px;
@@ -110,6 +115,9 @@ a:active, a:focus, a:visited{
     background-color: @color-grey-darker;
     border: 0px;
     border-radius: 0px;
+    li > a{
+      padding-left: 15px;
+    }
   }
   .open > a, .open > a:hover, .open > a:focus{
     background: @color-black;

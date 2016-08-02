@@ -6978,6 +6978,10 @@ button.close {
     display: none !important;
   }
 }
+/* Change the white to any color ;) */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
 /* General */
 body {
   color: #3e4a5e;
@@ -6992,6 +6996,23 @@ label {
 .form-control {
   border-radius: 0px;
   border-color: #d8dfe7;
+}
+.input-group-addon {
+  background-color: #f9f9fb;
+  border-color: #d8dfe7;
+  border-right: none;
+  color: #8692a8;
+}
+a {
+  color: #ff773e;
+}
+a:hover {
+  color: #be3800;
+}
+a:active,
+a:focus,
+a:visited {
+  color: #ff530b;
 }
 /* Card */
 .card,
@@ -7251,6 +7272,15 @@ fieldset[disabled] .btn-clear.active {
 }
 .layout-portal .view-brand-login .btn-clear {
   width: 100%;
+}
+.layout-portal .signup-pill {
+  text-align: center;
+  padding: 8px;
+  margin: 25px auto 0 auto;
+  width: 320px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 25px;
 }
 /* Layout Brand */
 .layout-brand {

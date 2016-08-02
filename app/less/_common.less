@@ -1,3 +1,8 @@
+/* Change the white to any color ;) */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
 /* General */
 body{
   color: @color-black;
@@ -12,6 +17,23 @@ label{
 .form-control{
   border-radius: 0px;
   border-color:@color-grey;
+}
+
+.input-group-addon{
+  background-color: @color-grey-lighter;
+  border-color:@color-grey;
+  border-right: none;
+  color: @color-grey-darker;
+}
+
+a{
+  color: @color-theme-primary;
+}
+a:hover{
+  color: darken( @color-theme-primary, 25%);
+}
+a:active, a:focus, a:visited{
+  color: darken( @color-theme-primary, 10%);
 }
 
 /* Card */
@@ -30,7 +52,7 @@ label{
 
 .card-grey{
   &:extend(.card);
-  background-color:@color-grey-ligther;
+  background-color:@color-grey-lighter;
 }
 
 
@@ -46,6 +68,7 @@ label{
   &:extend(.btn);
   .button-variant(@color-theme-primary, @color-clear, @color-clear);
 }
+
 
 /* Nav */
 .navbar {

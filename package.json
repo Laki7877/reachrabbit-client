@@ -1,9 +1,8 @@
 {
-  "name": "angular-seed",
+  "name": "reachrabbit-client",
   "private": true,
-  "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "version": "0.0.1",
+  "description": "Reach Rabbit Client",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.7.7",

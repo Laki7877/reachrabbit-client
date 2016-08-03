@@ -55,13 +55,15 @@ angular.module('myApp.controller', ['myApp.service'])
 /*
 * Brand sign in controller - for brand to signin duh
 */
-.controller('BrandSigninController', ['$scope', 'BrandAccountService', function($scope, BrandAccountService) {
+.controller('BrandSigninController', ['$scope', '$location', 'BrandAccountService', '$window', function($scope, $location, BrandAccountService, $window) {
     $scope.formData = {};
+    $window.localStorage.removeItem('token');
     $scope.login = function(username, password){
         BrandAccountService.getToken(username, password)
         .then(function(response){
             var token = response.data.token;
-            alert("Done" + token);
+            $window.localStorage['token'] = token;
+            $window.location.href = '/brand.html#/brand-campaign-list';
         });
     }
 }])

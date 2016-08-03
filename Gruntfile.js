@@ -6,11 +6,19 @@
  */
 'use strict';
 
-
 module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    connect: {
+      server: {
+        options: {
+          port: process.env.PORT || 8000,
+          base: 'app',
+          keepalive: true
+        }
+      }
+    },
     //ensure user got githooks
     githooks: {
       all: {
@@ -34,11 +42,14 @@ module.exports = function (grunt) {
     }
   });
 
+
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-githooks');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+
 
   // Default task(s).
-  grunt.registerTask('default', ['githooks', 'jshint']);
+  grunt.registerTask('default', ['githooks', 'jshint', 'connect']);
 
 }; 

@@ -2,7 +2,6 @@
  * Service
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
- * @author     Natt Phenjati <natt@phenjati.com>
  * @since      0.0.1
  */
 /* jshint node: true */

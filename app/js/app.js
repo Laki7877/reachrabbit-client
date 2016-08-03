@@ -2,7 +2,6 @@
  * App
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
- * @author     Natt Phenjati <natt@phenjati.com>
  * @since      0.0.1
  */
 /* jshint node: true */
@@ -11,9 +10,16 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
+  //Top level
+  'myApp.directives',
+  'myApp.routes',
   'myApp.controller',
-  'myApp.view',
-  'myApp.directives'
+  //Controllers
+  'myApp.portal.controller',
+  'myApp.brand.controller',
+  //Routes
+  'myApp.portal.routes',
+  'myApp.brand.routes'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   // $locationProvider.hashPrefix('');

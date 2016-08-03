@@ -6,11 +6,20 @@
  */
 'use strict';
 
-  
-module.exports = function(grunt) {
+
+module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    //ensure user got githooks
+    githooks: {
+      all: {
+        options:{
+          'startMarker': grunt.file.read('signature.txt')
+        },
+        'pre-commit': 'grunt jshint',
+      }
+    },
     //JSHint code check
     jshint: {
       files: ['app/**/*.js'],
@@ -25,9 +34,10 @@ module.exports = function(grunt) {
   });
 
   // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks('grunt-githooks');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('default', ['githooks', 'jshint']);
 
 };

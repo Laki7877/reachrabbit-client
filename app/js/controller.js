@@ -14,7 +14,9 @@ angular.module('myApp.controller', ['myApp.service'])
         var scope = $scope;
         console.log("Test World");
     };
-}])
+}]);
+
+angular.module('myApp.brand.controller', ['myApp.service'])
 /*
 * Campaign List controller - thank god it's work.
 */
@@ -61,7 +63,10 @@ angular.module('myApp.controller', ['myApp.service'])
         buttonText:'ดูรายละเอียด'
       }
     ];
-}])
+}]);
+
+
+angular.module('myApp.portal.controller', ['myApp.service'])
 /*
 * Brand sign in controller - for brand to signin duh
 */

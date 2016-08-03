@@ -6,6 +6,15 @@ angular.module('myApp.controller', ['myApp.service'])
         var scope = $scope;
         console.log("Test World");
     }
+}])
+/*
+* Campaign List controller - thank god it's work.
+*/
+.controller('CampaignListController', ['$scope', function($scope) {
+    $scope.testHit = function(){
+        var scope = $scope;
+        console.log("Test World");
+    }
     $scope.myCampaign=[
       {
         image:'images/placeholder-campaign.png',
@@ -17,7 +26,7 @@ angular.module('myApp.controller', ['myApp.service'])
       },
       {
         image:'images/placeholder-campaign.png',
-        name:'cat',
+        name:'Super Cat',
         price:'500-1,000',
         openDate:'1 ธ.ค. 59',
         category:'เกมส์',
@@ -65,8 +74,3 @@ angular.module('myApp.controller', ['myApp.service'])
         });
     }
 }]);
-
-
-/*
-* Camapign controller - for Campaign ok
-*/

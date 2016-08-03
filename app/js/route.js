@@ -20,7 +20,7 @@ angular.module('myApp.view', ['ngRoute'])
 
   $routeProvider.when('/brand-campaign-list', {
     templateUrl: 'view/brand-campaign-list.html',
-    controller: 'EmptyController'
+    controller: 'CampaignListController'
   });
 
   $routeProvider.when('/brand-campaign-detail-example', {

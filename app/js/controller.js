@@ -6,6 +6,42 @@ angular.module('myApp.controller', ['myApp.service'])
         var scope = $scope;
         console.log("Test World");
     }
+    $scope.myCampaign=[
+      {
+        image:'images/placeholder-campaign.png',
+        name:'Campaign แรกของคุณ',
+        price:'-',
+        openDate:'-',
+        category:'-',
+        buttonText:'ใส่รายละเอียด'
+      },
+      {
+        image:'images/placeholder-campaign.png',
+        name:'cat',
+        price:'500-1,000',
+        openDate:'1 ธ.ค. 59',
+        category:'เกมส์',
+        buttonText:'ใส่รายละเอียด'
+      }
+    ]
+    $scope.exampleCampaign=[
+      {
+        image:'images/example-campaign/main-picture.png',
+        name:'Morinaga Koeda รสใหม่',
+        price:'200-2,000',
+        openDate:'1 ธ.ค. 59',
+        category:'ความสวยงาน',
+        buttonText:'ดูรายละเอียด'
+      },
+      {
+        image:'images/example-campaign/main-picture.png',
+        name:'Morinaga Koeda รสใหม่',
+        price:'500-1,000',
+        openDate:'1 ธ.ค. 59',
+        category:'เกมส์',
+        buttonText:'ดูรายละเอียด'
+      }
+    ]
 }])
 /*
 * Brand sign in controller - for brand to signin duh
@@ -29,3 +65,8 @@ angular.module('myApp.controller', ['myApp.service'])
         });
     }
 }]);
+
+
+/*
+* Camapign controller - for Campaign ok
+*/

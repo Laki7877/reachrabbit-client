@@ -1,0 +1,39 @@
+<div class="card-campaign-list-item">
+  <div class="card-body">
+    <div class="card-image">
+      <img ng-src="{{campaign.image}}" class="img-responsive"/>
+    </div>
+    <div class="card-title">
+      <div class="card-title-content">
+        {{campaign.name}} <span class="icon-facebook"></span><span class="icon-instagram"></span><span class="icon-youtube"></span>
+      </div>
+    </div>
+    <div class="card-info card-info-1">
+      <div class="card-info-label">
+        ค่าตอบแทน
+      </div>
+      <div class="card-info-content">
+        {{campaign.price}}
+      </div>
+    </div>
+    <div class="card-info card-info-2">
+      <div class="card-info-label">
+        เปิดรับข้อเสนอถึง
+      </div>
+      <div class="card-info-content">
+        {{campaign.openDate}}
+      </div>
+    </div>
+    <div class="card-info card-info-3">
+      <div class="card-info-label">
+        หมวดหมู่
+      </div>
+      <div class="card-info-content">
+        {{campaign.category}}
+      </div>
+    </div>
+    <div class="card-button">
+      <button class="btn-secondary" ng-click="$root.goTo('brand-campaign-detail-example')">{{campaign.buttonText}}</button>
+    </div>
+  </div>
+</div>

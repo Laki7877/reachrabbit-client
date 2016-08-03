@@ -11,3 +11,16 @@ angular.module('myApp.directives', [])
             }
         };
 }])
+
+angular.module('myApp.directives', [])
+.directive('cardCampaignListItem', [function () {
+        console.log;
+        return {
+            restrict: 'EA',
+            scope: {campaign:'='},
+            templateUrl: 'components/templates/card-campaign-list-item.html',
+            link: function (scope, element, attrs, ctrl, transclude) {
+
+            }
+        };
+}])

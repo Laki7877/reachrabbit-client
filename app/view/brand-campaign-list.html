@@ -15,128 +15,15 @@
         </div>
       </div>
 
-      <div class="card-campaign-list-item">
-        <div class="card-body">
-          <div class="card-image">
-            <img src="images/placeholder-campaign.png" class="img-responsive"/>
-          </div>
-          <div class="card-title">
-            <div class="card-title-content">
-              Campaign แรกของคุณ <span class="icon-facebook"></span><span class="icon-instagram"></span><span class="icon-youtube"></span>
-            </div>
-          </div>
-          <div class="card-info card-info-1">
-            <div class="card-info-label">
-              ค่าตอบแทน
-            </div>
-            <div class="card-info-content">
-              -
-            </div>
-          </div>
-          <div class="card-info card-info-2">
-            <div class="card-info-label">
-              เปิดรับข้อเสนอถึง
-            </div>
-            <div class="card-info-content">
-              -
-            </div>
-          </div>
-          <div class="card-info card-info-3">
-            <div class="card-info-label">
-              หมวดหมู่
-            </div>
-            <div class="card-info-content">
-              -
-            </div>
-          </div>
-          <div class="card-button">
-            <button class="btn-secondary">ใส่รายละเอียด</button>
-          </div>
-        </div>
+      <div ng-repeat="x in myCampaign">
+        <card-campaign-list-item campaign='x'></card-campaign-list-item>
       </div>
 
       <div class="example-campaign">
 
         <h2>ตัวอย่าง Campaign</h2>
-
-        <div class="card-campaign-list-item">
-          <div class="card-body">
-            <div class="card-image">
-              <img src="images/example-campaign/main-picture.png" class="img-responsive"/>
-            </div>
-            <div class="card-title">
-              <div class="card-title-content">
-                Morinaga Koeda รสใหม่ <span class="icon-facebook"></span><span class="icon-instagram"></span><span class="icon-youtube"></span>
-              </div>
-            </div>
-            <div class="card-info card-info-1">
-              <div class="card-info-label">
-                ค่าตอบแทน
-              </div>
-              <div class="card-info-content">
-                1,000 - 2,000
-              </div>
-            </div>
-            <div class="card-info card-info-2">
-              <div class="card-info-label">
-                เปิดรับข้อเสนอถึง
-              </div>
-              <div class="card-info-content">
-                1 ส.ค. 59
-              </div>
-            </div>
-            <div class="card-info card-info-3">
-              <div class="card-info-label">
-                หมวดหมู่
-              </div>
-              <div class="card-info-content">
-                เกมส์
-              </div>
-            </div>
-            <div class="card-button">
-              <button class="btn-secondary" ng-click="$root.goTo('brand-campaign-detail-example')">ดูรายละเอียด</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-campaign-list-item">
-          <div class="card-body">
-            <div class="card-image">
-              <img src="images/example-campaign/main-picture.png" class="img-responsive"/>
-            </div>
-            <div class="card-title">
-              <div class="card-title-content">
-                Morinaga Koeda รสใหม่ <span class="icon-facebook"></span><span class="icon-instagram"></span><span class="icon-youtube"></span>
-              </div>
-            </div>
-            <div class="card-info card-info-1">
-              <div class="card-info-label">
-                ค่าตอบแทน
-              </div>
-              <div class="card-info-content">
-                1,000 - 2,000
-              </div>
-            </div>
-            <div class="card-info card-info-2">
-              <div class="card-info-label">
-                เปิดรับข้อเสนอถึง
-              </div>
-              <div class="card-info-content">
-                1 ส.ค. 59
-              </div>
-            </div>
-            <div class="card-info card-info-3">
-              <div class="card-info-label">
-                หมวดหมู่
-              </div>
-              <div class="card-info-content">
-                เกมส์
-              </div>
-            </div>
-            <div class="card-button">
-              <button class="btn-secondary" ng-click="$root.goTo('brand-campaign-detail-example')">ดูรายละเอียด</button>
-            </div>
-          </div>
+        <div ng-repeat="x in exampleCampaign">
+          <card-campaign-list-item campaign='x'></card-campaign-list-item>
         </div>
 
       </div>

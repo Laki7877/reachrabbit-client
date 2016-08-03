@@ -22,7 +22,7 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "less": "autoless app/less app/css",
+    "less": "cat message.txt",
     "prestart": "npm install",
     "start": "grunt",
     "pretest": "npm install",

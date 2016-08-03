@@ -10,6 +10,28 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    concurrent: {
+        dev: {
+            tasks: ['watch', 'connect'],
+            options: {
+                logConcurrentOutput: true
+            }
+        }
+    },
+    watch: {
+        files: "app/less/*.less",
+        tasks: ["less"]
+    },
+    less: {
+      options: {
+         paths: ["app/less/"],
+      },
+      development: {
+        files: {
+          'app/css/app.css': 'app/less/app.less'
+        }
+      }
+    },
     connect: {
       server: {
         options: {
@@ -47,9 +69,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-githooks');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-connect');
-
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-concurrent');
 
   // Default task(s).
-  grunt.registerTask('default', ['githooks', 'jshint', 'connect']);
+  grunt.registerTask('default', ['githooks', 'jshint', 'concurrent:dev']);
 
 }; 

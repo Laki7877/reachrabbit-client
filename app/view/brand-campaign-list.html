@@ -8,12 +8,8 @@
     <div class="container">
       <div class="btn-floating-action">
       </div>
-      <div class="alert alert-info">
-        <span class="alert-icon"></span>
-        <div class="alert-text">
-          เราได้สร้าง Campaign แรกใหคุณแล้ว เข้าไปแก้ไขข้อมูลได้เลย
-        </div>
-      </div>
+
+      <alert-box type="alert-info" message="เราได้สร้าง Campaign แรกใหคุณแล้ว เข้าไปแก้ไขข้อมูลได้เลย"></alert-box>
 
       <div ng-repeat="x in myCampaign">
         <card-campaign-list-item campaign='x'></card-campaign-list-item>

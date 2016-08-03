@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('myApp.directives', [])
+
 .directive('testBox', [function () {
         return {
             restrict: 'EA',
@@ -12,9 +13,18 @@ angular.module('myApp.directives', [])
         };
 }])
 
-angular.module('myApp.directives', [])
+.directive('alertBox', [function () {
+        return {
+            restrict: 'EA',
+            templateUrl: 'components/templates/alertbox.html',
+            scope: {
+              message: "@message",
+              type: "@type"
+            }
+        };
+}])
+
 .directive('cardCampaignListItem', [function () {
-        console.log;
         return {
             restrict: 'EA',
             scope: {campaign:'='},

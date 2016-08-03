@@ -17,7 +17,7 @@ module.exports = function (grunt) {
         options:{
           'startMarker': grunt.file.read('signature.txt')
         },
-        'pre-commit': 'grunt jshint',
+        'pre-commit': 'jshint',
       }
     },
     //JSHint code check

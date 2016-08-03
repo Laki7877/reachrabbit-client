@@ -16,10 +16,12 @@ angular.module('myApp.directives', [])
 .directive('alertBox', [function () {
         return {
             restrict: 'EA',
-            templateUrl: 'components/templates/alertbox.html',
+            templateUrl: function(elem, attr){
+                //Specify alertbox-success, alertbox-failure, alertbox-info etc.
+                return 'components/templates/alertbox-' + attr.type + '.html';
+            },
             scope: {
-              message: "@message",
-              type: "@type"
+              message: "@message"
             }
         };
 }])

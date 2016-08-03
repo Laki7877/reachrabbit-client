@@ -15,7 +15,8 @@ module.exports = function (grunt) {
     githooks: {
       all: {
         options:{
-          'startMarker': grunt.file.read('signature.txt')
+          'startMarker': grunt.file.read('signature.txt'),
+          'endMarker': 'process.exit(0)'
         },
         'pre-commit': 'jshint',
       }

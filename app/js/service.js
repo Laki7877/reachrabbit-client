@@ -18,10 +18,23 @@ angular.module('myApp.service', [])
 .config(['$httpProvider', function($httpProvider) {
   $httpProvider.interceptors.push('baseUrlInjector')
 }])
-.factory('SignUpService', ['$http', function($http) {
+.factory('BrandAccountService', ['$http', function($http) {
     return {
-        signupBrand: function(brand){
+        /*
+        * returns brand user schema
+        */
+        signup: function(brand){
             return $http.post("/signup/brand", brand);
+        },
+        /*
+        * get token
+        * return {"token": <token>}
+        */
+        getToken: function(username, password){
+            return $http.post("/auth/login", {
+                    email: username,
+                    password: password
+            });
         }
     };
 }])

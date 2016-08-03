@@ -10,7 +10,7 @@ angular.module('myApp.view', ['ngRoute'])
 
   $routeProvider.when('/brand-login', {
     templateUrl: 'view/brand-login.html',
-    controller: 'EmptyController'
+    controller: 'BrandSigninController'
   });
 
   $routeProvider.when('/brand-signup', {

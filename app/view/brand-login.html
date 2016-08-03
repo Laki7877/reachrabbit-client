@@ -1,5 +1,6 @@
 <div class="view-brand-login">
   <div class="container">
+    <form no-validate>
     <div class="card-grey">
       <div class="card-body">
         <div class="logo">
@@ -10,19 +11,20 @@
           <label>อีเมล</label>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-            <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+            <input type="email" class="form-control" placeholder="Username" ng-model="username" name="username">
           </div>
         </div>
         <div class="form-group">
           <label>รหัสผ่าน</label>
            <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-            <input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon2">
+            <input type="password" class="form-control" placeholder="Password" ng-model="password" name="password">
           </div>
         </div>
-        <button class="btn-primary" ng-click="testHit()">เข้าสู่ระบบ</button>
+        <button class="btn-primary" ng-click="login(username, password)">เข้าสู่ระบบ</button>
       </div>
     </div>
+    </form>
     <div class="signup-pill">ยังไม่ได้เป็นสมาชิก? <a ng-click="$root.goTo('brand-signup')">สมัครสมาชิก</a></div>
   </div>
 </div>

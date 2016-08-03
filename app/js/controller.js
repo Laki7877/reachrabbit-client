@@ -7,14 +7,24 @@ angular.module('myApp.controller', ['myApp.service'])
         console.log("Test World");
     }
 }])
-.controller('BrandLoginController', ['$scope', function($scope) {
-    
+/*
+* Brand sign in controller - for brand to signin duh
+*/
+.controller('BrandSigninController', ['$scope', 'BrandAccountService', function($scope, BrandAccountService) {
+    $scope.formData = {};
+    $scope.login = function(username, password){
+        BrandAccountService.getToken(username, password)
+        .then(function(response){
+            var token = response.data.token;
+            alert("Done" + token);
+        });
+    }
 }])
-.controller('BrandSignupController', ['$scope', 'SignUpService', function($scope, SignUpService) {
+.controller('BrandSignupController', ['$scope', 'BrandAccountService', function($scope, BrandAccountService) {
     $scope.formData = {};
     $scope.submit = function(brand){
-        SignUpService.signupBrand(brand)
-        .then(function(){
+        BrandAccountService.signup(brand)
+        .then(function(response){
             alert("Done");
         });
     }

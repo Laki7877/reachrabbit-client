@@ -23,4 +23,9 @@ angular.module('myApp.view', ['ngRoute'])
     controller: 'EmptyController'
   });
 
+  $routeProvider.when('/brand-campaign-detail-example', {
+    templateUrl: 'view/brand-campaign-detail-example.html',
+    controller: 'EmptyController'
+  });
+
 }]);

@@ -1,10 +1,16 @@
 /* General */
 body{
+  font-size: 14px;
   font-family: @font-secondary;
   color: @color-black;
 }
 h1{
   font-family: @font-primary;
+  font-size: 32px;
+}
+h2{
+  font-family: @font-primary;
+  font-size: 24px;
 }
 label{
   font-weight: normal;
@@ -48,6 +54,21 @@ a:active, a:focus, a:visited{
 }
 .card-body{
   &:extend(.panel-body);
+  .card-body-row{
+    &:extend(.row);
+    margin-bottom: 20px;
+  }
+  .card-body-content-label{
+    .make-xs-column(2);
+    text-align: right;
+  }
+  .card-body-content{
+    .make-xs-column(8);
+    img{
+      &:extend(.img-responsive);
+      margin-bottom: 20px;
+    }
+  }
 }
 .card-image{
   .make-xs-column(3);
@@ -73,6 +94,7 @@ a:active, a:focus, a:visited{
     color: @color-theme-secondary;
   }
 }
+
 .card-info-1{
   &:extend(.card-info);
 }
@@ -80,6 +102,15 @@ a:active, a:focus, a:visited{
   &:extend(.card-info);
 }
 .card-info-3{
+  &:extend(.card-info);
+}
+.card-info-4{
+  &:extend(.card-info);
+}
+.card-info-5{
+  &:extend(.card-info);
+}
+.card-info-6{
   &:extend(.card-info);
 }
 .card-button{
@@ -99,6 +130,7 @@ a:active, a:focus, a:visited{
 
 .card-campaign-list-item{
   &:extend(.card);
+  margin-bottom: 20px;
   .card-body{
     padding: 15px 0px;
   }
@@ -110,6 +142,46 @@ a:active, a:focus, a:visited{
   }
   .card-button{
     margin-top: 40px;
+  }
+}
+
+.card-brand-profile{
+  &:extend(.card);
+  .card-body{
+    padding: 15px 0px;
+  }
+  .card-image{
+    .make-xs-column(2);
+  }
+  .card-title{
+    .make-xs-column(10);
+    margin-bottom: 15px;
+  }
+}
+
+.card-campaign-header{
+  &:extend(.card);
+  .card-body{
+    padding: 0px;
+  }
+  .card-image{
+    .make-xs-column(4);
+    padding: 0px;
+    padding-right: 15px;
+  }
+  .card-info-1, .card-info-2, .card-info-3, {
+    margin-top: 50px;
+  }
+  .card-info-4, .card-info-5, .card-info-6, {
+    margin-top: 20px;
+  }
+}
+
+.card-campaign-description{
+  &:extend(.card);
+  padding-top: 15px;
+  .card-body{
+    padding-bottom: 0px;
   }
 }
 
@@ -223,6 +295,8 @@ a:active, a:focus, a:visited{
     padding: 15px 0px;
     margin: 0px 20px;
     color: @color-white;
+    font-family: @font-primary;
+    font-size: 16px;
   }
   li > a:hover, li > a:focus{
     background-color: @color-black;

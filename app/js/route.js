@@ -1,3 +1,11 @@
+/**
+ * Routes
+ *
+ * @author     Pat Sabpisal <ecegrid@gmail.com>
+ * @author     Natt Phenjati <natt@phenjati.com>
+ * @since      0.0.1
+ */
+/* jshint node: true */
 'use strict';
 
 angular.module('myApp.view', ['ngRoute'])
@@ -8,22 +16,22 @@ angular.module('myApp.view', ['ngRoute'])
     controller: 'EmptyController'
   });
 
+  /*
+  * Brands
+  */
   $routeProvider.when('/brand-login', {
     templateUrl: 'view/brand-login.html',
     controller: 'BrandSigninController'
-  });
-
-  $routeProvider.when('/brand-signup', {
+  })
+  .when('/brand-signup', {
     templateUrl: 'view/brand-signup.html',
     controller: 'BrandSignupController'
-  });
-
-  $routeProvider.when('/brand-campaign-list', {
+  })
+  .when('/brand-campaign-list', {
     templateUrl: 'view/brand-campaign-list.html',
     controller: 'CampaignListController'
-  });
-
-  $routeProvider.when('/brand-campaign-detail-example', {
+  })
+  .when('/brand-campaign-detail-example', {
     templateUrl: 'view/brand-campaign-detail-example.html',
     controller: 'EmptyController'
   });

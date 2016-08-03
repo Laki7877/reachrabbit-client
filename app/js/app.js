@@ -1,3 +1,11 @@
+/**
+ * App
+ *
+ * @author     Pat Sabpisal <ecegrid@gmail.com>
+ * @author     Natt Phenjati <natt@phenjati.com>
+ * @since      0.0.1
+ */
+/* jshint node: true */
 'use strict';
 
 // Declare app level module which depends on views, and components
@@ -14,5 +22,5 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
 run(['$rootScope', '$location', function($rootScope, $location){
   $rootScope.goTo = function(path){
     $location.path(path);
-  }
-}])
+  };
+}]);

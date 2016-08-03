@@ -1,3 +1,11 @@
+/**
+ * Service
+ *
+ * @author     Pat Sabpisal <ecegrid@gmail.com>
+ * @author     Natt Phenjati <natt@phenjati.com>
+ * @since      0.0.1
+ */
+/* jshint node: true */
 'use strict';
 
 angular.module('myApp.service', [])
@@ -9,7 +17,7 @@ angular.module('myApp.service', [])
         request: function(cc) {
             if(cc.url[0] === "/"){
                 cc.url = config.apiBaseUri + cc.url;
-                cc.headers['X-Auth'] = $window.localStorage['token'];
+                cc.headers['X-Auth'] = $window.localStorage.token;
             }
             return cc;
         }
@@ -38,4 +46,4 @@ angular.module('myApp.service', [])
             });
         }
     };
-}])
+}]);

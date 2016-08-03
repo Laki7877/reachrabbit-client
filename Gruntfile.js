@@ -1,0 +1,33 @@
+/**
+ * gulp entry point
+ *
+ * @author     Pat Sabpisal <ecegrid@gmail.com>
+ * @since      0.0.1
+ */
+'use strict';
+
+  
+module.exports = function(grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    //JSHint code check
+    jshint: {
+      files: ['app/**/*.js'],
+      options: {
+        ignores: ['app/bower_components/**/*.js'],
+        globals: {
+          jQuery: true,
+          angular: true
+        }
+      }
+    }
+  });
+
+  // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+
+  // Default task(s).
+  grunt.registerTask('default', ['jshint']);
+
+};

@@ -1,3 +1,11 @@
+/**
+ * Controllers
+ *
+ * @author     Pat Sabpisal <ecegrid@gmail.com>
+ * @author     Natt Phenjati <natt@phenjati.com>
+ * @since      0.0.1
+ */
+/* jshint node: true */
 'use strict';
 
 angular.module('myApp.controller', ['myApp.service'])
@@ -5,8 +13,10 @@ angular.module('myApp.controller', ['myApp.service'])
     $scope.testHit = function(){
         var scope = $scope;
         console.log("Test World");
-    }
-}])
+    };
+}]);
+
+angular.module('myApp.brand.controller', ['myApp.service'])
 /*
 * Campaign List controller - thank god it's work.
 */
@@ -14,7 +24,8 @@ angular.module('myApp.controller', ['myApp.service'])
     $scope.testHit = function(){
         var scope = $scope;
         console.log("Test World");
-    }
+    };
+
     $scope.myCampaign=[
       {
         image:'images/placeholder-campaign.png',
@@ -32,7 +43,8 @@ angular.module('myApp.controller', ['myApp.service'])
         category:'เกมส์',
         buttonText:'ใส่รายละเอียด'
       }
-    ]
+    ];
+
     $scope.exampleCampaign=[
       {
         image:'images/example-campaign/main-picture.png',
@@ -50,27 +62,32 @@ angular.module('myApp.controller', ['myApp.service'])
         category:'เกมส์',
         buttonText:'ดูรายละเอียด'
       }
-    ]
-}])
+    ];
+}]);
+
+
+angular.module('myApp.portal.controller', ['myApp.service'])
 /*
 * Brand sign in controller - for brand to signin duh
 */
-.controller('BrandSigninController', ['$scope', 'BrandAccountService', function($scope, BrandAccountService) {
+.controller('BrandSigninController', ['$scope', '$location', 'BrandAccountService', '$window', function($scope, $location, BrandAccountService, $window) {
     $scope.formData = {};
+    $window.localStorage.removeItem('token');
     $scope.login = function(username, password){
         BrandAccountService.getToken(username, password)
         .then(function(response){
             var token = response.data.token;
-            alert("Done" + token);
+            $window.localStorage.token = token;
+            $window.location.href = '/brand.html#/brand-campaign-list';
         });
-    }
+    };
 }])
-.controller('BrandSignupController', ['$scope', 'BrandAccountService', function($scope, BrandAccountService) {
+.controller('BrandSignupController', ['$scope', 'BrandAccountService', '$location', function($scope, BrandAccountService, $location) {
     $scope.formData = {};
     $scope.submit = function(brand){
         BrandAccountService.signup(brand)
         .then(function(response){
-            alert("Done");
+            $location.path('/brand-login');
         });
-    }
+    };
 }]);

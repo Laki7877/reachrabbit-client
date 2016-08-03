@@ -1,14 +1,17 @@
 {
   "name": "reachrabbit-client",
   "private": true,
-  "version": "0.0.1",
-  "description": "Reach Rabbit Client",
+  "version": "0.0.2",
+  "description": "Moderately Engineered ReachRabbit Client",
   "license": "MIT",
   "dependencies": {
     "http-server": "^0.9.0"
   },
   "devDependencies": {
     "bower": "^1.7.7",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-githooks": "^0.6.0",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",
@@ -19,19 +22,16 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "less" : "autoless app/less app/css",
+    "less": "autoless app/less app/css",
     "prestart": "npm install",
     "start": "node_modules/http-server/bin/http-server -a localhost -p $PORT -c-1 ./app ",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",
-
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
-
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor e2e-tests/protractor.conf.js",
-
     "update-index-async": "node -e \"var fs=require('fs'),indexFile='app/index-async.html',loaderFile='app/bower_components/angular-loader/angular-loader.min.js',loaderText=fs.readFileSync(loaderFile,'utf-8').split(/sourceMappingURL=angular-loader.min.js.map/).join('sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map'),indexText=fs.readFileSync(indexFile,'utf-8').split(/\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/).join('//@@NG_LOADER_START@@\\n'+loaderText+'    //@@NG_LOADER_END@@');fs.writeFileSync(indexFile,indexText);\""
   }
 }

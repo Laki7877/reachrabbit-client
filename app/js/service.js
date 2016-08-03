@@ -1,14 +1,22 @@
+/**
+ * Service
+ *
+ * @author     Pat Sabpisal <ecegrid@gmail.com>
+ * @since      0.0.1
+ */
+/* jshint node: true */
 'use strict';
 
 angular.module('myApp.service', [])
 .value('config', {
   'apiBaseUri': 'http://bella.reachrabbit.co'
 })
-.factory('baseUrlInjector', ['config', function(config){
+.factory('baseUrlInjector', ['config', '$window', function(config, $window){
     var inj = {
         request: function(cc) {
             if(cc.url[0] === "/"){
                 cc.url = config.apiBaseUri + cc.url;
+                cc.headers['X-Auth'] = $window.localStorage.token;
             }
             return cc;
         }
@@ -16,7 +24,7 @@ angular.module('myApp.service', [])
     return inj;
 }])
 .config(['$httpProvider', function($httpProvider) {
-  $httpProvider.interceptors.push('baseUrlInjector')
+  $httpProvider.interceptors.push('baseUrlInjector');
 }])
 .factory('BrandAccountService', ['$http', function($http) {
     return {
@@ -37,4 +45,4 @@ angular.module('myApp.service', [])
             });
         }
     };
-}])
+}]);

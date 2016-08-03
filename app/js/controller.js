@@ -84,5 +84,5 @@ angular.module('myApp.controller', ['myApp.service'])
         .then(function(response){
             $location.path('/brand-login');
         });
-    }
+    };
 }]);

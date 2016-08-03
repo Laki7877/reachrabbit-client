@@ -19,10 +19,11 @@ angular.module('myApp.directives', [])
             restrict: 'EA',
             templateUrl: function(elem, attr){
                 //Specify alertbox-success, alertbox-failure, alertbox-info etc.
-                return 'components/templates/alertbox-' + attr.type + '.html';
+                return 'components/templates/alertbox.html';
             },
             scope: {
-              message: "@message"
+              message: "@message",
+              type: "@type"
             }
         };
 }])

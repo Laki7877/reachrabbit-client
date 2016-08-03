@@ -24,7 +24,7 @@ module.exports = function (grunt) {
     },
     less: {
       options: {
-         paths: ["app/less/"],
+         paths: ["app/less/", "app/bower_components/bootstrap/less/", "app/bower_components/font-awesome/css/"],
       },
       development: {
         files: {

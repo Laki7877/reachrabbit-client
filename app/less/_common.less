@@ -50,6 +50,84 @@ a:active, a:focus, a:visited{
   color: @color-grey-darker;
 }
 
+/* Image Upload */
+.input-upload-image{
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  width: 206px;
+  height: 138px;
+  color: @color-theme-secondary;
+  border: dashed 2px @color-grey;
+  text-align: center;
+  i{
+    margin-top: 30px;
+    margin-bottom: 5px;
+    font-size: 30px;
+  }
+  img{
+    width: 100%;
+  }
+  .btn-delete-image{
+    color: @color-grey-darker;
+    background: @color-white;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    margin-top: 0px;
+    margin-right: 0px;
+    padding-top: 1px;
+    font-size: 22px;
+    width: 24px;
+    height: 24px;
+  }
+  .btn-delete-image:hover{
+    color: @color-theme-secondary-darker;
+  }
+}
+.input-upload-image:hover{
+  color: @color-theme-secondary-darker;
+}
+
+.input-upload-image-sm{
+  cursor: pointer;
+  color: @color-theme-secondary;
+  i{
+    font-size: 16px;
+    margin-right: 5px;
+  }
+}
+.input-upload-image-sm:hover{
+  color: @color-theme-secondary-darker;
+}
+
+.input-upload-image-sm-preview{
+  margin-top: 10px;
+  .preview-item{
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    .preview-image{
+      display: block;
+      overflow: hidden;
+      height: 90px;
+      width: 135px;
+      margin-bottom: 5px;
+      background: @color-grey;
+      border: @color-grey 1px solid;
+      img{
+        width: 100%;
+      }
+    }
+    a{
+      color: @color-grey-darker;
+    }
+  }
+}
+
 /* Card */
 .card{
   &:extend(.panel);
@@ -69,17 +147,23 @@ a:active, a:focus, a:visited{
   }
   .card-body-content{
     .make-xs-column(8);
-    img{
-      &:extend(.img-responsive);
-      margin-bottom: 20px;
+  }
+  .card-button-primary, .card-button-secondary{
+    .make-xs-column(3);
+    text-align: center;
+    margin-top: 10px;
+    .info-text{
+      margin-top: 10px;
     }
   }
-  .card-body-button{
-    .make-xs-column(10);
+  .card-button-primary{
     .make-xs-column-offset(2);
   }
   .with-input{
     margin-top: 7px;
+  }
+  .with-checkbox{
+    margin-top: 10px;
   }
 }
 .card-image{
@@ -127,9 +211,6 @@ a:active, a:focus, a:visited{
 }
 .card-button{
   .make-xs-column(2);
-  button{
-    width: 100%;
-  }
 }
 
 .card-grey{
@@ -197,6 +278,10 @@ a:active, a:focus, a:visited{
   padding-top: 15px;
   .card-body{
     padding-bottom: 0px;
+    .description-image{
+      &:extend(.img-responsive);
+      margin-bottom: 20px;
+    }
   }
 }
 
@@ -205,6 +290,7 @@ a:active, a:focus, a:visited{
 /* Button */
 .btn{
   padding: 6px;
+  border-radius: 2px;
 }
 .btn-primary {
   &:extend(.btn);

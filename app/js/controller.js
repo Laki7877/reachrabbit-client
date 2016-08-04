@@ -68,7 +68,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         price:'500-1,000',
         openDate:'1 ธ.ค. 59',
         category:'เกมส์',
-        buttonText:'ดูรายละเอียด',
+        buttonText:'ดูรายละเอียดx',
         linkTo:'brand-campaign-detail-example'
       }
     ];

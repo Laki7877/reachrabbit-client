@@ -29,8 +29,12 @@ config(['$locationProvider', '$routeProvider','cfpLoadingBarProvider', function(
   cfpLoadingBarProvider.includeSpinner = false;
 
 }]).
-run(['$rootScope', '$location', function($rootScope, $location){
+run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
   $rootScope.goTo = function(path){
     $location.path(path);
   };
+
+  $rootScope.getProfile = function(){
+   return $window.localStorage.profile;
+  }
 }]);

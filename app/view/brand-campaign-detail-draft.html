@@ -165,7 +165,13 @@
               รับข้อเสนอถึงถึง
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control" placeholder="-- เลือกวัน --">
+              <p class="input-group">
+                <input placeholder="-- เลือกวันสิจ๊ะ --" type="text" class="form-control" ng-focus="popup1_open = true" uib-datepicker-popup="{{$root.format}}" ng-model="dt" is-open="popup1_open" 
+                datepicker-options="$root.dateOptions" show-button-bar="false" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="popup1_open = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
             </div>
           </div>
           <div class="card-row">

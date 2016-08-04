@@ -7757,8 +7757,10 @@ fieldset[disabled] .btn-clear.active {
   background: #3e4a5e;
   border: 0px;
 }
-.uib-daypicker .btn {
+.uib-daypicker .btn,
+.uib-monthpicker .btn {
   border: none;
+  padding: 8px;
 }
 /* Layout Portal */
 .layout-portal {

@@ -34,6 +34,17 @@ run(['$rootScope', '$location', '$window', function($rootScope, $location, $wind
     $location.path(path);
   };
 
+  $rootScope.dateOptions = {
+    formatYear: 'yy',
+    maxDate: new Date(2020, 5, 22),
+    minDate: new Date(),
+    startingDay: 1
+  };
+
+  $rootScope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $rootScope.format = $rootScope.formats[0];
+
+
   $rootScope.getProfile = function(){
    return $window.localStorage.profile;
   };

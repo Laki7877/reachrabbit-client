@@ -5,6 +5,7 @@
   "description": "Moderately Engineered ReachRabbit Client",
   "license": "MIT",
   "devDependencies": {
+    "autoless": "^0.1.7",
     "bower": "^1.7.7",
     "grunt": "^1.0.1",
     "grunt-concurrent": "^2.3.0",

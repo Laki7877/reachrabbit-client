@@ -38,7 +38,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         price:'-',
         openDate:'-',
         category:'-',
-        buttonText:'ใส่รายละเอียด'
+        buttonText:'ใส่รายละเอียด',
+        linkTo:'brand-campaign-detail-draft'
       },
       {
         image:'images/placeholder-campaign.png',
@@ -46,7 +47,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         price:'500-1,000',
         openDate:'1 ธ.ค. 59',
         category:'เกมส์',
-        buttonText:'ใส่รายละเอียด'
+        buttonText:'ใส่รายละเอียด',
+        linkTo:'brand-campaign-detail-draft'
       }
     ];
 
@@ -57,7 +59,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         price:'200-2,000',
         openDate:'1 ธ.ค. 59',
         category:'ความสวยงาน',
-        buttonText:'ดูรายละเอียด'
+        buttonText:'ดูรายละเอียด',
+        linkTo:'brand-campaign-detail-example'
       },
       {
         image:'images/example-campaign/main-picture.png',
@@ -65,7 +68,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         price:'500-1,000',
         openDate:'1 ธ.ค. 59',
         category:'เกมส์',
-        buttonText:'ดูรายละเอียด'
+        buttonText:'ดูรายละเอียด',
+        linkTo:'brand-campaign-detail-example'
       }
     ];
 }])
@@ -81,7 +85,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         brand:'Morinaga',
         category:'ความงาม'
       };
-
 
 
 }]);

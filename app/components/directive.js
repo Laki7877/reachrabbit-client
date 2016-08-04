@@ -58,7 +58,10 @@ angular.module('myApp.directives', [])
 .directive('cardCampaignListItem', [function () {
         return {
             restrict: 'EA',
-            scope: {campaign:'='},
+            scope: {
+              campaign:'=',
+              linkTo:'@'
+            },
             templateUrl: 'components/templates/card-campaign-list-item.html',
             link: function (scope, element, attrs, ctrl, transclude) {
 

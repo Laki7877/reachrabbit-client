@@ -6,21 +6,22 @@
   </div>
   <div class="body-zone">
     <div class="container">
-      <div class="btn-floating-action" ng-click="$root.goTo('/')"></div>
+      <div class="btn-floating-action" ng-click="$root.goTo('brand-campaign-detail-draft')">
+      </div>
 
       <alert-box type="alert-info" show-on="true">
         เราได้สร้าง Campaign แรกใหคุณแล้ว เข้าไปแก้ไขข้อมูลได้เลย
       </alert-box>
 
       <div ng-repeat="x in myCampaign">
-        <card-campaign-list-item campaign='x'></card-campaign-list-item>
+        <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-draft"></card-campaign-list-item>
       </div>
 
       <div class="example-campaign">
 
         <h2>ตัวอย่าง Campaign</h2>
         <div ng-repeat="x in exampleCampaign">
-          <card-campaign-list-item campaign='x'></card-campaign-list-item>
+          <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-example"></card-campaign-list-item>
         </div>
 
       </div>

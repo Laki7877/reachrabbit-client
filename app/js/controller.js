@@ -72,7 +72,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
 .controller('CampaignDetailController', ['$scope', function($scope) {
 
-    $scope.exampleCampaign=,
+    $scope.exampleCampaign=
       {
         image:'images/example-campaign/main-picture.png',
         name:'Morinaga Koeda รสใหม่',

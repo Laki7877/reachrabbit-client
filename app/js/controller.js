@@ -68,6 +68,22 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         buttonText:'ดูรายละเอียด'
       }
     ];
+}])
+
+.controller('CampaignDetailController', ['$scope', function($scope) {
+
+    $scope.exampleCampaign=
+      {
+        image:'images/example-campaign/main-picture.png',
+        name:'Morinaga Koeda รสใหม่',
+        price:'1,000-2,500',
+        openUntilDate:'25 ธ.ค. 58',
+        brand:'Morinaga',
+        category:'ความงาม'
+      };
+
+
+
 }]);
 
 

@@ -31,6 +31,17 @@ angular.module('myApp.directives', [])
         };
 }])
 
+.directive('cardCampaignHeader', [function () {
+        return {
+            restrict: 'EA',
+            scope: {campaign:'='},
+            templateUrl: 'components/templates/card-campaign-header.html',
+            link: function (scope, element, attrs, ctrl, transclude) {
+
+            }
+        };
+}])
+
 .directive('cardCampaignListItem', [function () {
         return {
             restrict: 'EA',

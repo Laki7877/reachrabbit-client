@@ -19,7 +19,7 @@ angular.module('myApp.routes', ['ngRoute'])
 
 angular.module('myApp.brand.routes', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
- 
+
   /*
   * Brands
   */
@@ -34,14 +34,14 @@ angular.module('myApp.brand.routes', ['ngRoute'])
   })
   .when('/brand-campaign-detail-example', {
     templateUrl: 'view/brand-campaign-detail-example.html',
-    controller: 'EmptyController'
+    controller: 'CampaignDetailController'
   });
 
 }]);
 
 angular.module('myApp.portal.routes', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
-  
+
   $routeProvider.when('/brand-login', {
     templateUrl: 'view/brand-login.html',
     controller: 'BrandSigninController'

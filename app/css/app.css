@@ -7574,7 +7574,7 @@ fieldset[disabled] .btn-clear.active {
   margin-left: 15px;
 }
 .alert-success {
-  background: #D8F0DD;
+  background: #d8f0dd;
 }
 .alert-success .alert-icon {
   background: url("../images/icon-rabbit-happy.png") 0 0 no-repeat #019386;
@@ -7592,10 +7592,10 @@ fieldset[disabled] .btn-clear.active {
   background: url("../images/icon-rabbit-happy.png") 0 0 no-repeat #648acb;
 }
 .alert-warning {
-  background: #FFEBCE;
+  background: #ffebce;
 }
 .alert-warning .alert-icon {
-  background: url("../images/icon-rabbit-confuse.png") 0 0 no-repeat #F5A623;
+  background: url("../images/icon-rabbit-confuse.png") 0 0 no-repeat #f5a623;
 }
 /* Media Icon */
 .icon-media,

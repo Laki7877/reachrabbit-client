@@ -14,14 +14,14 @@
       </alert-box>
 
       <div ng-repeat="x in myCampaign">
-        <card-campaign-list-item campaign='x'></card-campaign-list-item>
+        <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-draft"></card-campaign-list-item>
       </div>
 
       <div class="example-campaign">
 
         <h2>ตัวอย่าง Campaign</h2>
         <div ng-repeat="x in exampleCampaign">
-          <card-campaign-list-item campaign='x'></card-campaign-list-item>
+          <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-example"></card-campaign-list-item>
         </div>
 
       </div>

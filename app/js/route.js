@@ -32,6 +32,10 @@ angular.module('myApp.brand.routes', ['ngRoute'])
     templateUrl: 'view/brand-campaign-list.html',
     controller: 'CampaignListController'
   })
+  .when('/brand-campaign-detail-draft', {
+    templateUrl: 'view/brand-campaign-detail-draft.html',
+    controller: 'CampaignDetailController'
+  })
   .when('/brand-campaign-detail-example', {
     templateUrl: 'view/brand-campaign-detail-example.html',
     controller: 'CampaignDetailController'

@@ -77,16 +77,23 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 .controller('CampaignDetailController', ['$scope', function($scope) {
 
     $scope.exampleCampaign=
-      {
-        image:'images/example-campaign/main-picture.png',
-        name:'Morinaga Koeda รสใหม่',
-        price:'1,000-2,500',
-        openUntilDate:'25 ธ.ค. 58',
-        brand:'Morinaga',
-        category:'ความงาม'
-      };
-
-
+    {
+      image:'images/example-campaign/main-picture.png',
+      name:'Morinaga Koeda รสใหม่',
+      price:'1,000-2,500',
+      openUntilDate:'25 ธ.ค. 58',
+      brand:'Morinaga',
+      category:'ความงาม'
+    };
+    $scope.emptyCampaign=
+    {
+      image:'images/placeholder-campaign.png',
+      name:'Campaign แรกของฉัน',
+      price:'-',
+      openUntilDate:'-',
+      brand:'-',
+      category:'-'
+    };
 }]);
 
 

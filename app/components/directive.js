@@ -9,7 +9,10 @@ angular.module('myApp.directives', [])
             scope: false,
             templateUrl: 'components/templates/testbox.html',
             link: function (scope, element, attrs, ctrl, transclude) {
-
+                //this fucntion gets calld when template is loaded
+                if(!scope.message){
+                    scope.message = "default message";
+                }
             }
         };
 }])
@@ -17,12 +20,12 @@ angular.module('myApp.directives', [])
 .directive('alertBox', [function () {
         return {
             restrict: 'EA',
+            transclude: true,
             templateUrl: function(elem, attr){
                 //Specify alertbox-success, alertbox-failure, alertbox-info etc.
                 return 'components/templates/alertbox.html';
             },
             scope: {
-              message: "@message",
               type: "@type"
             }
         };

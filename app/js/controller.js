@@ -8,6 +8,8 @@
 /* jshint node: true */
 'use strict';
 
+/////////////// /////////////// /////////////// ///////////////
+
 angular.module('myApp.controller', ['myApp.service'])
 .controller('EmptyController', ['$scope', function($scope) {
     $scope.testHit = function(){
@@ -15,6 +17,9 @@ angular.module('myApp.controller', ['myApp.service'])
         console.log("Test World");
     };
 }]);
+
+
+/////////////// /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.brand.controller', ['myApp.service'])
 /*
@@ -66,6 +71,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 }]);
 
 
+/////////////// /////////////// /////////////// /////////////// ///////////////
 angular.module('myApp.portal.controller', ['myApp.service'])
 /*
 * Brand sign in controller - for brand to signin duh
@@ -79,8 +85,6 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             var token = response.data.token;
             $window.localStorage.token = token;
             $window.location.href = '/brand.html#/brand-campaign-list';
-            //test
-            // directivexxx.log();
         })
         .catch(function(data){
             $scope.error = true;

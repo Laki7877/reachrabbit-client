@@ -1601,7 +1601,7 @@ pre code {
   padding-right: 15px;
 }
 .row,
-.card-body .card-body-row {
+.card-body .card-row {
   margin-left: -15px;
   margin-right: -15px;
 }
@@ -6721,8 +6721,8 @@ button.close {
 .modal-footer:after,
 .card-body:before,
 .card-body:after,
-.card-body .card-body-row:before,
-.card-body .card-body-row:after {
+.card-body .card-row:before,
+.card-body .card-row:after {
   content: " ";
   display: table;
 }
@@ -6743,7 +6743,7 @@ button.close {
 .modal-header:after,
 .modal-footer:after,
 .card-body:after,
-.card-body .card-body-row:after {
+.card-body .card-row:after {
   clear: both;
 }
 .center-block {
@@ -7045,7 +7045,7 @@ a:visited {
   border-radius: 0px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
-.card-body .card-body-row {
+.card-body .card-row {
   margin-bottom: 20px;
 }
 .card-body .card-body-content-label {
@@ -7068,6 +7068,18 @@ a:visited {
 .card-body .card-body-content img {
   margin-bottom: 20px;
 }
+.card-body .card-body-button {
+  position: relative;
+  float: left;
+  width: 83.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 16.66666667%;
+}
+.card-body .with-input {
+  margin-top: 7px;
+}
 .card-image {
   position: relative;
   float: left;
@@ -7079,7 +7091,7 @@ a:visited {
 .card-title {
   position: relative;
   float: left;
-  width: 75%;
+  width: 100%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -7149,6 +7161,14 @@ a:visited {
 }
 .card-campaign-list-item .card-button {
   margin-top: 40px;
+}
+.card-campaign-list-item .card-title {
+  position: relative;
+  float: left;
+  width: 75%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .card-brand-profile .card-body {
   padding: 15px 0px;
@@ -7514,6 +7534,15 @@ fieldset[disabled] .btn-clear.active {
 }
 .btn-floating-action:hover {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.btn-width-md {
+  width: 127px;
+}
+.btn-width-lg {
+  width: 206px;
+}
+.btn-width-max {
+  width: 100%;
 }
 /* Alert Box */
 .alert {

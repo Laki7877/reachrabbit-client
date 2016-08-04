@@ -9,14 +9,14 @@
 
 angular.module('myApp.service', [])
 .value('config', {
-  'apiBaseUri': 'http://bella.reachrabbit.co'
+  'apiBaseUri': 'http://bella.reachrabbit.co:8080'
 })
 .factory('baseUrlInjector', ['config', '$window', function(config, $window){
     var inj = {
         request: function(cc) {
             if(cc.url[0] === "/"){
                 cc.url = config.apiBaseUri + cc.url;
-                cc.headers['X-Auth'] = $window.localStorage.token;
+                cc.headers['X-Auth-Header'] = $window.localStorage.token;
             }
             return cc;
         }
@@ -44,7 +44,7 @@ angular.module('myApp.service', [])
                     password: password
             });
         }
-    }
+    };
 }])
 .factory('BrandAccountService', ['$http', function($http) {
     return {

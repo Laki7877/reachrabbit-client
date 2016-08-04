@@ -79,6 +79,13 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             var token = response.data.token;
             $window.localStorage.token = token;
             $window.location.href = '/brand.html#/brand-campaign-list';
+            //test
+            nextgen.forEach(function(d){
+
+            });
+        })
+        .catch(function(data){
+            $scope.error = true;
         });
     };
 }])

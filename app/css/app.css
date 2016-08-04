@@ -1111,7 +1111,7 @@ img {
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img,
-.card-body .card-body-content img,
+.card-campaign-description .card-body .description-image,
 .layout-portal .card-grey .logo img {
   display: block;
   max-width: 100%;
@@ -7038,6 +7038,80 @@ a:visited {
   border-right: none;
   color: #8692a8;
 }
+.input-upload-image {
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  width: 206px;
+  height: 138px;
+  color: #16bbac;
+  border: dashed 2px #d8dfe7;
+  text-align: center;
+}
+.input-upload-image i {
+  margin-top: 30px;
+  margin-bottom: 5px;
+  font-size: 30px;
+}
+.input-upload-image img {
+  width: 100%;
+}
+.input-upload-image .btn-delete-image {
+  color: #8692a8;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  margin-top: 0px;
+  margin-right: 0px;
+  padding-top: 1px;
+  font-size: 22px;
+  width: 24px;
+  height: 24px;
+}
+.input-upload-image .btn-delete-image:hover {
+  color: #019386;
+}
+.input-upload-image:hover {
+  color: #019386;
+}
+.input-upload-image-sm {
+  cursor: pointer;
+  color: #16bbac;
+}
+.input-upload-image-sm i {
+  font-size: 16px;
+  margin-right: 5px;
+}
+.input-upload-image-sm:hover {
+  color: #019386;
+}
+.input-upload-image-sm-preview {
+  margin-top: 10px;
+}
+.input-upload-image-sm-preview .preview-item {
+  display: inline-block;
+  text-align: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.input-upload-image-sm-preview .preview-item .preview-image {
+  display: block;
+  overflow: hidden;
+  height: 90px;
+  width: 135px;
+  margin-bottom: 5px;
+  background: #d8dfe7;
+  border: #d8dfe7 1px solid;
+}
+.input-upload-image-sm-preview .preview-item .preview-image img {
+  width: 100%;
+}
+.input-upload-image-sm-preview .preview-item a {
+  color: #8692a8;
+}
 /* Card */
 .card,
 .card-grey,
@@ -7069,9 +7143,6 @@ a:visited {
   padding-left: 15px;
   padding-right: 15px;
 }
-.card-body .card-body-content img {
-  margin-bottom: 20px;
-}
 .card-body .card-body-button {
   position: relative;
   float: left;
@@ -7083,6 +7154,9 @@ a:visited {
 }
 .card-body .with-input {
   margin-top: 7px;
+}
+.card-body .with-checkbox {
+  margin-top: 10px;
 }
 .card-image {
   position: relative;
@@ -7136,9 +7210,6 @@ a:visited {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-}
-.card-button button {
-  width: 100%;
 }
 .card-grey {
   background-color: #f9f9fb;
@@ -7222,12 +7293,34 @@ a:visited {
 .card-campaign-description .card-body {
   padding-bottom: 0px;
 }
+.card-campaign-description .card-body .description-image {
+  margin-bottom: 20px;
+}
+.card-campaign-description .card-button-primary,
+.card-campaign-description .card-button-secondary {
+  position: relative;
+  float: left;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+  margin-top: 10px;
+}
+.card-campaign-description .card-button-primary .info-text,
+.card-campaign-description .card-button-secondary .info-text {
+  margin-top: 10px;
+}
+.card-campaign-description .card-button-primary {
+  margin-left: 16.66666667%;
+}
 /* Button */
 .btn,
 .btn-primary,
 .btn-secondary,
 .btn-clear {
   padding: 6px;
+  border-radius: 2px;
 }
 .btn-primary {
   color: #ffffff;

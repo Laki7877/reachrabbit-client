@@ -13,9 +13,8 @@
       <card-campaign-header campaign="emptyCampaign">
       </card-campaign-header>
 
-      <div class="card">
+      <div class="card-campaign-description">
         <div class="card-body">
-
           <div class="card-row">
             <div class="card-body-content-label with-input">
               ชื่อ Campaign
@@ -29,11 +28,26 @@
               รูป Campaign
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control">
+              <div class="input-upload-image">
+                <i class="fa fa-camera"></i><br>
+                เลือกรูป JPG หรือ PNG<br>
+                อย่างน้อย 600 x 400 px
+              </div>
             </div>
           </div>
           <div class="card-row">
             <div class="card-body-content-label with-input">
+              รูป Campaign
+            </div>
+            <div class="card-body-content">
+              <div class="input-upload-image">
+                <i class="fa fa-times-circle btn-delete-image"></i>
+                <img src="images/example-campaign/main-picture.png" />
+              </div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label with-checkbox">
               ช่องทางการโปรโมท
             </div>
             <div class="card-body-content">
@@ -54,7 +68,7 @@
             </div>
             <div class="card-body-content">
               <select class="form-control">
-                <option>1</option>
+                <option>-- เลือกหมวดหมู่ --</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -86,11 +100,51 @@
             </div>
           </div>
           <div class="card-row">
-            <div class="card-body-content-label with-input">
+            <div class="card-body-content-label">
               รูปประกอบ
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control">
+              <div class="input-upload-image-sm">
+                <i class="fa fa-camera "></i> เพิ่มรูปประกอบ (JPG หรือ PNG ขนาดเท่าไรก็ได้)
+              </div>
+              <div class="input-upload-image-sm-preview">
+                <div class="preview-item">
+                  <div class="preview-image">
+                    <img src="images/example-campaign/main-picture.png" />
+                  </div>
+                  <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
+                </div>
+                <div class="preview-item">
+                  <div class="preview-image">
+                    <img src="images/example-campaign/main-picture.png" />
+                  </div>
+                  <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
+                </div>
+                <div class="preview-item">
+                  <div class="preview-image">
+                    <img src="images/example-campaign/main-picture.png" />
+                  </div>
+                  <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
+                </div>
+                <div class="preview-item">
+                  <div class="preview-image">
+                    <img src="images/example-campaign/main-picture.png" />
+                  </div>
+                  <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
+                </div>
+                <div class="preview-item">
+                  <div class="preview-image">
+                    <img src="images/example-campaign/main-picture.png" />
+                  </div>
+                  <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
+                </div>
+                <div class="preview-item">
+                  <div class="preview-image">
+                    <img src="images/example-campaign/main-picture.png" />
+                  </div>
+                  <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
+                </div>
+              </div>
             </div>
           </div>
           <div class="card-row">
@@ -99,7 +153,7 @@
             </div>
             <div class="card-body-content">
               <select class="form-control">
-                <option>1</option>
+                <option>-- เลือกค่าตอบแทน --</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -111,13 +165,23 @@
               รับข้อเสนอถึงถึง
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" placeholder="-- เลือกวัน --">
             </div>
           </div>
           <div class="card-row">
-            <div class="card-body-button">
-              <button class="btn-primary btn-width-lg">ลงประกาศ</button>
-              <button class="btn-secondary btn-width-lg">บันทึกข้อมูล</button>
+            <div class="card-button-primary">
+              <button class="btn-primary btn-width-max">ลงประกาศ</button>
+              <br>
+              <div class="info-text">
+                บันทึกและเปิดรับข้อเสนอ
+              </div>
+            </div>
+            <div class="card-button-secondary">
+              <button class="btn-secondary btn-width-max">บันทึกข้อมูล</button>
+              <br>
+              <div class="info-text">
+                บันทึกเพื่อแก้ไขภายหลัง
+              </div>
             </div>
           </div>
         </div>

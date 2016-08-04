@@ -35,8 +35,7 @@ angular.module('myApp.directives', [])
 
                 scope.close = function(){
                     scope.show = false;
-                    console.log("closing")
-                }
+                };
             }
         };
 }])

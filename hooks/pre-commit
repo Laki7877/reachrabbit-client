@@ -24,7 +24,9 @@ if [ ! $? -ne 0 ]; then
     echo    ░░▄▄▀░░░▀▄░░░░░░░░░░▄▀░▀▀▄░░░░
     echo    ▄▀▀░░░░░░░█▄░░░░░░▄▀░░░░░░█▄░░
     echo    █░░░░░░░░░░░░░░░░░░░░░░░░░░▀█▄
+
+    exit 0;
 else 
     echo $(tput setaf 1)[FAIL]$(tput sgr 0) Go fix your bad code.
-    exit 1;
 fi
+exit 1;

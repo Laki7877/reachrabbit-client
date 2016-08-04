@@ -7038,6 +7038,7 @@ a:visited {
   border-right: none;
   color: #8692a8;
 }
+/* Image Upload */
 .input-upload-image {
   cursor: pointer;
   overflow: hidden;
@@ -7143,13 +7144,22 @@ a:visited {
   padding-left: 15px;
   padding-right: 15px;
 }
-.card-body .card-body-button {
+.card-body .card-button-primary,
+.card-body .card-button-secondary {
   position: relative;
   float: left;
-  width: 83.33333333%;
+  width: 25%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  text-align: center;
+  margin-top: 10px;
+}
+.card-body .card-button-primary .info-text,
+.card-body .card-button-secondary .info-text {
+  margin-top: 10px;
+}
+.card-body .card-button-primary {
   margin-left: 16.66666667%;
 }
 .card-body .with-input {
@@ -7295,24 +7305,6 @@ a:visited {
 }
 .card-campaign-description .card-body .description-image {
   margin-bottom: 20px;
-}
-.card-campaign-description .card-button-primary,
-.card-campaign-description .card-button-secondary {
-  position: relative;
-  float: left;
-  width: 25%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  text-align: center;
-  margin-top: 10px;
-}
-.card-campaign-description .card-button-primary .info-text,
-.card-campaign-description .card-button-secondary .info-text {
-  margin-top: 10px;
-}
-.card-campaign-description .card-button-primary {
-  margin-left: 16.66666667%;
 }
 /* Button */
 .btn,
@@ -7847,4 +7839,11 @@ fieldset[disabled] .btn-clear.active {
 }
 .layout-brand .example-campaign h2 {
   margin-bottom: 20px;
+}
+.layout-brand .view-brand-profile .input-upload-image {
+  width: 127px;
+  height: 127px;
+}
+.layout-brand .view-brand-profile .input-upload-image i {
+  margin-top: 38px;
 }

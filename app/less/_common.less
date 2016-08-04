@@ -49,6 +49,8 @@ a:active, a:focus, a:visited{
   border-right: none;
   color: @color-grey-darker;
 }
+
+/* Image Upload */
 .input-upload-image{
   cursor: pointer;
   overflow: hidden;
@@ -88,6 +90,7 @@ a:active, a:focus, a:visited{
 .input-upload-image:hover{
   color: @color-theme-secondary-darker;
 }
+
 .input-upload-image-sm{
   cursor: pointer;
   color: @color-theme-secondary;
@@ -145,8 +148,15 @@ a:active, a:focus, a:visited{
   .card-body-content{
     .make-xs-column(8);
   }
-  .card-body-button{
-    .make-xs-column(10);
+  .card-button-primary, .card-button-secondary{
+    .make-xs-column(3);
+    text-align: center;
+    margin-top: 10px;
+    .info-text{
+      margin-top: 10px;
+    }
+  }
+  .card-button-primary{
     .make-xs-column-offset(2);
   }
   .with-input{
@@ -272,17 +282,6 @@ a:active, a:focus, a:visited{
       &:extend(.img-responsive);
       margin-bottom: 20px;
     }
-  }
-  .card-button-primary, .card-button-secondary{
-    .make-xs-column(3);
-    text-align: center;
-    margin-top: 10px;
-    .info-text{
-      margin-top: 10px;
-    }
-  }
-  .card-button-primary{
-    .make-xs-column-offset(2);
   }
 }
 

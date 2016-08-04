@@ -44,7 +44,7 @@ angular.module('myApp.service', [])
                     password: password
             });
         }
-    }
+    };
 }])
 .factory('BrandAccountService', ['$http', function($http) {
     return {
@@ -54,6 +54,6 @@ angular.module('myApp.service', [])
         signup: function(brand){
             return $http.post("/signup/brand", brand);
         },
-        
+
     };
 }]);

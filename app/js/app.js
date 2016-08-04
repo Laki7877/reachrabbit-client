@@ -36,5 +36,5 @@ run(['$rootScope', '$location', '$window', function($rootScope, $location, $wind
 
   $rootScope.getProfile = function(){
    return $window.localStorage.profile;
-  }
+  };
 }]);

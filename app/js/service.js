@@ -16,7 +16,7 @@ angular.module('myApp.service', [])
         request: function(cc) {
             if(cc.url[0] === "/"){
                 cc.url = config.apiBaseUri + cc.url;
-                cc.headers['X-Auth-Header'] = $window.localStorage.token;
+                cc.headers['X-Auth-Token'] = $window.localStorage.token;
             }
             return cc;
         }

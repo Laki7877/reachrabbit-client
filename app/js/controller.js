@@ -73,7 +73,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
       }
     ];
 }])
-
 .controller('CampaignDetailController', ['$scope', function($scope) {
 
     $scope.exampleCampaign=
@@ -94,14 +93,19 @@ angular.module('myApp.brand.controller', ['myApp.service'])
       brand:'-',
       category:'-'
     };
+}])
+.controller('BrandProfileController', ['$scope', '$window', 'AccountService', '$location', function($scope, $window, AccountService, $location) {
+    $scope.formData = {};
+    AccountService.getProfile()
+    .then(function(response){
+        $scope.formData = response.data;
+    });
 }]);
+
 
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
 angular.module('myApp.portal.controller', ['myApp.service'])
-/*
-* Brand sign in controller - for brand to signin duh
-*/
 .controller('BrandSigninController', ['$scope', '$location', 'AccountService', '$window', function($scope, $location, AccountService, $window) {
     $scope.formData = {};
     $window.localStorage.removeItem('token');
@@ -113,7 +117,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             return AccountService.getProfile();
         })
         .then(function(profileResp){
-            $window.localStorage.profile = profileResp.data;
+            $window.localStorage.profile = JSON.stringify(profileResp.data);
             $window.location.href = '/brand.html#/brand-campaign-list';
         })
         .catch(function(data){
@@ -130,8 +134,4 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             $location.path('/brand-login');
         });
     };
-}])
-.controller('BrandProfileController', ['$scope', '$window', 'AccountService', '$location', function($scope, $window, AccountService, $location) {
-    $scope.formData = {};
-    
 }]);

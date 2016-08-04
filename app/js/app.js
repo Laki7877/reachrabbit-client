@@ -44,9 +44,8 @@ run(['$rootScope', '$location', '$window', function($rootScope, $location, $wind
   $rootScope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $rootScope.format = $rootScope.formats[0];
 
-
   $rootScope.getProfile = function(){
-   return $window.localStorage.profile;
+   return JSON.parse($window.localStorage.profile);
   };
 
 }]);

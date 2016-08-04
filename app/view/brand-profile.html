@@ -7,7 +7,7 @@
   <div class="body-zone">
     <div class="container">
 
-      <alert-box type="alert-info">
+      <alert-box type="alert-info" show-on="true">
         ยิ่งใส่ข้อมูลเยอะ คนยิ่งสนใจ Campaign ของ Brand คุณมากขึ้น
       </alert-box>
 
@@ -38,7 +38,7 @@
               ชื่อ Brand
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control">
+              <input type="text" ng-model="formData.brand.brandName" class="form-control">
             </div>
           </div>
           <div class="card-row">
@@ -74,7 +74,7 @@
               ชื่อผู้สมัคร
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control">
+              <input type="text" ng-model="formData.name" class="form-control">
             </div>
           </div>
           <div class="card-row">
@@ -82,7 +82,7 @@
               เบอร์ติดต่อ
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control">
+              <input type="text" ng-model="formData.phoneNumber" class="form-control">
             </div>
           </div>
           <div class="card-row">
@@ -90,7 +90,7 @@
               อีเมล
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control">
+              <input type="text" ng-model="formData.email" class="form-control">
             </div>
           </div>
           <div class="card-row">

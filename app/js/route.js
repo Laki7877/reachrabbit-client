@@ -42,7 +42,7 @@ angular.module('myApp.brand.routes', ['ngRoute'])
   })
   .when('/brand-profile', {
     templateUrl: 'view/brand-profile.html',
-    controller: 'EmptyController'
+    controller: 'BrandProfileController'
   });
 
 }]);

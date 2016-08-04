@@ -25,6 +25,7 @@ angular.module('myApp.directives', [])
             },
             scope: {
               type: "@type",
+              closable: '=?',
               show: '=?showOn'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
@@ -32,7 +33,10 @@ angular.module('myApp.directives', [])
                 if(!scope.show){
                     scope.show = false;
                 }
-
+                if(!scope.closable){
+                    scope.closable = true;
+                }
+                
                 scope.close = function(){
                     scope.show = false;
                 };

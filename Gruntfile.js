@@ -19,9 +19,17 @@ module.exports = function (grunt) {
     },
     concurrent: {
         dev: {
-            tasks: ['watch', 'connect'],
+            tasks: ['shell:autoless', 'connect'],
             options: {
                 logConcurrentOutput: true
+            }
+        }
+    },
+    shell: {
+        autoless: {
+            command: 'autoless app/less app/css',
+             options: {
+                stderr: true
             }
         }
     },
@@ -70,6 +78,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'concurrent:dev']);

@@ -11,7 +11,7 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
     copy: {
-      "hooks": {
+      hooks: {
         files: {
            ".git/hooks/pre-commit": "hooks/pre-commit"
         }
@@ -69,6 +69,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'concurrent:dev']);

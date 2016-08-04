@@ -10,6 +10,13 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    copy: {
+      hooks: {
+        files: {
+           ".git/hooks/pre-commit": "hooks/pre-commit"
+        }
+      }
+    },
     concurrent: {
         dev: {
             tasks: ['watch', 'connect'],
@@ -41,16 +48,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    //ensure user got githooks
-    githooks: {
-      all: {
-        options:{
-          'startMarker': grunt.file.read('signature.txt'),
-          'endMarker': 'process.exit(0)'
-        },
-        'pre-commit': 'jshint',
-      }
-    },
     //JSHint code check
     jshint: {
       files: ['app/**/*.js'],
@@ -72,8 +69,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task(s).
-  grunt.registerTask('default', ['githooks', 'jshint', 'concurrent:dev']);
+  grunt.registerTask('default', ['jshint', 'concurrent:dev']);
 
 }; 

@@ -10,67 +10,84 @@
   <div class="body-zone">
     <div class="container">
 
-      <card-campaign-header campaign="exampleCampaign">
+      <card-campaign-header campaign="emptyCampaign">
       </card-campaign-header>
 
       <div class="card">
         <div class="card-body">
 
           <div class="card-row">
-            <div class="card-title col-xs-12">
-              <div class="card-title-content">
-                เกี่ยวกับ Brand
+            <div class="card-body-content-label with-input">
+              ชื่อ Campaign
+            </div>
+            <div class="card-body-content">
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              รูป Campaign
+            </div>
+            <div class="card-body-content">
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              ช่องทางการโปรโมท
+            </div>
+            <div class="card-body-content">
+              <div class="checkbox">
+                <label><input type="checkbox" value=""><span class="icon-facebook"></span> Facebook</label>
               </div>
-            </div>
-          </div>
-
-          <div class="card-row">
-            <div class="card-body-content-label with-input">
-              รูปโลโก้ของ Brand
-            </div>
-            <div class="card-body-content">
-              <input type="text" class="form-control">
-            </div>
-          </div>
-          <div class="card-row">
-            <div class="card-body-content-label with-input">
-              ชื่อ Brand
-            </div>
-            <div class="card-body-content">
-              <input type="text" class="form-control">
-            </div>
-          </div>
-          <div class="card-row">
-            <div class="card-body-content-label with-input">
-              เกี่ยวกับ Brand
-            </div>
-            <div class="card-body-content">
-              <textarea class="form-control" rows="4" placeholder="อธิบายเกี่ยวกับ Brand ของคุณ"></textarea>
-            </div>
-          </div>
-          <div class="card-row">
-            <div class="card-body-content-label with-input">
-              เว็บไซน์ของ Brand
-            </div>
-            <div class="card-body-content">
-              <input type="text" class="form-control">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-body">
-          <div class="card-row">
-            <div class="card-title">
-              <div class="card-title-content">
-                เกี่ยวกับผู้สมัคร
+              <div class="checkbox">
+                <label><input type="checkbox" value=""><span class="icon-instagram"></span> Instagram</label>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" value=""><span class="icon-youtube"></span> YouTube</label>
               </div>
             </div>
           </div>
           <div class="card-row">
             <div class="card-body-content-label with-input">
-              ชื่อผู้สมัคร
+              หมวดหมู่
+            </div>
+            <div class="card-body-content">
+              <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              สิ่งที่อยากให้ทำ
+            </div>
+            <div class="card-body-content">
+              <textarea class="form-control" rows="4"></textarea>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              Keyword สำคัญ
+            </div>
+            <div class="card-body-content">
+              <input type="text" class="form-control" placeholder="ถ้ามี">
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              เว็บไซต์ของสินค้า
+            </div>
+            <div class="card-body-content">
+              <input type="text" class="form-control" placeholder="ถ้ามี">
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              รูปประกอบ
             </div>
             <div class="card-body-content">
               <input type="text" class="form-control">
@@ -78,23 +95,20 @@
           </div>
           <div class="card-row">
             <div class="card-body-content-label with-input">
-              เบอร์ติดต่อ
+              ค่าตอบแทน
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control">
+              <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
             </div>
           </div>
           <div class="card-row">
             <div class="card-body-content-label with-input">
-              อีเมล
-            </div>
-            <div class="card-body-content">
-              <input type="text" class="form-control">
-            </div>
-          </div>
-          <div class="card-row">
-            <div class="card-body-content-label with-input">
-              ตั้งรหัสผ่านใหม่
+              รับข้อเสนอถึงถึง
             </div>
             <div class="card-body-content">
               <input type="text" class="form-control">
@@ -102,11 +116,13 @@
           </div>
           <div class="card-row">
             <div class="card-body-button">
-              <button class="btn-primary btn-width-lg">บันทึกข้อมูล</button>
+              <button class="btn-primary btn-width-lg">ลงประกาศ</button>
+              <button class="btn-secondary btn-width-lg">บันทึกข้อมูล</button>
             </div>
           </div>
         </div>
       </div>
+
 
     </div>
   </div>

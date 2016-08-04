@@ -26,13 +26,13 @@ angular.module('myApp.service', [])
 .config(['$httpProvider', function($httpProvider) {
   $httpProvider.interceptors.push('baseUrlInjector');
 }])
-.factory('BrandAccountService', ['$http', function($http) {
+.factory('AccountService', ['$http', function($http){
     return {
         /*
-        * returns brand user schema
+        * Get Profile
         */
-        signup: function(brand){
-            return $http.post("/signup/brand", brand);
+        getProfile: function(){
+            return $http.get("/profile");
         },
         /*
         * get token
@@ -44,5 +44,16 @@ angular.module('myApp.service', [])
                     password: password
             });
         }
+    }
+}])
+.factory('BrandAccountService', ['$http', function($http) {
+    return {
+        /*
+        * returns brand user schema
+        */
+        signup: function(brand){
+            return $http.post("/signup/brand", brand);
+        },
+        
     };
 }]);

@@ -95,14 +95,18 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 /*
 * Brand sign in controller - for brand to signin duh
 */
-.controller('BrandSigninController', ['$scope', '$location', 'BrandAccountService', '$window', function($scope, $location, BrandAccountService, $window) {
+.controller('BrandSigninController', ['$scope', '$location', 'AccountService', '$window', function($scope, $location, AccountService, $window) {
     $scope.formData = {};
     $window.localStorage.removeItem('token');
     $scope.login = function(username, password){
-        BrandAccountService.getToken(username, password)
+        AccountService.getToken(username, password)
         .then(function(response){
             var token = response.data.token;
             $window.localStorage.token = token;
+            return AccountService.getProfile();
+        })
+        .then(function(profileResp){
+            $window.localStorage.profile = profileResp.data;
             $window.location.href = '/brand.html#/brand-campaign-list';
         })
         .catch(function(data){
@@ -110,12 +114,17 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         });
     };
 }])
-.controller('BrandSignupController', ['$scope', 'BrandAccountService', '$location', function($scope, BrandAccountService, $location) {
+.controller('BrandSignupController', ['$scope', 'BrandAccountService', '$location', '$window', function($scope, BrandAccountService, $location, $window) {
     $scope.formData = {};
     $scope.submit = function(brand){
+        $window.localStorage.removeItem('token');
         BrandAccountService.signup(brand)
         .then(function(response){
             $location.path('/brand-login');
         });
     };
+}])
+.controller('BrandProfileController', ['$scope', '$window', 'AccountService', '$location', function($scope, $window, AccountService, $location) {
+    $scope.formData = {};
+    
 }]);

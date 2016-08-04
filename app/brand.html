@@ -29,8 +29,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="brand-campaign-list.html">My Campaign</a></li>
-            <li><a href="brand-influencer-list.html">Influencers</a></li>
+            <li class="active"><a ng-click="$root.goTo('brand-campaign-list')">My Campaign</a></li>
+            <li><a ng-click="$root.goTo('#')">Influencers</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -39,8 +39,8 @@
                 Nattamoto<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="brand-profile.html">Profile ของฉัน</a></li>
-                <li><a href="#">ออกจากระบบ</a></li>
+                <li><a ng-click="$root.goTo('brand-profile')">Profile ของฉัน</a></li>
+                <li><a ng-click="$root.goTo('#')">ออกจากระบบ</a></li>
               </ul>
             </li>
           </ul>

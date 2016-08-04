@@ -59,7 +59,7 @@ a:active, a:focus, a:visited{
 }
 .card-body{
   &:extend(.panel-body);
-  .card-body-row{
+  .card-row{
     &:extend(.row);
     margin-bottom: 20px;
   }
@@ -74,12 +74,19 @@ a:active, a:focus, a:visited{
       margin-bottom: 20px;
     }
   }
+  .card-body-button{
+    .make-xs-column(10);
+    .make-xs-column-offset(2);
+  }
+  .with-input{
+    margin-top: 7px;
+  }
 }
 .card-image{
   .make-xs-column(3);
 }
 .card-title{
-  .make-xs-column(9);
+  .make-xs-column(12);
   .card-title-content{
     font-family: @font-primary;
     font-size: 18px;
@@ -147,6 +154,9 @@ a:active, a:focus, a:visited{
   }
   .card-button{
     margin-top: 40px;
+  }
+  .card-title{
+    .make-xs-column(9);
   }
 }
 
@@ -223,6 +233,15 @@ a:active, a:focus, a:visited{
 }
 .btn-floating-action:hover{
   box-shadow: @global-shadow-depth-2;
+}
+.btn-width-md{
+  width: 127px;
+}
+.btn-width-lg{
+  width: 206px;
+}
+.btn-width-max{
+  width: 100%;
 }
 
 /* Alert Box */

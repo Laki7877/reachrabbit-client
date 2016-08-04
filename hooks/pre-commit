@@ -26,4 +26,5 @@ if [ ! $? -ne 0 ]; then
     echo    █░░░░░░░░░░░░░░░░░░░░░░░░░░▀█▄
 else 
     echo $(tput setaf 1)[FAIL]$(tput sgr 0) Go fix your bad code.
+    exit 1;
 fi

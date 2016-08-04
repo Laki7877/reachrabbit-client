@@ -1,49 +1,32 @@
 <div class="layout-sigin">
   <div class="header-zone">
     <div class="container">
-      <div class="back-btn-for-header"  ng-click="$root.goTo('brand-campaign-list')">
-        <i class="fa fa-arrow-left"></i> กลับไป Campaign List
-      </div>
-      <h2>Morinaga Keoda รสใหม่</h2>
+      <h1>Profile ของฉัน</h1>
     </div>
   </div>
   <div class="body-zone">
     <div class="container">
-      <div class="btn-floating-action">
-      </div>
 
       <alert-box type="alert-info">
-        หน้านี้คือตัวอย่างของ Campaign อยากสร้างใหม่กดปุ่มข้างๆ เลย
+        ยิ่งใส่ข้อมูลเยอะ คนยิ่งสนใจ Campaign ของ Brand คุณมากขึ้น
       </alert-box>
-
-      <card-campaign-header campaign="exampleCampaign">
-      </card-campaign-header>
 
       <div class="card-campaign-description">
         <div class="card-body">
           <div class="card-body-row">
             <div class="card-body-content-label">
-              รายละเอียด
+              รูปโลโก้ของ Brand
             </div>
             <div class="card-body-content">
-              1. ถ่ายภาพให้เห็นผลิตภัณฑ์และชื่อแบรนด์อย่างชัดเจน<br>
-              2. แนะนำพร้อมอธิบายข้อมูล และรายละเอียดของผลิตภัณฑ์<br>
-              3. ถ่ายภาพ หรือ VDO ประกอบขณะใช้ผลิตภัณฑ์<br>
-              4. ถ่ายภาพ Before และ After ให้เห็นความเปลี่ยนแปลงในการใช้ผลิตภัณฑ์<br>
-              5. ถ่ายภาพ Finish look และเซลฟี่คู่กับผลิตภัณฑ์<br>
-              6. บรรยายความรู้สึก และให้คะแนนความพอใจ<br>
-              7. บอกเคล็ดลับในการปัดมาสคาร่า<br>
-              8. แนะนำช่องทางติดตามข้อมูล และข่าวสารของ Belov<br>
-              9. ห้ามรีวิวเปรียบเทียบกับแบรนด์อื่น<br>
-              10. การ Share บทความรีวิว ต้องตั้งค่าสถานะ Facebook Post เป็น Public เท่านั้น
+
             </div>
           </div>
           <div class="card-body-row">
             <div class="card-body-content-label">
-              Keyword สำคัญ
+              ชื่อ Brand
             </div>
             <div class="card-body-content">
-              หมา, แมว, เป็ด
+              <input type="text" class="form-control" placeholder="Username" ng-model="username" name="username">
             </div>
           </div>
           <div class="card-body-row">

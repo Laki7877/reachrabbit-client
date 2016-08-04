@@ -80,9 +80,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             $window.localStorage.token = token;
             $window.location.href = '/brand.html#/brand-campaign-list';
             //test
-            nextgen.forEach(function(d){
-
-            });
+            // directivexxx.log();
         })
         .catch(function(data){
             $scope.error = true;

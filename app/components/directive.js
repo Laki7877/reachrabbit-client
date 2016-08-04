@@ -10,9 +10,7 @@ angular.module('myApp.directives', [])
             templateUrl: 'components/templates/testbox.html',
             link: function (scope, element, attrs, ctrl, transclude) {
                 //this fucntion gets calld when template is loaded
-                if(!scope.message){
-                    scope.message = "default message";
-                }
+                
             }
         };
 }])
@@ -26,7 +24,18 @@ angular.module('myApp.directives', [])
                 return 'components/templates/alertbox.html';
             },
             scope: {
-              type: "@type"
+              type: "@type",
+              show: '=?showOn'
+            },
+            link: function (scope, element, attrs, ctrl, transclude) {
+                //this fucntion gets calld when template is loaded
+                if(!scope.show){
+                    scope.show = false;
+                }
+
+                scope.close = function(){
+                    scope.show = false;
+                };
             }
         };
 }])

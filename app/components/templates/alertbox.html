@@ -1,5 +1,6 @@
-<div class="alert {{type}}">
+<div class="alert {{type}}" ng-if="show">
   <span class="alert-icon"></span>
+  <button type="button" ng-click="close()" class="close"><span aria-hidden="true">&times;</span></button>
   <div class="alert-text">
     <ng-transclude>
     </ng-transclude>

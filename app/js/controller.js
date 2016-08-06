@@ -184,7 +184,7 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
 }])
 .controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'CtrlHelper', function($scope, $window, AccountService, CtrlHelper) {
     $scope.formData = {};
-    $scope.states = { IDLE: 0, SAVE_OK: 1, SAVE_FAIL_VAL : 2};
+    $scope.states = { IDLE: 0, SAVE_OK: 1, SAVE_FAIL_VAL : 2, ERROR: 3};
     $scope.state = $scope.states.IDLE;
     
     CtrlHelper.setState($scope.states.IDLE);
@@ -205,7 +205,7 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
             CtrlHelper.setState($scope.states.SAVE_OK);
         })
         .catch(function(err){
-            CtrlHelper.setState($scope.states.SAVE_FAIL_VAL);
+            CtrlHelper.setState($scope.states.ERROR);
         });
     };
 }]);
@@ -256,7 +256,8 @@ angular.module('myApp.portal.controller', ['myApp.service'])
     $scope.states = {
         IDLE: 0,
         SAVE_FAIL_VAL: 1,
-        SAVE_FAIL_EMAIL: 2
+        SAVE_FAIL_EMAIL: 2,
+        ERROR: 3
     };
     $scope.state = $scope.states.IDLE;
 }]);

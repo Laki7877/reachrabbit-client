@@ -24,14 +24,14 @@ angular.module('myApp', [
   //Routes
   'myApp.portal.routes',
   'myApp.brand.routes'
-]).
-config(['$locationProvider', '$routeProvider','cfpLoadingBarProvider', function($locationProvider, $routeProvider, cfpLoadingBarProvider) {
+])
+.config(['$locationProvider', '$routeProvider','cfpLoadingBarProvider', function($locationProvider, $routeProvider, cfpLoadingBarProvider) {
   // $locationProvider.hashPrefix('');
   $routeProvider.otherwise({redirectTo: '/404'});
   cfpLoadingBarProvider.includeSpinner = false;
-
-}]).
-run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
+  
+}])
+.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
   $rootScope.goTo = function(path){
     $location.path(path);
   };
@@ -49,5 +49,10 @@ run(['$rootScope', '$location', '$window', function($rootScope, $location, $wind
   $rootScope.getProfile = function(){
    return JSON.parse($window.localStorage.profile);
   };
+
+  $rootScope.$on('$routeChangeStart', function(event, next, current) {
+    console.log('$routeChangeStart', event, next, current);
+    $rootScope.state = null;
+  });
 
 }]);

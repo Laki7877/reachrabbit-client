@@ -114,4 +114,13 @@ angular.module('myApp.service', [])
     };
 
     return service;
+  }])
+  .factory('CtrlHelper', ['$location', '$anchorScroll', '$rootScope', function($location, $anchorScroll, $rootScope){
+      return {
+          'setState': function setState(newState){
+            $rootScope.state = newState;
+            $location.hash('navbar');
+            $anchorScroll();
+        }
+      };
   }]);

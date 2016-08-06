@@ -62,8 +62,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
       }
     ];
 }])
-.controller('CampaignDetailController', ['$scope','$routeParams', 'CampaignService', 'DataService', '$filter', '$anchorScroll', '$location', 
-function($scope, $routeParams, CampaignService, DataService, $filter, $anchorScroll, $location) {
+.controller('CampaignDetailController', ['$scope','$routeParams', 'CampaignService', 'DataService', '$filter', 'CtrlHelper',
+function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper) {
     //initial form data
     $scope.formData = {
         categoryId: {
@@ -169,26 +169,32 @@ function($scope, $routeParams, CampaignService, DataService, $filter, $anchorScr
             $scope.formData = echoresponse.data;
 
             if(echoresponse.data.status == "Draft"){
-                $scope.state = $scope.states.SAVE_DRAFT_OK;
+                CtrlHelper.setState($scope.states.SAVE_DRAFT_OK);
             }else if(echoresponse.data.status == 'Open'){
-                $scope.state = $scope.states.SAVE_PUB_OK;
+                CtrlHelper.setState($scope.states.SAVE_PUB_OK);
             }else{
-                $scope.state = $scope.states.ERROR;
+                CtrlHelper.setState($scope.states.ERROR);
             }
             
 
-            $location.hash('navbar');
-            $anchorScroll();
         });
         
     };
 
 }])
-.controller('BrandProfileController', ['$scope', '$window', 'AccountService', '$location', function($scope, $window, AccountService, $location) {
+.controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'CtrlHelper', function($scope, $window, AccountService, CtrlHelper) {
     $scope.formData = {};
+    $scope.states = { IDLE: 0, SAVE_OK: 1, SAVE_FAIL_VAL : 2};
+    $scope.state = $scope.states.IDLE;
+    
+    CtrlHelper.setState($scope.states.IDLE);
+    
     AccountService.getProfile()
     .then(function(response){
         $scope.formData = response.data;
+    })
+    .catch(function(err){
+       CtrlHelper.setState($scope.states.SAVE_FAIL_VAL);
     });
 
     $scope.saveProfile = function(profile){
@@ -196,9 +202,14 @@ function($scope, $routeParams, CampaignService, DataService, $filter, $anchorScr
         .then(function(response){
             $scope.formData = response.data;
             $scope.success = true;
+            CtrlHelper.setState($scope.states.SAVE_OK);
+        })
+        .catch(function(err){
+            CtrlHelper.setState($scope.states.SAVE_FAIL_VAL);
         });
     };
 }]);
+
 /////////////// /////////////// /////////////// /////////////// ///////////////
 angular.module('myApp.portal.controller', ['myApp.service'])
 .controller('BrandSigninController', ['$scope', '$location', 'AccountService', '$window', function($scope, $location, AccountService, $window) {
@@ -220,13 +231,32 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         });
     };
 }])
-.controller('BrandSignupController', ['$scope', 'BrandAccountService', '$location', '$window', function($scope, BrandAccountService, $location, $window) {
+.controller('BrandSignupController', ['$scope', 'BrandAccountService', '$location', '$window',  'CtrlHelper', function($scope, BrandAccountService, $location, $window, CtrlHelper) {
     $scope.formData = {};
+   
     $scope.submit = function(brand){
+        if(!$scope.form.$valid){
+             $scope.state = $scope.states.SAVE_FAIL_VAL;
+             return;
+        }
         $window.localStorage.removeItem('token');
         BrandAccountService.signup(brand)
         .then(function(response){
             $location.path('/brand-login');
+        })
+        .catch(function(err){
+            //Multiplex between each known backend error code
+            if(err.data.message == "Email is duplicate"){
+                CtrlHelper.setState($scope.states.SAVE_FAIL_EMAIL);
+            }else{
+                CtrlHelper.setState($scope.states.SAVE_FAIL_VAL);
+            }
         });
     };
+    $scope.states = {
+        IDLE: 0,
+        SAVE_FAIL_VAL: 1,
+        SAVE_FAIL_EMAIL: 2
+    };
+    $scope.state = $scope.states.IDLE;
 }]);

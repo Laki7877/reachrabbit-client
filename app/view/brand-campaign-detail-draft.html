@@ -9,23 +9,23 @@
   </div>
   <div class="body-zone">
     <div class="container">
-      <alert-box type="alert-success" show-on="state == states.SAVE_DRAFT_OK">
-        บันทึกข้อมูลเรียบร้อยแล้ว!
-      </alert-box>
       <alert-box type="alert-warning" closable="false" show-on="formData.campaignId && formData.status === 'Draft'">
         Influencer จะยังไม่เห็น Campaign นี้จนกว่าคุณจะลงประกาศ
       </alert-box>
-      <alert-box type="alert-danger" show-on="state == states.SAVE_DRAFT_FAIL_VAL">
+      <alert-box type="alert-success" show-on="$root.state == states.SAVE_DRAFT_OK">
+        บันทึกข้อมูลเรียบร้อยแล้ว!
+      </alert-box>
+      <alert-box type="alert-danger" show-on="$root.state == states.SAVE_DRAFT_FAIL_VAL">
         กรุณากรอกข้อมูลให้ถูกต้อง
       </alert-box>
-      <alert-box type="alert-success" show-on="state == states.SAVE_PUB_OK">
+      <alert-box type="alert-success" show-on="$root.state == states.SAVE_PUB_OK">
         ลงประกาศสำเร็จ! แต่ใจเย็นสิ ยังไม่ได้ทำ Flow นี้เฟร้ย!
       </alert-box>
-      <alert-box type="alert-danger" show-on="state == states.SAVE_PUB_FAIL_VAL">
+      <alert-box type="alert-danger" show-on="$root.state == states.SAVE_PUB_FAIL_VAL">
         กรุณากรอกข้อมูลให้ถูกต้องให้ถูกต้องและครบถ้วน
       </alert-box>
-      <alert-box type="alert-danger" show-on="state == states.ERROR">
-        <strong>Oh No!</strong> Sumting Wong. 
+      <alert-box type="alert-danger" show-on="$root.state == states.ERROR">
+        <strong>Oh my gawd!</strong> The D team has failed us!
       </alert-box>
 
       <card-campaign-header campaign="formData">

@@ -1,16 +1,13 @@
-<form name="form" no-validate>
+<form name="form" novalidate ng-submit="submit(formData)">
   <div class="view-brand-signup">
     <div class="container">
 
-      <div class="alert alert-danger">
-        <div class="alert alert-danger">
-          <span class="alert-icon"></span>
-          <div class="alert-text">
-            <strong>Warning!</strong> Shift happens.
-          </div>
-          <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        </div>
-      </div>
+       <alert-box type="alert-danger" show-on="$root.state == states.SAVE_FAIL_EMAIL">
+        อีเมล์นี้มีคนใช้แล้วกรุณาใส่อีเมล์ใหม่
+      </alert-box>
+      <alert-box type="alert-danger" show-on="$root.state == states.SAVE_FAIL_VAL">
+        กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน
+      </alert-box>
 
       <div class="card-grey">
         <div class="card-body">
@@ -23,7 +20,7 @@
             <label>ชื่อ Brand</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-building fa-fw"></i></span>
-              <input type="text" ng-model="formData.brand.brandName" class="form-control">
+              <input type="text" ng-model="formData.brand.brandName" required class="form-control">
             </div>
           </div>
 
@@ -31,7 +28,7 @@
             <label>ชื่อผู้สมัคร</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-              <input type="text" class="form-control" ng-model="formData.name">
+              <input type="text" class="form-control" required ng-model="formData.name">
             </div>
           </div>
 
@@ -39,7 +36,7 @@
             <label>เบอร์ติดต่อ</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
-              <input type="text" class="form-control" ng-model="formData.phoneNumber">
+              <input type="text" class="form-control" required ng-model="formData.phoneNumber">
             </div>
           </div>
 
@@ -47,7 +44,7 @@
             <label>อีเมล์</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-              <input type="email" class="form-control" ng-model="formData.email">
+              <input type="email" class="form-control" required ng-model="formData.email">
             </div>
           </div>
 
@@ -55,11 +52,12 @@
             <label>ตั้งรหัสผ่าน</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-              <input type="password" class="form-control" ng-model="formData.password">
+              <input type="password" class="form-control" required ng-model="formData.password">
             </div>
           </div>
 
-          <button class="btn-primary" ng-click="submit(formData)">สมัครสมาชิก</button>
+          <button class="btn-primary" ng-click="$form.submit()">สมัครสมาชิก</button>
+
           <div class="info-text">
             เห็นด้วยกับ <a href="#">เงื่อนไขการใช้งาน</a> โดยการสมัครสมาชิก
           </div>

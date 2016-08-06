@@ -7,11 +7,17 @@
   <div class="body-zone">
     <div class="container">
 
-      <alert-box type="alert-info" show-on="true">
+      <alert-box type="alert-info" show-on="true" closable="false">
         ยิ่งใส่ข้อมูลเยอะ คนยิ่งสนใจ Campaign ของ Brand คุณมากขึ้น
       </alert-box>
-      <alert-box type="alert-success" show-on="success">
-        เย่ เซฟแล้วงิงุ ครุคริ แอบแบ้ว
+      <alert-box type="alert-success" show-on="$root.state == states.SAVE_OK">
+        บันทึกข้อมูลเรียบร้อย!
+      </alert-box>
+      <alert-box type="alert-danger" show-on="$root.state == states.SAVE_FAIL_VAL">
+        กรุณากรอกข้อมูลให้ถูกต้อง
+      </alert-box>
+      <alert-box type="alert-danger" show-on="$root.state == states.ERROR">
+        <strong>Oh my gawd!</strong> The D team has failed us!
       </alert-box>
 
       <div class="card">

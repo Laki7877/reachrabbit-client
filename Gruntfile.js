@@ -63,7 +63,8 @@ module.exports = function (grunt) {
         ignores: ['app/bower_components/**/*.js'],
         globals: {
           jQuery: true,
-          angular: true
+          angular: true,
+          _: true
         }
       }
     }

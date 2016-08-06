@@ -12,6 +12,8 @@ angular.module('myApp', [
   'ngRoute',
   'angular-loading-bar',
   'ui.bootstrap',
+  'ngFileUpload',
+  'ngTagsInput',
   //Top level
   'myApp.directives',
   'myApp.routes',

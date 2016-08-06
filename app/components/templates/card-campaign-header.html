@@ -1,14 +1,14 @@
 <div class="card-campaign-header">
   <div class="card-body">
     <div class="card-image">
-      <img ng-src="{{campaign.image}}" class="img-responsive"/>
+      <img ng-src="{{campaign.resources[0].url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
     </div>
     <div class="card-info card-info-1">
       <div class="card-info-label">
         ช่องทางการโปรโมท
       </div>
       <div class="card-info-content">
-        <span class="icon-facebook"></span><span class="icon-instagram"></span><span class="icon-youtube"></span>
+        <span ng-repeat="media in campaign.media" class="icon-{{media.mediaId}}"></span>
       </div>
     </div>
     <div class="card-info card-info-2">
@@ -16,7 +16,7 @@
         เปิดรับข้อเสนอถึง
       </div>
       <div class="card-info-content">
-        {{campaign.openUntilDate}}
+        {{campaign.proposalDeadline | date}}
       </div>
     </div>
     <div class="card-info card-info-3">
@@ -24,7 +24,7 @@
         Brand
       </div>
       <div class="card-info-content">
-        {{campaign.brand}}
+        {{campaign.brand.brandName}}
       </div>
     </div>
 
@@ -36,7 +36,7 @@
         ค่าตอบแทน
       </div>
       <div class="card-info-content">
-        {{campaign.price}}
+        {{campaign.fromBudget | number }} - {{campaign.toBudget | number }}
       </div>
     </div>
     <div class="card-info card-info-5">
@@ -44,7 +44,7 @@
         หมวดหมู่
       </div>
       <div class="card-info-content">
-        {{campaign.category}}
+        {{campaign.category.categoryName}}
       </div>
     </div>
   </div>

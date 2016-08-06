@@ -1,11 +1,11 @@
 <div class="card-campaign-list-item">
   <div class="card-body">
     <div class="card-image">
-      <img ng-src="{{campaign.image}}" class="img-responsive"/>
+      <img ng-src="{{campaign.resources[0].url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
     </div>
     <div class="card-title">
       <div class="card-title-content">
-        {{campaign.name}} <span class="icon-facebook"></span><span class="icon-instagram"></span><span class="icon-youtube"></span>
+        {{campaign.title}} <span class="icon-facebook"></span><span class="icon-instagram"></span><span class="icon-youtube"></span>
       </div>
     </div>
     <div class="card-info card-info-1">
@@ -21,7 +21,7 @@
         เปิดรับข้อเสนอถึง
       </div>
       <div class="card-info-content">
-        {{campaign.openDate}}
+        {{campaign.proposalDeadline | date}}
       </div>
     </div>
     <div class="card-info card-info-3">
@@ -29,11 +29,11 @@
         หมวดหมู่
       </div>
       <div class="card-info-content">
-        {{campaign.category}}
+        {{campaign.category.categoryName}}
       </div>
     </div>
     <div class="card-button">
-      <button class="btn-secondary btn-width-max" ng-click="$root.goTo(linkTo)">{{campaign.buttonText}}</button>
+      <button class="btn-secondary btn-width-max" ng-click="$root.goTo(linkTo+'/'+campaign.campaignId)">ดูรายละเอียด</button>
     </div>
   </div>
 </div>

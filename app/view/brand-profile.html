@@ -10,6 +10,9 @@
       <alert-box type="alert-info" show-on="true">
         ยิ่งใส่ข้อมูลเยอะ คนยิ่งสนใจ Campaign ของ Brand คุณมากขึ้น
       </alert-box>
+      <alert-box type="alert-success" show-on="success">
+        เย่ เซฟแล้วงิงุ ครุคริ แอบแบ้ว
+      </alert-box>
 
       <div class="card">
         <div class="card-body">
@@ -27,10 +30,9 @@
               รูปโลโก้ของ Brand
             </div>
             <div class="card-body-content">
-              <div class="input-upload-image">
-                <i class="fa fa-camera"></i><br>
-                เลือกรูป
-              </div>
+              <uploader-thumb width="300" height="300" ng-model="formData.profilePicture">
+                <i class="fa fa-camera"></i><br>เลือกรูป 
+              </uploader-thumb>
             </div>
           </div>
           <div class="card-row">
@@ -103,7 +105,7 @@
           </div>
           <div class="card-row">
             <div class="card-button-primary">
-              <button class="btn-primary btn-width-max">บันทึกข้อมูล</button>
+              <button class="btn-primary btn-width-max" ng-click="saveProfile(formData)">บันทึกข้อมูล</button>
             </div>
           </div>
         </div>

@@ -4,13 +4,31 @@
       <div class="back-btn-for-header"  ng-click="$root.goTo('brand-campaign-list')">
         <i class="fa fa-arrow-left"></i> กลับไป Campaign List
       </div>
-      <h2>Morinaga Keoda รสใหม่</h2>
+      <h2 id="campaign-title">{{ formData.title }}</h2>
     </div>
   </div>
   <div class="body-zone">
     <div class="container">
+      <alert-box type="alert-success" show-on="state == states.SAVE_DRAFT_OK">
+        บันทึกข้อมูลเรียบร้อยแล้ว!
+      </alert-box>
+      <alert-box type="alert-warning" closable="false" show-on="formData.campaignId && formData.status === 'Draft'">
+        Influencer จะยังไม่เห็น Campaign นี้จนกว่าคุณจะลงประกาศ
+      </alert-box>
+      <alert-box type="alert-danger" show-on="state == states.SAVE_DRAFT_FAIL_VAL">
+        กรุณากรอกข้อมูลให้ถูกต้อง
+      </alert-box>
+      <alert-box type="alert-success" show-on="state == states.SAVE_PUB_OK">
+        ลงประกาศสำเร็จ! แต่ใจเย็นสิ ยังไม่ได้ทำ Flow นี้เฟร้ย!
+      </alert-box>
+      <alert-box type="alert-danger" show-on="state == states.SAVE_PUB_FAIL_VAL">
+        กรุณากรอกข้อมูลให้ถูกต้องให้ถูกต้องและครบถ้วน
+      </alert-box>
+      <alert-box type="alert-danger" show-on="state == states.ERROR">
+        <strong>Oh No!</strong> Sumting Wong. 
+      </alert-box>
 
-      <card-campaign-header campaign="emptyCampaign">
+      <card-campaign-header campaign="formData">
       </card-campaign-header>
 
       <div class="card-campaign-description">
@@ -20,7 +38,7 @@
               ชื่อ Campaign
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control">
+              <input type="text" ng-model="formData.title" class="form-control">
             </div>
           </div>
           <div class="card-row">
@@ -28,22 +46,10 @@
               รูป Campaign
             </div>
             <div class="card-body-content">
-              <div class="input-upload-image">
+              <uploader-thumb width="300" height="300" ng-model="formData.resources[0]">
                 <i class="fa fa-camera"></i><br>
-                เลือกรูป JPG หรือ PNG<br>
-                อย่างน้อย 600 x 400 px
-              </div>
-            </div>
-          </div>
-          <div class="card-row">
-            <div class="card-body-content-label with-input">
-              รูป Campaign
-            </div>
-            <div class="card-body-content">
-              <div class="input-upload-image">
-                <i class="fa fa-times-circle btn-delete-image"></i>
-                <img src="images/example-campaign/main-picture.png" />
-              </div>
+                เลือกรูป JPG หรือ PNG<br>อย่างน้อย 600 x 400 px
+              </uploader-thumb>
             </div>
           </div>
           <div class="card-row">
@@ -51,14 +57,8 @@
               ช่องทางการโปรโมท
             </div>
             <div class="card-body-content">
-              <div class="checkbox">
-                <label><input type="checkbox" value=""><span class="icon-facebook"></span> Facebook</label>
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox" value=""><span class="icon-instagram"></span> Instagram</label>
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox" value=""><span class="icon-youtube"></span> YouTube</label>
+              <div class="checkbox" ng-repeat="media in medium">
+                <label><input type="checkbox" ng-model="mediaBooleanDict[media.mediaId]"><span class="icon-{{media.mediaId}}"></span> {{media.mediaName}}</label>
               </div>
             </div>
           </div>
@@ -67,11 +67,8 @@
               หมวดหมู่
             </div>
             <div class="card-body-content">
-              <select class="form-control">
-                <option>-- เลือกหมวดหมู่ --</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+              <select class="form-control" ng-model="formData.category" ng-options="x as x.categoryName disable when x.categoryId == 0  for x in categories track by x.categoryId">
+                <option disabled selected>-- เลือกหมวดหมู่ --</option>
               </select>
             </div>
           </div>
@@ -80,7 +77,7 @@
               สิ่งที่อยากให้ทำ
             </div>
             <div class="card-body-content">
-              <textarea class="form-control" rows="4"></textarea>
+              <textarea class="form-control" ng-model="formData.description" rows="4"></textarea>
             </div>
           </div>
           <div class="card-row">
@@ -88,7 +85,7 @@
               Keyword สำคัญ
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control" placeholder="ถ้ามี">
+              <tags-input ng-model="tags" placeholder="ถ้ามี"></tags-input>
             </div>
           </div>
           <div class="card-row">
@@ -96,7 +93,7 @@
               เว็บไซต์ของสินค้า
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control" placeholder="ถ้ามี">
+              <input type="url" class="form-control" placeholder="ถ้ามี">
             </div>
           </div>
           <div class="card-row">
@@ -152,11 +149,8 @@
               ค่าตอบแทน
             </div>
             <div class="card-body-content">
-              <select class="form-control">
-                <option>-- เลือกค่าตอบแทน --</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+              <select class="form-control" ng-model="budget" ng-options="x as budgetDisplayAs(x) disable when x.id == 0 for x in budgets track by x.id">
+                <option disabled selected>-- เลือกค่าตอบแทน --</option>
               </select>
             </div>
           </div>
@@ -164,9 +158,14 @@
             <div class="card-body-content-label with-input">
               รับข้อเสนอถึงถึง
             </div>
+            
             <div class="card-body-content">
               <p class="input-group">
-                <input placeholder="-- เลือกวันสิจ๊ะ --" type="text" class="form-control" ng-focus="popup1_open = true" uib-datepicker-popup="{{$root.format}}" ng-model="dt" is-open="popup1_open" 
+                <input placeholder="-- เลือกวันสิจ๊ะ --" type="text" class="form-control" 
+                ng-focus="popup1_open = true" 
+                uib-datepicker-popup="{{$root.format}}" 
+                ng-model="formData.proposalDeadline" 
+                is-open="popup1_open" 
                 datepicker-options="$root.dateOptions" show-button-bar="false" ng-required="true" close-text="Close" />
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="popup1_open = true"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -176,14 +175,14 @@
           </div>
           <div class="card-row">
             <div class="card-button-primary">
-              <button class="btn-primary btn-width-max">ลงประกาศ</button>
+              <button class="btn-primary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')">ลงประกาศ</button>
               <br>
               <div class="info-text">
                 บันทึกและเปิดรับข้อเสนอ
               </div>
             </div>
             <div class="card-button-secondary">
-              <button class="btn-secondary btn-width-max">บันทึกข้อมูล</button>
+              <button class="btn-secondary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Draft')">บันทึกข้อมูล</button>
               <br>
               <div class="info-text">
                 บันทึกเพื่อแก้ไขภายหลัง

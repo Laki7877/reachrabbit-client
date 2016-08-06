@@ -46,7 +46,7 @@
               เกี่ยวกับ Brand
             </div>
             <div class="card-body-content">
-              <textarea class="form-control" rows="4" placeholder="อธิบายเกี่ยวกับ Brand ของคุณ"></textarea>
+              <textarea class="form-control" rows="4" ng-model="formData.brand.about" placeholder="อธิบายเกี่ยวกับ Brand ของคุณ"></textarea>
             </div>
           </div>
           <div class="card-row">
@@ -54,7 +54,7 @@
               เว็บไซน์ของ Brand
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control">
+              <input type="text" ng-model="formData.brand.website"  class="form-control">
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@
               ตั้งรหัสผ่านใหม่
             </div>
             <div class="card-body-content">
-              <input type="text" class="form-control">
+              <input type="password" ng-model="formData.password" class="form-control">
             </div>
           </div>
           <div class="card-row">

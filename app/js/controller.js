@@ -101,9 +101,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         $scope.formData = response.data;
     });
 }]);
-
-
-
 /////////////// /////////////// /////////////// /////////////// ///////////////
 angular.module('myApp.portal.controller', ['myApp.service'])
 .controller('BrandSigninController', ['$scope', '$location', 'AccountService', '$window', function($scope, $location, AccountService, $window) {

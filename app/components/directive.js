@@ -42,7 +42,9 @@ angular.module('myApp.directives', [])
                 }
 
                 scope.close = function () {
-                    scope.show = false;
+                    scope.show = function(){
+                        return false;
+                    };
                 };
             }
         };

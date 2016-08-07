@@ -64,7 +64,8 @@ module.exports = function (grunt) {
         globals: {
           jQuery: true,
           angular: true,
-          _: true
+          _: true,
+          Raven: true
         }
       }
     }

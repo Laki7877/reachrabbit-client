@@ -65,6 +65,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 .controller('CampaignDetailController', ['$scope','$routeParams', 'CampaignService', 'DataService', '$filter', 'CtrlHelper', 'UserProfile',
 function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper, UserProfile) {
     //initial form data
+    $scope.resources = [];
     $scope.formData = {
         categoryId: {
             categoryId: 0,
@@ -150,7 +151,7 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
         CampaignService.getOne(campaignId)
         .then(function(response){
             //overrides the form data
-            $scope.formData = response.data;
+            $scope.formData = angular.copy(response.data);
             //Tell checkbox which media are in the array
             $scope.formData.media.forEach(function(item){
                 $scope.mediaBooleanDict[item.mediaId] = true;
@@ -160,6 +161,11 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
                 return Number(probe.fromBudget) === Number($scope.formData.fromBudget) &&
                 Number(probe.toBudget) === Number($scope.formData.toBudget);
             });
+            //Split resources array into two parts
+            $scope.formData.resources = [];
+            $scope.formData.resources.push(response.data.resources.shift());
+            $scope.resources =  angular.copy(response.data.resources); //the rest
+
             //Update state
             CtrlHelper.setState($scope.states.IDLE_EDIT);
         });
@@ -171,6 +177,8 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
 
     $scope.save = function(formData, mediaBooleanDict, mediaObjectDict, status){
         $scope.formData.status = status;
+        $scope.formData.resources =  ($scope.formData.resources || []).concat($scope.resources);
+
         //saving
         CampaignService.save(formData)
         .then(function(echoresponse){
@@ -183,8 +191,15 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
             }else{
                 CtrlHelper.setState($scope.states.ERROR);
             }
-            
-
+        })
+        .catch(function(err){
+            CtrlHelper.setState($scope.states.ERROR);
+            Raven.captureException("Campaign Save Fail", {
+                extra: err,
+                tags: {
+                    blame: 'backend'
+                }
+            });
         });
         
     };
@@ -207,7 +222,6 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
     });
 
     $scope.saveProfile = function(form, profile){
-
         AccountService.saveProfile(profile)
         .then(function(response){
             delete response.data.password;
@@ -226,9 +240,10 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
 angular.module('myApp.portal.controller', ['myApp.service'])
-.controller('BrandSigninController', ['$scope', '$location', 'AccountService', '$window', function($scope, $location, AccountService, $window) {
+.controller('BrandSigninController', ['$scope', '$location', 'AccountService', 'UserProfile', '$window', function($scope, $location, AccountService, UserProfile, $window) {
     $scope.formData = {};
     $window.localStorage.removeItem('token');
+    $scope.messageCode = $location.search().message;
     $scope.login = function(username, password){
         AccountService.getToken(username, password)
         .then(function(response){
@@ -238,10 +253,16 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         })
         .then(function(profileResp){
             $window.localStorage.profile = JSON.stringify(profileResp.data);
+            Raven.setUserContext(UserProfile.get());
             $window.location.href = '/brand.html#/brand-campaign-list';
         })
-        .catch(function(data){
+        .catch(function(err){
             $scope.error = true;
+            Raven.captureException("Login Fail", {
+                extra: err,
+                tags: {
+                    blame: 'backend'
+                }});
         });
     };
 }])

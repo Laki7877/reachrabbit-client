@@ -122,17 +122,25 @@ angular.module('myApp.directives', [])
             },
             templateUrl: 'components/templates/uploader-multi.html',
             link: function (scope, elem, attrs, form) {
+                if(!(scope.model instanceof Array)){
+                    console.error("Model is not array.");
+                }
 
                 if (!scope.accessor) {
                     scope.accessor = function (data) {
-                        if (!scope.model) return false;
+                        if (!data) return false;
                         return data.url;
                     };
                 }
 
+                scope.remove = function(index){
+                    scope.model.splice(index, 1);
+                };
+
                 scope.loadingImage = false;
                 scope.upload = function (file) {
                     scope.loadingImage = true;
+                    scope.progressPercentage = 0;
                     var evtHandler = function(evt){
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                         scope.progressPercentage = progressPercentage;
@@ -141,7 +149,8 @@ angular.module('myApp.directives', [])
                     $uploader.upload('/resources', {file: file}, evtHandler)
                     .then(function (data) {
                             scope.loadingImage = false;
-                            scope.model = data;
+                            data._name = file.name;
+                            scope.model.push(data);
                     });
                 };
 

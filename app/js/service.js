@@ -23,8 +23,20 @@ angular.module('myApp.service', [])
     };
     return inj;
 }])
+.factory('authStatusCheckInjector', ['$q', '$rootScope', function($q, $rootScope){
+    var service = this;
+    service.responseError = function(response) {
+        if (response.status == 401){
+            $rootScope.signOut('unauthorized');
+        }
+        return $q.reject(response);
+    };
+    return service;
+}])
 .config(['$httpProvider', function($httpProvider) {
   $httpProvider.interceptors.push('baseUrlInjector');
+  $httpProvider.interceptors.push('authStatusCheckInjector');
+
 }])
 .factory('AccountService', ['$http', function($http){
     return {

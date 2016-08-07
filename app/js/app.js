@@ -32,9 +32,12 @@ angular.module('myApp', [
   
 }])
 .run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
+  
   $rootScope.goTo = function(path){
     $location.path(path);
   };
+
+  Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();
 
   $rootScope.dateOptions = {
     formatYear: 'yy',
@@ -47,10 +50,22 @@ angular.module('myApp', [
   $rootScope.format = $rootScope.formats[0];
 
   $rootScope.getProfile = UserProfile.get;
-
+  $rootScope.signOut = function(msg){
+    //clear localstorage
+    $window.localStorage.removeItem('token');
+    $window.localStorage.removeItem('profile');
+    //navigate to login
+    $window.location.href = '/portal.html#/brand-login?message=' + msg;
+  };
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
     console.log('$routeChangeStart', event, next, current);
     $rootScope.state = null;
   });
 
+}])
+.factory('$exceptionHandler', ['$log', function($log) {
+    return function myExceptionHandler(exception, cause) {
+       Raven.captureException(exception);
+       $log.error('top level handler', exception, cause);
+    };
 }]);

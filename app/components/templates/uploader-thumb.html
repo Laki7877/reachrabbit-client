@@ -11,7 +11,7 @@
        
     </div>
     <small ng-if="loadingImage">กำลังอัพโหลด.. ({{progressPercentage}} %)</small>
-    <div class="fileinput-new input-upload-image" ngf-select="upload($file)" ng-if="accessor(model) && !loadingImage" 
+    <div class="fileinput-new " ngf-select="upload($file)" ng-if="accessor(model) && !loadingImage" 
     style="width: {{width}}px; height:{{height}}px; text-align:center">
         <img ng-show="!loadingImage" ng-src="{{ accessor(model) }}"
             height="{{height}}" width="{{width}}">

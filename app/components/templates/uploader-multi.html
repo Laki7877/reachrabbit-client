@@ -1,44 +1,15 @@
-<div>
+<div class="fileinput fileinput-new" data-provides="fileinput">
 
-    <div class="input-upload-image-sm">
+    <div class="input-upload-image-sm" ngf-select="upload($file)" >
         <i class="fa fa-camera "></i> เพิ่มรูปประกอบ (JPG หรือ PNG ขนาดเท่าไรก็ได้)
     </div>
     <div class="input-upload-image-sm-preview">
-        <div class="preview-item">
+        <div class="preview-item" ng-repeat="resource in model">
             <div class="preview-image">
-                <img src="images/example-campaign/main-picture.png">
+                <img ng-src="{{accessor(resource)}}">
             </div>
-            <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
-        </div>
-        <div class="preview-item">
-            <div class="preview-image">
-                <img src="images/example-campaign/main-picture.png">
-            </div>
-            <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
-        </div>
-        <div class="preview-item">
-            <div class="preview-image">
-                <img src="images/example-campaign/main-picture.png">
-            </div>
-            <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
-        </div>
-        <div class="preview-item">
-            <div class="preview-image">
-                <img src="images/example-campaign/main-picture.png">
-            </div>
-            <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
-        </div>
-        <div class="preview-item">
-            <div class="preview-image">
-                <img src="images/example-campaign/main-picture.png">
-            </div>
-            <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
-        </div>
-        <div class="preview-item">
-            <div class="preview-image">
-                <img src="images/example-campaign/main-picture.png">
-            </div>
-            <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
+            <a ng-click="remove($index)">{{resource._name | limitTo: 7 }} <i class="fa fa-times-circle"></i></a>
         </div>
     </div>
+    <small ng-if="loadingImage">{{progressPercentage | number:2 }} %</small>
 </div>

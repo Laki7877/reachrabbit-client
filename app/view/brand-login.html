@@ -1,5 +1,9 @@
 <div class="view-brand-login">
   <div class="container">
+    <alert-box type="alert-danger" show-on="messageCode == 'unauthorized'">
+      <strong>Unauthorized</strong> Session has expired.
+    </alert-box>
+    
     <alert-box type="alert-danger" show-on="error">
       อีเมล์หรือรหัสผ่านไม่ถูกต้อง 
     </alert-box>

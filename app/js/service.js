@@ -130,7 +130,7 @@ angular.module('myApp.service', [])
               return JSON.parse($window.localStorage.profile);
           },
           set: function(profile){
-              $window.localStorage['profile'] = JSON.stringify(profile);
+              $window.localStorage.profile = JSON.stringify(profile);
           }
       };
   }]);

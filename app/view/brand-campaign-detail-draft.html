@@ -85,7 +85,7 @@
               Keyword สำคัญ
             </div>
             <div class="card-body-content">
-              <tags-input ng-model="tags" placeholder="ถ้ามี"></tags-input>
+              <tags-input ng-model="formData.keywords" display-property="keyword" placeholder="ถ้ามี"></tags-input>
             </div>
           </div>
           <div class="card-row">
@@ -93,7 +93,7 @@
               เว็บไซต์ของสินค้า
             </div>
             <div class="card-body-content">
-              <input type="url" class="form-control" placeholder="ถ้ามี">
+              <input type="text" class="form-control" ng-model="formData.website" placeholder="ถ้ามี">
             </div>
           </div>
           <div class="card-row">

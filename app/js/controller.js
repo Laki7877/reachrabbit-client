@@ -194,12 +194,6 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
         })
         .catch(function(err){
             CtrlHelper.setState($scope.states.ERROR);
-            Raven.captureException("Campaign Save Fail", {
-                extra: err,
-                tags: {
-                    blame: 'backend'
-                }
-            });
         });
         
     };
@@ -244,7 +238,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
     $scope.formData = {};
     $window.localStorage.removeItem('token');
     $scope.messageCode = $location.search().message;
+    
     $scope.login = function(username, password){
+        $location.search('message', 'nop');
         AccountService.getToken(username, password)
         .then(function(response){
             var token = response.data.token;
@@ -253,16 +249,13 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         })
         .then(function(profileResp){
             $window.localStorage.profile = JSON.stringify(profileResp.data);
+            //Tell raven about the user
             Raven.setUserContext(UserProfile.get());
+            //Redirect
             $window.location.href = '/brand.html#/brand-campaign-list';
         })
         .catch(function(err){
             $scope.error = true;
-            Raven.captureException("Login Fail", {
-                extra: err,
-                tags: {
-                    blame: 'backend'
-                }});
         });
     };
 }])

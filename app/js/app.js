@@ -55,7 +55,7 @@ angular.module('myApp', [
     $window.localStorage.removeItem('token');
     $window.localStorage.removeItem('profile');
     //navigate to login
-    $window.location.href = '/portal.html#/brand-login?message=' + msg;
+    $window.location.href = '/portal.html#/brand-login'  + (msg ? '?message=' + msg : '');
   };
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
     console.log('$routeChangeStart', event, next, current);

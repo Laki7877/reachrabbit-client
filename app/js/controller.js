@@ -36,7 +36,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         $scope.myCampaign = response.data;
     });
 
-
+    //Example campaign section
     $scope.exampleCampaign=[
       {
         resources: [{
@@ -178,6 +178,20 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
     $scope.save = function(formData, mediaBooleanDict, mediaObjectDict, status){
         $scope.formData.status = status;
         $scope.formData.resources =  ($scope.formData.resources || []).concat($scope.resources);
+
+        //check for publish case
+        if(status == 'Open'){
+            //SAVE_PUB_FAIL_VAL
+            if(!$scope.form.$valid){
+                CtrlHelper.setState($scope.states.SAVE_PUB_FAIL_VAL);
+                return;
+            }
+
+            if($scope.resources.length < 1){
+                CtrlHelper.setState($scope.states.SAVE_PUB_FAIL_VAL);
+                return;
+            }
+        }
 
         //saving
         CampaignService.save(formData)

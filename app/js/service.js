@@ -35,7 +35,7 @@ angular.module('myApp.service', [])
             return $http.get("/profile");
         },
         saveProfile: function(profile){
-            return $http.post("/profile", profile);
+            return $http.put("/profile", profile);
         },
         /*
         * get token
@@ -74,7 +74,7 @@ angular.module('myApp.service', [])
                 putOrPost = 'PUT';
             }
             return $http({
-                url: "/campaigns/" + campaign.campaignId,
+                url: "/campaigns/" + (putOrPost.toUpperCase() == 'PUT' ? campaign.campaignId : ''),
                 method: putOrPost,
                 data: campaign
             });
@@ -123,4 +123,15 @@ angular.module('myApp.service', [])
             $anchorScroll();
         }
       };
+  }])
+  .factory('UserProfile', ['$rootScope', '$window', function($rootScope, $window){
+      return {
+          get: function(){
+              return JSON.parse($window.localStorage.profile);
+          },
+          set: function(profile){
+              $window.localStorage['profile'] = JSON.stringify(profile);
+          }
+      };
   }]);
+  

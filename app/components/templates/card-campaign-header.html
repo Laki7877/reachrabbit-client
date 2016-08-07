@@ -9,6 +9,7 @@
       </div>
       <div class="card-info-content">
         <span ng-repeat="media in campaign.media" class="icon-{{media.mediaId}}"></span>
+        <span ng-if="!campaign.media || campaign.media.length == 0">-</span>
       </div>
     </div>
     <div class="card-info card-info-2">
@@ -17,6 +18,7 @@
       </div>
       <div class="card-info-content">
         {{campaign.proposalDeadline | date}}
+        <span ng-if="!campaign.proposalDeadline">-</span>
       </div>
     </div>
     <div class="card-info card-info-3">
@@ -25,6 +27,7 @@
       </div>
       <div class="card-info-content">
         {{campaign.brand.brandName}}
+        <span ng-if="!campaign.brand.brandName">-</span>
       </div>
     </div>
 
@@ -45,6 +48,7 @@
       </div>
       <div class="card-info-content">
         {{campaign.category.categoryName}}
+        <span ng-if="!campaign.category.categoryName">-</span>
       </div>
     </div>
   </div>

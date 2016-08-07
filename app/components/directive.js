@@ -111,4 +111,40 @@ angular.module('myApp.directives', [])
 
             }
         };
+    }])
+    .directive('uploaderMulti', ['$uploader', function ($uploader) {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            scope: {
+                model: '=ngModel',
+                accessor: '&?'  //function that defines how to access the url of the model
+            },
+            templateUrl: 'components/templates/uploader-multi.html',
+            link: function (scope, elem, attrs, form) {
+
+                if (!scope.accessor) {
+                    scope.accessor = function (data) {
+                        if (!scope.model) return false;
+                        return data.url;
+                    };
+                }
+
+                scope.loadingImage = false;
+                scope.upload = function (file) {
+                    scope.loadingImage = true;
+                    var evtHandler = function(evt){
+                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                        scope.progressPercentage = progressPercentage;
+                    };
+                    
+                    $uploader.upload('/resources', {file: file}, evtHandler)
+                    .then(function (data) {
+                            scope.loadingImage = false;
+                            scope.model = data;
+                    });
+                };
+
+            }
+        };
     }]);

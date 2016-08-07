@@ -35,8 +35,8 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <img ng-src="{{  getProfile().brand.profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
-                {{ getProfile().brand.brandName }}<span class="caret"></span>
+                <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="img-circle profile-picture" />
+                {{ $root.getProfile().brand.brandName }}<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
                 <li><a ng-click="$root.goTo('brand-profile')">Profile ของฉัน</a></li>

@@ -9,7 +9,7 @@
   </div>
   <div class="body-zone">
     <div class="container">
-      <alert-box type="alert-warning" closable="false" show-on="formData.campaignId && formData.status === 'Draft'">
+      <alert-box type="alert-warning" closable="false" show-on="$root.state == states.IDLE_EDIT && formData.campaignId && formData.status === 'Draft'">
         Influencer จะยังไม่เห็น Campaign นี้จนกว่าคุณจะลงประกาศ
       </alert-box>
       <alert-box type="alert-success" show-on="$root.state == states.SAVE_DRAFT_OK">
@@ -101,47 +101,7 @@
               รูปประกอบ
             </div>
             <div class="card-body-content">
-              <div class="input-upload-image-sm">
-                <i class="fa fa-camera "></i> เพิ่มรูปประกอบ (JPG หรือ PNG ขนาดเท่าไรก็ได้)
-              </div>
-              <div class="input-upload-image-sm-preview">
-                <div class="preview-item">
-                  <div class="preview-image">
-                    <img src="images/example-campaign/main-picture.png" />
-                  </div>
-                  <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
-                </div>
-                <div class="preview-item">
-                  <div class="preview-image">
-                    <img src="images/example-campaign/main-picture.png" />
-                  </div>
-                  <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
-                </div>
-                <div class="preview-item">
-                  <div class="preview-image">
-                    <img src="images/example-campaign/main-picture.png" />
-                  </div>
-                  <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
-                </div>
-                <div class="preview-item">
-                  <div class="preview-image">
-                    <img src="images/example-campaign/main-picture.png" />
-                  </div>
-                  <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
-                </div>
-                <div class="preview-item">
-                  <div class="preview-image">
-                    <img src="images/example-campaign/main-picture.png" />
-                  </div>
-                  <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
-                </div>
-                <div class="preview-item">
-                  <div class="preview-image">
-                    <img src="images/example-campaign/main-picture.png" />
-                  </div>
-                  <a href="#">img03256.jpg <i class="fa fa-times-circle"></i></a>
-                </div>
-              </div>
+              <uploader-multi ng-model="formData.resources"></uploader-multi>
             </div>
           </div>
           <div class="card-row">

@@ -62,8 +62,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
       }
     ];
 }])
-.controller('CampaignDetailController', ['$scope','$routeParams', 'CampaignService', 'DataService', '$filter', 'CtrlHelper',
-function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper) {
+.controller('CampaignDetailController', ['$scope','$routeParams', 'CampaignService', 'DataService', '$filter', 'CtrlHelper', 'UserProfile',
+function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper, UserProfile) {
     //initial form data
     $scope.formData = {
         categoryId: {
@@ -73,14 +73,15 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
         resources : []
     };
     $scope.states = {
-        IDLE : 0,
+        IDLE_EDIT : 0,
+        IDLE_NEW_CAMPAIGN: 6,
         SAVE_DRAFT_OK:1,
         SAVE_DRAFT_FAIL_VAL: 2,
         SAVE_PUB_OK: 3,
         SAVE_PUB_FAIL_VAL: 4,
         ERROR: 5
     };
-    $scope.state = $scope.states.IDLE;
+    
     $scope.mediaBooleanDict = {};
     $scope.mediaObjectDict = {};
     $scope.categories  = [];
@@ -125,6 +126,23 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
         });
     });
 
+    $scope.$watch('mediaBooleanDict', function(){
+        $scope.formData.media = [];
+        //tell server which media are checked
+        _.forEach($scope.mediaBooleanDict, function(value, key) {
+            if(value===true){
+                $scope.formData.media.push($scope.mediaObjectDict[key]);
+            }
+        });
+        
+    }, true);
+
+    $scope.$watch('budget.id', function(){
+        $scope.formData.fromBudget = Number($scope.budget.fromBudget);
+        $scope.formData.toBudget = Number($scope.budget.toBudget);
+    });
+
+    //Setting up form
     var campaignId = $routeParams.campaignId;
     if(campaignId){
         //If there is a campaign id in params
@@ -142,24 +160,14 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
                 return Number(probe.fromBudget) === Number($scope.formData.fromBudget) &&
                 Number(probe.toBudget) === Number($scope.formData.toBudget);
             });
+            //Update state
+            CtrlHelper.setState($scope.states.IDLE_EDIT);
         });
+    }else{
+        CtrlHelper.setState($scope.states.IDLE_NEW_CAMPAIGN);
     }
     
-    $scope.$watch('mediaBooleanDict', function(){
-        $scope.formData.media = [];
-        //tell server which media are checked
-        _.forEach($scope.mediaBooleanDict, function(value, key) {
-            if(value===true){
-                $scope.formData.media.push($scope.mediaObjectDict[key]);
-            }
-        });
-        
-    }, true);
-
-    $scope.$watch('budget.id', function(){
-        $scope.formData.fromBudget = Number($scope.budget.fromBudget);
-        $scope.formData.toBudget = Number($scope.budget.toBudget);
-    });
+    $scope.formData.brand = UserProfile.get().brand;
 
     $scope.save = function(formData, mediaBooleanDict, mediaObjectDict, status){
         $scope.formData.status = status;
@@ -182,7 +190,7 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
     };
 
 }])
-.controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'CtrlHelper', function($scope, $window, AccountService, CtrlHelper) {
+.controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'CtrlHelper', 'UserProfile', function($scope, $window, AccountService, CtrlHelper, UserProfile) {
     $scope.formData = {};
     $scope.states = { IDLE: 0, SAVE_OK: 1, SAVE_FAIL_VAL : 2, ERROR: 3};
     $scope.state = $scope.states.IDLE;
@@ -192,15 +200,21 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
     AccountService.getProfile()
     .then(function(response){
         $scope.formData = response.data;
+        delete $scope.formData.password;
     })
     .catch(function(err){
        CtrlHelper.setState($scope.states.SAVE_FAIL_VAL);
     });
 
-    $scope.saveProfile = function(profile){
-        AccountService.saveProfile()
+    $scope.saveProfile = function(form, profile){
+
+        AccountService.saveProfile(profile)
         .then(function(response){
+            delete response.data.password;
             $scope.formData = response.data;
+            //set back to localstorage
+            UserProfile.set(response.data);
+
             $scope.success = true;
             CtrlHelper.setState($scope.states.SAVE_OK);
         })

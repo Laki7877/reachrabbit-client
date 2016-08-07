@@ -31,7 +31,7 @@ angular.module('myApp', [
   cfpLoadingBarProvider.includeSpinner = false;
   
 }])
-.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window){
+.run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
   $rootScope.goTo = function(path){
     $location.path(path);
   };
@@ -46,9 +46,7 @@ angular.module('myApp', [
   $rootScope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $rootScope.format = $rootScope.formats[0];
 
-  $rootScope.getProfile = function(){
-   return JSON.parse($window.localStorage.profile);
-  };
+  $rootScope.getProfile = UserProfile.get;
 
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
     console.log('$routeChangeStart', event, next, current);

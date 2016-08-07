@@ -32,7 +32,7 @@ angular.module('myApp.brand.routes', ['ngRoute'])
     templateUrl: 'view/brand-campaign-list.html',
     controller: 'CampaignListController'
   })
-  .when('/brand-campaign-detail-draft/:campaignId', {
+  .when('/brand-campaign-detail-draft/:campaignId?', {
     templateUrl: 'view/brand-campaign-detail-draft.html',
     controller: 'CampaignDetailController'
   })

@@ -278,7 +278,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
    
     $scope.submit = function(brand){
         if(!$scope.form.$valid){
-             $scope.state = $scope.states.SAVE_FAIL_VAL;
+             CtrlHelper.setState($scope.states.SAVE_FAIL_VAL);
              return;
         }
         $window.localStorage.removeItem('token');

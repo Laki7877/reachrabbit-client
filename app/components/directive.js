@@ -41,6 +41,7 @@ angular.module('myApp.directives', [])
                     };
                 }
 
+                //TODO: Bug
                 scope.close = function () {
                     scope.show = function(){
                         return false;

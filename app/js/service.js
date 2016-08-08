@@ -28,9 +28,8 @@ angular.module('myApp.service', [])
     service.responseError = function(response) {
         if (response.status == 401){
             $rootScope.signOut('unauthorized');
-        }else{
-            throw new Error('Server Error');
         }
+        //TODO: esle send to raven?
         return $q.reject(response);
     };
     return service;

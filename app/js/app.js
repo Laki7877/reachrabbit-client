@@ -23,13 +23,14 @@ angular.module('myApp', [
   'myApp.brand.controller',
   //Routes
   'myApp.portal.routes',
-  'myApp.brand.routes'
+  'myApp.brand.routes',
+  'myApp.influencer.routes'
 ])
 .config(['$locationProvider', '$routeProvider','cfpLoadingBarProvider', function($locationProvider, $routeProvider, cfpLoadingBarProvider) {
   // $locationProvider.hashPrefix('');
   $routeProvider.otherwise({redirectTo: '/404'});
   cfpLoadingBarProvider.includeSpinner = false;
-  
+
 }])
 .constant('ExampleCampaigns', [
       {
@@ -63,7 +64,7 @@ angular.module('myApp', [
       }
 ])
 .run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
-  
+
   $rootScope.goTo = function(path){
     $location.path(path);
   };

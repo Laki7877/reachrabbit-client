@@ -7033,6 +7033,28 @@ a:visited {
   background: #ff773e !important;
   height: 4px !important;
 }
+/* Zone */
+.header-zone {
+  color: #ffffff;
+  height: 150px;
+  background-image: url("../images/bg-header.png");
+  background-position: top center;
+  background-size: auto 150px;
+  background-color: #16bbac;
+}
+.header-zone h1 {
+  margin-top: 30px;
+}
+.header-zone h2 {
+  margin-top: 5px;
+}
+.header-zone .back-btn-for-header {
+  margin-top: 25px;
+  cursor: pointer;
+}
+.body-zone {
+  margin-top: -50px;
+}
 /* Form & Input */
 .form-control {
   border-radius: 0px;
@@ -8146,39 +8168,26 @@ fieldset[disabled] .btn-clear.active {
 .layout-brand .container {
   width: 970px;
 }
-.layout-brand .header-zone {
-  color: #ffffff;
-  height: 150px;
-  background-image: url("../images/bg-header.png");
-  background-position: top center;
-  background-size: auto 150px;
-  background-color: #16bbac;
-}
-.layout-brand .header-zone h1 {
-  margin-top: 30px;
-}
-.layout-brand .header-zone h2 {
-  margin-top: 5px;
-}
-.layout-brand .header-zone .back-btn-for-header {
-  margin-top: 25px;
-  cursor: pointer;
-}
-.layout-brand .body-zone {
-  margin-top: -50px;
-}
-.layout-brand .example-campaign {
-  margin-top: 30px;
-}
-.layout-brand .example-campaign h2 {
-  margin-bottom: 20px;
-}
 .layout-brand .view-brand-profile .input-upload-image {
   width: 127px;
   height: 127px;
 }
 .layout-brand .view-brand-profile .input-upload-image .fa-camera {
   margin-top: 38px;
+}
+.layout-brand .view-brand-campaign-list .example-campaign {
+  margin-top: 30px;
+}
+.layout-brand .view-brand-campaign-list .example-campaign h2 {
+  margin-bottom: 20px;
+}
+/* Layout Influencer */
+.layout-influencer {
+  background-color: #f9f9fb;
+  /* Specific View in Layout Portal */
+}
+.layout-influencer .container {
+  width: 970px;
 }
 tags-input {
   display: block;

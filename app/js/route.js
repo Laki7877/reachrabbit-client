@@ -41,6 +41,19 @@ angular.module('myApp.brand.routes', ['ngRoute'])
 
 }]);
 
+angular.module('myApp.influencer.routes', ['ngRoute'])
+.config(['$routeProvider', function($routeProvider) {
+
+  /* Influencer */
+  $routeProvider
+  .when('/influencer-campaign-list', {
+    templateUrl: 'view/influencer-campaign-list.html',
+    controller: 'EmptyController'
+  });
+
+}]);
+
+
 angular.module('myApp.portal.routes', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
 

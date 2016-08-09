@@ -25,7 +25,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 /*
 * Campaign List controller - thank god it's work.
 */
-.controller('CampaignListController', ['$scope', 'CampaignService', function($scope, CampaignService) {
+.controller('CampaignListController', ['$scope', 'CampaignService', 'ExampleCampaigns', function($scope, CampaignService, ExampleCampaigns) {
     $scope.testHit = function(){
         var scope = $scope;
         console.log("Test World");
@@ -37,30 +37,10 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     });
 
     //Example campaign section
-    $scope.exampleCampaign=[
-      {
-        resources: [{
-            url: 'images/example-campaign/main-picture.png'
-        }],
-        title:'Morinaga Koeda รสใหม่',
-        price:'200-2,000',
-        proposalDeadline:'1 ธ.ค. 59',
-        category: { categoryName: 'ความสวยแมว'},
-        buttonText:'ดูรายละเอียด',
-        linkTo:'brand-campaign-detail-example'
-      },
-      {
-        resources: [{
-            url: 'images/example-campaign/main-picture.png'
-        }],
-        title:'Morinaga Koeda รสใหม่',
-        price:'500-1,000',
-        proposalDeadline:'1 ธ.ค. 59',
-        category: {categoryName: 'เกมส์'},
-        buttonText:'ดูรายละเอียด',
-        linkTo:'brand-campaign-detail-example'
-      }
-    ];
+    $scope.exampleCampaign= ExampleCampaigns;
+}])
+.controller('CampaignExampleController', ['$scope', '$routeParams', 'ExampleCampaigns', function($scope, $routeParams, ExampleCampaigns){
+    $scope.exampleCampaign = ExampleCampaigns[$routeParams.exampleId];
 }])
 .controller('CampaignDetailController', ['$scope','$routeParams', 'CampaignService', 'DataService', '$filter', 'CtrlHelper', 'UserProfile',
 function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper, UserProfile) {
@@ -273,7 +253,8 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         });
     };
 }])
-.controller('BrandSignupController', ['$scope', 'BrandAccountService', '$location', '$window',  'CtrlHelper', function($scope, BrandAccountService, $location, $window, CtrlHelper) {
+.controller('BrandSignupController', ['$scope', 'BrandAccountService', 'AccountService','UserProfile', '$location', '$window',  'CtrlHelper', 
+function($scope, BrandAccountService, AccountService, UserProfile, $location, $window, CtrlHelper) {
     $scope.formData = {};
    
     $scope.submit = function(brand){
@@ -284,7 +265,16 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         $window.localStorage.removeItem('token');
         BrandAccountService.signup(brand)
         .then(function(response){
-            $location.path('/brand-login');
+            var token = response.data.token;
+            $window.localStorage.token = token;
+            return AccountService.getProfile();
+        })
+        .then(function(profileResp){
+            $window.localStorage.profile = JSON.stringify(profileResp.data);
+            //Tell raven about the user
+            Raven.setUserContext(UserProfile.get());
+            //Redirect
+            $window.location.href = '/brand.html#/brand-campaign-list';
         })
         .catch(function(err){
             //Multiplex between each known backend error code

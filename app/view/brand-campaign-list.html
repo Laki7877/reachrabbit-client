@@ -10,7 +10,7 @@
       </div>
 
       <alert-box type="alert-info" show-on="true">
-        เราได้สร้าง Campaign แรกใหคุณแล้ว เข้าไปแก้ไขข้อมูลได้เลย
+        เราได้สร้าง Campaign แรกให้คุณแล้ว เข้าไปแก้ไขข้อมูลได้เลย
       </alert-box>
 
       <div ng-repeat="x in myCampaign.content">
@@ -21,7 +21,7 @@
 
         <h2>ตัวอย่าง Campaign</h2>
         <div ng-repeat="x in exampleCampaign">
-          <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-example"></card-campaign-list-item>
+          <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-example/{{$index}}"></card-campaign-list-item>
         </div>
 
       </div>

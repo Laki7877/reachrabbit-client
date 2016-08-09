@@ -31,6 +31,37 @@ angular.module('myApp', [
   cfpLoadingBarProvider.includeSpinner = false;
   
 }])
+.constant('ExampleCampaigns', [
+      {
+        resources: [{
+            url: 'images/example-campaign/main-picture.png'
+        }],
+        title:'Morinaga Koeda รสใหม่',
+        toBudget: 2000,
+        media: [
+          { mediaId: 'facebook' }
+        ],
+        fromBudget: 200,
+        proposalDeadline: new Date(),
+        category: { categoryName: 'ความสวยแมว'},
+        linkTo:'brand-campaign-detail-example'
+      },
+      {
+        resources: [{
+            url: 'images/example-campaign/main-picture.png'
+        }],
+        media: [
+          { mediaId: 'instagram' },
+          { mediaId: 'youtube' }
+        ],
+        title:'Morinaga Koeda รสกาก',
+        toBudget:1000,
+        fromBudget: 500,
+        proposalDeadline: new Date(),
+        category: {categoryName: 'เกมส์'},
+        linkTo:'brand-campaign-detail-example'
+      }
+])
 .run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
   
   $rootScope.goTo = function(path){

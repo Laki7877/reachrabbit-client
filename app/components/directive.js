@@ -1,3 +1,10 @@
+/**
+ * Routes
+ *
+ * @author     Pat Sabpisal <ecegrid@gmail.com>
+ * @author     Natt Phenjati <natt@phenjati.com>
+ * @since      S04E01
+ */
 /* jshint node: true */
 'use strict';
 

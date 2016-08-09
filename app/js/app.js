@@ -2,7 +2,7 @@
  * App
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
- * @since      0.0.1
+ * @since      S04E01
  */
 /* jshint node: true */
 'use strict';

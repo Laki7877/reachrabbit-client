@@ -72,7 +72,7 @@ angular.module('myApp', [
   // $locationProvider.hashPrefix('');
   $routeProvider.otherwise({redirectTo: '/404'});
   cfpLoadingBarProvider.includeSpinner = false;
-  
+  //Setup satelizer
   $authProvider.facebook({
       clientId: Config.FACEBOOK_APP_ID
   });

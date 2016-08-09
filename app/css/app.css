@@ -2995,6 +2995,7 @@ select[multiple].input-lg {
 }
 .btn,
 .btn-primary,
+.btn-secondary,
 .btn-social {
   display: inline-block;
   margin-bottom: 0;
@@ -7376,6 +7377,7 @@ a:visited {
 /* Button */
 .btn,
 .btn-primary,
+.btn-secondary,
 .btn-social {
   padding: 6px;
   border-radius: 2px;

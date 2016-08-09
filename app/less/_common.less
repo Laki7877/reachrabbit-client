@@ -366,6 +366,7 @@ a:active, a:focus, a:visited{
   .button-variant(@color-white, @color-theme-primary, @color-btn-border);
 }
 .btn-secondary {
+  &:extend(.btn);
   .button-variant(@color-theme-secondary, @color-white, @color-grey);
 }
 .btn-social{

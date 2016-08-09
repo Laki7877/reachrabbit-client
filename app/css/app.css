@@ -1111,8 +1111,8 @@ img {
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img,
-.card-campaign-description .card-body .description-image,
-.layout-portal .card-grey .logo img {
+.card-portal .logo img,
+.card-campaign-description .card-body .description-image {
   display: block;
   max-width: 100%;
   height: auto;
@@ -5677,7 +5677,6 @@ button.list-group-item-danger.active:focus {
 }
 .panel,
 .card,
-.card-grey,
 .card-campaign-list-item,
 .card-brand-profile,
 .card-campaign-header,
@@ -7026,12 +7025,22 @@ a:focus,
 a:visited {
   color: #ff773e;
 }
+#loading-bar .bar {
+  background: #ff773e !important;
+  box-shadow: 0px 2px 4px 0px rgba(255, 119, 62, 0.3);
+  height: 3px !important;
+}
 .info-text {
   color: #8692a8;
 }
-#loading-bar .bar {
-  background: #ff773e !important;
-  height: 4px !important;
+.signup-pill {
+  text-align: center;
+  padding: 5px;
+  margin: 25px auto 0 auto;
+  width: 250px;
+  color: white;
+  background-color: rgba(62, 74, 94, 0.8);
+  border-radius: 25px;
 }
 /* Zone */
 .header-zone {
@@ -7152,7 +7161,6 @@ a:visited {
 }
 /* Card */
 .card,
-.card-grey,
 .card-campaign-list-item,
 .card-brand-profile,
 .card-campaign-header,
@@ -7262,11 +7270,29 @@ a:visited {
   padding-left: 15px;
   padding-right: 15px;
 }
-.card-grey {
+.card-portal {
   background-color: #f9f9fb;
+  margin: auto;
 }
-.card-grey .card-body {
-  padding: 30px;
+.card-portal .card-body {
+  padding: 30px 60px 30px 60px;
+}
+.card-portal .logo {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+.card-portal .logo h1 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #8692a8;
+}
+.card-portal button {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  width: 100%;
 }
 .card-campaign-list-item {
   margin-bottom: 20px;
@@ -8112,41 +8138,9 @@ fieldset[disabled] .btn-clear.active {
 .layout-portal .container {
   max-width: 430px;
 }
-.layout-portal .card-grey {
-  margin: auto;
-}
-.layout-portal .card-grey .card-body {
-  padding: 30px 60px 30px 60px;
-}
-.layout-portal .card-grey .logo {
-  width: 100%;
-  margin: auto;
-  text-align: center;
-}
-.layout-portal .card-grey .logo h1 {
-  font-size: 18px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  font-style: italic;
-  color: #8692a8;
-}
-.layout-portal button {
-  margin-top: 15px;
-  margin-bottom: 5px;
-  width: 100%;
-}
 .layout-portal .info-text {
   text-align: center;
   margin-top: 5px;
-}
-.layout-portal .signup-pill {
-  text-align: center;
-  padding: 5px;
-  margin: 25px auto 0 auto;
-  width: 250px;
-  color: white;
-  background-color: rgba(62, 74, 94, 0.8);
-  border-radius: 25px;
 }
 .layout-portal .view-brand-login {
   margin-top: 140px;

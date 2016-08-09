@@ -26,15 +26,26 @@ a:active, a:focus, a:visited{
   color: @color-theme-primary;
 }
 
+#loading-bar .bar{
+  background: @color-theme-primary !important;
+  box-shadow: 0px 2px 4px 0px rgba(255,119,62,0.3);
+  height: 3px !important;
+}
 .info-text{
   &:extend(.small);
   color: @color-grey-darker;
 }
-
-#loading-bar .bar{
-  background: @color-theme-primary !important;
-  height: 4px !important;
+.signup-pill{
+  text-align: center;
+  padding: 5px;
+  margin: 25px auto 0 auto;
+  width: 250px;
+  color: white;
+  background-color: rgba(62,74,94,0.80);
+  border-radius: 25px;
 }
+
+
 
 /* Zone */
 .header-zone{
@@ -248,11 +259,31 @@ a:active, a:focus, a:visited{
   .make-xs-column(2);
 }
 
-.card-grey{
-  &:extend(.card);
+.card-portal{
   background-color:@color-grey-lighter;
+  margin: auto;
   .card-body{
-    padding: 30px;
+    padding: 30px 60px 30px 60px;
+  }
+  .logo{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    img{
+      &:extend(.img-responsive);
+    }
+    h1{
+      font-size: 18px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      font-style: italic;
+      color: @color-grey-darker;
+    }
+  }
+  button{
+    margin-top: 15px;
+    margin-bottom: 5px;
+    width: 100%;
   }
 }
 

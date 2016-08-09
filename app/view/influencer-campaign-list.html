@@ -1,0 +1,31 @@
+<div class="view-influencer-campaign-list">
+  <div class="header-zone">
+    <div class="container">
+      <h1>My Campaign</h1>
+    </div>
+  </div>
+  <div class="body-zone">
+    <div class="container">
+      <div class="btn-floating-action" ng-click="$root.goTo('brand-campaign-detail-draft')">
+      </div>
+
+      <alert-box type="alert-info" show-on="true">
+        เราได้สร้าง Campaign แรกให้คุณแล้ว เข้าไปแก้ไขข้อมูลได้เลย
+      </alert-box>
+
+      <div ng-repeat="x in myCampaign.content">
+        <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-draft"></card-campaign-list-item>
+      </div>
+
+      <div class="example-campaign">
+
+        <h2>ตัวอย่าง Campaign</h2>
+        <div ng-repeat="x in exampleCampaign">
+          <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-example/{{$index}}"></card-campaign-list-item>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

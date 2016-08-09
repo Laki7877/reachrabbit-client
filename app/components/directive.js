@@ -5,7 +5,7 @@ angular.module('myApp.directives', [])
 
     .directive('ncAlert', ['NcAlert', function (NcAlert) {
         return {
-            restrict: 'A',
+            restrict: 'AE',
             transclude: true,
             templateUrl: function (elem, attr) {
                 //Specify alertbox-success, alertbox-failure, alertbox-info etc.

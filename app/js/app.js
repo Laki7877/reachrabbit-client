@@ -16,6 +16,7 @@ angular.module('myApp', [
   'ngTagsInput',
   'smoothScroll',
   'ngSanitize',
+  'satellizer',
   //Top level
   'myApp.directives',
   'myApp.routes',
@@ -28,12 +29,7 @@ angular.module('myApp', [
   'myApp.brand.routes',
   'myApp.influencer.routes'
 ])
-.config(['$locationProvider', '$routeProvider','cfpLoadingBarProvider', function($locationProvider, $routeProvider, cfpLoadingBarProvider) {
-  // $locationProvider.hashPrefix('');
-  $routeProvider.otherwise({redirectTo: '/404'});
-  cfpLoadingBarProvider.includeSpinner = false;
-
-}])
+//Example Campaign Constants
 .constant('ExampleCampaigns', [
       {
         resources: [{
@@ -65,18 +61,30 @@ angular.module('myApp', [
         linkTo:'brand-campaign-detail-example'
       }
 ])
-.run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
-
-  $rootScope.goTo = function(path){
-    $location.path(path);
-  };
+//Global Config
+.constant('Config', {
+  FACEBOOK_APP_ID: "",
+  INSTAGRAM_APP_ID: "",
+  YOUTUBE_APP_ID: ""
+})
+//Configure the providers
+.config(['$locationProvider', '$routeProvider','cfpLoadingBarProvider', '$authProvider', 'Config', function($locationProvider, $routeProvider, cfpLoadingBarProvider, $authProvider, Config) {
+  // $locationProvider.hashPrefix('');
+  $routeProvider.otherwise({redirectTo: '/404'});
+  cfpLoadingBarProvider.includeSpinner = false;
   
-  $rootScope.getPath = function(){
-    return $location.path();
-  };
+  $authProvider.facebook({
+      clientId: Config.FACEBOOK_APP_ID
+  });
 
+}])
+//Initialize the app
+.run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
+  
+  //Configure Raven
   Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();
 
+  //Configure global deafult date options for date picker
   $rootScope.dateOptions = {
     formatYear: 'yy',
     maxDate: new Date(2020, 5, 22),
@@ -84,10 +92,10 @@ angular.module('myApp', [
     startingDay: 1,
     showWeeks: false
   };
-
   $rootScope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $rootScope.format = $rootScope.formats[0];
 
+  //Global function helpers
   $rootScope.getProfile = UserProfile.get;
   $rootScope.signOut = function(msg){
     //clear localstorage
@@ -96,6 +104,14 @@ angular.module('myApp', [
     //navigate to login
     $window.location.href = '/portal.html#/brand-login'  + (msg ? '?message=' + msg : '');
   };
+  $rootScope.goTo = function(path){
+    $location.path(path);
+  };
+  $rootScope.getPath = function(){
+    return $location.path();
+  };
+  
+  //Route change event
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
     console.log('$routeChangeStart', event, next, current);
     $rootScope.state = null;

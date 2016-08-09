@@ -70,6 +70,10 @@ angular.module('myApp', [
   $rootScope.goTo = function(path){
     $location.path(path);
   };
+  
+  $rootScope.getPath = function(){
+    return $location.path();
+  };
 
   Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();
 

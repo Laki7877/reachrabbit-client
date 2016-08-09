@@ -1,0 +1,30 @@
+<div class="view-signup-select-page">
+  <div class="container">
+    <alert-box type="alert-danger" show-on="error || messageCode == 'unauthorized'">
+      yo
+    </alert-box>
+
+    <form no-validate>
+    <div class="card-portal">
+      <div class="card-body">
+        <div class="logo">
+          <h1>เลือกบัญชีที่จะใช้สมัคร</h1>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="optradio">Page A</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="optradio">Page B</label>
+        </div>
+        <div class="radio disabled">
+          <label><input type="radio" name="optradio" disabled>Page C</label>
+        </div>
+        <button class="btn-primary" ng-click="$root.goTo('influencer-signup-confirmation')">เลือกบัญชี</button>
+        <div class="info-text">
+          คุณต้องมีคนติดตามอย่างน้อย 500 คนในการสมัคร
+        </div>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>

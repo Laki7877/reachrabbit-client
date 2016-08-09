@@ -228,11 +228,16 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
 angular.module('myApp.portal.controller', ['myApp.service'])
-.controller('BrandSigninController', ['$scope', '$location', 'AccountService', 'UserProfile', '$window', function($scope, $location, AccountService, UserProfile, $window) {
+.controller('BrandSigninController', ['$scope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function($scope, $location, AccountService, UserProfile, $window, NcAlert) {
     $scope.formData = {};
     $window.localStorage.removeItem('token');
     $scope.messageCode = $location.search().message;
-    
+    $scope.alert = new NcAlert();
+
+    if($scope.messageCode == "401"){
+        $scope.alert.warning("<strong>401</strong> Unauthorized or Session Expired");
+    }
+
     $scope.login = function(username, password){
         $location.search('message', 'nop');
         AccountService.getToken(username, password)
@@ -249,7 +254,8 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             $window.location.href = '/brand.html#/brand-campaign-list';
         })
         .catch(function(err){
-            $scope.error = true;
+            $scope.alert.close();
+            $scope.alert.danger("อีเมล์หรือรหัสผ่านไม่ถูกต้อง");
         });
     };
 }])

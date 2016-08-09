@@ -91,7 +91,7 @@ angular.module('myApp', [
     minDate: new Date(),
     startingDay: 1,
     showWeeks: false
-  };
+  }; 
   $rootScope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $rootScope.format = $rootScope.formats[0];
 

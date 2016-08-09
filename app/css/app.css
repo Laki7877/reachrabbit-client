@@ -1111,8 +1111,8 @@ img {
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img,
-.card-campaign-description .card-body .description-image,
-.layout-portal .card-grey .logo img {
+.card-portal .logo img,
+.card-campaign-description .card-body .description-image {
   display: block;
   max-width: 100%;
   height: auto;
@@ -2995,8 +2995,7 @@ select[multiple].input-lg {
 }
 .btn,
 .btn-primary,
-.btn-secondary,
-.btn-clear {
+.btn-social {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -5674,7 +5673,6 @@ button.list-group-item-danger.active:focus {
 }
 .panel,
 .card,
-.card-grey,
 .card-campaign-list-item,
 .card-brand-profile,
 .card-campaign-header,
@@ -7023,12 +7021,44 @@ a:focus,
 a:visited {
   color: #ff773e;
 }
+#loading-bar .bar {
+  background: #ff773e !important;
+  box-shadow: 0px 2px 4px 0px rgba(255, 119, 62, 0.3);
+  height: 3px !important;
+}
 .info-text {
   color: #8692a8;
 }
-#loading-bar .bar {
-  background: #ff773e !important;
-  height: 4px !important;
+.signup-pill {
+  text-align: center;
+  padding: 5px;
+  margin: 25px auto 0 auto;
+  width: 250px;
+  color: white;
+  background-color: rgba(62, 74, 94, 0.8);
+  border-radius: 25px;
+}
+/* Zone */
+.header-zone {
+  color: #ffffff;
+  height: 150px;
+  background-image: url("../images/bg-header.png");
+  background-position: top center;
+  background-size: auto 150px;
+  background-color: #16bbac;
+}
+.header-zone h1 {
+  margin-top: 30px;
+}
+.header-zone h2 {
+  margin-top: 5px;
+}
+.header-zone .back-btn-for-header {
+  margin-top: 25px;
+  cursor: pointer;
+}
+.body-zone {
+  margin-top: -50px;
 }
 /* Form & Input */
 .form-control {
@@ -7127,7 +7157,6 @@ a:visited {
 }
 /* Card */
 .card,
-.card-grey,
 .card-campaign-list-item,
 .card-brand-profile,
 .card-campaign-header,
@@ -7237,11 +7266,29 @@ a:visited {
   padding-left: 15px;
   padding-right: 15px;
 }
-.card-grey {
+.card-portal {
   background-color: #f9f9fb;
+  margin: auto;
 }
-.card-grey .card-body {
-  padding: 30px;
+.card-portal .card-body {
+  padding: 30px 60px 30px 60px;
+}
+.card-portal .logo {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+.card-portal .logo h1 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #8692a8;
+}
+.card-portal button {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  width: 100%;
 }
 .card-campaign-list-item {
   margin-bottom: 20px;
@@ -7329,8 +7376,7 @@ a:visited {
 /* Button */
 .btn,
 .btn-primary,
-.btn-secondary,
-.btn-clear {
+.btn-social {
   padding: 6px;
   border-radius: 2px;
 }
@@ -7529,6 +7575,306 @@ fieldset[disabled] .btn-secondary.active {
 .btn-secondary .badge {
   color: #ffffff;
   background-color: #16bbac;
+}
+.btn-social {
+  padding-left: 32px;
+}
+.btn-facebook {
+  color: #ffffff;
+  background-color: #3b5998;
+  border-color: rgba(0, 0, 0, 0.1);
+  background: url("../images/icon-facebook-lg.png") 0 0 no-repeat #3b5998;
+}
+.btn-facebook:focus,
+.btn-facebook.focus {
+  color: #ffffff;
+  background-color: #2d4373;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-facebook:hover {
+  color: #ffffff;
+  background-color: #2d4373;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-facebook:active,
+.btn-facebook.active,
+.open > .dropdown-toggle.btn-facebook {
+  color: #ffffff;
+  background-color: #2d4373;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-facebook:active:hover,
+.btn-facebook.active:hover,
+.open > .dropdown-toggle.btn-facebook:hover,
+.btn-facebook:active:focus,
+.btn-facebook.active:focus,
+.open > .dropdown-toggle.btn-facebook:focus,
+.btn-facebook:active.focus,
+.btn-facebook.active.focus,
+.open > .dropdown-toggle.btn-facebook.focus {
+  color: #ffffff;
+  background-color: #23345a;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-facebook:active,
+.btn-facebook.active,
+.open > .dropdown-toggle.btn-facebook {
+  background-image: none;
+}
+.btn-facebook.disabled:hover,
+.btn-facebook[disabled]:hover,
+fieldset[disabled] .btn-facebook:hover,
+.btn-facebook.disabled:focus,
+.btn-facebook[disabled]:focus,
+fieldset[disabled] .btn-facebook:focus,
+.btn-facebook.disabled.focus,
+.btn-facebook[disabled].focus,
+fieldset[disabled] .btn-facebook.focus {
+  background-color: #3b5998;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-facebook .badge {
+  color: #3b5998;
+  background-color: #ffffff;
+}
+.btn-facebook:hover,
+.btn-facebook:focus,
+.btn-facebook:active,
+.btn-facebook:active:focus,
+.btn-facebook.active,
+.open .dropdown-toggle.btn-facebook {
+  color: #ffffff;
+  background-color: #2d4373;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-facebook:active,
+.btn-facebook.active,
+.btn-facebook:active:focus,
+.open .dropdown-toggle.btn-facebook {
+  background-image: none;
+}
+.btn-facebook.disabled,
+.btn-facebook[disabled],
+fieldset[disabled] .btn-facebook,
+.btn-facebook.disabled:hover,
+.btn-facebook[disabled]:hover,
+fieldset[disabled] .btn-facebook:hover,
+.btn-facebook.disabled:focus,
+.btn-facebook[disabled]:focus,
+fieldset[disabled] .btn-facebook:focus,
+.btn-facebook.disabled:active:focus,
+.btn-facebook[disabled]:active:focus,
+fieldset[disabled] .btn-facebook:active:focus,
+.btn-facebook.disabled:active,
+.btn-facebook[disabled]:active,
+fieldset[disabled] .btn-facebook:active,
+.btn-facebook.disabled.active,
+.btn-facebook[disabled].active,
+fieldset[disabled] .btn-facebook.active {
+  background-color: #3b5998;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-facebook .badge {
+  color: #3b5998;
+  background-color: #ffffff;
+}
+.btn-instagram {
+  color: #ffffff;
+  background-color: #df3d79;
+  border-color: rgba(0, 0, 0, 0.1);
+  background: url("../images/icon-instagram-lg.png") 0 0 no-repeat #df3d79;
+}
+.btn-instagram:focus,
+.btn-instagram.focus {
+  color: #ffffff;
+  background-color: #c8215f;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-instagram:hover {
+  color: #ffffff;
+  background-color: #c8215f;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-instagram:active,
+.btn-instagram.active,
+.open > .dropdown-toggle.btn-instagram {
+  color: #ffffff;
+  background-color: #c8215f;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-instagram:active:hover,
+.btn-instagram.active:hover,
+.open > .dropdown-toggle.btn-instagram:hover,
+.btn-instagram:active:focus,
+.btn-instagram.active:focus,
+.open > .dropdown-toggle.btn-instagram:focus,
+.btn-instagram:active.focus,
+.btn-instagram.active.focus,
+.open > .dropdown-toggle.btn-instagram.focus {
+  color: #ffffff;
+  background-color: #a91c50;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-instagram:active,
+.btn-instagram.active,
+.open > .dropdown-toggle.btn-instagram {
+  background-image: none;
+}
+.btn-instagram.disabled:hover,
+.btn-instagram[disabled]:hover,
+fieldset[disabled] .btn-instagram:hover,
+.btn-instagram.disabled:focus,
+.btn-instagram[disabled]:focus,
+fieldset[disabled] .btn-instagram:focus,
+.btn-instagram.disabled.focus,
+.btn-instagram[disabled].focus,
+fieldset[disabled] .btn-instagram.focus {
+  background-color: #df3d79;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-instagram .badge {
+  color: #df3d79;
+  background-color: #ffffff;
+}
+.btn-instagram:hover,
+.btn-instagram:focus,
+.btn-instagram:active,
+.btn-instagram:active:focus,
+.btn-instagram.active,
+.open .dropdown-toggle.btn-instagram {
+  color: #ffffff;
+  background-color: #c8215f;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-instagram:active,
+.btn-instagram.active,
+.btn-instagram:active:focus,
+.open .dropdown-toggle.btn-instagram {
+  background-image: none;
+}
+.btn-instagram.disabled,
+.btn-instagram[disabled],
+fieldset[disabled] .btn-instagram,
+.btn-instagram.disabled:hover,
+.btn-instagram[disabled]:hover,
+fieldset[disabled] .btn-instagram:hover,
+.btn-instagram.disabled:focus,
+.btn-instagram[disabled]:focus,
+fieldset[disabled] .btn-instagram:focus,
+.btn-instagram.disabled:active:focus,
+.btn-instagram[disabled]:active:focus,
+fieldset[disabled] .btn-instagram:active:focus,
+.btn-instagram.disabled:active,
+.btn-instagram[disabled]:active,
+fieldset[disabled] .btn-instagram:active,
+.btn-instagram.disabled.active,
+.btn-instagram[disabled].active,
+fieldset[disabled] .btn-instagram.active {
+  background-color: #df3d79;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-instagram .badge {
+  color: #df3d79;
+  background-color: #ffffff;
+}
+.btn-youtube {
+  color: #ffffff;
+  background-color: #e62117;
+  border-color: rgba(0, 0, 0, 0.1);
+  background: url("../images/icon-youtube-lg.png") 0 0 no-repeat #e62117;
+}
+.btn-youtube:focus,
+.btn-youtube.focus {
+  color: #ffffff;
+  background-color: #b81a12;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-youtube:hover {
+  color: #ffffff;
+  background-color: #b81a12;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-youtube:active,
+.btn-youtube.active,
+.open > .dropdown-toggle.btn-youtube {
+  color: #ffffff;
+  background-color: #b81a12;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-youtube:active:hover,
+.btn-youtube.active:hover,
+.open > .dropdown-toggle.btn-youtube:hover,
+.btn-youtube:active:focus,
+.btn-youtube.active:focus,
+.open > .dropdown-toggle.btn-youtube:focus,
+.btn-youtube:active.focus,
+.btn-youtube.active.focus,
+.open > .dropdown-toggle.btn-youtube.focus {
+  color: #ffffff;
+  background-color: #97160f;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-youtube:active,
+.btn-youtube.active,
+.open > .dropdown-toggle.btn-youtube {
+  background-image: none;
+}
+.btn-youtube.disabled:hover,
+.btn-youtube[disabled]:hover,
+fieldset[disabled] .btn-youtube:hover,
+.btn-youtube.disabled:focus,
+.btn-youtube[disabled]:focus,
+fieldset[disabled] .btn-youtube:focus,
+.btn-youtube.disabled.focus,
+.btn-youtube[disabled].focus,
+fieldset[disabled] .btn-youtube.focus {
+  background-color: #e62117;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-youtube .badge {
+  color: #e62117;
+  background-color: #ffffff;
+}
+.btn-youtube:hover,
+.btn-youtube:focus,
+.btn-youtube:active,
+.btn-youtube:active:focus,
+.btn-youtube.active,
+.open .dropdown-toggle.btn-youtube {
+  color: #ffffff;
+  background-color: #b81a12;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-youtube:active,
+.btn-youtube.active,
+.btn-youtube:active:focus,
+.open .dropdown-toggle.btn-youtube {
+  background-image: none;
+}
+.btn-youtube.disabled,
+.btn-youtube[disabled],
+fieldset[disabled] .btn-youtube,
+.btn-youtube.disabled:hover,
+.btn-youtube[disabled]:hover,
+fieldset[disabled] .btn-youtube:hover,
+.btn-youtube.disabled:focus,
+.btn-youtube[disabled]:focus,
+fieldset[disabled] .btn-youtube:focus,
+.btn-youtube.disabled:active:focus,
+.btn-youtube[disabled]:active:focus,
+fieldset[disabled] .btn-youtube:active:focus,
+.btn-youtube.disabled:active,
+.btn-youtube[disabled]:active,
+fieldset[disabled] .btn-youtube:active,
+.btn-youtube.disabled.active,
+.btn-youtube[disabled].active,
+fieldset[disabled] .btn-youtube.active {
+  background-color: #e62117;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.btn-youtube .badge {
+  color: #e62117;
+  background-color: #ffffff;
 }
 .btn-clear {
   color: #ff773e;
@@ -7777,6 +8123,7 @@ fieldset[disabled] .btn-clear.active {
   background: #3e4a5e;
   border: 0px;
 }
+/* Date Picker */
 .uib-daypicker .btn,
 .uib-monthpicker .btn {
   border: none;
@@ -7785,6 +8132,14 @@ fieldset[disabled] .btn-clear.active {
 /* Layout Portal */
 .layout-portal {
   background: url("../images/bg-layout-login.png") #019386;
+  /* Specific View in Layout Portal */
+}
+.layout-portal .container {
+  max-width: 430px;
+}
+.layout-portal .info-text {
+  text-align: center;
+  margin-top: 5px;
 }
 .layout-portal .view-brand-login {
   margin-top: 140px;
@@ -7792,78 +8147,19 @@ fieldset[disabled] .btn-clear.active {
 .layout-portal .view-brand-signup {
   margin-top: 50px;
 }
-.layout-portal .container {
-  max-width: 430px;
+.layout-portal .view-influencer-portal {
+  margin-top: 140px;
 }
-.layout-portal .card-grey {
-  margin: auto;
-}
-.layout-portal .card-grey .card-body {
-  padding: 30px 60px 30px 60px;
-}
-.layout-portal .card-grey .logo {
-  width: 100%;
-  margin: auto;
-  text-align: center;
-}
-.layout-portal .card-grey .logo h1 {
-  font-size: 18px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  font-style: italic;
-  color: #8692a8;
-}
-.layout-portal .btn-primary {
-  margin-top: 15px;
-  margin-bottom: 5px;
-  width: 100%;
-}
-.layout-portal .info-text {
-  text-align: center;
-  margin-top: 5px;
-}
-.layout-portal .signup-pill {
-  text-align: center;
-  padding: 5px;
-  margin: 25px auto 0 auto;
-  width: 250px;
-  color: white;
-  background-color: rgba(62, 74, 94, 0.8);
-  border-radius: 25px;
+.layout-portal .view-signup-select-page {
+  margin-top: 140px;
 }
 /* Layout Brand */
 .layout-brand {
   background-color: #f9f9fb;
+  /* Specific View in Layout Portal */
 }
 .layout-brand .container {
   width: 970px;
-}
-.layout-brand .header-zone {
-  color: #ffffff;
-  height: 150px;
-  background-image: url("../images/bg-header.png");
-  background-position: top center;
-  background-size: auto 150px;
-  background-color: #16bbac;
-}
-.layout-brand .header-zone h1 {
-  margin-top: 30px;
-}
-.layout-brand .header-zone h2 {
-  margin-top: 5px;
-}
-.layout-brand .header-zone .back-btn-for-header {
-  margin-top: 25px;
-  cursor: pointer;
-}
-.layout-brand .body-zone {
-  margin-top: -50px;
-}
-.layout-brand .example-campaign {
-  margin-top: 30px;
-}
-.layout-brand .example-campaign h2 {
-  margin-bottom: 20px;
 }
 .layout-brand .view-brand-profile .input-upload-image {
   width: 127px;
@@ -7871,6 +8167,39 @@ fieldset[disabled] .btn-clear.active {
 }
 .layout-brand .view-brand-profile .input-upload-image .fa-camera {
   margin-top: 38px;
+}
+.layout-brand .view-brand-campaign-list .example-campaign {
+  margin-top: 30px;
+}
+.layout-brand .view-brand-campaign-list .example-campaign h2 {
+  margin-bottom: 20px;
+}
+/* Layout Influencer */
+.layout-influencer {
+  background-color: #f9f9fb;
+  /* Specific View in Layout Portal */
+}
+.layout-influencer .container {
+  width: 970px;
+}
+.layout-influencer .navbar {
+  background: #f9f9fb;
+}
+.layout-influencer .navbar li > a {
+  color: #3e4a5e;
+}
+.layout-influencer .navbar li > a:hover,
+.layout-influencer .navbar li > a:focus {
+  background-color: #f9f9fb;
+  color: #ff773e;
+}
+.layout-influencer .navbar .dropdown-menu {
+  background-color: #d8dfe7;
+}
+.layout-influencer .navbar .open > a,
+.layout-influencer .navbar .open > a:hover,
+.layout-influencer .navbar .open > a:focus {
+  background: #f9f9fb;
 }
 tags-input {
   display: block;

@@ -1,53 +1,25 @@
 /* Layout Portal */
 .layout-portal{
   background: url("../images/bg-layout-login.png") @color-theme-secondary-darker;
+  .container{
+    max-width: 430px;
+  }
+  .info-text{
+    text-align: center;
+    margin-top: 5px;
+  }
+  /* Specific View in Layout Portal */
   .view-brand-login{
     margin-top: 140px;
   }
   .view-brand-signup{
     margin-top: 50px;
   }
-  .container{
-    max-width: 430px;
+  .view-influencer-portal{
+    margin-top: 140px;
   }
-  .card-grey{
-    margin: auto;
-    .card-body{
-      padding: 30px 60px 30px 60px;
-    }
-    .logo{
-      width: 100%;
-      margin: auto;
-      text-align: center;
-      img{
-        &:extend(.img-responsive);
-      }
-      h1{
-        font-size: 18px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-        font-style: italic;
-        color: @color-grey-darker;
-      }
-    }
-  }
-  .btn-primary{
-    margin-top: 15px;
-    margin-bottom: 5px;
-    width: 100%;
-  }
-  .info-text{
-    text-align: center;
-    margin-top: 5px;
-  }
-  .signup-pill{
-    text-align: center;
-    padding: 5px;
-    margin: 25px auto 0 auto;
-    width: 250px;
-    color: white;
-    background-color: rgba(62,74,94,0.80);
-    border-radius: 25px;
+  .view-signup-select-page{
+    margin-top: 140px;
   }
 }
 
@@ -57,33 +29,7 @@
   .container{
     width: 970px;
   }
-  .header-zone{
-    color: @color-white;
-    height: 150px;
-    background-image: url("../images/bg-header.png");
-    background-position: top center;
-    background-size: auto 150px;
-    background-color: @color-theme-secondary;
-    h1{
-      margin-top: 30px;
-    }
-    h2{
-      margin-top: 5px;
-    }
-    .back-btn-for-header{
-      margin-top: 25px;
-      cursor: pointer;
-    }
-  }
-  .body-zone{
-    margin-top: -50px;
-  }
-  .example-campaign{
-    margin-top: 30px;
-    h2{
-      margin-bottom: 20px;
-    }
-  }
+  /* Specific View in Layout Portal */
   .view-brand-profile{
     .input-upload-image{
       width: 127px;
@@ -93,4 +39,37 @@
       }
     }
   }
+  .view-brand-campaign-list{
+    .example-campaign{
+      margin-top: 30px;
+      h2{
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+/* Layout Influencer */
+.layout-influencer{
+  background-color: @color-grey-lighter;
+  .container{
+    width: 970px;
+  }
+  .navbar {
+    background: @color-grey-lighter;
+    li > a{
+      color: @color-black;
+    }
+    li > a:hover, li > a:focus{
+      background-color: @color-grey-lighter;
+      color: @color-theme-primary;
+    }
+    .dropdown-menu{
+      background-color: @color-grey;
+    }
+    .open > a, .open > a:hover, .open > a:focus{
+      background: @color-grey-lighter;
+    }
+  }
+  /* Specific View in Layout Portal */
 }

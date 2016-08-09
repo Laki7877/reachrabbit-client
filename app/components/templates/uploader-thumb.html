@@ -1,21 +1,24 @@
 <div class="fileinput fileinput-new" data-provides="fileinput">
-    
+
     <div ngf-select="upload($file)" ng-if="!loadingImage && !accessor(model)" class="input-upload-image">
                  <ng-transclude>
-                     
+
                  </ng-transclude>
      </div>
     <div ng-if="loadingImage" class="input-upload-image">
-       
+
             <img src="images/Jumping.gif" style="width: 100%;" />
-       
+
     </div>
     <small ng-if="loadingImage">กำลังอัพโหลด.. ({{progressPercentage}} %)</small>
-    <div class="fileinput-new " ngf-select="upload($file)" ng-if="accessor(model) && !loadingImage" 
+    <div class="fileinput-new " ngf-select="upload($file)" ng-if="accessor(model) && !loadingImage"
     style="width: {{width}}px; height:{{height}}px; text-align:center">
+      <div class="input-upload-image ">
+        <i class="fa fa-times-circle btn-delete-image"></i>
         <img ng-show="!loadingImage" ng-src="{{ accessor(model) }}"
             height="{{height}}" width="{{width}}">
         </div>
+      </div>
     </div>
     <br/>
 </div>

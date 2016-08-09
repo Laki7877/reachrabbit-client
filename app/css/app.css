@@ -7180,6 +7180,7 @@ a:visited {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  overflow: hidden;
 }
 .card-title {
   position: relative;
@@ -7289,6 +7290,7 @@ a:visited {
   width: 33.33333333%;
   min-height: 1px;
   padding-left: 15px;
+  height: 198px;
   padding: 0px;
   padding-right: 15px;
 }

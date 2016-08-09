@@ -1,3 +1,10 @@
+/**
+ * Routes
+ *
+ * @author     Pat Sabpisal <ecegrid@gmail.com>
+ * @author     Natt Phenjati <natt@phenjati.com>
+ * @since      S04E01
+ */
 /* jshint node: true */
 'use strict';
 
@@ -5,7 +12,7 @@ angular.module('myApp.directives', [])
 
     .directive('ncAlert', ['NcAlert', function (NcAlert) {
         return {
-            restrict: 'A',
+            restrict: 'AE',
             transclude: true,
             templateUrl: function (elem, attr) {
                 //Specify alertbox-success, alertbox-failure, alertbox-info etc.

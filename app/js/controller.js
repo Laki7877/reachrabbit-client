@@ -3,12 +3,21 @@
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
  * @author     Natt Phenjati <natt@phenjati.com>
- * @since      0.0.1
+ * @since      S04E01
  */
 /* jshint node: true */
 'use strict';
 
-/////////////// /////////////// /////////////// ///////////////
+
+/////////////// /////////////// /////////////// /////////////// ///////////////
+/*
+  _____  __  __  ____  _____ __   __
+ | ____||  \/  ||  _ \|_   _|\ \ / /
+ |  _|  | |\/| || |_) | | |   \ V / 
+ | |___ | |  | ||  __/  | |    | |  
+ |_____||_|  |_||_|     |_|    |_|  
+                                    */
+/////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.controller', ['myApp.service'])
 .controller('EmptyController', ['$scope', function($scope) {
@@ -19,7 +28,17 @@ angular.module('myApp.controller', ['myApp.service'])
 }]);
 
 
-/////////////// /////////////// /////////////// /////////////// /////////////// ///////////////
+/////////////// /////////////// /////////////// /////////////// ///////////////
+/*
+d8888b. d8888b.  .d8b.  d8b   db d8888b. 
+88  `8D 88  `8D d8' `8b 888o  88 88  `8D 
+88oooY' 88oobY' 88ooo88 88V8o 88 88   88 
+88~~~b. 88`8b   88~~~88 88 V8o88 88   88 
+88   8D 88 `88. 88   88 88  V888 88  .8D 
+Y8888P' 88   YD YP   YP VP   V8P Y8888D' 
+*/
+/////////////// /////////////// /////////////// /////////////// ///////////////
+
 
 angular.module('myApp.brand.controller', ['myApp.service'])
 /*
@@ -214,6 +233,18 @@ function($scope, $routeParams, CampaignService, DataService, $filter, UserProfil
 }]);
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
+/*
+8888888b.   .d88888b.  8888888b. 88888888888     d8888 888      
+888   Y88b d88P" "Y88b 888   Y88b    888        d88888 888      
+888    888 888     888 888    888    888       d88P888 888      
+888   d88P 888     888 888   d88P    888      d88P 888 888      
+8888888P"  888     888 8888888P"     888     d88P  888 888      
+888        888     888 888 T88b      888    d88P   888 888      
+888        Y88b. .d88P 888  T88b     888   d8888888888 888      
+888         "Y88888P"  888   T88b    888  d88P     888 88888888 
+*/
+/////////////// /////////////// /////////////// /////////////// ///////////////
+
 angular.module('myApp.portal.controller', ['myApp.service'])
 .controller('BrandSigninController', ['$scope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function($scope, $location, AccountService, UserProfile, $window, NcAlert) {
     $scope.formData = {};

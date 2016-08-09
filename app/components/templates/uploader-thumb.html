@@ -12,7 +12,7 @@
     </div>
     <div class="fileinput-new " ngf-select="upload($file)" ng-if="accessor(model) && !loadingImage">
       <div class="input-upload-image ">
-        <i class="fa fa-times-circle btn-delete-image"></i>
+        <i class="fa fa-times-circle btn-delete-image" ng-click="remove()"></i>
         <img ng-show="!loadingImage" ng-src="{{ accessor(model) }}">
         </div>
       </div>

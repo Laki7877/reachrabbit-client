@@ -95,6 +95,10 @@ angular.module('myApp.directives', [])
                     };
                 }
 
+                scope.remove = function(index){
+                    scope.model = null;
+                };
+
                 scope.loadingImage = false;
                 scope.upload = function (file) {
                     scope.loadingImage = true;

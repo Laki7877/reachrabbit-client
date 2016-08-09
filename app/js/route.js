@@ -20,14 +20,8 @@ angular.module('myApp.routes', ['ngRoute'])
 angular.module('myApp.brand.routes', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
 
-  /*
-  * Brands
-  */
+  /* Brands */
   $routeProvider
-  .when('/brand-signup', {
-    templateUrl: 'view/brand-signup.html',
-    controller: 'BrandSignupController'
-  })
   .when('/brand-campaign-list', {
     templateUrl: 'view/brand-campaign-list.html',
     controller: 'CampaignListController'
@@ -50,9 +44,26 @@ angular.module('myApp.brand.routes', ['ngRoute'])
 angular.module('myApp.portal.routes', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
 
-  $routeProvider.when('/brand-login', {
+  $routeProvider
+  .when('/brand-login', {
     templateUrl: 'view/brand-login.html',
     controller: 'BrandSigninController'
+  })
+  .when('/brand-signup', {
+    templateUrl: 'view/brand-signup.html',
+    controller: 'BrandSignupController'
+  })
+  .when('/influencer-portal', {
+    templateUrl: 'view/influencer-portal.html',
+    controller: 'EmptyController'
+  })
+  .when('/influencer-signup-select-page', {
+    templateUrl: 'view/influencer-signup-select-page.html',
+    controller: 'EmptyController'
+  })
+  .when('/influencer-signup-confirmation', {
+    templateUrl: 'view/influencer-signup-confirmation.html',
+    controller: 'EmptyController'
   });
 
 }]);

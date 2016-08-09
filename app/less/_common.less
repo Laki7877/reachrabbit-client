@@ -302,7 +302,6 @@ a:active, a:focus, a:visited{
 }
 
 
-
 /* Button */
 .btn{
   padding: 6px;
@@ -315,6 +314,18 @@ a:active, a:focus, a:visited{
 .btn-secondary {
   &:extend(.btn);
   .button-variant(@color-theme-secondary, @color-white, @color-grey);
+}
+.btn-facebook {
+  &:extend(.btn);
+  .button-variant(@color-white, @color-facebook, @color-btn-border);
+}
+.btn-instagram {
+  &:extend(.btn);
+  .button-variant(@color-white, @color-instagram, @color-btn-border);
+}
+.btn-youtube {
+  &:extend(.btn);
+  .button-variant(@color-white, @color-youtube, @color-btn-border);
 }
 .btn-clear {
   &:extend(.btn);

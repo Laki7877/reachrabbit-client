@@ -6,19 +6,15 @@
                  </ng-transclude>
      </div>
     <div ng-if="loadingImage" class="input-upload-image">
-
-            <img src="images/Jumping.gif" style="width: 100%;" />
-
+      <i class="fa fa-spinner fa-spin image-uploading"></i>
+      <!-- <div class="" ng-if="loadingImage">{{progressPercentage}} %</div> -->
+      <!-- <img src="images/Jumping.gif" style="width: 100%;" /> -->
     </div>
-    <small ng-if="loadingImage">กำลังอัพโหลด.. ({{progressPercentage}} %)</small>
-    <div class="fileinput-new " ngf-select="upload($file)" ng-if="accessor(model) && !loadingImage"
-    style="width: {{width}}px; height:{{height}}px; text-align:center">
+    <div class="fileinput-new " ngf-select="upload($file)" ng-if="accessor(model) && !loadingImage">
       <div class="input-upload-image ">
         <i class="fa fa-times-circle btn-delete-image"></i>
-        <img ng-show="!loadingImage" ng-src="{{ accessor(model) }}"
-            height="{{height}}" width="{{width}}">
+        <img ng-show="!loadingImage" ng-src="{{ accessor(model) }}">
         </div>
       </div>
     </div>
-    <br/>
 </div>

@@ -3,7 +3,7 @@
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
  * @author     Natt Phenjati <natt@phenjati.com>
- * @since      0.0.2
+ * @since      S04E01
  */
 /* jshint node: true */
 'use strict';

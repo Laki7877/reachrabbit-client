@@ -7080,6 +7080,13 @@ a:visited {
 .input-upload-image .btn-delete-image:hover {
   color: #019386;
 }
+.input-upload-image .image-uploading {
+  display: block;
+  position: absolute;
+  margin: 0px;
+  top: 10px;
+  right: 10px;
+}
 .input-upload-image:hover {
   color: #019386;
 }
@@ -7197,6 +7204,9 @@ a:visited {
   color: #16bbac;
   border-bottom: 1px solid #d8dfe7;
 }
+.card-title .card-title-content a {
+  color: #16bbac;
+}
 .card-info,
 .card-info-1,
 .card-info-2,
@@ -7260,6 +7270,9 @@ a:visited {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+.card-campaign-list-item .card-image {
+  height: 136px;
 }
 .card-brand-profile .card-body {
   padding: 15px 0px;
@@ -7856,7 +7869,7 @@ fieldset[disabled] .btn-clear.active {
   width: 127px;
   height: 127px;
 }
-.layout-brand .view-brand-profile .input-upload-image i {
+.layout-brand .view-brand-profile .input-upload-image .fa-camera {
   margin-top: 38px;
 }
 tags-input {

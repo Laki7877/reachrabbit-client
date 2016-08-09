@@ -86,7 +86,15 @@ a:active, a:focus, a:visited{
   .btn-delete-image:hover{
     color: @color-theme-secondary-darker;
   }
+  .image-uploading{
+    display: block;
+    position: absolute;
+    margin: 0px;
+    top:10px;
+    right:10px;
+  }
 }
+
 .input-upload-image:hover{
   color: @color-theme-secondary-darker;
 }
@@ -178,6 +186,9 @@ a:active, a:focus, a:visited{
     padding-bottom: 5px;
     color: @color-theme-secondary;
     border-bottom: 1px solid @color-grey;
+    a{
+      color: @color-theme-secondary;
+    }
   }
 }
 .card-info{
@@ -239,6 +250,9 @@ a:active, a:focus, a:visited{
   }
   .card-title{
     .make-xs-column(9);
+  }
+  .card-image{
+    height: 136px;
   }
 }
 

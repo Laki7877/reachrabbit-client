@@ -3,54 +3,125 @@
 
 angular.module('myApp.directives', [])
 
-    .directive('testBox', [function () {
+    .directive('ncAlert', ['NcAlert', function (NcAlert) {
         return {
-            restrict: 'EA',
-            scope: false,
-            templateUrl: 'components/templates/testbox.html',
-            link: function (scope, element, attrs, ctrl, transclude) {
-                //this fucntion gets calld when template is loaded
-
-            }
-        };
-    }])
-
-    .directive('alertBox', [function () {
-        return {
-            restrict: 'EA',
+            restrict: 'A',
             transclude: true,
             templateUrl: function (elem, attr) {
                 //Specify alertbox-success, alertbox-failure, alertbox-info etc.
-                return 'components/templates/alertbox.html';
+                return 'components/templates/nc-alert.html';
             },
             scope: {
-                type: "@type",
                 closable: '&?',
-                show: '&?showOn'
+                alert: '=?ncAlert',
+                type: '@?type'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
-                //this fucntion gets calld when template is loaded
-                if (!scope.show) {
-                    scope.show = function(){
-                        return false;   
-                    };
+                
+                if(!scope.alert){
+                    //Prototype mode
+                    scope.alert = new NcAlert();
+                    var transcludes = [];
+                    for(var i = 0; i < transclude().length; i++){
+                        transcludes.push(transclude()[i].outerHTML);
+                    }
+                    scope.alert[scope.type || 'info'](transcludes.join(""));
                 }
+
+                scope.$watch('alert', function(newObj) {
+					scope.alert.element = element;
+				});
+                
                 if (!scope.closable) {
                     scope.closable = function(){
                         return true;   
                     };
                 }
-
-                //TODO: Bug
-                scope.close = function () {
-                    scope.show = function(){
-                        return false;
-                    };
-                };
             }
         };
     }])
+    .factory('NcAlert', ['$document', '$timeout', 'smoothScroll', function($document, $timeout, smoothScroll) {
+		return function() {
+			var vm = this;
+			this.type = 'danger';
+			this.show = false;
+			this.close = function() {
+				this.show = false;
+			};
+			//show bar
+			this.open = function(success, msg, color) {
+				color = _.isNil(color) ? 'danger' : color;
+				this.type = (success) ? 'success' : color;
 
+				if(msg) {
+					this.message = msg;
+				} else {
+					this.message = success ? 'Success' : 'Failure';
+				}
+
+				this.show = true;
+			};
+			//show red bar
+			this.danger = function(msg, toElm, scroll) {
+                console.log(msg);
+				this.open(false, msg);
+				
+				$timeout(function() {
+					var section = vm.element || $document;
+					//should scroll to bar
+					if(!_.isNil(scroll)) {
+						if(scroll)
+							smoothScroll(toElm ? vm.element[0] : $document[0].body, {
+								container: toElm ? '.modal': null
+							});
+						
+					} else {
+						smoothScroll(toElm ? vm.element[0] : $document[0].body, {
+							container: toElm ? '.modal': null
+						});
+					}
+				}, 10);
+			};
+			//show green bar
+			this.success = function(obj, toElm) {
+				this.open(true, obj);
+				
+				$timeout(function() {
+					var section = vm.element || $document;
+					smoothScroll(toElm ? vm.element[0] : $document[0].body, {
+						container: toElm ? '.modal': null
+					});
+				}, 10);
+			};
+            
+			this.info = function(obj, toElm) {
+				this.open(false, obj, 'info');
+				
+				$timeout(function() {
+					var section = vm.element || $document;
+					smoothScroll(toElm ? vm.element[0] : $document[0].body, {
+						container: toElm ? '.modal': null
+					});
+				}, 10);
+			};
+
+
+			this.warning = function(obj, toElm) {
+				this.open(false, obj, 'warning');
+				
+				$timeout(function() {
+					var section = vm.element || $document;
+					smoothScroll(toElm ? vm.element[0] : $document[0].body, {
+						container: toElm ? '.modal': null
+					});
+				}, 10);
+			};
+
+
+
+			this.message = '';
+		};
+	}])
     .directive('cardCampaignHeader', [function () {
         return {
             restrict: 'EA',

@@ -14,6 +14,8 @@ angular.module('myApp', [
   'ui.bootstrap',
   'ngFileUpload',
   'ngTagsInput',
+  'smoothScroll',
+  'ngSanitize',
   //Top level
   'myApp.directives',
   'myApp.routes',
@@ -95,9 +97,4 @@ angular.module('myApp', [
     $rootScope.state = null;
   });
 
-}])
-.factory('$exceptionHandler', ['$log', function($log) {
-    return function myExceptionHandler(exception, cause) {
-       $log.error('top level handler', exception, cause);
-    };
 }]);

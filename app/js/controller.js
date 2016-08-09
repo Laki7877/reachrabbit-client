@@ -42,9 +42,12 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 .controller('CampaignExampleController', ['$scope', '$routeParams', 'ExampleCampaigns', function($scope, $routeParams, ExampleCampaigns){
     $scope.exampleCampaign = ExampleCampaigns[$routeParams.exampleId];
 }])
-.controller('CampaignDetailController', ['$scope','$routeParams', 'CampaignService', 'DataService', '$filter', 'CtrlHelper', 'UserProfile',
-function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper, UserProfile) {
+.controller('CampaignDetailController', ['$scope','$routeParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', 'NcAlert',
+function($scope, $routeParams, CampaignService, DataService, $filter, UserProfile, NcAlert) {
     //initial form data
+
+    $scope.alert = new NcAlert();
+
     $scope.resources = [];
     $scope.formData = {
         categoryId: {
@@ -53,16 +56,7 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
         },
         resources : []
     };
-    $scope.states = {
-        IDLE_EDIT : 0,
-        IDLE_NEW_CAMPAIGN: 6,
-        SAVE_DRAFT_OK:1,
-        SAVE_DRAFT_FAIL_VAL: 2,
-        SAVE_PUB_OK: 3,
-        SAVE_PUB_FAIL_VAL: 4,
-        ERROR: 5
-    };
-    
+
     $scope.mediaBooleanDict = {};
     $scope.mediaObjectDict = {};
     $scope.categories  = [];
@@ -145,12 +139,10 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
             $scope.formData.resources = [];
             $scope.formData.resources.push(response.data.resources.shift());
             $scope.resources =  angular.copy(response.data.resources); //the rest
-
-            //Update state
-            CtrlHelper.setState($scope.states.IDLE_EDIT);
+            $scope.createMode = false;
         });
     }else{
-        CtrlHelper.setState($scope.states.IDLE_NEW_CAMPAIGN);
+        $scope.createMode = true;
     }
     
     $scope.formData.brand = UserProfile.get().brand;
@@ -161,14 +153,13 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
 
         //check for publish case
         if(status == 'Open'){
-            //SAVE_PUB_FAIL_VAL
             if(!$scope.form.$valid){
-                CtrlHelper.setState($scope.states.SAVE_PUB_FAIL_VAL);
+                $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องให้ถูกต้องและครบถ้วน');
                 return;
             }
 
             if($scope.resources.length < 1){
-                CtrlHelper.setState($scope.states.SAVE_PUB_FAIL_VAL);
+                $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องให้ถูกต้องและครบถ้วน');
                 return;
             }
         }
@@ -179,34 +170,30 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
             $scope.formData = echoresponse.data;
 
             if(echoresponse.data.status == "Draft"){
-                CtrlHelper.setState($scope.states.SAVE_DRAFT_OK);
+                $scope.alert.success('บันทึกข้อมูลเรียบร้อยแล้ว!');
             }else if(echoresponse.data.status == 'Open'){
-                CtrlHelper.setState($scope.states.SAVE_PUB_OK);
+                $scope.alert.success('ลงประกาศสำเร็จ! แต่ใจเย็นสิ ยังไม่ได้ทำ Flow นี้เฟร้ย!');
             }else{
-                CtrlHelper.setState($scope.states.ERROR);
+                throw new Error("Weird status");
             }
         })
         .catch(function(err){
-            CtrlHelper.setState($scope.states.ERROR);
+            $scope.alert.danger('<strong>Backend Error</strong> Wrong Theory has occurred.');
         });
         
     };
 
 }])
-.controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'CtrlHelper', 'UserProfile', function($scope, $window, AccountService, CtrlHelper, UserProfile) {
+.controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', function($scope, $window, AccountService, NcAlert, UserProfile) {
     $scope.formData = {};
-    $scope.states = { IDLE: 0, SAVE_OK: 1, SAVE_FAIL_VAL : 2, ERROR: 3};
-    $scope.state = $scope.states.IDLE;
-    
-    CtrlHelper.setState($scope.states.IDLE);
-    
+    $scope.alert = new NcAlert();
     AccountService.getProfile()
     .then(function(response){
         $scope.formData = response.data;
         delete $scope.formData.password;
     })
     .catch(function(err){
-       CtrlHelper.setState($scope.states.SAVE_FAIL_VAL);
+       $scope.alert.error('กรุณากรอกข้อมูลให้ถูกต้อง');
     });
 
     $scope.saveProfile = function(form, profile){
@@ -218,21 +205,26 @@ function($scope, $routeParams, CampaignService, DataService, $filter, CtrlHelper
             UserProfile.set(response.data);
 
             $scope.success = true;
-            CtrlHelper.setState($scope.states.SAVE_OK);
+            $scope.alert.success('บันทึกข้อมูลเรียบร้อย!');
         })
         .catch(function(err){
-            CtrlHelper.setState($scope.states.ERROR);
+            $scope.alert.error('<strong>Backend Error</strong> Wrong theory has occurred.');
         });
     };
 }]);
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
 angular.module('myApp.portal.controller', ['myApp.service'])
-.controller('BrandSigninController', ['$scope', '$location', 'AccountService', 'UserProfile', '$window', function($scope, $location, AccountService, UserProfile, $window) {
+.controller('BrandSigninController', ['$scope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function($scope, $location, AccountService, UserProfile, $window, NcAlert) {
     $scope.formData = {};
     $window.localStorage.removeItem('token');
     $scope.messageCode = $location.search().message;
-    
+    $scope.alert = new NcAlert();
+
+    if($scope.messageCode == "401"){
+        $scope.alert.warning("<strong>401</strong> Unauthorized or Session Expired");
+    }
+
     $scope.login = function(username, password){
         $location.search('message', 'nop');
         AccountService.getToken(username, password)
@@ -249,17 +241,20 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             $window.location.href = '/brand.html#/brand-campaign-list';
         })
         .catch(function(err){
-            $scope.error = true;
+            $scope.alert.close();
+            $scope.alert.danger("อีเมล์หรือรหัสผ่านไม่ถูกต้อง");
         });
     };
 }])
-.controller('BrandSignupController', ['$scope', 'BrandAccountService', 'AccountService','UserProfile', '$location', '$window',  'CtrlHelper', 
-function($scope, BrandAccountService, AccountService, UserProfile, $location, $window, CtrlHelper) {
+.controller('BrandSignupController', ['$scope', 'BrandAccountService', 'AccountService','UserProfile', '$location', '$window',  'NcAlert',
+function($scope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert) {
     $scope.formData = {};
-   
+
+    $scope.alert = new NcAlert();
+
     $scope.submit = function(brand){
         if(!$scope.form.$valid){
-             CtrlHelper.setState($scope.states.SAVE_FAIL_VAL);
+             $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน');
              return;
         }
         $window.localStorage.removeItem('token');
@@ -279,17 +274,11 @@ function($scope, BrandAccountService, AccountService, UserProfile, $location, $w
         .catch(function(err){
             //Multiplex between each known backend error code
             if(err.data.message == "Email is duplicate"){
-                CtrlHelper.setState($scope.states.SAVE_FAIL_EMAIL);
+                $scope.alert.warning('อีเมล์นี้มีคนใช้แล้วกรุณาใส่อีเมล์ใหม่');
             }else{
-                CtrlHelper.setState($scope.states.SAVE_FAIL_VAL);
+                $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน');
             }
         });
     };
-    $scope.states = {
-        IDLE: 0,
-        SAVE_FAIL_VAL: 1,
-        SAVE_FAIL_EMAIL: 2,
-        ERROR: 3
-    };
-    $scope.state = $scope.states.IDLE;
+
 }]);

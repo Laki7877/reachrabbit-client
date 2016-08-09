@@ -55,5 +55,21 @@
   .container{
     width: 970px;
   }
+  .navbar {
+    background: @color-grey-lighter;
+    li > a{
+      color: @color-black;
+    }
+    li > a:hover, li > a:focus{
+      background-color: @color-grey-lighter;
+      color: @color-theme-primary;
+    }
+    .dropdown-menu{
+      background-color: @color-grey;
+    }
+    .open > a, .open > a:hover, .open > a:focus{
+      background: @color-grey-lighter;
+    }
+  }
   /* Specific View in Layout Portal */
 }

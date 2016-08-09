@@ -8125,6 +8125,7 @@ fieldset[disabled] .btn-clear.active {
   background: #3e4a5e;
   border: 0px;
 }
+/* Date Picker */
 .uib-daypicker .btn,
 .uib-monthpicker .btn {
   border: none;
@@ -8182,6 +8183,25 @@ fieldset[disabled] .btn-clear.active {
 }
 .layout-influencer .container {
   width: 970px;
+}
+.layout-influencer .navbar {
+  background: #f9f9fb;
+}
+.layout-influencer .navbar li > a {
+  color: #3e4a5e;
+}
+.layout-influencer .navbar li > a:hover,
+.layout-influencer .navbar li > a:focus {
+  background-color: #f9f9fb;
+  color: #ff773e;
+}
+.layout-influencer .navbar .dropdown-menu {
+  background-color: #d8dfe7;
+}
+.layout-influencer .navbar .open > a,
+.layout-influencer .navbar .open > a:hover,
+.layout-influencer .navbar .open > a:focus {
+  background: #f9f9fb;
 }
 tags-input {
   display: block;

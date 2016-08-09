@@ -97,7 +97,6 @@ angular.module('myApp', [
 }])
 .factory('$exceptionHandler', ['$log', function($log) {
     return function myExceptionHandler(exception, cause) {
-       Raven.captureException(exception);
        $log.error('top level handler', exception, cause);
     };
 }]);

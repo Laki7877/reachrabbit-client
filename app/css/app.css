@@ -1133,7 +1133,9 @@ img {
   max-width: 100%;
   height: auto;
 }
-.img-circle {
+.img-circle,
+.radio-card .radio-image,
+.card-portal .profile-picture img {
   border-radius: 50%;
 }
 hr {
@@ -2625,7 +2627,8 @@ input[type="search"] {
   margin-bottom: 15px;
 }
 .radio,
-.checkbox {
+.checkbox,
+.radio-card {
   position: relative;
   display: block;
   margin-top: 10px;
@@ -5674,6 +5677,7 @@ button.list-group-item-danger.active:focus {
 }
 .panel,
 .card,
+.radio-card,
 .card-campaign-list-item,
 .card-brand-profile,
 .card-campaign-header,
@@ -7074,6 +7078,47 @@ a:visited {
   border-right: none;
   color: #8692a8;
 }
+.radio-card {
+  transition: all 0.3s;
+  position: relative;
+  padding: 15px;
+}
+.radio-card label {
+  margin: 0px;
+  cursor: pointer;
+}
+.radio-card input[type="radio"] {
+  position: absolute;
+  top: 25px;
+}
+.radio-card .radio-label {
+  padding-left: 26px;
+  font-size: 16px;
+  color: #16bbac;
+}
+.radio-card .radio-info {
+  font-size: 14px;
+  padding-left: 26px;
+  color: #8692a8;
+  margin: 0px;
+}
+.radio-card .radio-image {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+}
+.radio-card:hover {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.radio-card.disabled {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background: #f9f9fb;
+}
+.radio-card.disabled .radio-label {
+  color: #8692a8;
+}
 /* Image Upload */
 .input-upload-image {
   cursor: pointer;
@@ -7158,6 +7203,7 @@ a:visited {
 }
 /* Card */
 .card,
+.radio-card,
 .card-campaign-list-item,
 .card-brand-profile,
 .card-campaign-header,
@@ -7285,6 +7331,23 @@ a:visited {
   margin-bottom: 20px;
   font-style: italic;
   color: #8692a8;
+}
+.card-portal .profile-picture {
+  text-align: center;
+}
+.card-portal .profile-picture img {
+  width: 127px;
+  height: 127px;
+}
+.card-portal .profile-picture .profile-picture-title {
+  font-size: 16px;
+  color: #16bbac;
+  margin-top: 10px;
+}
+.card-portal .profile-picture .profile-picture-info {
+  font-size: 14px;
+  color: #8692a8;
+  margin-bottom: 20px;
 }
 .card-portal button {
   margin-top: 15px;
@@ -8154,6 +8217,9 @@ fieldset[disabled] .btn-clear.active {
 }
 .layout-portal .view-signup-select-page {
   margin-top: 140px;
+}
+.layout-portal .view-influencer-signup-confirmation {
+  margin-top: 90px;
 }
 /* Layout Brand */
 .layout-brand {

@@ -83,6 +83,50 @@ a:active, a:focus, a:visited{
   border-right: none;
   color: @color-grey-darker;
 }
+.radio-card{
+  &:extend(.radio);
+  &:extend(.card);
+  transition: all 0.3s;
+  position: relative;
+  padding: 15px;
+  label{
+    margin: 0px;
+    cursor: pointer;
+  }
+  input[type="radio"]{
+    position: absolute;
+    top:25px;
+  }
+  .radio-label{
+    padding-left: 26px;
+    font-size: 16px;
+    color: @color-theme-secondary;
+  }
+  .radio-info{
+    font-size: 14px;
+    padding-left: 26px;
+    color: @color-grey-darker;
+    margin: 0px;
+  }
+  .radio-image{
+    &:extend(.img-circle);
+    position: absolute;
+    top:10px;
+    right:10px;
+    width: 50px;
+    height: 50px;
+  }
+  &:hover{
+    box-shadow: @global-shadow-depth-2;
+  }
+  &.disabled{
+    box-shadow: @global-shadow-depth-1;
+    background: @color-grey-lighter;
+    .radio-label{
+      color: @color-grey-darker;
+    }
+  }
+}
 
 /* Image Upload */
 .input-upload-image{
@@ -278,6 +322,24 @@ a:active, a:focus, a:visited{
       margin-bottom: 20px;
       font-style: italic;
       color: @color-grey-darker;
+    }
+  }
+  .profile-picture{
+    text-align: center;
+    img{
+      width: 127px;
+      height: 127px;
+      &:extend(.img-circle);
+    }
+    .profile-picture-title{
+      font-size: 16px;
+      color: @color-theme-secondary;
+      margin-top: 10px;
+    }
+    .profile-picture-info{
+      font-size: 14px;
+      color: @color-grey-darker;
+      margin-bottom: 20px;
     }
   }
   button{

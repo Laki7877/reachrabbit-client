@@ -2995,11 +2995,7 @@ select[multiple].input-lg {
 }
 .btn,
 .btn-primary,
-.btn-secondary,
-.btn-facebook,
-.btn-instagram,
-.btn-youtube,
-.btn-clear {
+.btn-social {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -7380,11 +7376,7 @@ a:visited {
 /* Button */
 .btn,
 .btn-primary,
-.btn-secondary,
-.btn-facebook,
-.btn-instagram,
-.btn-youtube,
-.btn-clear {
+.btn-social {
   padding: 6px;
   border-radius: 2px;
 }
@@ -7584,10 +7576,14 @@ fieldset[disabled] .btn-secondary.active {
   color: #ffffff;
   background-color: #16bbac;
 }
+.btn-social {
+  padding-left: 32px;
+}
 .btn-facebook {
   color: #ffffff;
   background-color: #3b5998;
   border-color: rgba(0, 0, 0, 0.1);
+  background: url("../images/icon-facebook-lg.png") 0 0 no-repeat #3b5998;
 }
 .btn-facebook:focus,
 .btn-facebook.focus {
@@ -7686,6 +7682,7 @@ fieldset[disabled] .btn-facebook.active {
   color: #ffffff;
   background-color: #df3d79;
   border-color: rgba(0, 0, 0, 0.1);
+  background: url("../images/icon-instagram-lg.png") 0 0 no-repeat #df3d79;
 }
 .btn-instagram:focus,
 .btn-instagram.focus {
@@ -7784,6 +7781,7 @@ fieldset[disabled] .btn-instagram.active {
   color: #ffffff;
   background-color: #e62117;
   border-color: rgba(0, 0, 0, 0.1);
+  background: url("../images/icon-youtube-lg.png") 0 0 no-repeat #e62117;
 }
 .btn-youtube:focus,
 .btn-youtube.focus {

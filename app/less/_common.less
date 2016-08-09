@@ -366,25 +366,28 @@ a:active, a:focus, a:visited{
   .button-variant(@color-white, @color-theme-primary, @color-btn-border);
 }
 .btn-secondary {
-  &:extend(.btn);
   .button-variant(@color-theme-secondary, @color-white, @color-grey);
 }
-.btn-facebook {
+.btn-social{
   &:extend(.btn);
+  padding-left: 32px;
+}
+.btn-facebook {
   .button-variant(@color-white, @color-facebook, @color-btn-border);
+  background: url("../images/icon-facebook-lg.png") 0 0 no-repeat @color-facebook;
 }
 .btn-instagram {
-  &:extend(.btn);
   .button-variant(@color-white, @color-instagram, @color-btn-border);
+  background: url("../images/icon-instagram-lg.png") 0 0 no-repeat  @color-instagram;
 }
 .btn-youtube {
-  &:extend(.btn);
   .button-variant(@color-white, @color-youtube, @color-btn-border);
+  background: url("../images/icon-youtube-lg.png") 0 0 no-repeat @color-youtube;
 }
 .btn-clear {
-  &:extend(.btn);
   .button-variant(@color-theme-primary, @color-clear, @color-clear);
 }
+
 .btn-floating-action{
   cursor: pointer;
   display: block;

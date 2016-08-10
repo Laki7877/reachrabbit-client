@@ -1,31 +1,69 @@
 <div class="view-influencer-campaign-list">
   <div class="header-zone">
     <div class="container">
-      <h1>My Campaign</h1>
+      <div class="row">
+        <div class="step">
+          <img src="images/influencer-onboarding-1.png"/>
+          <h3>1. ส่งข้อเสนอ</h3>
+          <img src="images/icon-next-step.png" class="next-step" />
+        </div>
+        <div class="step">
+          <img src="images/influencer-onboarding-2.png" />
+          <h3>2. ได้รับเลือก</h3>
+          <img src="images/icon-next-step.png" class="next-step" />
+        </div>
+        <div class="step">
+          <img src="images/influencer-onboarding-3.png"/>
+          <h3>3. ส่งงาน</h3>
+          <img src="images/icon-next-step.png" class="next-step" />
+        </div>
+        <div class="step">
+          <img src="images/influencer-onboarding-4.png"/>
+          <h3>4. รับเงิน</h3>
+        </div>
+      </div>
     </div>
   </div>
   <div class="body-zone">
     <div class="container">
-      <div class="btn-floating-action" ng-click="$root.goTo('brand-campaign-detail-draft')">
-      </div>
-
-      <alert-box type="alert-info" show-on="true">
-        เราได้สร้าง Campaign แรกให้คุณแล้ว เข้าไปแก้ไขข้อมูลได้เลย
-      </alert-box>
-
-      <div ng-repeat="x in myCampaign.content">
-        <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-draft"></card-campaign-list-item>
-      </div>
-
-      <div class="example-campaign">
-
-        <h2>ตัวอย่าง Campaign</h2>
-        <div ng-repeat="x in exampleCampaign">
-          <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-example/{{$index}}"></card-campaign-list-item>
+      <div class="page-header">
+        <h1>Campaign</h1>
+        <div class="form-group">
+          <select class="form-control">
+            <option>แสดงทั้งหมด</option>
+            <option>แสดงเฉพาะ Facebook</option>
+            <option>แสดงเฉพาะ Instagram</option>
+            <option>แสดงเฉพาะ YouTube</option>
+          </select>
         </div>
-
       </div>
 
+      <div class="thumbnails">
+        <card-thumbnail></card-thumbnail>
+        <card-thumbnail></card-thumbnail>
+        <card-thumbnail></card-thumbnail>
+      </div>
+
+      <nav class="text-center" aria-label="Page navigation">
+        <ul class="pagination">
+          <li>
+            <a href="#" aria-label="Previous">
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">...</a></li>
+          <li><a href="#">20</a></li>
+          <li>
+            <a href="#" aria-label="Next">
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>

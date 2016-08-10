@@ -80,7 +80,7 @@ angular.module('myApp', [
 }])
 //Initialize the app
 .run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
-  
+
   //Configure Raven
   Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();
 
@@ -91,7 +91,7 @@ angular.module('myApp', [
     minDate: new Date(),
     startingDay: 1,
     showWeeks: false
-  }; 
+  };
   $rootScope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $rootScope.format = $rootScope.formats[0];
 
@@ -110,7 +110,7 @@ angular.module('myApp', [
   $rootScope.getPath = function(){
     return $location.path();
   };
-  
+
   //Route change event
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
     console.log('$routeChangeStart', event, next, current);

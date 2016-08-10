@@ -1,4 +1,4 @@
-/* General */
+/*---General---*/
 body{
   font-size: 14px;
   font-family: @font-secondary;
@@ -11,6 +11,18 @@ h1{
 h2{
   font-family: @font-primary;
   font-size: 24px;
+}
+h3{
+  font-family: @font-primary;
+  font-size: 18px;
+  font-weight: normal;
+  margin: 0px;
+}
+h4{
+  font-size: 16px;
+  font-weight: normal;
+  line-height: normal;
+  margin: 0px;
 }
 label{
   font-weight: normal;
@@ -44,16 +56,35 @@ a:active, a:focus, a:visited{
   background-color: rgba(62,74,94,0.80);
   border-radius: 25px;
 }
+.pagination{
+  li > a{
+    color: @color-theme-secondary;
+    border-color: @color-grey;
+  }
+  .active > a, .active > a:hover{
+    background-color: @color-theme-secondary;
+    border-color: @color-theme-secondary;
+  }
+}
+.page-header{
+  border-bottom: 0px;
+  margin: 30px 0px 20px 0px;
+  h1{
+    display: inline;
+  }
+  .form-group{
+    width: 230px;
+    float: right;
+  }
+}
 
-
-
-/* Zone */
+/*---Zone---*/
 .header-zone{
   color: @color-white;
   height: 150px;
   background-image: url("../images/bg-header.png");
   background-position: top center;
-  background-size: auto 150px;
+  background-size: auto;
   background-color: @color-theme-secondary;
   h1{
     margin-top: 30px;
@@ -65,12 +96,27 @@ a:active, a:focus, a:visited{
     margin-top: 25px;
     cursor: pointer;
   }
+  .step{
+    .make-xs-column(3);
+    position: relative;
+    margin-top: 35px;
+    text-align: center;
+    h3{
+      margin-top: 10px;
+    }
+    .next-step{
+      position: absolute;
+      display: block;
+      top:30px;
+      right:-15px;
+    }
+  }
 }
 .body-zone{
   margin-top: -50px;
 }
 
-/* Form & Input */
+/*---Input---*/
 .form-control{
   border-radius: 0px;
   border-color: @color-grey;
@@ -83,8 +129,55 @@ a:active, a:focus, a:visited{
   border-right: none;
   color: @color-grey-darker;
 }
+.radio-card{
+  &:extend(.radio);
+  &:extend(.card);
+  transition: all 0.3s;
+  position: relative;
+  padding: 15px;
+  label{
+    margin: 0px;
+    cursor: pointer;
+  }
+  input[type="radio"]{
+    position: absolute;
+    top:25px;
+  }
+  .radio-label{
+    padding-left: 26px;
+    &:extend(h4);
+    color: @color-theme-secondary;
+  }
+  .radio-info{
+    font-size: 14px;
+    padding-left: 26px;
+    color: @color-grey-darker;
+    margin: 0px;
+  }
+  .radio-image{
+    &:extend(.img-circle);
+    position: absolute;
+    top:10px;
+    right:10px;
+    width: 50px;
+    height: 50px;
+  }
+  &:hover{
+    box-shadow: @global-shadow-depth-2;
+  }
+  &.disabled{
+    box-shadow: @global-shadow-depth-1;
+    background: @color-grey-lighter;
+    .radio-label{
+      color: @color-grey-darker;
+    }
+    .radio-image{
+      opacity: 0.5;
+    }
+  }
+}
 
-/* Image Upload */
+/*---Image Upload---*/
 .input-upload-image{
   cursor: pointer;
   overflow: hidden;
@@ -137,7 +230,7 @@ a:active, a:focus, a:visited{
   cursor: pointer;
   color: @color-theme-secondary;
   i{
-    font-size: 16px;
+    &:extend(h4);
     margin-right: 5px;
   }
 }
@@ -170,7 +263,7 @@ a:active, a:focus, a:visited{
   }
 }
 
-/* Card */
+/*---Card---*/
 .card{
   &:extend(.panel);
   border: 0px;
@@ -208,6 +301,11 @@ a:active, a:focus, a:visited{
     margin-top: 10px;
   }
 }
+.card-footer{
+  &:extend(.panel-footer);
+  border-color: @color-grey;
+  background: @color-white;
+}
 .card-image{
   .make-xs-column(3);
   overflow: hidden;
@@ -215,8 +313,7 @@ a:active, a:focus, a:visited{
 .card-title{
   .make-xs-column(12);
   .card-title-content{
-    font-family: @font-primary;
-    font-size: 18px;
+    &:extend(h3);
     padding-bottom: 5px;
     color: @color-theme-secondary;
     border-bottom: 1px solid @color-grey;
@@ -232,7 +329,7 @@ a:active, a:focus, a:visited{
     color: @color-grey-darker;
   }
   .card-info-content{
-    font-size: 16px;
+    &:extend(h4);
     color: @color-theme-secondary;
   }
 }
@@ -259,6 +356,8 @@ a:active, a:focus, a:visited{
   .make-xs-column(2);
 }
 
+/*---Specific Card---*/
+
 .card-portal{
   background-color:@color-grey-lighter;
   margin: auto;
@@ -272,12 +371,37 @@ a:active, a:focus, a:visited{
     img{
       &:extend(.img-responsive);
     }
-    h1{
-      font-size: 18px;
+    h3{
       margin-top: 10px;
       margin-bottom: 20px;
       font-style: italic;
       color: @color-grey-darker;
+    }
+  }
+  .profile-picture{
+    position: relative;
+    margin: auto;
+    text-align: center;
+    width: 127px;
+    .profile-picture-image{
+      &:extend(.img-circle);
+      &:extend(.img-responsive);
+    }
+    .profile-social-media-icon{
+      position: absolute;
+      right: 0px;
+      top: 95px;
+    }
+    .profile-picture-title{
+      &:extend(h4);
+      color: @color-theme-secondary;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+    .profile-picture-info{
+      font-size: 14px;
+      color: @color-grey-darker;
+      margin-bottom: 20px;
     }
   }
   button{
@@ -355,8 +479,42 @@ a:active, a:focus, a:visited{
   }
 }
 
+.card-thumbnail{
+  &:extend(.card);
+  .card-thumbnail-image{
+    height: 194px;
+    overflow: hidden;
+    img{
+      &:extend(.img-responsive);
+    }
+  }
+  .card-body{
+    &:extend(h4);
+  }
+  .card-price{
+    margin-top: 5px;
+    color: @color-theme-secondary;
+  }
+  .card-footer{
+    color: @color-grey-darker;
+  }
+  .card-social-media{
+    float: right;
+    span:last-child{
+      margin-right: 0px;
+    }
+  }
+}
 
-/* Button */
+/*---Thumbnail---*/
+.thumbnails{
+  &:extend(.row);
+}
+.thumbnail-column{
+  .make-xs-column(4);
+}
+
+/*---Button---*/
 .btn{
   padding: 6px;
   border-radius: 2px;
@@ -375,15 +533,15 @@ a:active, a:focus, a:visited{
 }
 .btn-facebook {
   .button-variant(@color-white, @color-facebook, @color-btn-border);
-  background: url("../images/icon-facebook-lg.png") 0 0 no-repeat @color-facebook;
+  background: url("../images/icon-facebook-lg-clear.png") 0 0 no-repeat @color-facebook;
 }
 .btn-instagram {
   .button-variant(@color-white, @color-instagram, @color-btn-border);
-  background: url("../images/icon-instagram-lg.png") 0 0 no-repeat  @color-instagram;
+  background: url("../images/icon-instagram-lg-clear.png") 0 0 no-repeat  @color-instagram;
 }
 .btn-youtube {
   .button-variant(@color-white, @color-youtube, @color-btn-border);
-  background: url("../images/icon-youtube-lg.png") 0 0 no-repeat @color-youtube;
+  background: url("../images/icon-youtube-lg-clear.png") 0 0 no-repeat @color-youtube;
 }
 .btn-clear {
   .button-variant(@color-theme-primary, @color-clear, @color-clear);
@@ -415,7 +573,7 @@ a:active, a:focus, a:visited{
   width: 100%;
 }
 
-/* Alert Box */
+/*---Alert Box---*/
 .alert{
   height: 60px;
   border-radius: 0px;
@@ -465,11 +623,11 @@ a:active, a:focus, a:visited{
   }
 }
 
-/* Media Icon */
+/*---Media Icon---*/
 .icon-media{
   height: 20px;
   width: 20px;
-  margin-right: 5px;
+  margin-right: 1px;
   margin-bottom: -4px;
   display: inline-block;
 }
@@ -486,7 +644,7 @@ a:active, a:focus, a:visited{
   background: url("../images/icon-youtube.png") 0 0 no-repeat;
 }
 
-/* Navigation Bar */
+/*---Navigation Bar---*/
 .navbar {
   background: @color-black;
   border-radius: 0px;
@@ -499,11 +657,12 @@ a:active, a:focus, a:visited{
     }
   }
   li > a{
+    &:extend(h4);
+    line-height: 20px;
     padding: 15px 0px;
     margin: 0px 20px;
     color: @color-white;
     font-family: @font-primary;
-    font-size: 16px;
   }
   li > a:hover, li > a:focus{
     background-color: @color-black;
@@ -515,16 +674,19 @@ a:active, a:focus, a:visited{
   }
   .navbar-right{
     li > a{
-      padding:10px 0px;
       margin: 0px;
       .caret{
         margin-left: 5px;
       }
     }
     .profile-picture{
+      &:extend(.img-circle);
+      float: left;
+      display: inline-block;
+      margin-top: 10px;
+      margin-right: 10px;
       width: 30px;
       height: 30px;
-      margin-right: 10px;
     }
   }
   .dropdown-menu{
@@ -541,7 +703,7 @@ a:active, a:focus, a:visited{
   }
 }
 
-/* Date Picker */
+/*---Date Picker---*/
 .uib-daypicker .btn, .uib-monthpicker .btn{
   border:none;
   padding:8px;

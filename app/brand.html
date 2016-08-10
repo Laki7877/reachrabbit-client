@@ -33,9 +33,9 @@
             <li ng-class="{'active': $root.getPath() == '/influencer-list' }"><a ng-click="$root.goTo('#')">Influencers</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="img-circle profile-picture" />
                 {{ $root.getProfile().brand.brandName }}<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
@@ -60,7 +60,7 @@
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/ngSmoothScroll/dist/angular-smooth-scroll.min.js"></script>
-  <script src="bower_components/angular-i18n/angular-locale_th-th.js""></script>
+  <script src="bower_components/angular-i18n/angular-locale_th-th.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>

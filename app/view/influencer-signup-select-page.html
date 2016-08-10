@@ -1,23 +1,46 @@
 <div class="view-signup-select-page">
   <div class="container">
-    <alert-box type="alert-danger" show-on="error || messageCode == 'unauthorized'">
-      yo
-    </alert-box>
+    <div nc-alert type="danger">Yo</div>
 
     <form no-validate>
     <div class="card-portal">
       <div class="card-body">
         <div class="logo">
-          <h1>เลือกบัญชีที่จะใช้สมัคร</h1>
+          <h3>เลือกบัญชีที่จะใช้สมัคร</h3>
         </div>
-        <div class="radio">
-          <label><input type="radio" name="optradio">Page A</label>
+        <div class="radio-card">
+          <label>
+            <input type="radio" name="group" checked>
+            <div class="radio-label">
+              Page A
+            </div>
+            <div class="radio-info">
+              มีผู้ติดตาม 604 คน
+            </div>
+            <img class="radio-image" src="images/example-campaign/profile-pic-jon.jpg" />
+          </label>
         </div>
-        <div class="radio">
-          <label><input type="radio" name="optradio">Page B</label>
+        <div class="radio-card">
+          <label>
+            <input type="radio" name="group">
+            <div class="radio-label">
+              Page B
+            </div>
+            <div class="radio-info">
+              มีผู้ติดตาม 504 คน
+            </div>
+            <img class="radio-image" src="images/example-campaign/profile-pic-jon.jpg" />
+          </label>
         </div>
-        <div class="radio disabled">
-          <label><input type="radio" name="optradio" disabled>Page C</label>
+        <div class="radio-card disabled">
+          <input type="radio" name="group" disabled>
+          <div class="radio-label">
+            Page C
+          </div>
+          <div class="radio-info">
+            มีผู้ติดตาม 4 คน
+          </div>
+          <img class="radio-image" src="images/example-campaign/profile-pic-jon.jpg" />
         </div>
         <button class="btn-primary" ng-click="$root.goTo('influencer-signup-confirmation')">เลือกบัญชี</button>
         <div class="info-text">

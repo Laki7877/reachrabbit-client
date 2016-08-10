@@ -21,6 +21,7 @@ h3{
 h4{
   font-size: 16px;
   font-weight: normal;
+  line-height: normal;
   margin: 0px;
 }
 label{
@@ -281,6 +282,11 @@ a:active, a:focus, a:visited{
     margin-top: 10px;
   }
 }
+.card-footer{
+  &:extend(.panel-footer);
+  border-color: @color-grey;
+  background: @color-white;
+}
 .card-image{
   .make-xs-column(3);
   overflow: hidden;
@@ -330,6 +336,8 @@ a:active, a:focus, a:visited{
 .card-button{
   .make-xs-column(2);
 }
+
+/*---Specific Card---*/
 
 .card-portal{
   background-color:@color-grey-lighter;
@@ -452,6 +460,40 @@ a:active, a:focus, a:visited{
   }
 }
 
+.card-thumbnail{
+  &:extend(.card);
+  .card-thumbnail-image{
+    height: 194px;
+    overflow: hidden;
+    img{
+      &:extend(.img-responsive);
+    }
+  }
+  .card-body{
+    &:extend(h4);
+  }
+  .card-price{
+    margin-top: 5px;
+    color: @color-theme-secondary;
+  }
+  .card-footer{
+    color: @color-grey-darker;
+  }
+  .card-social-media{
+    float: right;
+    span:last-child{
+      margin-right: 0px;
+    }
+  }
+}
+
+/*---Thumbnail---*/
+.thumbnails{
+  &:extend(.row);
+}
+.thumbnail-column{
+  .make-xs-column(4);
+}
 
 /*---Button---*/
 .btn{
@@ -566,7 +608,7 @@ a:active, a:focus, a:visited{
 .icon-media{
   height: 20px;
   width: 20px;
-  margin-right: 5px;
+  margin-right: 1px;
   margin-bottom: -4px;
   display: inline-block;
 }

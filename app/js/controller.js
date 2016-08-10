@@ -13,9 +13,9 @@
 /*
   _____  __  __  ____  _____ __   __
  | ____||  \/  ||  _ \|_   _|\ \ / /
- |  _|  | |\/| || |_) | | |   \ V / 
- | |___ | |  | ||  __/  | |    | |  
- |_____||_|  |_||_|     |_|    |_|  
+ |  _|  | |\/| || |_) | | |   \ V /
+ | |___ | |  | ||  __/  | |    | |
+ |_____||_|  |_||_|     |_|    |_|  This is the result of our D-Team having too much time.
                                     */
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
@@ -30,12 +30,12 @@ angular.module('myApp.controller', ['myApp.service'])
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
-d8888b. d8888b.  .d8b.  d8b   db d8888b. 
-88  `8D 88  `8D d8' `8b 888o  88 88  `8D 
-88oooY' 88oobY' 88ooo88 88V8o 88 88   88 
-88~~~b. 88`8b   88~~~88 88 V8o88 88   88 
-88   8D 88 `88. 88   88 88  V888 88  .8D 
-Y8888P' 88   YD YP   YP VP   V8P Y8888D' 
+d8888b. d8888b.  .d8b.  d8b   db d8888b.
+88  `8D 88  `8D d8' `8b 888o  88 88  `8D
+88oooY' 88oobY' 88ooo88 88V8o 88 88   88
+88~~~b. 88`8b   88~~~88 88 V8o88 88   88
+88   8D 88 `88. 88   88 88  V888 88  .8D
+Y8888P' 88   YD YP   YP VP   V8P Y8888D'
 */
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
@@ -50,7 +50,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         console.log("Test World");
     };
     $scope.myCampaign = [];
-    
+
     CampaignService.getAll().then(function(response){
         $scope.myCampaign = response.data;
     });
@@ -106,7 +106,7 @@ function($scope, $routeParams, CampaignService, DataService, $filter, UserProfil
     //Fetch initial datasets
     DataService.getMedium()
     .then(function(response){
-        $scope.medium = response.data; 
+        $scope.medium = response.data;
         $scope.medium.forEach(function(item){
             $scope.mediaObjectDict[item.mediaId] = item;
         });
@@ -128,7 +128,7 @@ function($scope, $routeParams, CampaignService, DataService, $filter, UserProfil
                 $scope.formData.media.push($scope.mediaObjectDict[key]);
             }
         });
-        
+
     }, true);
 
     $scope.$watch('budget.id', function(){
@@ -163,7 +163,7 @@ function($scope, $routeParams, CampaignService, DataService, $filter, UserProfil
     }else{
         $scope.createMode = true;
     }
-    
+
     $scope.formData.brand = UserProfile.get().brand;
 
     $scope.save = function(formData, mediaBooleanDict, mediaObjectDict, status){
@@ -199,7 +199,7 @@ function($scope, $routeParams, CampaignService, DataService, $filter, UserProfil
         .catch(function(err){
             $scope.alert.danger('<strong>Backend Error</strong> Wrong Theory has occurred.');
         });
-        
+
     };
 
 }])
@@ -232,16 +232,17 @@ function($scope, $routeParams, CampaignService, DataService, $filter, UserProfil
     };
 }]);
 
+
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
-8888888b.   .d88888b.  8888888b. 88888888888     d8888 888      
-888   Y88b d88P" "Y88b 888   Y88b    888        d88888 888      
-888    888 888     888 888    888    888       d88P888 888      
-888   d88P 888     888 888   d88P    888      d88P 888 888      
-8888888P"  888     888 8888888P"     888     d88P  888 888      
-888        888     888 888 T88b      888    d88P   888 888      
-888        Y88b. .d88P 888  T88b     888   d8888888888 888      
-888         "Y88888P"  888   T88b    888  d88P     888 88888888 
+8888888b.   .d88888b.  8888888b. 88888888888     d8888 888
+888   Y88b d88P" "Y88b 888   Y88b    888        d88888 888
+888    888 888     888 888    888    888       d88P888 888
+888   d88P 888     888 888   d88P    888      d88P 888 888
+8888888P"  888     888 8888888P"     888     d88P  888 888
+888        888     888 888 T88b      888    d88P   888 888
+888        Y88b. .d88P 888  T88b     888   d8888888888 888
+888         "Y88888P"  888   T88b    888  d88P     888 88888888
 */
 /////////////// /////////////// /////////////// /////////////// ///////////////
 

@@ -24,7 +24,7 @@ angular.module('myApp.directives', [])
                 type: '@?type'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
-                
+
                 if(!scope.alert){
                     //Prototype mode
                     scope.alert = new NcAlert();
@@ -38,10 +38,10 @@ angular.module('myApp.directives', [])
                 scope.$watch('alert', function(newObj) {
 					scope.alert.element = element;
 				});
-                
+
                 if (!scope.closable) {
                     scope.closable = function(){
-                        return true;   
+                        return true;
                     };
                 }
             }
@@ -72,7 +72,7 @@ angular.module('myApp.directives', [])
 			this.danger = function(msg, toElm, scroll) {
                 console.log(msg);
 				this.open(false, msg);
-				
+
 				$timeout(function() {
 					var section = vm.element || $document;
 					//should scroll to bar
@@ -81,7 +81,7 @@ angular.module('myApp.directives', [])
 							smoothScroll(toElm ? vm.element[0] : $document[0].body, {
 								container: toElm ? '.modal': null
 							});
-						
+
 					} else {
 						smoothScroll(toElm ? vm.element[0] : $document[0].body, {
 							container: toElm ? '.modal': null
@@ -92,7 +92,7 @@ angular.module('myApp.directives', [])
 			//show green bar
 			this.success = function(obj, toElm) {
 				this.open(true, obj);
-				
+
 				$timeout(function() {
 					var section = vm.element || $document;
 					smoothScroll(toElm ? vm.element[0] : $document[0].body, {
@@ -100,10 +100,10 @@ angular.module('myApp.directives', [])
 					});
 				}, 10);
 			};
-            
+
 			this.info = function(obj, toElm) {
 				this.open(false, obj, 'info');
-				
+
 				$timeout(function() {
 					var section = vm.element || $document;
 					smoothScroll(toElm ? vm.element[0] : $document[0].body, {
@@ -115,7 +115,7 @@ angular.module('myApp.directives', [])
 
 			this.warning = function(obj, toElm) {
 				this.open(false, obj, 'warning');
-				
+
 				$timeout(function() {
 					var section = vm.element || $document;
 					smoothScroll(toElm ? vm.element[0] : $document[0].body, {
@@ -153,6 +153,19 @@ angular.module('myApp.directives', [])
             }
         };
     }])
+    .directive('cardThumbnail', [function () {
+        return {
+            restrict: 'EA',
+            scope: {
+                campaign: '=',
+                linkTo: '@'
+            },
+            templateUrl: 'components/templates/card-thumbnail.html',
+            link: function (scope, element, attrs, ctrl, transclude) {
+
+            }
+        };
+    }])
     .directive('uploaderThumb', ['$uploader', function ($uploader) {
         return {
             restrict: 'AE',
@@ -184,7 +197,7 @@ angular.module('myApp.directives', [])
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                         scope.progressPercentage = progressPercentage;
                     };
-                    
+
                     $uploader.upload('/resources', {file: file}, evtHandler)
                     .then(function (data) {
                             scope.loadingImage = false;
@@ -228,7 +241,7 @@ angular.module('myApp.directives', [])
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                         scope.progressPercentage = progressPercentage;
                     };
-                    
+
                     $uploader.upload('/resources', {file: file}, evtHandler)
                     .then(function (data) {
                             scope.loadingImage = false;

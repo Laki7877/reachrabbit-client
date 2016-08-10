@@ -1,4 +1,4 @@
-/* General */
+/*---General---*/
 body{
   font-size: 14px;
   font-family: @font-secondary;
@@ -47,7 +47,7 @@ a:active, a:focus, a:visited{
 
 
 
-/* Zone */
+/*---Zone---*/
 .header-zone{
   color: @color-white;
   height: 150px;
@@ -70,7 +70,7 @@ a:active, a:focus, a:visited{
   margin-top: -50px;
 }
 
-/* Form & Input */
+/*---Input---*/
 .form-control{
   border-radius: 0px;
   border-color: @color-grey;
@@ -125,10 +125,13 @@ a:active, a:focus, a:visited{
     .radio-label{
       color: @color-grey-darker;
     }
+    .radio-image{
+      opacity: 0.5;
+    }
   }
 }
 
-/* Image Upload */
+/*---Image Upload---*/
 .input-upload-image{
   cursor: pointer;
   overflow: hidden;
@@ -214,7 +217,7 @@ a:active, a:focus, a:visited{
   }
 }
 
-/* Card */
+/*---Card---*/
 .card{
   &:extend(.panel);
   border: 0px;
@@ -325,11 +328,18 @@ a:active, a:focus, a:visited{
     }
   }
   .profile-picture{
+    position: relative;
+    margin: auto;
     text-align: center;
-    img{
-      width: 127px;
-      height: 127px;
+    width: 127px;
+    .profile-picture-image{
       &:extend(.img-circle);
+      &:extend(.img-responsive);
+    }
+    .profile-social-media-icon{
+      position: absolute;
+      right: 0px;
+      top: 95px;
     }
     .profile-picture-title{
       font-size: 16px;
@@ -418,7 +428,7 @@ a:active, a:focus, a:visited{
 }
 
 
-/* Button */
+/*---Button---*/
 .btn{
   padding: 6px;
   border-radius: 2px;
@@ -437,15 +447,15 @@ a:active, a:focus, a:visited{
 }
 .btn-facebook {
   .button-variant(@color-white, @color-facebook, @color-btn-border);
-  background: url("../images/icon-facebook-lg.png") 0 0 no-repeat @color-facebook;
+  background: url("../images/icon-facebook-lg-clear.png") 0 0 no-repeat @color-facebook;
 }
 .btn-instagram {
   .button-variant(@color-white, @color-instagram, @color-btn-border);
-  background: url("../images/icon-instagram-lg.png") 0 0 no-repeat  @color-instagram;
+  background: url("../images/icon-instagram-lg-clear.png") 0 0 no-repeat  @color-instagram;
 }
 .btn-youtube {
   .button-variant(@color-white, @color-youtube, @color-btn-border);
-  background: url("../images/icon-youtube-lg.png") 0 0 no-repeat @color-youtube;
+  background: url("../images/icon-youtube-lg-clear.png") 0 0 no-repeat @color-youtube;
 }
 .btn-clear {
   .button-variant(@color-theme-primary, @color-clear, @color-clear);
@@ -477,7 +487,7 @@ a:active, a:focus, a:visited{
   width: 100%;
 }
 
-/* Alert Box */
+/*---Alert Box---*/
 .alert{
   height: 60px;
   border-radius: 0px;
@@ -527,7 +537,7 @@ a:active, a:focus, a:visited{
   }
 }
 
-/* Media Icon */
+/*---Media Icon---*/
 .icon-media{
   height: 20px;
   width: 20px;
@@ -548,7 +558,7 @@ a:active, a:focus, a:visited{
   background: url("../images/icon-youtube.png") 0 0 no-repeat;
 }
 
-/* Navigation Bar */
+/*---Navigation Bar---*/
 .navbar {
   background: @color-black;
   border-radius: 0px;
@@ -603,7 +613,7 @@ a:active, a:focus, a:visited{
   }
 }
 
-/* Date Picker */
+/*---Date Picker---*/
 .uib-daypicker .btn, .uib-monthpicker .btn{
   border:none;
   padding:8px;

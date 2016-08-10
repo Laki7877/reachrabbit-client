@@ -7,6 +7,9 @@
       <div class="card-title-content">
         <a ng-click="$root.goTo(linkTo+'/'+campaign.campaignId)">{{campaign.title}}</a>
         <span ng-repeat="media in campaign.media" class="icon-{{ media.mediaId }}"></span>
+        <div class="card-status">
+          สถาณะ: ฉบับร่าง / เปิดรับข้อเสนอ / ปิดรับข้อเสนอ
+        </div>
       </div>
     </div>
     <div class="card-info card-info-1">

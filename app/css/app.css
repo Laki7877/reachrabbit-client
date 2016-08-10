@@ -1186,6 +1186,7 @@ h6,
 .radio-card .radio-label,
 .input-upload-image-sm i,
 .card-title .card-title-content,
+.card-status,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
@@ -1255,6 +1256,7 @@ h6,
 .h6,
 .radio-card .radio-label,
 .input-upload-image-sm i,
+.card-status,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
@@ -1300,7 +1302,8 @@ h4,
   font-size: 18px;
 }
 h5,
-.h5 {
+.h5,
+.card-status {
   font-size: 14px;
 }
 h6,
@@ -7062,6 +7065,14 @@ h4,
   line-height: normal;
   margin: 0px;
 }
+h5,
+.card-status {
+  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  line-height: normal;
+  margin: 0px;
+}
 label {
   font-weight: normal;
 }
@@ -7376,6 +7387,10 @@ a:visited {
 }
 .card-title .card-title-content a {
   color: #16bbac;
+}
+.card-status {
+  float: right;
+  color: #8692a8;
 }
 .card-info,
 .card-info-1,
@@ -8243,7 +8258,7 @@ fieldset[disabled] .btn-clear.active {
 .icon-youtube {
   height: 20px;
   width: 20px;
-  margin-right: 1px;
+  margin-right: 5px;
   margin-bottom: -4px;
   display: inline-block;
 }

@@ -1,7 +1,9 @@
 <div class="view-brand-campaign-list">
   <div class="header-zone">
     <div class="container">
-      <h1>My Campaign</h1>
+      <div class="page-header">
+        <h1>My Campaign</h1>
+      </div>
     </div>
   </div>
   <div class="body-zone">
@@ -18,12 +20,10 @@
       </div>
 
       <div class="example-campaign">
-
         <h2>ตัวอย่าง Campaign</h2>
         <div ng-repeat="x in exampleCampaign">
           <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-example/{{$index}}"></card-campaign-list-item>
         </div>
-
       </div>
 
     </div>

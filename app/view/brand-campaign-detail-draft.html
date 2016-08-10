@@ -2,19 +2,21 @@
 <div class="view-brand-detail-draft">
   <div class="header-zone">
     <div class="container">
-      <div class="back-btn-for-header"  ng-click="$root.goTo('brand-campaign-list')">
-        <i class="fa fa-arrow-left"></i> กลับไป Campaign List
+      <div class="page-header">
+        <div class="back-btn-for-header"  ng-click="$root.goTo('brand-campaign-list')">
+          <i class="fa fa-arrow-left"></i> กลับไป Campaign List
+        </div>
+        <h2 id="campaign-title">{{ formData.title }}</h2>
       </div>
-      <h2 id="campaign-title">{{ formData.title }}</h2>
     </div>
   </div>
   <div class="body-zone">
     <div class="container">
-        
+
       <div nc-alert type="info" closable="false" ng-if="formData.status != 'Open'">
         Influencer จะยังไม่เห็น Campaign นี้จนกว่าคุณจะลงประกาศ
       </div>
-      
+
       <div nc-alert="alert"></div>
 
       <card-campaign-header campaign="formData">

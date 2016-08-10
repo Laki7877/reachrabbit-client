@@ -1139,7 +1139,8 @@ img {
 }
 .img-circle,
 .radio-card .radio-image,
-.card-portal .profile-picture .profile-picture-image {
+.card-portal .profile-picture .profile-picture-image,
+.navbar .navbar-right .profile-picture {
   border-radius: 50%;
 }
 hr {
@@ -8269,6 +8270,7 @@ fieldset[disabled] .btn-clear.active {
   height: 20px;
 }
 .navbar li > a {
+  line-height: 20px;
   padding: 15px 0px;
   margin: 0px 20px;
   color: #ffffff;
@@ -8284,16 +8286,18 @@ fieldset[disabled] .btn-clear.active {
   border-bottom: #ff773e 3px solid;
 }
 .navbar .navbar-right li > a {
-  padding: 10px 0px;
   margin: 0px;
 }
 .navbar .navbar-right li > a .caret {
   margin-left: 5px;
 }
 .navbar .navbar-right .profile-picture {
+  float: left;
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 10px;
   width: 30px;
   height: 30px;
-  margin-right: 10px;
 }
 .navbar .dropdown-menu {
   background-color: #8692a8;

@@ -33,10 +33,9 @@
             <li><a ng-click="$root.goTo('#')">Inbox</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="img-circle profile-picture" />
-                <!-- {{ $root.getProfile().brand.brandName }}<span class="caret"></span> -->
                 Replace Me<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
@@ -78,6 +77,6 @@
   <script src="js/service.js"></script>
   <script src="js/app.js"></script>
   <script src="https://cdn.ravenjs.com/3.1.1/raven.min.js"></script>
-  
+
 </body>
 </html>

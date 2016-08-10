@@ -658,6 +658,7 @@ a:active, a:focus, a:visited{
   }
   li > a{
     &:extend(h4);
+    line-height: 20px;
     padding: 15px 0px;
     margin: 0px 20px;
     color: @color-white;
@@ -673,16 +674,19 @@ a:active, a:focus, a:visited{
   }
   .navbar-right{
     li > a{
-      padding:10px 0px;
       margin: 0px;
       .caret{
         margin-left: 5px;
       }
     }
     .profile-picture{
+      &:extend(.img-circle);
+      float: left;
+      display: inline-block;
+      margin-top: 10px;
+      margin-right: 10px;
       width: 30px;
       height: 30px;
-      margin-right: 10px;
     }
   }
   .dropdown-menu{

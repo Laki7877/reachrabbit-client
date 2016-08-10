@@ -12,6 +12,17 @@ h2{
   font-family: @font-primary;
   font-size: 24px;
 }
+h3{
+  font-family: @font-primary;
+  font-size: 18px;
+  font-weight: normal;
+  margin: 0px;
+}
+h4{
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0px;
+}
 label{
   font-weight: normal;
 }
@@ -71,8 +82,6 @@ a:active, a:focus, a:visited{
     margin-top: 35px;
     text-align: center;
     h3{
-      font-family: @font-primary;
-      font-size: 20px;
       margin-top: 10px;
     }
     .next-step{
@@ -116,7 +125,7 @@ a:active, a:focus, a:visited{
   }
   .radio-label{
     padding-left: 26px;
-    font-size: 16px;
+    &:extend(h4);
     color: @color-theme-secondary;
   }
   .radio-info{
@@ -201,7 +210,7 @@ a:active, a:focus, a:visited{
   cursor: pointer;
   color: @color-theme-secondary;
   i{
-    font-size: 16px;
+    &:extend(h4);
     margin-right: 5px;
   }
 }
@@ -279,8 +288,7 @@ a:active, a:focus, a:visited{
 .card-title{
   .make-xs-column(12);
   .card-title-content{
-    font-family: @font-primary;
-    font-size: 18px;
+    &:extend(h3);
     padding-bottom: 5px;
     color: @color-theme-secondary;
     border-bottom: 1px solid @color-grey;
@@ -296,7 +304,7 @@ a:active, a:focus, a:visited{
     color: @color-grey-darker;
   }
   .card-info-content{
-    font-size: 16px;
+    &:extend(h4);
     color: @color-theme-secondary;
   }
 }
@@ -336,8 +344,7 @@ a:active, a:focus, a:visited{
     img{
       &:extend(.img-responsive);
     }
-    h1{
-      font-size: 18px;
+    h3{
       margin-top: 10px;
       margin-bottom: 20px;
       font-style: italic;
@@ -359,9 +366,10 @@ a:active, a:focus, a:visited{
       top: 95px;
     }
     .profile-picture-title{
-      font-size: 16px;
+      &:extend(h4);
       color: @color-theme-secondary;
       margin-top: 10px;
+      margin-bottom: 5px;
     }
     .profile-picture-info{
       font-size: 14px;
@@ -588,11 +596,11 @@ a:active, a:focus, a:visited{
     }
   }
   li > a{
+    &:extend(h4);
     padding: 15px 0px;
     margin: 0px 20px;
     color: @color-white;
     font-family: @font-primary;
-    font-size: 16px;
   }
   li > a:hover, li > a:focus{
     background-color: @color-black;

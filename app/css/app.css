@@ -224,12 +224,14 @@ th {
   }
   p,
   h2,
-  h3 {
+  h3,
+  .card-title .card-title-content {
     orphans: 3;
     widows: 3;
   }
   h2,
-  h3 {
+  h3,
+  .card-title .card-title-content {
     page-break-after: avoid;
   }
   .navbar {
@@ -1178,7 +1180,13 @@ h6,
 .h3,
 .h4,
 .h5,
-.h6 {
+.h6,
+.radio-card .radio-label,
+.input-upload-image-sm i,
+.card-title .card-title-content,
+.card-info .card-info-content,
+.card-portal .profile-picture .profile-picture-title,
+.navbar li > a {
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
@@ -1217,7 +1225,8 @@ h1,
 h2,
 .h2,
 h3,
-.h3 {
+.h3,
+.card-title .card-title-content {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -1240,7 +1249,12 @@ h4,
 h5,
 .h5,
 h6,
-.h6 {
+.h6,
+.radio-card .radio-label,
+.input-upload-image-sm i,
+.card-info .card-info-content,
+.card-portal .profile-picture .profile-picture-title,
+.navbar li > a {
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -1267,11 +1281,17 @@ h2,
   font-size: 30px;
 }
 h3,
-.h3 {
+.h3,
+.card-title .card-title-content {
   font-size: 24px;
 }
 h4,
-.h4 {
+.h4,
+.radio-card .radio-label,
+.input-upload-image-sm i,
+.card-info .card-info-content,
+.card-portal .profile-picture .profile-picture-title,
+.navbar li > a {
   font-size: 18px;
 }
 h5,
@@ -7012,6 +7032,23 @@ h2 {
   font-family: 'Kanit', sans-serif;
   font-size: 24px;
 }
+h3,
+.card-title .card-title-content {
+  font-family: 'Kanit', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  margin: 0px;
+}
+h4,
+.radio-card .radio-label,
+.input-upload-image-sm i,
+.card-info .card-info-content,
+.card-portal .profile-picture .profile-picture-title,
+.navbar li > a {
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0px;
+}
 label {
   font-weight: normal;
 }
@@ -7074,8 +7111,6 @@ a:visited {
   text-align: center;
 }
 .header-zone .step h3 {
-  font-family: 'Kanit', sans-serif;
-  font-size: 20px;
   margin-top: 10px;
 }
 .header-zone .step .next-step {
@@ -7115,7 +7150,6 @@ a:visited {
 }
 .radio-card .radio-label {
   padding-left: 26px;
-  font-size: 16px;
   color: #16bbac;
 }
 .radio-card .radio-info {
@@ -7196,7 +7230,6 @@ a:visited {
   color: #16bbac;
 }
 .input-upload-image-sm i {
-  font-size: 16px;
   margin-right: 5px;
 }
 .input-upload-image-sm:hover {
@@ -7299,8 +7332,6 @@ a:visited {
   padding-right: 15px;
 }
 .card-title .card-title-content {
-  font-family: 'Kanit', sans-serif;
-  font-size: 18px;
   padding-bottom: 5px;
   color: #16bbac;
   border-bottom: 1px solid #d8dfe7;
@@ -7327,7 +7358,6 @@ a:visited {
   color: #8692a8;
 }
 .card-info .card-info-content {
-  font-size: 16px;
   color: #16bbac;
 }
 .card-button {
@@ -7350,8 +7380,7 @@ a:visited {
   margin: auto;
   text-align: center;
 }
-.card-portal .logo h1 {
-  font-size: 18px;
+.card-portal .logo h3 {
   margin-top: 10px;
   margin-bottom: 20px;
   font-style: italic;
@@ -7369,9 +7398,9 @@ a:visited {
   top: 95px;
 }
 .card-portal .profile-picture .profile-picture-title {
-  font-size: 16px;
   color: #16bbac;
   margin-top: 10px;
+  margin-bottom: 5px;
 }
 .card-portal .profile-picture .profile-picture-info {
   font-size: 14px;
@@ -8180,7 +8209,6 @@ fieldset[disabled] .btn-clear.active {
   margin: 0px 20px;
   color: #ffffff;
   font-family: 'Kanit', sans-serif;
-  font-size: 16px;
 }
 .navbar li > a:hover,
 .navbar li > a:focus {
@@ -8247,7 +8275,7 @@ fieldset[disabled] .btn-clear.active {
 .layout-portal .view-signup-select-page {
   margin-top: 140px;
 }
-.layout-portal .view-signup-select-page h1 {
+.layout-portal .view-signup-select-page h3 {
   font-style: normal;
 }
 .layout-portal .view-influencer-signup-confirmation {

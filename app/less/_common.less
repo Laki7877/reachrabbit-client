@@ -56,7 +56,16 @@ a:active, a:focus, a:visited{
   background-color: rgba(62,74,94,0.80);
   border-radius: 25px;
 }
-
+.pagination{
+  li > a{
+    color: @color-theme-secondary;
+    border-color: @color-grey;
+  }
+  .active > a, .active > a:hover{
+    background-color: @color-theme-secondary;
+    border-color: @color-theme-secondary;
+  }
+}
 
 
 /*---Zone---*/

@@ -7093,6 +7093,15 @@ a:visited {
   background-color: rgba(62, 74, 94, 0.8);
   border-radius: 25px;
 }
+.pagination li > a {
+  color: #16bbac;
+  border-color: #d8dfe7;
+}
+.pagination .active > a,
+.pagination .active > a:hover {
+  background-color: #16bbac;
+  border-color: #16bbac;
+}
 /*---Zone---*/
 .header-zone {
   color: #ffffff;

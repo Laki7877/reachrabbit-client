@@ -7102,6 +7102,17 @@ a:visited {
   background-color: #16bbac;
   border-color: #16bbac;
 }
+.page-header {
+  border-bottom: 0px;
+  margin: 30px 0px 20px 0px;
+}
+.page-header h1 {
+  display: inline;
+}
+.page-header .form-group {
+  width: 230px;
+  float: right;
+}
 /*---Zone---*/
 .header-zone {
   color: #ffffff;
@@ -8386,7 +8397,7 @@ fieldset[disabled] .btn-clear.active {
   height: 200px;
 }
 .layout-influencer .view-influencer-campaign-list .body-zone {
-  margin-top: 30px;
+  margin-top: 0px;
 }
 tags-input {
   display: block;

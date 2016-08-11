@@ -1,0 +1,139 @@
+<form ng-submit="saveProfile(form, formData)" name="form">
+<div class="view-brand-profile">
+  <div class="header-zone">
+    <div class="container">
+      <div class="page-header">
+        <h1>Profile ของฉัน</h1>
+      </div>
+    </div>
+  </div>
+  <div class="body-zone">
+    <div class="container">
+      <div nc-alert="alert"></div>
+
+      <div nc-alert type="info" closable="false">
+        ยิ่งใส่ข้อมูลเยอะคุณยิ่งมีโอกาศที่จะได้รับเลือกเพื่อร่วมงานกับแบรนด์มากขึ้น
+      </div>
+      <div class="card">
+        <div class="card-body">
+
+          <div class="card-row">
+            <div class="card-title col-xs-12">
+              <div class="card-title-content">
+                เชื่อมต่อ Social Media
+              </div>
+            </div>
+          </div>
+
+          <social-linker></social-linker>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          
+          <div class="card-row">
+            <div class="card-title">
+              <div class="card-title-content">
+                เกี่ยวกับผู้สมัคร
+              </div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+                รูปโปรไฟล์
+                </div>
+                <div class="card-body-content">
+                  <uploader-thumb ng-model="formData.profilePicture">
+                  <i class="fa fa-camera" aria-hidden="true"></i><br>เลือกรูป
+              </uploader-thumb>
+            </div>
+          </div>
+
+          <multi-category-selector 
+            max-columns="4" 
+            max-selected="3" 
+            ng-model="formData.influencer.categories">
+          </multi-category-selector>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              ชื่อบน Social Media
+            </div>
+            <div class="card-body-content">
+              <input type="text" ng-model="formData.name" class="form-control">
+            </div>
+          </div>
+          
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              อีเมล
+            </div>
+            <div class="card-body-content">
+              <input type="text" ng-model="formData.email" class="form-control">
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              เบอร์ติดต่อ
+            </div>
+            <div class="card-body-content">
+              <input type="text" ng-model="formData.phoneNumber" class="form-control">
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              เกี่ยวกับฉัน
+            </div>
+            <div class="card-body-content">
+              <textarea rows="3" class="form-control" ng-model="formData.influencer.about" placeholder="อธิบายเกี่ยวกับคุณ"></textarea>
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              Web / Blog ของคุณ
+            </div>
+            <div class="card-body-content">
+              <input type="text" ng-model="formData.influencer.web" class="form-control">
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              เพศ
+            </div>
+            <div class="card-body-content">
+              <select class="form-control" ng-model="formData.influencer.gender">
+              </select>
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              วันเกิด
+            </div>
+            <div class="card-body-content">
+              <select class="form-control" ng-model="formData.influencer.birthday">
+              </select>
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+            </div>
+            <div class="card-body-content">
+              <button class="btn-width-lg btn-primary">บันทึกข้อมูล</button>
+            </div>
+          </div>
+
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</form>

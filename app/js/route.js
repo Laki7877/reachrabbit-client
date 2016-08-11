@@ -48,8 +48,15 @@ angular.module('myApp.influencer.routes', ['ngRoute'])
   $routeProvider
   .when('/influencer-campaign-list', {
     templateUrl: 'view/influencer-campaign-list.html',
-    controller: 'EmptyController'
+    controller: 'InfluencerCampaignListController'
+  })
+  .when('/influencer-profile', {
+    templateUrl: 'view/influencer-profile.html',
+    controller: 'InfluencerProfileController'
   });
+  
+  
+  //TODO: Campaign-detail
 
 }]);
 
@@ -68,7 +75,7 @@ angular.module('myApp.portal.routes', ['ngRoute'])
   })
   .when('/influencer-portal', {
     templateUrl: 'view/influencer-portal.html',
-    controller: 'EmptyController'
+    controller: 'InfluencerPortalController'
   })
   .when('/influencer-signup-select-page', {
     templateUrl: 'view/influencer-signup-select-page.html',

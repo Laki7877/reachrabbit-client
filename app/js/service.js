@@ -139,6 +139,9 @@ angular.module('myApp.service', [])
   .factory('UserProfile', ['$rootScope', '$window', function($rootScope, $window){
       return {
           get: function(){
+              if(!$window.localStorage.profile){
+                  return null;
+              }
               return JSON.parse($window.localStorage.profile);
           },
           set: function(profile){

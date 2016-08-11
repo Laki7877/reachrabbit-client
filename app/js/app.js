@@ -24,11 +24,37 @@ angular.module('myApp', [
   //Controllers
   'myApp.portal.controller',
   'myApp.brand.controller',
+  'myApp.influencer.controller',
   //Routes
   'myApp.portal.routes',
   'myApp.brand.routes',
   'myApp.influencer.routes'
 ])
+.constant('MockData', {
+  categories: [
+  {
+    categoryName: 'ความงาม'
+  },
+  {
+    categoryName: 'ความแมว'
+  },
+  {
+    categoryName: 'ไก่ทอด'
+  },
+  {
+    categoryName: 'แพทฟอม'
+  },
+  {
+    categoryName: 'พารวย'
+  },
+  {
+    categoryName: 'Double A'
+  },
+  {
+    categoryName: 'CP ALL'
+  }
+]
+})
 //Example Campaign Constants
 .constant('ExampleCampaigns', [
       {
@@ -81,8 +107,8 @@ angular.module('myApp', [
 //Initialize the app
 .run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
 
-  //Configure Raven
-  Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();
+  //Configure Raven in production mode
+  // Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();
 
   //Configure global deafult date options for date picker
   $rootScope.dateOptions = {

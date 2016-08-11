@@ -9,7 +9,21 @@
 'use strict';
 
 angular.module('myApp.directives', [])
+    .directive('socialLinker', [function () {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: function (elem, attr) {
+                return 'components/templates/social-linker.html';
+            },
+            scope: {
 
+            },
+            link: function (scope, element, attrs, ctrl, transclude) {
+
+            }
+        };
+    }])
     .directive('ncAlert', ['NcAlert', function (NcAlert) {
         return {
             restrict: 'AE',
@@ -153,16 +167,16 @@ angular.module('myApp.directives', [])
             }
         };
     }])
-    .directive('cardThumbnail', [function () {
+    .directive('cardCampaignThumbnail', [function () {
         return {
             restrict: 'EA',
             scope: {
                 campaign: '=',
                 linkTo: '@'
             },
-            templateUrl: 'components/templates/card-thumbnail.html',
+            templateUrl: 'components/templates/card-campaign-thumbnail.html',
             link: function (scope, element, attrs, ctrl, transclude) {
-
+                
             }
         };
     }])
@@ -205,6 +219,51 @@ angular.module('myApp.directives', [])
                     });
                 };
 
+            }
+        };
+    }])
+    .directive('multiCategorySelector', ['MockData', function(MockData){
+        return {
+            restrict: 'AE',
+            scope: {
+                maxColumns: '=?maxColumns',
+                maxSelected: '=?maxSelected',
+                model: '=ngModel'
+            },
+            templateUrl: 'components/templates/multi-category-selector.html',
+            link: function(scope, elem, attrs, form){
+                if(!scope.maxColumns){
+                    scope.maxColumns = 4;          
+                }
+
+                if(!scope.maxSelected){
+                    scope.maxSelected = 3;          
+                }
+
+                if(!scope.model){
+                    scope.model = [];
+                }
+
+                scope.categoriesChunk = _.chunk(MockData.categories, Number(scope.maxColumns));
+
+                scope.activate = function(so){
+                    
+                    if(so._selected){
+                        so._selected = false;
+                        _.remove(scope.model, function(o){
+                            return _.get(o, 'categoryName') == _.get(so, 'categoryName');
+                        });
+                    }else{
+                        if(scope.model.length < scope.maxSelected){
+                            so._selected = true;
+                            scope.model.push(so);
+                        }                    
+                    }
+                };
+                
+                scope.getValue = function(obj){
+                    return _.get(obj, 'categoryName');
+                };
             }
         };
     }])

@@ -15,8 +15,8 @@
  | ____||  \/  ||  _ \|_   _|\ \ / /
  |  _|  | |\/| || |_) | | |   \ V /
  | |___ | |  | ||  __/  | |    | |
- |_____||_|  |_||_|     |_|    |_|  This is the result of our D-Team having too much time.
-                                    */
+ |_____||_|  |_||_|     |_|    |_|  
+*/
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.controller', ['myApp.service'])
@@ -27,6 +27,31 @@ angular.module('myApp.controller', ['myApp.service'])
     };
 }]);
 
+/////////////// /////////////// /////////////// /////////////// ///////////////
+/*
+    INFLUENCER 
+*/
+/////////////// /////////////// /////////////// /////////////// ///////////////
+
+angular.module('myApp.influencer.controller', ['myApp.service'])
+.controller('InfluencerCampaignListController', ['$scope', 'CampaignService', 'ExampleCampaigns', function($scope, CampaignService, ExampleCampaigns) {
+    //Example campaign section
+    $scope.exampleCampaigns = ExampleCampaigns;
+}])
+.controller('InfluencerProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 
+function($scope, $window, AccountService, NcAlert, UserProfile) {
+    $scope.formData = {};
+    $scope.alert = new NcAlert();
+    // AccountService.getProfile()
+    // .then(function(response){
+    //     $scope.formData = response.data;
+    //     delete $scope.formData.password;
+    // })
+    // .catch(function(err){
+    //    $scope.alert.error('Unable to download profile');
+    // });
+
+}]);
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
@@ -212,7 +237,7 @@ function($scope, $routeParams, CampaignService, DataService, $filter, UserProfil
         delete $scope.formData.password;
     })
     .catch(function(err){
-       $scope.alert.error('กรุณากรอกข้อมูลให้ถูกต้อง');
+       $scope.alert.error('Unable to download your profile');
     });
 
     $scope.saveProfile = function(form, profile){
@@ -277,6 +302,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             $scope.alert.danger("อีเมล์หรือรหัสผ่านไม่ถูกต้อง");
         });
     };
+}])
+.controller('InfluencerPortalController', ['$scope', 'NcAlert', function($scope, NcAlert){
+    $scope.alert = new NcAlert();
 }])
 .controller('BrandSignupController', ['$scope', 'BrandAccountService', 'AccountService','UserProfile', '$location', '$window',  'NcAlert',
 function($scope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert) {

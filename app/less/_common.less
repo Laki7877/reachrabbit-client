@@ -44,6 +44,11 @@ a:hover{
 a:active, a:focus, a:visited{
   color: @color-theme-primary;
 }
+.social-link-title{
+  &:extend(h5);
+  color: @color-theme-secondary;
+  display: inline;
+}
 
 #loading-bar .bar{
   background: @color-theme-primary !important;
@@ -278,6 +283,10 @@ a:active, a:focus, a:visited{
   border-radius: 0px;
   box-shadow: @global-shadow-depth-1;
 }
+.card-clickable{
+  transition: all 0.3s;
+  cursor: pointer;
+}
 .card-body{
   &:extend(.panel-body);
   .card-row{
@@ -494,6 +503,7 @@ a:active, a:focus, a:visited{
 
 .card-thumbnail{
   &:extend(.card);
+  &:extend(.card-clickable);
   .card-thumbnail-image{
     height: 194px;
     overflow: hidden;
@@ -517,6 +527,15 @@ a:active, a:focus, a:visited{
       margin-right: 0px;
     }
   }
+
+  &:hover{
+    box-shadow: @global-shadow-depth-2;
+  };
+
+  &:active{
+    box-shadow: @global-shadow-depth-1;
+  };
+
 }
 
 /*---Thumbnail---*/
@@ -532,13 +551,20 @@ a:active, a:focus, a:visited{
   padding: 6px;
   border-radius: 2px;
 }
+.btn:disabled{
+  opacity: 0.5;
+}
 .btn-primary {
   &:extend(.btn);
   .button-variant(@color-white, @color-theme-primary, @color-btn-border);
 }
 .btn-secondary {
-  &:extend(.btn);
+  &:extend(.btn all);
   .button-variant(@color-theme-secondary, @color-white, @color-grey);
+}
+.btn-secondary-active {
+  &:extend(.btn);
+  .button-variant(@color-white, @color-theme-secondary, @color-theme-secondary-darker);
 }
 .btn-social{
   &:extend(.btn);
@@ -720,4 +746,8 @@ a:active, a:focus, a:visited{
 .uib-daypicker .btn, .uib-monthpicker .btn{
   border:none;
   padding:8px;
+}
+
+.multi-tag-selector .row{
+  padding-top: 5px;
 }

@@ -21,6 +21,7 @@
     "ng-tags-input": "3.1.1",
     "ngSmoothScroll": "^2.0.0",
     "angular-sanitize": "^1.5.8",
-    "satellizer": "^0.15.4"
+    "satellizer": "^0.15.4",
+    "angular-ui-router": "^0.3.1"
   }
 }

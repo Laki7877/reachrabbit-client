@@ -55,35 +55,65 @@ angular.module('myApp.influencer.routes', ['ngRoute'])
     controller: 'InfluencerProfileController'
   });
   
-  
   //TODO: Campaign-detail
 
 }]);
 
 
-angular.module('myApp.portal.routes', ['ngRoute'])
-.config(['$routeProvider', function($routeProvider) {
-
-  $routeProvider
-  .when('/brand-login', {
-    templateUrl: 'view/brand-login.html',
-    controller: 'BrandSigninController'
+angular.module('myApp.portal.routes', ['ui.router'])
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise("/404");
+  $stateProvider
+  .state('brand-login', {
+      url: "/brand-login",
+      templateUrl: "view/brand-login.html",
+      controller: 'BrandSigninController'
   })
-  .when('/brand-signup', {
-    templateUrl: 'view/brand-signup.html',
-    controller: 'BrandSignupController'
+  .state('brand-signup', {
+      url: "/brand-signup",
+      templateUrl: "view/brand-signup.html",
+      controller: 'BrandSignupController'
   })
-  .when('/influencer-portal', {
-    templateUrl: 'view/influencer-portal.html',
-    controller: 'InfluencerPortalController'
+  .state('influencer-portal', {
+      url: "/influencer-portal",
+      templateUrl: "view/influencer-portal.html",
+      controller: 'InfluencerPortalController'
   })
-  .when('/influencer-signup-select-page', {
+  .state('influencer-signup-select-page', {
+    url: "/influencer-signup-select-page",
     templateUrl: 'view/influencer-signup-select-page.html',
     controller: 'EmptyController'
   })
-  .when('/influencer-signup-confirmation', {
+  .state('influencer-signup-confirmation', {
+    url: '/influencer-signup-confirmation',
     templateUrl: 'view/influencer-signup-confirmation.html',
-    controller: 'EmptyController'
+    controller: 'InfluencerPortalConfirmController',
+    params: { authData: null }
   });
 
 }]);
+// .config(['$routeProvider', function($routeProvider) {
+
+//   $routeProvider
+//   .when('/brand-login', {
+//     templateUrl: 'view/brand-login.html',
+//     controller: 'BrandSigninController'
+//   })
+//   .when('/brand-signup', {
+//     templateUrl: 'view/brand-signup.html',
+//     controller: 'BrandSignupController'
+//   })
+//   .when('/influencer-portal', {
+//     templateUrl: 'view/influencer-portal.html',
+//     controller: 'InfluencerPortalController'
+//   })
+//   .when('/influencer-signup-select-page', {
+//     templateUrl: 'view/influencer-signup-select-page.html',
+//     controller: 'EmptyController'
+//   })
+//   .when('/influencer-signup-confirmation', {
+//     templateUrl: 'view/influencer-signup-confirmation.html',
+//     controller: 'EmptyController'
+//   });
+
+// }]);

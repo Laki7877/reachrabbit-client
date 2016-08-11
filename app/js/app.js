@@ -2,7 +2,7 @@
  * App
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
- * @since      S04E01
+ * @since      S04E02
  */
 /* jshint node: true */
 'use strict';
@@ -16,7 +16,6 @@ angular.module('myApp', [
   'ngTagsInput',
   'smoothScroll',
   'ngSanitize',
-  'satellizer',
   //Top level
   'myApp.directives',
   'myApp.routes',
@@ -30,6 +29,7 @@ angular.module('myApp', [
   'myApp.brand.routes',
   'myApp.influencer.routes'
 ])
+//Mock data for testing
 .constant('MockData', {
   categories: [
   {
@@ -55,7 +55,7 @@ angular.module('myApp', [
   }
 ]
 })
-//Example Campaign Constants
+//Example Campaign Constants (not mock)
 .constant('ExampleCampaigns', [
       {
         resources: [{
@@ -87,29 +87,24 @@ angular.module('myApp', [
         linkTo:'brand-campaign-detail-example'
       }
 ])
-//Global Config
-.constant('Config', {
-  FACEBOOK_APP_ID: "",
-  INSTAGRAM_APP_ID: "",
-  YOUTUBE_APP_ID: ""
-})
 //Configure the providers
-.config(['$locationProvider', '$routeProvider','cfpLoadingBarProvider', '$authProvider', 'Config', function($locationProvider, $routeProvider, cfpLoadingBarProvider, $authProvider, Config) {
+.config(['$locationProvider', '$routeProvider','cfpLoadingBarProvider', function($locationProvider, $routeProvider, cfpLoadingBarProvider) {
   // $locationProvider.hashPrefix('');
   $routeProvider.otherwise({redirectTo: '/404'});
   cfpLoadingBarProvider.includeSpinner = false;
-  //Setup satelizer
-  $authProvider.facebook({
-      clientId: Config.FACEBOOK_APP_ID
-  });
-
+ 
 }])
 //Initialize the app
 .run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
 
   //Configure Raven in production mode
   // Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();
+  $rootScope.unauthorizedRoute = "/portal.html#/brand-login";
 
+    $rootScope.setUnauthorizedRoute = function (textString) {
+        $rootScope.unauthorizedRoute = textString;
+    };
+    
   //Configure global deafult date options for date picker
   $rootScope.dateOptions = {
     formatYear: 'yy',
@@ -128,7 +123,7 @@ angular.module('myApp', [
     $window.localStorage.removeItem('token');
     $window.localStorage.removeItem('profile');
     //navigate to login
-    $window.location.href = '/portal.html#/brand-login'  + (msg ? '?message=' + msg : '');
+    $window.location.href = $rootScope.unauthorizedRoute + (msg ? '?message=' + msg : '');
   };
   $rootScope.goTo = function(path){
     $location.path(path);

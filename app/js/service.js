@@ -7,15 +7,18 @@
 /* jshint node: true */
 'use strict';
 
-angular.module('myApp.service', [])
-.value('config', {
-  'apiBaseUri': 'http://bella.reachrabbit.co:8080'
+angular.module('myApp.service', ['satellizer'])
+.constant('Config', {
+  API_BASE_URI: 'http://bella.reachrabbit.co:8080',
+  FACEBOOK_APP_ID: "",
+  INSTAGRAM_APP_ID: "",
+  YOUTUBE_APP_ID: "486841241364-75hb5e24afp7msiitf8t36skfo3mr0h7.apps.googleusercontent.com"
 })
-.factory('baseUrlInjector', ['config', '$window', function(config, $window){
+.factory('baseUrlInjector', ['Config', '$window', function(Config, $window){
     var inj = {
         request: function(cc) {
             if(cc.url[0] === "/"){
-                cc.url = config.apiBaseUri + cc.url;
+                cc.url = Config.API_BASE_URI + cc.url;
                 cc.headers['X-Auth-Token'] = $window.localStorage.token;
             }
             return cc;
@@ -33,7 +36,15 @@ angular.module('myApp.service', [])
     };
     return service;
 }])
-.config(['$httpProvider', function($httpProvider) {
+.config(['$authProvider', 'Config', '$httpProvider', function($authProvider, Config, $httpProvider){
+    
+  //Google account 
+  $authProvider.google({
+      url: Config.API_BASE_URI + "/auth/youtube",
+      clientId: Config.YOUTUBE_APP_ID,
+      scope: ['https://www.googleapis.com/auth/youtube', 'https://www.googleapis.com/auth/userinfo.email']
+  });
+
   $httpProvider.interceptors.push('baseUrlInjector');
   $httpProvider.interceptors.push('authStatusCheckInjector');
 
@@ -59,6 +70,16 @@ angular.module('myApp.service', [])
                     password: password
             });
         }
+    };
+}])
+.factory('InfluencerAccountService', ['$http', function($http){
+    return {
+        /*
+        * returns influencer user schema
+        */
+        signup: function(influencer){
+            return $http.post("/signup/influencer", influencer);
+        },
     };
 }])
 .factory('BrandAccountService', ['$http', function($http) {
@@ -115,13 +136,13 @@ angular.module('myApp.service', [])
         }
     };
 }])
-.factory('$uploader', ['Upload', '$q', 'config','$window', function(Upload, $q, config, $window) {
+.factory('$uploader', ['Upload', '$q', 'Config','$window', function(Upload, $q, Config, $window) {
     var service = {};
 
     service.upload = function(url, data, evtHandler, opts) {
       var deferred = $q.defer();
       var options = _.extend({
-        url: config.apiBaseUri + url,
+        url: Config.API_BASE_URI + url,
         data: data,
         headers: {'X-Auth-Token': $window.localStorage.token}, 
       }, opts);

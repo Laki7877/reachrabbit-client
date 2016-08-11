@@ -1,6 +1,5 @@
 <div class="view-influencer-signup-confirmation">
   <div class="container">
-    <div nc-alert type="danger">Yo</div>
 
     <form no-validate>
     <div class="card-portal">
@@ -8,12 +7,12 @@
 
         <div class="profile-picture">
           <img src="images/example-campaign/profile-pic-jon.jpg" class="profile-picture-image" />
-          <img src="images/icon-facebook-lg.png" class="profile-social-media-icon">
+          <img ng-src="images/icon-{{profile.media.mediaId}}-lg.png" class="profile-social-media-icon">
           <div class="profile-picture-title">
-            Jon Snow
+            {{ formData.name }}
           </div>
           <div class="profile-picture-info">
-            มีผู้ติดตาม 604 คน
+            มีผู้ติดตาม {{ formData.pages[0].count }} คน
           </div>
         </div>
 
@@ -41,7 +40,7 @@
           </div>
         </div>
 
-        <button class="btn-primary">สมัครสมาชิก</button>
+        <button ng-click="register()" class="btn-primary">สมัครสมาชิก</button>
         <div class="info-text">
           เห็นด้วยกับ <a href="#">เงื่อนไขการใช้งาน</a> โดยการสมัครสมาชิก
         </div>

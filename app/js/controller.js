@@ -35,8 +35,23 @@ angular.module('myApp.controller', ['myApp.service'])
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
 .controller('InfluencerCampaignListController', ['$scope', 'CampaignService', 'ExampleCampaigns', function($scope, CampaignService, ExampleCampaigns) {
-    //Example campaign section
-    $scope.exampleCampaigns = ExampleCampaigns;
+    $scope.filter = 'any';
+    function fetch(filter){
+        CampaignService.getOpenCampaigns(filter || {}).then(function(data){
+            $scope.campaigns = data;
+        });
+    }
+
+    $scope.$watch('filter', function(filterValue){
+        if(!filterValue || filterValue == "any"){
+             fetch();
+             return;
+        }
+        
+        fetch({
+            mediaId : filterValue
+        });
+    });
 }])
 .controller('InfluencerProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 
 function($scope, $window, AccountService, NcAlert, UserProfile) {

@@ -29,17 +29,17 @@
       <div class="page-header">
         <h1>Campaign</h1>
         <div class="form-group">
-          <select class="form-control">
-            <option>แสดงทั้งหมด</option>
-            <option>แสดงเฉพาะ Facebook</option>
-            <option>แสดงเฉพาะ Instagram</option>
-            <option>แสดงเฉพาะ YouTube</option>
+          <select class="form-control" ng-model="filter">
+            <option value="any">แสดงทั้งหมด</option>
+            <option value="facebook">แสดงเฉพาะ Facebook</option>
+            <option value="instagram">แสดงเฉพาะ Instagram</option>
+            <option value="youtube">แสดงเฉพาะ YouTube</option>
           </select>
         </div>
       </div>
 
       <div class="thumbnails">
-        <card-campaign-thumbnail ng-repeat="cam in exampleCampaigns" campaign="cam"></card-campaign-thumbnail>
+        <card-campaign-thumbnail ng-repeat="cam in campaigns" campaign="cam"></card-campaign-thumbnail>
       </div>
 
       <nav class="text-center" aria-label="Page navigation">

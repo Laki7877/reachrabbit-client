@@ -74,6 +74,15 @@ angular.module('myApp.service', [])
 }])
 .factory('CampaignService', ['$http', function($http) {
     return {
+        getOpenCampaigns: function(filter){
+            var opt = {};
+            if(filter instanceof Object){
+                opt = {
+                    params: filter
+                };
+            }
+            return $http.get("/campaigns/open", opt);
+        },
         getAll: function(){
             return $http.get("/campaigns");
         },

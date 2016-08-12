@@ -6,8 +6,8 @@
       <div class="card-body">
 
         <div class="profile-picture">
-          <img src="images/example-campaign/profile-pic-jon.jpg" class="profile-picture-image" />
-          <img ng-src="images/icon-{{profile.media.mediaId}}-lg.png" class="profile-social-media-icon">
+          <img ng-src="{{formData.profilePicture}}" class="profile-picture-image" />
+          <img ng-src="images/icon-{{formData.media.mediaId}}-lg.png" class="profile-social-media-icon">
           <div class="profile-picture-title">
             {{ formData.name }}
           </div>

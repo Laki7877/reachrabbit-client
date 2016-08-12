@@ -333,7 +333,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             });
         };
     }])
-    .controller('InfluencerPortalConfirmController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService) {
+    .controller('InfluencerSignUpController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService) {
         var profile = $stateParams.authData;
         if(!profile){
             $state.go('influencer-portal');
@@ -347,9 +347,8 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 email: $scope.formData.email,
                 phoneNumber: $scope.formData.phoneNumber,
                 influencer: {
-                    mediaLinks: [{
+                    influencerMedias: [{
                         media: $scope.formData.media,
-                        pageId:  $scope.formData.pages[0].id,
                         socialId: $scope.formData.id,
                     }],
                     profilePicture: null

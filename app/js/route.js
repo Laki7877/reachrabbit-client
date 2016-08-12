@@ -62,7 +62,15 @@ angular.module('myApp.influencer.routes', ['ngRoute'])
 
 angular.module('myApp.portal.routes', ['ui.router'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise("/404");
+  $urlRouterProvider.otherwise("404");
+
+  $stateProvider
+  .state('404', {
+    url: '/404',
+    templateUrl: 'view/404.html',
+    controller: 'EmptyController'
+  });
+
   $stateProvider
   .state('brand-login', {
       url: "/brand-login",
@@ -87,33 +95,8 @@ angular.module('myApp.portal.routes', ['ui.router'])
   .state('influencer-signup-confirmation', {
     url: '/influencer-signup-confirmation',
     templateUrl: 'view/influencer-signup-confirmation.html',
-    controller: 'InfluencerPortalConfirmController',
+    controller: 'InfluencerSignUpController',
     params: { authData: null }
   });
 
 }]);
-// .config(['$routeProvider', function($routeProvider) {
-
-//   $routeProvider
-//   .when('/brand-login', {
-//     templateUrl: 'view/brand-login.html',
-//     controller: 'BrandSigninController'
-//   })
-//   .when('/brand-signup', {
-//     templateUrl: 'view/brand-signup.html',
-//     controller: 'BrandSignupController'
-//   })
-//   .when('/influencer-portal', {
-//     templateUrl: 'view/influencer-portal.html',
-//     controller: 'InfluencerPortalController'
-//   })
-//   .when('/influencer-signup-select-page', {
-//     templateUrl: 'view/influencer-signup-select-page.html',
-//     controller: 'EmptyController'
-//   })
-//   .when('/influencer-signup-confirmation', {
-//     templateUrl: 'view/influencer-signup-confirmation.html',
-//     controller: 'EmptyController'
-//   });
-
-// }]);

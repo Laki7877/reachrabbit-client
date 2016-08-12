@@ -40,7 +40,6 @@ angular.module('myApp.service', ['satellizer'])
     
   //Google account 
   $authProvider.google({
-      url: Config.API_BASE_URI + "/auth/youtube",
       clientId: Config.YOUTUBE_APP_ID,
       scope: ['https://www.googleapis.com/auth/youtube', 'https://www.googleapis.com/auth/userinfo.email']
   });

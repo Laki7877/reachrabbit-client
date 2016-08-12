@@ -11,7 +11,8 @@
       </div>
     </div>
     <div class="card-footer">
-      หมดเขต: {{campaign.proposalDeadline | date}}
+      <span ng-if="campaign.proposalDeadline">หมดเขต: {{ (campaign.proposalDeadline | date) }}</span>
+      <span ng-if="!campaign.proposalDeadline">No Deadline</span>
       <div class="card-social-media">
         <span ng-repeat="media in campaign.media" class="icon-{{ media.mediaId }}"></span>
       </div>

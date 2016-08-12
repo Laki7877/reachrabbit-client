@@ -8,7 +8,7 @@
 /* jshint node: true */
 'use strict';
 
-angular.module('myApp.directives', [])
+angular.module('myApp.directives', ['myApp.service'])
     .directive('socialLinker', [function () {
         return {
             restrict: 'AE',
@@ -153,7 +153,6 @@ angular.module('myApp.directives', [])
             }
         };
     }])
-
     .directive('cardCampaignListItem', [function () {
         return {
             restrict: 'EA',
@@ -222,7 +221,7 @@ angular.module('myApp.directives', [])
             }
         };
     }])
-    .directive('multiCategorySelector', ['MockData', function(MockData){
+    .directive('multiCategorySelector', ['DataService', function(DataService){
         return {
             restrict: 'AE',
             scope: {
@@ -244,7 +243,9 @@ angular.module('myApp.directives', [])
                     scope.model = [];
                 }
 
-                scope.categoriesChunk = _.chunk(MockData.categories, Number(scope.maxColumns));
+                DataService.getCategories().then(function(cats){
+                    scope.categoriesChunk = _.chunk(cats.data, Number(scope.maxColumns));
+                });
 
                 scope.activate = function(so){
                     

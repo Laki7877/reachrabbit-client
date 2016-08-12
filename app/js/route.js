@@ -8,49 +8,55 @@
 'use strict';
 
 
-angular.module('myApp.routes', ['ngRoute'])
-.config(['$routeProvider', function($routeProvider) {
-   $routeProvider.when('/404', {
+angular.module('myApp.routes', ['ui.router'])
+.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+   $stateProvider
+  .state('404', {
+    url: '/404',
     templateUrl: 'view/404.html',
     controller: 'EmptyController'
   });
-}]);
-
-
-angular.module('myApp.brand.routes', ['ngRoute'])
-.config(['$routeProvider', function($routeProvider) {
-
-  /* Brands */
-  $routeProvider
-  .when('/brand-campaign-list', {
-    templateUrl: 'view/brand-campaign-list.html',
-    controller: 'CampaignListController'
-  })
-  .when('/brand-campaign-detail-draft/:campaignId?', {
-    templateUrl: 'view/brand-campaign-detail-draft.html',
-    controller: 'CampaignDetailController'
-  })
-  .when('/brand-campaign-detail-example/:exampleId', {
-    templateUrl: 'view/brand-campaign-detail-example.html',
-    controller: 'CampaignExampleController'
-  })
-  .when('/brand-profile', {
-    templateUrl: 'view/brand-profile.html',
-    controller: 'BrandProfileController'
-  });
+  $urlRouterProvider.otherwise("404");
 
 }]);
 
-angular.module('myApp.influencer.routes', ['ngRoute'])
-.config(['$routeProvider', function($routeProvider) {
+
+angular.module('myApp.brand.routes', ['ui.router']);
+// .config(['$routeProvider', function($routeProvider) {
+
+//   /* Brands */
+//   $routeProvider
+//   .when('/brand-campaign-list', {
+//     templateUrl: 'view/brand-campaign-list.html',
+//     controller: 'CampaignListController'
+//   })
+//   .when('/brand-campaign-detail-draft/:campaignId?', {
+//     templateUrl: 'view/brand-campaign-detail-draft.html',
+//     controller: 'CampaignDetailController'
+//   })
+//   .when('/brand-campaign-detail-example/:exampleId', {
+//     templateUrl: 'view/brand-campaign-detail-example.html',
+//     controller: 'CampaignExampleController'
+//   })
+//   .when('/brand-profile', {
+//     templateUrl: 'view/brand-profile.html',
+//     controller: 'BrandProfileController'
+//   });
+
+// }]);
+
+angular.module('myApp.influencer.routes', ['ui.router'])
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
   /* Influencer */
-  $routeProvider
-  .when('/influencer-campaign-list', {
+  $stateProvider
+  .state('influencer-campaign-list', {
+    url: '/influencer-campaign-list',
     templateUrl: 'view/influencer-campaign-list.html',
     controller: 'InfluencerCampaignListController'
   })
-  .when('/influencer-profile', {
+  .state('influencer-profile', {
+    url: '/influencer-profile',
     templateUrl: 'view/influencer-profile.html',
     controller: 'InfluencerProfileController'
   });
@@ -62,16 +68,7 @@ angular.module('myApp.influencer.routes', ['ngRoute'])
 
 angular.module('myApp.portal.routes', ['ui.router'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  
-  
-
-  $stateProvider
-  .state('404', {
-    url: '/404',
-    templateUrl: 'view/404.html',
-    controller: 'EmptyController'
-  });
-
+    
   $stateProvider
   .state('brand-login', {
       url: "/brand-login",
@@ -101,6 +98,5 @@ angular.module('myApp.portal.routes', ['ui.router'])
     params: { authData: null }
   });
 
-  $urlRouterProvider.otherwise("404");
 
 }]);

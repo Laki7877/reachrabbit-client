@@ -36,14 +36,13 @@ angular.module('myApp.controller', ['myApp.service'])
 angular.module('myApp.influencer.controller', ['myApp.service'])
     .controller('InfluencerCampaignListController', ['$scope', 'CampaignService', 'ExampleCampaigns', '$rootScope',
         function ($scope, CampaignService, ExampleCampaigns, $rootScope) {
-
-            //TODO: move this to module.run , and isolate each module to each sub-app
-            $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+            console.log('InfluencerCampaignListController');
 
             $scope.filter = 'any';
             function fetch(filter) {
                 CampaignService.getOpenCampaigns(filter || {}).then(function (data) {
-                    $scope.campaigns = data;
+                    console.log(data);
+                    $scope.campaigns = data.data;
                 });
             }
 
@@ -62,14 +61,15 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         function ($scope, $window, AccountService, NcAlert, UserProfile) {
             $scope.formData = {};
             $scope.alert = new NcAlert();
-            // AccountService.getProfile()
-            // .then(function(response){
-            //     $scope.formData = response.data;
-            //     delete $scope.formData.password;
-            // })
-            // .catch(function(err){
-            //    $scope.alert.error('Unable to download profile');
-            // });
+            AccountService.getProfile()
+                .then(function (response) {
+                    $scope.formData = response.data;
+                    $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
+                    delete $scope.formData.password;
+                })
+                .catch(function (err) {
+                    $scope.alert.error('Unable to download profile');
+                });
 
         }]);
 
@@ -292,7 +292,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.portal.controller', ['myApp.service'])
-    .controller('BrandSigninController', ['$scope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function ($scope, $location, AccountService, UserProfile, $window, NcAlert) {
+    .controller('BrandSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
         $scope.formData = {};
         $window.localStorage.removeItem('token');
         $scope.messageCode = $location.search().message;
@@ -315,6 +315,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                     //Tell raven about the user
                     Raven.setUserContext(UserProfile.get());
                     //Redirect
+                    $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
                     $window.location.href = '/brand.html#/brand-campaign-list';
                 })
                 .catch(function (err) {
@@ -323,36 +324,37 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 });
         };
     }])
-    .controller('InfluencerPortalController', ['$scope', 'NcAlert', '$auth', '$state', 'AccountService', 'UserProfile','$window', function ($scope, NcAlert, $auth, $state,  AccountService, UserProfile,$window) {
+    .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', 'AccountService', 'UserProfile', '$window', function ($scope, $rootScope, NcAlert, $auth, $state, AccountService, UserProfile, $window) {
         $scope.alert = new NcAlert();
 
-        $scope.startAuthFlow = function(mediaId){
+        $scope.startAuthFlow = function (mediaId) {
             $window.localStorage.clear();
             $auth.authenticate(mediaId)
-            .then(function (response) {
-                console.log('Response', response.data);
-                if(response.data.token){
-                    $window.location.href = '/influencer.html#/influencer-campaign-list';
-                    $window.localStorage.token = response.data.token;
-                    AccountService.getProfile()
-                    .then(function(profileResp){
-                        UserProfile.set(profileResp.data);
-                        //Tell raven about the user
-                        Raven.setUserContext(UserProfile.get());
-                        //Redirect change app
-                        $window.location.href = '/influencer.html#/influencer-campaign-list';
-                    });
-                }else{
-                    if(mediaId == 'facebook'){
-                        $state.go('influencer-signup-select-page', { authData: response.data} );
-                    }else{
-                        $state.go('influencer-signup-confirmation', { authData: response.data });
-                    }
-                }
+                .then(function (response) {
+                    console.log('Response', response.data);
+                    if (response.data.token) {
+                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
 
-                
-                                
-            });
+                        $window.localStorage.token = response.data.token;
+                        AccountService.getProfile()
+                            .then(function (profileResp) {
+                                UserProfile.set(profileResp.data);
+                                //Tell raven about the user
+                                Raven.setUserContext(UserProfile.get());
+                                //Redirect change app
+                                $window.location.href = '/influencer.html#/influencer-campaign-list';
+                            });
+                    } else {
+                        if (mediaId == 'facebook') {
+                            $state.go('influencer-signup-select-page', { authData: response.data });
+                        } else {
+                            $state.go('influencer-signup-confirmation', { authData: response.data });
+                        }
+                    }
+
+
+
+                });
         };
     }])
     .controller('InfluencerFacebookPageSelectionController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService) {
@@ -361,71 +363,74 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         $scope.formData = {
             selectedPage: null
         };
-        $scope.choosePage = function(page){
+        $scope.choosePage = function (page) {
             //go to cofnirmation page
-            
-            $state.go('influencer-signup-confirmation', { 
+
+            $state.go('influencer-signup-confirmation', {
                 //reduce the pages array to just one array of page 
                 //that you selected
-                authData:  {
+                authData: {
                     pages: [page],
+                    pageId: page.id,
                     media: authData.media,
                     email: authData.email,
                     profilePicture: page.picture,
                     name: page.name,
                     id: authData.id
                 }
-            } );
-        };
-    }])
-    .controller('InfluencerSignUpController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService',  'UserProfile', '$window',
-    function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window) {
-
-        var profile = $stateParams.authData;
-        $scope.alert = new NcAlert();
-        if(!profile){
-            $state.go('influencer-portal');
-            return;
-        }
-
-        //TODO : get value from provider somewhere or smth
-        $scope.minFollower = 500;
-
-        $scope.formData = profile;
-        
-        $scope.register = function(){
-            InfluencerAccountService.signup({
-                name: $scope.formData.name,
-                email: $scope.formData.email,
-                phoneNumber: $scope.formData.phoneNumber,
-                influencer: {
-                    influencerMedias: [{
-                        media: $scope.formData.media,
-                        socialId: $scope.formData.id,
-                    }],
-                    profilePicture: null
-                }
-            })
-            .then(function(response){
-                var token = response.data.token;
-                $window.localStorage.token = token;
-                return AccountService.getProfile();
-            })
-            .then(function (profileResp) {
-                UserProfile.set(profileResp.data);
-                //Tell raven about the user
-                Raven.setUserContext(UserProfile.get());
-                //Redirect change app
-                $window.location.href = '/influencer.html#/influencer-campaign-list';
-            })
-            .catch(function(err){
-                $scope.alert.danger('A fetal backend error is preventing you from signing up.');
             });
         };
     }])
-    .controller('BrandSignupController', ['$scope', 'BrandAccountService', 'AccountService', 'UserProfile', '$location', '$window', 'NcAlert',
-        function ($scope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert) {
-            
+    .controller('InfluencerSignUpController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window',
+        function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window) {
+
+            var profile = $stateParams.authData;
+            $scope.alert = new NcAlert();
+            if (!profile) {
+                $state.go('influencer-portal');
+                return;
+            }
+
+            //TODO : get value from provider somewhere or smth
+            $scope.minFollower = 500;
+
+            $scope.formData = profile;
+
+            $scope.register = function () {
+                InfluencerAccountService.signup({
+                    name: $scope.formData.name,
+                    email: $scope.formData.email,
+                    phoneNumber: $scope.formData.phoneNumber,
+                    influencer: {
+                        influencerMedias: [{
+                            media: $scope.formData.media,
+                            socialId: $scope.formData.id,
+                            pageId: $scope.formData.pageId || null
+                        }],
+                        profilePicture: null
+                    }
+                })
+                    .then(function (response) {
+                        var token = response.data.token;
+                        $window.localStorage.token = token;
+                        return AccountService.getProfile();
+                    })
+                    .then(function (profileResp) {
+                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+                        UserProfile.set(profileResp.data);
+                        //Tell raven about the user
+                        Raven.setUserContext(UserProfile.get());
+                        //Redirect change app
+                        $window.location.href = '/influencer.html#/influencer-campaign-list';
+                    })
+                    .catch(function (err) {
+                        $scope.alert.danger('A fetal backend error is preventing you from signing up.');
+                    });
+            };
+        }])
+    .controller('BrandSignupController', ['$scope', '$rootScope', 'BrandAccountService', 'AccountService', 'UserProfile', '$location', '$window', 'NcAlert',
+        function ($scope, $rootScope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert) {
+
             $scope.formData = {};
 
             $scope.alert = new NcAlert();
@@ -447,6 +452,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         //Tell raven about the user
                         Raven.setUserContext(UserProfile.get());
                         //Redirect
+                        $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
                         $window.location.href = '/brand.html#/brand-campaign-list';
                     })
                     .catch(function (err) {

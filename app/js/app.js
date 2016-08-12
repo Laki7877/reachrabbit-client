@@ -9,7 +9,6 @@
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
-  'ngRoute',
   'angular-loading-bar',
   'ui.bootstrap',
   'ngFileUpload',
@@ -88,9 +87,9 @@ angular.module('myApp', [
       }
 ])
 //Configure the providers
-.config(['$locationProvider', '$routeProvider','cfpLoadingBarProvider', function($locationProvider, $routeProvider, cfpLoadingBarProvider) {
+.config(['$locationProvider','cfpLoadingBarProvider', function($locationProvider, cfpLoadingBarProvider) {
   // $locationProvider.hashPrefix('');
-  $routeProvider.otherwise({redirectTo: '/404'});
+  // $routeProvider.otherwise({redirectTo: '/404'});
   cfpLoadingBarProvider.includeSpinner = false;
  
 }])
@@ -99,10 +98,9 @@ angular.module('myApp', [
 
   //Configure Raven in production mode
   // Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();
-  $rootScope.unauthorizedRoute = "/portal.html#/brand-login";
 
     $rootScope.setUnauthorizedRoute = function (textString) {
-        $rootScope.unauthorizedRoute = textString;
+       $window.localStorage.unauthorized_route = textString;
     };
     
   //Configure global deafult date options for date picker
@@ -120,14 +118,21 @@ angular.module('myApp', [
   $rootScope.getProfile = UserProfile.get;
   $rootScope.signOut = function(msg){
     //clear localstorage
-    $window.localStorage.removeItem('token');
-    $window.localStorage.removeItem('profile');
+    var ur = $window.localStorage.unauthorized_route;
+    if(!ur){
+      ur = "/";
+    }
+    var redirTo = ur  + (msg ? '?message=' + msg : '');
+    $window.localStorage.clear();
     //navigate to login
-    $window.location.href = $rootScope.unauthorizedRoute + (msg ? '?message=' + msg : '');
+    console.log("redirecting to", redirTo);
+    $window.location.href = redirTo;
   };
+
   $rootScope.goTo = function(path){
-    $location.path(path);
+    console.error("$root.goTo is deprecated. Please stahp using it.");
   };
+
   $rootScope.getPath = function(){
     return $location.path();
   };
@@ -135,7 +140,6 @@ angular.module('myApp', [
   //Route change event
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
     console.log('$routeChangeStart', event, next, current);
-    $rootScope.state = null;
   });
 
 }]);

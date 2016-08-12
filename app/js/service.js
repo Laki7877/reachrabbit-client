@@ -20,6 +20,8 @@ angular.module('myApp.service', ['satellizer'])
             if(cc.url[0] === "/"){
                 cc.url = Config.API_BASE_URI + cc.url;
                 cc.headers['X-Auth-Token'] = $window.localStorage.token;
+                //Prevent satellizer's evil hack
+                cc.skipAuthorization = true;
             }
             return cc;
         }
@@ -50,7 +52,13 @@ angular.module('myApp.service', ['satellizer'])
       scope: ['pages_show_list', 'manage_pages']
   });
 
+  //Due to wrongness in satellizer hijacking our options request
+  //We are forced to deceive it into believing that our header is acceptable 
+  $authProvider.tokenHeader = 'X-Auth-Token';
+  $authProvider.withCredentials = false;
+  $authProvider.tokenType = 'Ignore';
 
+  //Intercept all $http request and add appropriate stuff
   $httpProvider.interceptors.push('baseUrlInjector');
   $httpProvider.interceptors.push('authStatusCheckInjector');
 
@@ -61,7 +69,9 @@ angular.module('myApp.service', ['satellizer'])
         * Get Profile
         */
         getProfile: function(){
-            return $http.get("/profile");
+            return $http({
+                url: "/profile"
+            });
         },
         saveProfile: function(profile){
             return $http.put("/profile", profile);
@@ -96,19 +106,20 @@ angular.module('myApp.service', ['satellizer'])
         signup: function(brand){
             return $http.post("/signup/brand", brand);
         },
-
+ 
     };
 }])
 .factory('CampaignService', ['$http', function($http) {
     return {
         getOpenCampaigns: function(filter){
-            var opt = {};
+            var opt = {
+                skipAuthorization: true,
+                url: "/campaigns/open"
+            };
             if(filter instanceof Object){
-                opt = {
-                    params: filter
-                };
+                opt.params = filter;
             }
-            return $http.get("/campaigns/open", opt);
+            return $http(opt);
         },
         getAll: function(){
             return $http.get("/campaigns");

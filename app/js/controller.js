@@ -325,11 +325,20 @@ angular.module('myApp.portal.controller', ['myApp.service'])
     }])
     .controller('InfluencerPortalController', ['$scope', 'NcAlert', '$auth', '$state', function ($scope, NcAlert, $auth, $state) {
         $scope.alert = new NcAlert();
+
         $scope.startAuthFlow = function(mediaId){
             $auth.authenticate(mediaId)
             .then(function (response) {
                 console.log('Response', response.data);
-                $state.go('influencer-signup-confirmation', { authData: response.data });
+                
+                if(mediaId == 'facebook'){
+                    // $state.go('influencer-signup-select-page', { authData: response.data} );
+                }else{
+                    $state.go('influencer-signup-confirmation', { authData: response.data });
+                }
+                
+                //influencer-signup-select-page
+                
             });
         };
     }])

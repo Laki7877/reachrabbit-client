@@ -10,7 +10,7 @@
 angular.module('myApp.service', ['satellizer'])
 .constant('Config', {
   API_BASE_URI: 'http://bella.reachrabbit.co:8080',
-  FACEBOOK_APP_ID: "",
+  FACEBOOK_APP_ID: "1648733485452450",
   INSTAGRAM_APP_ID: "",
   YOUTUBE_APP_ID: "486841241364-75hb5e24afp7msiitf8t36skfo3mr0h7.apps.googleusercontent.com"
 })
@@ -43,6 +43,13 @@ angular.module('myApp.service', ['satellizer'])
       clientId: Config.YOUTUBE_APP_ID,
       scope: ['https://www.googleapis.com/auth/youtube', 'https://www.googleapis.com/auth/userinfo.email']
   });
+
+  //Facebook account 
+  $authProvider.facebook({
+      clientId: Config.FACEBOOK_APP_ID,
+      scope: ['pages_show_list', 'manage_pages']
+  });
+
 
   $httpProvider.interceptors.push('baseUrlInjector');
   $httpProvider.interceptors.push('authStatusCheckInjector');

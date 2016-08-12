@@ -6,41 +6,19 @@
         <div class="logo">
           <h3>เลือกบัญชีที่จะใช้สมัคร</h3>
         </div>
-        <div class="radio-card">
+        <div class="radio-card" ng-repeat="page in pages">
           <label>
-            <input type="radio" name="group" checked>
+            <input type="radio" ng-model="selectedPage">
             <div class="radio-label">
-              Page A
+              {{ page.name }}
             </div>
             <div class="radio-info">
-              มีผู้ติดตาม 604 คน
+              มีผู้ติดตาม {{page.count | number}} คน
             </div>
-            <img class="radio-image" src="images/example-campaign/profile-pic-jon.jpg" />
+            <img class="radio-image" ng-src="{{ page.picture }}" />
           </label>
         </div>
-        <div class="radio-card">
-          <label>
-            <input type="radio" name="group">
-            <div class="radio-label">
-              Page B
-            </div>
-            <div class="radio-info">
-              มีผู้ติดตาม 504 คน
-            </div>
-            <img class="radio-image" src="images/example-campaign/profile-pic-jon.jpg" />
-          </label>
-        </div>
-        <div class="radio-card disabled">
-          <input type="radio" name="group" disabled>
-          <div class="radio-label">
-            Page C
-          </div>
-          <div class="radio-info">
-            มีผู้ติดตาม 4 คน
-          </div>
-          <img class="radio-image" src="images/example-campaign/profile-pic-jon.jpg" />
-        </div>
-        <button class="btn-primary" ng-click="$root.goTo('influencer-signup-confirmation')">เลือกบัญชี</button>
+        <button class="btn-primary" ng-click="choosePage(selectedPage)">เลือกบัญชี</button>
         <div class="info-text">
           คุณต้องมีคนติดตามอย่างน้อย 500 คนในการสมัคร
         </div>

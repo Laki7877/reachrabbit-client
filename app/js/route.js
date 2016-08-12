@@ -90,7 +90,7 @@ angular.module('myApp.portal.routes', ['ui.router'])
   .state('influencer-signup-select-page', {
     url: "/influencer-signup-select-page",
     templateUrl: 'view/influencer-signup-select-page.html',
-    controller: 'InfluencerSignUpController',
+    controller: 'InfluencerFacebookPageSelectionController',
     params: { authData: null }
   })
   .state('influencer-signup-confirmation', {

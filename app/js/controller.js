@@ -332,14 +332,30 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 console.log('Response', response.data);
                 
                 if(mediaId == 'facebook'){
-                    // $state.go('influencer-signup-select-page', { authData: response.data} );
+                    $state.go('influencer-signup-select-page', { authData: response.data} );
                 }else{
                     $state.go('influencer-signup-confirmation', { authData: response.data });
                 }
-                
-                //influencer-signup-select-page
-                
+                                
             });
+        };
+    }])
+    .controller('InfluencerFacebookPageSelectionController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService) {
+        var authData = $stateParams.authData;
+        $scope.pages = authData.pages;
+
+        $scope.choosePage = function(page){
+            //go to cofnirmation page
+            
+            $state.go('influencer-signup-confirmation', { 
+                //reduce the pages array to just one array of page 
+                //that you selected
+                authData:  _.assignIn({
+                    pages: [
+                        page
+                    ]
+                }, authData)
+            } );
         };
     }])
     .controller('InfluencerSignUpController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService) {

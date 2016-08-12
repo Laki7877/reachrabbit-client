@@ -323,19 +323,33 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 });
         };
     }])
-    .controller('InfluencerPortalController', ['$scope', 'NcAlert', '$auth', '$state', function ($scope, NcAlert, $auth, $state) {
+    .controller('InfluencerPortalController', ['$scope', 'NcAlert', '$auth', '$state', 'AccountService', 'UserProfile','$window', function ($scope, NcAlert, $auth, $state,  AccountService, UserProfile,$window) {
         $scope.alert = new NcAlert();
 
         $scope.startAuthFlow = function(mediaId){
             $auth.authenticate(mediaId)
             .then(function (response) {
                 console.log('Response', response.data);
-                
-                if(mediaId == 'facebook'){
-                    $state.go('influencer-signup-select-page', { authData: response.data} );
+                if(response.data.token){
+                    $window.location.href = '/brand.html#/brand-campaign-list';
+                    $window.localStorage.token = response.data.token;
+                    AccountService.getProfile()
+                    .then(function(profileResp){
+                        UserProfile.set(profileResp.data);
+                        //Tell raven about the user
+                        Raven.setUserContext(UserProfile.get());
+                        //Redirect change app
+                        $window.location.href = '/influencer.html#/influencer-campaign-list';
+                    });
                 }else{
-                    $state.go('influencer-signup-confirmation', { authData: response.data });
+                    if(mediaId == 'facebook'){
+                        $state.go('influencer-signup-select-page', { authData: response.data} );
+                    }else{
+                        $state.go('influencer-signup-confirmation', { authData: response.data });
+                    }
                 }
+
+                
                                 
             });
         };
@@ -363,7 +377,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             } );
         };
     }])
-    .controller('InfluencerSignUpController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService) {
+    .controller('InfluencerSignUpController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService',  'UserProfile', '$window',
+    function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window) {
+
         var profile = $stateParams.authData;
         $scope.alert = new NcAlert();
         if(!profile){
@@ -390,12 +406,25 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 }
             })
             .then(function(response){
-                console.log(response);
+                var token = response.data.token;
+                $window.localStorage.token = token;
+                return AccountService.getProfile();
+            })
+            .then(function (profileResp) {
+                UserProfile.set(profileResp.data);
+                //Tell raven about the user
+                Raven.setUserContext(UserProfile.get());
+                //Redirect change app
+                $window.location.href = '/influencer.html#/influencer-campaign-list';
+            })
+            .catch(function(err){
+                $scope.alert.danger('A fetal backend error is preventing you from signing up.');
             });
         };
     }])
     .controller('BrandSignupController', ['$scope', 'BrandAccountService', 'AccountService', 'UserProfile', '$location', '$window', 'NcAlert',
         function ($scope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert) {
+            
             $scope.formData = {};
 
             $scope.alert = new NcAlert();
@@ -413,7 +442,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         return AccountService.getProfile();
                     })
                     .then(function (profileResp) {
-                        $window.localStorage.profile = JSON.stringify(profileResp.data);
+                        UserProfile.set(profileResp.data);
                         //Tell raven about the user
                         Raven.setUserContext(UserProfile.get());
                         //Redirect

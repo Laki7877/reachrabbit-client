@@ -62,7 +62,8 @@ angular.module('myApp.influencer.routes', ['ngRoute'])
 
 angular.module('myApp.portal.routes', ['ui.router'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise("404");
+  
+  
 
   $stateProvider
   .state('404', {
@@ -99,5 +100,7 @@ angular.module('myApp.portal.routes', ['ui.router'])
     controller: 'InfluencerSignUpController',
     params: { authData: null }
   });
+
+  $urlRouterProvider.otherwise("404");
 
 }]);

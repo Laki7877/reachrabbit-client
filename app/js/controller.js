@@ -350,11 +350,14 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             $state.go('influencer-signup-confirmation', { 
                 //reduce the pages array to just one array of page 
                 //that you selected
-                authData:  _.assignIn({
-                    pages: [
-                        page
-                    ]
-                }, authData)
+                authData:  {
+                    pages: [page],
+                    media: authData.media,
+                    email: authData.email,
+                    profilePicture: page.picture,
+                    name: page.name,
+                    id: authData.id
+                }
             } );
         };
     }])
@@ -362,7 +365,8 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         var profile = $stateParams.authData;
         $scope.alert = new NcAlert();
         if(!profile){
-            return $scope.alert.danger("<strong>Weird</strong> Something is wrong, you may now close this page.");
+            $state.go('influencer-portal');
+            return;
         }
 
         //TODO : get value from provider somewhere or smth

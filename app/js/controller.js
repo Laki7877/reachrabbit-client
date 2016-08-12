@@ -327,6 +327,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         $scope.alert = new NcAlert();
 
         $scope.startAuthFlow = function(mediaId){
+            $window.localStorage.removeItem('token');
             $auth.authenticate(mediaId)
             .then(function (response) {
                 console.log('Response', response.data);

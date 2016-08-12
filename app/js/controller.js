@@ -327,12 +327,12 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         $scope.alert = new NcAlert();
 
         $scope.startAuthFlow = function(mediaId){
-            $window.localStorage.removeItem('token');
+            $window.localStorage.clear();
             $auth.authenticate(mediaId)
             .then(function (response) {
                 console.log('Response', response.data);
                 if(response.data.token){
-                    $window.location.href = '/brand.html#/brand-campaign-list';
+                    $window.location.href = '/influencer.html#/influencer-campaign-list';
                     $window.localStorage.token = response.data.token;
                     AccountService.getProfile()
                     .then(function(profileResp){
@@ -435,7 +435,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                     $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน');
                     return;
                 }
-                $window.localStorage.removeItem('token');
+                $window.localStorage.clear();
                 BrandAccountService.signup(brand)
                     .then(function (response) {
                         var token = response.data.token;

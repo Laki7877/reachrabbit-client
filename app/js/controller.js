@@ -343,7 +343,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
     .controller('InfluencerFacebookPageSelectionController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService) {
         var authData = $stateParams.authData;
         $scope.pages = authData.pages;
-
+        $scope.formData = {
+            selectedPage: null
+        };
         $scope.choosePage = function(page){
             //go to cofnirmation page
             

@@ -365,6 +365,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             return $scope.alert.danger("<strong>Weird</strong> Something is wrong, you may now close this page.");
         }
 
+        //TODO : get value from provider somewhere or smth
+        $scope.minFollower = 500;
+
         $scope.formData = profile;
         
         $scope.register = function(){

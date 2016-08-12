@@ -360,8 +360,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
     }])
     .controller('InfluencerSignUpController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService) {
         var profile = $stateParams.authData;
+        $scope.alert = new NcAlert();
         if(!profile){
-            $state.go('influencer-portal');
+            return $scope.alert.danger("<strong>Weird</strong> Something is wrong, you may now close this page.");
         }
 
         $scope.formData = profile;

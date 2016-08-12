@@ -37,7 +37,7 @@ angular.module('myApp.service', ['satellizer'])
     return service;
 }])
 .config(['$authProvider', 'Config', '$httpProvider', function($authProvider, Config, $httpProvider){
-    
+  $authProvider.baseUrl = Config.API_BASE_URI;
   //Google account 
   $authProvider.google({
       clientId: Config.YOUTUBE_APP_ID,

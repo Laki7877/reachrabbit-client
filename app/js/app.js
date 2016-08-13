@@ -99,9 +99,9 @@ angular.module('myApp', [
   //Configure Raven in production mode
   // Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();
 
-    $rootScope.setUnauthorizedRoute = function (textString) {
-       $window.localStorage.unauthorized_route = textString;
-    };
+  $rootScope.setUnauthorizedRoute = function (textString) {
+    $window.localStorage.unauthorized_route = textString;
+  };
     
   //Configure global deafult date options for date picker
   $rootScope.dateOptions = {

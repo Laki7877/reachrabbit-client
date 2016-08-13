@@ -1,24 +1,28 @@
 <div class="view-brand-detail-example">
+  
   <div class="header-zone">
     <div class="container">
       <div class="page-header">
         <div class="back-btn-for-header"  ui-sref="brand-campaign-list">
           <i class="fa fa-arrow-left"></i> กลับไป Campaign List
         </div>
-        <h2>Morinaga Keoda รสใหม่</h2>
+        <div style="float: right">
+            <button class="btn-primary btn-width-md">
+                <i class="fa fa-paper-plane"></i> ยื่นข้อเสนอ
+            </button>
+        </div>
+
+        <h2>{{ campaignNee.title }}</h2>
+        
+        
       </div>
     </div>
   </div>
   <div class="body-zone">
     <div class="container">
-      <div class="btn-floating-action" ui-sref="brand-campaign-detail-draft">
-      </div>
+      <div nc-alert="alert"></div>
 
-      <nc-alert type="info">
-        หน้านี้คือตัวอย่างของ Campaign อยากสร้างใหม่กดปุ่มข้างๆ เลย
-      </nc-alert >
-
-      <card-campaign-header campaign="exampleCampaign">
+      <card-campaign-header campaign="campaignNee">
       </card-campaign-header>
 
       <div class="card-campaign-description">
@@ -28,16 +32,7 @@
               รายละเอียด
             </div>
             <div class="card-body-content">
-              1. ถ่ายภาพให้เห็นผลิตภัณฑ์และชื่อแบรนด์อย่างชัดเจน<br>
-              2. แนะนำพร้อมอธิบายข้อมูล และรายละเอียดของผลิตภัณฑ์<br>
-              3. ถ่ายภาพ หรือ VDO ประกอบขณะใช้ผลิตภัณฑ์<br>
-              4. ถ่ายภาพ Before และ After ให้เห็นความเปลี่ยนแปลงในการใช้ผลิตภัณฑ์<br>
-              5. ถ่ายภาพ Finish look และเซลฟี่คู่กับผลิตภัณฑ์<br>
-              6. บรรยายความรู้สึก และให้คะแนนความพอใจ<br>
-              7. บอกเคล็ดลับในการปัดมาสคาร่า<br>
-              8. แนะนำช่องทางติดตามข้อมูล และข่าวสารของ Belov<br>
-              9. ห้ามรีวิวเปรียบเทียบกับแบรนด์อื่น<br>
-              10. การ Share บทความรีวิว ต้องตั้งค่าสถานะ Facebook Post เป็น Public เท่านั้น
+                {{ campaignNee.description }}
             </div>
           </div>
           <div class="card-row">
@@ -45,7 +40,7 @@
               Keyword สำคัญ
             </div>
             <div class="card-body-content">
-              หมา, แมว, เป็ด
+              {{ (campaignNee.keywords || []).join(", ") }}
             </div>
           </div>
           <div class="card-row">
@@ -53,7 +48,7 @@
               เว็บไซต์ของสินค้า
             </div>
             <div class="card-body-content">
-              <a href="#">www.pokemongo.com/summerworld</a>
+              <a ng-href="{{campaignNee.website}}">{{ campaignNee.website || "No Description" }}</a>
             </div>
           </div>
           <div class="card-row">
@@ -61,8 +56,7 @@
               รูปประกอบ
             </div>
             <div class="card-body-content">
-              <img src="images/example-campaign/content-picture.jpg" class="description-image"/>
-              <img src="images/example-campaign/content-picture.jpg" class="description-image"/>
+              <img ng-repeat="campaignImage in campaignNee.resources" src="images/example-campaign/content-picture.jpg" class="description-image"/>
             </div>
           </div>
         </div>
@@ -75,7 +69,7 @@
           </div>
           <div class="card-title">
             <div class="card-title-content">
-              เกี่ยวกับ Morinaga Koeda
+              เกี่ยวกับ {{ campaign.brand.brandName }}
             </div>
           </div>
           <div class="col-xs-10">
@@ -84,6 +78,15 @@
             </p>
             <a href="#">www.pokemongo.com/summerworld</a>
           </div>
+        </div>
+      </div>
+      
+      <div class="card-brand-profile">
+        <div class="card-body align-center">
+            <button class="btn-secondary btn-width-lg" ui-sref="influencer-campaign-list">กลับไปดู Campaign อื่น</button>
+            <button class="btn-primary btn-width-lg">
+                <i class="fa fa-paper-plane"></i> ยื่นข้อเสนอ
+            </button>
         </div>
       </div>
 

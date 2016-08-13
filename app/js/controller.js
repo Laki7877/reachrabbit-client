@@ -34,10 +34,29 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('InfluencerCampaignListController', ['$scope', 'CampaignService', 'ExampleCampaigns', '$rootScope',
-        function ($scope, CampaignService, ExampleCampaigns, $rootScope) {
-            console.log('InfluencerCampaignListController');
+    .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert',
+     function($scope, $state, $stateParams, CampaignService, NcAlert){
+        console.log($stateParams.campaignId);
+        $scope.campaignNee = null;
+        $scope.alert = new NcAlert();
+        CampaignService.getOne($stateParams.campaignId)
+        .then(function(campaignResponse){
+            $scope.campaignNee = campaignResponse.data;
+        })
+        .catch(function(err){
+            $scope.alert.danger("An unexpected backend error has occurred.");
+        });
+        
 
+    }])
+    .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'ExampleCampaigns', '$rootScope',
+        function ($scope, $state, CampaignService, ExampleCampaigns, $rootScope) {
+            console.log('InfluencerCampaignListController');
+            $scope.handleUserClickThumbnail = function(c){
+                $state.go('influencer-campaign-detail-open', {
+                    campaignId: c.campaignId
+                });
+            };
             $scope.filter = 'any';
             function fetch(filter) {
                 CampaignService.getOpenCampaigns(filter || {}).then(function (data) {
@@ -103,11 +122,11 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         //Example campaign section
         $scope.exampleCampaign = ExampleCampaigns;
     }])
-    .controller('CampaignExampleController', ['$scope', '$routeParams', 'ExampleCampaigns', function ($scope, $routeParams, ExampleCampaigns) {
-        $scope.exampleCampaign = ExampleCampaigns[$routeParams.exampleId];
+    .controller('CampaignExampleController', ['$scope', '$stateParams', 'ExampleCampaigns', function ($scope, $stateParams, ExampleCampaigns) {
+        $scope.exampleCampaign = ExampleCampaigns[$stateParams.exampleId];
     }])
-    .controller('CampaignDetailController', ['$scope', '$routeParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', 'NcAlert',
-        function ($scope, $routeParams, CampaignService, DataService, $filter, UserProfile, NcAlert) {
+    .controller('CampaignDetailController', ['$scope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', 'NcAlert',
+        function ($scope, $stateParams, CampaignService, DataService, $filter, UserProfile, NcAlert) {
             //initial form data
 
             $scope.alert = new NcAlert();
@@ -177,12 +196,16 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             }, true);
 
             $scope.$watch('budget.id', function () {
-                $scope.formData.fromBudget = Number($scope.budget.fromBudget);
-                $scope.formData.toBudget = Number($scope.budget.toBudget);
+                if($scope.budget){
+                    $scope.formData.fromBudget = Number($scope.budget.fromBudget);
+                    $scope.formData.toBudget = Number($scope.budget.toBudget);
+                }
             });
 
+            $scope.formData.brand = UserProfile.get().brand;
+
             //Setting up form
-            var campaignId = $routeParams.campaignId;
+            var campaignId = $stateParams.campaignId;
             if (campaignId) {
                 //If there is a campaign id in params
                 //we are in edit mode
@@ -191,7 +214,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         //overrides the form data
                         $scope.formData = angular.copy(response.data);
                         //Tell checkbox which media are in the array
-                        $scope.formData.media.forEach(function (item) {
+                        ($scope.formData.media || []).forEach(function (item) {
                             $scope.mediaBooleanDict[item.mediaId] = true;
                         });
                         //Tell dropdown which budget is matching the budget object
@@ -201,19 +224,30 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         });
                         //Split resources array into two parts
                         $scope.formData.resources = [];
-                        $scope.formData.resources.push(response.data.resources.shift());
-                        $scope.resources = angular.copy(response.data.resources); //the rest
+                        
+                        if(response.data.resources && response.data.resources.length > 0){
+                            $scope.formData.resources.push(response.data.resources.shift());
+                            $scope.resources = angular.copy(response.data.resources); //the rest
+                        }
+                        
+                        console.log($scope.formData);
+
+                        //ensure non null
+                        $scope.formData.keywords = $scope.formData.keywords || [];
+
+                        $scope.formData.brand = UserProfile.get().brand;
                         $scope.createMode = false;
                     });
             } else {
                 $scope.createMode = true;
             }
 
-            $scope.formData.brand = UserProfile.get().brand;
+            
 
             $scope.save = function (formData, mediaBooleanDict, mediaObjectDict, status) {
+                $scope.formData.brand = UserProfile.get().brand;
                 $scope.formData.status = status;
-                $scope.formData.resources = ($scope.formData.resources || []).concat($scope.resources);
+                $scope.formData.resources = $scope.formData.resources.concat($scope.resources || []);
 
                 //check for publish case
                 if (status == 'Open') {

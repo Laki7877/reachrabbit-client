@@ -8,7 +8,7 @@
   </div>
   <div class="body-zone">
     <div class="container">
-      <div class="btn-floating-action" ng-click="$root.goTo('brand-campaign-detail-draft')">
+      <div class="btn-floating-action" ui-sref="brand-campaign-detail-draft">
       </div>
 
       <div nc-alert type="info">
@@ -16,13 +16,13 @@
       </div>
 
       <div ng-repeat="x in myCampaign.content">
-        <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-draft"></card-campaign-list-item>
+        <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-draft({campaignId: x.campaignId})"></card-campaign-list-item>
       </div>
 
       <div class="example-campaign">
         <h2>ตัวอย่าง Campaign</h2>
         <div ng-repeat="x in exampleCampaign">
-          <card-campaign-list-item campaign='x' link-to="brand-campaign-detail-example/{{$index}}"></card-campaign-list-item>
+          <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-example({ exampleId: $index })"></card-campaign-list-item>
         </div>
       </div>
 

@@ -39,7 +39,9 @@
       </div>
 
       <div class="thumbnails">
-        <card-campaign-thumbnail ng-repeat="cam in campaigns.content" campaign="cam"></card-campaign-thumbnail>
+        <card-campaign-thumbnail ng-repeat="cam in campaigns.content" 
+        on-click="handleUserClickThumbnail"
+        campaign="cam"></card-campaign-thumbnail>
       </div>
 
       <nav class="text-center" aria-label="Page navigation">
@@ -49,6 +51,7 @@
               <i class="fa fa-angle-left" aria-hidden="true"></i>
             </a>
           </li>
+          
           <li class="active"><a href="#">1</a></li>
           <li><a href="#">2</a></li>
           <li><a href="#">3</a></li>

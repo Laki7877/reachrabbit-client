@@ -7185,6 +7185,9 @@ a:focus,
 a:visited {
   color: #ff773e;
 }
+a.secondary {
+  color: #16bbac;
+}
 .social-link-title {
   color: #16bbac;
   display: inline;
@@ -7225,6 +7228,9 @@ a:visited {
 .page-header .form-group {
   width: 230px;
   float: right;
+}
+.align-center {
+  text-align: center;
 }
 /*---Zone---*/
 .header-zone {

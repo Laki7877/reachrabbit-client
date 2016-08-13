@@ -110,7 +110,7 @@ angular.module('myApp.directives', ['myApp.service'])
 				$timeout(function() {
 					var section = vm.element || $document;
 					smoothScroll(toElm ? vm.element[0] : $document[0].body, {
-						container: toElm ? '.modal': null
+						container: toElm ? '.alert': null
 					});
 				}, 10);
 			};
@@ -121,7 +121,7 @@ angular.module('myApp.directives', ['myApp.service'])
 				$timeout(function() {
 					var section = vm.element || $document;
 					smoothScroll(toElm ? vm.element[0] : $document[0].body, {
-						container: toElm ? '.modal': null
+						container: toElm ? '.alert': null
 					});
 				}, 10);
 			};
@@ -133,7 +133,7 @@ angular.module('myApp.directives', ['myApp.service'])
 				$timeout(function() {
 					var section = vm.element || $document;
 					smoothScroll(toElm ? vm.element[0] : $document[0].body, {
-						container: toElm ? '.modal': null
+						container: toElm ? '.alert': null
 					});
 				}, 10);
 			};
@@ -171,11 +171,15 @@ angular.module('myApp.directives', ['myApp.service'])
             restrict: 'EA',
             scope: {
                 campaign: '=',
-                linkTo: '@'
+                onClick: '=?onClick'
             },
             templateUrl: 'components/templates/card-campaign-thumbnail.html',
             link: function (scope, element, attrs, ctrl, transclude) {
-                
+                if(!scope.onClick){
+                    scope.onClick = function(){
+                        //nop
+                    };
+                }   
             }
         };
     }])

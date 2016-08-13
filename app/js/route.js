@@ -21,29 +21,33 @@ angular.module('myApp.routes', ['ui.router'])
 }]);
 
 
-angular.module('myApp.brand.routes', ['ui.router']);
-// .config(['$routeProvider', function($routeProvider) {
+angular.module('myApp.brand.routes', ['ui.router'])
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-//   /* Brands */
-//   $routeProvider
-//   .when('/brand-campaign-list', {
-//     templateUrl: 'view/brand-campaign-list.html',
-//     controller: 'CampaignListController'
-//   })
-//   .when('/brand-campaign-detail-draft/:campaignId?', {
-//     templateUrl: 'view/brand-campaign-detail-draft.html',
-//     controller: 'CampaignDetailController'
-//   })
-//   .when('/brand-campaign-detail-example/:exampleId', {
-//     templateUrl: 'view/brand-campaign-detail-example.html',
-//     controller: 'CampaignExampleController'
-//   })
-//   .when('/brand-profile', {
-//     templateUrl: 'view/brand-profile.html',
-//     controller: 'BrandProfileController'
-//   });
+  /* Brands */
+  $stateProvider
+  .state('brand-campaign-list', {
+    url: '/brand-campaign-list',
+    templateUrl: 'view/brand-campaign-list.html',
+    controller: 'CampaignListController'
+  })
+  .state('brand-campaign-detail-draft', {
+    url: '/brand-campaign-detail-draft/:campaignId?',
+    templateUrl: 'view/brand-campaign-detail-draft.html',
+    controller: 'CampaignDetailController'
+  })
+  .state('brand-campaign-detail-example', {
+    url: '/brand-campaign-detail-example/:exampleId',
+    templateUrl: 'view/brand-campaign-detail-example.html',
+    controller: 'CampaignExampleController'
+  })
+  .state('brand-profile', {
+    url: '/brand-profile',
+    templateUrl: 'view/brand-profile.html',
+    controller: 'BrandProfileController'
+  });
 
-// }]);
+}]);
 
 angular.module('myApp.influencer.routes', ['ui.router'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -54,6 +58,11 @@ angular.module('myApp.influencer.routes', ['ui.router'])
     url: '/influencer-campaign-list',
     templateUrl: 'view/influencer-campaign-list.html',
     controller: 'InfluencerCampaignListController'
+  })
+  .state('influencer-campaign-detail-open', {
+    url: '/influencer-campaign-detail-open/:campaignId',
+    templateUrl: 'view/influencer-campaign-detail-open.html',
+    controller: 'InfluencerCampaignDetailController'
   })
   .state('influencer-profile', {
     url: '/influencer-profile',

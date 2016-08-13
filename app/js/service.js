@@ -11,7 +11,7 @@ angular.module('myApp.service', ['satellizer'])
 .constant('Config', {
   API_BASE_URI: 'http://bella.reachrabbit.co:8080',
   FACEBOOK_APP_ID: "1648733485452450",
-  INSTAGRAM_APP_ID: "",
+  INSTAGRAM_APP_ID: "c428876109c44daa9a54cf568e96e483",
   YOUTUBE_APP_ID: "486841241364-75hb5e24afp7msiitf8t36skfo3mr0h7.apps.googleusercontent.com"
 })
 .factory('baseUrlInjector', ['Config', '$window', function(Config, $window){
@@ -52,6 +52,10 @@ angular.module('myApp.service', ['satellizer'])
       scope: ['pages_show_list', 'manage_pages']
   });
 
+  $authProvider.instagram({
+      clientId: Config.INSTAGRAM_APP_ID,
+      scope: ['likes', 'public_content', 'basic']
+  });
   //Due to wrongness in satellizer hijacking our options request
   //We are forced to deceive it into believing that our header is acceptable 
   $authProvider.tokenHeader = 'X-Auth-Token';

@@ -61,7 +61,7 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .factory('NcAlert', ['$document', '$timeout', 'smoothScroll', function($document, $timeout, smoothScroll) {
+    .factory('NcAlert', ['$document', '$timeout', 'smoothScroll', '$window', function($document, $timeout, smoothScroll, $window) {
 		return function() {
 			var vm = this;
 			this.type = 'danger';
@@ -77,7 +77,7 @@ angular.module('myApp.directives', ['myApp.service'])
 				if(msg) {
 					this.message = msg;
 				} else {
-					this.message = success ? 'Success' : 'Failure';
+					this.message = success ? 'Success' : 'Unknown Failure';
 				}
 
 				this.show = true;
@@ -88,19 +88,15 @@ angular.module('myApp.directives', ['myApp.service'])
 				this.open(false, msg);
 
 				$timeout(function() {
-					var section = vm.element || $document;
+					// var section = vm.element || $document;
 					//should scroll to bar
-					if(!_.isNil(scroll)) {
-						if(scroll)
-							smoothScroll(toElm ? vm.element[0] : $document[0].body, {
-								container: toElm ? '.modal': null
-							});
+					// if(!_.isNil(scroll)) {
+					// 	if(scroll) smoothScroll($elem[0], $attrs);
 
-					} else {
-						smoothScroll(toElm ? vm.element[0] : $document[0].body, {
-							container: toElm ? '.modal': null
-						});
-					}
+					// } else {
+					//     smoothScroll($elem[0], $attrs);
+					// }
+                    $window.scrollTo(0, 0);
 				}, 10);
 			};
 			//show green bar
@@ -108,10 +104,9 @@ angular.module('myApp.directives', ['myApp.service'])
 				this.open(true, obj);
 
 				$timeout(function() {
-					var section = vm.element || $document;
-					smoothScroll(toElm ? vm.element[0] : $document[0].body, {
-						container: toElm ? '.alert': null
-					});
+					// var section = vm.element || $document;
+					// smoothScroll($elem[0], $attrs);
+                    $window.scrollTo(0, 0);
 				}, 10);
 			};
 
@@ -119,11 +114,11 @@ angular.module('myApp.directives', ['myApp.service'])
 				this.open(false, obj, 'info');
 
 				$timeout(function() {
-					var section = vm.element || $document;
-					smoothScroll(toElm ? vm.element[0] : $document[0].body, {
-						container: toElm ? '.alert': null
-					});
+					// var section = vm.element || $document;
+					// smoothScroll($elem[0], $attrs);
+                    $window.scrollTo(0, 0);
 				}, 10);
+                
 			};
 
 
@@ -131,14 +126,11 @@ angular.module('myApp.directives', ['myApp.service'])
 				this.open(false, obj, 'warning');
 
 				$timeout(function() {
-					var section = vm.element || $document;
-					smoothScroll(toElm ? vm.element[0] : $document[0].body, {
-						container: toElm ? '.alert': null
-					});
+					// var section = vm.element || $document;
+					// smoothScroll($elem[0], $attrs);
+                    $window.scrollTo(0, 0);
 				}, 10);
 			};
-
-
 
 			this.message = '';
 		};

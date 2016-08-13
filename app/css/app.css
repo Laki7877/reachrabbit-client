@@ -8202,102 +8202,102 @@ fieldset[disabled] .btn-instagram.active {
   color: #df3d79;
   background-color: #ffffff;
 }
-.btn-youtube {
+.btn-google {
   color: #ffffff;
   background-color: #e62117;
   border-color: rgba(0, 0, 0, 0.1);
   background: url("../images/icon-youtube-lg-clear.png") 0 0 no-repeat #e62117;
 }
-.btn-youtube:focus,
-.btn-youtube.focus {
+.btn-google:focus,
+.btn-google.focus {
   color: #ffffff;
   background-color: #b81a12;
   border-color: rgba(0, 0, 0, 0.1);
 }
-.btn-youtube:hover {
+.btn-google:hover {
   color: #ffffff;
   background-color: #b81a12;
   border-color: rgba(0, 0, 0, 0.1);
 }
-.btn-youtube:active,
-.btn-youtube.active,
-.open > .dropdown-toggle.btn-youtube {
+.btn-google:active,
+.btn-google.active,
+.open > .dropdown-toggle.btn-google {
   color: #ffffff;
   background-color: #b81a12;
   border-color: rgba(0, 0, 0, 0.1);
 }
-.btn-youtube:active:hover,
-.btn-youtube.active:hover,
-.open > .dropdown-toggle.btn-youtube:hover,
-.btn-youtube:active:focus,
-.btn-youtube.active:focus,
-.open > .dropdown-toggle.btn-youtube:focus,
-.btn-youtube:active.focus,
-.btn-youtube.active.focus,
-.open > .dropdown-toggle.btn-youtube.focus {
+.btn-google:active:hover,
+.btn-google.active:hover,
+.open > .dropdown-toggle.btn-google:hover,
+.btn-google:active:focus,
+.btn-google.active:focus,
+.open > .dropdown-toggle.btn-google:focus,
+.btn-google:active.focus,
+.btn-google.active.focus,
+.open > .dropdown-toggle.btn-google.focus {
   color: #ffffff;
   background-color: #97160f;
   border-color: rgba(0, 0, 0, 0.1);
 }
-.btn-youtube:active,
-.btn-youtube.active,
-.open > .dropdown-toggle.btn-youtube {
+.btn-google:active,
+.btn-google.active,
+.open > .dropdown-toggle.btn-google {
   background-image: none;
 }
-.btn-youtube.disabled:hover,
-.btn-youtube[disabled]:hover,
-fieldset[disabled] .btn-youtube:hover,
-.btn-youtube.disabled:focus,
-.btn-youtube[disabled]:focus,
-fieldset[disabled] .btn-youtube:focus,
-.btn-youtube.disabled.focus,
-.btn-youtube[disabled].focus,
-fieldset[disabled] .btn-youtube.focus {
+.btn-google.disabled:hover,
+.btn-google[disabled]:hover,
+fieldset[disabled] .btn-google:hover,
+.btn-google.disabled:focus,
+.btn-google[disabled]:focus,
+fieldset[disabled] .btn-google:focus,
+.btn-google.disabled.focus,
+.btn-google[disabled].focus,
+fieldset[disabled] .btn-google.focus {
   background-color: #e62117;
   border-color: rgba(0, 0, 0, 0.1);
 }
-.btn-youtube .badge {
+.btn-google .badge {
   color: #e62117;
   background-color: #ffffff;
 }
-.btn-youtube:hover,
-.btn-youtube:focus,
-.btn-youtube:active,
-.btn-youtube:active:focus,
-.btn-youtube.active,
-.open .dropdown-toggle.btn-youtube {
+.btn-google:hover,
+.btn-google:focus,
+.btn-google:active,
+.btn-google:active:focus,
+.btn-google.active,
+.open .dropdown-toggle.btn-google {
   color: #ffffff;
   background-color: #b81a12;
   border-color: rgba(0, 0, 0, 0.1);
 }
-.btn-youtube:active,
-.btn-youtube.active,
-.btn-youtube:active:focus,
-.open .dropdown-toggle.btn-youtube {
+.btn-google:active,
+.btn-google.active,
+.btn-google:active:focus,
+.open .dropdown-toggle.btn-google {
   background-image: none;
 }
-.btn-youtube.disabled,
-.btn-youtube[disabled],
-fieldset[disabled] .btn-youtube,
-.btn-youtube.disabled:hover,
-.btn-youtube[disabled]:hover,
-fieldset[disabled] .btn-youtube:hover,
-.btn-youtube.disabled:focus,
-.btn-youtube[disabled]:focus,
-fieldset[disabled] .btn-youtube:focus,
-.btn-youtube.disabled:active:focus,
-.btn-youtube[disabled]:active:focus,
-fieldset[disabled] .btn-youtube:active:focus,
-.btn-youtube.disabled:active,
-.btn-youtube[disabled]:active,
-fieldset[disabled] .btn-youtube:active,
-.btn-youtube.disabled.active,
-.btn-youtube[disabled].active,
-fieldset[disabled] .btn-youtube.active {
+.btn-google.disabled,
+.btn-google[disabled],
+fieldset[disabled] .btn-google,
+.btn-google.disabled:hover,
+.btn-google[disabled]:hover,
+fieldset[disabled] .btn-google:hover,
+.btn-google.disabled:focus,
+.btn-google[disabled]:focus,
+fieldset[disabled] .btn-google:focus,
+.btn-google.disabled:active:focus,
+.btn-google[disabled]:active:focus,
+fieldset[disabled] .btn-google:active:focus,
+.btn-google.disabled:active,
+.btn-google[disabled]:active,
+fieldset[disabled] .btn-google:active,
+.btn-google.disabled.active,
+.btn-google[disabled].active,
+fieldset[disabled] .btn-google.active {
   background-color: #e62117;
   border-color: rgba(0, 0, 0, 0.1);
 }
-.btn-youtube .badge {
+.btn-google .badge {
   color: #e62117;
   background-color: #ffffff;
 }

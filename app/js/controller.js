@@ -87,7 +87,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     delete $scope.formData.password;
                 })
                 .catch(function (err) {
-                    $scope.alert.error('Unable to download profile');
+                    $scope.alert.danger('<strong>Backend Error</strong> Unable to download profile');
                 });
 
         }]);
@@ -379,6 +379,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                                 $window.location.href = '/influencer.html#/influencer-campaign-list';
                             });
                     } else {
+                        console.log(response.data);
                         if (mediaId == 'facebook') {
                             $state.go('influencer-signup-select-page', { authData: response.data });
                         } else {
@@ -390,6 +391,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 
                 });
         };
+        
     }])
     .controller('InfluencerFacebookPageSelectionController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService) {
         var authData = $stateParams.authData;

@@ -9,7 +9,7 @@
 'use strict';
 
 angular.module('myApp.directives', ['myApp.service'])
-    .directive('socialLinker', [function () {
+    .directive('socialLinker', ['DataService', '$auth', '$state', function (DataService, $auth, $state) {
         return {
             restrict: 'AE',
             transclude: true,
@@ -17,10 +17,35 @@ angular.module('myApp.directives', ['myApp.service'])
                 return 'components/templates/social-linker.html';
             },
             scope: {
-
+                model: '=ngModel'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
+                scope.mediaList = [];
+                
+                DataService.getMedium().then(function(mediumResponse){
+                    scope.mediaList = mediumResponse.data;
+                });
 
+                scope.startAuthFlow = function(mediaId){
+                    if(mediaId == 'youtube') {
+                        mediaId = 'google';
+                    }
+                     $auth.authenticate(mediaId)
+                        .then(function (response) {
+                            var linkedProfile = response.data;
+                            if (mediaId == 'facebook') {
+                                $state.go('influencer-signup-select-page', { authData: response.data });
+                            } else {
+                                scope.model.push({
+                                    mediaId: mediaId
+                                });
+                            }
+                        })
+                        .catch(function(err){
+                            console.log("Linking failed", err);
+                        });
+
+                };
             }
         };
     }])

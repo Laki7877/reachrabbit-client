@@ -167,7 +167,7 @@ angular.module('myApp.service', ['satellizer'])
         uploadWithUrl: function(url){
             return $http({
                 url: "/resources/remote",
-                type: "POST",
+                method: "POST",
                 data: {
                     url : url
                 }

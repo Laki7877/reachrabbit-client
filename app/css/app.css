@@ -8477,7 +8477,8 @@ fieldset[disabled] .btn-clear.active {
 .icon-media,
 .icon-facebook,
 .icon-instagram,
-.icon-youtube {
+.icon-youtube,
+.icon-google {
   height: 20px;
   width: 20px;
   margin-right: 5px;
@@ -8490,7 +8491,8 @@ fieldset[disabled] .btn-clear.active {
 .icon-instagram {
   background: url("../images/icon-instagram.png") 0 0 no-repeat;
 }
-.icon-youtube {
+.icon-youtube,
+.icon-google {
   background: url("../images/icon-youtube.png") 0 0 no-repeat;
 }
 /*---Navigation Bar---*/

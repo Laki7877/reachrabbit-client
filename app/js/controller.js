@@ -87,8 +87,8 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             $scope.saveProfile = function (profile) {
                 AccountService.saveProfile(profile)
                     .then(function (response) {
-                        delete response.data.password;
-                        $scope.formData = response.data;
+                        // delete response.data.password;
+                        // $scope.formData = response.data;
                         //set back to localstorage
                         UserProfile.set(response.data);
 
@@ -99,7 +99,6 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         $scope.alert.danger('<strong>Backend Error</strong> Wrong theory has occurred.');
                     });
             };
-
 
             AccountService.getProfile()
                 .then(function (response) {
@@ -469,9 +468,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                             media: $scope.formData.media,
                             socialId: $scope.formData.id,
                             pageId: $scope.formData.pageId || null
-                        }],
-                        profilePicture: $scope.profilePictureResource
-                    }
+                        }]
+                    },
+                    profilePicture: $scope.profilePictureResource
                 })
                 .then(function (response) {
                         var token = response.data.token;
@@ -520,7 +519,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                     })
                     .catch(function (err) {
                         //Multiplex between each known backend error code
-                        if (err.data.message == "Email is duplicate") {
+                        if (_.get(err, 'data.message') == "Email is duplicate") {
                             $scope.alert.warning('อีเมล์นี้มีคนใช้แล้วกรุณาใส่อีเมล์ใหม่');
                         } else {
                             $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน');

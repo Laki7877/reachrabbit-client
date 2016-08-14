@@ -34,14 +34,18 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert',
-     function($scope, $state, $stateParams, CampaignService, NcAlert){
+    .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService',
+     function($scope, $state, $stateParams, CampaignService, NcAlert, AccountService){
         console.log($stateParams.campaignId);
         $scope.campaignNee = null;
         $scope.alert = new NcAlert();
         CampaignService.getOne($stateParams.campaignId)
         .then(function(campaignResponse){
             $scope.campaignNee = campaignResponse.data;
+            return AccountService.getUser($scope.campaignNee.brandId);
+        })
+        .then(function(brandUserDataResponse){
+            $scope.brandUserInfo = brandUserDataResponse.data;
         })
         .catch(function(err){
             $scope.alert.danger("An unexpected backend error has occurred.");
@@ -434,8 +438,8 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             });
         };
     }])
-    .controller('InfluencerSignUpController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window',
-        function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window) {
+    .controller('InfluencerSignUpController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window','ResourceService',
+        function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService) {
 
             var profile = $stateParams.authData;
             $scope.alert = new NcAlert();
@@ -448,8 +452,14 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             $scope.minFollower = 500;
 
             $scope.formData = profile;
-
+            //Upload remote profile picture to get reosurce object
+            ResourceService.uploadWithUrl(profile.profilePicture)
+            .then(function(resource){
+                $scope.profilePictureResource = resource.data;
+            });
+            
             $scope.register = function () {
+                
                 InfluencerAccountService.signup({
                     name: $scope.formData.name,
                     email: $scope.formData.email,
@@ -460,10 +470,10 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                             socialId: $scope.formData.id,
                             pageId: $scope.formData.pageId || null
                         }],
-                        profilePicture: null
+                        profilePicture: $scope.profilePictureResource
                     }
                 })
-                    .then(function (response) {
+                .then(function (response) {
                         var token = response.data.token;
                         $window.localStorage.token = token;
                         return AccountService.getProfile();

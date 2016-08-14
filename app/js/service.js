@@ -69,6 +69,11 @@ angular.module('myApp.service', ['satellizer'])
 }])
 .factory('AccountService', ['$http', function($http){
     return {
+        getUser: function(id){
+            return $http({
+                url: '/users/' + id
+            });
+        },
         /*
         * Get Profile
         */
@@ -154,6 +159,19 @@ angular.module('myApp.service', ['satellizer'])
         },
         getCategories: function(){
             return $http.get("/data/categories");
+        }
+    };
+}])
+.factory('ResourceService', ['$http', function($http) {
+    return {
+        uploadWithUrl: function(url){
+            return $http({
+                url: "/resources/remote",
+                type: "POST",
+                data: {
+                    url : url
+                }
+            });
         }
     };
 }])

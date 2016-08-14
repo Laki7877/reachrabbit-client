@@ -65,7 +65,7 @@
       <div class="card-brand-profile">
         <div class="card-body">
           <div class="card-image">
-            <img src="images/example-campaign/brand-logo.jpg" class="img-responsive"/>
+            <img ng-src="{{ brandUserInfo.profilePicture || 'images/placeholder-campaign.png' }}" class="img-responsive"/>
           </div>
           <div class="card-title">
             <div class="card-title-content">
@@ -74,9 +74,9 @@
           </div>
           <div class="col-xs-10">
             <p>
-              {{ campaign.brand.about }}
+              {{ brandUserInfo.brand.about }}
             </p>
-            <a ng-href="{{campaign.brand.website}}"> {{ campaign.brand.website }}</a>
+            <a ng-href="{{brandUserInfo.brand.website}}"> {{ brandUserInfo.brand.website }}</a>
           </div>
         </div>
       </div>

@@ -21,6 +21,17 @@ angular.module('myApp.directives', ['myApp.service'])
             },
             link: function (scope, element, attrs, ctrl, transclude) {
                 scope.mediaList = [];
+
+                //search model for media
+                scope.hasMedia = function(mediaId){
+                    var f = _.find(scope.model, function(ec){
+                        return _.get(ec, "media.mediaId") === mediaId;
+                    });
+                    if(f){
+                        return true;
+                    }
+                    return false;
+                };
                 
                 DataService.getMedium().then(function(mediumResponse){
                     scope.mediaList = mediumResponse.data;
@@ -33,11 +44,14 @@ angular.module('myApp.directives', ['myApp.service'])
                      $auth.authenticate(mediaId)
                         .then(function (response) {
                             var linkedProfile = response.data;
+                            console.log('linkedProfile', linkedProfile);
                             if (mediaId == 'facebook') {
                                 $state.go('influencer-signup-select-page', { authData: response.data });
                             } else {
                                 scope.model.push({
-                                    mediaId: mediaId
+                                    media: linkedProfile.media || { mediaId: mediaId },
+                                    socialId: linkedProfile.id,
+                                    pageId: null
                                 });
                             }
                         })

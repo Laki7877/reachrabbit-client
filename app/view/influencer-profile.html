@@ -1,4 +1,4 @@
-<form ng-submit="saveProfile(form, formData)" name="form">
+<form novalidate name="form">
 <div class="view-brand-profile">
   <div class="header-zone">
     <div class="container">
@@ -7,7 +7,7 @@
       </div>
     </div>
   </div>
-  <div class="body-zone">
+  <div class="body-zone" ng-cloak>
     <div class="container"> 
       <div nc-alert="alert"></div>
 
@@ -107,6 +107,8 @@
             </div>
             <div class="card-body-content">
               <select class="form-control" ng-model="formData.influencer.gender">
+                <option value="Male">ชาย</option>
+                <option value="Female">หญิง</option>
               </select>
             </div>
           </div>
@@ -116,8 +118,15 @@
               วันเกิด
             </div>
             <div class="card-body-content">
-              <select class="form-control" ng-model="formData.influencer.birthday">
-              </select>
+              <p class="input-group">
+                  <input placeholder="-- เลือกวันที่ --" type="text" class="form-control" ng-focus="popup1_open = true" uib-datepicker-popup="{{$root.format}}"
+                    ng-model="formData.influencer.birthday" is-open="popup1_open" required datepicker-options="$root.dateOptions"
+                    show-button-bar="false" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="popup1_open = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+                </p>
+
             </div>
           </div>
 
@@ -125,7 +134,7 @@
             <div class="card-body-content-label with-input">
             </div>
             <div class="card-body-content">
-              <button class="btn-width-lg btn-primary">บันทึกข้อมูล</button>
+              <button class="btn-width-lg btn-primary" ng-click="saveProfile(formData)" >บันทึกข้อมูล</button>
             </div>
           </div>
 

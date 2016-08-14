@@ -3,7 +3,7 @@
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
  * @author     Natt Phenjati <natt@phenjati.com>
- * @since      S04E01
+ * @since      S04E02
  */
 /* jshint node: true */
 'use strict';
@@ -80,6 +80,23 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         function ($scope, $window, AccountService, NcAlert, UserProfile) {
             $scope.formData = {};
             $scope.alert = new NcAlert();
+            $scope.saveProfile = function (profile) {
+                AccountService.saveProfile(profile)
+                    .then(function (response) {
+                        delete response.data.password;
+                        $scope.formData = response.data;
+                        //set back to localstorage
+                        UserProfile.set(response.data);
+
+                        $scope.success = true;
+                        $scope.alert.success('บันทึกข้อมูลเรียบร้อย!');
+                    })
+                    .catch(function (err) {
+                        $scope.alert.danger('<strong>Backend Error</strong> Wrong theory has occurred.');
+                    });
+            };
+
+
             AccountService.getProfile()
                 .then(function (response) {
                     $scope.formData = response.data;
@@ -291,7 +308,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 delete $scope.formData.password;
             })
             .catch(function (err) {
-                $scope.alert.error('Unable to download your profile');
+                $scope.alert.danger('Unable to download your profile');
             });
 
         $scope.saveProfile = function (form, profile) {
@@ -306,7 +323,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                     $scope.alert.success('บันทึกข้อมูลเรียบร้อย!');
                 })
                 .catch(function (err) {
-                    $scope.alert.error('<strong>Backend Error</strong> Wrong theory has occurred.');
+                    $scope.alert.danger('<strong>Backend Error</strong> Wrong theory has occurred.');
                 });
         };
     }]);

@@ -40,7 +40,7 @@
               Keyword สำคัญ
             </div>
             <div class="card-body-content">
-              {{ (campaignNee.keywords || []).map(function(r){ return r.keyword }).join(", ") }}
+              {{ keywordMap(campaignNee.keywords).join(",") }}
             </div>
           </div>
           <div class="card-row">

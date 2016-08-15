@@ -39,6 +39,12 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         console.log($stateParams.campaignId);
         $scope.campaignNee = null;
         $scope.alert = new NcAlert();
+        $scope.keywordMap = function(arr){
+            if(!arr) return [];
+            return arr.map(function(k){
+                return k.keyword;
+            });
+        }
         CampaignService.getOne($stateParams.campaignId)
         .then(function(campaignResponse){
             $scope.campaignNee = campaignResponse.data;

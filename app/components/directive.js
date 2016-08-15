@@ -290,14 +290,13 @@ angular.module('myApp.directives', ['myApp.service'])
                   console.log(scope.model, scope.categoriesChunk);
                   _.forEach(scope.categoriesChunk, function(chunk) {
                     _.forEach(chunk, function(so) {
-                      _.forEach(scope.model, function(cat) {
-                        console.log(so.categoryId, cat.categoryId);
-                        if(so.categoryId == cat.categoryId) {
-                          so._selected = true;
-                        } else {
-                          so._selected = false;
-                        }
-                      });
+                      if(_.findIndex(scope.model, function(e) {
+                        return e.categoryId == so.categoryId;
+                      }) >= 0) {
+                        so._selected = true;
+                      } else {
+                        so._selected = false;
+                      }
                     });
                   });
                 };

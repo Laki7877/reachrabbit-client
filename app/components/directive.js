@@ -284,14 +284,14 @@ angular.module('myApp.directives', ['myApp.service'])
                 });
 
                 var update = function() {
-                  if(_.isNil(scope.model)) {
+                  if(_.isNil(scope.model) || _.isNil(scope.categoriesChunk)) {
                     return;
                   }
                   console.log(scope.model, scope.categoriesChunk);
                   _.forEach(scope.categoriesChunk, function(chunk) {
                     _.forEach(chunk, function(so) {
                       _.forEach(scope.model, function(cat) {
-                        if(so.categoryName == cat.categoryName) {
+                        if(so.categoryId == cat.categoryId) {
                           so._selected = true;
                         } else {
                           so._selected = false;

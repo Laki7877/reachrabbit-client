@@ -15,7 +15,7 @@
  | ____||  \/  ||  _ \|_   _|\ \ / /
  |  _|  | |\/| || |_) | | |   \ V /
  | |___ | |  | ||  __/  | |    | |
- |_____||_|  |_||_|     |_|    |_|  
+ |_____||_|  |_||_|     |_|    |_|
 */
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
@@ -29,7 +29,7 @@ angular.module('myApp.controller', ['myApp.service'])
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
-    INFLUENCER 
+    INFLUENCER
 */
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
@@ -50,7 +50,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         .catch(function(err){
             $scope.alert.danger("An unexpected backend error has occurred.");
         });
-        
+
 
     }])
     .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'ExampleCampaigns', '$rootScope',
@@ -104,6 +104,10 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 .then(function (response) {
                     $scope.formData = response.data;
                     $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
+
+                    _.forEach($scope.formData.influencer.categories, function(r) {
+                      r._selected = true;
+                    });
                     delete $scope.formData.password;
                 })
                 .catch(function (err) {
@@ -244,12 +248,12 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         });
                         //Split resources array into two parts
                         $scope.formData.resources = [];
-                        
+
                         if(response.data.resources && response.data.resources.length > 0){
                             $scope.formData.resources.push(response.data.resources.shift());
                             $scope.resources = angular.copy(response.data.resources); //the rest
                         }
-                        
+
                         console.log($scope.formData);
 
                         //ensure non null
@@ -262,7 +266,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 $scope.createMode = true;
             }
 
-            
+
 
             $scope.save = function (formData, mediaBooleanDict, mediaObjectDict, status) {
                 $scope.formData.brand = UserProfile.get().brand;
@@ -411,7 +415,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 
                 });
         };
-        
+
     }])
     .controller('InfluencerFacebookPageSelectionController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService) {
         var authData = $stateParams.authData;
@@ -423,7 +427,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             //go to cofnirmation page
 
             $state.go('influencer-signup-confirmation', {
-                //reduce the pages array to just one array of page 
+                //reduce the pages array to just one array of page
                 //that you selected
                 authData: {
                     pages: [page],
@@ -456,9 +460,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             .then(function(resource){
                 $scope.profilePictureResource = resource.data;
             });
-            
+
             $scope.register = function () {
-                
+
                 InfluencerAccountService.signup({
                     name: $scope.formData.name,
                     email: $scope.formData.email,

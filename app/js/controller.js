@@ -431,12 +431,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             selectedPage: null
         };
         $scope.choosePage = function (page) {
-            //go to cofnirmation page
-
-            $state.go('influencer-signup-confirmation', {
-                //reduce the pages array to just one array of page
-                //that you selected
-                authData: {
+            var authobject = {
                     pages: [page],
                     pageId: page.id,
                     media: authData.media,
@@ -444,7 +439,19 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                     profilePicture: page.picture,
                     name: page.name,
                     id: authData.id
-                }
+            };
+
+            //go to cofnirmation page
+            if($stateParams.fromState){
+                return $state.go($stateParams.fromState, {
+                    authData: authobject
+                });
+            }
+
+            $state.go('influencer-signup-confirmation', {
+                //reduce the pages array to just one array of page
+                //that you selected
+                authData: authobject
             });
         };
     }])

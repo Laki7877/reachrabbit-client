@@ -46,7 +46,7 @@ angular.module('myApp.directives', ['myApp.service'])
                             var linkedProfile = response.data;
                             console.log('linkedProfile', linkedProfile);
                             if (mediaId == 'facebook') {
-                                $state.go('influencer-signup-select-page', { authData: response.data });
+                                $state.go('influencer-signup-select-page', { authData: linkedProfile, fromState: 'influencer-profile' });
                             } else {
                                 scope.model.push({
                                     media: linkedProfile.media || { mediaId: mediaId },

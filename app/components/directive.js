@@ -280,9 +280,10 @@ angular.module('myApp.directives', ['myApp.service'])
 
                 DataService.getCategories().then(function(cats){
                     scope.categoriesChunk = _.chunk(cats.data, Number(scope.maxColumns));
+                    update();
                 });
 
-                scope.$watch('model', function() {
+                var update = function() {
                   if(_.isNil(scope.model)) {
                     return;
                   }
@@ -298,7 +299,9 @@ angular.module('myApp.directives', ['myApp.service'])
                       });
                     });
                   });
-                });
+                };
+
+                scope.$watch('model', update);
 
                 scope.activate = function(so){
                     if(so._selected){

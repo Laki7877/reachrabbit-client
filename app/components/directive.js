@@ -286,6 +286,7 @@ angular.module('myApp.directives', ['myApp.service'])
                   if(_.isNil(scope.model)) {
                     return;
                   }
+                  console.log(scope.model, scope.categoriesChunk);
                   _.forEach(scope.categoriesChunk, function(chunk) {
                     _.forEach(chunk, function(so) {
                       _.forEach(scope.model, function(cat) {

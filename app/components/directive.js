@@ -291,6 +291,7 @@ angular.module('myApp.directives', ['myApp.service'])
                   _.forEach(scope.categoriesChunk, function(chunk) {
                     _.forEach(chunk, function(so) {
                       _.forEach(scope.model, function(cat) {
+                        console.log(so.categoryId, cat.categoryId);
                         if(so.categoryId == cat.categoryId) {
                           so._selected = true;
                         } else {

@@ -32,7 +32,7 @@ angular.module('myApp.directives', ['myApp.service'])
                     }
                     return false;
                 };
-                
+
                 DataService.getMedium().then(function(mediumResponse){
                     scope.mediaList = mediumResponse.data;
                 });
@@ -157,7 +157,7 @@ angular.module('myApp.directives', ['myApp.service'])
 					// smoothScroll($elem[0], $attrs);
                     $window.scrollTo(0, 0);
 				}, 10);
-                
+
 			};
 
 
@@ -210,7 +210,7 @@ angular.module('myApp.directives', ['myApp.service'])
                     scope.onClick = function(){
                         //nop
                     };
-                }   
+                }
             }
         };
     }])
@@ -267,11 +267,11 @@ angular.module('myApp.directives', ['myApp.service'])
             templateUrl: 'components/templates/multi-category-selector.html',
             link: function(scope, elem, attrs, form){
                 if(!scope.maxColumns){
-                    scope.maxColumns = 4;          
+                    scope.maxColumns = 4;
                 }
 
                 if(!scope.maxSelected){
-                    scope.maxSelected = 3;          
+                    scope.maxSelected = 3;
                 }
 
                 if(!scope.model){
@@ -282,8 +282,24 @@ angular.module('myApp.directives', ['myApp.service'])
                     scope.categoriesChunk = _.chunk(cats.data, Number(scope.maxColumns));
                 });
 
+                scope.$watch('model', function() {
+                  if(_.isNil(scope.model)) {
+                    return;
+                  }
+                  _.forEach(scope.categoriesChunk, function(chunk) {
+                    _.forEach(chunk, function(so) {
+                      _.forEach(scope.model, function(cat) {
+                        if(so.categoryName == cat.categoryName) {
+                          so._selected = true;
+                        } else {
+                          so._selected = false;
+                        }
+                      });
+                    });
+                  });
+                });
+
                 scope.activate = function(so){
-                    
                     if(so._selected){
                         so._selected = false;
                         _.remove(scope.model, function(o){
@@ -293,10 +309,10 @@ angular.module('myApp.directives', ['myApp.service'])
                         if(scope.model.length < scope.maxSelected){
                             so._selected = true;
                             scope.model.push(so);
-                        }                    
+                        }
                     }
                 };
-                
+
                 scope.getValue = function(obj){
                     return _.get(obj, 'categoryName');
                 };

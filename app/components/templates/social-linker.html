@@ -6,7 +6,7 @@
         <div class="card-body-content">
             <div class="media" ng-if="!hasMedia(media.mediaId)">
                 <div class="media-left">
-                    <img ng-src="images/icon-{{media.mediaName}}-lg.png" class="profile-social-media-icon" />
+                    <img ng-src="images/icon-{{media.mediaId}}-lg.png" class="profile-social-media-icon" />
                 </div>
                 <div class="media-body">
                     <button class="btn-secondary btn-width-lg" ng-click="startAuthFlow(media.mediaId)">เชื่อมต่อกับ {{ media.mediaName }}</button>
@@ -14,7 +14,7 @@
             </div>
             <div class="media" ng-if="hasMedia(media.mediaId)">
                 <div class="media-left">
-                    <img ng-src="images/icon-{{media.mediaName}}-lg.png" class="profile-social-media-icon" />
+                    <img ng-src="images/icon-{{media.mediaId}}-lg.png" class="profile-social-media-icon" />
                 </div>
                 <div class="media-body">
                     <button class="btn-secondary-active btn-width-lg" disabled ng-click="startAuthFlow(media.mediaId)">

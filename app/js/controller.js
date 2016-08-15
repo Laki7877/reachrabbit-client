@@ -44,7 +44,8 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             return arr.map(function(k){
                 return k.keyword;
             });
-        }
+        };
+        
         CampaignService.getOne($stateParams.campaignId)
         .then(function(campaignResponse){
             $scope.campaignNee = campaignResponse.data;

@@ -116,7 +116,9 @@ a.secondary{
   }
   .action-btn-for-header{
     float: right;
-    margin-top: -15px;
+    &.with-back-btn{
+      margin-top: -15px;
+    }
   }
   .step{
     .make-xs-column(3);
@@ -567,6 +569,10 @@ a.secondary{
   }
 }
 
+.card-inbox{
+  &:extend(.card);
+}
+
 /*---Thumbnail---*/
 .thumbnails{
   &:extend(.row);
@@ -795,6 +801,71 @@ a.secondary{
   }
 }
 
+/*---Tab Selector---*/
+.tab-selector{
+  background: @color-grey;
+  height: 50px;
+  text-align: center;
+  .tab{
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    display: inline-block;
+    h5{
+      margin-top: 5px;
+    }
+    h3{
+      font-family: @font-secondary;
+    }
+    &:hover{
+      background: @color-grey-darker;
+      color: @color-white;
+    }
+    &.active{
+      border-bottom: 3px solid @color-theme-primary;
+    }
+  }
+  .tab-next-step{
+    display: inline-block;
+    vertical-align:top;
+    padding: 10px;
+    color: @color-grey-darker;
+  }
+}
+
+/*---Table---*/
+.table{
+  thead{
+    tr{
+      th{
+        a{
+          color: @color-grey;
+          &.active{
+            color: @color-theme-primary;
+          }
+        }
+      }
+    }
+  }
+  tbody{
+    tr{
+      td{
+        vertical-align: middle;
+        .profile-picture{
+          &:extend(.img-circle);
+          width: 30px;
+          margin-right: 5px;
+        }
+        &.text-ellipsis{
+          max-width: 250px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}
 
 /** Other debugging stuff */
 .api_override_box{

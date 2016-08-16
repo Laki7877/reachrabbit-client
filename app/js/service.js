@@ -15,8 +15,8 @@ angular.module('myApp.service', ['satellizer'])
   YOUTUBE_APP_ID: "486841241364-75hb5e24afp7msiitf8t36skfo3mr0h7.apps.googleusercontent.com"
 })
 .run(['Config', '$window', function(Config, $window){
-    if($window.localStorage.API_OVERRIDE){
-        Config.API_BASE_URI = $window.localStorage.API_OVERRIDE;
+    if($window.sessionStorage.API_OVERRIDE){
+        Config.API_BASE_URI = $window.sessionStorage.API_OVERRIDE;
     }
 }])
 .factory('baseUrlInjector', ['Config', '$window', function(Config, $window){
@@ -39,6 +39,11 @@ angular.module('myApp.service', ['satellizer'])
         if (response.status == 401){
             $rootScope.signOut('401');
         }
+
+        if(!response.data){
+            response.data = { message: "External error"};
+        }
+
         return $q.reject(response);
     };
     return service;

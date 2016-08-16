@@ -123,10 +123,15 @@ angular.module('myApp.service', ['satellizer'])
         getOpenCampaigns: function(filter){
             var opt = {
                 skipAuthorization: true,
-                url: "/campaigns/open"
+                url: "/campaigns/open",
+                params: {
+                    sort: ['id desc']
+                }
             };
             if(filter instanceof Object){
-                opt.params = filter;
+                if(filter.mediaId){
+                    opt.params.mediaId = filter.mediaId;
+                }
             }
             return $http(opt);
         },

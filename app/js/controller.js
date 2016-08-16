@@ -68,9 +68,11 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     campaignId: c.campaignId
                 });
             };
-            $scope.filter = 'any';
+            $scope.filter = {
+                mediaId: null
+            };
             function fetch(filter) {
-                CampaignService.getOpenCampaigns(filter || {}).then(function (data) {
+                CampaignService.getOpenCampaigns($scope.filter).then(function (data) {
                     console.log(data);
                     $scope.campaigns = data.data;
                 });

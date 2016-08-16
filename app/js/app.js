@@ -99,6 +99,9 @@ angular.module('myApp', [
 //Initialize the app
 .run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
 
+  $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
+  
+
   //Configure Raven in production mode
   // Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();
 

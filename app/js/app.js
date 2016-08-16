@@ -94,7 +94,7 @@ angular.module('myApp', [
  
 }])
 .constant('BusinessConfig', {
-  MIN_FOLLOWER_COUNT : 0
+  MIN_FOLLOWER_COUNT : 50
 })
 //Initialize the app
 .run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
@@ -112,7 +112,7 @@ angular.module('myApp', [
     startingDay: 1,
     showWeeks: false
   };
-  
+
   $rootScope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $rootScope.format = $rootScope.formats[0];
 

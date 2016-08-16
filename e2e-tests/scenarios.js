@@ -8,7 +8,7 @@
       // browser.pause();
     });
     
-    it('can find all the fields we need', function() {
+    it('can find all the fields we need to login', function() {
       var username = element(by.model('username'));
       var password = element(by.model('password'));
 
@@ -34,7 +34,7 @@
       expect($('.alert.alert-danger').isPresent()).toBe(true);
     });
 
-    it('can click load signup form', function() {
+    it('can find all fields we need to sign up', function() {
       state.signup_btn.click();
 
       browser.waitForAngular();
@@ -51,7 +51,10 @@
       expect(email.isPresent()).toBe(true);
       expect(password.isPresent()).toBe(true);
 
-      // browser.pause();
+    });
+
+    it('can submit to signup', function() {
+      
     });
     
   });

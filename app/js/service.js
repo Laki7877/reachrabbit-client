@@ -31,22 +31,22 @@ angular.module('myApp.service', ['satellizer'])
 .factory('authStatusCheckInjector', ['$q', '$rootScope', function($q, $rootScope){
     var service = this;
     service.responseError = function(response) {
-        if (response.status == 401){
-            $rootScope.signOut('401');
-        }
+        // if (response.status == 401){
+        //     $rootScope.signOut('401');
+        // }
         return $q.reject(response);
     };
     return service;
 }])
 .config(['$authProvider', 'Config', '$httpProvider', function($authProvider, Config, $httpProvider){
   $authProvider.baseUrl = Config.API_BASE_URI;
-  //Google account 
+  //Google account
   $authProvider.google({
       clientId: Config.YOUTUBE_APP_ID,
       scope: ['https://www.googleapis.com/auth/youtube', 'https://www.googleapis.com/auth/userinfo.email']
   });
 
-  //Facebook account 
+  //Facebook account
   $authProvider.facebook({
       clientId: Config.FACEBOOK_APP_ID,
       scope: ['pages_show_list', 'manage_pages']
@@ -57,7 +57,7 @@ angular.module('myApp.service', ['satellizer'])
       scope: ['likes', 'public_content', 'basic']
   });
   //Due to wrongness in satellizer hijacking our options request
-  //We are forced to deceive it into believing that our header is acceptable 
+  //We are forced to deceive it into believing that our header is acceptable
   $authProvider.tokenHeader = 'X-Auth-Token';
   $authProvider.withCredentials = false;
   $authProvider.tokenType = 'Ignore';
@@ -115,7 +115,7 @@ angular.module('myApp.service', ['satellizer'])
         signup: function(brand){
             return $http.post("/signup/brand", brand);
         },
- 
+
     };
 }])
 .factory('CampaignService', ['$http', function($http) {
@@ -188,7 +188,7 @@ angular.module('myApp.service', ['satellizer'])
       var options = _.extend({
         url: Config.API_BASE_URI + url,
         data: data,
-        headers: {'X-Auth-Token': $window.localStorage.token}, 
+        headers: {'X-Auth-Token': $window.localStorage.token},
       }, opts);
 
       // upload on url
@@ -223,4 +223,3 @@ angular.module('myApp.service', ['satellizer'])
           }
       };
   }]);
-  

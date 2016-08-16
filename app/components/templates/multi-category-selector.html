@@ -1,17 +1,13 @@
 <div class="card-row multi-tag-selector">
-    <div class="card-body-content-label with-input">
+    <div class="card-body-content-label">
         หมวดหมู่ที่สนใจ
     </div>
     <div class="card-body-content">
-        <div class="row">
-            <div class="col-md-12">
-                <label>คุณจะได้รับคำชวนตามสิ่งที่คุณเลือก (เลือกได้อีก  {{ maxSelected - model.length }}  หัวข้อ)</label>
-            </div>
-        </div>
+        <label>คุณจะได้รับคำชวนตามสิ่งที่คุณเลือก (เลือกได้อีก  {{ maxSelected - model.length }}  หัวข้อ)</label>
         <div class="row" ng-repeat="chunk in categoriesChunk">
-            <div class="col-md-{{ 12/maxColumns }}" ng-repeat="btn in chunk">
+            <div class="col-xs-{{ 12/maxColumns }} col" ng-repeat="btn in chunk">
                 <button ng-disabled="!btn._selected && model.length >= maxSelected"
-                class="btn-width-max" ng-click="activate(btn)" 
+                class="btn-width-max" ng-click="activate(btn)"
                 ng-class="{'btn-secondary-active': btn._selected, 'btn-secondary': !btn._selected}">
                      {{ getValue(btn) }}
                    </button>

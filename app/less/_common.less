@@ -92,9 +92,6 @@ a.secondary{
     float: right;
   }
 }
-.align-center{
-  text-align: center;
-}
 
 /*---Zone---*/
 .header-zone{
@@ -113,6 +110,13 @@ a.secondary{
   .back-btn-for-header{
     margin-top: 25px;
     cursor: pointer;
+  }
+  .back-btn-for-header:hover{
+    color:@color-grey;
+  }
+  .action-btn-for-header{
+    float: right;
+    margin-top: -15px;
   }
   .step{
     .make-xs-column(3);
@@ -146,6 +150,15 @@ a.secondary{
   border-color:@color-grey;
   border-right: none;
   color: @color-grey-darker;
+}
+.input-group-btn{
+  button{
+    color:@color-grey-darker;
+    border-color: @color-grey;
+    i{
+      margin: 0px 5px;
+    }
+  }
 }
 .radio-card{
   &:extend(.radio);
@@ -292,6 +305,12 @@ a.secondary{
 .card-clickable{
   transition: all 0.3s;
   cursor: pointer;
+  &:hover{
+    box-shadow: @global-shadow-depth-2;
+  };
+  &:active{
+    box-shadow: @global-shadow-depth-1;
+  };
 }
 .card-body{
   &:extend(.panel-body);
@@ -440,6 +459,7 @@ a.secondary{
 }
 
 .card-campaign-list-item{
+  &:extend(.card-clickable all);
   &:extend(.card);
   margin-bottom: 20px;
   .card-body{
@@ -509,7 +529,7 @@ a.secondary{
 
 .card-thumbnail{
   &:extend(.card);
-  &:extend(.card-clickable);
+  &:extend(.card-clickable all);
   .card-thumbnail-image{
     height: 194px;
     overflow: hidden;
@@ -533,15 +553,6 @@ a.secondary{
       margin-right: 0px;
     }
   }
-
-  &:hover{
-    box-shadow: @global-shadow-depth-2;
-  };
-
-  &:active{
-    box-shadow: @global-shadow-depth-1;
-  };
-
 }
 
 /*---Thumbnail---*/
@@ -556,12 +567,15 @@ a.secondary{
 .btn{
   padding: 6px;
   border-radius: 2px;
+  i{
+    margin-right: 5px;
+  }
 }
 .btn:disabled{
   opacity: 0.5;
 }
 .btn-primary {
-  &:extend(.btn);
+  &:extend(.btn all);
   .button-variant(@color-white, @color-theme-primary, @color-btn-border);
 }
 .btn-secondary {
@@ -569,11 +583,11 @@ a.secondary{
   .button-variant(@color-theme-secondary, @color-white, @color-grey);
 }
 .btn-secondary-active {
-  &:extend(.btn);
+  &:extend(.btn all);
   .button-variant(@color-white, @color-theme-secondary, @color-theme-secondary-darker);
 }
 .btn-social{
-  &:extend(.btn);
+  &:extend(.btn all);
   padding-left: 32px;
 }
 .btn-facebook {
@@ -616,6 +630,9 @@ a.secondary{
 }
 .btn-width-max{
   width: 100%;
+}
+.btn-with-margin{
+  margin: 7.5px;
 }
 
 /*---Alert Box---*/
@@ -754,6 +771,14 @@ a.secondary{
   padding:8px;
 }
 
-.multi-tag-selector .row{
+/*---Mutli Selector---*/
+.multi-tag-selector{
   padding-top: 5px;
+  .row{
+    margin-left: -7.5px;
+    margin-right: -7.5px;
+  }
+  .col{
+    padding: 5px 7.5px;
+  }
 }

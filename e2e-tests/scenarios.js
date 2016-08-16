@@ -1,42 +1,52 @@
 'use strict';
 
-/* https://github.com/angular/protractor/blob/master/docs/toc.md */
+  
+  describe('brand login', function() {
+    var state = {};
+    browser.get('portal.html#/brand-login');
 
-describe('my app', function() {
+    beforeEach(function(){
+      // browser.pause();
+    });
+    
+    it('can find all the fields we need', function() {
+      var username = element(by.model('username'));
+      var password = element(by.model('password'));
 
+      var submit_btn = element(by.css('.btn-primary'));
 
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    browser.get('index.html');
-    expect(browser.getLocationAbsUrl()).toMatch("/view1");
+      expect(username.isPresent()).toBe(true);
+      expect(password.isPresent()).toBe(true);
+      expect(submit_btn.isPresent()).toBe(true);
+
+      state.username = username;
+      state.password = password;
+      state.submit_btn = submit_btn;
+    });
+
+    it('fails to login with bad credentials', function() {
+      state.username.sendKeys("brand@brand.com");
+      state.password.sendKeys("1111");
+      state.submit_btn.click();
+      
+      expect($('.alert.alert-danger').isPresent()).toBe(true);
+    });
+    
   });
 
 
-  describe('view1', function() {
+  xdescribe('influencer login', function() {
 
     beforeEach(function() {
-      browser.get('index.html#!/view1');
+      browser.get('portal.html#/influencer-portal');
     });
-
-
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 1/);
+    
+    it('should have 3 social buttons', function() {
+      var elements = element.all(protractor.By.css('.btn-social'));
+      expect(elements.count()).toEqual(3);
     });
-
+    
+    
   });
 
 
-  describe('view2', function() {
-
-    beforeEach(function() {
-      browser.get('index.html#!/view2');
-    });
-
-
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 2/);
-    });
-
-  });
-});

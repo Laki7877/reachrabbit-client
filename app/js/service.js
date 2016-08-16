@@ -80,6 +80,8 @@ angular.module('myApp.service', ['satellizer'])
   //Intercept all $http request and add appropriate stuff
   $httpProvider.interceptors.push('baseUrlInjector');
   $httpProvider.interceptors.push('authStatusCheckInjector');
+  $httpProvider.defaults.headers.post = {'Content-Type': 'application/json'};
+  $httpProvider.defaults.headers.put =  {'Content-Type': 'application/json'};
 
 }])
 .factory('AccountService', ['$http', function($http){

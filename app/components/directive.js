@@ -67,6 +67,15 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
+    .directive('ncPlaceholder', [function(){
+        return {
+            restrict: 'A',
+            transclude: true,
+            link: function (scope, element, attrs, ctrl, transclude) {
+                console.log(attrs);
+            }
+        };
+    }])
     .directive('ncAlert', ['NcAlert', function (NcAlert) {
         return {
             restrict: 'AE',

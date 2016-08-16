@@ -1,0 +1,29 @@
+[
+  {
+    "description": "can find all the fields we need",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 2139
+  },
+  {
+    "description": "fails to login with bad credentials",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1142
+  },
+  {
+    "description": "should have 3 social buttons",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 0
+  }
+]

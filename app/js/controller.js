@@ -55,7 +55,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             $scope.brandUserInfo = brandUserDataResponse.data;
         })
         .catch(function(err){
-            $scope.alert.danger("An unexpected backend error has occurred.");
+            $scope.alert.danger(err.data.message);
         });
 
 
@@ -103,7 +103,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         $scope.alert.success('บันทึกข้อมูลเรียบร้อย!');
                     })
                     .catch(function (err) {
-                        $scope.alert.danger('<strong>Backend Error</strong> Wrong theory has occurred.');
+                        $scope.alert.danger(err.data.message);
                     });
             };
 
@@ -118,7 +118,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     delete $scope.formData.password;
                 })
                 .catch(function (err) {
-                    $scope.alert.danger('<strong>Backend Error</strong> Unable to download profile');
+                    $scope.alert.danger(err.data.message);
                 });
 
         }]);
@@ -307,7 +307,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         }
                     })
                     .catch(function (err) {
-                        $scope.alert.danger('<strong>Backend Error</strong> Wrong Theory has occurred.');
+                        $scope.alert.danger(err.data.message);
                     });
 
             };
@@ -322,7 +322,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 delete $scope.formData.password;
             })
             .catch(function (err) {
-                $scope.alert.danger('Unable to download your profile');
+                $scope.alert.danger(err.data.message);
             });
 
         $scope.saveProfile = function (form, profile) {
@@ -337,7 +337,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                     $scope.alert.success('บันทึกข้อมูลเรียบร้อย!');
                 })
                 .catch(function (err) {
-                    $scope.alert.danger('<strong>Backend Error</strong> Wrong theory has occurred.');
+                    $scope.alert.danger(err.data.message);
                 });
         };
     }]);
@@ -384,13 +384,18 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                     $window.location.href = '/brand.html#/brand-campaign-list';
                 })
                 .catch(function (err) {
-                    $scope.alert.close();
-                    $scope.alert.danger("อีเมล์หรือรหัสผ่านไม่ถูกต้อง");
+                    $scope.alert.danger(err.data.message);
                 });
         };
     }])
-    .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', 'AccountService', 'UserProfile', '$window', function ($scope, $rootScope, NcAlert, $auth, $state, AccountService, UserProfile, $window) {
+    .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'AccountService', 'UserProfile', '$window',  'BusinessConfig', 
+    function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {
         $scope.alert = new NcAlert();
+        $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
+
+        if($stateParams.alert){
+            $scope.alert[$stateParams.alert.type]($stateParams.alert.message);
+        }
 
         $scope.startAuthFlow = function (mediaId) {
             $window.localStorage.clear();
@@ -424,12 +429,13 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         };
 
     }])
-    .controller('InfluencerFacebookPageSelectionController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService) {
+    .controller('InfluencerFacebookPageSelectionController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'BusinessConfig', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, BusinessConfig) {
         var authData = $stateParams.authData;
         $scope.pages = authData.pages;
         $scope.formData = {
             selectedPage: null
         };
+        $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
         $scope.choosePage = function (page) {
             var authobject = {
                     pages: [page],
@@ -455,28 +461,36 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             });
         };
     }])
-    .controller('InfluencerSignUpController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window','ResourceService',
-        function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService) {
+    .controller('InfluencerSignUpController', 
+    ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window','ResourceService', 'BusinessConfig',
+        function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig) {
 
             var profile = $stateParams.authData;
             $scope.alert = new NcAlert();
+            
+            //TODO : get value from provider somewhere or smth
+            $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
+
+            $scope.formData = profile;
             if (!profile) {
                 $state.go('influencer-portal');
                 return;
             }
+            if($scope.formData.pages[0].count < Number($scope.minFollower)){
+                //not meet requirement
+                $state.go('influencer-portal', { alert: { type: 'danger', message: 'คุณต้องมีผู้ติดตามอย่างน้อย ' + $scope.minFollower + ' คนเพื่อสมัคร' } } );
+                return;
+            }
 
-            //TODO : get value from provider somewhere or smth
-            $scope.minFollower = 500;
-
-            $scope.formData = profile;
             //Upload remote profile picture to get reosurce object
             ResourceService.uploadWithUrl(profile.profilePicture)
             .then(function(resource){
                 $scope.profilePictureResource = resource.data;
             });
 
+            
+            
             $scope.register = function () {
-
                 InfluencerAccountService.signup({
                     name: $scope.formData.name,
                     email: $scope.formData.email,
@@ -504,7 +518,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         $window.location.href = '/influencer.html#/influencer-campaign-list';
                     })
                     .catch(function (err) {
-                        $scope.alert.danger('A fetal backend error is preventing you from signing up.');
+                        $scope.alert.danger(err.data.message);
                     });
             };
         }])
@@ -536,12 +550,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         $window.location.href = '/brand.html#/brand-campaign-list';
                     })
                     .catch(function (err) {
-                        //Multiplex between each known backend error code
-                        if (_.get(err, 'data.message') == "Email is duplicate") {
-                            $scope.alert.warning('อีเมล์นี้มีคนใช้แล้วกรุณาใส่อีเมล์ใหม่');
-                        } else {
-                            $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน');
-                        }
+                        $scope.alert.danger(err.data.message);
                     });
             };
 

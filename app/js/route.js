@@ -92,7 +92,8 @@ angular.module('myApp.portal.routes', ['ui.router'])
   .state('influencer-portal', {
       url: "/influencer-portal",
       templateUrl: "view/influencer-portal.html",
-      controller: 'InfluencerPortalController'
+      controller: 'InfluencerPortalController',
+      params: { alert: null }
   })
   .state('influencer-signup-select-page', {
     url: "/influencer-signup-select-page",

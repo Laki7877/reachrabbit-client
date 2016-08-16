@@ -1,9 +1,7 @@
 <div class="fileinput fileinput-new" data-provides="fileinput">
 
     <div ngf-select="upload($file)" ng-if="!loadingImage && !accessor(model)" class="img-rounded input-upload-image">
-                 <ng-transclude>
-
-                 </ng-transclude>
+        <ng-transclude></ng-transclude>
      </div>
     <div ng-if="loadingImage" class="input-upload-image">
       <i class="fa fa-spinner fa-spin image-uploading"></i>
@@ -11,7 +9,7 @@
       <!-- <img src="images/Jumping.gif" style="width: 100%;" /> -->
     </div>
     <div class="fileinput-new " ngf-select="upload($file)" ng-if="accessor(model) && !loadingImage">
-      <div class="input-upload-image ">
+        <div class="input-upload-image ">
         <i class="fa fa-times-circle btn-delete-image" ng-click="remove()"></i>
         <img ng-show="!loadingImage" ng-src="{{ accessor(model) }}">
         </div>

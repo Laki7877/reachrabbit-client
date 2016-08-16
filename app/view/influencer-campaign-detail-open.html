@@ -40,7 +40,7 @@
               Keyword สำคัญ
             </div>
             <div class="card-body-content">
-              {{ keywordMap(campaignNee.keywords).join(",") }}
+              {{ campaignNee.keywords }}
             </div>
           </div>
           <div class="card-row">
@@ -65,18 +65,18 @@
       <div class="card-brand-profile">
         <div class="card-body">
           <div class="card-image">
-            <img ng-src="{{ brandUserInfo.profilePicture.url || 'images/placeholder-campaign.png' }}" class="img-responsive"/>
+            <img ng-src="{{ campaignNee.brand.profilePicture.url || 'images/placeholder-campaign.png' }}" class="img-responsive"/>
           </div>
           <div class="card-title">
             <div class="card-title-content">
-              เกี่ยวกับ {{ brandUserInfo.brand.brandName }}
+              เกี่ยวกับ {{ campaignNee.brand.brandName }}
             </div>
           </div>
           <div class="col-xs-10">
             <p>
-              {{ brandUserInfo.brand.about || "No information" }}
+              {{ campaignNee.brand.about || "No information" }}
             </p>
-            <a ng-href="{{brandUserInfo.brand.website}}"> {{ brandUserInfo.brand.website }}</a>
+            <a ng-href="{{campaignNee.brand.website}}"> {{ campaignNee.brand.website }}</a>
           </div>
         </div>
       </div>

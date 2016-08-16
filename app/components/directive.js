@@ -17,7 +17,8 @@ angular.module('myApp.directives', ['myApp.service'])
                 return 'components/templates/social-linker.html';
             },
             scope: {
-                model: '=ngModel'
+                model: '=ngModel',
+                fromState: '@fromState'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
                 scope.mediaList = [];
@@ -37,6 +38,8 @@ angular.module('myApp.directives', ['myApp.service'])
                     scope.mediaList = mediumResponse.data;
                 });
 
+                
+
                 scope.startAuthFlow = function(mediaId){
                     if(mediaId == 'youtube') {
                         mediaId = 'google';
@@ -46,7 +49,8 @@ angular.module('myApp.directives', ['myApp.service'])
                             var linkedProfile = response.data;
                             console.log('linkedProfile', linkedProfile);
                             if (mediaId == 'facebook') {
-                                $state.go('influencer-signup-select-page', { authData: linkedProfile, fromState: 'influencer-profile' });
+                                //not gunna work
+                                $state.go('influencer-signup-select-page', { authData: linkedProfile, fromState: scope.fromState });
                             } else {
                                 scope.model.push({
                                     media: linkedProfile.media || { mediaId: mediaId },

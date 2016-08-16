@@ -93,6 +93,9 @@ angular.module('myApp', [
   cfpLoadingBarProvider.includeSpinner = false;
  
 }])
+.constant('BusinessConfig', {
+  MIN_FOLLOWER_COUNT : 0
+})
 //Initialize the app
 .run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
 
@@ -106,11 +109,10 @@ angular.module('myApp', [
   //Configure global deafult date options for date picker
   $rootScope.dateOptions = {
     formatYear: 'yy',
-    maxDate: new Date(2020, 5, 22),
-    minDate: new Date(),
     startingDay: 1,
     showWeeks: false
   };
+  
   $rootScope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $rootScope.format = $rootScope.formats[0];
 

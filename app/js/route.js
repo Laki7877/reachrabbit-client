@@ -45,6 +45,11 @@ angular.module('myApp.brand.routes', ['ui.router'])
     url: '/brand-profile',
     templateUrl: 'view/brand-profile.html',
     controller: 'BrandProfileController'
+  })
+  .state('brand-inbox', {
+    url: '/brand-inbox',
+    templateUrl: 'view/brand-inbox.html',
+    controller: 'EmptyController'
   });
 
 }]);
@@ -69,7 +74,7 @@ angular.module('myApp.influencer.routes', ['ui.router'])
     templateUrl: 'view/influencer-profile.html',
     controller: 'InfluencerProfileController'
   });
-  
+
   //TODO: Campaign-detail
 
 }]);
@@ -77,7 +82,7 @@ angular.module('myApp.influencer.routes', ['ui.router'])
 
 angular.module('myApp.portal.routes', ['ui.router'])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-    
+
   $stateProvider
   .state('brand-login', {
       url: "/brand-login",

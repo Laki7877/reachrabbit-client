@@ -5,19 +5,17 @@
     </a>
     <div class="input-upload-image-sm-preview">
         <div class="preview-item" ng-repeat="resource in model">
-            <div class="preview-image input-upload-image">
+            <div class="input-upload-image">
                 <i class="fa fa-times-circle btn-delete-image" ng-click="remove($index)"></i>
                 <img ng-src="{{accessor(resource)}}">
             </div>
             <!--<a ng-click="remove($index)">{{resource._name | limitTo: 7 }} <i class="fa fa-times-circle"></i></a>-->
         </div>
 
-        <div class="preview-item" ng-if="loadingImage">
-            <div class="preview-image input-upload-image">
-                <i class="fa fa-spinner fa-spin image-uploading"></i>
-            </div>
+        <div class="loading" ng-if="loadingImage">
+          <i class="fa fa-spinner fa-spin image-uploading"></i>
         </div>
 
     </div>
-    
+
 </div>

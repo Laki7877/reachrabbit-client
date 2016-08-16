@@ -7677,11 +7677,26 @@ a.secondary {
 .input-upload-image-sm-preview {
   margin-top: 10px;
 }
+.input-upload-image-sm-preview .loading {
+  display: inline-block;
+  font-size: 16px;
+  color: #16bbac;
+}
 .input-upload-image-sm-preview .preview-item {
   display: inline-block;
   text-align: center;
   margin-right: 10px;
   margin-bottom: 10px;
+}
+.input-upload-image-sm-preview .preview-item .input-upload-image {
+  width: auto;
+  height: auto;
+  overflow: auto;
+  border: 0px;
+}
+.input-upload-image-sm-preview .preview-item .input-upload-image img {
+  height: 90px;
+  width: auto;
 }
 .input-upload-image-sm-preview .preview-item .preview-image {
   display: block;
@@ -7694,9 +7709,6 @@ a.secondary {
 }
 .input-upload-image-sm-preview .preview-item .preview-image img {
   width: 100%;
-}
-.input-upload-image-sm-preview .preview-item a {
-  color: #8692a8;
 }
 /*---Card---*/
 .card,

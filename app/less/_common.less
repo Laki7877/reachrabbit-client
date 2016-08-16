@@ -272,11 +272,26 @@ a.secondary{
 
 .input-upload-image-sm-preview{
   margin-top: 10px;
+  .loading{
+    display: inline-block;
+    font-size: 16px;
+    color: @color-theme-secondary;
+  }
   .preview-item{
     display: inline-block;
     text-align: center;
     margin-right: 10px;
     margin-bottom: 10px;
+    .input-upload-image{
+      width: auto;
+      height: auto;
+      overflow: auto;
+      border: 0px;
+      img{
+        height: 90px;
+        width: auto;
+      }
+    }
     .preview-image{
       display: block;
       overflow: hidden;
@@ -288,9 +303,6 @@ a.secondary{
       img{
         width: 100%;
       }
-    }
-    a{
-      color: @color-grey-darker;
     }
   }
 }

@@ -1,12 +1,12 @@
 [
   {
-    "description": "can find all the fields we need",
+    "description": "can find inputs",
     "assertions": [
       {
         "passed": true
       }
     ],
-    "duration": 2163
+    "duration": 998
   },
   {
     "description": "fails to login with bad credentials",
@@ -15,24 +15,87 @@
         "passed": true
       }
     ],
-    "duration": 1093
+    "duration": 1095
   },
   {
-    "description": "can click load signup form",
+    "description": "can find inputs",
     "assertions": [
       {
         "passed": true
       }
     ],
-    "duration": 954
+    "duration": 970
   },
   {
-    "description": "should have 3 social buttons",
+    "description": "cannot signup without typing anything",
     "assertions": [
       {
         "passed": true
       }
     ],
-    "duration": 0
+    "duration": 135
+  },
+  {
+    "description": "can signup when form is complete",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 3055
+  },
+  {
+    "description": "can find inputs",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 698
+  },
+  {
+    "description": "can login",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 2666
+  },
+  {
+    "description": "can find sample draft campaign",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 808
+  },
+  {
+    "description": "can find inputs",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1165
+  },
+  {
+    "description": "can save as draft",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 2770
+  },
+  {
+    "description": "reloads and everything comes back",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 1491
   }
 ]

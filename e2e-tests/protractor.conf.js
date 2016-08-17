@@ -1,7 +1,7 @@
 //jshint strict: false
 exports.config = {
 
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 95000,
 
   specs: [
     '*.js'
@@ -12,9 +12,9 @@ exports.config = {
   },
   
   params: {
-    facebook_login: {
-      user: 'Jane',
-      password: '1234'
+    brand_login: {
+      user: 'uniqlo@brands.org',
+      password: '1111'
     }
   },
 
@@ -30,7 +30,7 @@ exports.config = {
    },
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 30000,
+    defaultTimeoutInterval: 90000,
     isVerbose : true,
     includeStackTrace : true
   }

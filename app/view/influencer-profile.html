@@ -25,7 +25,7 @@
             </div>
           </div>
 
-          <social-linker 
+          <social-linker
           from-state="influencer-profile"
           ng-model="formData.influencer.influencerMedias"></social-linker>
         </div>
@@ -108,10 +108,13 @@
               เพศ
             </div>
             <div class="card-body-content">
-              <select class="form-control" ng-model="formData.influencer.gender">
-                <option value="Male">ชาย</option>
-                <option value="Female">หญิง</option>
-              </select>
+              <div class="input-dropdown">
+                <select class="form-control" ng-model="formData.influencer.gender">
+                  <option value="Male">ชาย</option>
+                  <option value="Female">หญิง</option>
+                </select>
+                <i class="fa fa-caret-down"></i>
+              </div>
             </div>
           </div>
 

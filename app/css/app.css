@@ -7577,6 +7577,26 @@ a.secondary {
 .input-group-btn button i {
   margin: 0px 5px;
 }
+.input-dropdown {
+  position: relative;
+}
+.input-dropdown .form-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.input-dropdown .form-control.filter {
+  background: url("../images/icon-filter.png") no-repeat #ffffff;
+  width: 230px;
+  padding-left: 32px;
+}
+.input-dropdown i {
+  color: #8692a8;
+  pointer-events: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
 .radio-card {
   transition: all 0.3s;
   position: relative;

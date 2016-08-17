@@ -57,9 +57,12 @@
                 หมวดหมู่
               </div>
               <div class="card-body-content">
-                <select class="form-control" ng-model="formData.category" ng-options="x as x.categoryName disable when x.categoryId == 0  for x in categories track by x.categoryId">
-                <option disabled selected>-- เลือกหมวดหมู่ --</option>
-              </select>
+                <div class="input-dropdown">
+                  <select class="form-control" ng-model="formData.category" ng-options="x as x.categoryName disable when x.categoryId == 0  for x in categories track by x.categoryId">
+                    <option disabled selected>-- เลือกหมวดหมู่ --</option>
+                  </select>
+                  <i class="fa fa-caret-down"></i>
+                </div>
               </div>
             </div>
             <div class="card-row">
@@ -99,9 +102,12 @@
                 ค่าตอบแทน
               </div>
               <div class="card-body-content">
-                <select class="form-control" required ng-model="budget" ng-options="x as budgetDisplayAs(x) disable when x.id == 0 for x in budgets track by x.id">
-                <option disabled selected>-- เลือกค่าตอบแทน --</option>
-              </select>
+                <div class="input-dropdown">
+                  <select class="form-control" required ng-model="budget" ng-options="x as budgetDisplayAs(x) disable when x.id == 0 for x in budgets track by x.id">
+                    <option disabled selected>-- เลือกค่าตอบแทน --</option>
+                  </select>
+                  <i class="fa fa-caret-down"></i>
+                </div>
               </div>
             </div>
             <div class="card-row">

@@ -162,6 +162,28 @@ a.secondary{
     }
   }
 }
+
+.input-dropdown{
+  position: relative;
+  .form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    &.filter{
+      background: url("../images/icon-filter.png") no-repeat @color-white;
+      width: 230px;
+      padding-left: 32px;
+    }
+  }
+  i{
+    color: @color-grey-darker;
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+}
+
 .radio-card{
   &:extend(.radio);
   &:extend(.card);

@@ -31,6 +31,10 @@ h5{
   line-height: normal;
   margin: 0px;
 }
+.small{
+  font-size: 12px;
+  color:@color-grey-darker;
+}
 label{
   font-weight: normal;
 }
@@ -60,7 +64,6 @@ a.secondary{
 }
 .info-text{
   &:extend(.small);
-  color: @color-grey-darker;
 }
 .signup-pill{
   text-align: center;
@@ -593,6 +596,8 @@ a.secondary{
 
 .card-inbox{
   &:extend(.card);
+  min-height: 250px;
+  margin-bottom: 20px;
 }
 
 /*---Thumbnail---*/
@@ -873,23 +878,52 @@ a.secondary{
     tr{
       td{
         vertical-align: middle;
-        .profile-picture{
-          &:extend(.img-circle);
-          width: 30px;
-          margin-right: 5px;
-        }
-        &.text-ellipsis{
-          max-width: 250px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
       }
+    }
+  }
+  .col-name{
+    .profile-picture{
+      &:extend(.img-circle);
+      width: 40px;
+      margin-right: 5px;
+    }
+  }
+  .col-campaign-name{
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .col-price{
+    text-align: right;
+  }
+  .col-rabbit-score{
+    text-align: center;
+  }
+  .col-time{
+    text-align: right;
+  }
+  .col-button{
+    width: 130px;
+    text-align: center;
+    position: relative;
+    button{
+      width: 100px;
+    }
+    .message-count{
+      position: absolute;
+      top:4px;
+      right: 4px;
+      background: @color-red;
+      font-size: 12px;
+      color:@color-white;
+      padding: 3px 7px 1px 7px;
+      border-radius: 15px;
     }
   }
 }
 
-/** Other debugging stuff */
+/*---Other debugging stuff---*/
 .api_override_box{
   position: absolute;
   left: 5px;

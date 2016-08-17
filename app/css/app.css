@@ -1149,7 +1149,7 @@ img {
 .radio-card .radio-image,
 .card-portal .profile-picture .profile-picture-image,
 .navbar .navbar-right .profile-picture,
-.table tbody tr td .profile-picture {
+.table .col-name .profile-picture {
   border-radius: 50%;
 }
 hr {
@@ -7448,6 +7448,11 @@ h5,
   line-height: normal;
   margin: 0px;
 }
+.small,
+.info-text {
+  font-size: 12px;
+  color: #8692a8;
+}
 label {
   font-weight: normal;
 }
@@ -7474,9 +7479,6 @@ a.secondary {
   background: #ff773e !important;
   box-shadow: 0px 2px 4px 0px rgba(255, 119, 62, 0.3);
   height: 3px !important;
-}
-.info-text {
-  color: #8692a8;
 }
 .signup-pill {
   text-align: center;
@@ -8013,6 +8015,10 @@ a.secondary {
 }
 .card-thumbnail .card-social-media span:last-child {
   margin-right: 0px;
+}
+.card-inbox {
+  min-height: 250px;
+  margin-bottom: 20px;
 }
 /*---Thumbnail---*/
 .thumbnail-column {
@@ -8960,17 +8966,44 @@ fieldset[disabled] .btn-clear.active {
 .table tbody tr td {
   vertical-align: middle;
 }
-.table tbody tr td .profile-picture {
-  width: 30px;
+.table .col-name .profile-picture {
+  width: 40px;
   margin-right: 5px;
 }
-.table tbody tr td.text-ellipsis {
+.table .col-campaign-name {
   max-width: 250px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/** Other debugging stuff */
+.table .col-price {
+  text-align: right;
+}
+.table .col-rabbit-score {
+  text-align: center;
+}
+.table .col-time {
+  text-align: right;
+}
+.table .col-button {
+  width: 130px;
+  text-align: center;
+  position: relative;
+}
+.table .col-button button {
+  width: 100px;
+}
+.table .col-button .message-count {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #e62117;
+  font-size: 12px;
+  color: #ffffff;
+  padding: 3px 7px 1px 7px;
+  border-radius: 15px;
+}
+/*---Other debugging stuff---*/
 .api_override_box {
   position: absolute;
   left: 5px;

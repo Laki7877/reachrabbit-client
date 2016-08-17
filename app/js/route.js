@@ -73,6 +73,11 @@ angular.module('myApp.influencer.routes', ['ui.router'])
     url: '/influencer-profile',
     templateUrl: 'view/influencer-profile.html',
     controller: 'InfluencerProfileController'
+  })
+  .state('influencer-inbox', {
+    url: '/influencer-inbox',
+    templateUrl: 'view/influencer-inbox.html',
+    controller: 'EmptyController'
   });
 
   //TODO: Campaign-detail

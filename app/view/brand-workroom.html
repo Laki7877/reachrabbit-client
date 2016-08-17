@@ -1,0 +1,53 @@
+<div class="view-brand-workroom workroom">
+  <div class="header-zone">
+    <div class="container">
+      <div class="back-btn-for-header"  ui-sref="brand-inbox">
+        <i class="fa fa-arrow-left"></i> กลับไป Inbox
+      </div>
+    </div>
+  </div>
+  <div class="body-zone">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-xs-9">
+          <div class="chatbox-card">
+            <div class="chatbox-header">
+              <h3>Jon Snow</h3>
+              <a class="link-view-profile"><i class="fa fa-info-circle"></i> ดูโปรไฟล์</a>
+              <div class="chatbox-status">
+                <span class="status active">คัดเลือก</span>
+                <i class="fa fa-angle-right"></i>
+                <span class="status">ดำเนินการ</span>
+                <i class="fa fa-angle-right"></i>
+                <span class="status">เสร็จสิ้น</span>
+              </div>
+            </div>
+            <div class="message-area" id="abc">
+
+              <message ng-repeat="x in exampleMessage" message-data="x"></message>
+
+            </div>
+            <div class="message-input">
+              <textarea class="form-control" rows="4" ng-model="formData.brand.about" placeholder="พิมพ์ข้อความ..."></textarea>
+              <div class="pull-right">
+                <button class="btn-secondary btn-width-md"><i class="fa fa-paperclip fa-flip-horizontal" aria-hidden="true"></i> อัพโหลดไฟล์</button>
+                <button class="btn-secondary-highlight btn-width-md"><i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ</button>
+              </div>
+              <div class="clear"></div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <div class="card">
+            <div class="card-body">
+              <h1>Info</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

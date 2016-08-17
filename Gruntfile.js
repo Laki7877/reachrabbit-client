@@ -64,6 +64,8 @@ module.exports = function (grunt) {
         globals: {
           jQuery: true,
           angular: true,
+          window: true,
+          $: true,
           _: true,
           Raven: true
         }
@@ -85,4 +87,4 @@ module.exports = function (grunt) {
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'concurrent:dev']);
 
-}; 
+};

@@ -9,6 +9,19 @@
 'use strict';
 
 angular.module('myApp.directives', ['myApp.service'])
+
+
+      .directive('message', [function () {
+          return {
+              restrict: 'EA',
+              scope: { message: '=messageData' },
+              templateUrl: 'components/templates/message.html',
+              link: function (scope, element, attrs, ctrl, transclude) {
+                
+              }
+          };
+      }])
+
     .directive('socialLinker', ['DataService', '$auth', '$state', function (DataService, $auth, $state) {
         return {
             restrict: 'AE',
@@ -38,7 +51,7 @@ angular.module('myApp.directives', ['myApp.service'])
                     scope.mediaList = mediumResponse.data;
                 });
 
-                
+
 
                 scope.startAuthFlow = function(mediaId){
                     if(mediaId == 'youtube') {

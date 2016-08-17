@@ -1,0 +1,19 @@
+<div class="message">
+  <div class="message-left">
+    <a href="#">
+      <img class="media-object" ng-src="{{message.profile || 'images/placeholder-campaign.png'}}">
+    </a>
+  </div>
+  <div class="message-body">
+    <div class="message-heading">
+      <h4>{{message.sender}}</h4>
+      <div class="message-time">{{message.time}}</div>
+      <div class="clear"></div>
+    </div>
+    <div class="message-content">
+      {{message.content}}
+      <img class="img-responsive" ng-src="{{message.contentImage || 'images/null.gif'}}">
+      <!-- @Eart there is probably a better way to do this, please help me improve- Natt -->
+    </div>
+  </div>
+</div>

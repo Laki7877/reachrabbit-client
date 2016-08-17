@@ -25,6 +25,75 @@ angular.module('myApp.controller', ['myApp.service'])
             var scope = $scope;
             console.log("Test World");
         };
+
+        /* Sample Data for Workroom */
+        $scope.exampleMessage = [
+              {
+                profile:'images/example-campaign/profile-pic-jon.jpg',
+                sender:'Jon Snow',
+                time: '15:25 - 10 ธ.ค. 59',
+                content: 'หวัดดีครับ ผมชื่อ Jon Snow 1'
+              },
+              {
+                profile:'images/example-campaign/profile-pic-pokemon.png',
+                sender:'Pokemon GX',
+                time: '15:30 - 10 ธ.ค. 59',
+                content: 'เคยทำอะไรมาก่อนหน้านี้ครับ'
+              },
+              {
+                profile:'images/example-campaign/profile-pic-jon.jpg',
+                sender:'Jon Snow',
+                time: '15:35 - 10 ธ.ค. 59',
+                content: 'Night gathers, and now my watch begins. It shall not end until my death. I shall take no wife, hold no lands, father no children. I shall wear no crowns and win no glory. I shall live and die at my post. I am the sword in the darkness.'
+              },
+              {
+                profile:'images/example-campaign/profile-pic-pokemon.png',
+                sender:'Pokemon GX',
+                time: '15:30 - 10 ธ.ค. 59',
+                content: 'ไม่เข้าใจครับ'
+              },
+              {
+                profile:'images/example-campaign/profile-pic-jon.jpg',
+                sender:'Jon Snow',
+                time: '15:35 - 10 ธ.ค. 59',
+                content: 'ง่ายๆ คือเป็นยามเฝ้ากำแพงครับ',
+                contentImage:'images/example-campaign/jon-snow-at-the-wall.jpg'
+              },
+              {
+                profile:'images/example-campaign/profile-pic-pokemon.png',
+                sender:'Pokemon GX',
+                time: '15:40 - 10 ธ.ค. 59',
+                content: 'เคยถ่ายโฆษณามาบ้างไหมครับ'
+              },
+              {
+                profile:'images/example-campaign/profile-pic-jon.jpg',
+                sender:'Jon Snow',
+                time: '15:45 - 10 ธ.ค. 59',
+                content: 'เคยอยู่บ้างครับ'
+              }
+        ];
+
+
+        /* JS for Chat Area */
+        setChatArea();
+        $(window).resize(function () {
+          setChatArea();
+        });
+
+        function setChatArea(){
+          var magicNumber = 352;
+          var chatArea = $(".message-area");
+          var chatAreaHeight = $( window ).height() - magicNumber;
+
+          if (chatAreaHeight < magicNumber) {
+            chatAreaHeight = magicNumber;
+          }
+          chatArea.height(chatAreaHeight);
+          chatArea.scrollTop(9999);
+        }
+        //Temporay Solution
+        $(".message-area").delay( 500 ).animate({scrollTop:500}, '1000', function() {});
+
     }]);
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
@@ -45,7 +114,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 return k.keyword;
             });
         };
-        
+
         CampaignService.getOne($stateParams.campaignId)
         .then(function(campaignResponse){
             $scope.campaignNee = campaignResponse.data;
@@ -390,7 +459,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 });
         };
     }])
-    .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'AccountService', 'UserProfile', '$window',  'BusinessConfig', 
+    .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'AccountService', 'UserProfile', '$window',  'BusinessConfig',
     function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {
         $scope.alert = new NcAlert();
         $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
@@ -463,13 +532,13 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             });
         };
     }])
-    .controller('InfluencerSignUpController', 
+    .controller('InfluencerSignUpController',
     ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window','ResourceService', 'BusinessConfig',
         function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig) {
 
             var profile = $stateParams.authData;
             $scope.alert = new NcAlert();
-            
+
             //TODO : get value from provider somewhere or smth
             $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
 
@@ -490,8 +559,8 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 $scope.profilePictureResource = resource.data;
             });
 
-            
-            
+
+
             $scope.register = function () {
                 InfluencerAccountService.signup({
                     name: $scope.formData.name,

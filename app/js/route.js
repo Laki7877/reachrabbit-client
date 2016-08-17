@@ -50,6 +50,11 @@ angular.module('myApp.brand.routes', ['ui.router'])
     url: '/brand-inbox',
     templateUrl: 'view/brand-inbox.html',
     controller: 'EmptyController'
+  })
+  .state('brand-workroom', {
+    url: '/brand-workroom',
+    templateUrl: 'view/brand-workroom.html',
+    controller: 'EmptyController'
   });
 
 }]);

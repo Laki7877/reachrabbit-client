@@ -1,7 +1,8 @@
 'use strict';
 var util = require('util');
 var path = require('path');
-
+var Chance = require('chance');
+var chance = new Chance();
 describe('Brand', function () {
 
   beforeAll(function(){
@@ -112,7 +113,7 @@ describe('Brand', function () {
 
   });
 
-  describe('Save seeded draft campaign', function(){
+  describe('Modify seeded draft campaign', function(){
     var state = {};
     beforeAll(function(){
       browser.get('brand.html#/brand-campaign-list');
@@ -133,32 +134,42 @@ describe('Brand', function () {
       state.description = element(by.model('formData.description'));
       state.keyword = element(by.model('formData.keyword'));
       state.website = element(by.model('formData.website'));
-
+      state.budget = element(by.model("budget"));
       state.publish_btn = element(by.css('.btn-primary'));
       state.save_draft_btn = element(by.css('.btn-secondary'));
       state.uploaders = element.all(by.css('input[type="file"]'));
+      state.proposalDeadline = element(by.model("formData.proposalDeadline"));
+      state.category = element(by.model('formData.category'));
 
-      //TODO: change to loop
       expect(state.title.isPresent()).toBe(true);
       expect(state.description.isPresent()).toBe(true);
       expect(state.keyword.isPresent()).toBe(true);
       expect(state.website.isPresent()).toBe(true);
+      expect(state.budget.isPresent()).toBe(true);
       expect(state.publish_btn.isPresent()).toBe(true);
       expect(state.save_draft_btn.isPresent()).toBe(true);
+      expect(state.proposalDeadline.isPresent()).toBe(true);
+      expect(state.category.isPresent()).toBe(true);
       expect(state.uploaders.count()).toEqual(2);
+
     });
 
     it('can save as draft', function () {
-
-      state.title.sendKeys("Edited first campaign");
-      state.description.sendKeys("Established in 1944, Financial Executives Research Foundation (FERF) is the research affiliate of Financial Executives International (FEI). FERF is a non-profit, ...");
-      state.keyword.sendKeys("yo, chinese, man");
-      state.website.sendKeys("hey, china, ebola");
+      state.title.clear();
+      state.title.sendKeys(chance.name({ gender: "male" }));
+      state.description.sendKeys(chance.paragraph({sentences: 5}));
+      state.keyword.sendKeys(chance.city() + ", " + chance.city() + ", " + chance.city());
+      state.website.sendKeys(chance.url());
+      state.category.sendKeys("DIY");
+      state.budget.sendKeys("5,000 - 10,000");
+      state.proposalDeadline.click();
+      
+      //sslect date 12 of this month
+      element.all(by.css(".uib-daypicker button")).get(12 + 2).click();
 
       var fileToUpload = 'cyanthumb.png';
       var absolutePath = path.resolve(__dirname, fileToUpload);
       state.uploaders.get(0).sendKeys(absolutePath);
-
 
       state.save_draft_btn.click();
       browser.waitForAngular();
@@ -175,11 +186,12 @@ describe('Brand', function () {
 
   });
 
-  describe('Publish seeded draft campaign', function(){
+  describe('Modify and publish draft campaign', function(){
     var state = {};
     beforeAll(function(){
       browser.get('brand.html#/brand-campaign-list');
     });
+    
 
     it('can find sample draft campaign', function () {
       browser.waitForAngular();
@@ -190,17 +202,14 @@ describe('Brand', function () {
     });
 
     it('can publish draft campaign', function () {
-
-      state.publish_btn = element(by.css('.btn-primary'));
-
-      browser.waitForAngular();
+      
+      state.publish_btn = element(by.css('.btn-primary'));      
       state.publish_btn.click();
-      browser.waitForAngular();
-      // browser.pause();
+      
+      
       expect($('.alert.alert-success').isPresent()).toBe(true);
     });
 
   });
-
 
 })

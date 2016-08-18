@@ -1,7 +1,7 @@
 //jshint strict: false
 exports.config = {
 
-  allScriptsTimeout: 95000,
+  allScriptsTimeout: 199000,
 
   specs: [
     '*.js'
@@ -30,7 +30,7 @@ exports.config = {
    },
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 90000,
+    defaultTimeoutInterval: 199000,
     isVerbose : true,
     includeStackTrace : true
   }

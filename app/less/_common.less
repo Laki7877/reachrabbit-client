@@ -630,6 +630,9 @@ a.secondary{
   &:extend(.btn all);
   .button-variant(@color-theme-secondary, @color-white, @color-grey);
 }
+.btn-secondary:disabled{
+  background: @color-grey-lighter !important;
+}
 .btn-secondary-highlight {
   &:extend(.btn all);
   .button-variant(@color-theme-secondary, @color-white, @color-theme-secondary);
@@ -1018,6 +1021,7 @@ a.secondary{
   .message-input{
     background: @color-grey-lighter;
     padding: 15px;
+    box-shadow: 0px -1px 10px 0px rgba(0,0,0,0.10);
     textarea{
       resize: none;
     }
@@ -1026,6 +1030,28 @@ a.secondary{
     }
     button{
       margin-left: 10px;
+    }
+    .preview-item{
+      display: inline-block;
+      margin-right: 20px;
+      .input-upload-image{
+        overflow:visible;
+        border: 0px;
+        height: 34px;
+        width: auto;
+        img{
+          width: auto;
+          height: 34px;
+        }
+      }
+      .btn-delete-image{
+        background: none;
+        top: 8px;
+        right: -25px;
+        font-size: 18px;
+        width: 22px;
+        height: 22px;
+      }
     }
   }
 }

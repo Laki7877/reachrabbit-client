@@ -29,9 +29,17 @@
 
             </div>
             <div class="message-input">
-              <textarea class="form-control" rows="4" ng-model="formData.brand.about" placeholder="พิมพ์ข้อความ..."></textarea>
+              <textarea class="form-control" rows="4" ng-model="formData.brand.about" placeholder="พิมพ์ข้อความ..." autofocus></textarea>
               <div class="pull-right">
-                <button class="btn-secondary btn-width-md"><i class="fa fa-paperclip fa-flip-horizontal" aria-hidden="true"></i> อัพโหลดไฟล์</button>
+
+                <div class="preview-item">
+                  <div class="input-upload-image">
+                    <i class="fa fa-times-circle btn-delete-image" ng-click="remove($index)"></i>
+                    <img src="images/example-campaign/main-picture.png" />
+                  </div>
+                </div>
+
+                <button class="btn-secondary btn-width-md" disabled><i class="fa fa-paperclip fa-flip-horizontal" aria-hidden="true"></i> อัพโหลดไฟล์</button>
                 <button class="btn-secondary-highlight btn-width-md"><i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ</button>
               </div>
               <div class="clear"></div>

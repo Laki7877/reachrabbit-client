@@ -27,7 +27,7 @@ module.exports = function (grunt) {
     },
     shell: {
         autoless: {
-             command: 'node_modules/autoless/bin/autoless app/less app/css',
+             command: 'node node_modules/autoless/bin/autoless app/less app/css',
              options: {
                 stderr: true
             }

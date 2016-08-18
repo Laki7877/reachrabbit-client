@@ -131,15 +131,17 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     }])
     .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'ExampleCampaigns', '$rootScope',
         function ($scope, $state, CampaignService, ExampleCampaigns, $rootScope) {
-            console.log('InfluencerCampaignListController');
+
             $scope.handleUserClickThumbnail = function(c){
                 $state.go('influencer-campaign-detail-open', {
                     campaignId: c.campaignId
                 });
             };
+            
             $scope.filter = {
                 mediaId: null
             };
+
             function fetch(filter) {
                 CampaignService.getOpenCampaigns($scope.filter).then(function (data) {
                     console.log(data);

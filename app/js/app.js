@@ -94,7 +94,7 @@ angular.module('myApp', [
  
 }])
 .constant('BusinessConfig', {
-  MIN_FOLLOWER_COUNT : 50
+  MIN_FOLLOWER_COUNT : 1
 })
 //Initialize the app
 .run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){

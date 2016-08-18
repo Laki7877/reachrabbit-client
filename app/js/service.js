@@ -142,7 +142,7 @@ angular.module('myApp.service', ['satellizer'])
                 skipAuthorization: true,
                 url: "/campaigns/open",
                 params: {
-                    sort: ['id desc']
+                    sort: ['campaignId desc']
                 }
             };
             if(filter instanceof Object){

@@ -106,8 +106,26 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService', '$uibModal',
-     function($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal){
+    .controller('MakeProposalModalController', ['$scope', 'DataService', function($scope, DataService){
+        $scope.completionTimes = [];
+        $scope.medium = [];
+        $scope.formData = {};
+        $scope.proposalNetPrice = 0.00;
+
+        $scope.$watch('formData.proposalPrice', function(pp){
+            $scope.proposalNetPrice = Number(pp) * 0.820;
+        });
+        
+        DataService.getMedium().then(function(response){
+            $scope.medium = response.data;
+        });
+
+        DataService.getCompletionTime().then(function(response){
+            $scope.completionTimes = response.data;
+        });
+    }])
+    .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService', '$uibModal', 'DataService',
+     function($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService){
         console.log($stateParams.campaignId);
         $scope.campaignNee = null;
         $scope.alert = new NcAlert();
@@ -117,15 +135,12 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 return k.keyword;
             });
         };
-
-
+        
         $scope.sendProposal = function(){
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'components/templates/influencer-proposal-modal.html',
-                controller: [function(){
-                    
-                }],
+                controller: 'MakeProposalModalController',
                 size: 'md',
                 resolve: {
                     items: function () {
@@ -199,6 +214,10 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     .catch(function (err) {
                         $scope.alert.danger(err.data.message);
                     });
+            };
+
+            $scope.linkDone = function(){
+                $scope.saveProfile($scope.formData);
             };
 
             AccountService.getProfile()

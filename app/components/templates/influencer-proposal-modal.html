@@ -31,9 +31,7 @@
             ระยะเวลาทำงาน
         </div>
         <div class="card-row-basic input-dropdown">
-            <select class="form-control">
-                    <option>2-5</option>
-                </select>
+            <select class="form-control" ng-model="formData.completionTime" ng-options="x as x.completionTime for x in completionTimes"></select>
             <i class="fa fa-caret-down"></i>
         </div>
         <p class="help-block">เริ่มนับจากวันที่ได้คัดเลือก</p>
@@ -41,7 +39,7 @@
             ราคาที่คุณเสนอ
         </div>
         <div class="card-row-basic input-group">
-            <input type="text" class="form-control" value="10,000,000"/>
+            <input type="text" class="form-control" ng-model="formData.proposalPrice"/>
             <span class="input-group-addon" id="basic-addon1">บาท</span>
         </div>
 
@@ -49,7 +47,7 @@
             คุณจะได้รับ
         </div>
         <div class="card-row-basic input-group">
-            <input type="text" class="form-control" value="9,875,500" disabled/>
+            <input type="text" class="form-control" value="{{ proposalNetPrice | number: 2}}" disabled/>
             <span class="input-group-addon" id="basic-addon1">บาท</span>
         </div>
         <p class="help-block">หลังหักค่าทำเนียม</p>
@@ -57,7 +55,7 @@
         <div class="card-row-basic">
             ข้อความ
         </div>
-        <textarea class="form-control" rows="5" placeholder="คุณจะช่วยโปรโมท Brand อย่างไร และทำไม Brand ถึงควรเลือกคุณ?"></textarea>
+        <textarea class="form-control" rows="5" ng-model="formData.description"  placeholder="คุณจะช่วยโปรโมท Brand อย่างไร และทำไม Brand ถึงควรเลือกคุณ?"></textarea>
 
         <div class="card-row-basic text-center">
             <div class="button-bar">

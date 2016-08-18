@@ -31,7 +31,8 @@ angular.module('myApp.directives', ['myApp.service'])
             },
             scope: {
                 model: '=ngModel',
-                fromState: '@fromState'
+                fromState: '@fromState',
+                onDone: '=onDone'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
                 scope.mediaList = [];
@@ -47,10 +48,12 @@ angular.module('myApp.directives', ['myApp.service'])
                     return false;
                 };
 
+                
+
+
                 DataService.getMedium().then(function(mediumResponse){
                     scope.mediaList = mediumResponse.data;
                 });
-
 
 
                 scope.startAuthFlow = function(mediaId){
@@ -71,6 +74,7 @@ angular.module('myApp.directives', ['myApp.service'])
                                     pageId: null
                                 });
                             }
+                            scope.onDone();
                         })
                         .catch(function(err){
                             console.log("Linking failed", err);
@@ -80,7 +84,7 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .directive('ncPlaceholder', [function(){
+    .directive('ncDropdown', [function(){
         return {
             restrict: 'A',
             transclude: true,

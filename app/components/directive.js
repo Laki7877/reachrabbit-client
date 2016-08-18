@@ -84,6 +84,22 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
+    .directive('cardProposalDetail', ['ProposalService', function(ProposalService){
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: 'components/templates/card-proposal-detail.html',
+            scope: {
+                proposalId: '='
+            },
+            link: function (scope, element, attrs, ctrl, transclude) {
+                ProposalService.getOne(scope.proposalId)
+                .then(function(proposalResponse){
+                    scope.proposal = proposalResponse.data; 
+                });
+            }
+        };
+    }])
     .directive('ncDropdown', [function(){
         return {
             restrict: 'A',

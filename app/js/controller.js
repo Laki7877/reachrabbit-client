@@ -23,7 +23,7 @@ angular.module('myApp.controller', ['myApp.service'])
     .controller('EmptyController', ['$scope', '$uibModal', function ($scope, $uibModal) {
         $scope.testHit = function () {
             var scope = $scope;
-            console.log("Test World");
+            // console.log("Test World");
         };
     }]);
 
@@ -34,7 +34,7 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('WorkroomController', ['$scope', '$uibModal', function ($scope, $uibModal) {
+    .controller('WorkroomController', ['$scope', '$uibModal','$stateParams', 'ProposalService', function ($scope, $uibModal, $stateParams, ProposalService) {
         /* Sample Data for Workroom */
         $scope.exampleMessage = [
               {
@@ -82,6 +82,8 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
               }
         ];
 
+        $scope.proposalId = $stateParams.proposalId;
+
         /* JS for Chat Area */
         setChatArea();
 
@@ -120,7 +122,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         *  Check if profile has linked media id
         */
         $scope.profileHasMedia = function(mediaId){
-            console.log($rootScope.getProfile().influencer.influencerMedias);
+            // console.log($rootScope.getProfile().influencer.influencerMedias);
             return _.findIndex($rootScope.getProfile().influencer.influencerMedias, function(e){
                 return _.get(e,'media.mediaId') === mediaId;
             }) >= 0;
@@ -151,7 +153,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             });
         };
 
-        $scope.$watch('formData.proposalPrice', function(pp){
+        $scope.$watch('formData.price', function(pp){
             $scope.proposalNetPrice = Number(pp) * 0.820;
         });
         
@@ -422,7 +424,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                             $scope.resources = angular.copy(response.data.resources); //the rest
                         }
 
-                        console.log($scope.formData);
+                        // console.log($scope.formData);
 
                         //ensure non null
                         $scope.formData.keywords = $scope.formData.keywords || [];
@@ -562,7 +564,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             $window.localStorage.clear();
             $auth.authenticate(mediaId)
                 .then(function (response) {
-                    console.log('Response', response.data);
+                    // console.log('Response', response.data);
                     if (response.data.token) {
                         $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
 
@@ -576,7 +578,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                                 $window.location.href = '/influencer.html#/influencer-campaign-list';
                             });
                     } else {
-                        console.log(response.data);
+                        // console.log(response.data);
                         if (mediaId == 'facebook') {
                             $state.go('influencer-signup-select-page', { authData: response.data });
                         } else {

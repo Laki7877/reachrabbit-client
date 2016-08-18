@@ -170,6 +170,16 @@ angular.module('myApp.service', ['satellizer'])
         }
     };
 }])
+.factory('ProposalService', ['$http', function($http){
+    return {
+        getOne: function(proposalId){
+            return $http({
+                url: '/proposals/' + proposalId,
+                method: 'get'
+            });
+        }
+    };
+}])
 .factory('DataService', ['$http', function($http) {
     return {
         getMedium: function(){

@@ -186,14 +186,14 @@ angular.module('myApp.service', ['satellizer'])
             return $q(function(resolve, reject){
                 $http.get("/campaigns/" + id)
                 .then(function(response){
-                    var rr = response.data.content.map(function(campaign){
+                    var rr = response.data.map(function(campaign){
                         campaign.resources = campaign.campaignResources.map(function(campaignResource){
                             return campaignResource.resource;
                         }); 
                         delete campaign.campaignResources;
                         return campaign;
                     });
-                    response.data.content = rr;
+                    response.data = rr;
                     
                     resolve(response);
                 })

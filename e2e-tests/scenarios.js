@@ -6,7 +6,7 @@ var chance = new Chance();
 describe('Brand', function () {
 
   beforeAll(function(){
-    browser.params.brand_login.user =  Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5) + browser.params.brand_login.user;
+    browser.params.brand_login.user = chance.email();
   });
 
   describe('Signup', function () {
@@ -64,9 +64,9 @@ describe('Brand', function () {
     });
 
     it('can signup when form is complete', function () {
-      state.brandName.sendKeys("Uniqlo");
-      state.name.sendKeys("Fast Retailing Co Ltd");
-      state.phoneNumber.sendKeys("0631459428");
+      state.brandName.sendKeys(chance.capitalize(chance.word()));
+      state.name.sendKeys(chance.capitalize(chance.word()) + " Co Ltd");
+      state.phoneNumber.sendKeys(chance.phone({ formatted: false }));
       state.email.sendKeys(browser.params.brand_login.user);
       state.password.sendKeys(browser.params.brand_login.password);
       state.submit_btn.click();
@@ -180,8 +180,24 @@ describe('Brand', function () {
     it('reloads and everything comes back', function () {
       browser.driver.navigate().refresh();
       browser.sleep(1000);
-      var thumbImage = element(by.css(".card-image img"));
-      expect(thumbImage.getAttribute('src') == 'images/placeholder-campaign.png').toBe(false);
+      var new_state = {};
+      new_state.thumbImage = element(by.css(".card-image img"));
+
+      new_state.title = element(by.model('formData.title'));
+      new_state.description = element(by.model('formData.description'));
+      new_state.keyword = element(by.model('formData.keyword'));
+      new_state.website = element(by.model('formData.website'));
+      new_state.budget = element(by.model("budget"));
+      new_state.publish_btn = element(by.css('.btn-primary'));
+      new_state.save_draft_btn = element(by.css('.btn-secondary'));
+      new_state.uploaders = element.all(by.css('input[type="file"]'));
+      new_state.proposalDeadline = element(by.model("formData.proposalDeadline"));
+      new_state.category = element(by.model('formData.category'));
+
+      expect(new_state.thumbImage.getAttribute('src') == 'images/placeholder-campaign.png').toBe(false);
+      //TODO: check against valu we entered
+      expect(new_state.category.$('option:checked').getText("DIY"));
+      expect(new_state.budget.$('option:checked').getText("5,000 - 10,000"));
     });
 
   });
@@ -206,8 +222,27 @@ describe('Brand', function () {
       state.publish_btn = element(by.css('.btn-primary'));      
       state.publish_btn.click();
       
-      
       expect($('.alert.alert-success').isPresent()).toBe(true);
+    });
+
+  });
+
+  describe('Modify and publish draft campaign', function(){
+    var state = {};
+    beforeAll(function(){
+      browser.get('brand.html#/brand-profile');
+    });
+    
+    it('can find all fields', function(){
+      browser.waitForAngular();
+      state.about = element(by.model("formData.brand.about"));
+      state.name = element(by.model("formData.brand.brandName"));
+      state.website = element(by.model('formData.brand.website'));
+
+      expect(state.about.isPresent()).toBe(true);
+      expect(state.name.isPresent()).toBe(true);
+      expect(state.website.isPresent()).toBe(true);
+
     });
 
   });

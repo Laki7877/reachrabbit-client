@@ -6,7 +6,7 @@
         "passed": true
       }
     ],
-    "duration": 1034
+    "duration": 1004
   },
   {
     "description": "fails to login with bad credentials",
@@ -15,7 +15,7 @@
         "passed": true
       }
     ],
-    "duration": 1165
+    "duration": 1111
   },
   {
     "description": "can find inputs",
@@ -24,7 +24,7 @@
         "passed": true
       }
     ],
-    "duration": 929
+    "duration": 1012
   },
   {
     "description": "cannot signup without typing anything",
@@ -33,7 +33,7 @@
         "passed": true
       }
     ],
-    "duration": 171
+    "duration": 152
   },
   {
     "description": "can signup when form is complete",
@@ -42,7 +42,7 @@
         "passed": true
       }
     ],
-    "duration": 3233
+    "duration": 3092
   },
   {
     "description": "can find inputs",
@@ -51,7 +51,7 @@
         "passed": true
       }
     ],
-    "duration": 684
+    "duration": 702
   },
   {
     "description": "can login",
@@ -60,7 +60,7 @@
         "passed": true
       }
     ],
-    "duration": 2739
+    "duration": 2689
   },
   {
     "description": "can find sample draft campaign",
@@ -69,7 +69,7 @@
         "passed": true
       }
     ],
-    "duration": 862
+    "duration": 872
   },
   {
     "description": "can find inputs",
@@ -78,7 +78,7 @@
         "passed": true
       }
     ],
-    "duration": 1309
+    "duration": 1315
   },
   {
     "description": "can save as draft",
@@ -87,7 +87,7 @@
         "passed": true
       }
     ],
-    "duration": 4348
+    "duration": 4371
   },
   {
     "description": "reloads and everything comes back",
@@ -96,7 +96,7 @@
         "passed": true
       }
     ],
-    "duration": 1420
+    "duration": 1567
   },
   {
     "description": "can find sample draft campaign",
@@ -105,7 +105,7 @@
         "passed": true
       }
     ],
-    "duration": 765
+    "duration": 761
   },
   {
     "description": "can publish draft campaign",
@@ -114,6 +114,15 @@
         "passed": true
       }
     ],
-    "duration": 1529
+    "duration": 1516
+  },
+  {
+    "description": "can find all fields",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 776
   }
 ]

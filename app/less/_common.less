@@ -156,7 +156,7 @@ a.secondary{
   border-radius: 0px;
   background-color: @color-grey-lighter;
   border-color:@color-grey;
-  border-right: none;
+  // border-right: none;
   color: @color-grey-darker;
 }
 .input-group-btn{
@@ -1106,4 +1106,45 @@ a.secondary{
 
 .api_override_box span{
    background-color: red;
+}
+
+
+.proposal-modal{
+  padding-left: 10px;
+  padding-right: 10px;
+  .modal-title{
+    &:extend(h3);
+    color: @color-theme-secondary;
+  }
+  .card-row-basic{
+    margin-top: 5px;
+  }
+  .help-block{
+    &:extend(small);
+    text-align: right;
+    color: @color-grey-darker;
+  }
+  .promotion-medium{
+    .profile-social-media-icon{
+      width: 30px;
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+  }
+  .button-bar{
+    padding-top: 15px;
+
+    .help-block{
+      text-align: center;
+    }
+
+  }
+}
+
+.modal-content{
+  border-radius: 0px;
+}
+
+.modal-dialog.modal-md{
+  width: 500px;
 }

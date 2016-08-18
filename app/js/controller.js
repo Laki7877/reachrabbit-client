@@ -20,11 +20,25 @@
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.controller', ['myApp.service'])
-    .controller('EmptyController', ['$scope', function ($scope) {
+    .controller('EmptyController', ['$scope', '$uibModal', function ($scope, $uibModal) {
         $scope.testHit = function () {
             var scope = $scope;
             console.log("Test World");
         };
+
+        var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'components/templates/influencer-proposal-modal.html',
+                controller: [function(){
+                    
+                }],
+                size: 'md',
+                resolve: {
+                    items: function () {
+                        return [];
+                    }
+                }
+        });
 
         /* Sample Data for Workroom */
         $scope.exampleMessage = [
@@ -134,15 +148,17 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     }])
     .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'ExampleCampaigns', '$rootScope',
         function ($scope, $state, CampaignService, ExampleCampaigns, $rootScope) {
-            console.log('InfluencerCampaignListController');
+
             $scope.handleUserClickThumbnail = function(c){
                 $state.go('influencer-campaign-detail-open', {
                     campaignId: c.campaignId
                 });
             };
+            
             $scope.filter = {
                 mediaId: null
             };
+
             function fetch(filter) {
                 CampaignService.getOpenCampaigns($scope.filter).then(function (data) {
                     console.log(data);

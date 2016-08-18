@@ -26,10 +26,10 @@
             <div class="message-area">
 
               <message ng-repeat="x in msglist" message-data="x"></message>
-
+              <div nc-alert="alert"></div>
             </div>
             <div class="message-input">
-              <textarea class="form-control" rows="4" ng-model="formData.brand.about" placeholder="พิมพ์ข้อความ..." autofocus></textarea>
+              <textarea class="form-control" rows="4" ng-model="formData.messageStr" placeholder="พิมพ์ข้อความ..." autofocus></textarea>
               <div class="pull-right">
 
                 <div class="preview-item">
@@ -40,7 +40,9 @@
                 </div>
 
                 <button class="btn-secondary btn-width-md" disabled><i class="fa fa-paperclip fa-flip-horizontal" aria-hidden="true"></i> อัพโหลดไฟล์</button>
-                <button class="btn-secondary-highlight btn-width-md"><i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ</button>
+                <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr)">
+                  <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
+                </button>
               </div>
               <div class="clear"></div>
             </div>

@@ -34,7 +34,8 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('WorkroomController', ['$scope', '$uibModal', '$stateParams', 'ProposalService', function ($scope, $uibModal, $stateParams, ProposalService) {
+    .controller('WorkroomController', ['$scope', '$uibModal', '$stateParams', 'ProposalService', 'NcAlert', 
+    function ($scope, $uibModal, $stateParams, ProposalService, NcAlert) {
         /* Sample Data for Workroom */
         $scope.msglist = [
             {
@@ -85,6 +86,29 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         ProposalService.getMessages($scope.proposalId).then(function(msgresponse){
             $scope.msglist = msgresponse.data.content;
         });
+        
+        $scope.formData = {
+            resources: []
+        };
+        $scope.alert = new NcAlert();
+
+        $scope.sendMessage = function(messageStr, attachments){
+            ProposalService.sendMessage({
+                message: messageStr,
+                proposal: {
+                    proposalId: $scope.proposalId
+                }
+            })
+            .then(function(resp){
+                $scope.msglist.push(resp.data);
+                $scope.formData = {
+                    resources: []
+                };
+            })
+            .catch(function(err){
+                $scope.alert.danger(err.message);
+            });
+        };
 
         $scope.proposal = null;
 

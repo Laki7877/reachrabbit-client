@@ -253,6 +253,13 @@ angular.module('myApp.service', ['satellizer'])
                 url: '/proposals/' + proposalId + '/proposalmessages',
                 method: 'get'
             });
+        },
+        sendMessage: function(proposalMessage){
+            return $http({
+                url: '/proposals/' + proposalMessage.proposal.proposalId + '/proposalmessages',
+                method: 'post',
+                data: proposalMessage
+            });
         }
     };
 }])

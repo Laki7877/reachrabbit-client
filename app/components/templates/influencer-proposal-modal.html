@@ -2,31 +2,31 @@
     <div class="modal-header">
         <button type="button" class="close" ng-click="$close()"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">ส่งข้อเสนอ</h4>
-      </div>
+    </div>
     <div class="card-body">
-
+        <div nc-alert='alert'></div>
         <div class="card-row-basic">
             ช่องทางการโปรโมท
         </div>
 
-        <div class="card-row-basic">
+        <div class="card-row-basic" ng-repeat="media in medium">
             <label class="promotion-medium">
-                <input type="checkbox"/>
-                <img ng-src="images/icon-facebook-lg.png" class="profile-social-media-icon" /> Facebook
+                <input type="checkbox" ng-model="selectedMedia[media.mediaId]"/>
+                <img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" /> {{ media.mediaName }}
             </label>
         </div>
-        <div class="card-row-basic">
+        <!--<div class="card-row-basic">
             <label class="promotion-medium">
                 <input type="checkbox"/>
                 <img ng-src="images/icon-instagram-lg.png" class="profile-social-media-icon" /> Instagram
             </label>
-          </div>
-          <div class="card-row-basic">
-              <label class="promotion-medium disabled">
+        </div>
+        <div class="card-row-basic">
+            <label class="promotion-medium disabled">
                 <input type="checkbox" disabled/>
                 <img ng-src="images/icon-google-lg.png" class="profile-social-media-icon" /> YouTube คุณยังไม่ได้เชื่อมต่อ <a href="#">เชือมต่อช่องทางนี้</a>
               </label>
-        </div>
+        </div>-->
 
         <div class="card-row-basic">
             ระยะเวลาทำงาน
@@ -40,7 +40,7 @@
             ราคาที่คุณเสนอ
         </div>
         <div class="card-row-basic input-group">
-            <input type="text" class="form-control" ng-model="formData.proposalPrice"/>
+            <input type="text" class="form-control" ng-model="formData.proposalPrice" />
             <span class="input-group-addon" id="basic-addon1">บาท</span>
         </div>
 
@@ -56,11 +56,11 @@
         <div class="card-row-basic">
             ข้อความ
         </div>
-        <textarea class="form-control" rows="4" ng-model="formData.description"  placeholder="คุณจะช่วยโปรโมท Brand อย่างไร และทำไม Brand ถึงควรเลือกคุณ?"></textarea>
+        <textarea class="form-control" rows="4" ng-model="formData.description" placeholder="คุณจะช่วยโปรโมท Brand อย่างไร และทำไม Brand ถึงควรเลือกคุณ?"></textarea>
 
         <div class="card-row-basic text-center">
             <div class="button-bar">
-                <button class="btn-primary btn-width-lg">ส่งข้อเสนอ</button>
+                <button class="btn-primary btn-width-lg" ng-click="submit(formData)">ส่งข้อเสนอ</button>
                 <p class="help-block">ข้อเสนอนี้จะสามารถแก้ไขได้ภายหลัง</p>
             </div>
         </div>

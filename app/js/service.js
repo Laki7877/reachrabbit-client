@@ -150,6 +150,13 @@ angular.module('myApp.service', ['satellizer'])
         getOne: function(id){
             return $http.get("/campaigns/" + id);
         },
+        sendProposal: function(proposal, campaignId){
+            return $http({
+                url: "/campaigns/" + campaignId + "/proposals",
+                method: "POST",
+                data: proposal
+            });
+        },
         save: function(campaign){
             var putOrPost = 'POST';
             if(campaign.campaignId){

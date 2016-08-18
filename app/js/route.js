@@ -87,7 +87,7 @@ angular.module('myApp.influencer.routes', ['ui.router'])
   .state('influencer-workroom', {
     url: '/influencer-workroom',
     templateUrl: 'view/influencer-workroom.html',
-    controller: 'EmptyController'
+    controller: 'WorkroomController'
   });
 
   //TODO: Campaign-detail

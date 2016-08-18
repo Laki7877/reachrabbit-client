@@ -6,7 +6,7 @@
         "passed": true
       }
     ],
-    "duration": 1019
+    "duration": 1024
   },
   {
     "description": "fails to login with bad credentials",
@@ -15,7 +15,7 @@
         "passed": true
       }
     ],
-    "duration": 1081
+    "duration": 1078
   },
   {
     "description": "can find inputs",
@@ -24,7 +24,7 @@
         "passed": true
       }
     ],
-    "duration": 962
+    "duration": 979
   },
   {
     "description": "cannot signup without typing anything",
@@ -33,7 +33,7 @@
         "passed": true
       }
     ],
-    "duration": 127
+    "duration": 142
   },
   {
     "description": "can signup when form is complete",
@@ -42,7 +42,7 @@
         "passed": true
       }
     ],
-    "duration": 3052
+    "duration": 3078
   },
   {
     "description": "can find inputs",
@@ -51,7 +51,7 @@
         "passed": true
       }
     ],
-    "duration": 708
+    "duration": 697
   },
   {
     "description": "can login",
@@ -60,7 +60,7 @@
         "passed": true
       }
     ],
-    "duration": 2736
+    "duration": 2684
   },
   {
     "description": "can find sample draft campaign",
@@ -69,7 +69,7 @@
         "passed": true
       }
     ],
-    "duration": 739
+    "duration": 807
   },
   {
     "description": "can find inputs",
@@ -78,7 +78,7 @@
         "passed": true
       }
     ],
-    "duration": 1278
+    "duration": 1191
   },
   {
     "description": "can save as draft",
@@ -87,7 +87,7 @@
         "passed": true
       }
     ],
-    "duration": 2806
+    "duration": 2769
   },
   {
     "description": "reloads and everything comes back",
@@ -96,6 +96,6 @@
         "passed": true
       }
     ],
-    "duration": 1386
+    "duration": 1403
   }
 ]

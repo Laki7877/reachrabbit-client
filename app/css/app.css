@@ -69,7 +69,8 @@ mark {
   background: #ff0;
   color: #000;
 }
-small {
+small,
+.workroom .card-proposal-detail .card-info-label {
   font-size: 80%;
 }
 sub,
@@ -1126,7 +1127,8 @@ img {
 .card-portal .logo img,
 .card-portal .profile-picture .profile-picture-image,
 .card-campaign-description .card-body .description-image,
-.card-thumbnail .card-thumbnail-image img {
+.card-thumbnail .card-thumbnail-image img,
+.workroom .card-campaign-thumbnail .card-thumbnail-image img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -1203,7 +1205,10 @@ h6,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
-.navbar li > a {
+.navbar li > a,
+.workroom .card-proposal-detail .card-price,
+.workroom .card-campaign-thumbnail .card-body,
+.workroom .card-campaign-thumbnail .card-body {
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
@@ -1274,7 +1279,10 @@ h6,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
-.navbar li > a {
+.navbar li > a,
+.workroom .card-proposal-detail .card-price,
+.workroom .card-campaign-thumbnail .card-body,
+.workroom .card-campaign-thumbnail .card-body {
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -1312,13 +1320,16 @@ h4,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
-.navbar li > a {
+.navbar li > a,
+.workroom .card-proposal-detail .card-price,
+.workroom .card-campaign-thumbnail .card-body {
   font-size: 18px;
 }
 h5,
 .h5,
 .social-link-title,
-.card-status {
+.card-status,
+.workroom .card-campaign-thumbnail .card-body {
   font-size: 14px;
 }
 h6,
@@ -1342,6 +1353,7 @@ p {
 small,
 .small,
 .info-text,
+.workroom .card-proposal-detail .card-info-label,
 .chatbox-card .message-area .message .message-body .message-heading .message-time {
   font-size: 85%;
 }
@@ -6178,7 +6190,9 @@ button.list-group-item-danger.active:focus {
 .card-campaign-description,
 .card-thumbnail,
 .card-inbox,
-.chatbox-card {
+.workroom .card-proposal-detail,
+.chatbox-card,
+.workroom .card-campaign-thumbnail {
   margin-bottom: 20px;
   background-color: #ffffff;
   border: 1px solid transparent;
@@ -7540,7 +7554,9 @@ h4,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
-.navbar li > a {
+.navbar li > a,
+.workroom .card-proposal-detail .card-price,
+.workroom .card-campaign-thumbnail .card-body {
   font-size: 16px;
   font-weight: normal;
   line-height: normal;
@@ -7548,7 +7564,8 @@ h4,
 }
 h5,
 .social-link-title,
-.card-status {
+.card-status,
+.workroom .card-campaign-thumbnail .card-body {
   font-size: 14px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
@@ -7856,26 +7873,38 @@ a.secondary {
 .card-campaign-description,
 .card-thumbnail,
 .card-inbox,
-.chatbox-card {
+.workroom .card-proposal-detail,
+.chatbox-card,
+.workroom .card-campaign-thumbnail {
   border: 0px;
   border-radius: 0px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 .card-clickable,
 .card-campaign-list-item,
-.card-thumbnail {
+.card-thumbnail,
+.workroom .card-campaign-thumbnail {
   transition: all 0.3s;
   cursor: pointer;
 }
 .card-clickable:hover,
 .card-campaign-list-item:hover,
-.card-thumbnail:hover {
+.card-thumbnail:hover,
+.workroom .card-campaign-thumbnail:hover {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .card-clickable:active,
 .card-campaign-list-item:active,
-.card-thumbnail:active {
+.card-thumbnail:active,
+.workroom .card-campaign-thumbnail:active {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.card-header,
+.chatbox-card .chatbox-header {
+  padding: 15px;
+  height: 50px;
+  background: #f9f9fb;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
 }
 .card-body .card-row {
   margin-bottom: 20px;
@@ -8111,21 +8140,26 @@ a.secondary {
 .card-campaign-description .card-body .description-image {
   margin-bottom: 20px;
 }
-.card-thumbnail .card-thumbnail-image {
+.card-thumbnail .card-thumbnail-image,
+.workroom .card-campaign-thumbnail .card-thumbnail-image {
   height: 194px;
   overflow: hidden;
 }
-.card-thumbnail .card-price {
+.card-thumbnail .card-price,
+.workroom .card-campaign-thumbnail .card-price {
   margin-top: 5px;
   color: #16bbac;
 }
-.card-thumbnail .card-footer {
+.card-thumbnail .card-footer,
+.workroom .card-campaign-thumbnail .card-footer {
   color: #8692a8;
 }
-.card-thumbnail .card-social-media {
+.card-thumbnail .card-social-media,
+.workroom .card-campaign-thumbnail .card-social-media {
   float: right;
 }
-.card-thumbnail .card-social-media span:last-child {
+.card-thumbnail .card-social-media span:last-child,
+.workroom .card-campaign-thumbnail .card-social-media span:last-child {
   margin-right: 0px;
 }
 .card-inbox {
@@ -9231,13 +9265,29 @@ fieldset[disabled] .btn-clear.active {
 .workroom .body-zone {
   margin-top: -100px;
 }
+.workroom .card-proposal-detail .card-header {
+  text-align: center;
+}
+.workroom .card-proposal-detail .card-info-label {
+  margin-top: 15px;
+  color: #8692a8;
+}
+.workroom .card-proposal-detail .card-price {
+  color: #16bbac;
+}
+.workroom .card-proposal-detail .social-info {
+  margin: 5px 0px;
+}
+.workroom .card-campaign-thumbnail .card-thumbnail-image {
+  height: 140px;
+}
+.workroom .card-campaign-thumbnail .card-body button {
+  margin-top: 15px;
+}
 .chatbox-card {
   margin-bottom: 30px;
 }
 .chatbox-card .chatbox-header {
-  background: #f9f9fb;
-  height: 50px;
-  padding: 15px;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.3);
 }
 .chatbox-card .chatbox-header h3 {

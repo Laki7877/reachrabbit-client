@@ -3,11 +3,11 @@ var util = require('util');
 var path = require('path');
 
 describe('Brand', function () {
-  
+
   beforeAll(function(){
     browser.params.brand_login.user =  Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5) + browser.params.brand_login.user;
   });
-    
+
   describe('Signup', function () {
     var state = {};
     beforeAll(function(){
@@ -154,12 +154,12 @@ describe('Brand', function () {
       state.description.sendKeys("Established in 1944, Financial Executives Research Foundation (FERF) is the research affiliate of Financial Executives International (FEI). FERF is a non-profit, ...");
       state.keyword.sendKeys("yo, chinese, man");
       state.website.sendKeys("hey, china, ebola");
-      
+
       var fileToUpload = 'cyanthumb.png';
       var absolutePath = path.resolve(__dirname, fileToUpload);
       state.uploaders.get(0).sendKeys(absolutePath);
 
-      
+
       state.save_draft_btn.click();
       browser.waitForAngular();
 
@@ -172,11 +172,35 @@ describe('Brand', function () {
       var thumbImage = element(by.css(".card-image img"));
       expect(thumbImage.getAttribute('src') == 'images/placeholder-campaign.png').toBe(false);
     });
-    
+
+  });
+
+  describe('Publish seeded draft campaign', function(){
+    var state = {};
+    beforeAll(function(){
+      browser.get('brand.html#/brand-campaign-list');
+    });
+
+    it('can find sample draft campaign', function () {
+      browser.waitForAngular();
+      var cards = element.all(by.repeater("x in myCampaign.content"));
+      expect(cards.count()).toEqual(1);
+      cards.first().click();
+
+    });
+
+    it('can publish draft campaign', function () {
+
+      state.publish_btn = element(by.css('.btn-primary'));
+
+      browser.waitForAngular();
+      state.publish_btn.click();
+      browser.waitForAngular();
+      browser.pause();
+      expect($('.alert.alert-success').isPresent()).toBe(true);
+    });
+
   });
 
 
 })
-
-
-

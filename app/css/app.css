@@ -69,7 +69,8 @@ mark {
   background: #ff0;
   color: #000;
 }
-small {
+small,
+.proposal-modal .help-block {
   font-size: 80%;
 }
 sub,
@@ -225,13 +226,15 @@ th {
   p,
   h2,
   h3,
-  .card-title .card-title-content {
+  .card-title .card-title-content,
+  .proposal-modal .modal-title {
     orphans: 3;
     widows: 3;
   }
   h2,
   h3,
-  .card-title .card-title-content {
+  .card-title .card-title-content,
+  .proposal-modal .modal-title {
     page-break-after: avoid;
   }
   .navbar {
@@ -1203,7 +1206,8 @@ h6,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
-.navbar li > a {
+.navbar li > a,
+.proposal-modal .modal-title {
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
@@ -1243,7 +1247,8 @@ h2,
 .h2,
 h3,
 .h3,
-.card-title .card-title-content {
+.card-title .card-title-content,
+.proposal-modal .modal-title {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -1302,7 +1307,8 @@ h2,
 }
 h3,
 .h3,
-.card-title .card-title-content {
+.card-title .card-title-content,
+.proposal-modal .modal-title {
   font-size: 24px;
 }
 h4,
@@ -1342,7 +1348,8 @@ p {
 small,
 .small,
 .info-text,
-.chatbox-card .message-area .message .message-body .message-heading .message-time {
+.chatbox-card .message-area .message .message-body .message-heading .message-time,
+.proposal-modal .help-block {
   font-size: 85%;
 }
 mark,
@@ -7528,7 +7535,8 @@ h2 {
   font-size: 24px;
 }
 h3,
-.card-title .card-title-content {
+.card-title .card-title-content,
+.proposal-modal .modal-title {
   font-family: 'Kanit', sans-serif;
   font-size: 18px;
   font-weight: normal;
@@ -7680,7 +7688,6 @@ a.secondary {
   border-radius: 0px;
   background-color: #f9f9fb;
   border-color: #d8dfe7;
-  border-right: none;
   color: #8692a8;
 }
 .input-group-btn button {
@@ -9311,6 +9318,37 @@ fieldset[disabled] .btn-clear.active {
 }
 .api_override_box span {
   background-color: red;
+}
+.proposal-modal {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.proposal-modal .modal-title {
+  color: #16bbac;
+}
+.proposal-modal .card-row-basic {
+  margin-top: 5px;
+}
+.proposal-modal .help-block {
+  text-align: right;
+  color: #8692a8;
+}
+.proposal-modal .promotion-medium .profile-social-media-icon {
+  width: 30px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+.proposal-modal .button-bar {
+  padding-top: 15px;
+}
+.proposal-modal .button-bar .help-block {
+  text-align: center;
+}
+.modal-content {
+  border-radius: 0px;
+}
+.modal-dialog.modal-md {
+  width: 500px;
 }
 /*---Layout Portal---*/
 .layout-portal {

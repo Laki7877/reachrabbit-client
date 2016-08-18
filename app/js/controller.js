@@ -20,11 +20,25 @@
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.controller', ['myApp.service'])
-    .controller('EmptyController', ['$scope', function ($scope) {
+    .controller('EmptyController', ['$scope', '$uibModal', function ($scope, $uibModal) {
         $scope.testHit = function () {
             var scope = $scope;
             console.log("Test World");
         };
+
+        var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'components/templates/influencer-proposal-modal.html',
+                controller: [function(){
+                    
+                }],
+                size: 'md',
+                resolve: {
+                    items: function () {
+                        return [];
+                    }
+                }
+        });
 
         /* Sample Data for Workroom */
         $scope.exampleMessage = [

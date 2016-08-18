@@ -52,9 +52,9 @@ angular.module('myApp.brand.routes', ['ui.router'])
     controller: 'EmptyController'
   })
   .state('brand-workroom', {
-    url: '/brand-workroom',
+    url: '/brand-workroom/:proposalId',
     templateUrl: 'view/brand-workroom.html',
-    controller: 'EmptyController'
+    controller: 'WorkroomController'
   });
 
 }]);

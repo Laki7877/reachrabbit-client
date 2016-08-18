@@ -34,196 +34,202 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('WorkroomController', ['$scope', '$uibModal','$stateParams', 'ProposalService', function ($scope, $uibModal, $stateParams, ProposalService) {
+    .controller('WorkroomController', ['$scope', '$uibModal', '$stateParams', 'ProposalService', function ($scope, $uibModal, $stateParams, ProposalService) {
         /* Sample Data for Workroom */
         $scope.exampleMessage = [
-              {
-                profile:'images/example-campaign/profile-pic-jon.jpg',
-                sender:'Jon Snow',
+            {
+                profile: 'images/example-campaign/profile-pic-jon.jpg',
+                sender: 'Jon Snow',
                 time: '15:25 - 10 ธ.ค. 59',
                 content: 'หวัดดีครับ ผมชื่อ Jon Snow 1'
-              },
-              {
-                profile:'images/example-campaign/profile-pic-pokemon.png',
-                sender:'Pokemon GX',
+            },
+            {
+                profile: 'images/example-campaign/profile-pic-pokemon.png',
+                sender: 'Pokemon GX',
                 time: '15:30 - 10 ธ.ค. 59',
                 content: 'เคยทำอะไรมาก่อนหน้านี้ครับ'
-              },
-              {
-                profile:'images/example-campaign/profile-pic-jon.jpg',
-                sender:'Jon Snow',
+            },
+            {
+                profile: 'images/example-campaign/profile-pic-jon.jpg',
+                sender: 'Jon Snow',
                 time: '15:35 - 10 ธ.ค. 59',
                 content: 'Night gathers, and now my watch begins. It shall not end until my death. I shall take no wife, hold no lands, father no children. I shall wear no crowns and win no glory. I shall live and die at my post. I am the sword in the darkness.'
-              },
-              {
-                profile:'images/example-campaign/profile-pic-pokemon.png',
-                sender:'Pokemon GX',
+            },
+            {
+                profile: 'images/example-campaign/profile-pic-pokemon.png',
+                sender: 'Pokemon GX',
                 time: '15:30 - 10 ธ.ค. 59',
                 content: 'ไม่เข้าใจครับ'
-              },
-              {
-                profile:'images/example-campaign/profile-pic-jon.jpg',
-                sender:'Jon Snow',
+            },
+            {
+                profile: 'images/example-campaign/profile-pic-jon.jpg',
+                sender: 'Jon Snow',
                 time: '15:35 - 10 ธ.ค. 59',
                 content: 'ง่ายๆ คือเป็นยามเฝ้ากำแพงครับ',
-                contentImage:'images/example-campaign/jon-snow-at-the-wall.jpg'
-              },
-              {
-                profile:'images/example-campaign/profile-pic-pokemon.png',
-                sender:'Pokemon GX',
+                contentImage: 'images/example-campaign/jon-snow-at-the-wall.jpg'
+            },
+            {
+                profile: 'images/example-campaign/profile-pic-pokemon.png',
+                sender: 'Pokemon GX',
                 time: '15:40 - 10 ธ.ค. 59',
                 content: 'เคยถ่ายโฆษณามาบ้างไหมครับ'
-              },
-              {
-                profile:'images/example-campaign/profile-pic-jon.jpg',
-                sender:'Jon Snow',
+            },
+            {
+                profile: 'images/example-campaign/profile-pic-jon.jpg',
+                sender: 'Jon Snow',
                 time: '15:45 - 10 ธ.ค. 59',
                 content: 'เคยอยู่บ้างครับ'
-              }
+            }
         ];
 
         $scope.proposalId = $stateParams.proposalId;
+        $scope.proposal = null;
+
+        ProposalService.getOne($scope.proposalId)
+            .then(function (proposalResponse) {
+                $scope.proposal = proposalResponse.data;
+            });
 
         /* JS for Chat Area */
         setChatArea();
 
         $(window).resize(function () {
-          setChatArea();
+            setChatArea();
         });
 
-        function setChatArea(){
-          var magicNumber = 352;
-          var chatArea = $(".message-area");
-          var chatAreaHeight = $( window ).height() - magicNumber;
+        function setChatArea() {
+            var magicNumber = 352;
+            var chatArea = $(".message-area");
+            var chatAreaHeight = $(window).height() - magicNumber;
 
-          if (chatAreaHeight < magicNumber) {
-            chatAreaHeight = magicNumber;
-          }
-          chatArea.height(chatAreaHeight);
-          chatArea.scrollTop(9999);
+            if (chatAreaHeight < magicNumber) {
+                chatAreaHeight = magicNumber;
+            }
+            chatArea.height(chatAreaHeight);
+            chatArea.scrollTop(9999);
         }
         //Temporay Solution
-        $(".message-area").delay( 500 ).animate({scrollTop:500}, '1000', function() {});
+        $(".message-area").delay(500).animate({ scrollTop: 500 }, '1000', function () { });
 
     }])
     .controller('MakeProposalModalController', ['$scope', 'DataService', 'CampaignService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope',
-     function($scope, DataService, CampaignService, campaign, $state, NcAlert, $uibModalInstance, $rootScope){
-        $scope.completionTimes = [];
-        $scope.medium = [];
-        $scope.formData = {
-            media: []
-        };
-        $scope.campaign = campaign;
-        $scope.proposalNetPrice = 0.00;
-        $scope.alert = new NcAlert();
-        $scope.selectedMedia = {};
+        function ($scope, DataService, CampaignService, campaign, $state, NcAlert, $uibModalInstance, $rootScope) {
+            $scope.completionTimes = [];
+            $scope.medium = [];
+            $scope.formData = {
+                media: []
+            };
+            $scope.campaign = campaign;
+            $scope.proposalNetPrice = 0.00;
+            $scope.alert = new NcAlert();
+            $scope.selectedMedia = {};
 
-        /*
-        *  Check if profile has linked media id
-        */
-        $scope.profileHasMedia = function(mediaId){
-            // console.log($rootScope.getProfile().influencer.influencerMedias);
-            return _.findIndex($rootScope.getProfile().influencer.influencerMedias, function(e){
-                return _.get(e,'media.mediaId') === mediaId;
-            }) >= 0;
-        };
-
-        $scope.$watch('selectedMedia', function(selectedMedia){
-            $scope.formData.media = [];
             /*
-            * loop over selected media key
+            *  Check if profile has linked media id
             */
-            Object.keys(selectedMedia).forEach(function(smk){
-                //smk = selected media key
-                if(!selectedMedia[smk]) return;
-                $scope.formData.media.push({
-                    mediaId: smk
+            $scope.profileHasMedia = function (mediaId) {
+                // console.log($rootScope.getProfile().influencer.influencerMedias);
+                return _.findIndex($rootScope.getProfile().influencer.influencerMedias, function (e) {
+                    return _.get(e, 'media.mediaId') === mediaId;
+                }) >= 0;
+            };
+
+            $scope.$watch('selectedMedia', function (selectedMedia) {
+                $scope.formData.media = [];
+                /*
+                * loop over selected media key
+                */
+                Object.keys(selectedMedia).forEach(function (smk) {
+                    //smk = selected media key
+                    if (!selectedMedia[smk]) return;
+                    $scope.formData.media.push({
+                        mediaId: smk
+                    });
                 });
+
+            }, true);
+
+            $scope.submit = function (formData) {
+                CampaignService.sendProposal(formData, campaign.campaignId)
+                    .then(function (doneR) {
+                        return $uibModalInstance.close(doneR.data);
+                    })
+                    .catch(function (err) {
+                        $scope.alert.danger(err.data.message);
+                    });
+            };
+
+            $scope.$watch('formData.price', function (pp) {
+                $scope.proposalNetPrice = Number(pp) * 0.820;
             });
-            
-        }, true);
 
-        $scope.submit = function(formData){
-            CampaignService.sendProposal(formData, campaign.campaignId)
-            .then(function(doneR){
-                return $uibModalInstance.close(doneR.data);
-            })
-            .catch(function(err){
-                $scope.alert.danger(err.data.message);
+            DataService.getMedium().then(function (response) {
+                $scope.medium = response.data;
             });
-        };
 
-        $scope.$watch('formData.price', function(pp){
-            $scope.proposalNetPrice = Number(pp) * 0.820;
-        });
-        
-        DataService.getMedium().then(function(response){
-            $scope.medium = response.data;
-        });
-
-        DataService.getCompletionTime().then(function(response){
-            $scope.completionTimes = response.data;
-        });
-    }])
+            DataService.getCompletionTime().then(function (response) {
+                $scope.completionTimes = response.data;
+            });
+        }])
     .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService', '$uibModal', 'DataService',
-     function($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService){
-        console.log($stateParams.campaignId);
-        $scope.campaignNee = null;
-        $scope.alert = new NcAlert();
-        $scope.keywordMap = function(arr){
-            if(!arr) return [];
-            return arr.map(function(k){
-                return k.keyword;
-            });
-        };
-        
-        $scope.sendProposal = function(){
-            //popup a modal
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: 'components/templates/influencer-proposal-modal.html',
-                controller: 'MakeProposalModalController',
-                size: 'md',
-                resolve: {
-                    campaign: function () {
-                        return $scope.campaignNee;
+        function ($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService) {
+            console.log($stateParams.campaignId);
+            $scope.campaignNee = null;
+            $scope.alert = new NcAlert();
+            $scope.keywordMap = function (arr) {
+                if (!arr) return [];
+                return arr.map(function (k) {
+                    return k.keyword;
+                });
+            };
+
+            $scope.sendProposal = function () {
+                //popup a modal
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'components/templates/influencer-proposal-modal.html',
+                    controller: 'MakeProposalModalController',
+                    size: 'md',
+                    resolve: {
+                        campaign: function () {
+                            return $scope.campaignNee;
+                        }
                     }
-                }
-            });
+                });
 
-            //on user close
-            modalInstance.result.then(function(proposal){
-                if(!proposal || !proposal.proposalId){
-                    return;
-                }
-                $state.go('influencer-workroom', {proposalId: proposal.proposalId });
-            });
-        };
-
-
-        CampaignService.getOne($stateParams.campaignId)
-        .then(function(campaignResponse){
-            $scope.campaignNee = campaignResponse.data;
-            return AccountService.getUser($scope.campaignNee.brandId);
-        })
-        .then(function(brandUserDataResponse){
-            $scope.brandUserInfo = brandUserDataResponse.data;
-        })
-        .catch(function(err){
-            $scope.alert.danger(err.data.message);
-        });
+                //on user close
+                modalInstance.result.then(function (proposal) {
+                    if (!proposal || !proposal.proposalId) {
+                        return;
+                    }
+                    $state.go('influencer-workroom', { proposalId: proposal.proposalId });
+                });
+            };
 
 
-    }])
+            CampaignService.getOne($stateParams.campaignId)
+                .then(function (campaignResponse) {
+                    $scope.campaignNee = campaignResponse.data;
+                    return AccountService.getUser($scope.campaignNee.brandId);
+                })
+                .then(function (brandUserDataResponse) {
+                    $scope.brandUserInfo = brandUserDataResponse.data;
+                })
+                .catch(function (err) {
+                    $scope.alert.danger(err.data.message);
+                });
+
+
+        }])
     .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'ExampleCampaigns', '$rootScope',
         function ($scope, $state, CampaignService, ExampleCampaigns, $rootScope) {
 
-            $scope.handleUserClickThumbnail = function(c){
+            $scope.handleUserClickThumbnail = function (c) {
                 $state.go('influencer-campaign-detail-open', {
                     campaignId: c.campaignId
                 });
             };
-            
+
             $scope.filter = {
                 mediaId: null
             };
@@ -266,7 +272,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     });
             };
 
-            $scope.linkDone = function(){
+            $scope.linkDone = function () {
                 $scope.saveProfile($scope.formData);
             };
 
@@ -275,8 +281,8 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     $scope.formData = response.data;
                     $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
 
-                    _.forEach($scope.formData.influencer.categories, function(r) {
-                      r._selected = true;
+                    _.forEach($scope.formData.influencer.categories, function (r) {
+                        r._selected = true;
                     });
                     delete $scope.formData.password;
                 })
@@ -322,7 +328,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     .controller('CampaignDetailController', ['$scope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', 'NcAlert',
         function ($scope, $stateParams, CampaignService, DataService, $filter, UserProfile, NcAlert) {
             //initial form data
-
             $scope.alert = new NcAlert();
 
             $scope.resources = [];
@@ -449,11 +454,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องให้ถูกต้องและครบถ้วน');
                         return;
                     }
-
-                    if ($scope.resources.length < 1) {
-                        $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องให้ถูกต้องและครบถ้วน');
-                        return;
-                    }
                 }
 
                 //saving
@@ -551,47 +551,47 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 });
         };
     }])
-    .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'AccountService', 'UserProfile', '$window',  'BusinessConfig',
-    function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {
-        $scope.alert = new NcAlert();
-        $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
+    .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'AccountService', 'UserProfile', '$window', 'BusinessConfig',
+        function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {
+            $scope.alert = new NcAlert();
+            $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
 
-        if($stateParams.alert){
-            $scope.alert[$stateParams.alert.type]($stateParams.alert.message);
-        }
+            if ($stateParams.alert) {
+                $scope.alert[$stateParams.alert.type]($stateParams.alert.message);
+            }
 
-        $scope.startAuthFlow = function (mediaId) {
-            $window.localStorage.clear();
-            $auth.authenticate(mediaId)
-                .then(function (response) {
-                    // console.log('Response', response.data);
-                    if (response.data.token) {
-                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+            $scope.startAuthFlow = function (mediaId) {
+                $window.localStorage.clear();
+                $auth.authenticate(mediaId)
+                    .then(function (response) {
+                        // console.log('Response', response.data);
+                        if (response.data.token) {
+                            $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
 
-                        $window.localStorage.token = response.data.token;
-                        AccountService.getProfile()
-                            .then(function (profileResp) {
-                                UserProfile.set(profileResp.data);
-                                //Tell raven about the user
-                                Raven.setUserContext(UserProfile.get());
-                                //Redirect change app
-                                $window.location.href = '/influencer.html#/influencer-campaign-list';
-                            });
-                    } else {
-                        // console.log(response.data);
-                        if (mediaId == 'facebook') {
-                            $state.go('influencer-signup-select-page', { authData: response.data });
+                            $window.localStorage.token = response.data.token;
+                            AccountService.getProfile()
+                                .then(function (profileResp) {
+                                    UserProfile.set(profileResp.data);
+                                    //Tell raven about the user
+                                    Raven.setUserContext(UserProfile.get());
+                                    //Redirect change app
+                                    $window.location.href = '/influencer.html#/influencer-campaign-list';
+                                });
                         } else {
-                            $state.go('influencer-signup-confirmation', { authData: response.data });
+                            // console.log(response.data);
+                            if (mediaId == 'facebook') {
+                                $state.go('influencer-signup-select-page', { authData: response.data });
+                            } else {
+                                $state.go('influencer-signup-confirmation', { authData: response.data });
+                            }
                         }
-                    }
 
 
 
-                });
-        };
+                    });
+            };
 
-    }])
+        }])
     .controller('InfluencerFacebookPageSelectionController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'BusinessConfig', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, BusinessConfig) {
         var authData = $stateParams.authData;
         $scope.pages = authData.pages;
@@ -601,17 +601,17 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
         $scope.choosePage = function (page) {
             var authobject = {
-                    pages: [page],
-                    pageId: page.id,
-                    media: authData.media,
-                    email: authData.email,
-                    profilePicture: page.picture,
-                    name: page.name,
-                    id: authData.id
+                pages: [page],
+                pageId: page.id,
+                media: authData.media,
+                email: authData.email,
+                profilePicture: page.picture,
+                name: page.name,
+                id: authData.id
             };
 
             //go to cofnirmation page
-            if($stateParams.fromState){
+            if ($stateParams.fromState) {
                 return $state.go($stateParams.fromState, {
                     authData: authobject
                 });
@@ -625,7 +625,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         };
     }])
     .controller('InfluencerSignUpController',
-    ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window','ResourceService', 'BusinessConfig',
+    ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig',
         function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig) {
 
             var profile = $stateParams.authData;
@@ -639,18 +639,18 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 $state.go('influencer-portal');
                 return;
             }
-            if($scope.formData.pages[0].count < Number($scope.minFollower)){
+
+            if ($scope.formData.pages[0].count < Number($scope.minFollower)) {
                 //not meet requirement
-                $state.go('influencer-portal', { alert: { type: 'danger', message: 'คุณต้องมีผู้ติดตามอย่างน้อย ' + $scope.minFollower + ' คนเพื่อสมัคร' } } );
+                $state.go('influencer-portal', { alert: { type: 'danger', message: 'คุณต้องมีผู้ติดตามอย่างน้อย ' + $scope.minFollower + ' คนเพื่อสมัคร' } });
                 return;
             }
 
             //Upload remote profile picture to get reosurce object
             ResourceService.uploadWithUrl(profile.profilePicture)
-            .then(function(resource){
-                $scope.profilePictureResource = resource.data;
-            });
-
+                .then(function (resource) {
+                    $scope.profilePictureResource = resource.data;
+                });
 
 
             $scope.register = function () {
@@ -662,12 +662,13 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         influencerMedias: [{
                             media: $scope.formData.media,
                             socialId: $scope.formData.id,
+                            followerCount: $scope.formData.pages[0].count,
                             pageId: $scope.formData.pageId || null
                         }]
                     },
                     profilePicture: $scope.profilePictureResource
                 })
-                .then(function (response) {
+                    .then(function (response) {
                         var token = response.data.token;
                         $window.localStorage.token = token;
                         return AccountService.getProfile();

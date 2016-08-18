@@ -48,54 +48,14 @@
           </div>
         </div>
         <div class="col-xs-3">
-          <div class="card-proposal-detail">
-            <div class="card-header">
-              รายละเอียดข้อเสนอ
-            </div>
-            <div class="card-body">
-              <button class="btn-primary btn-width-max">เลือกข้อเสนอ</button>
-              <div class="card-info-label">
-                ราคาที่เสนอ
-              </div>
-              <div class="card-info-content card-price">
-                50,000 บาท
-              </div>
-              <div class="card-info-label">
-                จำนวนผู้ติดตาม
-              </div>
-              <div class="card-info-content">
-                <div class="social-info">
-                  <span class="icon-facebook"></span> 1,000 คน
-                </div>
-                <div class="social-info">
-                  <span class="icon-instagram"></span> 5.0m คน
-                </div>
-                <div class="social-info">
-                  <span class="icon-youtube"></span> 600 คน
-                </div>
-
-              </div>
-              <div class="card-info-label">
-                ระยะเวลาการทำงาน
-              </div>
-              <div class="card-info-content">
-                1 สัปดาห์
-              </div>
-              <div class="card-info-label">
-                Rabbit Score <i class="fa fa-question-circle"></i>
-              </div>
-              <div class="card-info-content">
-                94%
-              </div>
-            </div>
-          </div>
+          <card-proposal-detail ng-model="proposal"></card-proposal-detail>
           <div class="card-campaign-thumbnail">
             <div class="card-thumbnail-image">
-              <img ng-src="{{campaign.resources[0].url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
+              <img ng-src="{{proposal.campaign.campaignResources[0].resource.url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
             </div>
             <div class="card-body">
-              รีวิว Fukifilm Instax Mini 8 จำนวน 1 เครื่อง / คน
-              <button class="btn-secondary btn-width-max">ดูรายละเอียด</button>
+              {{ proposal.campaign.title }}
+              <button class="btn-secondary btn-width-max" ui-sref="influencer-campaign-detail-open({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
             </div>
           </div>
         </div>

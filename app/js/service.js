@@ -182,10 +182,14 @@ angular.module('myApp.service', ['satellizer'])
                 });
             });
         },
-        getAll: function(){
+        getAll: function(params){
             //TODO: make universal getter
             return $q(function(resolve, reject){
-                $http.get("/campaigns")
+                $http({
+                  url: "/campaigns",
+                  method: 'GET',
+                  params: params
+                })
                 .then(function(response){
                     var rr = response.data.content.map(function(campaign){
                         return serializeCampaign(campaign);
@@ -246,6 +250,13 @@ angular.module('myApp.service', ['satellizer'])
             return $http({
                 url: '/proposals/' + proposalId,
                 method: 'get'
+            });
+        },
+        getAll: function(params) {
+            return $http({
+              url: '/proposals',
+              method: 'GET',
+              params: params
             });
         },
         getMessages: function(proposalId){

@@ -1,0 +1,15 @@
+<ul class="pagination">
+  <li>
+    <a ng-click="prev()" aria-label="Previous">
+      <i class="fa fa-angle-left"></i>
+    </a>
+  </li>
+  <li ng-repeat="n in counter() track by $index" class="active">
+    <a ng-click="goto($index)">{{$index+1}}</a>
+  </li>
+  <li>
+    <a ng-click="next()" aria-label="Next">
+      <i class="fa fa-angle-right"></i>
+    </a>
+  </li>
+</ul>

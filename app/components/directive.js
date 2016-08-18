@@ -9,8 +9,102 @@
 'use strict';
 
 angular.module('myApp.directives', ['myApp.service'])
-
-
+    .directive('sorter', [function() {
+        return {
+            restrict: 'EA',
+            scope: {
+                model: '=ngModel',
+                callback: '=callback'
+            },
+            controller: ['$scope', function($scope) {
+                this.setPageable = function(pageable) {
+                    $scope.callback(pageable);
+                };
+                this.getPageable = function() {
+                    return $scope.model;
+                };
+            }]
+        };
+    }])
+    .directive('sort', [function() {
+        return {
+            restrict: 'A',
+            require: '^sorter',
+            scope: {
+                sort: '@sort'
+            },
+            transclude: true,
+            templateUrl: 'components/templates/sort.html',
+            link: function(scope, elements, attrs, ctrl) {
+                scope.click = function() {
+                    var pageable = _.pick(ctrl.getPageable(), ['size', 'sort']);
+                    
+                    if(_.isNil(pageable.sort)) {
+                        pageable.sort = [scope.sort + ',asc'];
+                    } else {
+                        if(pageable.sort[0].property === scope.sort) {
+                            pageable.sort = [scope.sort + ',' + (_.lowerCase(pageable.sort[0].direction) === 'asc' ? 'desc' : 'asc')];
+                        } else {
+                            pageable.sort = [scope.sort + ',asc'];
+                        }
+                    }
+                    ctrl.setPageable(_.extend(pageable, {
+                        page: ctrl.getPageable().number
+                    }));
+                };
+                scope.active = function() {
+                    return _.get(ctrl.getPageable(), 'sort[0].property') === scope.sort;
+                };
+                scope.direction = function() {
+                   var direction = _.get(ctrl.getPageable(), 'sort[0].direction');
+                   return direction ? _.lowerCase(direction) : 'desc';
+                };
+            }
+        };
+    }])
+    .directive('pagination', [function() {
+        return {
+            restrict: 'EA',
+            replace: true,
+            templateUrl: 'components/templates/pagination.html',
+            scope: {
+                model: '=ngModel',
+                callback: '=callback'
+            },
+            link: function(scope, element, attrs, ctrl, transclude) {
+                scope.next = function() {
+                    //Stop if no next
+                    if(scope.model.last) {
+                        return false;
+                    }
+                    var pageable = _.pick(scope.model, ['size', 'sort']);
+                    scope.callback(_.extend(pageable, {
+                        page: scope.model.number+1
+                    }));
+                };
+                scope.prev = function() {
+                    //Stop if no previous
+                    if(scope.model.first) {
+                        return false;
+                    }
+                    var pageable = _.pick(scope.model, ['size', 'sort']);
+                    scope.callback(_.extend(pageable, {
+                        page: scope.model.number-1
+                    }));
+                };
+                scope.goto = function(i) {
+                    var pageable = _.pick(scope.model, ['size', 'sort']);
+                    scope.callback(_.extend(pageable, {
+                        page: i
+                    }));
+                };
+                //Get int as array
+                scope.counter = function() {
+                    return new Array(_.get(scope, 'model.totalPages', 0));    
+                };
+            }
+        };
+    }])
     .directive('message', [function () {
           return {
               restrict: 'EA',

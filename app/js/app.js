@@ -15,6 +15,7 @@ angular.module('myApp', [
   'ngTagsInput',
   'smoothScroll',
   'ngSanitize',
+  'angularMoment',
   //Top level
   'myApp.directives',
   'myApp.routes',
@@ -97,10 +98,29 @@ angular.module('myApp', [
   MIN_FOLLOWER_COUNT : 1
 })
 //Initialize the app
-.run(['$rootScope', '$location', '$window', 'UserProfile', function($rootScope, $location, $window, UserProfile){
+.run(['$rootScope', '$location', '$window', 'UserProfile', 'amMoment', function($rootScope, $location, $window, UserProfile, amMoment){
 
   $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
-  
+
+  //Configure angular moment
+  amMoment.changeLocale('th', {
+    longDateFormat : {
+        LT : 'H:m',
+        LTS : 'H:m:s',
+        L : 'YYYY/MM/DD',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY เวลา H:m',
+        LLLL : 'วันddddที่ D MMMM YYYY เวลา H:m'
+    },
+    calendar : {
+        sameDay : '[วันนี้] LT',
+        nextDay : '[พรุ่งนี้] LT',
+        nextWeek : 'dddd[หน้า] LT',
+        lastDay : '[เมื่อวานนี้] LT',
+        lastWeek : '[วัน]dddd[ที่แล้ว] LT',
+        sameElse : 'L'
+    },
+  });
 
   //Configure Raven in production mode
   // Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();

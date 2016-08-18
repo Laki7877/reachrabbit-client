@@ -32,7 +32,7 @@ angular.module('myApp.directives', ['myApp.service'])
             scope: {
                 model: '=ngModel',
                 fromState: '@fromState',
-                onDone: '=onDone'
+                onDone: '=?onDone'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
                 scope.mediaList = [];
@@ -74,7 +74,7 @@ angular.module('myApp.directives', ['myApp.service'])
                                     pageId: null
                                 });
                             }
-                            scope.onDone();
+                            if(scope.onDone) scope.onDone();
                         })
                         .catch(function(err){
                             console.log("Linking failed", err);

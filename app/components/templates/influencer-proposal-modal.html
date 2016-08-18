@@ -1,6 +1,6 @@
 <div class="proposal-modal">
     <div class="modal-header">
-        <button type="button" class="close" ng-click="$close()"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">ส่งข้อเสนอ</h4>
     </div>
     <div class="card-body">
@@ -8,11 +8,13 @@
         <div class="card-row-basic">
             ช่องทางการโปรโมท
         </div>
-
-        <div class="card-row-basic" ng-repeat="media in medium">
-            <label class="promotion-medium">
-                <input type="checkbox" ng-model="selectedMedia[media.mediaId]"/>
-                <img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" /> {{ media.mediaName }}
+        
+        <div class="card-row-basic" ng-repeat="media in campaign.media">
+            <label class="promotion-medium" ng-class="{'disabled': !profileHasMedia(media.mediaId)}">
+                <input type="checkbox" ng-model="selectedMedia[media.mediaId]" ng-disabled="!profileHasMedia(media.mediaId)"/>
+                <span ng-if="profileHasMedia(media.mediaId)"><img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" /> {{ media.mediaName }}</span>
+                <span ng-if="!profileHasMedia(media.mediaId)"><img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" />  {{media.mediaName}} 
+                    คุณยังไม่ได้เชื่อมต่อ <a ng-click="$close()" ui-sref="influencer-profile">เชือมต่อช่องทางนี้</a></span>
             </label>
         </div>
         <!--<div class="card-row-basic">

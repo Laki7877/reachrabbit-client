@@ -104,16 +104,27 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $(".message-area").delay( 500 ).animate({scrollTop:500}, '1000', function() {});
 
     }])
-    .controller('MakeProposalModalController', ['$scope', 'DataService', 'CampaignService', 'campaignId', '$state', 'NcAlert', '$uibModalInstance',
-     function($scope, DataService, CampaignService, campaignId, $state, NcAlert, $uibModalInstance){
+    .controller('MakeProposalModalController', ['$scope', 'DataService', 'CampaignService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope',
+     function($scope, DataService, CampaignService, campaign, $state, NcAlert, $uibModalInstance, $rootScope){
         $scope.completionTimes = [];
         $scope.medium = [];
         $scope.formData = {
             media: []
         };
+        $scope.campaign = campaign;
         $scope.proposalNetPrice = 0.00;
         $scope.alert = new NcAlert();
         $scope.selectedMedia = {};
+
+        /*
+        *  Check if profile has linked media id
+        */
+        $scope.profileHasMedia = function(mediaId){
+            console.log($rootScope.getProfile().influencer.influencerMedias);
+            return _.findIndex($rootScope.getProfile().influencer.influencerMedias, function(e){
+                return _.get(e,'media.mediaId') === mediaId;
+            }) >= 0;
+        };
 
         $scope.$watch('selectedMedia', function(selectedMedia){
             $scope.formData.media = [];
@@ -131,12 +142,9 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         }, true);
 
         $scope.submit = function(formData){
-            CampaignService.sendProposal(formData, campaignId)
+            CampaignService.sendProposal(formData, campaign.campaignId)
             .then(function(doneR){
-                return $uibModalInstance.close();
-            })
-            .then(function(){
-                $state.go('influencer-workroom');
+                return $uibModalInstance.close(doneR.data);
             })
             .catch(function(err){
                 $scope.alert.danger(err.data.message);
@@ -168,16 +176,25 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         };
         
         $scope.sendProposal = function(){
+            //popup a modal
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'components/templates/influencer-proposal-modal.html',
                 controller: 'MakeProposalModalController',
                 size: 'md',
                 resolve: {
-                    campaignId: function () {
-                        return $stateParams.campaignId;
+                    campaign: function () {
+                        return $scope.campaignNee;
                     }
                 }
+            });
+
+            //on user close
+            modalInstance.result.then(function(proposal){
+                if(!proposal || !proposal.proposalId){
+                    return;
+                }
+                $state.go('influencer-workroom', {proposalId: proposal.proposalId });
             });
         };
 

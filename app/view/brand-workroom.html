@@ -25,7 +25,8 @@
             </div>
             <div class="message-area">
 
-              <message ng-repeat="x in exampleMessage" message-data="x"></message>
+              <message ng-repeat="x in msglist" message-data="x"></message>
+              <div nc-alert="alert"></div>
 
             </div>
             <div class="message-input">
@@ -40,7 +41,9 @@
                 </div>
 
                 <button class="btn-secondary btn-width-md" disabled><i class="fa fa-paperclip fa-flip-horizontal" aria-hidden="true"></i> อัพโหลดไฟล์</button>
-                <button class="btn-secondary-highlight btn-width-md"><i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ</button>
+                <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr)">
+                  <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
+                </button>
               </div>
               <div class="clear"></div>
             </div>

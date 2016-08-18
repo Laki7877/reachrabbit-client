@@ -354,6 +354,12 @@ a.secondary{
     box-shadow: @global-shadow-depth-1;
   };
 }
+.card-header{
+  padding: 15px;
+  height: 50px;
+  background: @color-grey-lighter;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.20);
+}
 .card-body{
   &:extend(.panel-body);
   .card-row{
@@ -629,6 +635,9 @@ a.secondary{
 .btn-secondary {
   &:extend(.btn all);
   .button-variant(@color-theme-secondary, @color-white, @color-grey);
+}
+.btn-secondary:disabled{
+  background: @color-grey-lighter !important;
 }
 .btn-secondary-highlight {
   &:extend(.btn all);
@@ -941,14 +950,42 @@ a.secondary{
   .body-zone{
     margin-top: -100px;
   }
+  .card-proposal-detail{
+    &:extend(.card all);
+    .card-header{
+      text-align: center;
+    }
+    .card-info-label{
+      &:extend(small);
+      margin-top: 15px;
+      color: @color-grey-darker;
+    }
+    .card-price{
+      &:extend(h4);
+      color: @color-theme-secondary;
+    }
+    .social-info{
+      margin: 5px 0px;
+    }
+  }
+  .card-campaign-thumbnail{
+    &:extend(.card-thumbnail all);
+    .card-thumbnail-image{
+      height: 140px;
+    }
+    .card-body{
+      &:extend(h5);
+      button{
+        margin-top: 15px;
+      }
+    }
+  }
 }
 .chatbox-card{
   &:extend(.card);
   margin-bottom: 30px;
   .chatbox-header{
-    background: @color-grey-lighter;
-    height: 50px;
-    padding: 15px;
+    &:extend(.card-header);
     box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.30);
     h3{
       color: @color-theme-secondary;
@@ -1018,6 +1055,7 @@ a.secondary{
   .message-input{
     background: @color-grey-lighter;
     padding: 15px;
+    box-shadow: 0px -1px 10px 0px rgba(0,0,0,0.10);
     textarea{
       resize: none;
     }
@@ -1026,6 +1064,28 @@ a.secondary{
     }
     button{
       margin-left: 10px;
+    }
+    .preview-item{
+      display: inline-block;
+      margin-right: 20px;
+      .input-upload-image{
+        overflow:visible;
+        border: 0px;
+        height: 34px;
+        width: auto;
+        img{
+          width: auto;
+          height: 34px;
+        }
+      }
+      .btn-delete-image{
+        background: none;
+        top: 8px;
+        right: -25px;
+        font-size: 18px;
+        width: 22px;
+        height: 22px;
+      }
     }
   }
 }

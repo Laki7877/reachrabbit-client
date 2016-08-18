@@ -141,9 +141,7 @@ angular.module('myApp.directives', ['myApp.service'])
                     }
                     return false;
                 };
-
                 
-
 
                 DataService.getMedium().then(function(mediumResponse){
                     scope.mediaList = mediumResponse.data;
@@ -165,6 +163,7 @@ angular.module('myApp.directives', ['myApp.service'])
                                 scope.model.push({
                                     media: linkedProfile.media || { mediaId: mediaId },
                                     socialId: linkedProfile.id,
+                                    followerCount: linkedProfile.pages[0].count,
                                     pageId: null
                                 });
                             }
@@ -184,13 +183,15 @@ angular.module('myApp.directives', ['myApp.service'])
             transclude: true,
             templateUrl: 'components/templates/card-proposal-detail.html',
             scope: {
-                proposalId: '='
+                proposal: '=ngModel'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
-                ProposalService.getOne(scope.proposalId)
-                .then(function(proposalResponse){
-                    scope.proposal = proposalResponse.data; 
-                });
+                scope.unionUnique = function(media,mediaInfluencer){
+                    return _.unionBy((mediaInfluencer || []).map(function(mi){
+                        mi.mediaId = mi.media.mediaId;
+                        return mi;
+                    }),media, 'mediaId');
+                };
             }
         };
     }])

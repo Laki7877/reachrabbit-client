@@ -25,7 +25,7 @@
             </div>
             <div class="message-area">
 
-              <message ng-repeat="x in exampleMessage" message-data="x"></message>
+              <message ng-repeat="x in msglist" message-data="x"></message>
 
             </div>
             <div class="message-input">
@@ -48,15 +48,15 @@
           </div>
         </div>
         <div class="col-xs-3">
-          <card-proposal-detail proposal-id="proposalId"></card-proposal-detail>
+          <card-proposal-detail ng-model="proposal"></card-proposal-detail>
           
           <div class="card-campaign-thumbnail">
             <div class="card-thumbnail-image">
-              <img ng-src="{{campaign.resources[0].url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
+              <img ng-src="{{proposal.campaign.campaignResources[0].resource.url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
             </div>
             <div class="card-body">
-              รีวิว Fukifilm Instax Mini 8 จำนวน 1 เครื่อง / คน
-              <button class="btn-secondary btn-width-max">ดูรายละเอียด</button>
+              {{ proposal.campaign.title }}
+              <button class="btn-secondary btn-width-max" ui-sref="influencer-campaign-detail-open({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
             </div>
           </div>
         </div>

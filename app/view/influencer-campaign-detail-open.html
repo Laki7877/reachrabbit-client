@@ -54,7 +54,7 @@
               รูปประกอบ
             </div>
             <div class="card-body-content">
-              <img ng-repeat="campaignImage in campaignNee.resources" ng-src="{{ campaignImage.url }}" class="description-image"/>
+              <img ng-repeat="campaignImage in campaignNee.resources" ng-if="$index > 0" ng-src="{{ campaignImage.url }}" class="description-image"/>
             </div>
           </div>
         </div>

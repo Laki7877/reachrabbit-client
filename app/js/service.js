@@ -130,7 +130,7 @@ angular.module('myApp.service', ['satellizer'])
 
     };
 }])
-.factory('CampaignService', ['$http', function($http) {
+.factory('CampaignService', ['$http','$q', function($http, $q) {
     return {
         getOpenCampaigns: function(filter){
             var opt = {
@@ -142,13 +142,65 @@ angular.module('myApp.service', ['satellizer'])
                     opt.params.mediaId = filter.mediaId;
                 }
             }
-            return $http(opt);
+            return $q(function(resolve, reject){
+                $http(opt)
+                .then(function(response){
+                    var rr = response.data.content.map(function(campaign){
+                        campaign.resources = campaign.campaignResources.map(function(campaignResource){
+                            return campaignResource.resource;
+                        }); 
+                        delete campaign.campaignResources;
+                        return campaign;
+                    });
+                    response.data.content = rr;
+                    
+                    resolve(response);
+                })
+                .catch(function(err){
+                    reject(err);
+                });
+            });
         },
         getAll: function(){
-            return $http.get("/campaigns");
+            //TODO: make universal getter
+            return $q(function(resolve, reject){
+                $http.get("/campaigns")
+                .then(function(response){
+                    var rr = response.data.content.map(function(campaign){
+                        campaign.resources = campaign.campaignResources.map(function(campaignResource){
+                            return campaignResource.resource;
+                        }); 
+                        delete campaign.campaignResources;
+                        return campaign;
+                    });
+                    response.data.content = rr;
+                    
+                    resolve(response);
+                })
+                .catch(function(err){
+                    reject(err);
+                });
+            });
         },
         getOne: function(id){
-            return $http.get("/campaigns/" + id);
+            return $q(function(resolve, reject){
+                $http.get("/campaigns/" + id)
+                .then(function(response){
+                    var rr = response.data.content.map(function(campaign){
+                        campaign.resources = campaign.campaignResources.map(function(campaignResource){
+                            return campaignResource.resource;
+                        }); 
+                        delete campaign.campaignResources;
+                        return campaign;
+                    });
+                    response.data.content = rr;
+                    
+                    resolve(response);
+                })
+                .catch(function(err){
+                    reject(err);
+                });
+            });
         },
         sendProposal: function(proposal, campaignId){
             return $http({
@@ -162,6 +214,15 @@ angular.module('myApp.service', ['satellizer'])
             if(campaign.campaignId){
                 putOrPost = 'PUT';
             }
+
+            campaign.campaignResources = campaign.resources.map(function(resource, index){
+                return {
+                    position: index,
+                    resource: resource
+                };
+            });
+            
+            delete  campaign.resources;
             return $http({
                 url: "/campaigns/" + (putOrPost.toUpperCase() == 'PUT' ? campaign.campaignId : ''),
                 method: putOrPost,

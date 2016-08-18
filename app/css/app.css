@@ -9545,6 +9545,9 @@ fieldset[disabled] .btn-clear.active {
 .layout-influencer .view-influencer-profile .input-upload-image .fa-camera {
   margin-top: 38px;
 }
+.layout-influencer .view-influencer-profile .btn-secondary-active[disabled] {
+  opacity: 1;
+}
 tags-input {
   display: block;
   border-color: black;

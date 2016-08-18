@@ -9400,7 +9400,7 @@ fieldset[disabled] .btn-clear.active {
   width: 500px;
 }
 .modal-header {
-  padding: 15px 0px;
+  padding: 15px 0px 10px 0px;
   margin: 0px 15px;
 }
 .proposal-modal {
@@ -9409,6 +9409,9 @@ fieldset[disabled] .btn-clear.active {
 }
 .proposal-modal .modal-title {
   color: #16bbac;
+}
+.proposal-modal textarea {
+  resize: vertical;
 }
 .proposal-modal .card-row-basic {
   margin-top: 5px;
@@ -9426,6 +9429,8 @@ fieldset[disabled] .btn-clear.active {
   padding-top: 15px;
 }
 .proposal-modal .button-bar .help-block {
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: center;
 }
 .proposal-modal .disabled {

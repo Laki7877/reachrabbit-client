@@ -1110,7 +1110,7 @@ a.secondary{
 }
 
 .modal-header{
-  padding: 15px 0px;
+  padding: 15px 0px 10px 0px;
   margin: 0px 15px;
 }
 
@@ -1120,6 +1120,9 @@ a.secondary{
   .modal-title{
     &:extend(h3);
     color: @color-theme-secondary;
+  }
+  textarea{
+    resize: vertical;
   }
   .card-row-basic{
     margin-top: 5px;
@@ -1139,6 +1142,8 @@ a.secondary{
   .button-bar{
     padding-top: 15px;
     .help-block{
+      margin-top: 10px;
+      margin-bottom: 10px;
       text-align: center;
     }
   }

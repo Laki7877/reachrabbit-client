@@ -36,7 +36,7 @@ angular.module('myApp.controller', ['myApp.service'])
 angular.module('myApp.influencer.controller', ['myApp.service'])
     .controller('WorkroomController', ['$scope', '$uibModal', '$stateParams', 'ProposalService', function ($scope, $uibModal, $stateParams, ProposalService) {
         /* Sample Data for Workroom */
-        $scope.exampleMessage = [
+        $scope.msglist = [
             {
                 profile: 'images/example-campaign/profile-pic-jon.jpg',
                 sender: 'Jon Snow',
@@ -81,8 +81,11 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 content: 'เคยอยู่บ้างครับ'
             }
         ];
-
         $scope.proposalId = $stateParams.proposalId;
+        ProposalService.getMessages($scope.proposalId).then(function(msgresponse){
+            $scope.msglist = msgresponse.data.content;
+        });
+
         $scope.proposal = null;
 
         ProposalService.getOne($scope.proposalId)
@@ -205,6 +208,9 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     $state.go('influencer-workroom', { proposalId: proposal.proposalId });
                 });
             };
+
+
+            
 
 
             CampaignService.getOne($stateParams.campaignId)

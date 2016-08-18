@@ -6,7 +6,7 @@
         "passed": true
       }
     ],
-    "duration": 1043
+    "duration": 1022
   },
   {
     "description": "fails to login with bad credentials",
@@ -15,7 +15,7 @@
         "passed": true
       }
     ],
-    "duration": 1185
+    "duration": 1133
   },
   {
     "description": "can find inputs",
@@ -24,7 +24,7 @@
         "passed": true
       }
     ],
-    "duration": 969
+    "duration": 984
   },
   {
     "description": "cannot signup without typing anything",
@@ -33,7 +33,7 @@
         "passed": true
       }
     ],
-    "duration": 137
+    "duration": 140
   },
   {
     "description": "can signup when form is complete",
@@ -42,7 +42,7 @@
         "passed": true
       }
     ],
-    "duration": 3086
+    "duration": 3065
   },
   {
     "description": "can find inputs",
@@ -60,7 +60,7 @@
         "passed": true
       }
     ],
-    "duration": 2738
+    "duration": 2703
   },
   {
     "description": "can find sample draft campaign",
@@ -69,7 +69,7 @@
         "passed": true
       }
     ],
-    "duration": 820
+    "duration": 802
   },
   {
     "description": "can find inputs",
@@ -78,7 +78,7 @@
         "passed": true
       }
     ],
-    "duration": 1228
+    "duration": 1174
   },
   {
     "description": "can save as draft",
@@ -87,7 +87,7 @@
         "passed": true
       }
     ],
-    "duration": 3844
+    "duration": 2782
   },
   {
     "description": "reloads and everything comes back",
@@ -96,7 +96,7 @@
         "passed": true
       }
     ],
-    "duration": 1441
+    "duration": 1503
   },
   {
     "description": "can find sample draft campaign",
@@ -105,17 +105,15 @@
         "passed": true
       }
     ],
-    "duration": 828
+    "duration": 819
   },
   {
     "description": "can publish draft campaign",
     "assertions": [
       {
-        "passed": false,
-        "errorMsg": "Expected false to be true.",
-        "stackTrace": "Error: Failed expectation\n    at Object.<anonymous> (/Users/ssabpisa/src/ahancer/reachrabbit-client/e2e-tests/scenarios.js:200:53)\n    at /Users/ssabpisa/src/ahancer/reachrabbit-client/node_modules/jasminewd2/index.js:96:23\n    at new Promise (/Users/ssabpisa/src/ahancer/reachrabbit-client/node_modules/selenium-webdriver/lib/promise.js:1043:7)\n    at controlFlowExecute (/Users/ssabpisa/src/ahancer/reachrabbit-client/node_modules/jasminewd2/index.js:82:18)\n    at TaskQueue.execute_ (/Users/ssabpisa/src/ahancer/reachrabbit-client/node_modules/selenium-webdriver/lib/promise.js:2790:14)\n    at TaskQueue.executeNext_ (/Users/ssabpisa/src/ahancer/reachrabbit-client/node_modules/selenium-webdriver/lib/promise.js:2773:21)\n    at /Users/ssabpisa/src/ahancer/reachrabbit-client/node_modules/selenium-webdriver/lib/promise.js:2697:25\n    at /Users/ssabpisa/src/ahancer/reachrabbit-client/node_modules/selenium-webdriver/lib/promise.js:639:7\n    at process._tickCallback (node.js:379:9)"
+        "passed": true
       }
     ],
-    "duration": 22599
+    "duration": 6135
   }
 ]

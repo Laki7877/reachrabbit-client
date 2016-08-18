@@ -1,18 +1,18 @@
 <div class="message">
   <div class="message-left">
     <a href="#">
-      <img class="media-object" ng-src="{{message.profile || 'images/placeholder-campaign.png'}}">
+      <img class="media-object" ng-src="{{message.user.profilePicture.url || 'images/placeholder-campaign.png'}}">
     </a>
   </div>
   <div class="message-body">
     <div class="message-heading">
-      <h4>{{message.sender}}</h4>
-      <div class="message-time">{{message.time}}</div>
+      <h4>{{message.user.name}}</h4>
+      <div class="message-time">{{message.time || 'Wait for Backend'}}</div>
       <div class="clear"></div>
     </div>
     <div class="message-content">
-      {{message.content}}
-      <img ng-if="message.contentImage" ng-src="{{message.contentImage}}">
+      {{message.message}}
+      <img ng-repeat="resource in message.resources" ng-src="{{resource.url}}">
     </div>
   </div>
 </div>

@@ -131,7 +131,28 @@ angular.module('myApp.service', ['satellizer'])
     };
 }])
 .factory('CampaignService', ['$http','$q', function($http, $q) {
+    var serializeCampaign = function(campaign){
+        campaign.resources = campaign.campaignResources.map(function(campaignResource){
+                            return campaignResource.resource;
+                        }); 
+                        delete campaign.campaignResources;
+                        return campaign;
+    };
+
+    var deserializeCampaign = function(campaign){
+        campaign.campaignResources = campaign.resources.map(function(resource, index){
+                return {
+                    position: index,
+                    resource: resource
+                };
+            });
+        delete  campaign.resources;
+        return campaign;
+    };
+
     return {
+        deserializeCampaign: deserializeCampaign,
+        serializeCampaign: serializeCampaign,
         getOpenCampaigns: function(filter){
             var opt = {
                 skipAuthorization: true,
@@ -167,14 +188,9 @@ angular.module('myApp.service', ['satellizer'])
                 $http.get("/campaigns")
                 .then(function(response){
                     var rr = response.data.content.map(function(campaign){
-                        campaign.resources = campaign.campaignResources.map(function(campaignResource){
-                            return campaignResource.resource;
-                        }); 
-                        delete campaign.campaignResources;
-                        return campaign;
+                        return serializeCampaign(campaign);
                     });
                     response.data.content = rr;
-                    
                     resolve(response);
                 })
                 .catch(function(err){
@@ -186,11 +202,7 @@ angular.module('myApp.service', ['satellizer'])
             return $q(function(resolve, reject){
                 $http.get("/campaigns/" + id)
                 .then(function(response){
-                        response.data.resources = response.data.campaignResources.map(function(campaignResource){
-                            return campaignResource.resource;
-                        }); 
-                        delete response.data.campaignResources;
-                    
+                    response.data = serializeCampaign(response.data);
                     resolve(response);
                 })
                 .catch(function(err){
@@ -210,19 +222,20 @@ angular.module('myApp.service', ['satellizer'])
             if(campaign.campaignId){
                 putOrPost = 'PUT';
             }
-
-            campaign.campaignResources = campaign.resources.map(function(resource, index){
-                return {
-                    position: index,
-                    resource: resource
-                };
-            });
-            
-            delete  campaign.resources;
-            return $http({
-                url: "/campaigns/" + (putOrPost.toUpperCase() == 'PUT' ? campaign.campaignId : ''),
-                method: putOrPost,
-                data: campaign
+            campaign = deserializeCampaign(campaign);
+            return $q(function(resolve, reject){
+                $http({
+                    url: "/campaigns/" + (putOrPost.toUpperCase() == 'PUT' ? campaign.campaignId : ''),
+                    method: putOrPost,
+                    data: campaign
+                })
+                .then(function(response){
+                    response.data = serializeCampaign(response.data);
+                    resolve(response);
+                })
+                .catch(function(err){
+                    reject(err);
+                });
             });
         }
     };
@@ -232,6 +245,12 @@ angular.module('myApp.service', ['satellizer'])
         getOne: function(proposalId){
             return $http({
                 url: '/proposals/' + proposalId,
+                method: 'get'
+            });
+        },
+        getMessages: function(proposalId){
+            return $http({
+                url: '/proposals/' + proposalId + '/proposalmessages',
                 method: 'get'
             });
         }

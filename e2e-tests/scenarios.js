@@ -196,7 +196,7 @@ describe('Brand', function () {
       browser.waitForAngular();
       state.publish_btn.click();
       browser.waitForAngular();
-      browser.pause();
+      // browser.pause();
       expect($('.alert.alert-success').isPresent()).toBe(true);
     });
 

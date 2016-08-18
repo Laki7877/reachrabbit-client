@@ -25,7 +25,7 @@
             </div>
             <div class="message-area">
 
-              <message ng-repeat="x in exampleMessage" message-data="x"></message>
+              <message ng-repeat="x in msglist" message-data="x"></message>
 
             </div>
             <div class="message-input">
@@ -52,7 +52,7 @@
           
           <div class="card-campaign-thumbnail">
             <div class="card-thumbnail-image">
-              <img ng-src="{{campaign.resources[0].url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
+              <img ng-src="{{proposal.campaign.campaignResources[0].resource.url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
             </div>
             <div class="card-body">
               {{ proposal.campaign.title }}

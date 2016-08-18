@@ -36,14 +36,9 @@ angular.module('myApp.service', ['satellizer'])
 .factory('authStatusCheckInjector', ['$q', '$rootScope', function($q, $rootScope){
     var service = this;
     service.responseError = function(response) {
-        // if (response.status == 401){
-        //     $rootScope.signOut('401');
-        // }
-
-        // if (response.status == 401){
-        //     $rootScope.signOut('401');
-        // }
-
+        if (response.status == 401){
+            $rootScope.signOut('401');
+        }
 
         if(!response.data){
             response.data = { message: "External error"};
@@ -140,10 +135,7 @@ angular.module('myApp.service', ['satellizer'])
         getOpenCampaigns: function(filter){
             var opt = {
                 skipAuthorization: true,
-                url: "/campaigns/open",
-                params: {
-                    sort: ['campaignId desc']
-                }
+                url: "/campaigns/open"
             };
             if(filter instanceof Object){
                 if(filter.mediaId){
@@ -181,6 +173,9 @@ angular.module('myApp.service', ['satellizer'])
         },
         getCategories: function(){
             return $http.get("/data/categories");
+        },
+        getCompletionTime: function(){
+            return $http.get("/data/completiontime");
         }
     };
 }])

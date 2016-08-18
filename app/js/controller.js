@@ -26,20 +26,6 @@ angular.module('myApp.controller', ['myApp.service'])
             console.log("Test World");
         };
 
-        var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: 'components/templates/influencer-proposal-modal.html',
-                controller: [function(){
-                    
-                }],
-                size: 'md',
-                resolve: {
-                    items: function () {
-                        return [];
-                    }
-                }
-        });
-
         /* Sample Data for Workroom */
         $scope.exampleMessage = [
               {
@@ -117,8 +103,8 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService',
-     function($scope, $state, $stateParams, CampaignService, NcAlert, AccountService){
+    .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService', '$uibModal',
+     function($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal){
         console.log($stateParams.campaignId);
         $scope.campaignNee = null;
         $scope.alert = new NcAlert();
@@ -128,6 +114,24 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 return k.keyword;
             });
         };
+
+
+        $scope.sendProposal = function(){
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'components/templates/influencer-proposal-modal.html',
+                controller: [function(){
+                    
+                }],
+                size: 'md',
+                resolve: {
+                    items: function () {
+                        return [];
+                    }
+                }
+            });
+        };
+
 
         CampaignService.getOne($stateParams.campaignId)
         .then(function(campaignResponse){

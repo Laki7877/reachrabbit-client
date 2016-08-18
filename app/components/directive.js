@@ -11,7 +11,7 @@
 angular.module('myApp.directives', ['myApp.service'])
 
 
-      .directive('message', [function () {
+    .directive('message', [function () {
           return {
               restrict: 'EA',
               scope: { message: '=messageData' },
@@ -86,6 +86,22 @@ angular.module('myApp.directives', ['myApp.service'])
             transclude: true,
             link: function (scope, element, attrs, ctrl, transclude) {
                 console.log(attrs);
+            }
+        };
+    }])
+    .directive('ncDataDropdown', ['DataService', function(DataService){
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl : 'templates/components/nc-data-dropdown.html',
+            scope: {
+                model: '=ngModel',
+                serviceName: '@'
+            },
+            link: function(scope, element, attrs, ctrl, transclude){
+                DataService[scope.serviceName]().then(function(response){
+                    scope.ds = response.data;
+                });
             }
         };
     }])

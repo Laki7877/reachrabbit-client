@@ -152,6 +152,9 @@ a.secondary{
   border-color: @color-grey;
   box-shadow: none;
 }
+.form-control[disabled]{
+  background-color: @color-grey-lighter;
+}
 .input-group-addon{
   border-radius: 0px;
   background-color: @color-grey-lighter;
@@ -1096,18 +1099,20 @@ a.secondary{
   }
 }
 
-/*---Other debugging stuff---*/
-.api_override_box{
-  position: absolute;
-  left: 5px;
-  top: 5px;
-  z-index:99999;
+/*---Modal---*/
+
+.modal-content{
+  border-radius: 0px;
 }
 
-.api_override_box span{
-   background-color: red;
+.modal-dialog.modal-md{
+  width: 500px;
 }
 
+.modal-header{
+  padding: 15px 0px 10px 0px;
+  margin: 0px 15px;
+}
 
 .proposal-modal{
   padding-left: 10px;
@@ -1115,6 +1120,9 @@ a.secondary{
   .modal-title{
     &:extend(h3);
     color: @color-theme-secondary;
+  }
+  textarea{
+    resize: vertical;
   }
   .card-row-basic{
     margin-top: 5px;
@@ -1133,18 +1141,31 @@ a.secondary{
   }
   .button-bar{
     padding-top: 15px;
-
     .help-block{
+      margin-top: 10px;
+      margin-bottom: 10px;
       text-align: center;
     }
-
+  }
+  .disabled{
+    color: @color-grey-darker;
+    img{
+      opacity: 0.4;
+    }
   }
 }
 
-.modal-content{
-  border-radius: 0px;
+
+/*---Other debugging stuff---*/
+.api_override_box{
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  z-index:99999;
 }
 
-.modal-dialog.modal-md{
-  width: 500px;
+.api_override_box span{
+   background-color: red;
 }
+
+/*---End of the CSS World---*/

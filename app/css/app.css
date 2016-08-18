@@ -7702,6 +7702,9 @@ a.secondary {
   border-color: #d8dfe7;
   box-shadow: none;
 }
+.form-control[disabled] {
+  background-color: #f9f9fb;
+}
 .input-group-addon {
   border-radius: 0px;
   background-color: #f9f9fb;
@@ -9389,15 +9392,16 @@ fieldset[disabled] .btn-clear.active {
   width: 22px;
   height: 22px;
 }
-/*---Other debugging stuff---*/
-.api_override_box {
-  position: absolute;
-  left: 5px;
-  top: 5px;
-  z-index: 99999;
+/*---Modal---*/
+.modal-content {
+  border-radius: 0px;
 }
-.api_override_box span {
-  background-color: red;
+.modal-dialog.modal-md {
+  width: 500px;
+}
+.modal-header {
+  padding: 15px 0px 10px 0px;
+  margin: 0px 15px;
 }
 .proposal-modal {
   padding-left: 10px;
@@ -9405,6 +9409,9 @@ fieldset[disabled] .btn-clear.active {
 }
 .proposal-modal .modal-title {
   color: #16bbac;
+}
+.proposal-modal textarea {
+  resize: vertical;
 }
 .proposal-modal .card-row-basic {
   margin-top: 5px;
@@ -9422,14 +9429,27 @@ fieldset[disabled] .btn-clear.active {
   padding-top: 15px;
 }
 .proposal-modal .button-bar .help-block {
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: center;
 }
-.modal-content {
-  border-radius: 0px;
+.proposal-modal .disabled {
+  color: #8692a8;
 }
-.modal-dialog.modal-md {
-  width: 500px;
+.proposal-modal .disabled img {
+  opacity: 0.4;
 }
+/*---Other debugging stuff---*/
+.api_override_box {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  z-index: 99999;
+}
+.api_override_box span {
+  background-color: red;
+}
+/*---End of the CSS World---*/
 /*---Layout Portal---*/
 .layout-portal {
   background: url("../images/bg-layout-login.png") #019386;

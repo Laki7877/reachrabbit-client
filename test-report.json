@@ -6,7 +6,7 @@
         "passed": true
       }
     ],
-    "duration": 1024
+    "duration": 1034
   },
   {
     "description": "fails to login with bad credentials",
@@ -15,7 +15,7 @@
         "passed": true
       }
     ],
-    "duration": 1078
+    "duration": 1288
   },
   {
     "description": "can find inputs",
@@ -24,7 +24,7 @@
         "passed": true
       }
     ],
-    "duration": 979
+    "duration": 973
   },
   {
     "description": "cannot signup without typing anything",
@@ -33,7 +33,7 @@
         "passed": true
       }
     ],
-    "duration": 142
+    "duration": 132
   },
   {
     "description": "can signup when form is complete",
@@ -42,7 +42,7 @@
         "passed": true
       }
     ],
-    "duration": 3078
+    "duration": 3099
   },
   {
     "description": "can find inputs",
@@ -51,7 +51,7 @@
         "passed": true
       }
     ],
-    "duration": 697
+    "duration": 690
   },
   {
     "description": "can login",
@@ -60,7 +60,7 @@
         "passed": true
       }
     ],
-    "duration": 2684
+    "duration": 2672
   },
   {
     "description": "can find sample draft campaign",
@@ -69,7 +69,7 @@
         "passed": true
       }
     ],
-    "duration": 807
+    "duration": 812
   },
   {
     "description": "can find inputs",
@@ -78,7 +78,7 @@
         "passed": true
       }
     ],
-    "duration": 1191
+    "duration": 1189
   },
   {
     "description": "can save as draft",
@@ -87,7 +87,7 @@
         "passed": true
       }
     ],
-    "duration": 2769
+    "duration": 2901
   },
   {
     "description": "reloads and everything comes back",
@@ -96,6 +96,26 @@
         "passed": true
       }
     ],
-    "duration": 1403
+    "duration": 1441
+  },
+  {
+    "description": "can find sample draft campaign",
+    "assertions": [
+      {
+        "passed": true
+      }
+    ],
+    "duration": 827
+  },
+  {
+    "description": "can publish draft campaign",
+    "assertions": [
+      {
+        "passed": false,
+        "errorMsg": "Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.",
+        "stackTrace": "Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.\n    at [object Object]._onTimeout (/Users/nattphenjati/workspace/reachrabbit/node_modules/jasmine-core/lib/jasmine-core/jasmine.js:1909:23)\n    at Timer.listOnTimeout (timers.js:92:15)"
+      }
+    ],
+    "duration": 152521
   }
 ]

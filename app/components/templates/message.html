@@ -12,8 +12,7 @@
     </div>
     <div class="message-content">
       {{message.content}}
-      <img class="img-responsive" ng-src="{{message.contentImage || 'images/null.gif'}}">
-      <!-- @Eart there is probably a better way to do this, please help me improve- Natt -->
+      <img ng-if="message.contentImage" ng-src="{{message.contentImage}}">
     </div>
   </div>
 </div>

@@ -1131,6 +1131,7 @@ img {
 .card-portal .profile-picture .profile-picture-image,
 .card-campaign-description .card-body .description-image,
 .card-thumbnail .card-thumbnail-image img,
+.chatbox-card .message-area .message .message-body .message-content img,
 .workroom .card-campaign-thumbnail .card-thumbnail-image img {
   display: block;
   max-width: 100%;
@@ -9336,6 +9337,9 @@ fieldset[disabled] .btn-clear.active {
 }
 .chatbox-card .message-area .message .message-body .message-heading .message-time {
   float: right;
+}
+.chatbox-card .message-area .message .message-body .message-content img {
+  margin-top: 10px;
 }
 .chatbox-card ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);

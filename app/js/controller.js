@@ -75,7 +75,10 @@ angular.module('myApp.controller', ['myApp.service'])
 
 
         /* JS for Chat Area */
+
+
         setChatArea();
+
         $(window).resize(function () {
           setChatArea();
         });

@@ -309,9 +309,15 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         };
         $scope.myCampaign = [];
 
-        CampaignService.getAll().then(function (response) {
-            $scope.myCampaign = response.data;
-        });
+        //Load campaign data
+        $scope.load = function(data) {
+            CampaignService.getAll(data).then(function (response) {
+                $scope.myCampaign = response.data;
+            });
+        };
+
+        //Init
+        $scope.load();
 
         //Example campaign section
         $scope.exampleCampaign = ExampleCampaigns;
@@ -503,6 +509,23 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                     $scope.alert.danger(err.data.message);
                 });
         };
+    }])
+    .controller('BrandInboxController', ['$scope','$filter','ProposalService', 'moment', function($scope, $filter, ProposalService, moment) {
+        $scope.load = function(params) {
+            ProposalService.getAll(params)
+                .then(function(response) {
+                    $scope.proposals = response.data;
+                });
+        };
+        $scope.lastMessageUpdated = function(proposal) {
+            if(moment(proposal.messageUpdatedAt).isBefore(moment().endOf('day').subtract(2, 'days'))) {
+                return $filter('amDateFormat')(proposal.messageUpdatedAt, 'll');
+            } else {
+                return $filter('amCalendar')(proposal.messageUpdatedAt);
+            }
+            return 'n/a';
+        };
+        $scope.load();
     }]);
 
 

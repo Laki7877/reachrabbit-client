@@ -144,8 +144,12 @@ angular.module('myApp.service', ['satellizer'])
             }
             return $http(opt);
         },
-        getAll: function(){
-            return $http.get("/campaigns");
+        getAll: function(params){
+            return $http({
+              url: "/campaigns",
+              method: 'GET',
+              params: params
+            });
         },
         getOne: function(id){
             return $http.get("/campaigns/" + id);
@@ -176,6 +180,13 @@ angular.module('myApp.service', ['satellizer'])
             return $http({
                 url: '/proposals/' + proposalId,
                 method: 'get'
+            });
+        },
+        getAll: function(params) {
+            return $http({
+              url: '/proposals',
+              method: 'GET',
+              params: params
             });
         }
     };

@@ -18,6 +18,9 @@
       <div ng-repeat="x in myCampaign.content">
         <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-draft({campaignId: x.campaignId})"></card-campaign-list-item>
       </div>
+      <nav class="text-center" aria-label="Page navigation">
+        <pagination ng-model="myCampaign" callback="load"></pagination>
+      </nav>
 
       <div class="example-campaign">
         <h2>ตัวอย่าง Campaign</h2>
@@ -25,7 +28,6 @@
           <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-example({ exampleId: $index })"></card-campaign-list-item>
         </div>
       </div>
-
     </div>
   </div>
 </div>

@@ -49,7 +49,7 @@ angular.module('myApp.brand.routes', ['ui.router'])
   .state('brand-inbox', {
     url: '/brand-inbox',
     templateUrl: 'view/brand-inbox.html',
-    controller: 'EmptyController'
+    controller: 'BrandInboxController'
   })
   .state('brand-workroom', {
     url: '/brand-workroom',

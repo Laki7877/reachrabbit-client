@@ -6,7 +6,7 @@
         "passed": true
       }
     ],
-    "duration": 1004
+    "duration": 1431
   },
   {
     "description": "fails to login with bad credentials",
@@ -15,7 +15,7 @@
         "passed": true
       }
     ],
-    "duration": 1111
+    "duration": 1841
   },
   {
     "description": "can find inputs",
@@ -24,7 +24,7 @@
         "passed": true
       }
     ],
-    "duration": 1012
+    "duration": 1009
   },
   {
     "description": "cannot signup without typing anything",
@@ -33,7 +33,7 @@
         "passed": true
       }
     ],
-    "duration": 152
+    "duration": 148
   },
   {
     "description": "can signup when form is complete",
@@ -42,7 +42,7 @@
         "passed": true
       }
     ],
-    "duration": 3092
+    "duration": 3067
   },
   {
     "description": "can find inputs",
@@ -51,7 +51,7 @@
         "passed": true
       }
     ],
-    "duration": 702
+    "duration": 728
   },
   {
     "description": "can login",
@@ -60,7 +60,7 @@
         "passed": true
       }
     ],
-    "duration": 2689
+    "duration": 2667
   },
   {
     "description": "can find sample draft campaign",
@@ -69,7 +69,7 @@
         "passed": true
       }
     ],
-    "duration": 872
+    "duration": 841
   },
   {
     "description": "can find inputs",
@@ -78,7 +78,7 @@
         "passed": true
       }
     ],
-    "duration": 1315
+    "duration": 1273
   },
   {
     "description": "can save as draft",
@@ -87,7 +87,7 @@
         "passed": true
       }
     ],
-    "duration": 4371
+    "duration": 4188
   },
   {
     "description": "reloads and everything comes back",
@@ -96,7 +96,7 @@
         "passed": true
       }
     ],
-    "duration": 1567
+    "duration": 2140
   },
   {
     "description": "can find sample draft campaign",
@@ -105,16 +105,18 @@
         "passed": true
       }
     ],
-    "duration": 761
+    "duration": 891
   },
   {
     "description": "can publish draft campaign",
     "assertions": [
       {
-        "passed": true
+        "passed": false,
+        "errorMsg": "Expected false to be true.",
+        "stackTrace": "Error: Failed expectation\n    at Object.<anonymous> (/Users/nattphenjati/workspace/reachrabbit/e2e-tests/scenarios.js:225:53)\n    at /Users/nattphenjati/workspace/reachrabbit/node_modules/protractor/node_modules/jasminewd2/index.js:96:23\n    at new Promise (/Users/nattphenjati/workspace/reachrabbit/node_modules/protractor/node_modules/selenium-webdriver/lib/promise.js:1043:7)\n    at controlFlowExecute (/Users/nattphenjati/workspace/reachrabbit/node_modules/protractor/node_modules/jasminewd2/index.js:82:18)\n    at TaskQueue.execute_ (/Users/nattphenjati/workspace/reachrabbit/node_modules/protractor/node_modules/selenium-webdriver/lib/promise.js:2790:14)\n    at TaskQueue.executeNext_ (/Users/nattphenjati/workspace/reachrabbit/node_modules/protractor/node_modules/selenium-webdriver/lib/promise.js:2773:21)\n    at /Users/nattphenjati/workspace/reachrabbit/node_modules/protractor/node_modules/selenium-webdriver/lib/promise.js:2697:25\n    at /Users/nattphenjati/workspace/reachrabbit/node_modules/protractor/node_modules/selenium-webdriver/lib/promise.js:639:7\n    at process._tickCallback (node.js:368:9)"
       }
     ],
-    "duration": 1516
+    "duration": 1714
   },
   {
     "description": "can find all fields",
@@ -123,6 +125,6 @@
         "passed": true
       }
     ],
-    "duration": 776
+    "duration": 765
   }
 ]

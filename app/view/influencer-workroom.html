@@ -1,7 +1,7 @@
 <div class="view-influencer-workroom workroom">
   <div class="header-zone">
     <div class="container">
-      <div class="back-btn-for-header"  ui-sref="brand-inbox">
+      <div class="back-btn-for-header"  ui-sref="influencer-inbox">
         <i class="fa fa-arrow-left"></i> กลับไป Inbox
       </div>
     </div>
@@ -51,7 +51,7 @@
         </div>
         <div class="col-xs-3">
           <card-proposal-detail ng-model="proposal"></card-proposal-detail>
-          
+
           <div class="card-campaign-thumbnail">
             <div class="card-thumbnail-image">
               <img ng-src="{{proposal.campaign.campaignResources[0].resource.url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>

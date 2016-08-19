@@ -36,55 +36,16 @@ angular.module('myApp.controller', ['myApp.service'])
 angular.module('myApp.influencer.controller', ['myApp.service'])
     .controller('WorkroomController', ['$scope', '$uibModal', '$stateParams', 'ProposalService', 'NcAlert',
     function ($scope, $uibModal, $stateParams, ProposalService, NcAlert) {
-        /* Sample Data for Workroom */
-        $scope.msglist = [
-            {
-                profile: 'images/example-campaign/profile-pic-jon.jpg',
-                sender: 'Jon Snow',
-                time: '15:25 - 10 ธ.ค. 59',
-                content: 'หวัดดีครับ ผมชื่อ Jon Snow 1'
-            },
-            {
-                profile: 'images/example-campaign/profile-pic-pokemon.png',
-                sender: 'Pokemon GX',
-                time: '15:30 - 10 ธ.ค. 59',
-                content: 'เคยทำอะไรมาก่อนหน้านี้ครับ'
-            },
-            {
-                profile: 'images/example-campaign/profile-pic-jon.jpg',
-                sender: 'Jon Snow',
-                time: '15:35 - 10 ธ.ค. 59',
-                content: 'Night gathers, and now my watch begins. It shall not end until my death. I shall take no wife, hold no lands, father no children. I shall wear no crowns and win no glory. I shall live and die at my post. I am the sword in the darkness.'
-            },
-            {
-                profile: 'images/example-campaign/profile-pic-pokemon.png',
-                sender: 'Pokemon GX',
-                time: '15:30 - 10 ธ.ค. 59',
-                content: 'ไม่เข้าใจครับ'
-            },
-            {
-                profile: 'images/example-campaign/profile-pic-jon.jpg',
-                sender: 'Jon Snow',
-                time: '15:35 - 10 ธ.ค. 59',
-                content: 'ง่ายๆ คือเป็นยามเฝ้ากำแพงครับ',
-                contentImage: 'images/example-campaign/jon-snow-at-the-wall.jpg'
-            },
-            {
-                profile: 'images/example-campaign/profile-pic-pokemon.png',
-                sender: 'Pokemon GX',
-                time: '15:40 - 10 ธ.ค. 59',
-                content: 'เคยถ่ายโฆษณามาบ้างไหมครับ'
-            },
-            {
-                profile: 'images/example-campaign/profile-pic-jon.jpg',
-                sender: 'Jon Snow',
-                time: '15:45 - 10 ธ.ค. 59',
-                content: 'เคยอยู่บ้างครับ'
-            }
-        ];
+        $scope.msglist = [];
+        
+        function scrollBottom(){
+             $(".message-area").delay(10).animate({ scrollTop: 500 }, '1000', function () { });
+        }
+
         $scope.proposalId = $stateParams.proposalId;
         ProposalService.getMessages($scope.proposalId).then(function(msgresponse){
             $scope.msglist = msgresponse.data.content;
+            scrollBottom();
         });
 
         $scope.formData = {
@@ -104,6 +65,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 $scope.formData = {
                     resources: []
                 };
+                scrollBottom();
             })
             .catch(function(err){
                 $scope.alert.danger(err.message);
@@ -135,8 +97,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             chatArea.height(chatAreaHeight);
             chatArea.scrollTop(9999);
         }
-        //Temporay Solution
-        $(".message-area").delay(500).animate({ scrollTop: 500 }, '1000', function () { });
+       
 
     }])
     .controller('MakeProposalModalController', ['$scope', 'DataService', 'CampaignService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope',
@@ -653,6 +614,37 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
                     $window.location.href = '/brand.html#/brand-campaign-list';
+                })
+                .catch(function (err) {
+                    $scope.alert.danger(err.data.message);
+                });
+        };
+    }])
+    .controller('InfluencerSigninController',['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
+        $scope.formData = {};
+        $window.localStorage.removeItem('token');
+        $scope.messageCode = $location.search().message;
+        $scope.alert = new NcAlert();
+
+        if ($scope.messageCode == "401") {
+            $scope.alert.warning("<strong>401</strong> Unauthorized or Session Expired");
+        }
+
+        $scope.login = function (username, password) {
+            $location.search('message', 'nop');
+            AccountService.getTokenInfluencer(username, password)
+                .then(function (response) {
+                    var token = response.data.token;
+                    $window.localStorage.token = token;
+                    return AccountService.getProfile();
+                })
+                .then(function (profileResp) {
+                    $window.localStorage.profile = JSON.stringify(profileResp.data);
+                    //Tell raven about the user
+                    Raven.setUserContext(UserProfile.get());
+                    //Redirect
+                    $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+                    $window.location.href = '/influencer.html#/influencer-campaign-list';
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);

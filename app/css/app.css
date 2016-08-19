@@ -9540,7 +9540,11 @@ fieldset[disabled] .btn-clear.active {
 }
 .layout-influencer .view-influencer-campaign-list .card-thumbnail,
 .layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail {
-  height: 330px;
+  margin-bottom: 30px;
+}
+.layout-influencer .view-influencer-campaign-list .card-thumbnail .card-body,
+.layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail .card-body {
+  height: 93px;
 }
 .layout-influencer .view-influencer-profile .input-upload-image {
   width: 127px;

@@ -106,6 +106,12 @@ angular.module('myApp.service', ['satellizer'])
                     email: username,
                     password: password
             });
+        },
+        getTokenInfluencer: function(username, password){
+            return $http.post("/auth/influencer", {
+                    email: username,
+                    password: password
+            });
         }
     };
 }])

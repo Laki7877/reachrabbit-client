@@ -347,7 +347,7 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .directive('headerZone', [function () {
+    .directive('zoneHeader', [function () {
       //To Do: make historyback to True/False
         return {
             restrict: 'EA',
@@ -355,7 +355,7 @@ angular.module('myApp.directives', ['myApp.service'])
             scope: {
                 historyback: '&?'
             },
-            templateUrl: 'components/templates/header-zone.html',
+            templateUrl: 'components/templates/zone-header.html',
             link: function (scope, element, attrs, ctrl, transclude) {
               element.on('click', function() {
                 history.back();

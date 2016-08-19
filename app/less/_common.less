@@ -115,10 +115,12 @@ a.secondary{
   }
   .back-btn-for-header{
     margin-top: 25px;
-    cursor: pointer;
-  }
-  .back-btn-for-header:hover{
-    color:@color-grey;
+    span{
+      cursor: pointer;
+      &:hover{
+        color:@color-grey;
+      }
+    }
   }
   .action-btn-for-header{
     float: right;

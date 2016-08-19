@@ -7663,9 +7663,11 @@ a.secondary {
 }
 .header-zone .back-btn-for-header {
   margin-top: 25px;
+}
+.header-zone .back-btn-for-header span {
   cursor: pointer;
 }
-.header-zone .back-btn-for-header:hover {
+.header-zone .back-btn-for-header span:hover {
   color: #d8dfe7;
 }
 .header-zone .action-btn-for-header {

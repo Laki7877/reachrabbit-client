@@ -1,19 +1,17 @@
 <div class="view-brand-inbox">
-  <div class="header-zone">
-    <div class="container">
-      <div class="page-header">
-        <div class="action-btn-for-header">
-          <div class="card-body-content">
-            <div class="input-dropdown">
-              <select class="form-control filter" ng-model="filter" ng-options="x.campaignId as x.name for x in filters"></select>
-              <i class="fa fa-caret-down"></i>
-            </div>
-          </div>
+
+  <header-zone>
+    <div class="action-btn-for-header">
+      <div class="card-body-content">
+        <div class="input-dropdown">
+          <select class="form-control filter" ng-model="filter" ng-options="x.campaignId as x.name for x in filters"></select>
+          <i class="fa fa-caret-down"></i>
         </div>
-        <h1>Inbox</h1>
       </div>
     </div>
-  </div>
+    <h1>Inbox</h1>
+  </header-zone>
+
   <div class="body-zone">
     <div class="container">
       <div class="card-inbox">

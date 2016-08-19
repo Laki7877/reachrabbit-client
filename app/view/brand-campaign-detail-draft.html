@@ -1,15 +1,10 @@
 <form name="form" novalidate>
   <div class="view-brand-detail-draft">
-    <div class="header-zone">
-      <div class="container">
-        <div class="page-header">
-          <div class="back-btn-for-header" ui-sref="brand-campaign-list">
-            <i class="fa fa-arrow-left"></i> กลับไป Campaign List
-          </div>
-          <h2 id="campaign-title">{{ formData.title }}</h2>
-        </div>
-      </div>
-    </div>
+
+    <header-zone historyback="true">
+      <h2 id="campaign-title">{{ formData.title }}</h2>
+    </header-zone>
+    
     <div class="body-zone">
       <div class="container">
         <div nc-alert="alert"></div>

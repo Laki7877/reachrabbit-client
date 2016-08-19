@@ -65,6 +65,7 @@ module.exports = function (grunt) {
           jQuery: true,
           angular: true,
           window: true,
+          history: true,
           $: true,
           _: true,
           Raven: true

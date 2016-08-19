@@ -126,6 +126,11 @@ angular.module('myApp.portal.routes', ['ui.router'])
     templateUrl: 'view/influencer-signup-confirmation.html',
     controller: 'InfluencerSignUpController',
     params: { authData: null }
+  })
+  .state('influencer-god-login', {
+      url: '/influencer-god-login',
+      templateUrl: 'view/influencer-god-login.html',
+      controller: 'BrandSigninController'
   });
 
 

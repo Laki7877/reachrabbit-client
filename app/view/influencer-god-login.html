@@ -1,0 +1,33 @@
+<div class="view-brand-login">
+  <div class="container">
+
+    <div nc-alert='alert'></div>
+
+    <form no-validate>
+      <div class="card-portal">
+        <div class="card-body">
+          <div class="logo">
+            <img src="http://static.comicvine.com/uploads/original/11118/111183530/4294468-gandalf.gif" alt="ReachRabbit logo" />
+            <h3>Only God Can</h3>
+          </div>
+          <div class="form-group">
+            <label>อีเมล</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+              <input type="email" class="form-control" placeholder="Username" ng-model="username" name="username">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>รหัสผ่าน</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+              <input type="password" class="form-control" placeholder="Password" ng-model="password" name="password">
+            </div>
+          </div>
+          <button class="btn-primary" ng-click="login(username, password)">เข้าสู่ระบบ</button>
+        </div>
+      </div>
+    </form>
+    <div class="signup-pill">Are you human? <a ui-sref="influencer-portal">Yes, I am</a></div>
+  </div>
+</div>

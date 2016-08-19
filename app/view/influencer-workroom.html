@@ -24,7 +24,6 @@
               </div>
             </div>
             <div class="message-area">
-
               <message ng-repeat="x in msglist" message-data="x"></message>
               <div nc-alert="alert"></div>
             </div>
@@ -51,7 +50,7 @@
         </div>
         <div class="col-xs-3">
           <card-proposal-detail ng-model="proposal"></card-proposal-detail>
-          
+
           <div class="card-campaign-thumbnail">
             <div class="card-thumbnail-image">
               <img ng-src="{{proposal.campaign.campaignResources[0].resource.url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>

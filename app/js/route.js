@@ -82,7 +82,7 @@ angular.module('myApp.influencer.routes', ['ui.router'])
   .state('influencer-inbox', {
     url: '/influencer-inbox',
     templateUrl: 'view/influencer-inbox.html',
-    controller: 'EmptyController'
+    controller: 'InfluencerInboxController'
   })
   .state('influencer-workroom', {
     url: '/influencer-workroom/:proposalId',

@@ -5,10 +5,7 @@
         <div class="action-btn-for-header">
           <div class="card-body-content">
             <div class="input-dropdown">
-              <select class="form-control filter">
-                <option value="">แสดง Campaign ทั้งหมด</option>
-                <option value="">แสดงเฉพาะ Campaign X</option>
-              </select>
+              <select class="form-control filter" ng-model="filter" ng-options="x.campaignId as x.name for x in filters"></select>
               <i class="fa fa-caret-down"></i>
             </div>
           </div>
@@ -41,24 +38,24 @@
           </div>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" sorter ng-model="proposals" callback="load">
             <thead>
               <tr>
-                <th class="col-name">Influenccer <a href="#"><i class="fa fa-sort-desc"></i></a></th>
-                <th class="col-campaign-name">Campaign <a href="#"><i class="fa fa-sort-desc"></i></a></th>
-                <th class="col-price">ราคาที่เสนอ <a href="#"><i class="fa fa-sort-desc"></i></a></th>
-                <th class="col-time">ข้อความล่าสุด <a href="#" class="active"><i class="fa fa-sort-desc"></i></a></th>
+                <th class="col-name" sort="influencer.influencerId">Influencer</th>
+                <th class="col-campaign-name" sort="campaign.campaignId">Campaign</th>
+                <th class="col-price" sort="price">ราคาที่เสนอ</th>
+                <th class="col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
                 <th class="col-button">คุยงาน</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="col-name"><img src="images/example-campaign/profile-pic-pokemon.png" class="profile-picture" /> Pokemon GX</td>
-                <td class="col-campaign-name">รีวิว Fukifilm Instax Mini รีวิว Fukifilm Instax Mini รีวิว Fukifilm Instax Mini รีวิว Fukifilm Instax Mini</td>
-                <td class="col-price">50,000 บาท</td>
-                <td class="col-time">วันนี้ 18:00</td>
+              <tr ng-repeat="proposal in proposals.content">
+                <td class="col-name"><img src="{{proposal.influencer.user.profilePicture.url}}" class="profile-picture" /> {{proposal.influencer.user.name}}</td>
+                <td class="col-campaign-name">{{proposal.campaign.title}}</td>
+                <td class="col-price">{{proposal.price | currency:'':2 }} บาท</td>
+                <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
                 <td class="col-button">
-                  <button class="btn-secondary" ui-sref="influencer-workroom">คุยงาน</button>
+                  <button class="btn-secondary" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
                   <!-- For next sprint -->
                   <!-- <span class="message-count">5</span> -->
                 </td>
@@ -71,28 +68,8 @@
         <h5>ห้องคุยงานที่ไม่ Active มากกว่า 21 วันจะถูกลบโดยอัตโนมัติ</h5>
       </div>
     </div>
-
     <nav class="text-center" aria-label="Page navigation">
-      <ul class="pagination">
-        <li>
-          <a href="#" aria-label="Previous">
-            <i class="fa fa-angle-left" aria-hidden="true"></i>
-          </a>
-        </li>
-
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">...</a></li>
-        <li><a href="#">20</a></li>
-        <li>
-          <a href="#" aria-label="Next">
-            <i class="fa fa-angle-right" aria-hidden="true"></i>
-          </a>
-        </li>
-      </ul>
+      <pagination ng-model="proposals" callback="load"></pagination>
     </nav>
-
   </div>
 </div>

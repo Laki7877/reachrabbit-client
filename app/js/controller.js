@@ -34,7 +34,7 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('WorkroomController', ['$scope', '$uibModal', '$stateParams', 'ProposalService', 'NcAlert', 
+    .controller('WorkroomController', ['$scope', '$uibModal', '$stateParams', 'ProposalService', 'NcAlert',
     function ($scope, $uibModal, $stateParams, ProposalService, NcAlert) {
         /* Sample Data for Workroom */
         $scope.msglist = [
@@ -86,7 +86,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         ProposalService.getMessages($scope.proposalId).then(function(msgresponse){
             $scope.msglist = msgresponse.data.content;
         });
-        
+
         $scope.formData = {
             resources: []
         };
@@ -234,7 +234,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             };
 
 
-            
+
 
 
             CampaignService.getOne($stateParams.campaignId)
@@ -320,7 +320,47 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     $scope.alert.danger(err.data.message);
                 });
 
-        }]);
+        }])
+    .controller('InfluencerInboxController', ['$scope','$filter','ProposalService', 'moment', function($scope, $filter, ProposalService, moment) {
+        $scope.params = {};
+        $scope.load = function(params) {
+            $scope.params = params;
+            ProposalService.getAll(params)
+                .then(function(response) {
+                    $scope.proposals = response.data;
+                });
+            ProposalService.getActive()
+                .then(function(response) {
+                    $scope.filters = _.map(response.data, function(e) {
+                        return {
+                            name: 'แสดงเฉพาะ Campaign ' + e.campaign.title,
+                            campaignId: e.campaign.campaignId
+                        };
+                    });
+                    $scope.filters.unshift({
+                        name: 'แสดง Campaign ทั้งหมด',
+                        campaignId: undefined
+                    });
+                });
+        };
+        $scope.lastMessageUpdated = function(proposal) {
+            if(moment(proposal.messageUpdatedAt).isBefore(moment().endOf('day').subtract(1, 'days'))) {
+                return $filter('amDateFormat')(proposal.messageUpdatedAt, 'll');
+            } else {
+                return $filter('amCalendar')(proposal.messageUpdatedAt);
+            }
+            return 'n/a';
+        };
+        $scope.$watch('filter', function(filter) {
+            _.extend($scope.params, {
+                campaignId: filter
+            });
+            $scope.load($scope.params);
+        });
+        $scope.load({
+          sort: ['messageUpdatedAt,desc']
+        });
+    }]);
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
@@ -540,22 +580,37 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 });
         };
     }])
-    .controller('BrandInboxController', ['$scope','$filter','ProposalService', 'moment', function($scope, $filter, ProposalService, moment) {
+    .controller('BrandInboxController', ['$scope','$filter','ProposalService', 'CampaignService', 'moment', function($scope, $filter, ProposalService, CampaignService, moment) {
         $scope.load = function(params) {
-            ProposalService.getAll(params)
-                .then(function(response) {
-                    $scope.proposals = response.data;
+          ProposalService.getAll(params)
+              .then(function(response) {
+                  $scope.proposals = response.data;
+              });
+          CampaignService.getActiveCampaigns()
+            .then(function(response) {
+                $scope.filters = _.map(response.data, function(e) {
+                    return {
+                        name: 'แสดงเฉพาะ Campaign ' + e.title,
+                        campaignId: e.campaignId
+                    };
                 });
+                $scope.filters.unshift({
+                    name: 'แสดง Campaign ทั้งหมด',
+                    campaignId: undefined
+                });
+            });
         };
         $scope.lastMessageUpdated = function(proposal) {
-            if(moment(proposal.messageUpdatedAt).isBefore(moment().endOf('day').subtract(2, 'days'))) {
+            if(moment(proposal.messageUpdatedAt).isBefore(moment().endOf('day').subtract(1, 'days'))) {
                 return $filter('amDateFormat')(proposal.messageUpdatedAt, 'll');
             } else {
                 return $filter('amCalendar')(proposal.messageUpdatedAt);
             }
             return 'n/a';
         };
-        $scope.load();
+        $scope.load({
+          sort: ['messageUpdatedAt,desc']
+        });
     }]);
 
 

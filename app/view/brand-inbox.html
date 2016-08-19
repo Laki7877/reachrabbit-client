@@ -5,10 +5,7 @@
         <div class="action-btn-for-header">
           <div class="card-body-content">
             <div class="input-dropdown">
-              <select class="form-control filter">
-                <option value="">แสดง Campaign ทั้งหมด</option>
-                <option value="">แสดงเฉพาะ Campaign X</option>
-              </select>
+              <select class="form-control filter" ng-model="filter" ng-options="x.campaignId as x.name for x in filters"></select>
               <i class="fa fa-caret-down"></i>
             </div>
           </div>
@@ -44,8 +41,8 @@
           <table class="table" sorter ng-model="proposals" callback="load">
             <thead>
               <tr>
-                <th class="col-name" sort="influencerId">Influencer</th>
-                <th class="col-campaign-name" sort="campaignId">Campaign</th>
+                <th class="col-name" sort="influencer.influencerId">Influencer</th>
+                <th class="col-campaign-name" sort="campaign.campaignId">Campaign</th>
                 <th class="col-price" sort="price">ราคาที่เสนอ</th>
                 <th class="col-rabbit-score" sort="score">Rabbit Score <i class="fa fa-question-circle"></i></th>
                 <th class="col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
@@ -60,7 +57,7 @@
                 <td class="col-rabbit-score">{{proposal.score || '0'}}%</td>
                 <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
                 <td class="col-button">
-                  <button class="btn-secondary" ui-sref="brand-workroom">คุยงาน</button>
+                  <button class="btn-secondary" ui-sref="brand-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
                   <!-- For next sprint -->
                   <!-- <span class="message-count">5</span> -->
                 </td>
@@ -72,11 +69,9 @@
       <div class="info-text text-center">
         <h5>ห้องคุยงานที่ไม่ Active มากกว่า 21 วันจะถูกลบโดยอัตโนมัติ</h5>
       </div>
+      <nav class="text-center" aria-label="Page navigation">
+        <pagination ng-model="proposals" callback="load"></pagination>
+      </nav>
     </div>
-
-    <nav class="text-center" aria-label="Page navigation">
-      <pagination ng-model="proposals" callback="load"></pagination>
-    </nav>
-
   </div>
 </div>

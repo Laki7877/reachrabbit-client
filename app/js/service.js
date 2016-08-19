@@ -134,7 +134,7 @@ angular.module('myApp.service', ['satellizer'])
     var serializeCampaign = function(campaign){
         campaign.resources = campaign.campaignResources.map(function(campaignResource){
                             return campaignResource.resource;
-                        }); 
+                        });
                         delete campaign.campaignResources;
                         return campaign;
     };
@@ -153,6 +153,12 @@ angular.module('myApp.service', ['satellizer'])
     return {
         deserializeCampaign: deserializeCampaign,
         serializeCampaign: serializeCampaign,
+        getActiveCampaigns: function() {
+          return $http({
+            url: '/campaigns/active',
+            method: 'GET'
+          });
+        },
         getOpenCampaigns: function(filter){
             var opt = {
                 skipAuthorization: true,
@@ -169,12 +175,12 @@ angular.module('myApp.service', ['satellizer'])
                     var rr = response.data.content.map(function(campaign){
                         campaign.resources = campaign.campaignResources.map(function(campaignResource){
                             return campaignResource.resource;
-                        }); 
+                        });
                         delete campaign.campaignResources;
                         return campaign;
                     });
                     response.data.content = rr;
-                    
+
                     resolve(response);
                 })
                 .catch(function(err){
@@ -257,6 +263,12 @@ angular.module('myApp.service', ['satellizer'])
               url: '/proposals',
               method: 'GET',
               params: params
+            });
+        },
+        getActive: function() {
+            return $http({
+                url: '/proposals/active',
+                method: 'GET'
             });
         },
         getMessages: function(proposalId){

@@ -38,7 +38,7 @@ angular.module('myApp.directives', ['myApp.service'])
             link: function(scope, elements, attrs, ctrl) {
                 scope.click = function() {
                     var pageable = _.pick(ctrl.getPageable(), ['size', 'sort']);
-                    
+
                     if(_.isNil(pageable.sort)) {
                         pageable.sort = [scope.sort + ',asc'];
                     } else {
@@ -57,7 +57,7 @@ angular.module('myApp.directives', ['myApp.service'])
                 };
                 scope.direction = function() {
                    var direction = _.get(ctrl.getPageable(), 'sort[0].direction');
-                   return direction ? _.lowerCase(direction) : 'desc';
+                   return scope.active() ? (direction ? _.lowerCase(direction) : 'desc') : 'desc';
                 };
             }
         };
@@ -72,36 +72,42 @@ angular.module('myApp.directives', ['myApp.service'])
                 callback: '=callback'
             },
             link: function(scope, element, attrs, ctrl, transclude) {
+                scope.sizeOptions = [10,20,40];
+                var update = function(extend) {
+                    var newPageable = _.pick(scope.model, ['size', 'sort']);
+                    newPageable.sort = newPageable.sort ? _.map(newPageable.sort, function(e) {
+                        return e.property + ',' + _.lowerCase(e.direction);
+                    }) : undefined;
+                    newPageable.page = newPageable.number;
+                    _.extend(newPageable, extend);
+                    scope.callback(newPageable);
+                };
                 scope.next = function() {
                     //Stop if no next
                     if(scope.model.last) {
                         return false;
                     }
-                    var pageable = _.pick(scope.model, ['size', 'sort']);
-                    scope.callback(_.extend(pageable, {
-                        page: scope.model.number+1
-                    }));
+                    update({ page: scope.model.number+1 });
                 };
                 scope.prev = function() {
                     //Stop if no previous
                     if(scope.model.first) {
                         return false;
                     }
-                    var pageable = _.pick(scope.model, ['size', 'sort']);
-                    scope.callback(_.extend(pageable, {
-                        page: scope.model.number-1
-                    }));
+                    update({ page: scope.model.number-1 });
                 };
                 scope.goto = function(i) {
-                    var pageable = _.pick(scope.model, ['size', 'sort']);
-                    scope.callback(_.extend(pageable, {
-                        page: i
-                    }));
+                    update({ page: i });
                 };
                 //Get int as array
                 scope.counter = function() {
-                    return new Array(_.get(scope, 'model.totalPages', 0));    
+                    return new Array(_.get(scope, 'model.totalPages', 0));
                 };
+                scope.$watch('model.size', function(size) {
+                    if(!_.isNil(size)) {
+                        update({ size: size });
+                    }
+                });
             }
         };
     }])
@@ -111,7 +117,7 @@ angular.module('myApp.directives', ['myApp.service'])
               scope: { message: '=messageData' },
               templateUrl: 'components/templates/message.html',
               link: function (scope, element, attrs, ctrl, transclude) {
-                
+
               }
           };
       }])
@@ -141,7 +147,7 @@ angular.module('myApp.directives', ['myApp.service'])
                     }
                     return false;
                 };
-                
+
 
                 DataService.getMedium().then(function(mediumResponse){
                     scope.mediaList = mediumResponse.data;

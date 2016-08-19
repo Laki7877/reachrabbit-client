@@ -92,7 +92,7 @@ angular.module('myApp', [
   // $locationProvider.hashPrefix('');
   // $routeProvider.otherwise({redirectTo: '/404'});
   cfpLoadingBarProvider.includeSpinner = false;
- 
+
 }])
 .constant('BusinessConfig', {
   MIN_FOLLOWER_COUNT : 1
@@ -105,7 +105,7 @@ angular.module('myApp', [
   //Configure angular moment
   amMoment.changeLocale('th', {
     longDateFormat : {
-        LT : 'H:m',
+        LT : 'H:mm',
         LTS : 'H:m:s',
         L : 'YYYY/MM/DD',
         LL : 'D MMMM YYYY',
@@ -128,7 +128,7 @@ angular.module('myApp', [
   $rootScope.setUnauthorizedRoute = function (textString) {
     $window.localStorage.unauthorized_route = textString;
   };
-    
+
   //Configure global deafult date options for date picker
   $rootScope.dateOptions = {
     formatYear: 'yy',

@@ -163,7 +163,7 @@ describe('Brand', function () {
       state.category.sendKeys("DIY");
       state.budget.sendKeys("5,000 - 10,000");
       state.proposalDeadline.click();
-      
+
       //sslect date 12 of this month
       element.all(by.css(".uib-daypicker button")).get(12 + 2).click();
 
@@ -207,9 +207,9 @@ describe('Brand', function () {
     beforeAll(function(){
       browser.get('brand.html#/brand-campaign-list');
     });
-    
 
-    it('can find sample draft campaign', function () {
+
+    it('can find saved campaign', function () {
       browser.waitForAngular();
       var cards = element.all(by.repeater("x in myCampaign.content"));
       expect(cards.count()).toEqual(1);
@@ -218,33 +218,33 @@ describe('Brand', function () {
     });
 
     it('can publish draft campaign', function () {
-      
-      state.publish_btn = element(by.css('.btn-primary'));      
+      browser.waitForAngular();
+      state.publish_btn = element(by.css('.btn-primary'));
       state.publish_btn.click();
-      
+
       expect($('.alert.alert-success').isPresent()).toBe(true);
     });
 
   });
 
-  describe('Modify and publish draft campaign', function(){
-    var state = {};
-    beforeAll(function(){
-      browser.get('brand.html#/brand-profile');
-    });
-    
-    it('can find all fields', function(){
-      browser.waitForAngular();
-      state.about = element(by.model("formData.brand.about"));
-      state.name = element(by.model("formData.brand.brandName"));
-      state.website = element(by.model('formData.brand.website'));
-
-      expect(state.about.isPresent()).toBe(true);
-      expect(state.name.isPresent()).toBe(true);
-      expect(state.website.isPresent()).toBe(true);
-
-    });
-
-  });
+  // describe('Modify and publish draft campaign', function(){
+  //   var state = {};
+  //   beforeAll(function(){
+  //     browser.get('brand.html#/brand-profile');
+  //   });
+  //
+  //   it('can find all fields', function(){
+  //     browser.waitForAngular();
+  //     state.about = element(by.model("formData.brand.about"));
+  //     state.name = element(by.model("formData.brand.brandName"));
+  //     state.website = element(by.model('formData.brand.website'));
+  //
+  //     expect(state.about.isPresent()).toBe(true);
+  //     expect(state.name.isPresent()).toBe(true);
+  //     expect(state.website.isPresent()).toBe(true);
+  //
+  //   });
+  //
+  // });
 
 })

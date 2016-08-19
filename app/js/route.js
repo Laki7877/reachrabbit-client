@@ -130,7 +130,7 @@ angular.module('myApp.portal.routes', ['ui.router'])
   .state('influencer-god-login', {
       url: '/influencer-god-login',
       templateUrl: 'view/influencer-god-login.html',
-      controller: 'BrandSigninController'
+      controller: 'InfluencerSigninController'
   });
 
 

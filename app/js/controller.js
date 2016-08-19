@@ -565,6 +565,37 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 });
         };
     }])
+    .controller('InfluencerSigninController',['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
+        $scope.formData = {};
+        $window.localStorage.removeItem('token');
+        $scope.messageCode = $location.search().message;
+        $scope.alert = new NcAlert();
+
+        if ($scope.messageCode == "401") {
+            $scope.alert.warning("<strong>401</strong> Unauthorized or Session Expired");
+        }
+
+        $scope.login = function (username, password) {
+            $location.search('message', 'nop');
+            AccountService.getTokenInfluencer(username, password)
+                .then(function (response) {
+                    var token = response.data.token;
+                    $window.localStorage.token = token;
+                    return AccountService.getProfile();
+                })
+                .then(function (profileResp) {
+                    $window.localStorage.profile = JSON.stringify(profileResp.data);
+                    //Tell raven about the user
+                    Raven.setUserContext(UserProfile.get());
+                    //Redirect
+                    $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+                    $window.location.href = '/influencer.html#/influencer-campaign-list';
+                })
+                .catch(function (err) {
+                    $scope.alert.danger(err.data.message);
+                });
+        };
+    }])
     .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'AccountService', 'UserProfile', '$window', 'BusinessConfig',
         function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {
             $scope.alert = new NcAlert();

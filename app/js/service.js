@@ -277,10 +277,18 @@ angular.module('myApp.service', ['satellizer'])
                 method: 'GET'
             });
         },
-        getMessages: function(proposalId){
+        getMessages: function(proposalId, params){
             return $http({
                 url: '/proposals/' + proposalId + '/proposalmessages',
-                method: 'get'
+                method: 'get',
+                params: params
+            });
+        },
+        getMessagesPoll: function(proposalId, params){
+            return $http({
+                url: '/proposals/' + proposalId + '/proposalmessages/poll',
+                method: 'get',
+                params: params
             });
         },
         sendMessage: function(proposalMessage){

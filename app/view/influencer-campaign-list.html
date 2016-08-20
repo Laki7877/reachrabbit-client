@@ -30,12 +30,7 @@
         <h1>Campaign</h1>
         <div class="form-group">
           <div class="input-dropdown">
-            <select class="form-control filter" ng-model="filter.mediaId">
-              <option value="any">แสดงทั้งหมด</option>
-              <option value="facebook">แสดงเฉพาะ Facebook</option>
-              <option value="instagram">แสดงเฉพาะ Instagram</option>
-              <option value="youtube">แสดงเฉพาะ YouTube</option>
-            </select>
+              <select class="form-control filter" ng-model="filter" ng-options="x.mediaId as x.mediaName for x in filters"></select>
             <i class="fa fa-caret-down"></i>
           </div>
         </div>
@@ -46,27 +41,8 @@
         on-click="handleUserClickThumbnail"
         campaign="cam"></card-campaign-thumbnail>
       </div>
-
       <nav class="text-center" aria-label="Page navigation">
-        <ul class="pagination">
-          <li>
-            <a href="#" aria-label="Previous">
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
-            </a>
-          </li>
-
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">...</a></li>
-          <li><a href="#">20</a></li>
-          <li>
-            <a href="#" aria-label="Next">
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
-            </a>
-          </li>
-        </ul>
+        <pagination ng-model="campaigns" callback="load"></pagination>
       </nav>
     </div>
   </div>

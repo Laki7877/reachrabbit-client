@@ -41,7 +41,7 @@
           <table class="table" sorter ng-model="proposals" callback="load">
             <thead>
               <tr>
-                <th class="col-name" sort="influencer.influencerId">Influencer</th>
+                <th class="col-name" sort="brand.brandId">Brand</th>
                 <th class="col-campaign-name" sort="campaign.campaignId">Campaign</th>
                 <th class="col-price" sort="price">ราคาที่เสนอ</th>
                 <th class="col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
@@ -50,7 +50,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="proposal in proposals.content">
-                <td class="col-name"><img src="{{proposal.influencer.user.profilePicture.url}}" class="profile-picture" /> {{proposal.influencer.user.name}}</td>
+                <td class="col-name"><img src="{{proposal.campaign.brand.user.profilePicture.url}}" class="profile-picture" /> {{proposal.campaign.brand.user.name}}</td>
                 <td class="col-campaign-name">{{proposal.campaign.title}}</td>
                 <td class="col-price">{{proposal.price | currency:'':2 }} บาท</td>
                 <td class="col-time">{{lastMessageUpdated(proposal)}}</td>

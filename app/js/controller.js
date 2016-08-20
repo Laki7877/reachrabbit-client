@@ -34,25 +34,61 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('WorkroomController', ['$scope', '$uibModal', '$stateParams', 'ProposalService', 'NcAlert',
-    function ($scope, $uibModal, $stateParams, ProposalService, NcAlert) {
+    .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$stateParams', 'ProposalService', 'NcAlert',
+    function ($scope, $uibModal, $interval, $stateParams, ProposalService, NcAlert) {
         $scope.msglist = [];
-        
+        $scope.msgLimit = 30;
+
         function scrollBottom(){
              $(".message-area").delay(10).animate({ scrollTop: 500 }, '1000', function () { });
         }
 
         $scope.proposalId = $stateParams.proposalId;
-        ProposalService.getMessages($scope.proposalId).then(function(msgresponse){
-            $scope.msglist = msgresponse.data.content;
+        ProposalService.getMessages($scope.proposalId, {
+          sort: ['createdAt,desc'],
+          size: $scope.msgLimit
+        }).then(function(msgresponse){
+            $scope.msglist = msgresponse.data.content.reverse();
+            $scope.poll();
             scrollBottom();
         });
+
+        $scope.loadPastMessage = function() {
+          ProposalService.getMessages($scope.proposalId, {
+            sort: ['createdAt,desc'],
+            size: $scope.msgLimit,
+            timestamp: $scope.msglist[$scope.msglist.length-1].createdAt
+          })
+          .then(function(res) {
+            $scope.msglist = _.concat(res.data.content.reverse(), $scope.msglist);
+          });
+        };
+
+        $scope.poll = function() {
+          ProposalService.getMessagesPoll($scope.proposalId, {
+            timestamp: $scope.msglist.length > 0 ? $scope.msglist[$scope.msglist.length-1].createdAt : new Date()
+          })
+            .then(function(res) {
+              if(res.data.length > 0) {
+                for(var i = res.data.length-1; i >= 0; i--) {
+                  if($scope.msglist.length >= $scope.msgLimit) {
+                    $scope.msglist.shift();
+                  }
+                  $scope.msglist.push(res.data[i]);
+                }
+              }
+              $scope.poll();
+            });
+        };
+
+        $interval(function() {
+          $scope.poll();
+        }, 5000);
 
         $scope.formData = {
             resources: []
         };
         $scope.alert = new NcAlert();
-
         $scope.sendMessage = function(messageStr, attachments){
             ProposalService.sendMessage({
                 message: messageStr,
@@ -97,8 +133,6 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             chatArea.height(chatAreaHeight);
             chatArea.scrollTop(9999);
         }
-       
-
     }])
     .controller('MakeProposalModalController', ['$scope', 'DataService', 'CampaignService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope',
         function ($scope, DataService, CampaignService, campaign, $state, NcAlert, $uibModalInstance, $rootScope) {
@@ -193,11 +227,6 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     $state.go('influencer-workroom', { proposalId: proposal.proposalId });
                 });
             };
-
-
-
-
-
             CampaignService.getOne($stateParams.campaignId)
                 .then(function (campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;
@@ -212,36 +241,40 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
 
 
         }])
-    .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'ExampleCampaigns', '$rootScope',
-        function ($scope, $state, CampaignService, ExampleCampaigns, $rootScope) {
+    .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'DataService', 'ExampleCampaigns', '$rootScope',
+        function ($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope) {
 
             $scope.handleUserClickThumbnail = function (c) {
                 $state.go('influencer-campaign-detail-open', {
                     campaignId: c.campaignId
                 });
             };
-
-            $scope.filter = {
-                mediaId: null
-            };
-
-            function fetch(filter) {
-                CampaignService.getOpenCampaigns($scope.filter).then(function (data) {
-                    console.log(data);
-                    $scope.campaigns = data.data;
-                });
-            }
-
-            $scope.$watch('filter', function (filterValue) {
-                if (!filterValue || filterValue == "any") {
-                    fetch();
-                    return;
-                }
-
-                fetch({
-                    mediaId: filterValue
-                });
+            $scope.$watch('filter', function() {
+              $scope.load(_.extend($scope.params, {mediaId: $scope.filter}));
             });
+
+            //Load campaign data
+            $scope.load = function(data) {
+              $scope.params = data;
+                CampaignService.getOpenCampaigns(data).then(function (response) {
+                    $scope.campaigns = response.data;
+                });
+            };
+            //Init
+            $scope.load();
+
+            //Init media data
+            DataService.getMedium()
+              .then(function(response) {
+                $scope.filters = _.map(response.data, function(e) {
+                  e.mediaName = 'แสดงเฉพาะ ' + e.mediaName;
+                  return e;
+                });
+                $scope.filters.unshift({
+                  mediaId: undefined,
+                  mediaName: 'แสดงทั้งหมด'
+                });
+              });
         }])
     .controller('InfluencerProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile',
         function ($scope, $window, AccountService, NcAlert, UserProfile) {
@@ -339,20 +372,24 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     /*
     * Campaign List controller - thank god it's work.
     */
-    .controller('CampaignListController', ['$scope', 'CampaignService', 'ExampleCampaigns', function ($scope, CampaignService, ExampleCampaigns) {
+    .controller('CampaignListController', ['$scope', 'CampaignService', 'DataService', 'ExampleCampaigns', function ($scope, CampaignService, DataService, ExampleCampaigns) {
         $scope.testHit = function () {
             var scope = $scope;
             console.log("Test World");
         };
+
         $scope.myCampaign = [];
+        $scope.$watch('filter', function() {
+          $scope.load(_.extend($scope.params, {mediaId: $scope.filter}));
+        });
 
         //Load campaign data
         $scope.load = function(data) {
+          $scope.params = data;
             CampaignService.getAll(data).then(function (response) {
                 $scope.myCampaign = response.data;
             });
         };
-
         //Init
         $scope.load();
 

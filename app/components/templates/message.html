@@ -7,7 +7,7 @@
   <div class="message-body">
     <div class="message-heading">
       <h4>{{message.user.name}}</h4>
-      <div class="message-time">{{message.createdAt || 'Wait for Backend'}}</div>
+      <div class="message-time">{{message.createdAt | amDateFormat: $root.formats[4]}}</div>
       <div class="clear"></div>
     </div>
     <div class="message-content">

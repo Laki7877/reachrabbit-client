@@ -136,7 +136,7 @@ angular.module('myApp', [
     showWeeks: false
   };
 
-  $rootScope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $rootScope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate', 'LT - D MMM YY'];
   $rootScope.format = $rootScope.formats[0];
 
   //Global function helpers

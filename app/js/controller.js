@@ -38,6 +38,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     function ($scope, $uibModal, $interval, $stateParams, ProposalService, NcAlert) {
         $scope.msglist = [];
         $scope.msgLimit = 30;
+        $scope.totalElements = 0;
 
         function scrollBottom(){
             $(".message-area").delay(10).animate({ scrollTop: 500 }, '1000', function () { });
@@ -47,20 +48,31 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         ProposalService.getMessages($scope.proposalId, {
           sort: ['createdAt,desc'],
           size: $scope.msgLimit
-        }).then(function(msgresponse){
-            $scope.msglist = msgresponse.data.content.reverse();
+        }).then(function(res){
+            $scope.totalElements = res.data.totalElements;
+            $scope.msglist = res.data.content.reverse();
             $scope.poll();
             //scrollBottom();
         });
+
+        $scope.hasPastMessage = function() {
+          return $scope.totalElements > $scope.msglist.length;
+        };
 
         $scope.loadPastMessage = function() {
           ProposalService.getMessages($scope.proposalId, {
             sort: ['createdAt,desc'],
             size: $scope.msgLimit,
-            timestamp: $scope.msglist[$scope.msglist.length-1].createdAt
+            timestamp: $scope.msglist[0].createdAt
           })
           .then(function(res) {
-            $scope.msglist = _.concat(res.data.content.reverse(), $scope.msglist);
+            var btn = $('.message-past button');
+            var pastScroll = btn[0].scrollHeight - btn[0].scrollTop;
+            for(var i = 0; i < res.data.content.length; ++i) {
+              $scope.msglist.unshift(res.data.content[i]);
+            }
+            var area = $('.message-area');
+            area.scrollTop(area[0].scrollHeight - pastScroll);
           });
         };
 
@@ -71,15 +83,13 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             timestamp: $scope.msglist.length > 0 ? $scope.msglist[$scope.msglist.length-1].createdAt : new Date()
           })
             .then(function(res) {
-              if(res.data.length > 0) {
+                $scope.totalElements+= res.data.length;
                 for(var i = res.data.length-1; i >= 0; i--) {
                   if($scope.msglist.length >= $scope.msgLimit) {
                     $scope.msglist.shift();
                   }
                   $scope.msglist.push(res.data[i]);
                 }
-                //scrollBottom();
-              }
             })
             .finally(function() {
               if(!stop) {
@@ -100,9 +110,6 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             if(_.isEmpty(messageStr)) {
               return;
             }
-
-
-
             ProposalService.sendMessage({
                 message: messageStr,
                 proposal: {

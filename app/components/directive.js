@@ -145,6 +145,7 @@ angular.module('myApp.directives', ['myApp.service'])
               restrict: 'EA',
               scope: { message: '=messageData' },
               templateUrl: 'components/templates/message.html',
+              transclude: true,
               link: function (scope, element, attrs, ctrl, transclude) {
 
               }

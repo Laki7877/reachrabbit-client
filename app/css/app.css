@@ -9330,6 +9330,10 @@ fieldset[disabled] .btn-clear.active {
   overflow-y: scroll;
   height: 400px;
 }
+.chatbox-card .message-area .message-past {
+  text-align: center;
+  padding: 23px 10px 20px;
+}
 .chatbox-card .message-area .message {
   padding: 15px 0px;
   margin: 0px 15px;

@@ -24,6 +24,9 @@
               </div>
             </div>
             <div class="message-area" scroll-glue>
+              <div class="message-past" ng-if="hasPastMessage()">
+                  <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
+              </div>
               <message ng-repeat="x in msglist" message-data="x"></message>
               <div nc-alert="alert"></div>
             </div>

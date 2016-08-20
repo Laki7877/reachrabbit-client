@@ -8,12 +8,12 @@
         <div class="card-row-basic">
             ช่องทางการโปรโมท
         </div>
-        
+
         <div class="card-row-basic" ng-repeat="media in campaign.media">
             <label class="promotion-medium" ng-class="{'disabled': !profileHasMedia(media.mediaId)}">
                 <input type="checkbox" ng-model="selectedMedia[media.mediaId]" ng-disabled="!profileHasMedia(media.mediaId)"/>
                 <span ng-if="profileHasMedia(media.mediaId)"><img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" /> {{ media.mediaName }}</span>
-                <span ng-if="!profileHasMedia(media.mediaId)"><img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" />  {{media.mediaName}} 
+                <span ng-if="!profileHasMedia(media.mediaId)"><img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" />  {{media.mediaName}}
                     คุณยังไม่ได้เชื่อมต่อ <a ng-click="$close()" ui-sref="influencer-profile">เชือมต่อช่องทางนี้</a></span>
             </label>
         </div>
@@ -34,7 +34,7 @@
             ระยะเวลาทำงาน
         </div>
         <div class="card-row-basic input-dropdown">
-            <select class="form-control" ng-model="formData.completionTime" ng-options="x as x.completionTime for x in completionTimes"></select>
+            <select class="form-control" ng-model="formData.completionTime" ng-options="x as x.completionTime for x in completionTimes" ng-default="-- เลือกระยะเวลา --"></select>
             <i class="fa fa-caret-down"></i>
         </div>
         <p class="help-block">เริ่มนับจากวันที่ได้คัดเลือก</p>

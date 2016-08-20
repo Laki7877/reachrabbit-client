@@ -331,10 +331,6 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                             campaignId: e.campaign.campaignId
                         };
                     });
-                    $scope.filters.unshift({
-                        name: 'แสดง Campaign ทั้งหมด',
-                        campaignId: undefined
-                    });
                 });
         };
         $scope.lastMessageUpdated = function(proposal) {
@@ -346,6 +342,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             return 'n/a';
         };
         $scope.$watch('filter', function(filter) {
+
             _.extend($scope.params, {
                 campaignId: filter
             });
@@ -406,10 +403,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
             $scope.resources = [];
             $scope.formData = {
-                categoryId: {
-                    categoryId: 0,
-                    categoryName: "-- เลือกหมวดหมู่ --"
-                },
                 resources: []
             };
 
@@ -420,21 +413,17 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 id: 1,
                 toBudget: 1000,
                 fromBudget: 500
-            }, {
-                    id: 2,
-                    toBudget: 5000,
-                    fromBudget: 1000
-                }, {
-                    id: 3,
-                    toBudget: 10000,
-                    fromBudget: 5000
-                }];
+              }, {
+                      id: 2,
+                      toBudget: 5000,
+                      fromBudget: 1000
+                  }, {
+                      id: 3,
+                      toBudget: 10000,
+                      fromBudget: 5000
+                  }];
 
-            $scope.budget = {
-                id: 0,
-                fromBudget: "-- เลือกค่าตอบแทน -",
-                toBudget: ""
-            };
+            $scope.budget = null;
 
             $scope.budgetDisplayAs = function (budgetObject) {
                 return $filter('number')(budgetObject.fromBudget) + " - " + $filter('number')(budgetObject.toBudget);
@@ -451,10 +440,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             DataService.getCategories()
                 .then(function (response) {
                     $scope.categories = response.data;
-                    $scope.categories.unshift({
-                        categoryId: 0,
-                        categoryName: "-- เลือกหมวดหมู่ --"
-                    });
                 });
 
             $scope.$watch('mediaBooleanDict', function () {
@@ -591,10 +576,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         name: 'แสดงเฉพาะ Campaign ' + e.title,
                         campaignId: e.campaignId
                     };
-                });
-                $scope.filters.unshift({
-                    name: 'แสดง Campaign ทั้งหมด',
-                    campaignId: undefined
                 });
             });
         };

@@ -1,22 +1,15 @@
 <div class="view-brand-detail-example">
 
-  <div class="header-zone">
-    <div class="container">
-      <div class="page-header">
-        <div class="back-btn-for-header" ui-sref="influencer-campaign-list">
-          <i class="fa fa-arrow-left"></i> กลับไป Campaign List
-        </div>
-        <div class="action-btn-for-header with-back-btn">
-            <button class="btn-primary btn-width-md" ng-click="sendProposal()">
-                <i class="fa fa-paper-plane"></i> ยื่นข้อเสนอ
-            </button>
-        </div>
-        <h2>{{ campaignNee.title }}</h2>
-
-      </div>
+  <zone-header historyback="true">
+    <div class="action-btn-for-header with-back-btn">
+        <button class="btn-primary btn-width-md" ng-click="sendProposal()">
+            <i class="fa fa-paper-plane"></i> ยื่นข้อเสนอ
+        </button>
     </div>
-  </div>
-  <div class="body-zone">
+    <h2>{{ campaignNee.title }}</h2>
+  </zone-header>
+
+  <div class="zone-body">
     <div class="container">
       <div nc-alert="alert"></div>
 

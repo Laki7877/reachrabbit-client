@@ -347,6 +347,23 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
+    .directive('zoneHeader', [function () {
+      //To Do: make historyback to True/False
+        return {
+            restrict: 'EA',
+            transclude: true,
+            scope: {
+                historyback: '&?'
+            },
+            templateUrl: 'components/templates/zone-header.html',
+            link: function (scope, element, attrs, ctrl, transclude) {
+              element.on('click', function() {
+                history.back();
+                scope.$apply();
+              });
+            }
+        };
+    }])
     .directive('cardCampaignListItem', [function () {
         return {
             restrict: 'EA',

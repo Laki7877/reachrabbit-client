@@ -23,14 +23,12 @@
                 <span class="status">เสร็จสิ้น</span>
               </div>
             </div>
-            <div class="message-area">
-
+            <div class="message-area" scroll-glue>
               <message ng-repeat="x in msglist" message-data="x"></message>
               <div nc-alert="alert"></div>
-
             </div>
             <div class="message-input">
-              <textarea class="form-control" rows="4" ng-model="formData.brand.about" placeholder="พิมพ์ข้อความ..." autofocus></textarea>
+              <textarea chatarea="sendMessage(formData.messageStr)" class="form-control" rows="4" ng-model="formData.messageStr" placeholder="พิมพ์ข้อความ..." autofocus></textarea>
               <div class="pull-right">
 
                 <div class="preview-item">

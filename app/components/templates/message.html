@@ -9,7 +9,7 @@
       <div class="clear"></div>
     </div>
     <div class="message-content">
-      {{message.message}}
+      <span style="white-space: pre;">{{message.message}}</span>
       <img ng-repeat="resource in message.resources" ng-src="{{resource.url}}">
     </div>
   </div>

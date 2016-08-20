@@ -40,7 +40,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $scope.msgLimit = 30;
 
         function scrollBottom(){
-             $(".message-area").delay(10).animate({ scrollTop: 500 }, '1000', function () { });
+            $(".message-area").delay(10).animate({ scrollTop: 500 }, '1000', function () { });
         }
 
         $scope.proposalId = $stateParams.proposalId;
@@ -50,7 +50,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         }).then(function(msgresponse){
             $scope.msglist = msgresponse.data.content.reverse();
             $scope.poll();
-            scrollBottom();
+            //scrollBottom();
         });
 
         $scope.loadPastMessage = function() {
@@ -64,6 +64,8 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
           });
         };
 
+        var stop = false;
+
         $scope.poll = function() {
           ProposalService.getMessagesPoll($scope.proposalId, {
             timestamp: $scope.msglist.length > 0 ? $scope.msglist[$scope.msglist.length-1].createdAt : new Date()
@@ -76,20 +78,31 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                   }
                   $scope.msglist.push(res.data[i]);
                 }
+                //scrollBottom();
               }
-              $scope.poll();
+            })
+            .finally(function() {
+              if(!stop) {
+                $scope.poll();
+              }
             });
         };
 
-        $interval(function() {
-          $scope.poll();
-        }, 5000);
+        $scope.$on('$destroy', function() {
+          stop = true;
+        });
 
         $scope.formData = {
             resources: []
         };
         $scope.alert = new NcAlert();
         $scope.sendMessage = function(messageStr, attachments){
+            if(_.isEmpty(messageStr)) {
+              return;
+            }
+
+
+
             ProposalService.sendMessage({
                 message: messageStr,
                 proposal: {
@@ -97,11 +110,11 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 }
             })
             .then(function(resp){
-                $scope.msglist.push(resp.data);
+                //$scope.msglist.push(resp.data);
                 $scope.formData = {
                     resources: []
                 };
-                scrollBottom();
+                //scrollBottom();
             })
             .catch(function(err){
                 $scope.alert.danger(err.message);
@@ -330,6 +343,10 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                             name: 'แสดงเฉพาะ Campaign ' + e.campaign.title,
                             campaignId: e.campaign.campaignId
                         };
+                    });
+                    $scope.filters.unshift({
+                      name: 'แสดง Campaign ทั้งหมด',
+                      campaignId: undefined
                     });
                 });
         };
@@ -576,6 +593,10 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         name: 'แสดงเฉพาะ Campaign ' + e.title,
                         campaignId: e.campaignId
                     };
+                });
+                $scope.filters.unshift({
+                  name: 'แสดง Campaign ทั้งหมด',
+                  campaignId: undefined
                 });
             });
         };

@@ -9,6 +9,35 @@
 'use strict';
 
 angular.module('myApp.directives', ['myApp.service'])
+    .directive('chatarea', [function() {
+      return {
+        restrict: 'A',
+        link: function (scope, elem, attrs) {
+          elem.bind('keydown', function(event) {
+            var code = event.keyCode || event.which;
+
+            if (code === 13) {
+              if (!event.shiftKey) {
+                event.preventDefault();
+                scope.$apply(attrs.chatarea);
+              }
+            }
+          });
+        }
+      };
+    }])
+    .directive('select', ['$interpolate', function($interpolate) {
+      return {
+        restrict: 'E',
+        require: 'ngModel',
+        link: function(scope, elem, attrs, ctrl) {
+          var defaultOptionTemplate;
+          scope.defaultOptionText = attrs.ngDefault || '';
+          defaultOptionTemplate = '<option value disabled selected style="display: none;">{{defaultOptionText}}</option>';
+          elem.prepend($interpolate(defaultOptionTemplate)(scope));
+        }
+      };
+    }])
     .directive('sorter', [function() {
         return {
             restrict: 'EA',
@@ -26,18 +55,6 @@ angular.module('myApp.directives', ['myApp.service'])
             }]
         };
     }])
-    .directive('select', function($interpolate) {
-      return {
-        restrict: 'E',
-        require: 'ngModel',
-        link: function(scope, elem, attrs, ctrl) {
-          var defaultOptionTemplate;
-          scope.defaultOptionText = attrs.ngDefault || '';
-          defaultOptionTemplate = '<option value disabled selected style="display: none;">{{defaultOptionText}}</option>';
-          elem.prepend($interpolate(defaultOptionTemplate)(scope));
-        }
-      };
-    })
     .directive('sort', [function() {
         return {
             restrict: 'A',
@@ -369,10 +386,15 @@ angular.module('myApp.directives', ['myApp.service'])
             },
             templateUrl: 'components/templates/zone-header.html',
             link: function (scope, element, attrs, ctrl, transclude) {
-              element.on('click', function() {
+              scope.history = {
+                back: function() {
+                  history.back();
+                }
+              };
+              /*element.on('click', function() {
                 history.back();
                 scope.$apply();
-              });
+              });*/
             }
         };
     }])

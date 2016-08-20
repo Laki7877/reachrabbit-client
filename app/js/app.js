@@ -16,6 +16,7 @@ angular.module('myApp', [
   'smoothScroll',
   'ngSanitize',
   'angularMoment',
+  'luegg.directives',
   //Top level
   'myApp.directives',
   'myApp.routes',

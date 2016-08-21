@@ -118,7 +118,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         campaignResources: attachments.map(function(resource) {
                             return {
                                 resource: resource
-                            }
+                            };
                         })
                     })
                     .then(function(resp) {

@@ -10,33 +10,33 @@
 
 angular.module('myApp.directives', ['myApp.service'])
     .directive('chatarea', [function() {
-      return {
-        restrict: 'A',
-        link: function (scope, elem, attrs) {
-          elem.bind('keydown', function(event) {
-            var code = event.keyCode || event.which;
+        return {
+            restrict: 'A',
+            link: function(scope, elem, attrs) {
+                elem.bind('keydown', function(event) {
+                    var code = event.keyCode || event.which;
 
-            if (code === 13) {
-              if (!event.shiftKey) {
-                event.preventDefault();
-                scope.$apply(attrs.chatarea);
-              }
+                    if (code === 13) {
+                        if (!event.shiftKey) {
+                            event.preventDefault();
+                            scope.$apply(attrs.chatarea);
+                        }
+                    }
+                });
             }
-          });
-        }
-      };
+        };
     }])
     .directive('select', ['$interpolate', function($interpolate) {
-      return {
-        restrict: 'E',
-        require: 'ngModel',
-        link: function(scope, elem, attrs, ctrl) {
-          var defaultOptionTemplate;
-          scope.defaultOptionText = attrs.ngDefault || '';
-          defaultOptionTemplate = '<option value disabled selected style="display: none;">{{defaultOptionText}}</option>';
-          elem.prepend($interpolate(defaultOptionTemplate)(scope));
-        }
-      };
+        return {
+            restrict: 'E',
+            require: 'ngModel',
+            link: function(scope, elem, attrs, ctrl) {
+                var defaultOptionTemplate;
+                scope.defaultOptionText = attrs.ngDefault || '';
+                defaultOptionTemplate = '<option value disabled selected style="display: none;">{{defaultOptionText}}</option>';
+                elem.prepend($interpolate(defaultOptionTemplate)(scope));
+            }
+        };
     }])
     .directive('sorter', [function() {
         return {
@@ -68,10 +68,10 @@ angular.module('myApp.directives', ['myApp.service'])
                 scope.click = function() {
                     var pageable = _.pick(ctrl.getPageable(), ['size', 'sort']);
 
-                    if(_.isNil(pageable.sort)) {
+                    if (_.isNil(pageable.sort)) {
                         pageable.sort = [scope.sort + ',asc'];
                     } else {
-                        if(pageable.sort[0].property === scope.sort) {
+                        if (pageable.sort[0].property === scope.sort) {
                             pageable.sort = [scope.sort + ',' + (_.lowerCase(pageable.sort[0].direction) === 'asc' ? 'desc' : 'asc')];
                         } else {
                             pageable.sort = [scope.sort + ',asc'];
@@ -85,8 +85,8 @@ angular.module('myApp.directives', ['myApp.service'])
                     return _.get(ctrl.getPageable(), 'sort[0].property') === scope.sort;
                 };
                 scope.direction = function() {
-                   var direction = _.get(ctrl.getPageable(), 'sort[0].direction');
-                   return scope.active() ? (direction ? _.lowerCase(direction) : 'desc') : 'desc';
+                    var direction = _.get(ctrl.getPageable(), 'sort[0].direction');
+                    return scope.active() ? (direction ? _.lowerCase(direction) : 'desc') : 'desc';
                 };
             }
         };
@@ -101,7 +101,7 @@ angular.module('myApp.directives', ['myApp.service'])
                 callback: '=callback'
             },
             link: function(scope, element, attrs, ctrl, transclude) {
-                scope.sizeOptions = [10,20,40];
+                scope.sizeOptions = [10, 20, 40];
                 var update = function(extend) {
                     var newPageable = _.pick(scope.model, ['size', 'sort']);
                     newPageable.sort = newPageable.sort ? _.map(newPageable.sort, function(e) {
@@ -113,17 +113,17 @@ angular.module('myApp.directives', ['myApp.service'])
                 };
                 scope.next = function() {
                     //Stop if no next
-                    if(scope.model.last) {
+                    if (scope.model.last) {
                         return false;
                     }
-                    update({ page: scope.model.number+1 });
+                    update({ page: scope.model.number + 1 });
                 };
                 scope.prev = function() {
                     //Stop if no previous
-                    if(scope.model.first) {
+                    if (scope.model.first) {
                         return false;
                     }
-                    update({ page: scope.model.number-1 });
+                    update({ page: scope.model.number - 1 });
                 };
                 scope.goto = function(i) {
                     update({ page: i });
@@ -133,30 +133,30 @@ angular.module('myApp.directives', ['myApp.service'])
                     return new Array(_.get(scope, 'model.totalPages', 0));
                 };
                 scope.$watch('model.size', function(size) {
-                    if(!_.isNil(size)) {
+                    if (!_.isNil(size)) {
                         update({ size: size });
                     }
                 });
             }
         };
     }])
-    .directive('message', [function () {
-          return {
-              restrict: 'EA',
-              scope: { message: '=messageData' },
-              templateUrl: 'components/templates/message.html',
-              transclude: true,
-              link: function (scope, element, attrs, ctrl, transclude) {
+    .directive('message', [function() {
+        return {
+            restrict: 'EA',
+            scope: { message: '=messageData' },
+            templateUrl: 'components/templates/message.html',
+            transclude: true,
+            link: function(scope, element, attrs, ctrl, transclude) {
 
-              }
-          };
-      }])
+            }
+        };
+    }])
 
-    .directive('socialLinker', ['DataService', '$auth', '$state', function (DataService, $auth, $state) {
+.directive('socialLinker', ['DataService', '$auth', '$state', function(DataService, $auth, $state) {
         return {
             restrict: 'AE',
             transclude: true,
-            templateUrl: function (elem, attr) {
+            templateUrl: function(elem, attr) {
                 return 'components/templates/social-linker.html';
             },
             scope: {
@@ -164,32 +164,32 @@ angular.module('myApp.directives', ['myApp.service'])
                 fromState: '@fromState',
                 onDone: '=?onDone'
             },
-            link: function (scope, element, attrs, ctrl, transclude) {
+            link: function(scope, element, attrs, ctrl, transclude) {
                 scope.mediaList = [];
 
                 //search model for media
-                scope.hasMedia = function(mediaId){
-                    var f = _.find(scope.model, function(ec){
+                scope.hasMedia = function(mediaId) {
+                    var f = _.find(scope.model, function(ec) {
                         return _.get(ec, "media.mediaId") === mediaId;
                     });
-                    if(f){
+                    if (f) {
                         return true;
                     }
                     return false;
                 };
 
 
-                DataService.getMedium().then(function(mediumResponse){
+                DataService.getMedium().then(function(mediumResponse) {
                     scope.mediaList = mediumResponse.data;
                 });
 
 
-                scope.startAuthFlow = function(mediaId){
-                    if(mediaId == 'youtube') {
+                scope.startAuthFlow = function(mediaId) {
+                    if (mediaId == 'youtube') {
                         mediaId = 'google';
                     }
-                     $auth.authenticate(mediaId)
-                        .then(function (response) {
+                    $auth.authenticate(mediaId)
+                        .then(function(response) {
                             var linkedProfile = response.data;
                             console.log('linkedProfile', linkedProfile);
                             if (mediaId == 'facebook') {
@@ -203,9 +203,9 @@ angular.module('myApp.directives', ['myApp.service'])
                                     pageId: null
                                 });
                             }
-                            if(scope.onDone) scope.onDone();
+                            if (scope.onDone) scope.onDone();
                         })
-                        .catch(function(err){
+                        .catch(function(err) {
                             console.log("Linking failed", err);
                         });
 
@@ -213,7 +213,7 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .directive('cardProposalDetail', ['ProposalService', function(ProposalService){
+    .directive('cardProposalDetail', ['ProposalService', function(ProposalService) {
         return {
             restrict: 'AE',
             transclude: true,
@@ -221,46 +221,46 @@ angular.module('myApp.directives', ['myApp.service'])
             scope: {
                 proposal: '=ngModel'
             },
-            link: function (scope, element, attrs, ctrl, transclude) {
-                scope.unionUnique = function(media,mediaInfluencer){
-                    return _.unionBy((mediaInfluencer || []).map(function(mi){
+            link: function(scope, element, attrs, ctrl, transclude) {
+                scope.unionUnique = function(media, mediaInfluencer) {
+                    return _.unionBy((mediaInfluencer || []).map(function(mi) {
                         mi.mediaId = mi.media.mediaId;
                         return mi;
-                    }),media, 'mediaId');
+                    }), media, 'mediaId');
                 };
             }
         };
     }])
-    .directive('ncDropdown', [function(){
+    .directive('ncDropdown', [function() {
         return {
             restrict: 'A',
             transclude: true,
-            link: function (scope, element, attrs, ctrl, transclude) {
+            link: function(scope, element, attrs, ctrl, transclude) {
                 console.log(attrs);
             }
         };
     }])
-    .directive('ncDataDropdown', ['DataService', function(DataService){
+    .directive('ncDataDropdown', ['DataService', function(DataService) {
         return {
             restrict: 'AE',
             transclude: true,
-            templateUrl : 'templates/components/nc-data-dropdown.html',
+            templateUrl: 'templates/components/nc-data-dropdown.html',
             scope: {
                 model: '=ngModel',
                 serviceName: '@'
             },
-            link: function(scope, element, attrs, ctrl, transclude){
-                DataService[scope.serviceName]().then(function(response){
+            link: function(scope, element, attrs, ctrl, transclude) {
+                DataService[scope.serviceName]().then(function(response) {
                     scope.ds = response.data;
                 });
             }
         };
     }])
-    .directive('ncAlert', ['NcAlert', function (NcAlert) {
+    .directive('ncAlert', ['NcAlert', function(NcAlert) {
         return {
             restrict: 'AE',
             transclude: true,
-            templateUrl: function (elem, attr) {
+            templateUrl: function(elem, attr) {
                 //Specify alertbox-success, alertbox-failure, alertbox-info etc.
                 return 'components/templates/nc-alert.html';
             },
@@ -269,24 +269,24 @@ angular.module('myApp.directives', ['myApp.service'])
                 alert: '=?ncAlert',
                 type: '@?type'
             },
-            link: function (scope, element, attrs, ctrl, transclude) {
+            link: function(scope, element, attrs, ctrl, transclude) {
 
-                if(!scope.alert){
+                if (!scope.alert) {
                     //Prototype mode
                     scope.alert = new NcAlert();
                     var transcludes = [];
-                    for(var i = 0; i < transclude().length; i++){
+                    for (var i = 0; i < transclude().length; i++) {
                         transcludes.push(transclude()[i].outerHTML);
                     }
                     scope.alert[scope.type || 'info'](transcludes.join(""));
                 }
 
                 scope.$watch('alert', function(newObj) {
-					scope.alert.element = element;
-				});
+                    scope.alert.element = element;
+                });
 
                 if (!scope.closable) {
-                    scope.closable = function(){
+                    scope.closable = function() {
                         return true;
                     };
                 }
@@ -294,91 +294,91 @@ angular.module('myApp.directives', ['myApp.service'])
         };
     }])
     .factory('NcAlert', ['$document', '$timeout', 'smoothScroll', '$window', function($document, $timeout, smoothScroll, $window) {
-		return function() {
-			var vm = this;
-			this.type = 'danger';
-			this.show = false;
-			this.close = function() {
-				this.show = false;
-			};
-			//show bar
-			this.open = function(success, msg, color) {
-				color = _.isNil(color) ? 'danger' : color;
-				this.type = (success) ? 'success' : color;
+        return function() {
+            var vm = this;
+            this.type = 'danger';
+            this.show = false;
+            this.close = function() {
+                this.show = false;
+            };
+            //show bar
+            this.open = function(success, msg, color) {
+                color = _.isNil(color) ? 'danger' : color;
+                this.type = (success) ? 'success' : color;
 
-				if(msg) {
-					this.message = msg;
-				} else {
-					this.message = success ? 'Success' : 'Unknown Failure';
-				}
+                if (msg) {
+                    this.message = msg;
+                } else {
+                    this.message = success ? 'Success' : 'Unknown Failure';
+                }
 
-				this.show = true;
-			};
-			//show red bar
-			this.danger = function(msg, toElm, scroll) {
+                this.show = true;
+            };
+            //show red bar
+            this.danger = function(msg, toElm, scroll) {
                 console.log(msg);
-				this.open(false, msg);
+                this.open(false, msg);
 
-				$timeout(function() {
-					// var section = vm.element || $document;
-					//should scroll to bar
-					// if(!_.isNil(scroll)) {
-					// 	if(scroll) smoothScroll($elem[0], $attrs);
+                $timeout(function() {
+                    // var section = vm.element || $document;
+                    //should scroll to bar
+                    // if(!_.isNil(scroll)) {
+                    // 	if(scroll) smoothScroll($elem[0], $attrs);
 
-					// } else {
-					//     smoothScroll($elem[0], $attrs);
-					// }
+                    // } else {
+                    //     smoothScroll($elem[0], $attrs);
+                    // }
                     $window.scrollTo(0, 0);
-				}, 10);
-			};
-			//show green bar
-			this.success = function(obj, toElm) {
-				this.open(true, obj);
+                }, 10);
+            };
+            //show green bar
+            this.success = function(obj, toElm) {
+                this.open(true, obj);
 
-				$timeout(function() {
-					// var section = vm.element || $document;
-					// smoothScroll($elem[0], $attrs);
+                $timeout(function() {
+                    // var section = vm.element || $document;
+                    // smoothScroll($elem[0], $attrs);
                     $window.scrollTo(0, 0);
-				}, 10);
-			};
+                }, 10);
+            };
 
-			this.info = function(obj, toElm) {
-				this.open(false, obj, 'info');
+            this.info = function(obj, toElm) {
+                this.open(false, obj, 'info');
 
-				$timeout(function() {
-					// var section = vm.element || $document;
-					// smoothScroll($elem[0], $attrs);
+                $timeout(function() {
+                    // var section = vm.element || $document;
+                    // smoothScroll($elem[0], $attrs);
                     $window.scrollTo(0, 0);
-				}, 10);
+                }, 10);
 
-			};
+            };
 
 
-			this.warning = function(obj, toElm) {
-				this.open(false, obj, 'warning');
+            this.warning = function(obj, toElm) {
+                this.open(false, obj, 'warning');
 
-				$timeout(function() {
-					// var section = vm.element || $document;
-					// smoothScroll($elem[0], $attrs);
+                $timeout(function() {
+                    // var section = vm.element || $document;
+                    // smoothScroll($elem[0], $attrs);
                     $window.scrollTo(0, 0);
-				}, 10);
-			};
+                }, 10);
+            };
 
-			this.message = '';
-		};
-	}])
-    .directive('cardCampaignHeader', [function () {
+            this.message = '';
+        };
+    }])
+    .directive('cardCampaignHeader', [function() {
         return {
             restrict: 'EA',
             scope: { campaign: '=' },
             templateUrl: 'components/templates/card-campaign-header.html',
-            link: function (scope, element, attrs, ctrl, transclude) {
+            link: function(scope, element, attrs, ctrl, transclude) {
 
             }
         };
     }])
-    .directive('zoneHeader', [function () {
-      //To Do: make historyback to True/False
+    .directive('zoneHeader', [function() {
+        //To Do: make historyback to True/False
         return {
             restrict: 'EA',
             transclude: true,
@@ -386,20 +386,20 @@ angular.module('myApp.directives', ['myApp.service'])
                 historyback: '&?'
             },
             templateUrl: 'components/templates/zone-header.html',
-            link: function (scope, element, attrs, ctrl, transclude) {
-              scope.history = {
-                back: function() {
+            link: function(scope, element, attrs, ctrl, transclude) {
+                scope.history = {
+                    back: function() {
+                        history.back();
+                    }
+                };
+                /*element.on('click', function() {
                   history.back();
-                }
-              };
-              /*element.on('click', function() {
-                history.back();
-                scope.$apply();
-              });*/
+                  scope.$apply();
+                });*/
             }
         };
     }])
-    .directive('cardCampaignListItem', [function () {
+    .directive('cardCampaignListItem', [function() {
         return {
             restrict: 'EA',
             scope: {
@@ -407,12 +407,12 @@ angular.module('myApp.directives', ['myApp.service'])
                 linkTo: '@'
             },
             templateUrl: 'components/templates/card-campaign-list-item.html',
-            link: function (scope, element, attrs, ctrl, transclude) {
+            link: function(scope, element, attrs, ctrl, transclude) {
 
             }
         };
     }])
-    .directive('cardCampaignThumbnail', [function () {
+    .directive('cardCampaignThumbnail', [function() {
         return {
             restrict: 'EA',
             scope: {
@@ -420,16 +420,16 @@ angular.module('myApp.directives', ['myApp.service'])
                 onClick: '=?onClick'
             },
             templateUrl: 'components/templates/card-campaign-thumbnail.html',
-            link: function (scope, element, attrs, ctrl, transclude) {
-                if(!scope.onClick){
-                    scope.onClick = function(){
+            link: function(scope, element, attrs, ctrl, transclude) {
+                if (!scope.onClick) {
+                    scope.onClick = function() {
                         //nop
                     };
                 }
             }
         };
     }])
-    .directive('uploaderThumb', ['$uploader', function ($uploader) {
+    .directive('uploaderThumb', ['$uploader', function($uploader) {
         return {
             restrict: 'AE',
             transclude: true,
@@ -437,41 +437,41 @@ angular.module('myApp.directives', ['myApp.service'])
                 width: '=',
                 height: '=',
                 model: '=ngModel',
-                accessor: '&?'  //function that defines how to access the url of the model
+                accessor: '&?' //function that defines how to access the url of the model
             },
             templateUrl: 'components/templates/uploader-thumb.html',
-            link: function (scope, elem, attrs, form) {
+            link: function(scope, elem, attrs, form) {
 
                 if (!scope.accessor) {
-                    scope.accessor = function (data) {
+                    scope.accessor = function(data) {
                         if (!scope.model) return false;
                         return data.url;
                     };
                 }
 
-                scope.remove = function(index){
+                scope.remove = function(index) {
                     scope.model = null;
                 };
 
                 scope.loadingImage = false;
-                scope.upload = function (file) {
+                scope.upload = function(file) {
                     scope.loadingImage = true;
-                    var evtHandler = function(evt){
+                    var evtHandler = function(evt) {
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                         scope.progressPercentage = progressPercentage;
                     };
 
-                    $uploader.upload('/resources', {file: file}, evtHandler)
-                    .then(function (data) {
+                    $uploader.upload('/resources', { file: file }, evtHandler)
+                        .then(function(data) {
                             scope.loadingImage = false;
                             scope.model = data;
-                    });
+                        });
                 };
 
             }
         };
     }])
-    .directive('multiCategorySelector', ['DataService', function(DataService){
+    .directive('multiCategorySelector', ['DataService', function(DataService) {
         return {
             restrict: 'AE',
             scope: {
@@ -480,104 +480,110 @@ angular.module('myApp.directives', ['myApp.service'])
                 model: '=ngModel'
             },
             templateUrl: 'components/templates/multi-category-selector.html',
-            link: function(scope, elem, attrs, form){
-                if(!scope.maxColumns){
+            link: function(scope, elem, attrs, form) {
+                if (!scope.maxColumns) {
                     scope.maxColumns = 4;
                 }
 
-                if(!scope.maxSelected){
+                if (!scope.maxSelected) {
                     scope.maxSelected = 3;
                 }
 
-                if(!scope.model){
+                if (!scope.model) {
                     scope.model = [];
                 }
 
-                DataService.getCategories().then(function(cats){
+                DataService.getCategories().then(function(cats) {
                     scope.categoriesChunk = _.chunk(cats.data, Number(scope.maxColumns));
                     update();
                 });
 
                 var update = function() {
-                  if(_.isNil(scope.model) || _.isNil(scope.categoriesChunk)) {
-                    return;
-                  }
-                  console.log(scope.model, scope.categoriesChunk);
-                  _.forEach(scope.categoriesChunk, function(chunk) {
-                    _.forEach(chunk, function(so) {
-                      if(_.findIndex(scope.model, function(e) {
-                        return e.categoryId == so.categoryId;
-                      }) >= 0) {
-                        so._selected = true;
-                      } else {
-                        so._selected = false;
-                      }
+                    if (_.isNil(scope.model) || _.isNil(scope.categoriesChunk)) {
+                        return;
+                    }
+                    console.log(scope.model, scope.categoriesChunk);
+                    _.forEach(scope.categoriesChunk, function(chunk) {
+                        _.forEach(chunk, function(so) {
+                            if (_.findIndex(scope.model, function(e) {
+                                    return e.categoryId == so.categoryId;
+                                }) >= 0) {
+                                so._selected = true;
+                            } else {
+                                so._selected = false;
+                            }
+                        });
                     });
-                  });
                 };
 
                 scope.$watch('model', update);
 
-                scope.activate = function(so){
-                    if(so._selected){
+                scope.activate = function(so) {
+                    if (so._selected) {
                         so._selected = false;
-                        _.remove(scope.model, function(o){
+                        _.remove(scope.model, function(o) {
                             return _.get(o, 'categoryName') == _.get(so, 'categoryName');
                         });
-                    }else{
-                        if(scope.model.length < scope.maxSelected){
+                    } else {
+                        if (scope.model.length < scope.maxSelected) {
                             so._selected = true;
                             scope.model.push(so);
                         }
                     }
                 };
 
-                scope.getValue = function(obj){
+                scope.getValue = function(obj) {
                     return _.get(obj, 'categoryName');
                 };
             }
         };
     }])
-    .directive('uploaderMulti', ['$uploader', function ($uploader) {
+    .directive('uploaderMulti', ['$uploader', function($uploader) {
         return {
             restrict: 'AE',
             transclude: true,
             scope: {
                 model: '=ngModel',
-                accessor: '&?'  //function that defines how to access the url of the model
+                accessor: '&?' //function that defines how to access the url of the model
             },
-            templateUrl: 'components/templates/uploader-multi.html',
-            link: function (scope, elem, attrs, form) {
-                if(!(scope.model instanceof Array)){
+            templateUrl: function(elem, attr) {
+                if (attr.template) {
+                    return attr.template;
+                }
+
+                return 'components/templates/uploader-multi.html';
+            },
+            link: function(scope, elem, attrs, form) {
+                if (!(scope.model instanceof Array)) {
                     console.error("Model is not array.");
                 }
 
                 if (!scope.accessor) {
-                    scope.accessor = function (data) {
+                    scope.accessor = function(data) {
                         if (!data) return false;
                         return data.url;
                     };
                 }
 
-                scope.remove = function(index){
+                scope.remove = function(index) {
                     scope.model.splice(index, 1);
                 };
 
                 scope.loadingImage = false;
-                scope.upload = function (file) {
+                scope.upload = function(file) {
                     scope.loadingImage = true;
                     scope.progressPercentage = 0;
-                    var evtHandler = function(evt){
+                    var evtHandler = function(evt) {
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                         scope.progressPercentage = progressPercentage;
                     };
 
-                    $uploader.upload('/resources', {file: file}, evtHandler)
-                    .then(function (data) {
+                    $uploader.upload('/resources', { file: file }, evtHandler)
+                        .then(function(data) {
                             scope.loadingImage = false;
                             data._name = file.name;
                             scope.model.push(data);
-                    });
+                        });
                 };
 
             }

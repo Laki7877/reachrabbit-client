@@ -152,7 +152,7 @@ angular.module('myApp.directives', ['myApp.service'])
         };
     }])
 
-.directive('socialLinker', ['DataService', '$auth', '$state', function(DataService, $auth, $state) {
+.directive('socialLinker', ['DataService','BusinessConfig', '$auth', '$state', '$uibModal', function(DataService, BusinessConfig, $auth, $state, $uibModal) {
         return {
             restrict: 'AE',
             transclude: true,
@@ -191,10 +191,44 @@ angular.module('myApp.directives', ['myApp.service'])
                     $auth.authenticate(mediaId)
                         .then(function(response) {
                             var linkedProfile = response.data;
-                            console.log('linkedProfile', linkedProfile);
                             if (mediaId == 'facebook') {
-                                //not gunna work
-                                $state.go('influencer-signup-select-page', { authData: linkedProfile, fromState: scope.fromState });
+                                $uibModal.open({
+                                  templateUrl: 'components/templates/social-linker-modal.html',
+                                  controller: ['$scope', 'authData', '$uibModalInstance', function($scope, authData, $uibModalInstance) {
+                                    $scope.pages = authData.pages;
+                                    $scope.formData = {
+                                        selectedPage: null
+                                    };
+                                    $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
+                                    $scope.choosePage = function(page) {
+                                        var authobject = {
+                                            pages: [page],
+                                            pageId: page.id,
+                                            media: authData.media,
+                                            email: authData.email,
+                                            profilePicture: page.picture,
+                                            name: page.name,
+                                            id: authData.id
+                                        };
+                                        $uibModalInstance.close(authData);
+                                    };
+                                  }],
+                                  resolve: {
+                                    authData: function() {
+                                      return linkedProfile;
+                                    }
+                                  }
+                                })
+                                .result.then(function(authData) {
+                                  //Afterward,
+                                  scope.model.push({
+                                    media: linkedProfile.media || { mediaId: mediaId },
+                                    socialId: authData.id,
+                                    pageId: authData.pageId,
+                                    followerCount: authData.pages[0].count
+                                  });
+                                  if(scope.onDone) scope.onDone();
+                                });
                             } else {
                                 scope.model.push({
                                     media: linkedProfile.media || { mediaId: mediaId },
@@ -202,8 +236,8 @@ angular.module('myApp.directives', ['myApp.service'])
                                     followerCount: linkedProfile.pages[0].count,
                                     pageId: null
                                 });
+                              if (scope.onDone) scope.onDone();
                             }
-                            if (scope.onDone) scope.onDone();
                         })
                         .catch(function(err) {
                             console.log("Linking failed", err);

@@ -115,11 +115,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         proposal: {
                             proposalId: $scope.proposalId
                         },
-                        campaignResources: attachments.map(function(resource) {
-                            return {
-                                resource: resource
-                            };
-                        })
+                        resources: attachments
                     })
                     .then(function(resp) {
                         //$scope.msglist.push(resp.data);

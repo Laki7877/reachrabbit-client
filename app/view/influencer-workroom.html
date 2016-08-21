@@ -30,14 +30,12 @@
                             <div nc-alert="alert"></div>
                         </div>
                         <div class="message-input">
-                            <textarea class="form-control" chatarea="sendMessage(formData.messageStr)" rows="4" ng-model="formData.messageStr" placeholder="พิมพ์ข้อความ..." autofocus></textarea>
+                            <textarea class="form-control" chatarea="sendMessage(formData.messageStr, formData.resources)" rows="4" ng-model="formData.messageStr" placeholder="พิมพ์ข้อความ..." autofocus></textarea>
                             <div class="pull-right">
 
-                                <uploader-multi template="components/templates/uploader-chat.html" 
-                                ng-model="formData.resources"></uploader-multi>
+                                <uploader-multi template="components/templates/uploader-chat.html" ng-model="formData.resources"></uploader-multi>
 
-                                <button class="btn-secondary-highlight btn-width-md" 
-                                ng-click="sendMessage(formData.messageStr, formData.resources)">
+                                <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr, formData.resources)">
                                   <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
                                 </button>
                             </div>

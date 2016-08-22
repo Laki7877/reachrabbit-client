@@ -137,28 +137,30 @@ angular.module('myApp.service', ['satellizer'])
         };
     }])
     .factory('CampaignService', ['$http', '$q', function($http, $q) {
-        var serializeCampaign = function(campaign) {
+        var deserializeCampaign = function(campaign) {
             campaign.resources = campaign.campaignResources.map(function(campaignResource) {
                 return campaignResource.resource;
             });
+            campaign.proposalDeadline = new Date(campaign.proposalDeadline);
             delete campaign.campaignResources;
             return campaign;
         };
 
-        var deserializeCampaign = function(campaign) {
+        var serializeCampaign = function(campaign) {
             campaign.campaignResources = campaign.resources.map(function(resource, index) {
                 return {
                     position: index,
                     resource: resource
                 };
             });
+
             delete campaign.resources;
             return campaign;
         };
 
         return {
-            deserializeCampaign: deserializeCampaign,
             serializeCampaign: serializeCampaign,
+            deserializeCampaign: deserializeCampaign,
             getActiveCampaigns: function() {
                 return $http({
                     url: '/campaigns/active',
@@ -204,7 +206,7 @@ angular.module('myApp.service', ['satellizer'])
                         })
                         .then(function(response) {
                             var rr = response.data.content.map(function(campaign) {
-                                return serializeCampaign(campaign);
+                                return deserializeCampaign(campaign);
                             });
                             response.data.content = rr;
                             resolve(response);
@@ -218,7 +220,7 @@ angular.module('myApp.service', ['satellizer'])
                 return $q(function(resolve, reject) {
                     $http.get("/campaigns/" + id)
                         .then(function(response) {
-                            response.data = serializeCampaign(response.data);
+                            response.data = deserializeCampaign(response.data);
                             resolve(response);
                         })
                         .catch(function(err) {
@@ -238,7 +240,7 @@ angular.module('myApp.service', ['satellizer'])
                 if (campaign.campaignId) {
                     putOrPost = 'PUT';
                 }
-                campaign = deserializeCampaign(campaign);
+                campaign = serializeCampaign(campaign);
                 return $q(function(resolve, reject) {
                     $http({
                             url: "/campaigns/" + (putOrPost.toUpperCase() == 'PUT' ? campaign.campaignId : ''),
@@ -246,7 +248,7 @@ angular.module('myApp.service', ['satellizer'])
                             data: campaign
                         })
                         .then(function(response) {
-                            response.data = serializeCampaign(response.data);
+                            response.data = deserializeCampaign(response.data);
                             resolve(response);
                         })
                         .catch(function(err) {
@@ -301,10 +303,11 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('DataService', ['$http', function($http) {
+    .factory('DataService', ['$http', '$q', function($http, $q) {
         return {
             getMedium: function() {
                 return $http.get("/data/media");
+
             },
             getBanks: function() {
                 return $http.get("/data/banks");

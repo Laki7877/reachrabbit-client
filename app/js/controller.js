@@ -666,7 +666,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                     return AccountService.getProfile();
                 })
                 .then(function(profileResp) {
-                    $window.localStorage.profile = JSON.stringify(profileResp.data);
+                    UserProfile.set(profileResp.data);
                     //Tell raven about the user
                     Raven.setUserContext(UserProfile.get());
                     //Redirect
@@ -702,6 +702,29 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                     Raven.setUserContext(UserProfile.get());
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+                    $window.location.href = '/influencer.html#/influencer-campaign-list';
+                })
+                .catch(function(err) {
+                    $scope.alert.danger(err.data.message);
+                });
+        };
+    }])
+    .controller('InfluencerJesusController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
+        //For influencer gods
+        $scope.login = function(username, password) {
+            $location.search('message', 'nop');
+            AccountService.getTokenInfluencer(username, password)
+                .then(function(response) {
+                    var token = response.data.token;
+                    $window.localStorage.token = token;
+                    return AccountService.getProfile();
+                })
+                .then(function(profileResp) {
+                    UserProfile.set(profileResp.data);
+                    //Tell raven about the user
+                    Raven.setUserContext(UserProfile.get());
+                    //Redirect
+                    $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
                     $window.location.href = '/influencer.html#/influencer-campaign-list';
                 })
                 .catch(function(err) {

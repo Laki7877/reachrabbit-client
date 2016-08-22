@@ -371,10 +371,9 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             }
             return 'n/a';
         };
-        $scope.$watch('filter', function(filter) {
-
+        $scope.$watch('filter', function() {
             _.extend($scope.params, {
-                campaignId: filter
+                campaignId: $scope.filter
             });
             $scope.load($scope.params);
         });
@@ -622,6 +621,12 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             }
             return 'n/a';
         };
+        $scope.$watch('filter', function() {
+            _.extend($scope.params, {
+                campaignId: $scope.filter
+            });
+            $scope.load($scope.params);
+        });
         $scope.load({
             sort: ['messageUpdatedAt,desc']
         });

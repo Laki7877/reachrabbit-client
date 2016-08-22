@@ -257,7 +257,7 @@ angular.module('myApp.directives', ['myApp.service'])
             },
             link: function(scope, element, attrs, ctrl, transclude) {
                 scope.unionUnique = function(media, mediaInfluencer) {
-                    return _.unionBy((mediaInfluencer || []).map(function(mi) {
+                    return _.intersectionBy((mediaInfluencer || []).map(function(mi) {
                         mi.mediaId = mi.media.mediaId;
                         return mi;
                     }), media, 'mediaId');

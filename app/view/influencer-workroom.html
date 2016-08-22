@@ -12,7 +12,7 @@
                 <div class="col-xs-9">
                     <div class="chatbox-card">
                         <div class="chatbox-header">
-                            <h3>Pokemon GX</h3>
+                            <h3>{{ proposal.campaign.title }}</h3>
                             <a class="link-view-profile"><i class="fa fa-info-circle"></i> ดูโปรไฟล์</a>
                             <div class="chatbox-status">
                                 <span class="status active">คัดเลือก</span>
@@ -45,7 +45,9 @@
                     </div>
                 </div>
                 <div class="col-xs-3">
-                    <card-proposal-detail ng-model="proposal"></card-proposal-detail>
+                    <card-proposal-detail ng-model="proposal">
+                        < <button class="btn-secondary btn-width-max">แก้ไขข้อเสนอ</button>
+                    </card-proposal-detail>
 
                     <div class="card-campaign-thumbnail">
                         <div class="card-thumbnail-image">

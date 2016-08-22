@@ -1,30 +1,30 @@
 <div class="card-proposal-detail">
-            <div class="card-header">
-              รายละเอียดข้อเสนอ
-            </div>
-            <div class="card-body">
-              <button class="btn-secondary btn-width-max">แก้ไขข้อเสนอ</button>
+    <div class="card-header">
+        รายละเอียดข้อเสนอ
+    </div>
+    <div class="card-body">
+        <ng-transclude></ng-transclude>
 
-              <div class="card-info-label">
-                ราคาที่เสนอ
-              </div>
-              <div class="card-info-content card-price">
-                {{ proposal.price | number: 2 }} บาท
-              </div>
-              <div class="card-info-label">
-                จำนวนผู้ติดตาม 
-              </div>
-              <!--todo: union-->
-              <div class="card-info-content" ng-repeat="imedia in unionUnique(proposal.media, proposal.influencer.influencerMedias)">
-                <div class="social-info">
-                  <span class="icon-{{imedia.mediaId}}"></span> {{ imedia.followerCount | number }} คน
-                </div>
-              </div>
-              <div class="card-info-label">
-                ระยะเวลาการทำงาน
-              </div>
-              <div class="card-info-content">
-                {{ proposal.completionTime.completionTime }}
-              </div>
+        <div class="card-info-label">
+            ราคาที่เสนอ
+        </div>
+        <div class="card-info-content card-price">
+            {{ proposal.price | number: 2 }} บาท
+        </div>
+        <div class="card-info-label">
+            จำนวนผู้ติดตาม
+        </div>
+        <!--todo: union-->
+        <div class="card-info-content" ng-repeat="imedia in unionUnique(proposal.media, proposal.influencer.influencerMedias)">
+            <div class="social-info">
+                <span class="icon-{{imedia.mediaId}}"></span> {{ imedia.followerCount | number }} คน
             </div>
-          </div>
+        </div>
+        <div class="card-info-label">
+            ระยะเวลาการทำงาน
+        </div>
+        <div class="card-info-content">
+            {{ proposal.completionTime.completionTime }}
+        </div>
+    </div>
+</div>

@@ -9,6 +9,15 @@
 'use strict';
 
 angular.module('myApp.directives', ['myApp.service'])
+    .filter('truncate', [function() {
+        return function(input, maxlen) {
+            if (input.length > maxlen) {
+                return input.substring(0, maxlen) + "...";
+            }
+            return input;
+        };
+
+    }])
     .directive('chatarea', [function() {
         return {
             restrict: 'A',
@@ -152,7 +161,7 @@ angular.module('myApp.directives', ['myApp.service'])
         };
     }])
 
-.directive('socialLinker', ['DataService','BusinessConfig', '$auth', '$state', '$uibModal', function(DataService, BusinessConfig, $auth, $state, $uibModal) {
+.directive('socialLinker', ['DataService', 'BusinessConfig', '$auth', '$state', '$uibModal', function(DataService, BusinessConfig, $auth, $state, $uibModal) {
         return {
             restrict: 'AE',
             transclude: true,
@@ -193,42 +202,42 @@ angular.module('myApp.directives', ['myApp.service'])
                             var linkedProfile = response.data;
                             if (mediaId == 'facebook') {
                                 $uibModal.open({
-                                  templateUrl: 'components/templates/social-linker-modal.html',
-                                  controller: ['$scope', 'authData', '$uibModalInstance', function($scope, authData, $uibModalInstance) {
-                                    $scope.pages = authData.pages;
-                                    $scope.formData = {
-                                        selectedPage: null
-                                    };
-                                    $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
-                                    $scope.choosePage = function(page) {
-                                        var authobject = {
-                                            pages: [page],
-                                            pageId: page.id,
-                                            media: authData.media,
-                                            email: authData.email,
-                                            profilePicture: page.picture,
-                                            name: page.name,
-                                            id: authData.id
-                                        };
-                                        $uibModalInstance.close(authData);
-                                    };
-                                  }],
-                                  resolve: {
-                                    authData: function() {
-                                      return linkedProfile;
-                                    }
-                                  }
-                                })
-                                .result.then(function(authData) {
-                                  //Afterward,
-                                  scope.model.push({
-                                    media: linkedProfile.media || { mediaId: mediaId },
-                                    socialId: authData.id,
-                                    pageId: authData.pageId,
-                                    followerCount: authData.pages[0].count
-                                  });
-                                  if(scope.onDone) scope.onDone();
-                                });
+                                        templateUrl: 'components/templates/social-linker-modal.html',
+                                        controller: ['$scope', 'authData', '$uibModalInstance', function($scope, authData, $uibModalInstance) {
+                                            $scope.pages = authData.pages;
+                                            $scope.formData = {
+                                                selectedPage: null
+                                            };
+                                            $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
+                                            $scope.choosePage = function(page) {
+                                                var authobject = {
+                                                    pages: [page],
+                                                    pageId: page.id,
+                                                    media: authData.media,
+                                                    email: authData.email,
+                                                    profilePicture: page.picture,
+                                                    name: page.name,
+                                                    id: authData.id
+                                                };
+                                                $uibModalInstance.close(authData);
+                                            };
+                                        }],
+                                        resolve: {
+                                            authData: function() {
+                                                return linkedProfile;
+                                            }
+                                        }
+                                    })
+                                    .result.then(function(authData) {
+                                        //Afterward,
+                                        scope.model.push({
+                                            media: linkedProfile.media || { mediaId: mediaId },
+                                            socialId: authData.id,
+                                            pageId: authData.pageId,
+                                            followerCount: authData.pages[0].count
+                                        });
+                                        if (scope.onDone) scope.onDone();
+                                    });
                             } else {
                                 scope.model.push({
                                     media: linkedProfile.media || { mediaId: mediaId },
@@ -236,7 +245,7 @@ angular.module('myApp.directives', ['myApp.service'])
                                     followerCount: linkedProfile.pages[0].count,
                                     pageId: null
                                 });
-                              if (scope.onDone) scope.onDone();
+                                if (scope.onDone) scope.onDone();
                             }
                         })
                         .catch(function(err) {
@@ -256,7 +265,7 @@ angular.module('myApp.directives', ['myApp.service'])
                 proposal: '=ngModel'
             },
             link: function(scope, element, attrs, ctrl, transclude) {
-                scope.unionUnique = function(media, mediaInfluencer) {
+                scope.intersectMedia = function(media, mediaInfluencer) {
                     return _.intersectionBy((mediaInfluencer || []).map(function(mi) {
                         mi.mediaId = mi.media.mediaId;
                         return mi;

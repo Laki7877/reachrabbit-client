@@ -15,7 +15,7 @@
             จำนวนผู้ติดตาม
         </div>
         <!--todo: union-->
-        <div class="card-info-content" ng-repeat="imedia in unionUnique(proposal.media, proposal.influencer.influencerMedias)">
+        <div class="card-info-content" ng-repeat="imedia in intersectMedia(proposal.media, proposal.influencer.influencerMedias)">
             <div class="social-info">
                 <span class="icon-{{imedia.mediaId}}"></span> {{ imedia.followerCount | number }} คน
             </div>

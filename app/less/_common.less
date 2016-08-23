@@ -912,6 +912,7 @@ a.secondary{
     }
   }
   .col-name{
+    white-space: nowrap;
     text-overflow: ellipsis;
     .profile-picture{
       &:extend(.img-circle);
@@ -1057,6 +1058,9 @@ a.secondary{
           }
         }
         .message-content{
+          span {
+            white-space: pre-wrap;
+          }
           img{
             &:extend(.img-responsive);
             margin-top: 10px;

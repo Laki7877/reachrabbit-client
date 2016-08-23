@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="card-body">
-          <table class="table" sorter ng-model="proposals" callback="load">
+          <table ng-if="proposals.numberOfElements > 0" class="table" sorter ng-model="proposals" callback="load">
             <thead>
               <tr>
                 <th class="col-name" sort="influencer.influencerId">Influencer</th>
@@ -62,6 +62,7 @@
               </tr>
             </tbody>
           </table>
+          <table-static ng-if="proposals.totalElements == 0">ไม่มี Campaign</table-static>
         </div>
       </div>
       <div class="info-text text-center">

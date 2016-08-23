@@ -90,17 +90,17 @@ angular.module('myApp.service', ['satellizer'])
              * Get Profile
              */
             getProfile: function() {
-		return $q(function(resolve, reject){
-			$http.get('/profile').then(function(response){
-				if(_.has(response.data, 'influencer.birthday')){
-					response.data.influencer.birthday = new Date(response.data.influencer.birthday);
-				}
-				resolve(response);
-			})
-			.catch(function(err){
-				reject(err);
-			});
-		});
+                return $q(function(resolve, reject){
+                    $http.get('/profile').then(function(response){
+                        if(_.has(response.data, 'influencer.birthday')){
+                            response.data.influencer.birthday = new Date(response.data.influencer.birthday);
+                        }
+                        resolve(response);
+                    })
+                    .catch(function(err){
+                        reject(err);
+                    });
+                });
             },
             saveProfile: function(profile) {
                 return $http.put("/profile", profile);
@@ -177,16 +177,11 @@ angular.module('myApp.service', ['satellizer'])
                     method: 'GET'
                 });
             },
-            getOpenCampaigns: function(filter) {
+            getOpenCampaigns: function(params) {
                 var opt = {
-                    skipAuthorization: true,
-                    url: "/campaigns/open"
+                    url: "/campaigns/open",
+                    params: params
                 };
-                if (filter instanceof Object) {
-                    if (filter.mediaId) {
-                        opt.params.mediaId = filter.mediaId;
-                    }
-                }
                 return $q(function(resolve, reject) {
                     $http(opt)
                         .then(function(response) {

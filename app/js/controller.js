@@ -268,6 +268,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'DataService', 'ExampleCampaigns', '$rootScope',
         function($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope) {
 
+            $scope.filter = {};
             $scope.handleUserClickThumbnail = function(c) {
                 $state.go('influencer-campaign-detail-open', {
                     campaignId: c.campaignId
@@ -648,6 +649,16 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
 angular.module('myApp.portal.controller', ['myApp.service'])
     .controller('BrandSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
+        var u = UserProfile.get();
+        
+        if(u.influencer){
+           return $window.location.href = "/influencer.html#/influencer-campaign-list";
+        }
+
+        if(u.brand){
+           return $window.location.href = "/brand.html#/brand-campaign-list";
+        }
+        
         $scope.formData = {};
         $window.localStorage.removeItem('token');
         $scope.messageCode = $location.search().message;

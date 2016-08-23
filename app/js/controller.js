@@ -652,11 +652,11 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         var u = UserProfile.get();
         
         if(u.influencer){
-           return $window.location.href = "/influencer.html#/influencer-campaign-list";
+           $window.location.href = "/influencer.html#/influencer-campaign-list";
         }
 
         if(u.brand){
-           return $window.location.href = "/brand.html#/brand-campaign-list";
+           $window.location.href = "/brand.html#/brand-campaign-list";
         }
         
         $scope.formData = {};

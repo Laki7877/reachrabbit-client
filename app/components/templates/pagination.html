@@ -1,4 +1,4 @@
-<div ng-if="model.numberOfElements > 0">
+<div ng-if="model && model.totalPages > 1">
   <ul class="pagination">
     <li>
       <a ng-click="prev()" aria-label="Previous">

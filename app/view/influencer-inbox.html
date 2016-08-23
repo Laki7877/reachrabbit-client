@@ -55,7 +55,7 @@
                 <td class="col-button">
                   <button class="btn-secondary" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
                   <!-- For next sprint -->
-                  <span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread}}</span>
+                  <span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span>
                 </td>
               </tr>
             </tbody>

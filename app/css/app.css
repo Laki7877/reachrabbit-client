@@ -7793,7 +7793,7 @@ a.secondary {
   cursor: pointer;
   overflow: hidden;
   position: relative;
-  display: block;
+  display: inline-block;
   width: 206px;
   height: 138px;
   color: #16bbac;
@@ -7880,6 +7880,9 @@ a.secondary {
 }
 .input-upload-image-sm-preview .preview-item .preview-image img {
   width: 100%;
+}
+.fileinput-new {
+  display: inline-block;
 }
 /*---Card---*/
 .card,

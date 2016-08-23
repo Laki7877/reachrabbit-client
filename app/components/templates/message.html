@@ -1,6 +1,6 @@
 <div class="message">
   <div class="message-left">
-    <img class="media-object" ng-src="{{message.user.profilePicture.url || 'images/placeholder-campaign.png'}}">
+    <img class="media-object" ng-src="{{message.user.profilePicture.url || 'images/placeholder-profile-picture.png'}}">
   </div>
   <div class="message-body">
     <div class="message-heading">
@@ -10,7 +10,7 @@
     </div>
     <div class="message-content">
       <div ng-transclude></div>
-      <span style="white-space: pre;">{{message.message}}</span>
+      <span>{{message.message}}</span>
       <img ng-repeat="resource in message.resources" ng-src="{{resource.url}}">
     </div>
   </div>

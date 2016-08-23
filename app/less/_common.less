@@ -908,6 +908,7 @@ a.secondary{
     }
   }
   .col-name{
+    white-space: nowrap;
     text-overflow: ellipsis;
     .profile-picture{
       &:extend(.img-circle);
@@ -1053,6 +1054,9 @@ a.secondary{
           }
         }
         .message-content{
+          span {
+            white-space: pre-wrap;
+          }
           img{
             &:extend(.img-responsive);
             margin-top: 10px;
@@ -1097,15 +1101,17 @@ a.secondary{
         img{
           width: auto;
           height: 34px;
+          margin-left: 10px;
         }
       }
       .btn-delete-image{
         background: none;
         top: 8px;
-        right: -25px;
+        right: -35px;
         font-size: 18px;
         width: 22px;
         height: 22px;
+        margin-right: 10px;
       }
     }
   }

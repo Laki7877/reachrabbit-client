@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="card-body">
-          <table class="table" sorter ng-model="proposals" callback="load">
+          <table ng-if="proposals.numberOfElements > 0" class="table" sorter ng-model="proposals" callback="load">
             <thead>
               <tr>
                 <th class="col-name" sort="brand.brandId">Brand</th>
@@ -48,7 +48,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="proposal in proposals.content">
-                <td class="col-name"><img src="{{proposal.campaign.brand.user.profilePicture.url}}" class="profile-picture" /> {{proposal.campaign.brand.user.name}}</td>
+                <td class="col-name"><img src="{{proposal.campaign.brand.user.profilePicture.url || 'images/placeholder-profile-picture.png'}}" class="profile-picture" /> {{proposal.campaign.brand.user.name}}</td>
                 <td class="col-campaign-name">{{proposal.campaign.title}}</td>
                 <td class="col-price">{{proposal.price | currency:'':2 }} บาท</td>
                 <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
@@ -60,6 +60,7 @@
               </tr>
             </tbody>
           </table>
+          <table-static ng-if="proposals.totalElements == 0">ไม่มี Campaign</table-static>        
         </div>
       </div>
       <div class="info-text text-center">

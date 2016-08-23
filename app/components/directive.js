@@ -18,6 +18,13 @@ angular.module('myApp.directives', ['myApp.service'])
         };
 
     }])
+    .directive('tableStatic', [function() {
+        return {
+            restrict: 'EA',
+            transclude: true,
+            templateUrl: 'components/templates/table-static.html'
+        };
+    }])
     .directive('chatarea', [function() {
         return {
             restrict: 'A',

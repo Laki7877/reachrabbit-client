@@ -268,6 +268,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'DataService', 'ExampleCampaigns', '$rootScope',
         function($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope) {
 
+            $scope.filter = {};
             $scope.handleUserClickThumbnail = function(c) {
                 $state.go('influencer-campaign-detail-open', {
                     campaignId: c.campaignId

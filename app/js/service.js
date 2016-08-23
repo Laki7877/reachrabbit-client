@@ -177,16 +177,11 @@ angular.module('myApp.service', ['satellizer'])
                     method: 'GET'
                 });
             },
-            getOpenCampaigns: function(filter) {
+            getOpenCampaigns: function(params) {
                 var opt = {
-                    skipAuthorization: true,
-                    url: "/campaigns/open"
+                    url: "/campaigns/open",
+                    params: params
                 };
-                if (filter instanceof Object) {
-                    if (filter.mediaId) {
-                        opt.params.mediaId = filter.mediaId;
-                    }
-                }
                 return $q(function(resolve, reject) {
                     $http(opt)
                         .then(function(response) {

@@ -651,11 +651,11 @@ angular.module('myApp.portal.controller', ['myApp.service'])
     .controller('BrandSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
         var u = UserProfile.get();
         
-        if(u.influencer){
+        if(u && u.influencer){
            return $window.location.href = "/influencer.html#/influencer-campaign-list";
         }
 
-        if(u.brand){
+        if(u && u.brand){
            return $window.location.href = "/brand.html#/brand-campaign-list";
         }
         

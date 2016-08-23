@@ -9236,6 +9236,7 @@ fieldset[disabled] .btn-clear.active {
   vertical-align: middle;
 }
 .table .col-name {
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 .table .col-name .profile-picture {
@@ -9353,6 +9354,10 @@ fieldset[disabled] .btn-clear.active {
 }
 .chatbox-card .message-area .message .message-body .message-heading .message-time {
   float: right;
+}
+.chatbox-card .message-area .message .message-body .message-content {
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .chatbox-card .message-area .message .message-body .message-content img {
   margin-top: 10px;

@@ -367,10 +367,8 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $scope.lastMessageUpdated = function(proposal) {
             if (moment(proposal.messageUpdatedAt).isBefore(moment().endOf('day').subtract(1, 'days'))) {
                 return $filter('amDateFormat')(proposal.messageUpdatedAt, 'll');
-            } else {
-                return $filter('amCalendar')(proposal.messageUpdatedAt);
             }
-            return 'n/a';
+            return $filter('amCalendar')(proposal.messageUpdatedAt);
         };
         $scope.$watch('filter', function() {
             _.extend($scope.params, {
@@ -617,10 +615,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         $scope.lastMessageUpdated = function(proposal) {
             if (moment(proposal.messageUpdatedAt).isBefore(moment().endOf('day').subtract(1, 'days'))) {
                 return $filter('amDateFormat')(proposal.messageUpdatedAt, 'll');
-            } else {
-                return $filter('amCalendar')(proposal.messageUpdatedAt);
             }
-            return 'n/a';
+            return $filter('amCalendar')(proposal.messageUpdatedAt);
         };
         $scope.$watch('filter', function() {
             _.extend($scope.params, {
@@ -651,12 +647,12 @@ angular.module('myApp.portal.controller', ['myApp.service'])
     .controller('BrandSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
         var u = UserProfile.get();
         
-        if(u && u.influencer){
+        if(_.get(u, 'influencer')){
             $window.location.href = "/influencer.html#/influencer-campaign-list";
             return;
         }
 
-        if(u && u.brand){
+        if(_.get(u, 'brand')){
             $window.location.href = "/brand.html#/brand-campaign-list";
             return;
         }

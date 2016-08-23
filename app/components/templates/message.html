@@ -9,8 +9,8 @@
       <div class="clear"></div>
     </div>
     <div class="message-content">
-      <textarea readonly><div ng-transclude></div></textarea>
-      <span>{{message.message}}</span>
+      <div ng-transclude></div>
+      <textarea elastic ng-bind="message.message" readonly></textarea>
       <img ng-repeat="resource in message.resources" ng-src="{{resource.url}}">
     </div>
   </div>

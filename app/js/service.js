@@ -79,7 +79,7 @@ angular.module('myApp.service', ['satellizer'])
         $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json' };
 
     }])
-    .factory('AccountService', ['$http', function($http) {
+    .factory('AccountService', ['$http', '$q', function($http, $q) {
         return {
             getUser: function(id) {
                 return $http({
@@ -90,9 +90,17 @@ angular.module('myApp.service', ['satellizer'])
              * Get Profile
              */
             getProfile: function() {
-                return $http({
-                    url: "/profile"
-                });
+		return $q(function(resolve, reject){
+			$http.get('/profile').then(function(response){
+				if(_.has(response.data, 'influencer.birthday')){
+					response.data.influencer.birthday = new Date(response.data.influencer.birthday);
+				}
+				resolve(response);
+			})
+			.catch(function(err){
+				reject(err);
+			});
+		});
             },
             saveProfile: function(profile) {
                 return $http.put("/profile", profile);
@@ -141,7 +149,9 @@ angular.module('myApp.service', ['satellizer'])
             campaign.resources = campaign.campaignResources.map(function(campaignResource) {
                 return campaignResource.resource;
             });
-            campaign.proposalDeadline = new Date(campaign.proposalDeadline);
+            if(campaign.proposalDeadline){ 
+               campaign.proposalDeadline = new Date(campaign.proposalDeadline);
+	    }
             delete campaign.campaignResources;
             return campaign;
         };

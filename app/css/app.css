@@ -8159,6 +8159,7 @@ a.secondary {
 }
 .card-thumbnail .card-thumbnail-image,
 .workroom .card-campaign-thumbnail .card-thumbnail-image {
+  background-color: #d8dfe7;
   height: 194px;
   overflow: hidden;
 }

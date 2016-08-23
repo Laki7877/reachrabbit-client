@@ -280,7 +280,7 @@ angular.module('myApp.service', ['satellizer'])
             },
             count: function(params) {
               return $http({
-                    url: '/proposals',
+                    url: '/proposals/count',
                     method: 'GET',
                     params: params
               });

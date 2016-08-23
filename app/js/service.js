@@ -149,7 +149,7 @@ angular.module('myApp.service', ['satellizer'])
             campaign.resources = campaign.campaignResources.map(function(campaignResource) {
                 return campaignResource.resource;
             });
-            if(campaign.proposalDeadline){ 
+            if(campaign.proposalDeadline){
                campaign.proposalDeadline = new Date(campaign.proposalDeadline);
 	    }
             delete campaign.campaignResources;
@@ -278,6 +278,13 @@ angular.module('myApp.service', ['satellizer'])
                     params: params
                 });
             },
+            count: function(params) {
+              return $http({
+                    url: '/proposals',
+                    method: 'GET',
+                    params: params
+              });
+            },
             getActive: function() {
                 return $http({
                     url: '/proposals/active',
@@ -290,6 +297,13 @@ angular.module('myApp.service', ['satellizer'])
                     method: 'get',
                     params: params
                 });
+            },
+            countUnreadMessages: function(proposalId, params) {
+              return $http({
+                    url: '/proposals/' + proposalId + '/proposalmessages/count',
+                    method: 'get',
+                    params: params
+              });
             },
             getMessagesPoll: function(proposalId, params) {
                 return $http({

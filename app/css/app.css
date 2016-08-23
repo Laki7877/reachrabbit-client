@@ -9397,14 +9397,16 @@ fieldset[disabled] .btn-clear.active {
 .chatbox-card .message-input .preview-item .input-upload-image img {
   width: auto;
   height: 34px;
+  margin-left: 10px;
 }
 .chatbox-card .message-input .preview-item .btn-delete-image {
   background: none;
   top: 8px;
-  right: -25px;
+  right: -35px;
   font-size: 18px;
   width: 22px;
   height: 22px;
+  margin-right: 10px;
 }
 /*---Modal---*/
 .modal-content {

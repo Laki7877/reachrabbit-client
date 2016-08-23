@@ -631,12 +631,12 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         });
                     });
                 });
-            ProposalService.getActive()
+            CampaignService.getActiveCampaigns()
                 .then(function(response) {
                     $scope.filters = _.map(response.data, function(e) {
                         return {
-                            name: 'แสดงเฉพาะ Campaign ' + e.campaign.title,
-                            campaignId: e.campaign.campaignId
+                            name: 'แสดงเฉพาะ Campaign ' + e.title,
+                            campaignId: e.campaignId
                         };
                     });
                     $scope.filters.unshift({

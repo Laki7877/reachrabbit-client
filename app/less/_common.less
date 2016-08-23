@@ -1054,8 +1054,9 @@ a.secondary{
           }
         }
         .message-content{
-          white-space: nowrap;
-          text-overflow: ellipsis;
+          span {
+            white-space: pre-wrap;
+          }
           img{
             &:extend(.img-responsive);
             margin-top: 10px;

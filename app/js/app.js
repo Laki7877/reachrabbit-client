@@ -99,7 +99,7 @@ angular.module('myApp', [
   MIN_FOLLOWER_COUNT : 1
 })
 //Initialize the app
-.run(['$rootScope', '$location', '$window', 'UserProfile', 'amMoment', function($rootScope, $location, $window, UserProfile, amMoment){
+.run(['$rootScope', '$location', '$window', 'UserProfile', 'ProposalService', 'amMoment', function($rootScope, $location, $window, UserProfile, ProposalService, amMoment){
 
   $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
 
@@ -153,6 +153,20 @@ angular.module('myApp', [
     //navigate to login
     console.log("redirecting to", redirTo);
     $window.location.href = redirTo;
+  };
+
+  $rootScope.pollInbox = function(immediately) {
+    var profile = $rootScope.getProfile();
+    console.log('polling!', profile);
+    if(profile) {
+      ProposalService.countInbox({
+          immediate: immediately
+        })
+        .then(function(res) {
+          $rootScope.inboxCount = res.data;
+          $rootScope.pollInbox(false);
+        });
+    }
   };
 
   $rootScope.goTo = function(path){

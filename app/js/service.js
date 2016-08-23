@@ -298,6 +298,13 @@ angular.module('myApp.service', ['satellizer'])
                     params: params
                 });
             },
+            countInbox: function(params) {
+                return $http({
+                    url: '/proposals/count/poll',
+                    method: 'get',
+                    params: params
+                });
+            },
             countUnreadMessages: function(proposalId, params) {
               return $http({
                     url: '/proposals/' + proposalId + '/proposalmessages/count',

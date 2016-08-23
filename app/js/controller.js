@@ -649,6 +649,16 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
 angular.module('myApp.portal.controller', ['myApp.service'])
     .controller('BrandSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
+        var u = UserProfile.get();
+        
+        if(u.influencer){
+           return $window.location.href = "/influencer.html#/influencer-campaign-list";
+        }
+
+        if(u.brand){
+           return $window.location.href = "/brand.html#/brand-campaign-list";
+        }
+        
         $scope.formData = {};
         $window.localStorage.removeItem('token');
         $scope.messageCode = $location.search().message;

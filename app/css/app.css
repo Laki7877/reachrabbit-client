@@ -9235,6 +9235,9 @@ fieldset[disabled] .btn-clear.active {
 .table tbody tr td {
   vertical-align: middle;
 }
+.table .col-name {
+  text-overflow: ellipsis;
+}
 .table .col-name .profile-picture {
   width: 40px;
   margin-right: 5px;

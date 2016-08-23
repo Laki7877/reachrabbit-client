@@ -107,7 +107,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             };
             $scope.alert = new NcAlert();
             $scope.sendMessage = function(messageStr, attachments) {
-                if (_.isEmpty(messageStr)) {
+                if (_.isEmpty(messageStr) && _.isEmpty(attachments)) {
                     return;
                 }
                 ProposalService.sendMessage({

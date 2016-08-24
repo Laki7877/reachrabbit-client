@@ -18,6 +18,70 @@ angular.module('myApp.directives', ['myApp.service'])
         };
 
     }])
+    .directive('ngModel', [function() {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function(scope, elem, attrs, ctrl) {
+                ctrl.$attributes = attrs;
+            }
+        };
+    }])
+    .directive('formError', [function() {
+        return {
+            restrict: 'A',
+            templateUrl: 'components/templates/form-error.html',
+            scope: {
+                formError: '=',
+                isValidate: '&?'
+            },
+            transclude: true,
+            controller: ['$scope', function($scope) {
+                $scope.isValidate = $scope.isValidate || function() { return false; };
+                $scope.isInvalid = function() {
+                    if(!$scope.formError) {
+                        return false;
+                    }
+                    return $scope.formError.$invalid &&
+                        ($scope.formError.$dirty || $scope.formError.$$parentForm.$submitted ) &&
+                        !$scope.isValidate();
+                };
+                this.isInvalid = function() {
+                    return $scope.isInvalid();
+                };
+                this.getModel = function() {
+                    if(!$scope.formError) {
+                        return {};
+                    }
+                    return $scope.formError;
+                };
+            }]
+        };
+    }])
+    .directive('inputError', [function() {
+        return {
+            restrict: 'A',
+            require: '^^formError',
+            templateUrl: 'components/templates/error.html',
+            scope: {
+                error: '&?inputError',
+            },
+            link: function(scope, elem, attrs, ctrl) {
+                var defaultErrors = {
+                    required: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                    email: 'กรุณากรอกอีเมลให้ถูกต้อง',
+                    minlength: 'รหัสผ่านควรมีความยาวอย่างน้อย ' + ctrl.getModel().$attributes.ngMinlength +' ตัวอักษร'
+                };
+                scope.getError = function() {
+                    return ctrl.getModel().$error;
+                };
+                scope.isInvalid = function() {
+                    return ctrl.isInvalid();
+                };
+                scope.error = _.extend({}, defaultErrors, scope.error());
+            }
+        };
+    }])
     .directive('elastic', ['$timeout',  function($timeout) {
         return {
             restrict: 'A',
@@ -506,7 +570,6 @@ angular.module('myApp.directives', ['myApp.service'])
             },
             templateUrl: 'components/templates/uploader-thumb.html',
             link: function(scope, elem, attrs, form) {
-
                 if (!scope.accessor) {
                     scope.accessor = function(data) {
                         if (!scope.model) return false;

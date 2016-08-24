@@ -18,7 +18,7 @@
     <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
 </head>
 
-<body class="layout-brand">
+<body class="layout-brand" ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}">
     <div class="api_override_box" ng-cloak ng-if="API_OVERRIDE_ACTIVE">
         <span class="label label-danger">API OVERRIDE ON</span>
     </div>

@@ -16,8 +16,8 @@ describe('Brand', function() {
         });
 
         it('can find inputs', function() {
-            state.username = element(by.model('username'));
-            state.password = element(by.model('password'));
+            state.username = element(by.model('formData.username'));
+            state.password = element(by.model('formData.password'));
 
             state.submit_btn = element(by.css('.btn-primary'));
             state.signup_btn = element(by.css('.signup-pill a'));

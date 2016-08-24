@@ -379,13 +379,19 @@ angular.module('myApp.directives', ['myApp.service'])
             templateUrl: 'components/templates/card-influencer-profile.html',
             scope: {
                 influencer: '=ngModel',
-                showSocialData: '=?'
+                _showSocialData: '=?showSocialData'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
+
+                    if(scope._showSocialData === false){
+                        scope.showSocialData = false;
+                    }else if(scope._showSocialData === true){
+                        scope.showSocialData = true;
+                    }else{
+                        scope.showSocialData = true;
+                    }
+
                 
-                if(!scope.showSocialData){
-                    scope.showSocialData = true;
-                }
 
                 scope.joinCat = function (A) {
                     return A.map(function(o){

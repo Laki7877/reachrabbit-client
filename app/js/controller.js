@@ -26,18 +26,27 @@ angular.module('myApp.controller', ['myApp.service'])
             // console.log("Test World");
         };
     }])
-    .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'isEditMode',
-        function($scope, DataService, CampaignService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, isEditMode) {
+    .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal',
+        function($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal) {
             $scope.completionTimes = [];
             $scope.medium = [];
             $scope.formData = {
                 media: []
             };
-            $scope.isEditMode = isEditMode;
+            $scope.isEditMode = (proposal !== false);
             $scope.campaign = campaign;
             $scope.proposalNetPrice = 0.00;
             $scope.alert = new NcAlert();
             $scope.selectedMedia = {};
+
+            if($scope.isEditMode){
+                proposal.media.forEach(function(infm){
+                    console.log(infm);
+                    $scope.selectedMedia[infm.mediaId] = true;
+                });
+                $scope.formData = proposal;
+                //Selected Media Theorem
+            }
 
             /*
              *  Check if profile has linked media id
@@ -65,13 +74,21 @@ angular.module('myApp.controller', ['myApp.service'])
             }, true);
 
             $scope.submit = function(formData) {
-                CampaignService.sendProposal(formData, campaign.campaignId)
-                    .then(function(doneR) {
+                var action = CampaignService.sendProposal;
+                if(formData.proposalId){
+                   action = ProposalService.update;
+                }else{
+                   action = CampaignService.sendProposal;
+                }
+
+                action(formData, campaign.campaignId)
+                .then(function(doneR) {
                         return $uibModalInstance.close(doneR.data);
                     })
                     .catch(function(err) {
                         $scope.alert.danger(err.data.message);
                     });
+               
             };
 
             $scope.$watch('formData.price', function(pp) {
@@ -113,8 +130,8 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         campaign: function() {
                             return $scope.proposal.campaign;
                         },
-                        isEditMode: function(){
-                            return true;
+                        proposal: function(){
+                            return $scope.proposal;
                         }
                     }
                 });
@@ -265,6 +282,9 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     resolve: {
                         campaign: function() {
                             return $scope.campaignNee;
+                        },
+                        proposal: function(){
+                            return $scope.proposal;
                         }
                     }
                 });

@@ -64,13 +64,13 @@
         
         <div class="card-row-basic text-center" ng-if="!isEditMode">
             <div class="button-bar">
-                <button class="btn-primary btn-width-lg" ng-click="submit(formData)">ส่งข้อเสนอ</button>
+                <button class="btn-primary btn-width-lg" ng-click="submit(formData)" ng-disabled="formData.media.length < 1">ส่งข้อเสนอ</button>
                 <p class="help-block">ข้อเสนอนี้จะสามารถแก้ไขได้ภายหลัง</p>
             </div>
         </div>
         <div class="card-row-basic text-center" ng-if="isEditMode">
             <div class="button-bar">
-                <button class="btn-primary btn-width-lg" ng-click="submit(formData)">แก้ไขข้อเสนอ</button>
+                <button class="btn-primary btn-width-lg" ng-click="submit(formData)" ng-disabled="formData.media.length < 1">แก้ไขข้อเสนอ</button>
             </div>
         </div>
 

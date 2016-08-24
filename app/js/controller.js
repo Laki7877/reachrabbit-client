@@ -405,8 +405,8 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         });
         $scope.loadProposalCounts();
     }])
-    .controller('InfluencerBrandProfile', ['$scope', function($scope){
-
+    .controller('InfluencerBrandProfile', ['$scope', 'AccountService', '$stateParams', function($scope, AccountService, $stateParams){
+        AccountService.getProfile($stateParams.brandId);
     }]);
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
@@ -685,8 +685,12 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         });
         $scope.loadProposalCounts();
     }])
-    .controller('BrandInfluencerProfile', ['$scope', function($scope){
-        
+    .controller('BrandInfluencerProfile', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function($scope, NcAlert, AccountService, $stateParams){
+        $scope.alert = new NcAlert();
+        AccountService.getProfile($stateParams.influencerId)
+        .then(function(response){
+            $scope.influencer = response.data;
+        });
     }]);
 
 

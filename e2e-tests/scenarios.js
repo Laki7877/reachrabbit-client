@@ -262,3 +262,7 @@ describe('Brand', function() {
 describe('Influencer', function() {
 
 });
+
+describe('Chatting', function() {
+
+});

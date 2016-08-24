@@ -24,23 +24,7 @@
                         </div>
                         <div class="message-area" scroll-glue>
 
-                            <div class="card-profile">
-                              <div class="card-body">
-                                <div class="card-image">
-                                  <img ng-src="{{ brand.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-responsive img-circle"/>
-                                </div>
-                                <div class="col-xs-10">
-                                  <small>เกี่ยวกับ Jon Snow</small>
-                                  <p>
-                                    แพทเทิร์น ผู้นำไวกิ้งเก๋ากี้ซากุระ แม่ค้า เก๋ากี้หลวงตา เกรด โมจิ เวณิกาแผดเผาเพลย์บอย ช็อตคีตปฏิภาณอุปนายิกา โมจิสปา มาร์จินพาสปอร์ตแผดเผาโหลยโท่ย คำตอบแอคทีฟ พาสปอร์ตภควัทคีตาดิสเครดิต มุมมองแกรนด์สโตน ฮอตดอกไรเฟิล วาริชศาสตร์โรแมนติกเรซิน วานิลาไทเฮาออสซี่โปสเตอร์
-                                  </p>
-                                  <small>ความสนใจ</small>
-                                  <h4>
-                                    ความงาม, อาหาร, ท่องเที่ยว
-                                  </h4>
-                                </div>
-                              </div>
-                            </div>
+                            <card-influencer-profile ng-model="proposal.influencer"></card-influencer-profile>
 
                             <div class="message-past" ng-if="hasPastMessage()">
                                 <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>

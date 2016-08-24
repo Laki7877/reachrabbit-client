@@ -89,9 +89,11 @@ angular.module('myApp.service', ['satellizer'])
             /*
              * Get Profile
              */
-            getProfile: function() {
+            getProfile: function(id) {
+                var path = '/profile/';
+                if(id) path = path + id;
                 return $q(function(resolve, reject){
-                    $http.get('/profile').then(function(response){
+                    $http.get(path).then(function(response){
                         if(_.has(response.data, 'influencer.birthday')){
                             response.data.influencer.birthday = new Date(response.data.influencer.birthday);
                         }

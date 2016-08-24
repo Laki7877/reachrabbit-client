@@ -295,11 +295,11 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .directive('cardBrandDetail', [ function() {
+    .directive('cardBrandProfile', [ function() {
         return {
             restrict: 'AE',
             transclude: true,
-            templateUrl: 'components/templates/card-brand-detail.html',
+            templateUrl: 'components/templates/card-brand-profile.html',
             scope: {
                 brand: '=ngModel'
             },
@@ -308,11 +308,11 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .directive('cardInfluencerDetail', [ function() {
+    .directive('cardInfluencerProfile', [ function() {
         return {
             restrict: 'AE',
             transclude: true,
-            templateUrl: 'components/templates/card-influencer-detail.html',
+            templateUrl: 'components/templates/card-influencer-profile.html',
             scope: {
                 influencer: '=ngModel'
             },

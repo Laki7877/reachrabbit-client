@@ -1,0 +1,21 @@
+<div class="card-profile">
+  <div class="card-body">
+    <div class="card-image">
+      <img ng-src="{{ influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-responsive img-circle"
+      />
+    </div>
+    <div class="col-xs-10">
+        <small>เกี่ยวกับ {{ influencer.user.name }}</small>
+      <p>
+        {{influencer.about}}
+      </p>
+      <small>ความสนใจ</small>
+      <h4 ng-if="categories.length > 0 ">
+        {{ categories.join(",") }}
+      </h4>
+      <h4 ng-if="!categories.length || categories.length == 0">
+        ยังไม่มีข้อมูลนี้
+      </h4>
+    </div>
+  </div>
+</div>

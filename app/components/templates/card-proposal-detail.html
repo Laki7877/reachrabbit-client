@@ -19,11 +19,17 @@
                 <span class="icon-{{imedia.mediaId}}"></span> {{ imedia.followerCount | number }} คน
             </div>
         </div>
-        <div class="card-info-label">
+        <div class="card-info-label" ng-if="proposal.status == 'Selection'">
             ระยะเวลาการทำงาน
         </div>
-        <div class="card-info-content">
+        <div class="card-info-content" ng-if="proposal.status == 'Selection'">
             {{ proposal.completionTime.completionTime }}
+        </div>
+        <div class="card-info-label" ng-if="proposal.status == 'Working'">
+            กำหนดวันส่งงาน
+        </div>
+        <div class="card-info-content" ng-if="proposal.status == 'Working'">
+            {{ proposal.dueDate }}
         </div>
     </div>
 </div>

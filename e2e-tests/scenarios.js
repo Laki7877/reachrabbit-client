@@ -65,13 +65,14 @@ describe('Brand', function() {
 
         it('can signup when form is complete', function() {
             state.brandName.sendKeys(chance.capitalize(chance.word()));
-            state.name.sendKeys(chance.capitalize(chance.word()) + " Co Ltd");
+            state.brandName.sendKeys(chance.capitalize(chance.word()) + " Co Ltd");
             state.phoneNumber.sendKeys(chance.phone({ formatted: false }));
             state.email.sendKeys(browser.params.brand_login.user);
             state.password.sendKeys(browser.params.brand_login.password);
             state.submit_btn.click();
 
             //redirection wait
+            browser.ignoreSynchronization = true;
             browser.sleep(2300);
             //angular load wait
             browser.waitForAngular();
@@ -103,6 +104,7 @@ describe('Brand', function() {
             state.password.sendKeys(browser.params.brand_login.password);
             state.submit_btn.click();
 
+            browser.ignoreSynchronization = true;
             //redirection wait
             browser.sleep(2300);
             //angular load wait
@@ -120,15 +122,15 @@ describe('Brand', function() {
         });
 
         it('can find sample draft campaign', function() {
-            browser.waitForAngular();
+            browser.sleep(1000);
             var cards = element.all(by.repeater("x in myCampaign.content"));
             expect(cards.count()).toEqual(1);
             cards.first().click();
-
+            
         });
 
         it('can find inputs', function() {
-            browser.waitForAngular();
+            browser.sleep(1000);
 
             state.title = element(by.model('formData.title'));
             state.description = element(by.model('formData.description'));
@@ -172,7 +174,7 @@ describe('Brand', function() {
             state.uploaders.get(0).sendKeys(absolutePath);
 
             state.save_draft_btn.click();
-            browser.waitForAngular();
+            browser.sleep(1000);
 
             expect($('.alert.alert-success').isPresent()).toBe(true);
         });
@@ -209,20 +211,22 @@ describe('Brand', function() {
         });
 
         it('can find saved campaign', function() {
-            browser.waitForAngular();
+            browser.sleep(1000);
             var cards = element.all(by.repeater("x in myCampaign.content"));
             expect(cards.count()).toEqual(1);
             cards.first().click();
         });
 
         it('can publish drafted campaign', function() {
-            browser.waitForAngular();
+            browser.sleep(1000);
             state.publish_btn = element(by.css('.btn-primary'));
 
             expect(state.publish_btn.isPresent()).toBe(true);
 
             state.publish_btn.click();
 
+            browser.sleep(1000);
+            
             expect($('.alert.alert-success').isPresent()).toBe(true);
             // browser.pause();
         });
@@ -236,7 +240,7 @@ describe('Brand', function() {
         });
 
         it('can find all fields', function() {
-            browser.waitForAngular();
+            browser.sleep(1000);
             state.about = element(by.model("formData.brand.about"));
             state.name = element(by.model("formData.brand.brandName"));
             state.website = element(by.model('formData.brand.website'));
@@ -248,7 +252,7 @@ describe('Brand', function() {
         });
 
         it('can save', function() {
-            browser.waitForAngular();
+            browser.sleep(1000);
         });
 
     });
@@ -256,5 +260,9 @@ describe('Brand', function() {
 });
 
 describe('Influencer', function() {
+
+});
+
+describe('Chatting', function() {
 
 });

@@ -111,12 +111,37 @@ angular.module('myApp.service', ['satellizer'])
             /*
              * Get Profile
              */
-            getProfile: function() {
+            getProfile: function(id) {
+                var path = '/profile/';
+                if(id) path = path + id;
                 return $q(function(resolve, reject){
-                    $http.get('/profile').then(function(response){
+                    $http.get(path).then(function(response){
                         if(_.has(response.data, 'influencer.birthday')){
                             response.data.influencer.birthday = new Date(response.data.influencer.birthday);
                         }
+
+                        //TOOD: QUick fix until DB team go one way
+                        var x = Object.keys(response.data);
+                        response.data.user = {};
+                        x.forEach(function(key){
+                            //out in
+                            response.data.user[key] = response.data[key];
+                            if(response.data.influencer){
+                                //in to out
+                                var infl = Object.keys(response.data.influencer);
+                                infl.forEach(function(infKey){
+                                    response.data[infKey] = response.data.influencer[infKey];
+                                });
+                            }
+                            if(response.data.brand){
+                                //in to out
+                                var brad = Object.keys(response.data.brand);
+                                brad.forEach(function(infKey){
+                                    response.data[infKey] = response.data.brand[infKey];
+                                });
+                            }
+                        });
+
                         resolve(response);
                     })
                     .catch(function(err){

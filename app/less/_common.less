@@ -543,7 +543,7 @@ a.secondary{
   }
 }
 
-.card-brand-profile{
+.card-profile{
   &:extend(.card);
   .card-body{
     padding: 15px 0px;
@@ -554,6 +554,25 @@ a.secondary{
   .card-title{
     .make-xs-column(10);
     margin-bottom: 15px;
+  }
+  small{
+    color: @color-grey-darker;
+  }
+  h4{
+    color: @color-theme-secondary;
+  }
+  a.link-edit-profile{
+    display: inline-block;
+    float: right;
+    margin-top: -20px;
+  }
+  .social-info{
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    .social-icon{
+      margin-right: 0px;
+    }
   }
 }
 
@@ -799,8 +818,8 @@ a.secondary{
       right: 8px;
       background: @color-red;
       display:block;
-      width: 4px;
-      height: 4px;
+      width: 6px;
+      height: 6px;
       border-radius: 15px;
   }
   li > a{
@@ -1019,8 +1038,11 @@ a.secondary{
     }
     .link-view-profile{
       float: left;
-      margin-left: 5px;
+      margin-left: 10px;
       color: @color-theme-secondary;
+      i{
+        margin-right: 5px;
+      }
     }
     .chatbox-status{
       float: right;
@@ -1044,12 +1066,10 @@ a.secondary{
     }
     .message{
       &:extend(.media all);
-      padding: 15px 0px;
-      margin: 0px 15px;
-      border-top: 1px solid @color-grey;
+      padding: 10px 15px;
       .message-left{
         &:extend(.media-left all);
-        padding-right: 30px;
+        padding-right: 15px;
         .media-object{
           &:extend(.img-circle);
           width: 40px;
@@ -1068,12 +1088,7 @@ a.secondary{
           }
         }
         .message-content{
-          textarea{
-            width: 100%;
-            resize: none;
-            border:none;
-            outline: none;
-          }
+          color:@color-grey-darker;
           span {
             white-space: pre-wrap;
           }
@@ -1083,8 +1098,34 @@ a.secondary{
           }
         }
       }
+      &.bot-message{
+        background: @color-blue-lighter;
+        .message-body{
+          .message-heading{
+            h4{
+              color: @color-blue;
+            }
+            .message-time{
+              color: @color-blue;
+            }
+          }
+          .message-content{
+            color: @color-blue;
+          }
+        }
+      }
+    }
+    .card-profile{
+      background: none;
+      margin: 15px 15px 10px 15px;
+      box-shadow: none;
+      border: 1px solid @color-grey;
+      .card-image{
+        padding-right: 0px;
+      }
     }
   }
+
   ::-webkit-scrollbar-track{
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
     background-color: @color-grey-darker;
@@ -1206,6 +1247,12 @@ a.secondary{
    background-color: red;
 }
 
-
+/*---Eartamoto Special Code---*/
+textarea.static-textarea{
+ width: 100%;
+ resize: none;
+ border:none;
+ outline: none;
+}
 
 /*---End of the CSS World---*/

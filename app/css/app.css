@@ -6193,7 +6193,7 @@ button.list-group-item-danger.active:focus {
 .card,
 .radio-card,
 .card-campaign-list-item,
-.card-brand-profile,
+.card-profile,
 .card-campaign-header,
 .card-campaign-description,
 .card-thumbnail,
@@ -7888,7 +7888,7 @@ a.secondary {
 .card,
 .radio-card,
 .card-campaign-list-item,
-.card-brand-profile,
+.card-profile,
 .card-campaign-header,
 .card-campaign-description,
 .card-thumbnail,
@@ -8108,10 +8108,10 @@ a.secondary {
 .card-campaign-list-item .card-image {
   height: 136px;
 }
-.card-brand-profile .card-body {
+.card-profile .card-body {
   padding: 15px 0px;
 }
-.card-brand-profile .card-image {
+.card-profile .card-image {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -8119,7 +8119,7 @@ a.secondary {
   padding-left: 15px;
   padding-right: 15px;
 }
-.card-brand-profile .card-title {
+.card-profile .card-title {
   position: relative;
   float: left;
   width: 83.33333333%;
@@ -8127,6 +8127,25 @@ a.secondary {
   padding-left: 15px;
   padding-right: 15px;
   margin-bottom: 15px;
+}
+.card-profile small {
+  color: #8692a8;
+}
+.card-profile h4 {
+  color: #16bbac;
+}
+.card-profile a.link-edit-profile {
+  display: inline-block;
+  float: right;
+  margin-top: -20px;
+}
+.card-profile .social-info {
+  display: inline-block;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+.card-profile .social-info .social-icon {
+  margin-right: 0px;
 }
 .card-campaign-header .card-body {
   padding: 0px;
@@ -9133,8 +9152,8 @@ fieldset[disabled] .btn-clear.active {
   right: 8px;
   background: #e62117;
   display: block;
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
   border-radius: 15px;
 }
 .navbar li > a {
@@ -9331,8 +9350,11 @@ fieldset[disabled] .btn-clear.active {
 }
 .chatbox-card .chatbox-header .link-view-profile {
   float: left;
-  margin-left: 5px;
+  margin-left: 10px;
   color: #16bbac;
+}
+.chatbox-card .chatbox-header .link-view-profile i {
+  margin-right: 5px;
 }
 .chatbox-card .chatbox-header .chatbox-status {
   float: right;
@@ -9353,12 +9375,10 @@ fieldset[disabled] .btn-clear.active {
   padding: 23px 10px 20px;
 }
 .chatbox-card .message-area .message {
-  padding: 15px 0px;
-  margin: 0px 15px;
-  border-top: 1px solid #d8dfe7;
+  padding: 10px 15px;
 }
 .chatbox-card .message-area .message .message-left {
-  padding-right: 30px;
+  padding-right: 15px;
 }
 .chatbox-card .message-area .message .message-left .media-object {
   width: 40px;
@@ -9369,17 +9389,35 @@ fieldset[disabled] .btn-clear.active {
 .chatbox-card .message-area .message .message-body .message-heading .message-time {
   float: right;
 }
-.chatbox-card .message-area .message .message-body .message-content textarea {
-  width: 100%;
-  resize: none;
-  border: none;
-  outline: none;
+.chatbox-card .message-area .message .message-body .message-content {
+  color: #8692a8;
 }
 .chatbox-card .message-area .message .message-body .message-content span {
   white-space: pre-wrap;
 }
 .chatbox-card .message-area .message .message-body .message-content img {
   margin-top: 10px;
+}
+.chatbox-card .message-area .message.bot-message {
+  background: #bfd5fa;
+}
+.chatbox-card .message-area .message.bot-message .message-body .message-heading h4 {
+  color: #648acb;
+}
+.chatbox-card .message-area .message.bot-message .message-body .message-heading .message-time {
+  color: #648acb;
+}
+.chatbox-card .message-area .message.bot-message .message-body .message-content {
+  color: #648acb;
+}
+.chatbox-card .message-area .card-profile {
+  background: none;
+  margin: 15px 15px 10px 15px;
+  box-shadow: none;
+  border: 1px solid #d8dfe7;
+}
+.chatbox-card .message-area .card-profile .card-image {
+  padding-right: 0px;
 }
 .chatbox-card ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
@@ -9487,6 +9525,13 @@ fieldset[disabled] .btn-clear.active {
 }
 .api_override_box span {
   background-color: red;
+}
+/*---Eartamoto Special Code---*/
+textarea.static-textarea {
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
 }
 /*---End of the CSS World---*/
 /*---Layout Portal---*/

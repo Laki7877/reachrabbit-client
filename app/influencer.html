@@ -19,7 +19,7 @@
 
 </head>
 
-<body class="layout-influencer">
+<body class="layout-influencer" ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}">
     <div class="api_override_box" ng-cloak ng-if="API_OVERRIDE_ACTIVE">
         <span class="label label-danger">API OVERRIDE ON</span>
     </div>

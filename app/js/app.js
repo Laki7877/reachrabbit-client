@@ -157,7 +157,6 @@ angular.module('myApp', [
 
   $rootScope.pollInbox = function(immediately) {
     var profile = $rootScope.getProfile();
-    console.log('polling!', profile);
     if(profile) {
       ProposalService.countInbox({
           immediate: immediately

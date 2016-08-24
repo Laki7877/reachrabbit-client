@@ -19,6 +19,28 @@ angular.module('myApp.service', ['satellizer'])
             Config.API_BASE_URI = $window.sessionStorage.API_OVERRIDE;
         }
     }])
+    .factory('util', ['$window', function($window) {
+        return {
+            warnOnExit: function(fn) {
+                $window.onbeforeunload = function() {   
+                    //Make it prompt on fn return true
+                    if(!fn()) {
+                        return null;
+                    }
+
+                    var message = "",
+                        e = e || $window.event;
+                    // For IE and Firefox
+                    if (e) {
+                        e.returnValue = message;
+                    }
+
+                    // For Safari
+                    return message;
+                };
+            }
+        };
+    }])
     .factory('baseUrlInjector', ['Config', '$window', function(Config, $window) {
         var inj = {
             request: function(cc) {

@@ -88,6 +88,11 @@ angular.module('myApp.influencer.routes', ['ui.router'])
                 url: '/influencer-workroom/:proposalId',
                 templateUrl: 'view/influencer-workroom.html',
                 controller: 'WorkroomController'
+            })
+            .state('influencer-brand-profile', {
+                url: '/influencer-brand-profile/:brandId',
+                templateUrl: 'view/influencer-brand-profile.html',
+                controller: 'InfluencerBrandProfile'
             });
 
         //TODO: Campaign-detail

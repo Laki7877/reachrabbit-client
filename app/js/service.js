@@ -303,6 +303,13 @@ angular.module('myApp.service', ['satellizer'])
                     params: params
                 });
             },
+            update: function(proposal, campaignId){
+                return $http({
+                    url: "/proposals/" + proposal.proposalId,
+                    method: "PUT",
+                    data: proposal
+                });
+            },
             count: function(params) {
               return $http({
                     url: '/proposals/count',

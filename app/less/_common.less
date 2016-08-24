@@ -1058,12 +1058,10 @@ a.secondary{
     }
     .message{
       &:extend(.media all);
-      padding: 15px 0px;
-      margin: 0px 15px;
-      border-top: 1px solid @color-grey;
+      padding: 10px 15px;
       .message-left{
         &:extend(.media-left all);
-        padding-right: 30px;
+        padding-right: 15px;
         .media-object{
           &:extend(.img-circle);
           width: 40px;
@@ -1082,7 +1080,7 @@ a.secondary{
           }
         }
         .message-content{
-
+          color:@color-grey-darker;
           span {
             white-space: pre-wrap;
           }
@@ -1092,18 +1090,30 @@ a.secondary{
           }
         }
       }
+      &.bot-message{
+        background: @color-blue-lighter;
+        .message-body{
+          .message-heading{
+            h4{
+              color: @color-blue;
+            }
+            .message-time{
+              color: @color-blue;
+            }
+          }
+          .message-content{
+            color: @color-blue;
+          }
+        }
+      }
     }
     .card-profile{
-      margin: 15px 15px 0px 15px;
+      margin: 15px 15px 10px 15px;
       box-shadow: none;
       border: 1px solid @color-grey;
       .card-image{
         padding-right: 0px;
       }
-    }
-    .message-wrapper:nth-child(2) .message{
-      margin-top: 0px;
-      border-top: 0px;
     }
   }
 

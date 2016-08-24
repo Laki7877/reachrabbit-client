@@ -314,9 +314,15 @@ angular.module('myApp.directives', ['myApp.service'])
             transclude: true,
             templateUrl: 'components/templates/card-influencer-profile.html',
             scope: {
-                influencer: '=ngModel'
+                influencer: '=ngModel',
+                showSocialData: '=?'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
+                
+                if(!scope.showSocialData){
+                    scope.showSocialData = true;
+                }
+
                 scope.joinCat = function (A) {
                     return A.map(function(o){
                         return o.categoryName;
@@ -477,7 +483,7 @@ angular.module('myApp.directives', ['myApp.service'])
             restrict: 'EA',
             transclude: true,
             scope: {
-                historyback: '='
+                historyback: '=?'
             },
             templateUrl: 'components/templates/zone-header.html',
             link: function (scope, element, attrs, ctrl, transclude) {

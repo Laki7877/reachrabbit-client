@@ -65,7 +65,7 @@ describe('Brand', function() {
 
         it('can signup when form is complete', function() {
             state.brandName.sendKeys(chance.capitalize(chance.word()));
-            state.name.sendKeys(chance.capitalize(chance.word()) + " Co Ltd");
+            state.brandName.sendKeys(chance.capitalize(chance.word()) + " Co Ltd");
             state.phoneNumber.sendKeys(chance.phone({ formatted: false }));
             state.email.sendKeys(browser.params.brand_login.user);
             state.password.sendKeys(browser.params.brand_login.password);

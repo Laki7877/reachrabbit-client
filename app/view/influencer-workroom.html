@@ -13,7 +13,7 @@
                     <div class="chatbox-card">
                         <div class="chatbox-header">
                             <h3>{{ proposal.campaign.brand.brandName }}</h3>
-                            <a class="link-view-profile" ui-sref="influencer-brand-profile"><i class="fa fa-info-circle"></i>ดูโปรไฟล์</a>
+                            <a class="link-view-profile" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId })"><i class="fa fa-info-circle"></i>ดูโปรไฟล์</a>
                             <div class="chatbox-status">
                                 <span class="status active">คัดเลือก</span>
                                 <i class="fa fa-angle-right"></i>
@@ -24,9 +24,9 @@
                         </div>
                         <div class="message-area" scroll-glue>
 
-                            <card-influencer-profile ng-model="proposal.influencer"></card-influencer-profile>
-
-
+                            <card-influencer-profile ng-model="proposal.influencer" show-social-data="false">
+                                <a ui-sref="influencer-profile" class="link-edit-profile">แก้ไขโปรไฟล์</a>
+                            </card-influencer-profile>
                             <div class="message-past" ng-if="hasPastMessage()">
                                 <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
                             </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-xs-3">
                     <card-proposal-detail ng-model="proposal">
-                        <button class="btn-secondary btn-width-max">แก้ไขข้อเสนอ</button>
+                        <button class="btn-secondary btn-width-max" ng-click="editProposal()">แก้ไขข้อเสนอ</button>
                     </card-proposal-detail>
 
                     <div class="card-campaign-thumbnail">

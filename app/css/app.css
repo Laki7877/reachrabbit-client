@@ -9429,12 +9429,6 @@ fieldset[disabled] .btn-clear.active {
 .modal-content {
   border-radius: 0px;
 }
-textarea.static-textarea {
-  width: 100%;
-  resize: none;
-  border: none;
-  outline: none;
-}
 .modal-dialog.modal-md {
   width: 500px;
 }
@@ -9487,6 +9481,13 @@ textarea.static-textarea {
 }
 .api_override_box span {
   background-color: red;
+}
+/*---Eartamoto Special Code---*/
+textarea.static-textarea {
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
 }
 /*---End of the CSS World---*/
 /*---Layout Portal---*/

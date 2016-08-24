@@ -10,10 +10,10 @@
         {{influencer.about}}
       </p>
       <small>ความสนใจ</small>
-      <h4 ng-if="categories.length > 0 ">
-        {{ categories.join(",") }}
+      <h4 ng-if="influencer.categories.length > 0 ">
+        {{ joinCat(influencer.categories) }}
       </h4>
-      <h4 ng-if="!categories.length || categories.length == 0">
+      <h4 ng-if="!influencer.categories.length || influencer.categories.length == 0">
         ยังไม่มีข้อมูลนี้
       </h4>
     </div>

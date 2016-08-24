@@ -691,6 +691,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         .then(function(response){
             $scope.influencer = response.data;
         });
+        
     }]);
 
 

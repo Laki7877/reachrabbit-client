@@ -6194,6 +6194,7 @@ button.list-group-item-danger.active:focus {
 .radio-card,
 .card-campaign-list-item,
 .card-brand-profile,
+.card-profile,
 .card-campaign-header,
 .card-campaign-description,
 .card-thumbnail,
@@ -7889,6 +7890,7 @@ a.secondary {
 .radio-card,
 .card-campaign-list-item,
 .card-brand-profile,
+.card-profile,
 .card-campaign-header,
 .card-campaign-description,
 .card-thumbnail,
@@ -8127,6 +8129,24 @@ a.secondary {
   padding-left: 15px;
   padding-right: 15px;
   margin-bottom: 15px;
+}
+.card-profile .card-body {
+  padding: 15px 0px;
+}
+.card-profile .card-image {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-right: 0px;
+}
+.card-profile small {
+  color: #8692a8;
+}
+.card-profile h4 {
+  color: #16bbac;
 }
 .card-campaign-header .card-body {
   padding: 0px;
@@ -9133,8 +9153,8 @@ fieldset[disabled] .btn-clear.active {
   right: 8px;
   background: #e62117;
   display: block;
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
   border-radius: 15px;
 }
 .navbar li > a {
@@ -9331,8 +9351,11 @@ fieldset[disabled] .btn-clear.active {
 }
 .chatbox-card .chatbox-header .link-view-profile {
   float: left;
-  margin-left: 5px;
+  margin-left: 10px;
   color: #16bbac;
+}
+.chatbox-card .chatbox-header .link-view-profile i {
+  margin-right: 5px;
 }
 .chatbox-card .chatbox-header .chatbox-status {
   float: right;
@@ -9374,6 +9397,15 @@ fieldset[disabled] .btn-clear.active {
 }
 .chatbox-card .message-area .message .message-body .message-content img {
   margin-top: 10px;
+}
+.chatbox-card .message-area .card-profile {
+  margin: 15px 15px 0px 15px;
+  box-shadow: none;
+  border: 1px solid #d8dfe7;
+}
+.chatbox-card .message-area .message-wrapper:nth-child(2) .message {
+  margin-top: 0px;
+  border-top: 0px;
 }
 .chatbox-card ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);

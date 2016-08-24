@@ -163,7 +163,9 @@ angular.module('myApp', [
           immediate: immediately
         })
         .then(function(res) {
-          $rootScope.inboxCount = res.data;
+          if(!_.isNil(res.data)) {
+            $rootScope.inboxCount = res.data;
+          }
           $rootScope.pollInbox(false);
         });
     }

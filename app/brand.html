@@ -39,7 +39,7 @@
                     <li ui-sref-active="active"><a ui-sref="brand-campaign-list">My Campaign</a></li>
                     <li ui-sref-active="active">
                       <a ui-sref="brand-inbox">Inbox</a>
-                      <span class="message-count" ng-if="$root.inboxCount > 0"></span>
+                      <div class="inbox-alert" ng-if="$root.inboxCount > 0"></div>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

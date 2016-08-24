@@ -9400,6 +9400,7 @@ fieldset[disabled] .btn-clear.active {
 }
 .chatbox-card .message-area .message.bot-message {
   background: #bfd5fa;
+  border-bottom: 1px solid #ffffff;
 }
 .chatbox-card .message-area .message.bot-message .message-body .message-heading h4 {
   color: #648acb;

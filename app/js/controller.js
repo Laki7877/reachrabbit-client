@@ -404,6 +404,9 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             sort: ['messageUpdatedAt,desc']
         });
         $scope.loadProposalCounts();
+    }])
+    .controller('InfluencerBrandProfile', ['$scope', function($scope){
+
     }]);
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
@@ -681,6 +684,9 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             sort: ['messageUpdatedAt,desc']
         });
         $scope.loadProposalCounts();
+    }])
+    .controller('BrandInfluencerProfile', ['$scope', function($scope){
+        
     }]);
 
 

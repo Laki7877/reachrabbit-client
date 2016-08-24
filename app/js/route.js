@@ -55,6 +55,11 @@ angular.module('myApp.brand.routes', ['ui.router'])
                 url: '/brand-workroom/:proposalId',
                 templateUrl: 'view/brand-workroom.html',
                 controller: 'WorkroomController'
+            })
+            .state('brand-influencer-profile', {
+                url: '/brand-influencer-profile/:influencerId',
+                templateUrl: 'view/brand-influencer-profile.html',
+                controller: 'BrandInfluencerProfile'
             });
 
     }]);
@@ -88,6 +93,11 @@ angular.module('myApp.influencer.routes', ['ui.router'])
                 url: '/influencer-workroom/:proposalId',
                 templateUrl: 'view/influencer-workroom.html',
                 controller: 'WorkroomController'
+            })
+            .state('influencer-brand-profile', {
+                url: '/influencer-brand-profile/:brandId',
+                templateUrl: 'view/influencer-brand-profile.html',
+                controller: 'InfluencerBrandProfile'
             });
 
         //TODO: Campaign-detail

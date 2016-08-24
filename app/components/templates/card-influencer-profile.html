@@ -6,15 +6,18 @@
     </div>
     <div class="col-xs-10">
         <small>เกี่ยวกับ {{ influencer.user.name }}</small>
-      <p>
+      <p ng-if="influencer.about.length > 0">
         {{influencer.about}}
+      </p>
+      <p ng-if="!influencer.about.length || influencer.about.length == 0">
+        -
       </p>
       <small>ความสนใจ</small>
       <h4 ng-if="influencer.categories.length > 0 ">
         {{ joinCat(influencer.categories) }}
       </h4>
       <h4 ng-if="!influencer.categories.length || influencer.categories.length == 0">
-        ยังไม่มีข้อมูลนี้
+        -
       </h4>
     </div>
   </div>

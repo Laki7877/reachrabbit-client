@@ -8139,6 +8139,14 @@ a.secondary {
   float: right;
   margin-top: -20px;
 }
+.card-profile .social-info {
+  display: inline-block;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+.card-profile .social-info .social-icon {
+  margin-right: 0px;
+}
 .card-campaign-header .card-body {
   padding: 0px;
 }
@@ -9403,6 +9411,7 @@ fieldset[disabled] .btn-clear.active {
   color: #648acb;
 }
 .chatbox-card .message-area .card-profile {
+  background: none;
   margin: 15px 15px 10px 15px;
   box-shadow: none;
   border: 1px solid #d8dfe7;

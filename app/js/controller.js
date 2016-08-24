@@ -263,7 +263,6 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     ])
     .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService', '$uibModal', 'DataService',
         function($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService) {
-            console.log($stateParams.campaignId);
             $scope.campaignNee = null;
             $scope.alert = new NcAlert();
             $scope.keywordMap = function(arr) {
@@ -607,7 +606,12 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 $scope.createMode = true;
             }
 
-
+            $scope.isInvalidMedia = function() {
+                return $scope.formData.media.length === 0 && $scope.form.$submitted && $scope.formData.status == 'Open';
+            };
+            $scope.isPublishing = function() {
+                return $scope.formData.status === 'Open';
+            };
 
             $scope.save = function(formData, mediaBooleanDict, mediaObjectDict, status) {
                 $scope.formData.brand = UserProfile.get().brand;
@@ -616,7 +620,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
                 //check for publish case
                 if (status == 'Open') {
-                    if (!$scope.form.$valid) {
+                    if (!$scope.form.$valid || $scope.formData.media.length === 0) {
+                        $scope.form.$setSubmitted();
                         $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องให้ถูกต้องและครบถ้วน');
                         return;
                     }
@@ -763,6 +768,8 @@ angular.module('myApp.portal.controller', ['myApp.service'])
     .controller('BrandSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
         var u = UserProfile.get();
 
+        $scope.formData = {};
+
         if(_.get(u, 'influencer')){
             $window.location.href = "/influencer.html#/influencer-campaign-list";
             return;
@@ -774,6 +781,10 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         }
 
         $scope.formData = {};
+
+        $scope.$watch('formData.username', function(e) {
+            console.log($scope.formData);
+        }, true);
         $window.localStorage.removeItem('token');
         $scope.messageCode = $location.search().message;
         $scope.alert = new NcAlert();
@@ -782,9 +793,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             $scope.alert.warning("<strong>401</strong> Unauthorized or Session Expired");
         }
 
-        $scope.login = function(username, password) {
+        $scope.login = function() {
             $location.search('message', 'nop');
-            AccountService.getToken(username, password)
+            AccountService.getToken($scope.formData.username, $scope.formData.password)
                 .then(function(response) {
                     var token = response.data.token;
                     $window.localStorage.token = token;

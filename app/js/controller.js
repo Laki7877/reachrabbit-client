@@ -118,6 +118,11 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             $scope.msgLimit = 30;
             $scope.totalElements = 0;
 
+            //Select Proposal
+            $scope.selectProposal = function(){
+                
+            };
+
             //Edit Proposal
             $scope.editProposal = function() {
                 //popup a modal
@@ -284,7 +289,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                             return $scope.campaignNee;
                         },
                         proposal: function(){
-                            return $scope.proposal;
+                            return false;
                         }
                     }
                 });

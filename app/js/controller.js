@@ -267,8 +267,6 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     ])
     .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'DataService', 'ExampleCampaigns', '$rootScope',
         function($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope) {
-
-            $scope.filter = {};
             $scope.handleUserClickThumbnail = function(c) {
                 $state.go('influencer-campaign-detail-open', {
                     campaignId: c.campaignId
@@ -343,12 +341,18 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         }
     ])
     .controller('InfluencerInboxController', ['$scope', '$filter', 'ProposalService', 'moment', function($scope, $filter, ProposalService, moment) {
-        $scope.params = {};
+        $scope.statusCounts = {};
         $scope.load = function(params) {
             $scope.params = params;
             ProposalService.getAll(params)
                 .then(function(response) {
                     $scope.proposals = response.data;
+                    _.forEach($scope.proposals.content, function(proposal) {
+                      ProposalService.countUnreadMessages(proposal.proposalId)
+                        .then(function(res) {
+                          proposal.unread = res.data;
+                        });
+                    });
                 });
             ProposalService.getActive()
                 .then(function(response) {
@@ -363,6 +367,26 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         campaignId: undefined
                     });
                 });
+        };
+        $scope.loadProposalCounts = function() {
+          //Selection status
+          ProposalService.count({
+            status: 'Selection'
+          }).then(function(res) {
+            $scope.statusCounts.selection = res.data;
+          });
+          //Working status
+          ProposalService.count({
+            status: 'Working'
+          }).then(function(res) {
+            $scope.statusCounts.working = res.data;
+          });
+          //Complete status
+          ProposalService.count({
+            status: 'Complete'
+          }).then(function(res) {
+            $scope.statusCounts.complete = res.data;
+          });
         };
         $scope.lastMessageUpdated = function(proposal) {
             if (moment(proposal.messageUpdatedAt).isBefore(moment().endOf('day').subtract(1, 'days'))) {
@@ -379,6 +403,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $scope.load({
             sort: ['messageUpdatedAt,desc']
         });
+        $scope.loadProposalCounts();
     }]);
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
@@ -593,10 +618,18 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         };
     }])
     .controller('BrandInboxController', ['$scope', '$filter', 'ProposalService', 'CampaignService', 'moment', function($scope, $filter, ProposalService, CampaignService, moment) {
+        $scope.statusCounts = {};
         $scope.load = function(params) {
+            $scope.params = params;
             ProposalService.getAll(params)
                 .then(function(response) {
                     $scope.proposals = response.data;
+                    _.forEach($scope.proposals.content, function(proposal) {
+                      ProposalService.countUnreadMessages(proposal.proposalId)
+                        .then(function(res) {
+                          proposal.unread = res.data;
+                        });
+                    });
                 });
             CampaignService.getActiveCampaigns()
                 .then(function(response) {
@@ -611,6 +644,26 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         campaignId: undefined
                     });
                 });
+        };
+        $scope.loadProposalCounts = function() {
+          //Selection status
+          ProposalService.count({
+            status: 'Selection'
+          }).then(function(res) {
+            $scope.statusCounts.selection = res.data;
+          });
+          //Working status
+          ProposalService.count({
+            status: 'Working'
+          }).then(function(res) {
+            $scope.statusCounts.working = res.data;
+          });
+          //Complete status
+          ProposalService.count({
+            status: 'Complete'
+          }).then(function(res) {
+            $scope.statusCounts.complete = res.data;
+          });
         };
         $scope.lastMessageUpdated = function(proposal) {
             if (moment(proposal.messageUpdatedAt).isBefore(moment().endOf('day').subtract(1, 'days'))) {
@@ -627,6 +680,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         $scope.load({
             sort: ['messageUpdatedAt,desc']
         });
+        $scope.loadProposalCounts();
     }]);
 
 
@@ -646,7 +700,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 angular.module('myApp.portal.controller', ['myApp.service'])
     .controller('BrandSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
         var u = UserProfile.get();
-        
+
         if(_.get(u, 'influencer')){
             $window.location.href = "/influencer.html#/influencer-campaign-list";
             return;
@@ -656,7 +710,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             $window.location.href = "/brand.html#/brand-campaign-list";
             return;
         }
-        
+
         $scope.formData = {};
         $window.localStorage.removeItem('token');
         $scope.messageCode = $location.search().message;

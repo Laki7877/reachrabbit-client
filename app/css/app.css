@@ -9127,6 +9127,16 @@ fieldset[disabled] .btn-clear.active {
 .navbar .navbar-brand img {
   height: 20px;
 }
+.navbar .inbox-alert {
+  position: absolute;
+  top: 14px;
+  right: 8px;
+  background: #e62117;
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 15px;
+}
 .navbar li > a {
   line-height: 20px;
   padding: 15px 0px;

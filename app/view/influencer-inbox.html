@@ -18,21 +18,21 @@
         <div class="tab-selector">
           <div class="tab active">
             <h5>คัดเลือก</h5>
-            <h3>5</h3>
+            <h3 ng-bind="statusCounts.selection">-</h3>
           </div>
           <div class="tab-next-step">
             <i class="fa fa-angle-right fa-2x"></i>
           </div>
           <div class="tab">
             <h5>ดำเนินการ</h5>
-            <h3>5</h3>
+            <h3 ng-bind="statusCounts.working">-</h3>
           </div>
           <div class="tab-next-step">
             <i class="fa fa-angle-right fa-2x"></i>
           </div>
           <div class="tab">
             <h5>เสร็จสิ้น</h5>
-            <h3>5</h3>
+            <h3 ng-bind="statusCounts.complete">-</h3>
           </div>
         </div>
         <div class="card-body">
@@ -55,12 +55,12 @@
                 <td class="col-button">
                   <button class="btn-secondary" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
                   <!-- For next sprint -->
-                  <!-- <span class="message-count">5</span> -->
+                  <span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span>
                 </td>
               </tr>
             </tbody>
           </table>
-          <table-static ng-if="proposals.totalElements == 0">ไม่มี Campaign</table-static>        
+          <table-static ng-if="proposals.totalElements == 0">ไม่มี Campaign</table-static>
         </div>
       </div>
       <div class="info-text text-center">

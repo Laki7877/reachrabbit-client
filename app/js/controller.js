@@ -641,6 +641,11 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             });
 
         $scope.saveProfile = function(form, profile) {
+            $scope.form.$setSubmitted();
+            if (!$scope.form.$valid) {
+                $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน');
+                return;
+            }
             AccountService.saveProfile(profile)
                 .then(function(response) {
                     delete response.data.password;

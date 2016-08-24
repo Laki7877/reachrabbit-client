@@ -112,8 +112,8 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$stateParams', 'ProposalService', 'NcAlert','$state',
-        function($scope, $uibModal, $interval, $stateParams, ProposalService, NcAlert, $state) {
+    .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$stateParams', 'ProposalService', 'NcAlert','$state', '$location',
+        function($scope, $uibModal, $interval, $stateParams, ProposalService, NcAlert, $state, $location) {
             $scope.msglist = [];
             $scope.msgLimit = 30;
             $scope.totalElements = 0;
@@ -146,7 +146,9 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     if (!proposal || !proposal.proposalId) {
                         return;
                     }
-                    $state.go('influencer-workroom', { proposalId: proposal.proposalId });
+                    // $location.reload();
+                    window.location.reload();
+                    // $state.go('influencer-workroom', { proposalId: proposal.proposalId });
                 });
             };
 

@@ -64,8 +64,8 @@ describe('Brand', function() {
         });
 
         it('can signup when form is complete', function() {
-            state.brandName.sendKeys(chance.capitalize(chance.word()));
-            state.brandName.sendKeys(chance.capitalize(chance.word()) + " Co Ltd");
+            state.name.sendKeys(chance.capitalize(chance.word({length:10})));
+            state.brandName.sendKeys(chance.capitalize(chance.word({length:10})) + " Co Ltd");
             state.phoneNumber.sendKeys(chance.phone({ formatted: false }));
             state.email.sendKeys(browser.params.brand_login.user);
             state.password.sendKeys(browser.params.brand_login.password);
@@ -90,8 +90,8 @@ describe('Brand', function() {
         })
 
         it('can find inputs', function() {
-            state.username = element(by.model('username'));
-            state.password = element(by.model('password'));
+            state.username = element(by.model('formData.username'));
+            state.password = element(by.model('formData.password'));
             state.submit_btn = element(by.css('.btn-primary'));
 
             expect(state.username.isPresent()).toBe(true);

@@ -14,11 +14,11 @@ exports.config = {
     params: {
         brand_login: {
             user: 'uniqlo@brands.org',
-            password: '1111'
+            password: 'test11121'
         },
         jesus_influencer_login: {
             user: 'influencer@gmail.com',
-            password: 'test1234'
+            password: 'test12324'
         }
     },
 

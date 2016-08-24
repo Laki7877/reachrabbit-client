@@ -13,9 +13,9 @@
       <div ng-show="showSocialData">
         <small>จำนวนผู้ติดตาม</small>
       <h4>
-         <span ng-repeat="imedia in influencer.influencerMedias">
-         <span class="icon-{{imedia.mediaId}}"></span> {{ imedia.followerCount | number }} คน
-       </span>
+         <span ng-repeat="imedia in influencer.influencerMedias" class="social-info">
+           <span class="icon-{{imedia.media.mediaId}} social-icon"></span> {{ imedia.followerCount | number }} คน
+         </span>
       </h4>
       </div>
 

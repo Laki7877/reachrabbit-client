@@ -8148,6 +8148,11 @@ a.secondary {
 .card-profile h4 {
   color: #16bbac;
 }
+.card-profile a.link-edit-profile {
+  display: inline-block;
+  float: right;
+  margin-top: -20px;
+}
 .card-campaign-header .card-body {
   padding: 0px;
 }

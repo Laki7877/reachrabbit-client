@@ -120,7 +120,10 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
 
             //Select Proposal
             $scope.selectProposal = function(){
-                
+                ProposalService.updateStatus($scope.proposal.proposalId, 'Working')
+                .then(function(od){
+                    console.log(od);
+                });
             };
 
             //Edit Proposal

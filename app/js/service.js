@@ -14,17 +14,17 @@ angular.module('myApp.service', ['satellizer'])
         INSTAGRAM_APP_ID: "c428876109c44daa9a54cf568e96e483",
         YOUTUBE_APP_ID: "486841241364-75hb5e24afp7msiitf8t36skfo3mr0h7.apps.googleusercontent.com"
     })
-    .run(['Config', '$window', function(Config, $window) {
+    .run(['Config', '$window', function (Config, $window) {
         if ($window.sessionStorage.API_OVERRIDE) {
             Config.API_BASE_URI = $window.sessionStorage.API_OVERRIDE;
         }
     }])
-    .factory('util', ['$window', function($window) {
+    .factory('util', ['$window', function ($window) {
         return {
-            warnOnExit: function(fn) {
-                $window.onbeforeunload = function() {   
+            warnOnExit: function (fn) {
+                $window.onbeforeunload = function () {
                     //Make it prompt on fn return true
-                    if(!fn()) {
+                    if (!fn()) {
                         return null;
                     }
 
@@ -41,9 +41,9 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('baseUrlInjector', ['Config', '$window', function(Config, $window) {
+    .factory('baseUrlInjector', ['Config', '$window', function (Config, $window) {
         var inj = {
-            request: function(cc) {
+            request: function (cc) {
                 if (cc.url[0] === "/") {
                     cc.url = Config.API_BASE_URI + cc.url;
                     cc.headers['X-Auth-Token'] = $window.localStorage.token;
@@ -55,9 +55,9 @@ angular.module('myApp.service', ['satellizer'])
         };
         return inj;
     }])
-    .factory('authStatusCheckInjector', ['$q', '$rootScope', function($q, $rootScope) {
+    .factory('authStatusCheckInjector', ['$q', '$rootScope', function ($q, $rootScope) {
         var service = this;
-        service.responseError = function(response) {
+        service.responseError = function (response) {
             if (response.status == 401) {
                 $rootScope.signOut('401');
             }
@@ -70,7 +70,7 @@ angular.module('myApp.service', ['satellizer'])
         };
         return service;
     }])
-    .config(['$authProvider', 'Config', '$httpProvider', function($authProvider, Config, $httpProvider) {
+    .config(['$authProvider', 'Config', '$httpProvider', function ($authProvider, Config, $httpProvider) {
         $authProvider.baseUrl = Config.API_BASE_URI;
         //Google account
         $authProvider.google({
@@ -101,9 +101,9 @@ angular.module('myApp.service', ['satellizer'])
         $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json' };
 
     }])
-    .factory('AccountService', ['$http', '$q', function($http, $q) {
+    .factory('AccountService', ['$http', '$q', function ($http, $q) {
         return {
-            getUser: function(id) {
+            getUser: function (id) {
                 return $http({
                     url: '/users/' + id
                 });
@@ -111,32 +111,32 @@ angular.module('myApp.service', ['satellizer'])
             /*
              * Get Profile
              */
-            getProfile: function(id) {
+            getProfile: function (id) {
                 var path = '/profile/';
-                if(id) path = path + id;
-                return $q(function(resolve, reject){
-                    $http.get(path).then(function(response){
-                        if(_.has(response.data, 'influencer.birthday')){
+                if (id) path = path + id;
+                return $q(function (resolve, reject) {
+                    $http.get(path).then(function (response) {
+                        if (_.has(response.data, 'influencer.birthday')) {
                             response.data.influencer.birthday = new Date(response.data.influencer.birthday);
                         }
 
                         //TOOD: QUick fix until DB team go one way
                         var x = Object.keys(response.data);
                         response.data.user = {};
-                        x.forEach(function(key){
+                        x.forEach(function (key) {
                             //out in
                             response.data.user[key] = response.data[key];
-                            if(response.data.influencer){
+                            if (response.data.influencer) {
                                 //in to out
                                 var infl = Object.keys(response.data.influencer);
-                                infl.forEach(function(infKey){
+                                infl.forEach(function (infKey) {
                                     response.data[infKey] = response.data.influencer[infKey];
                                 });
                             }
-                            if(response.data.brand){
+                            if (response.data.brand) {
                                 //in to out
                                 var brad = Object.keys(response.data.brand);
-                                brad.forEach(function(infKey){
+                                brad.forEach(function (infKey) {
                                     response.data[infKey] = response.data.brand[infKey];
                                 });
                             }
@@ -144,25 +144,25 @@ angular.module('myApp.service', ['satellizer'])
 
                         resolve(response);
                     })
-                    .catch(function(err){
-                        reject(err);
-                    });
+                        .catch(function (err) {
+                            reject(err);
+                        });
                 });
             },
-            saveProfile: function(profile) {
+            saveProfile: function (profile) {
                 return $http.put("/profile", profile);
             },
             /*
              * get token
              * return {"token": <token>}
              */
-            getToken: function(username, password) {
+            getToken: function (username, password) {
                 return $http.post("/auth/login", {
                     email: username,
                     password: password
                 });
             },
-            getTokenInfluencer: function(username, password) {
+            getTokenInfluencer: function (username, password) {
                 return $http.post("/auth/influencer", {
                     email: username,
                     password: password
@@ -170,41 +170,41 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('InfluencerAccountService', ['$http', function($http) {
+    .factory('InfluencerAccountService', ['$http', function ($http) {
         return {
             /*
              * returns influencer user schema
              */
-            signup: function(influencer) {
+            signup: function (influencer) {
                 return $http.post("/signup/influencer", influencer);
             },
         };
     }])
-    .factory('BrandAccountService', ['$http', function($http) {
+    .factory('BrandAccountService', ['$http', function ($http) {
         return {
             /*
              * returns brand user schema
              */
-            signup: function(brand) {
+            signup: function (brand) {
                 return $http.post("/signup/brand", brand);
             },
 
         };
     }])
-    .factory('CampaignService', ['$http', '$q', function($http, $q) {
-        var deserializeCampaign = function(campaign) {
-            campaign.resources = campaign.campaignResources.map(function(campaignResource) {
+    .factory('CampaignService', ['$http', '$q', function ($http, $q) {
+        var deserializeCampaign = function (campaign) {
+            campaign.resources = campaign.campaignResources.map(function (campaignResource) {
                 return campaignResource.resource;
             });
-            if(campaign.proposalDeadline){
-               campaign.proposalDeadline = new Date(campaign.proposalDeadline);
-	    }
+            if (campaign.proposalDeadline) {
+                campaign.proposalDeadline = new Date(campaign.proposalDeadline);
+            }
             delete campaign.campaignResources;
             return campaign;
         };
 
-        var serializeCampaign = function(campaign) {
-            campaign.campaignResources = campaign.resources.map(function(resource, index) {
+        var serializeCampaign = function (campaign) {
+            campaign.campaignResources = campaign.resources.map(function (resource, index) {
                 return {
                     position: index,
                     resource: resource
@@ -218,22 +218,22 @@ angular.module('myApp.service', ['satellizer'])
         return {
             serializeCampaign: serializeCampaign,
             deserializeCampaign: deserializeCampaign,
-            getActiveCampaigns: function() {
+            getActiveCampaigns: function () {
                 return $http({
                     url: '/campaigns/active',
                     method: 'GET'
                 });
             },
-            getOpenCampaigns: function(params) {
+            getOpenCampaigns: function (params) {
                 var opt = {
                     url: "/campaigns/open",
                     params: params
                 };
-                return $q(function(resolve, reject) {
+                return $q(function (resolve, reject) {
                     $http(opt)
-                        .then(function(response) {
-                            var rr = response.data.content.map(function(campaign) {
-                                campaign.resources = campaign.campaignResources.map(function(campaignResource) {
+                        .then(function (response) {
+                            var rr = response.data.content.map(function (campaign) {
+                                campaign.resources = campaign.campaignResources.map(function (campaignResource) {
                                     return campaignResource.resource;
                                 });
                                 delete campaign.campaignResources;
@@ -243,116 +243,122 @@ angular.module('myApp.service', ['satellizer'])
 
                             resolve(response);
                         })
-                        .catch(function(err) {
+                        .catch(function (err) {
                             reject(err);
                         });
                 });
             },
-            getAll: function(params) {
+            getAll: function (params) {
                 //TODO: make universal getter
-                return $q(function(resolve, reject) {
+                return $q(function (resolve, reject) {
                     $http({
-                            url: "/campaigns",
-                            method: 'GET',
-                            params: params
-                        })
-                        .then(function(response) {
-                            var rr = response.data.content.map(function(campaign) {
+                        url: "/campaigns",
+                        method: 'GET',
+                        params: params
+                    })
+                        .then(function (response) {
+                            var rr = response.data.content.map(function (campaign) {
                                 return deserializeCampaign(campaign);
                             });
                             response.data.content = rr;
                             resolve(response);
                         })
-                        .catch(function(err) {
+                        .catch(function (err) {
                             reject(err);
                         });
                 });
             },
-            getOne: function(id) {
-                return $q(function(resolve, reject) {
+            getOne: function (id) {
+                return $q(function (resolve, reject) {
                     $http.get("/campaigns/" + id)
-                        .then(function(response) {
+                        .then(function (response) {
                             response.data = deserializeCampaign(response.data);
                             resolve(response);
                         })
-                        .catch(function(err) {
+                        .catch(function (err) {
                             reject(err);
                         });
                 });
             },
-            sendProposal: function(proposal, campaignId) {
+            sendProposal: function (proposal, campaignId) {
                 return $http({
                     url: "/campaigns/" + campaignId + "/proposals",
                     method: "POST",
                     data: proposal
                 });
             },
-            save: function(campaign) {
+            save: function (campaign) {
                 var putOrPost = 'POST';
                 if (campaign.campaignId) {
                     putOrPost = 'PUT';
                 }
                 campaign = serializeCampaign(campaign);
-                return $q(function(resolve, reject) {
+                return $q(function (resolve, reject) {
                     $http({
-                            url: "/campaigns/" + (putOrPost.toUpperCase() == 'PUT' ? campaign.campaignId : ''),
-                            method: putOrPost,
-                            data: campaign
-                        })
-                        .then(function(response) {
+                        url: "/campaigns/" + (putOrPost.toUpperCase() == 'PUT' ? campaign.campaignId : ''),
+                        method: putOrPost,
+                        data: campaign
+                    })
+                        .then(function (response) {
                             response.data = deserializeCampaign(response.data);
                             resolve(response);
                         })
-                        .catch(function(err) {
+                        .catch(function (err) {
                             reject(err);
                         });
                 });
             }
         };
     }])
-    .factory('ProposalService', ['$http', function($http) {
+    .factory('ProposalService', ['$http', function ($http) {
         return {
-            getOne: function(proposalId) {
+            getOne: function (proposalId) {
                 return $http({
                     url: '/proposals/' + proposalId,
                     method: 'get'
                 });
             },
-            getAll: function(params) {
+            getAll: function (params) {
                 return $http({
                     url: '/proposals',
                     method: 'GET',
                     params: params
                 });
             },
-            update: function(proposal, campaignId){
+            update: function (proposal, campaignId) {
                 return $http({
                     url: "/proposals/" + proposal.proposalId,
                     method: "PUT",
                     data: proposal
                 });
             },
-            count: function(params) {
-              return $http({
+            updateStatus:  function(proposalId, newStatus){
+                 return $http({
+                    url: "/proposals/" + proposalId + "/status/" + newStatus,
+                    method: "PUT"
+                });
+            }, 
+            count: function (params) {
+                return $http({
                     url: '/proposals/count',
                     method: 'GET',
                     params: params
-              });
+                });
             },
-            getActive: function() {
+            getActive: function () {
                 return $http({
                     url: '/proposals/active',
                     method: 'GET'
                 });
             },
-            getMessages: function(proposalId, params) {
+            getMessages: function (proposalId, params) {
                 return $http({
                     url: '/proposals/' + proposalId + '/proposalmessages',
                     method: 'get',
                     params: params
                 });
             },
-            countInbox: function(params) {
+            countInbox: function (params) {
                 return $http({
                     url: '/proposals/count/poll',
                     method: 'get',
@@ -360,14 +366,14 @@ angular.module('myApp.service', ['satellizer'])
                     ignoreLoadingBar: true
                 });
             },
-            countUnreadMessages: function(proposalId, params) {
-              return $http({
+            countUnreadMessages: function (proposalId, params) {
+                return $http({
                     url: '/proposals/' + proposalId + '/proposalmessages/count',
                     method: 'get',
                     params: params
-              });
+                });
             },
-            getMessagesPoll: function(proposalId, params) {
+            getMessagesPoll: function (proposalId, params) {
                 return $http({
                     url: '/proposals/' + proposalId + '/proposalmessages/poll',
                     method: 'get',
@@ -375,7 +381,7 @@ angular.module('myApp.service', ['satellizer'])
                     ignoreLoadingBar: true
                 });
             },
-            sendMessage: function(proposalMessage) {
+            sendMessage: function (proposalMessage) {
                 return $http({
                     url: '/proposals/' + proposalMessage.proposal.proposalId + '/proposalmessages',
                     method: 'post',
@@ -384,26 +390,26 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('DataService', ['$http', '$q', function($http, $q) {
+    .factory('DataService', ['$http', '$q', function ($http, $q) {
         return {
-            getMedium: function() {
+            getMedium: function () {
                 return $http.get("/data/media");
 
             },
-            getBanks: function() {
+            getBanks: function () {
                 return $http.get("/data/banks");
             },
-            getCategories: function() {
+            getCategories: function () {
                 return $http.get("/data/categories");
             },
-            getCompletionTime: function() {
+            getCompletionTime: function () {
                 return $http.get("/data/completiontime");
             }
         };
     }])
-    .factory('ResourceService', ['$http', function($http) {
+    .factory('ResourceService', ['$http', function ($http) {
         return {
-            uploadWithUrl: function(url) {
+            uploadWithUrl: function (url) {
                 return $http({
                     url: "/resources/remote",
                     method: "POST",
@@ -414,10 +420,10 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('$uploader', ['Upload', '$q', 'Config', '$window', function(Upload, $q, Config, $window) {
+    .factory('$uploader', ['Upload', '$q', 'Config', '$window', function (Upload, $q, Config, $window) {
         var service = {};
 
-        service.upload = function(url, data, evtHandler, opts) {
+        service.upload = function (url, data, evtHandler, opts) {
             var deferred = $q.defer();
             var options = _.extend({
                 url: Config.API_BASE_URI + url,
@@ -426,7 +432,7 @@ angular.module('myApp.service', ['satellizer'])
             }, opts);
 
             // upload on url
-            Upload.upload(options).then(function(data) {
+            Upload.upload(options).then(function (data) {
                 deferred.resolve(data.data);
             }, deferred.reject, evtHandler);
 
@@ -435,7 +441,7 @@ angular.module('myApp.service', ['satellizer'])
 
         return service;
     }])
-    .factory('CtrlHelper', ['$location', '$anchorScroll', '$rootScope', function($location, $anchorScroll, $rootScope) {
+    .factory('CtrlHelper', ['$location', '$anchorScroll', '$rootScope', function ($location, $anchorScroll, $rootScope) {
         return {
             'setState': function setState(newState) {
                 $rootScope.state = newState;
@@ -444,15 +450,15 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('UserProfile', ['$rootScope', '$window', function($rootScope, $window) {
+    .factory('UserProfile', ['$rootScope', '$window', function ($rootScope, $window) {
         return {
-            get: function() {
+            get: function () {
                 if (!$window.localStorage.profile) {
                     return null;
                 }
                 return JSON.parse($window.localStorage.profile);
             },
-            set: function(profile) {
+            set: function (profile) {
                 $window.localStorage.profile = JSON.stringify(profile);
             }
         };

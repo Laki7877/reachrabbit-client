@@ -55,6 +55,11 @@ angular.module('myApp.brand.routes', ['ui.router'])
                 url: '/brand-workroom/:proposalId',
                 templateUrl: 'view/brand-workroom.html',
                 controller: 'WorkroomController'
+            })
+            .state('brand-influencer-profile', {
+                url: '/brand-influencer-profile/:influencerId',
+                templateUrl: 'view/brand-influencer-profile.html',
+                controller: 'BrandInfluencerProfile'
             });
 
     }]);

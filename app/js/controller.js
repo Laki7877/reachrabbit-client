@@ -103,8 +103,13 @@ angular.module('myApp.controller', ['myApp.service'])
                 $scope.completionTimes = response.data;
             });
         }
-    ]);
-
+    ])
+    .controller('YesNoConfirmationModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal',
+        function($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal) {
+            $scope.yes = function(){
+                 $uibModalInstance.close('yes');
+            };
+        }]);
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
     INFLUENCER
@@ -120,10 +125,34 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
 
             //Select Proposal
             $scope.selectProposal = function(){
-                ProposalService.updateStatus($scope.proposal.proposalId, 'Working')
-                .then(function(od){
-                    console.log(od);
+                //popup a modal
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'components/templates/brand-select-status-modal.html',
+                    controller: 'YesNoConfirmationModalController',
+                    size: 'md',
+                    resolve: {
+                        campaign: function() {
+                            return $scope.proposal.campaign;
+                        },
+                        proposal: function(){
+                            return $scope.proposal;
+                        }
+                    }
                 });
+
+                //on user close
+                modalInstance.result.then(function(yesno) {
+
+                    if(yesno == 'yes'){
+                        ProposalService.updateStatus($scope.proposal.proposalId, 'Working')
+                        .then(function(od){
+                            window.location.reload();
+                        });
+                    }
+                });
+
+                
             };
 
             //Edit Proposal
@@ -862,6 +891,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
     }])
     .controller('InfluencerJesusController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
         //For influencer gods
+        $scope.alert = new NcAlert();
         $scope.login = function(username, password) {
             $location.search('message', 'nop');
             AccountService.getTokenInfluencer(username, password)

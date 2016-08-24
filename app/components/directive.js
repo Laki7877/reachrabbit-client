@@ -303,8 +303,8 @@ angular.module('myApp.directives', ['myApp.service'])
             scope: {
                 brand: '=ngModel'
             },
-            link: function (scope, element, attrs, ctrl, transclude) {
-                
+            link: function(scope, element, attrs, ctrl, transclude) {
+
             }
         };
     }])
@@ -477,7 +477,7 @@ angular.module('myApp.directives', ['myApp.service'])
             restrict: 'EA',
             transclude: true,
             scope: {
-                historyback: '&?'
+                historyback: '='
             },
             templateUrl: 'components/templates/zone-header.html',
             link: function (scope, element, attrs, ctrl, transclude) {

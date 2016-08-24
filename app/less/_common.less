@@ -543,7 +543,7 @@ a.secondary{
   }
 }
 
-.card-brand-profile{
+.card-profile{
   &:extend(.card);
   .card-body{
     padding: 15px 0px;
@@ -554,17 +554,6 @@ a.secondary{
   .card-title{
     .make-xs-column(10);
     margin-bottom: 15px;
-  }
-}
-
-.card-profile{
-  &:extend(.card);
-  .card-body{
-    padding: 15px 0px;
-  }
-  .card-image{
-    .make-xs-column(2);
-    padding-right: 0px;
   }
   small{
     color: @color-grey-darker;
@@ -1108,6 +1097,9 @@ a.secondary{
       margin: 15px 15px 0px 15px;
       box-shadow: none;
       border: 1px solid @color-grey;
+      .card-image{
+        padding-right: 0px;
+      }
     }
     .message-wrapper:nth-child(2) .message{
       margin-top: 0px;

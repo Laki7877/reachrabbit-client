@@ -6193,7 +6193,6 @@ button.list-group-item-danger.active:focus {
 .card,
 .radio-card,
 .card-campaign-list-item,
-.card-brand-profile,
 .card-profile,
 .card-campaign-header,
 .card-campaign-description,
@@ -7889,7 +7888,6 @@ a.secondary {
 .card,
 .radio-card,
 .card-campaign-list-item,
-.card-brand-profile,
 .card-profile,
 .card-campaign-header,
 .card-campaign-description,
@@ -8110,26 +8108,6 @@ a.secondary {
 .card-campaign-list-item .card-image {
   height: 136px;
 }
-.card-brand-profile .card-body {
-  padding: 15px 0px;
-}
-.card-brand-profile .card-image {
-  position: relative;
-  float: left;
-  width: 16.66666667%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-.card-brand-profile .card-title {
-  position: relative;
-  float: left;
-  width: 83.33333333%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-bottom: 15px;
-}
 .card-profile .card-body {
   padding: 15px 0px;
 }
@@ -8140,7 +8118,15 @@ a.secondary {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-right: 0px;
+}
+.card-profile .card-title {
+  position: relative;
+  float: left;
+  width: 83.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 15px;
 }
 .card-profile small {
   color: #8692a8;
@@ -9407,6 +9393,9 @@ fieldset[disabled] .btn-clear.active {
   margin: 15px 15px 0px 15px;
   box-shadow: none;
   border: 1px solid #d8dfe7;
+}
+.chatbox-card .message-area .card-profile .card-image {
+  padding-right: 0px;
 }
 .chatbox-card .message-area .message-wrapper:nth-child(2) .message {
   margin-top: 0px;

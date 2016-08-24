@@ -302,7 +302,8 @@ angular.module('myApp.service', ['satellizer'])
                 return $http({
                     url: '/proposals/count/poll',
                     method: 'get',
-                    params: params
+                    params: params,
+                    ignoreLoadingBar: true
                 });
             },
             countUnreadMessages: function(proposalId, params) {

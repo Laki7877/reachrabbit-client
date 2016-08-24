@@ -22,11 +22,11 @@
             <div class="card-body-content-label">
               รายละเอียด
             </div>
-            <div class="card-body-content">
+            <div class="card-body-content" ng-if="campaignNee.description.length > 0">
                 {{ campaignNee.description }}
             </div>
           </div>
-          <div class="card-row">
+          <div class="card-row" ng-if="campaignNee.keyword.length > 0">
             <div class="card-body-content-label">
               Keyword สำคัญ
             </div>
@@ -34,43 +34,26 @@
               {{ campaignNee.keyword }}
             </div>
           </div>
-          <div class="card-row">
+          <div class="card-row" ng-if="campaignNee.website.length > 0">
             <div class="card-body-content-label">
               เว็บไซต์ของสินค้า
             </div>
             <div class="card-body-content">
-              <a ng-href="{{campaignNee.website}}">{{ campaignNee.website || "No Description" }}</a>
+              <a ng-href="{{campaignNee.website}}">{{ campaignNee.website }}</a>
             </div>
           </div>
-          <div class="card-row">
+          <div class="card-row" ng-if="$index > 0">
             <div class="card-body-content-label">
               รูปประกอบ
             </div>
             <div class="card-body-content">
-              <img ng-repeat="campaignImage in campaignNee.resources" ng-if="$index > 0" ng-src="{{ campaignImage.url }}" class="description-image"/>
+              <img ng-repeat="campaignImage in campaignNee.resources" ng-src="{{ campaignImage.url }}" class="description-image"/>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="card-brand-profile">
-        <div class="card-body">
-          <div class="card-image">
-            <img ng-src="{{ campaignNee.brand.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-responsive"/>
-          </div>
-          <div class="card-title">
-            <div class="card-title-content">
-              เกี่ยวกับ {{ campaignNee.brand.brandName }}
-            </div>
-          </div>
-          <div class="col-xs-10">
-            <p>
-              {{ campaignNee.brand.about || "ติดต่อ " + campaignNee.brand.brandName + " เพื่อเรียนรู้ข้อมูลเพิ่มเติม" }}
-            </p>
-            <a ng-href="{{campaignNee.brand.website}}"> {{ campaignNee.brand.website }}</a>
-          </div>
-        </div>
-      </div>
+      <card-brand-detail ng-model="campaignNee.brand"></card-brand-detail>
 
       <div class="card">
         <div class="card-body text-center">

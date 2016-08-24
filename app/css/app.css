@@ -9359,12 +9359,6 @@ fieldset[disabled] .btn-clear.active {
 .chatbox-card .message-area .message .message-body .message-heading .message-time {
   float: right;
 }
-.chatbox-card .message-area .message .message-body .message-content textarea {
-  width: 100%;
-  resize: none;
-  border: none;
-  outline: none;
-}
 .chatbox-card .message-area .message .message-body .message-content span {
   white-space: pre-wrap;
 }
@@ -9424,6 +9418,12 @@ fieldset[disabled] .btn-clear.active {
 /*---Modal---*/
 .modal-content {
   border-radius: 0px;
+}
+textarea.static-textarea {
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
 }
 .modal-dialog.modal-md {
   width: 500px;

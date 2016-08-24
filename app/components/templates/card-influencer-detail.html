@@ -1,0 +1,17 @@
+<div class="card-brand-profile">
+        <div class="card-body">
+          <div class="card-image">
+            <img ng-src="{{ influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-responsive"/>
+          </div>
+          <div class="card-title">
+            <div class="card-title-content">
+              เกี่ยวกับ {{ influencer.brandName }}
+            </div>
+          </div>
+          <div class="col-xs-10">
+            <p>
+              <textarea readonly class="static-textarea" elastic>{{ influencer.about }}</textarea>
+            </p>
+          </div>
+        </div>
+      </div>

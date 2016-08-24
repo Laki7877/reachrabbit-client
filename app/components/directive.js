@@ -296,6 +296,32 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
+    .directive('cardBrandDetail', [ function() {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: 'components/templates/card-brand-detail.html',
+            scope: {
+                brand: '=ngModel'
+            },
+            link: function(scope, element, attrs, ctrl, transclude) {
+                
+            }
+        };
+    }])
+    .directive('cardInfluencerDetail', [ function() {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: 'components/templates/card-influencer-detail.html',
+            scope: {
+                influencer: '=ngModel'
+            },
+            link: function(scope, element, attrs, ctrl, transclude) {
+                
+            }
+        };
+    }])
     .directive('ncDropdown', [function() {
         return {
             restrict: 'A',

@@ -29,20 +29,21 @@
                   </uploader-thumb>
                 </div>
               </div>
-              <div class="card-row">
+              <div class="card-row" form-error="form.brandName">
                 <div class="card-body-content-label with-input">
                   ชื่อ Brand
                 </div>
                 <div class="card-body-content">
-                  <input type="text" ng-model="formData.brand.brandName" class="form-control">
+                  <input name="brandName" type="text" ng-model="formData.brand.brandName" class="form-control" maxlength="100">
+                  <div input-error></div>
                 </div>
               </div>
-              <div class="card-row">
+              <div class="card-row" >
                 <div class="card-body-content-label with-input">
                   เกี่ยวกับ Brand
                 </div>
                 <div class="card-body-content">
-                  <textarea class="form-control" rows="4" ng-model="formData.brand.about" placeholder="อธิบายเกี่ยวกับ Brand ของคุณ"></textarea>
+                  <textarea class="form-control" rows="4" ng-model="formData.brand.about" placeholder="อธิบายเกี่ยวกับ Brand ของคุณ" maxlength="2500"></textarea>
                 </div>
               </div>
               <div class="card-row">
@@ -50,7 +51,7 @@
                   เว็บไซน์ของ Brand
                 </div>
                 <div class="card-body-content">
-                  <input type="text" ng-model="formData.brand.website"  class="form-control">
+                  <input type="text" ng-model="formData.brand.website"  class="form-control" maxlength="200">
                 </div>
               </div>
             </div>
@@ -64,36 +65,40 @@
                   </div>
                 </div>
               </div>
-              <div class="card-row">
+              <div class="card-row" form-error="form.name">
                 <div class="card-body-content-label with-input">
                   ชื่อผู้สมัคร
                 </div>
                 <div class="card-body-content">
-                  <input type="text" ng-model="formData.name" class="form-control">
+                  <input type="text" name="name" ng-model="formData.name" class="form-control" maxlength="100">
+                  <div input-error></div>
                 </div>
               </div>
-              <div class="card-row">
+              <div class="card-row" form-error="form.phoneNumber">
                 <div class="card-body-content-label with-input">
                   เบอร์ติดต่อ
                 </div>
                 <div class="card-body-content">
-                  <input type="text" ng-model="formData.phoneNumber" class="form-control">
+                  <input type="text" name="phoneNumber" ng-model="formData.phoneNumber" class="form-control" maxlength="20" ng-pattern-restrict="[0-9]*">
+                  <div input-error></div>
                 </div>
               </div>
-              <div class="card-row">
+              <div class="card-row" form-error="form.email">
                 <div class="card-body-content-label with-input">
                   อีเมล
                 </div>
                 <div class="card-body-content">
-                  <input type="text" ng-model="formData.email" class="form-control">
+                  <input type="text" name="email" ng-model="formData.email" class="form-control" maxlength="100">
+                  <div input-error></div>
                 </div>
               </div>
-              <div class="card-row">
+              <div class="card-row" form-error="form.password">
                 <div class="card-body-content-label with-input">
                   ตั้งรหัสผ่านใหม่
                 </div>
                 <div class="card-body-content">
-                  <input type="password" ng-model="formData.password" name="password" class="form-control">
+                  <input type="password" name="password" ng-model="formData.password" name="password" class="form-control" ng-minlength="8" maxlength="100">
+                  <div input-error></div>
                 </div>
               </div>
               <div class="card-row">

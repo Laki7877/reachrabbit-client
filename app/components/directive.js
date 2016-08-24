@@ -31,8 +31,7 @@ angular.module('myApp.directives', ['myApp.service'])
                 $timeout(resize, 0);
             }
         };
-    }
-    ])
+    }])
     .directive('tableStatic', [function() {
         return {
             restrict: 'EA',

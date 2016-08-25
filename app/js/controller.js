@@ -88,7 +88,7 @@ angular.module('myApp.controller', ['myApp.service'])
                     .catch(function(err) {
                         $scope.alert.danger(err.data.message);
                     });
-               
+
             };
 
             $scope.$watch('formData.price', function(pp) {
@@ -130,7 +130,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     animation: true,
                     templateUrl: 'components/templates/brand-select-status-modal.html',
                     controller: 'YesNoConfirmationModalController',
-                    size: 'md',
+                    size: 'sm',
                     resolve: {
                         campaign: function() {
                             return $scope.proposal.campaign;
@@ -152,7 +152,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     }
                 });
 
-                
+
             };
 
             //Edit Proposal
@@ -791,7 +791,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         .then(function(response){
             $scope.influencer = response.data;
         });
-        
+
     }]);
 
 

@@ -337,7 +337,7 @@ angular.module('myApp.service', ['satellizer'])
                     url: "/proposals/" + proposalId + "/status/" + newStatus,
                     method: "PUT"
                 });
-            }, 
+            },
             count: function (params) {
                 return $http({
                     url: '/proposals/count',
@@ -420,8 +420,30 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('$uploader', ['Upload', '$q', 'Config', '$window', function (Upload, $q, Config, $window) {
+    .factory('$uploader', ['Upload', 'UploadValidate', '$q', 'Config', '$window', '$timeout', function (Upload, UploadValidate, $q, Config, $window, $timeout) {
         var service = {};
+
+        service.validate = function(file, length, ngModel, attr, scope) {
+          var deferred = $q.defer();
+          ngModel.$setPristine();
+          UploadValidate.validate(file, length, ngModel, attr, scope)
+              .then(function(data) {
+                  var ok = true;
+                  _.forEach(ngModel.$ngfValidations, function(v) {
+                   // console.log(ngModel.$ngfValidations);
+                      if(_.has(attr, 'ngf' + _.upperFirst(v.name))) {
+                          ngModel.$setValidity(v.name, v.valid);
+                      }
+                      ok = ok && v.valid;
+                  });
+                  ngModel.$setDirty();
+                  deferred.resolve(ok);
+                  return ok;
+              });
+
+
+          return deferred.promise;
+        };
 
         service.upload = function (url, data, evtHandler, opts) {
             var deferred = $q.defer();

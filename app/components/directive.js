@@ -27,6 +27,16 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
+    .directive('onClick', ['$interpolate', function($interpolate) {
+      return {
+        restrict: 'A',
+        link: function(scope, elem, attrs) {
+          elem.bind('click touchstart touchend', function(e) {
+            scope.$eval(attrs.onClick);
+          });
+        }
+      };
+    }])
     .directive('formError', [function() {
         return {
             restrict: 'A',
@@ -37,23 +47,27 @@ angular.module('myApp.directives', ['myApp.service'])
             },
             transclude: true,
             controller: ['$scope', function($scope) {
-                $scope.isValidate = $scope.isValidate || function() { return false; };
-                $scope.isInvalid = function() {
+                $scope.isValidate = $scope.isValidate || function() { return true; };
+                $scope.isInvalid = function(errorKey) {
                     if(!$scope.formError) {
                         return false;
                     }
                     return $scope.formError.$invalid &&
                         ($scope.formError.$dirty || $scope.formError.$$parentForm.$submitted ) &&
-                        !$scope.isValidate();
+                        $scope.isValidate({$model: $scope.formError, $error: errorKey});
                 };
-                this.isInvalid = function() {
-                    return $scope.isInvalid();
+                this.isInvalid = function(errorKey) {
+                    return $scope.isInvalid(errorKey);
                 };
                 this.getModel = function() {
                     if(!$scope.formError) {
                         return {};
                     }
                     return $scope.formError;
+                };
+                this.watch = function(cb) {
+                  //shallow watch, so it's ok
+                  $scope.$watch('formError', cb);
                 };
             }]
         };
@@ -64,21 +78,64 @@ angular.module('myApp.directives', ['myApp.service'])
             require: '^^formError',
             templateUrl: 'components/templates/error.html',
             scope: {
-                error: '&?inputError',
+                inputError: '&?inputError',
             },
             link: function(scope, elem, attrs, ctrl) {
+              //Default form error
+                var getAttr = function(attr, def) {
+                  return _.get(ctrl.getModel(), '$attributes.' + attr, def);
+                };
+                var extractFileSize = function(str) {
+                  var pat = /([0-9\.]+)/;
+                  var pat2 = /([a-zA-Z]+)/;
+                  var m = str.match(pat);
+                  var m2 = str.match(pat2);
+
+                  if(m === null || m2 === null) {
+                    return;
+                  }
+
+                  return m[0] + ' ' + m2[0];
+                };
+                var extractPattern = function(str) {
+                  if(_.isNil(str)) {
+                    return;
+                  }
+                  var tokens = str.replace(/'/g, '').split(',');
+                  var subtoken = tokens.slice(0, tokens.length-1);
+                  return subtoken.join(' ').concat(' หรือ ' + tokens[tokens.length-1]);
+                };
+
                 var defaultErrors = {
                     required: 'กรุณากรอกข้อมูลให้ครบถ้วน',
                     email: 'กรุณากรอกอีเมลให้ถูกต้อง',
-                    minlength: 'รหัสผ่านควรมีความยาวอย่างน้อย ' + ctrl.getModel().$attributes.ngMinlength +' ตัวอักษร'
+                    minlength: 'รหัสผ่านควรมีความยาวอย่างน้อย ' + getAttr('ngMinlength', '-') +' ตัวอักษร',
+                    maxSize: 'กรุณาเลือกรูปที่มีขนาดไม่เกิน ' + extractFileSize(getAttr('ngfMaxSize', '')),
+                    pattern: 'กรุณาเลือกรูป ' + extractPattern(getAttr('ngfPattern', null))  + ' เท่านั้น',
+                    maxFiles: 'ใส่รูปประกอบได้มากสุดเพียง ' + getAttr('ngfMaxFiles', undefined) + ' รูป',
+                    dimensions: 'กรุณาเลือกรูปที่มีขนาดใหญ่กว่า 600x400 pixel' //lazy
                 };
+                scope.error = {};
                 scope.getError = function() {
                     return ctrl.getModel().$error;
                 };
-                scope.isInvalid = function() {
-                    return ctrl.isInvalid();
+                scope.isInvalid = function(key) {
+                    return ctrl.isInvalid(key);
                 };
-                scope.error = _.extend({}, defaultErrors, scope.error());
+
+                //Change default error on modelchange
+                ctrl.watch(function(e) {
+                  var defaultErrors = {
+                      required: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                      email: 'กรุณากรอกอีเมลให้ถูกต้อง',
+                      minlength: 'รหัสผ่านควรมีความยาวอย่างน้อย ' + getAttr('ngMinlength', '-') +' ตัวอักษร',
+                      maxSize: 'กรุณาเลือกรูปที่มีขนาดไม่เกิน ' + extractFileSize(getAttr('ngfMaxSize', '')),
+                      pattern: 'กรุณาเลือกรูป ' + extractPattern(getAttr('ngfPattern', null))  + ' เท่านั้น',
+                      maxFiles: 'ใส่รูปประกอบได้มากสุดเพียง ' + getAttr('ngfMaxFiles', undefined) + ' รูป',
+                      dimensions: 'กรุณาเลือกรูปที่มีขนาดใหญ่กว่า 600x400 pixel' //lazy
+                  };
+                  scope.error = _.extend({}, defaultErrors, scope.inputError());
+                });
             }
         };
     }])
@@ -391,7 +448,7 @@ angular.module('myApp.directives', ['myApp.service'])
                         scope.showSocialData = true;
                     }
 
-                
+
 
                 scope.joinCat = function (A) {
                     return A.map(function(o){
@@ -602,39 +659,53 @@ angular.module('myApp.directives', ['myApp.service'])
     .directive('uploaderThumb', ['$uploader', function ($uploader) {
         return {
             restrict: 'AE',
+            require: 'ngModel',
             transclude: true,
             scope: {
                 width: '=',
                 height: '=',
                 model: '=ngModel',
+                accept: '@?',
+                onError: '&?',
                 accessor: '&?' //function that defines how to access the url of the model
             },
             templateUrl: 'components/templates/uploader-thumb.html',
-            link: function(scope, elem, attrs, form) {
+            link: function(scope, elem, attr, ngModel) {
+                scope.file = null;
                 if (!scope.accessor) {
                     scope.accessor = function (data) {
                         if (!scope.model) return false;
                         return data.url;
                     };
                 }
-
                 scope.remove = function (index) {
-                    scope.model = null;
+                  scope.model = null;
                 };
-
-                scope.loadingImage = false;
+                scope.pristine = function() {
+                  ngModel.$setPristine();
+                };
                 scope.upload = function (file) {
-                    scope.loadingImage = true;
-                    var evtHandler = function (evt) {
-                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                        scope.progressPercentage = progressPercentage;
-                    };
+                  if(file === null) {
+                    return;
+                  }
+                  scope.loadingImage = false;
+                  $uploader.validate(file, 0, ngModel, attr, scope).then(function(valid) {
+                      if(!valid) {
+                          (scope.onError || _.noop)({$file: file, $error: ngModel.$error});
+                          return;
+                      }
+                      scope.loadingImage = true;
+                      var evtHandler = function (evt) {
+                          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                          scope.progressPercentage = progressPercentage;
+                      };
 
-                    $uploader.upload('/resources', { file: file }, evtHandler)
-                        .then(function (data) {
-                            scope.loadingImage = false;
-                            scope.model = data;
-                        });
+                      $uploader.upload('/resources', { file: file }, evtHandler)
+                          .then(function (data) {
+                              scope.loadingImage = false;
+                              scope.model = data;
+                          });
+                  });
                 };
 
             }
@@ -710,9 +781,12 @@ angular.module('myApp.directives', ['myApp.service'])
     .directive('uploaderMulti', ['$uploader', function ($uploader) {
         return {
             restrict: 'AE',
+            require: 'ngModel',
             transclude: true,
             scope: {
                 model: '=ngModel',
+                accept: '@?',
+                onError: '&?',
                 accessor: '&?' //function that defines how to access the url of the model
             },
             templateUrl: function (elem, attr) {
@@ -722,7 +796,7 @@ angular.module('myApp.directives', ['myApp.service'])
 
                 return 'components/templates/uploader-multi.html';
             },
-            link: function (scope, elem, attrs, form) {
+            link: function (scope, elem, attr, ngModel) {
                 if (!(scope.model instanceof Array)) {
                     console.error("Model is not array.");
                 }
@@ -737,22 +811,35 @@ angular.module('myApp.directives', ['myApp.service'])
                 scope.remove = function (index) {
                     scope.model.splice(index, 1);
                 };
-
-                scope.loadingImage = false;
+                scope.pristine = function() {
+                  ngModel.$setPristine();
+                };
                 scope.upload = function (file) {
-                    scope.loadingImage = true;
-                    scope.progressPercentage = 0;
-                    var evtHandler = function (evt) {
-                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                        scope.progressPercentage = progressPercentage;
-                    };
+                  if(file === null) {
+                    return;
+                  }
+                  scope.loadingImage = false;
+                  $uploader.validate(file, scope.model.length, ngModel, attr, scope)
+                    .then(function(valid) {
+                      if(!valid) {
+                          (scope.onError || _.noop)({$file: file, $error: ngModel.$error});
+                          return;
+                      }
+                      scope.loadingImage = true;
+                      scope.progressPercentage = 0;
+                      var evtHandler = function (evt) {
+                          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                          scope.progressPercentage = progressPercentage;
+                      };
 
-                    $uploader.upload('/resources', { file: file }, evtHandler)
-                        .then(function (data) {
-                            scope.loadingImage = false;
-                            data._name = file.name;
-                            scope.model.push(data);
-                        });
+                      console.log(scope.loadingImage);
+                      $uploader.upload('/resources', { file: file }, evtHandler)
+                          .then(function (data) {
+                              scope.loadingImage = false;
+                              data._name = file.name;
+                              scope.model.push(data);
+                          });
+                    });
                 };
 
             }

@@ -88,7 +88,7 @@ angular.module('myApp.controller', ['myApp.service'])
                     .catch(function(err) {
                         $scope.alert.danger(err.data.message);
                     });
-               
+
             };
 
             $scope.$watch('formData.price', function(pp) {
@@ -152,7 +152,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     }
                 });
 
-                
+
             };
 
             //Edit Proposal
@@ -648,7 +648,11 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             $scope.isInvalidMedia = function() {
                 return $scope.formData.media.length === 0 && $scope.form.$submitted && $scope.formData.status == 'Open';
             };
-            $scope.isPublishing = function() {
+            $scope.isPublishing = function(model, key) {
+                //Only validate publish for resource
+                if(model && model.$name === 'resource' && key !== 'required') {
+                    return true;
+                }
                 return $scope.formData.status === 'Open';
             };
 
@@ -698,6 +702,13 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             .catch(function(err) {
                 $scope.alert.danger(err.data.message);
             });
+
+        $scope.isValidate = function(model, error) {
+            if(error === 'required' && model.$name === 'profilePicture') {
+                return $scope.form.$submitted;
+            }
+            return true;
+        };
 
         $scope.saveProfile = function(form, profile) {
             $scope.form.$setSubmitted();
@@ -791,7 +802,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         .then(function(response){
             $scope.influencer = response.data;
         });
-        
+
     }]);
 
 

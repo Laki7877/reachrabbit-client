@@ -22,14 +22,21 @@
                                 <div input-error></div>
                             </div>
                         </div>
-                        <div class="card-row">
+                        <div class="card-row" form-error="form.resource" is-validate="isPublishing($model, $error)">
                             <div class="card-body-content-label with-input">
                                 รูป Campaign
                             </div>
                             <div class="card-body-content">
-                                <uploader-thumb ng-model="formData.resources[0]">
+                                <uploader-thumb name="resource"
+                                  ng-model="formData.resources[0]"
+                                  accept=".jpg,.png"
+                                  ngf-pattern="'.jpg,.png'"
+                                  ngf-max-size="5MB"
+                                  ngf-dimensions="$width > 600 && $height > 400"
+                                  required>
                                 <i class="fa fa-camera"></i><br> เลือกรูป JPG หรือ PNG<br>อย่างน้อย 600 x 400 px
                                 </uploader-thumb>
+                                <div input-error></div>
                             </div>
                         </div>
                         <div class="card-row">
@@ -87,12 +94,18 @@
                                 <input type="text" class="form-control" ng-model="formData.website" maxlength="200" placeholder="ถ้ามี">
                             </div>
                         </div>
-                        <div class="card-row">
+                        <div class="card-row" form-error="form.resources">
                             <div class="card-body-content-label">
                                 รูปประกอบ
                             </div>
                             <div class="card-body-content">
-                                <uploader-multi ng-model="resources"></uploader-multi>
+                                <uploader-multi name="resources"
+                                  ng-model="resources"
+                                  accept=".jpg,.png"
+                                  ngf-pattern="'.jpg,.png'"
+                                  ngf-max-size="5MB"
+                                  ngf-max-files="4"></uploader-multi>
+                                <div input-error></div>
                             </div>
                         </div>
                         <div class="card-row" form-error="form.budget" is-validate="isPublishing()">

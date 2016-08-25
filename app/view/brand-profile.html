@@ -19,14 +19,21 @@
                   </div>
                 </div>
               </div>
-              <div class="card-row">
+              <div class="card-row" form-error="form.profilePicture" is-validate="isValidate($model, $error)">
                 <div class="card-body-content-label with-input">
                   รูปโลโก้ของ Brand
                 </div>
                 <div class="card-body-content">
-                  <uploader-thumb ng-model="formData.profilePicture">
+                  <uploader-thumb name="profilePicture"
+                  ng-model="formData.profilePicture"
+                  accept=".jpg,.png"
+                  ngf-pattern="'.jpg,.png'"
+                  ngf-max-size="5MB"
+                  ngf-dimensions="$width > 600 && $height > 400"
+                  required>
                   <i class="fa fa-camera"></i><br>เลือกรูป
                   </uploader-thumb>
+                  <div input-error></div>
                 </div>
               </div>
               <div class="card-row" form-error="form.brandName">

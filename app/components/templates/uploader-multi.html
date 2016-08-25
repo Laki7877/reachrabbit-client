@@ -1,6 +1,7 @@
 <div class="fileinput fileinput-new" data-provides="fileinput">
 
-    <a class="secondary" ngf-select="upload($file)" >
+    <a class="secondary" ngf-select="upload($file)"
+      on-click="pristine()" ngf-accept="accept" >
         <i class="fa fa-camera"></i> เพิ่มรูปประกอบ (JPG หรือ PNG ขนาดเท่าไรก็ได้)
     </a>
     <div class="input-upload-image-sm-preview">

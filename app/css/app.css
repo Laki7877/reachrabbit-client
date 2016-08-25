@@ -9482,6 +9482,9 @@ fieldset[disabled] .btn-clear.active {
 .modal-dialog.modal-md {
   width: 500px;
 }
+.modal-dialog.modal-sm {
+  width: 400px;
+}
 .modal-header {
   padding: 15px 0px 10px 0px;
   margin: 0px 15px;
@@ -9524,6 +9527,15 @@ fieldset[disabled] .btn-clear.active {
 }
 .proposal-modal .disabled img {
   opacity: 0.4;
+}
+.select-proposal-modal .card-body {
+  padding: 25px 30px 20px 30px;
+}
+.select-proposal-modal p {
+  margin: 5px 0px 10px 0px;
+}
+.select-proposal-modal .modal-title {
+  color: #16bbac;
 }
 /*---Other debugging stuff---*/
 .api_override_box {

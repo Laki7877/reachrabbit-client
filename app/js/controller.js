@@ -135,7 +135,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     animation: true,
                     templateUrl: 'components/templates/brand-select-status-modal.html',
                     controller: 'YesNoConfirmationModalController',
-                    size: 'md',
+                    size: 'sm',
                     resolve: {
                         campaign: function() {
                             return $scope.proposal.campaign;
@@ -1063,14 +1063,12 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         name: $scope.formData.name,
                         email: $scope.formData.email,
                         phoneNumber: $scope.formData.phoneNumber,
-                        influencer: {
-                            influencerMedias: [{
-                                media: $scope.formData.media,
-                                socialId: $scope.formData.id,
-                                followerCount: $scope.formData.pages[0].count,
-                                pageId: $scope.formData.pageId || null
-                            }]
-                        },
+                        influencerMedia: [{
+                            media: $scope.formData.media,
+                            socialId: $scope.formData.id,
+                            followerCount: $scope.formData.pages[0].count,
+                            pageId: $scope.formData.pageId || null
+                        }],
                         profilePicture: $scope.profilePictureResource
                     })
                     .then(function(response) {

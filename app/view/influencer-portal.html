@@ -18,6 +18,9 @@
         <div class="info-text">
           คุณต้องมีคนติดตามอย่างน้อย {{ minFollower}}  คนในการสมัคร
         </div>
+        <div ng-if="minFollowerError" class="has-error">
+          <div class="help-block">ขอโทษค่ะ คุณต้องมีผู้ติดตามอย่างน้อย {{ minFollower }} คนเพื่อสมัครสมาชิก</div>
+        </div>
       </div>
     </div>
     <div class="signup-pill">Are you God? <a ui-sref="influencer-god-login">Yes, I am</a></div>

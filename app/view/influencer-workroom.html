@@ -33,18 +33,27 @@
                             <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
                             <div nc-alert="alert"></div>
                         </div>
-                        <div class="message-input">
-                            <textarea class="form-control" chatarea="sendMessage(formData.messageStr, formData.resources)" rows="4" ng-model="formData.messageStr" placeholder="พิมพ์ข้อความ..." autofocus></textarea>
-                            <div class="pull-right">
+                          <div class="message-input">
+                              <textarea chatarea="sendMessage(formData.messageStr, formData.resources)" class="form-control" rows="4" ng-model="formData.messageStr" placeholder="พิมพ์ข้อความ..." autofocus maxlength="1000"></textarea>
+                              <div class="pull-left">
+                                <div>{{formData.messageStr.length || '0'}}/1000</div>
+                              </div>
+                              <div class="pull-right" form-error="form.resource">
+                                  <div input-error class="pull-left"></div>
+                                  <uploader-thumb
+                                  name="resource"
+                                  template="components/templates/uploader-chat.html"
+                                  ng-model="formData.resources[0]"
+                                  accept=".jpg,.png"
+                                  ngf-pattern="'.jpg,.png'"
+                                  ngf-max-size="5MB"></uploader-thumb>
 
-                                <uploader-multi template="components/templates/uploader-chat.html" ng-model="formData.resources"></uploader-multi>
-
-                                <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr, formData.resources)">
-                                  <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
-                                </button>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
+                                  <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr, formData.resources)">
+                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
+                                  </button>
+                              </div>
+                              <div class="clear"></div>
+                          </div>
 
                     </div>
                 </div>

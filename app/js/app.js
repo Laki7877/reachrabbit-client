@@ -15,6 +15,7 @@ angular.module('myApp', [
   'ngTagsInput',
   'smoothScroll',
   'ngSanitize',
+  'ngPatternRestrict',
   'angularMoment',
   'luegg.directives',
   //Top level

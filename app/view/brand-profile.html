@@ -1,4 +1,4 @@
-<form ng-submit="saveProfile(form, formData)" name="form">
+<form ng-submit="saveProfile(form, formData)" ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}" name="form">
   <div class="view-brand-profile">
     <zone-header>
     <h1>Profile ของฉัน</h1>
@@ -29,7 +29,7 @@
                   accept=".jpg,.png"
                   ngf-pattern="'.jpg,.png'"
                   ngf-max-size="5MB"
-                  ngf-dimensions="$width > 600 && $height > 400"
+                  ngf-dimensions="$width > 400 && $height > 400"
                   required>
                   <i class="fa fa-camera"></i><br>เลือกรูป
                   </uploader-thumb>
@@ -86,7 +86,7 @@
                   เบอร์ติดต่อ
                 </div>
                 <div class="card-body-content">
-                  <input type="text" name="phoneNumber" ng-model="formData.phoneNumber" class="form-control" maxlength="20" ng-pattern-restrict="[0-9]*">
+                  <input type="text" name="phoneNumber" ng-model="formData.phoneNumber" class="form-control" maxlength="20" ng-pattern-restrict="^[0-9]*$">
                   <div input-error></div>
                 </div>
               </div>

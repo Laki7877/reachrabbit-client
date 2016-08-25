@@ -157,6 +157,9 @@ a.secondary{
 .form-control[disabled]{
   background-color: @color-grey-lighter;
 }
+.form-control[readonly] {
+  background-color: inherit;
+}
 .input-group-addon{
   border-radius: 0px;
   background-color: @color-grey-lighter;
@@ -1146,7 +1149,7 @@ a.secondary{
     textarea{
       resize: none;
     }
-    .pull-right{
+    .pull-right, & >.pull-left{
       margin-top: 15px;
     }
     button{
@@ -1208,6 +1211,10 @@ a.secondary{
     margin-top: 5px;
   }
   .help-block{
+    text-align: right;
+  }
+  .hint-block{
+    &:extend(.help-block);
     &:extend(small);
     text-align: right;
     color: @color-grey-darker;
@@ -1221,7 +1228,7 @@ a.secondary{
   }
   .button-bar{
     padding-top: 15px;
-    .help-block{
+    .hint-block{
       margin-top: 10px;
       margin-bottom: 10px;
       text-align: center;

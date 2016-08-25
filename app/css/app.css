@@ -71,7 +71,7 @@ mark {
 }
 small,
 .workroom .card-proposal-detail .card-info-label,
-.proposal-modal .help-block {
+.proposal-modal .hint-block {
   font-size: 80%;
 }
 sub,
@@ -1362,7 +1362,7 @@ small,
 .info-text,
 .workroom .card-proposal-detail .card-info-label,
 .chatbox-card .message-area .message .message-body .message-heading .message-time,
-.proposal-modal .help-block {
+.proposal-modal .hint-block {
   font-size: 85%;
 }
 mark,
@@ -2968,7 +2968,8 @@ select[multiple].input-lg {
 .has-feedback label.sr-only ~ .form-control-feedback {
   top: 0;
 }
-.help-block {
+.help-block,
+.proposal-modal .hint-block {
   display: block;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -7707,6 +7708,9 @@ a.secondary {
 .form-control[disabled] {
   background-color: #f9f9fb;
 }
+.form-control[readonly] {
+  background-color: inherit;
+}
 .input-group-addon {
   border-radius: 0px;
   background-color: #f9f9fb;
@@ -9440,7 +9444,8 @@ fieldset[disabled] .btn-clear.active {
 .chatbox-card .message-input textarea {
   resize: none;
 }
-.chatbox-card .message-input .pull-right {
+.chatbox-card .message-input .pull-right,
+.chatbox-card .message-input > .pull-left {
   margin-top: 15px;
 }
 .chatbox-card .message-input button {
@@ -9496,6 +9501,9 @@ fieldset[disabled] .btn-clear.active {
 }
 .proposal-modal .help-block {
   text-align: right;
+}
+.proposal-modal .hint-block {
+  text-align: right;
   color: #8692a8;
 }
 .proposal-modal .promotion-medium .profile-social-media-icon {
@@ -9506,7 +9514,7 @@ fieldset[disabled] .btn-clear.active {
 .proposal-modal .button-bar {
   padding-top: 15px;
 }
-.proposal-modal .button-bar .help-block {
+.proposal-modal .button-bar .hint-block {
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: center;

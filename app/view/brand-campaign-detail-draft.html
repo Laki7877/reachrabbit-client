@@ -1,4 +1,4 @@
-<form name="form" novalidate>
+<form name="form" ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}" novalidate>
     <div class="view-brand-detail-draft">
         <zone-header historyback="true">
         <h2 id="campaign-title">{{ formData.title }}</h2>
@@ -127,7 +127,7 @@
                             </div>
                             <div class="card-body-content">
                                 <p class="input-group">
-                                    <input name="proposalDeadline" placeholder="-- เลือกวันสิจ๊ะ --" type="text" class="form-control" ng-focus="popup1_open = true" uib-datepicker-popup="{{$root.format}}" ng-model="formData.proposalDeadline" is-open="popup1_open" datepicker-options="$root.dateOptions" show-button-bar="false"
+                                    <input name="proposalDeadline" placeholder="-- เลือกวันสิจ๊ะ --" type="text" class="form-control" ng-focus="popup1_open = true" uib-datepicker-popup="{{$root.format}}" ng-model="formData.proposalDeadline" is-open="popup1_open" datepicker-options="dateOptions" show-button-bar="false" readonly
                                     close-text="Close" required/>
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-default" ng-click="popup1_open = true"><i class="glyphicon glyphicon-calendar"></i></button>

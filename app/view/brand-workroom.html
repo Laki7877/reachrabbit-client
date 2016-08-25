@@ -1,68 +1,78 @@
-<div class="view-brand-workroom workroom">
-    <div class="zone-header">
-        <div class="container">
-            <div class="back-btn-for-header">
-                <span ui-sref="brand-inbox"><i class="fa fa-arrow-left"></i> กลับไป Inbox</span>
-            </div>
-        </div>
-    </div>
-    <div class="zone-body">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-9">
-                    <div class="chatbox-card">
-                        <div class="chatbox-header">
-                            <h3>{{ proposal.influencer.user.name }}</h3>
-                            <a class="link-view-profile" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId })"><i class="fa fa-info-circle"></i>ดูโปรไฟล์</a>
-                            <div class="chatbox-status">
-                                <span class="status" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
-                                <i class="fa fa-angle-right"></i>
-                                <span class="status" ng-class="{'active': proposal.status == 'Working'}">ดำเนินการ</span>
-                                <i class="fa fa-angle-right"></i>
-                                <span class="status" ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span>
-                            </div>
-                        </div>
-                        <div class="message-area" scroll-glue>
+<form name="form" novalidate>
+  <div class="view-brand-workroom workroom">
+      <div class="zone-header">
+          <div class="container">
+              <div class="back-btn-for-header">
+                  <span ui-sref="brand-inbox"><i class="fa fa-arrow-left"></i> กลับไป Inbox</span>
+              </div>
+          </div>
+      </div>
+      <div class="zone-body">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xs-9">
+                      <div class="chatbox-card">
+                          <div class="chatbox-header">
+                              <h3>{{ proposal.influencer.user.name }}</h3>
+                              <a class="link-view-profile" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId })"><i class="fa fa-info-circle"></i>ดูโปรไฟล์</a>
+                              <div class="chatbox-status">
+                                  <span class="status" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
+                                  <i class="fa fa-angle-right"></i>
+                                  <span class="status" ng-class="{'active': proposal.status == 'Working'}">ดำเนินการ</span>
+                                  <i class="fa fa-angle-right"></i>
+                                  <span class="status" ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span>
+                              </div>
+                          </div>
+                          <div class="message-area" scroll-glue>
 
-                            <card-influencer-profile ng-model="proposal.influencer" show-social-data="false"></card-influencer-profile>
+                              <card-influencer-profile ng-model="proposal.influencer" show-social-data="false"></card-influencer-profile>
 
-                            <div class="message-past" ng-if="hasPastMessage()">
-                                <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
-                            </div>
-                            <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
-                            <div nc-alert="alert"></div>
-                        </div>
-                        <div class="message-input">
-                            <textarea chatarea="sendMessage(formData.messageStr, formData.resources)" class="form-control" rows="4" ng-model="formData.messageStr" placeholder="พิมพ์ข้อความ..." autofocus></textarea>
-                            <div class="pull-right">
+                              <div class="message-past" ng-if="hasPastMessage()">
+                                  <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
+                              </div>
+                              <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
+                              <div nc-alert="alert"></div>
+                          </div>
+                          <div class="message-input">
+                              <textarea chatarea="sendMessage(formData.messageStr, formData.resources)" class="form-control" rows="4" ng-model="formData.messageStr" placeholder="พิมพ์ข้อความ..." autofocus maxlength="1000"></textarea>
+                              <div class="pull-left">
+                                <div>{{formData.messageStr.length || '0'}}/1000</div>
+                              </div>
+                              <div class="pull-right" form-error="form.resource">
+                                  <div input-error class="pull-left"></div>
+                                  <uploader-thumb
+                                  name="resource"
+                                  template="components/templates/uploader-chat.html"
+                                  ng-model="formData.resources[0]"
+                                  accept=".jpg,.png"
+                                  ngf-pattern="'.jpg,.png'"
+                                  ngf-max-size="5MB"></uploader-thumb>
 
-                                <uploader-multi template="components/templates/uploader-chat.html" ng-model="formData.resources"></uploader-multi>
+                                  <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr, formData.resources)">
+                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
+                                  </button>
+                              </div>
+                              <div class="clear"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xs-3">
+                      <card-proposal-detail ng-model="proposal">
+                          <button class="btn-primary btn-width-max" ng-click="selectProposal(proposal)">เลือกข้อเสนอ</button>
+                      </card-proposal-detail>
+                      <div class="card-campaign-thumbnail">
+                          <div class="card-thumbnail-image">
+                              <img ng-src="{{proposal.campaign.campaignResources[0].resource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
+                          </div>
+                          <div class="card-body">
+                              {{ proposal.campaign.title }}
+                              <button class="btn-secondary btn-width-max" ui-sref="brand-campaign-detail-draft({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
 
-                                <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr, formData.resources)">
-                  <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
-                </button>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <card-proposal-detail ng-model="proposal">
-                        <button class="btn-primary btn-width-max" ng-click="selectProposal(proposal)">เลือกข้อเสนอ</button>
-                    </card-proposal-detail>
-                    <div class="card-campaign-thumbnail">
-                        <div class="card-thumbnail-image">
-                            <img ng-src="{{proposal.campaign.campaignResources[0].resource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
-                        </div>
-                        <div class="card-body">
-                            {{ proposal.campaign.title }}
-                            <button class="btn-secondary btn-width-max" ui-sref="brand-campaign-detail-draft({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
+          </div>
+      </div>
+  </div>
+</form>

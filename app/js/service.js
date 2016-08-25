@@ -19,6 +19,22 @@ angular.module('myApp.service', ['satellizer'])
             Config.API_BASE_URI = $window.sessionStorage.API_OVERRIDE;
         }
     }])
+    .factory('validator', [function() {
+      return {
+        formValidate: function(form) {
+          if(form.$invalid && form.$error.required && form.$error.required.length > 0) {
+            return {
+              message: 'กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน'
+            };
+          } else if(form.$invalid) {
+            return {
+              message: 'กรุณากรอกข้อมูลให้ถูกต้อง'
+            };
+          }
+          return; //nothing
+        }
+      };
+    }])
     .factory('util', ['$window', function ($window) {
         return {
             warnOnExit: function (fn) {

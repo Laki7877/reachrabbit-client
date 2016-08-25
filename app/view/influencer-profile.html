@@ -1,4 +1,4 @@
-<form novalidate name="form">
+<form novalidate name="form" ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}">
 <div class="view-influencer-profile">
 
   <zone-header>
@@ -31,7 +31,6 @@
 
       <div class="card">
         <div class="card-body">
-
           <div class="card-row">
             <div class="card-title">
               <div class="card-title-content">
@@ -39,14 +38,21 @@
               </div>
             </div>
           </div>
-          <div class="card-row">
+          <div class="card-row" form-error="form.profilePicture" is-validate="isValidate($model, $error)">
             <div class="card-body-content-label with-input">
                 รูปโปรไฟล์
                 </div>
                 <div class="card-body-content">
-                  <uploader-thumb ng-model="formData.profilePicture">
-                  <i class="fa fa-camera" aria-hidden="true"></i><br>เลือกรูป
-              </uploader-thumb>
+                  <uploader-thumb name="profilePicture"
+                  ng-model="formData.profilePicture"
+                  accept=".jpg,.png"
+                  ngf-pattern="'.jpg,.png'"
+                  ngf-max-size="5MB"
+                  ngf-dimensions="$width > 400 && $height > 400"
+                  required>
+                  <i class="fa fa-camera"></i><br>เลือกรูป
+                  </uploader-thumb>
+                  <div input-error></div>
             </div>
           </div>
 
@@ -56,30 +62,33 @@
             ng-model="formData.influencer.categories">
           </multi-category-selector>
 
-          <div class="card-row">
+          <div class="card-row" form-error="form.name">
             <div class="card-body-content-label with-input">
               ชื่อบน Social Media
             </div>
             <div class="card-body-content">
-              <input type="text" ng-model="formData.name" class="form-control">
+              <input type="text" name="name" ng-model="formData.name" class="form-control" maxlength="100" required>
+              <div input-error></div>
             </div>
           </div>
 
-          <div class="card-row">
+          <div class="card-row" form-error="form.email">
             <div class="card-body-content-label with-input">
               อีเมล
             </div>
             <div class="card-body-content">
-              <input type="text" ng-model="formData.email" class="form-control">
+              <input type="email" name="email" ng-model="formData.email" class="form-control" required maxlength="100">
+              <div input-error></div>
             </div>
           </div>
 
-          <div class="card-row">
+          <div class="card-row" form-error="form.phoneNumber">
             <div class="card-body-content-label with-input">
               เบอร์ติดต่อ
             </div>
             <div class="card-body-content">
-              <input type="text" ng-model="formData.phoneNumber" class="form-control">
+              <input type="text" name="phoneNumber" ng-model="formData.phoneNumber" class="form-control" maxlength="20" ng-pattern-restrict="^[0-9]*$" required>
+              <div input-error></div>
             </div>
           </div>
 
@@ -88,7 +97,7 @@
               เกี่ยวกับฉัน
             </div>
             <div class="card-body-content">
-              <textarea rows="3" class="form-control" ng-model="formData.influencer.about" placeholder="อธิบายเกี่ยวกับคุณ"></textarea>
+              <textarea rows="3" class="form-control" ng-model="formData.influencer.about" placeholder="อธิบายเกี่ยวกับคุณ" maxlength="2500"></textarea>
             </div>
           </div>
 
@@ -97,7 +106,7 @@
               Web / Blog ของคุณ
             </div>
             <div class="card-body-content">
-              <input type="text" ng-model="formData.influencer.web" class="form-control">
+              <input type="text" ng-model="formData.influencer.web" class="form-control" maxlength="200">
             </div>
           </div>
 
@@ -122,7 +131,7 @@
             </div>
             <div class="card-body-content">
               <p class="input-group">
-                  <input placeholder="-- เลือกวันที่ --" type="text" class="form-control" ng-focus="popup1_open = true" uib-datepicker-popup="{{$root.format}}"
+                  <input placeholder="-- เลือกวันที่ --" type="text" class="form-control" ng-focus="popup1_open = true" uib-datepicker-popup="{{$root.format}}" readonly
                     ng-model="formData.influencer.birthday" is-open="popup1_open" required datepicker-options="$root.dateOptions"
                     show-button-bar="false" ng-required="true" close-text="Close" />
                   <span class="input-group-btn">

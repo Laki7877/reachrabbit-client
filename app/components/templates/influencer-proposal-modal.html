@@ -4,6 +4,7 @@
         <h4 class="modal-title">ส่งข้อเสนอ</h4>
     </div>
     <div class="card-body">
+      <form novalidate name="form">
         <div nc-alert='alert'></div>
         <div class="card-row-basic">
             ช่องทางการโปรโมท
@@ -33,19 +34,24 @@
         <div class="card-row-basic">
             ระยะเวลาทำงาน
         </div>
-        <div class="card-row-basic input-dropdown">
-            <select class="form-control" ng-model="formData.completionTime" ng-options="x as x.completionTime for x in completionTimes" ng-default="-- เลือกระยะเวลา --"></select>
-            <i class="fa fa-caret-down"></i>
+        <div class="card-row-basic" form-error="form.completionTime">
+          <div class="input-dropdown">
+              <select class="form-control" name="completionTime" ng-model="formData.completionTime" ng-options="x as x.completionTime for x in completionTimes" ng-default="-- เลือกระยะเวลา --" required></select>
+              <i class="fa fa-caret-down"></i>
+          </div>
+          <p class="hint-block">เริ่มนับจากวันที่ได้คัดเลือก</p>
+          <div input-error></div>
         </div>
-        <p class="help-block">เริ่มนับจากวันที่ได้คัดเลือก</p>
         <div class="card-row-basic">
             ราคาที่คุณเสนอ
         </div>
-        <div class="card-row-basic input-group">
-            <input type="text" class="form-control" ng-model="formData.price" />
-            <span class="input-group-addon" id="basic-addon1">บาท</span>
+        <div class="card-row-basic" form-error="form.price">
+          <div class="input-group">
+              <input name="price" class="form-control" ng-model="formData.price" required maxlength="10" ng-pattern-restrict="^[0-9]*$"/>
+              <span class="input-group-addon" id="basic-addon1">บาท</span>
+          </div>
+          <div input-error></div>
         </div>
-
         <div class="card-row-basic">
             คุณจะได้รับ
         </div>
@@ -53,19 +59,23 @@
             <input type="text" class="form-control" value="{{ proposalNetPrice | number: 2}}" disabled/>
             <span class="input-group-addon" id="basic-addon1">บาท</span>
         </div>
-        <p class="help-block">หลังหักค่าทำเนียม</p>
+        <p class="hint-block">หลังหักค่าทำเนียม</p>
 
-        <div ng-show="!isEditMode">
-        <div class="card-row-basic">
-            ข้อความ
+        <div form-error="form.description" ng-show="!isEditMode">
+          <div class="card-row-basic">
+              ข้อความ
+          </div>
+          <textarea name="description" class="form-control" rows="4" ng-model="formData.description" ng-model-options="{ updateOn: 'change blur' }" placeholder="คุณจะช่วยโปรโมท Brand อย่างไร และทำไม Brand ถึงควรเลือกคุณ?" maxlength="1000" ng-minlength="100" required></textarea>
+          <div input-error="{
+            required: 'กรุณากรอกข้อมูลให้ครบถ้วน (อย่างน้อย 100 ตัวอักษร)',
+            minlength: 'กรุณากรอกข้อมูลให้ครบถ้วน (อย่างน้อย 100 ตัวอักษร)'
+          }"></div>
         </div>
-        <textarea class="form-control" rows="4" ng-model="formData.description" placeholder="คุณจะช่วยโปรโมท Brand อย่างไร และทำไม Brand ถึงควรเลือกคุณ?"></textarea>
-        </div>
-        
+
         <div class="card-row-basic text-center" ng-if="!isEditMode">
             <div class="button-bar">
                 <button class="btn-primary btn-width-lg" ng-click="submit(formData)" ng-disabled="formData.media.length < 1">ส่งข้อเสนอ</button>
-                <p class="help-block">ข้อเสนอนี้จะสามารถแก้ไขได้ภายหลัง</p>
+                <p class="hint-block">ข้อเสนอนี้จะสามารถแก้ไขได้ภายหลัง</p>
             </div>
         </div>
         <div class="card-row-basic text-center" ng-if="isEditMode">
@@ -73,9 +83,6 @@
                 <button class="btn-primary btn-width-lg" ng-click="submit(formData)" ng-disabled="formData.media.length < 1">แก้ไขข้อเสนอ</button>
             </div>
         </div>
-
+      </form>
     </div>
-
-
-
 </div>

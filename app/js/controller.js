@@ -26,8 +26,8 @@ angular.module('myApp.controller', ['myApp.service'])
             // console.log("Test World");
         };
     }])
-    .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal',
-        function($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal) {
+    .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal', 'validator',
+        function($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal, validator) {
             $scope.completionTimes = [];
             $scope.medium = [];
             $scope.formData = {
@@ -74,6 +74,11 @@ angular.module('myApp.controller', ['myApp.service'])
             }, true);
 
             $scope.submit = function(formData) {
+                var o = validator.formValidate($scope.form);
+                if(o) {
+                    return $scope.alert.danger(o.message);
+                }
+
                 var action = CampaignService.sendProposal;
                 if(formData.proposalId){
                    action = ProposalService.update;
@@ -386,11 +391,21 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 });
         }
     ])
-    .controller('InfluencerProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile',
-        function($scope, $window, AccountService, NcAlert, UserProfile) {
+    .controller('InfluencerProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator',
+        function($scope, $window, AccountService, NcAlert, UserProfile, validator) {
             $scope.formData = {};
             $scope.alert = new NcAlert();
-            $scope.saveProfile = function(profile) {
+            $scope.isValidate = function(model, error) {
+                if(error === 'required' && model.$name === 'profilePicture') {
+                    return $scope.form.$submitted;
+                }
+                return true;
+            };
+            $scope.saveProfile = function(profile, bypass) {
+                var o = validator.formValidate($scope.form);
+                if(o && !bypass) {
+                    return $scope.alert.danger(o.message);
+                }
                 AccountService.saveProfile(profile)
                     .then(function(response) {
                         // delete response.data.password;
@@ -407,7 +422,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             };
 
             $scope.linkDone = function() {
-                $scope.saveProfile($scope.formData);
+                $scope.saveProfile($scope.formData, true);
             };
 
             AccountService.getProfile()
@@ -541,8 +556,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     .controller('CampaignExampleController', ['$scope', '$stateParams', 'ExampleCampaigns', function($scope, $stateParams, ExampleCampaigns) {
         $scope.exampleCampaign = ExampleCampaigns[$stateParams.exampleId];
     }])
-    .controller('CampaignDetailController', ['$scope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', 'NcAlert',
-        function($scope, $stateParams, CampaignService, DataService, $filter, UserProfile, NcAlert) {
+    .controller('CampaignDetailController', ['$scope', '$rootScope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', 'NcAlert', 'validator',
+        function($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, NcAlert, validator) {
             //initial form data
             $scope.alert = new NcAlert();
 
@@ -569,6 +584,10 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             }];
 
             $scope.budget = null;
+
+            $scope.dateOptions = _.extend({}, $rootScope.dateOptions, {
+                minDate: new Date()
+            });
 
             $scope.budgetDisplayAs = function(budgetObject) {
                 return $filter('number')(budgetObject.fromBudget) + " - " + $filter('number')(budgetObject.toBudget);
@@ -663,9 +682,10 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
                 //check for publish case
                 if (status == 'Open') {
-                    if (!$scope.form.$valid || $scope.formData.media.length === 0) {
+                    var o = validator.formValidate($scope.form);
+                    if (o || $scope.formData.media.length === 0) {
                         $scope.form.$setSubmitted();
-                        $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องให้ถูกต้องและครบถ้วน');
+                        $scope.alert.danger(o.message);
                         return;
                     }
                 }
@@ -691,7 +711,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
         }
     ])
-    .controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', function($scope, $window, AccountService, NcAlert, UserProfile) {
+    .controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator', function($scope, $window, AccountService, NcAlert, UserProfile, validator) {
         $scope.formData = {};
         $scope.alert = new NcAlert();
         AccountService.getProfile()
@@ -709,11 +729,11 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             }
             return true;
         };
-
         $scope.saveProfile = function(form, profile) {
             $scope.form.$setSubmitted();
             if (!$scope.form.$valid) {
-                $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน');
+                var o = validator.formValidate($scope.form);
+                $scope.alert.danger(o.message);
                 return;
             }
             AccountService.saveProfile(profile)
@@ -934,6 +954,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             }
 
             $scope.startAuthFlow = function(mediaId) {
+                $scope.minFollowerError = false;
                 $window.localStorage.clear();
                 $auth.authenticate(mediaId)
                     .then(function(response) {
@@ -955,6 +976,10 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                             if (mediaId == 'facebook') {
                                 $state.go('influencer-signup-select-page', { authData: response.data });
                             } else {
+                                if(response.pages[0].count < $scope.minFollower) {
+                                    $scope.minFollowerError = true;
+                                    return;
+                                }
                                 $state.go('influencer-signup-confirmation', { authData: response.data });
                             }
                         }
@@ -998,8 +1023,8 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             });
         };
     }])
-    .controller('InfluencerSignUpController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig',
-        function($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig) {
+    .controller('InfluencerSignUpController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig', 'validator',
+        function($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator) {
 
             var profile = $stateParams.authData;
             $scope.alert = new NcAlert();
@@ -1027,6 +1052,13 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 
 
             $scope.register = function() {
+
+                var o = validator.formValidate($scope.form);
+                if(o) {
+                    $scope.alert.danger(o.message);
+                    return;
+                }
+
                 InfluencerAccountService.signup({
                         name: $scope.formData.name,
                         email: $scope.formData.email,

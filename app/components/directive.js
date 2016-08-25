@@ -106,14 +106,14 @@ angular.module('myApp.directives', ['myApp.service'])
                   return subtoken.join(' ').concat(' หรือ ' + tokens[tokens.length-1]);
                 };
 
-                var defaultErrors = {
-                    required: 'กรุณากรอกข้อมูลให้ครบถ้วน',
-                    email: 'กรุณากรอกอีเมลให้ถูกต้อง',
-                    minlength: 'รหัสผ่านควรมีความยาวอย่างน้อย ' + getAttr('ngMinlength', '-') +' ตัวอักษร',
-                    maxSize: 'กรุณาเลือกรูปที่มีขนาดไม่เกิน ' + extractFileSize(getAttr('ngfMaxSize', '')),
-                    pattern: 'กรุณาเลือกรูป ' + extractPattern(getAttr('ngfPattern', null))  + ' เท่านั้น',
-                    maxFiles: 'ใส่รูปประกอบได้มากสุดเพียง ' + getAttr('ngfMaxFiles', undefined) + ' รูป',
-                    dimensions: 'กรุณาเลือกรูปที่มีขนาดใหญ่กว่า 600x400 pixel' //lazy
+                var extractDimension = function(str) {
+                  if(_.isNil(str)) {
+                    return;
+                  }
+                  var pat = /([0-9]+)/g;
+
+                  var m = str.match(pat);
+                  return m.join('x');
                 };
                 scope.error = {};
                 scope.getError = function() {
@@ -132,7 +132,7 @@ angular.module('myApp.directives', ['myApp.service'])
                       maxSize: 'กรุณาเลือกรูปที่มีขนาดไม่เกิน ' + extractFileSize(getAttr('ngfMaxSize', '')),
                       pattern: 'กรุณาเลือกรูป ' + extractPattern(getAttr('ngfPattern', null))  + ' เท่านั้น',
                       maxFiles: 'ใส่รูปประกอบได้มากสุดเพียง ' + getAttr('ngfMaxFiles', undefined) + ' รูป',
-                      dimensions: 'กรุณาเลือกรูปที่มีขนาดใหญ่กว่า 600x400 pixel' //lazy
+                      dimensions: 'กรุณาเลือกรูปที่มีขนาดใหญ่กว่า ' + extractDimension(getAttr('ngfDimensions', undefined)) + ' pixel'
                   };
                   scope.error = _.extend({}, defaultErrors, scope.inputError());
                 });
@@ -669,7 +669,13 @@ angular.module('myApp.directives', ['myApp.service'])
                 onError: '&?',
                 accessor: '&?' //function that defines how to access the url of the model
             },
-            templateUrl: 'components/templates/uploader-thumb.html',
+            templateUrl: function (elem, attr) {
+                if (attr.template) {
+                    return attr.template;
+                }
+
+                return 'components/templates/uploader-thumb.html';
+            },
             link: function(scope, elem, attr, ngModel) {
                 scope.file = null;
                 if (!scope.accessor) {

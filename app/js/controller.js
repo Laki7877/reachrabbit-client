@@ -1020,14 +1020,12 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         name: $scope.formData.name,
                         email: $scope.formData.email,
                         phoneNumber: $scope.formData.phoneNumber,
-                        influencer: {
-                            influencerMedias: [{
-                                media: $scope.formData.media,
-                                socialId: $scope.formData.id,
-                                followerCount: $scope.formData.pages[0].count,
-                                pageId: $scope.formData.pageId || null
-                            }]
-                        },
+                        influencerMedia: [{
+                            media: $scope.formData.media,
+                            socialId: $scope.formData.id,
+                            followerCount: $scope.formData.pages[0].count,
+                            pageId: $scope.formData.pageId || null
+                        }],
                         profilePicture: $scope.profilePictureResource
                     })
                     .then(function(response) {

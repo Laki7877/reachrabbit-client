@@ -1,0 +1,71 @@
+<div class="view-brand-detail-example">
+
+  <zone-header historyback="true">
+    <div class="action-btn-for-header with-back-btn">
+        <button class="btn-primary btn-width-md" ng-click="sendProposal()">
+            <i class="fa fa-paper-plane"></i> ยื่นข้อเสนอ
+        </button>
+    </div>
+    <h2>{{ campaignNee.title }}</h2>
+  </zone-header>
+
+  <div class="zone-body">
+    <div class="container">
+      <div nc-alert="alert"></div>
+
+      <card-campaign-header campaign="campaignNee">
+      </card-campaign-header>
+
+      <div class="card-campaign-description">
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-body-content-label">
+              รายละเอียด
+            </div>
+            <div class="card-body-content" ng-if="campaignNee.description.length > 0">
+                {{ campaignNee.description }}
+            </div>
+          </div>
+          <div class="card-row" ng-if="campaignNee.keyword.length > 0">
+            <div class="card-body-content-label">
+              Keyword สำคัญ
+            </div>
+            <div class="card-body-content">
+              {{ campaignNee.keyword }}
+            </div>
+          </div>
+          <div class="card-row" ng-if="campaignNee.website.length > 0">
+            <div class="card-body-content-label">
+              เว็บไซต์ของสินค้า
+            </div>
+            <div class="card-body-content">
+              <a ng-href="{{campaignNee.website}}">{{ campaignNee.website }}</a>
+            </div>
+          </div>
+          <div class="card-row" ng-if="$index > 0">
+            <div class="card-body-content-label">
+              รูปประกอบ
+            </div>
+            <div class="card-body-content">
+              <img ng-repeat="campaignImage in campaignNee.resources" ng-src="{{ campaignImage.url }}" class="description-image"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <card-brand-profile ng-model="campaignNee.brand"></card-brand-profile>
+
+      <div class="card">
+        <div class="card-body text-center">
+            <button class="btn-secondary btn-width-lg btn-with-margin" ui-sref="influencer-campaign-list">
+              กลับไปดู Campaign อื่น
+            </button>
+            <button class="btn-primary btn-width-lg btn-with-margin" ng-click="sendProposal()">
+                <i class="fa fa-paper-plane"></i> ยื่นข้อเสนอ
+            </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

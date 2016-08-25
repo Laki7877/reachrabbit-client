@@ -11,24 +11,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="css/app.css">
+  <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
+
 </head>
-<body class="layout-portal">
+<body class="layout-portal" ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}">
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ng-view></div>
+  <div class="api_override_box" ng-cloak ng-if="API_OVERRIDE_ACTIVE">
+      <span class="label label-danger">API OVERRIDE ON</span>
+  </div>
+  <div ui-view></div>
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-scroll-glue/src/scrollglue.js"></script>
+  <script src="bower_components/ngSmoothScroll/dist/angular-smooth-scroll.min.js"></script>
+  <script src="bower_components/angular-i18n/angular-locale_th-th.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="components/directives.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/moment/locale/th.js"></script>
+  <script src="bower_components/angular-moment/angular-moment.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="bower_components/satellizer/dist/satellizer.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="bower_components/ng-pattern-restrict/src/ng-pattern-restrict.min.js"></script>
+
+  <script src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
+  <script src="bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+  <script type="text/javascript" src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+  <script src="components/directive.js"></script>
   <script src="js/controller.js"></script>
-  <script src="js/view.js"></script>
+  <script src="js/route.js"></script>
+  <script src="js/service.js"></script>
   <script src="js/app.js"></script>
+  <script src="https://cdn.ravenjs.com/3.1.1/raven.min.js"></script>
+
 </body>
 </html>

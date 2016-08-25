@@ -1,62 +1,69 @@
-<div class="view-brand-signup">
-  <div class="container">
-    <div class="card-grey">
-      <div class="card-body">
-        <div class="logo">
-          <img src="images/logo-reachrabbit.png" alt="ReachRabbit logo" />
-          <h1>มาโปรโมทสินค้าผ่าน Influencer กัน</h1>
-        </div>
-
-        <div class="form-group">
-          <label>ชื่อ Brand</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-building fa-fw"></i></span>
-            <input type="text" class="form-control">
+<form name="form" novalidate ng-submit="submit(formData)">
+  <div class="view-brand-signup">
+    <div class="container">
+      <div nc-alert='alert'></div>
+      <div class="card-portal">
+        <div class="card-body">
+          <div class="logo">
+            <img src="images/logo-reachrabbit.png" alt="ReachRabbit logo" />
+            <h3>มาโปรโมทสินค้าผ่าน Influencer กัน</h3>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label>ชื่อผู้สมัคร</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-            <input type="text" class="form-control">
+          <div class="form-group" form-error="form.brandName">
+            <label>ชื่อ Brand</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-building fa-fw"></i></span>
+              <input name="brandName" type="text" ng-model="formData.brandName" required class="form-control" maxlength="100">
+            </div>
+            <div input-error></div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label>เบอร์ติดต่อ</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
-            <input type="text" class="form-control">
+          <div class="form-group" form-error="form.name">
+            <label>ชื่อผู้สมัคร</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+              <input name="name" type="text" class="form-control" required ng-model="formData.name" maxlength="100">
+            </div>
+            <div input-error></div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label>อีเมล์</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-            <input type="email" class="form-control" >
+          <div class="form-group" form-error="form.phoneNumber">
+            <label>เบอร์ติดต่อ</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
+              <input name="phoneNumber" type="text" class="form-control" required ng-model="formData.phoneNumber" ng-pattern-restrict="[0-9]*">
+            </div>
+            <div input-error></div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label>ตั้งรหัสผ่าน</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-            <input type="password" class="form-control">
+          <div class="form-group" form-error="form.email">
+            <label>อีเมล</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+              <input name="email" type="email" class="form-control" required ng-model="formData.email" maxlength="100">
+            </div>
+            <div input-error></div>
           </div>
-        </div>
 
-        <a href="brand-signup">
-          <button class="btn-primary">สมัครสมาชิก</button>
-        </a>
-        <div class="info-text">
-          เห็นด้วยกับ <a href="#">เงื่อนไขการใช้งาน</a> โดยการสมัครสมาชิก
+          <div class="form-group" form-error="form.password">
+            <label>ตั้งรหัสผ่าน</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+              <input name="password" type="password" class="form-control" required ng-model="formData.password" maxlength="100" ng-minlength="8">
+            </div>
+            <div input-error></div>
+          </div>
+
+          <button class="btn-primary" ng-click="$form.submit()">สมัครสมาชิก</button>
+
+          <div class="info-text">
+            เห็นด้วยกับ <a href="#">เงื่อนไขการใช้งาน</a> โดยการสมัครสมาชิก
+          </div>
         </div>
       </div>
-    </div>
-    <div class="signup-pill">
-      มี Account อยู่แล้ว? <a ng-click="$root.goTo('brand-login')">เข้าสู่ระบบ</a>
+      <div class="signup-pill">
+        มี Account อยู่แล้ว? <a  ui-sref="brand-login">เข้าสู่ระบบ</a>
+      </div>
     </div>
   </div>
-</div>
+</form>

@@ -1,0 +1,21 @@
+<div class="thumbnail-column" ng-click="onClick(campaign)">
+  <div class="card-thumbnail">
+    <div class="card-thumbnail-image">
+      <img ng-src="{{campaign.resources[0].url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
+    </div>
+    <div class="card-body">
+      {{ campaign.title }}
+      <div class="card-price">
+        <span ng-if="campaign.fromBudget"> {{campaign.fromBudget | number}} - {{campaign.toBudget | number}} บาท</span>
+        <span ng-if="!campaign.fromBudget">-</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span ng-if="campaign.proposalDeadline">หมดเขต: {{ (campaign.proposalDeadline | date) }}</span>
+      <span ng-if="!campaign.proposalDeadline">No Deadline</span>
+      <div class="card-social-media">
+        <span ng-repeat="media in campaign.media" class="icon-{{ media.mediaId }}"></span>
+      </div>
+    </div>
+  </div>
+</div>

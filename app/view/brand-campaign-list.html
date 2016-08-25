@@ -1,12 +1,31 @@
-<div class="layout-sigin">
-  <div class="header-zone">
+<div class="view-brand-campaign-list">
+
+  <zone-header>
+    <h1>My Campaign</h1>
+  </zone-header>
+
+  <div class="zone-body">
     <div class="container">
-      <h1>My Campaign</h1>
-    </div>
-  </div>
-  <div class="body-zone">
-    <div class="container">
-      <test-box></test-box>
+      <div class="btn-floating-action" ui-sref="brand-campaign-detail-draft">
+      </div>
+
+      <div nc-alert type="info" closable="true">
+        เราได้สร้าง Campaign แรกให้คุณแล้ว เข้าไปแก้ไขข้อมูลได้เลย
+      </div>
+
+      <div ng-repeat="x in myCampaign.content">
+        <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-draft({campaignId: x.campaignId})"></card-campaign-list-item>
+      </div>
+      <nav class="text-center" aria-label="Page navigation">
+        <pagination ng-model="myCampaign" callback="load"></pagination>
+      </nav>
+
+      <div class="example-campaign">
+        <h2>ตัวอย่าง Campaign</h2>
+        <div ng-repeat="x in exampleCampaign">
+          <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-example({ exampleId: $index })"></card-campaign-list-item>
+        </div>
+      </div>
     </div>
   </div>
 </div>

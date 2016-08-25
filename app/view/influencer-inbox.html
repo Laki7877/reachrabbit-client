@@ -1,0 +1,74 @@
+<div class="view-influencer-inbox">
+
+  <zone-header>
+    <div class="action-btn-for-header">
+      <div class="card-body-content">
+        <div class="input-dropdown">
+          <select class="form-control filter" ng-model="filter" ng-options="x.campaignId as x.name for x in filters"></select>
+          <i class="fa fa-caret-down"></i>
+        </div>
+      </div>
+    </div>
+    <h1>Inbox</h1>
+  </zone-header>
+
+  <div class="zone-body">
+    <div class="container">
+      <div class="card-inbox">
+        <div class="tab-selector">
+          <div class="tab active">
+            <h5>คัดเลือก</h5>
+            <h3 ng-bind="statusCounts.selection">-</h3>
+          </div>
+          <div class="tab-next-step">
+            <i class="fa fa-angle-right fa-2x"></i>
+          </div>
+          <div class="tab">
+            <h5>ดำเนินการ</h5>
+            <h3 ng-bind="statusCounts.working">-</h3>
+          </div>
+          <div class="tab-next-step">
+            <i class="fa fa-angle-right fa-2x"></i>
+          </div>
+          <div class="tab">
+            <h5>เสร็จสิ้น</h5>
+            <h3 ng-bind="statusCounts.complete">-</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <table ng-if="proposals.numberOfElements > 0" class="table" sorter ng-model="proposals" callback="load">
+            <thead>
+              <tr>
+                <th class="col-name" sort="brand.brandId">Brand</th>
+                <th class="col-campaign-name" sort="campaign.campaignId">Campaign</th>
+                <th class="col-price" sort="price">ราคาที่เสนอ</th>
+                <th class="col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
+                <th class="col-button">คุยงาน</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="proposal in proposals.content">
+                <td class="col-name"><img src="{{proposal.campaign.brand.user.profilePicture.url || 'images/placeholder-profile-picture.png'}}" class="profile-picture" /> {{proposal.campaign.brand.brandName}}</td>
+                <td class="col-campaign-name">{{proposal.campaign.title}}</td>
+                <td class="col-price">{{proposal.price | currency:'':2 }} บาท</td>
+                <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
+                <td class="col-button">
+                  <button class="btn-secondary" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
+                  <!-- For next sprint -->
+                  <span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table-static ng-if="proposals.totalElements == 0">ไม่มี Campaign</table-static>
+        </div>
+      </div>
+      <div class="info-text text-center">
+        <h5>ห้องคุยงานที่ไม่ Active มากกว่า 21 วันจะถูกลบโดยอัตโนมัติ</h5>
+      </div>
+    </div>
+    <nav class="text-center" aria-label="Page navigation">
+      <pagination ng-model="proposals" callback="load"></pagination>
+    </nav>
+  </div>
+</div>

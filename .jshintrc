@@ -125,7 +125,7 @@
         "afterEach"
     ],
     "globals": {
-        "angular": false,
+        "angular": true,
         "async": true,
         "CJSON": true,
         "errors": true,

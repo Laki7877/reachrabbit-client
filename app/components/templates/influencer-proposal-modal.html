@@ -1,0 +1,81 @@
+<div class="proposal-modal">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">ส่งข้อเสนอ</h4>
+    </div>
+    <div class="card-body">
+        <div nc-alert='alert'></div>
+        <div class="card-row-basic">
+            ช่องทางการโปรโมท
+        </div>
+
+        <div class="card-row-basic" ng-repeat="media in campaign.media">
+            <label class="promotion-medium" ng-class="{'disabled': !profileHasMedia(media.mediaId)}">
+                <input type="checkbox" ng-model="selectedMedia[media.mediaId]" ng-disabled="!profileHasMedia(media.mediaId)"/>
+                <span ng-if="profileHasMedia(media.mediaId)"><img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" /> {{ media.mediaName }}</span>
+                <span ng-if="!profileHasMedia(media.mediaId)"><img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" />  {{media.mediaName}}
+                    คุณยังไม่ได้เชื่อมต่อ <a ng-click="$close()" ui-sref="influencer-profile">เชือมต่อช่องทางนี้</a></span>
+            </label>
+        </div>
+        <!--<div class="card-row-basic">
+            <label class="promotion-medium">
+                <input type="checkbox"/>
+                <img ng-src="images/icon-instagram-lg.png" class="profile-social-media-icon" /> Instagram
+            </label>
+        </div>
+        <div class="card-row-basic">
+            <label class="promotion-medium disabled">
+                <input type="checkbox" disabled/>
+                <img ng-src="images/icon-google-lg.png" class="profile-social-media-icon" /> YouTube คุณยังไม่ได้เชื่อมต่อ <a href="#">เชือมต่อช่องทางนี้</a>
+              </label>
+        </div>-->
+
+        <div class="card-row-basic">
+            ระยะเวลาทำงาน
+        </div>
+        <div class="card-row-basic input-dropdown">
+            <select class="form-control" ng-model="formData.completionTime" ng-options="x as x.completionTime for x in completionTimes" ng-default="-- เลือกระยะเวลา --"></select>
+            <i class="fa fa-caret-down"></i>
+        </div>
+        <p class="help-block">เริ่มนับจากวันที่ได้คัดเลือก</p>
+        <div class="card-row-basic">
+            ราคาที่คุณเสนอ
+        </div>
+        <div class="card-row-basic input-group">
+            <input type="text" class="form-control" ng-model="formData.price" />
+            <span class="input-group-addon" id="basic-addon1">บาท</span>
+        </div>
+
+        <div class="card-row-basic">
+            คุณจะได้รับ
+        </div>
+        <div class="card-row-basic input-group">
+            <input type="text" class="form-control" value="{{ proposalNetPrice | number: 2}}" disabled/>
+            <span class="input-group-addon" id="basic-addon1">บาท</span>
+        </div>
+        <p class="help-block">หลังหักค่าทำเนียม</p>
+
+        <div ng-show="!isEditMode">
+        <div class="card-row-basic">
+            ข้อความ
+        </div>
+        <textarea class="form-control" rows="4" ng-model="formData.description" placeholder="คุณจะช่วยโปรโมท Brand อย่างไร และทำไม Brand ถึงควรเลือกคุณ?"></textarea>
+        </div>
+        
+        <div class="card-row-basic text-center" ng-if="!isEditMode">
+            <div class="button-bar">
+                <button class="btn-primary btn-width-lg" ng-click="submit(formData)" ng-disabled="formData.media.length < 1">ส่งข้อเสนอ</button>
+                <p class="help-block">ข้อเสนอนี้จะสามารถแก้ไขได้ภายหลัง</p>
+            </div>
+        </div>
+        <div class="card-row-basic text-center" ng-if="isEditMode">
+            <div class="button-bar">
+                <button class="btn-primary btn-width-lg" ng-click="submit(formData)" ng-disabled="formData.media.length < 1">แก้ไขข้อเสนอ</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>

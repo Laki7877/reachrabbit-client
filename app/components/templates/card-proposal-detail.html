@@ -1,0 +1,35 @@
+<div class="card-proposal-detail">
+    <div class="card-header">
+        รายละเอียดข้อเสนอ
+    </div>
+    <div class="card-body">
+        <ng-transclude></ng-transclude>
+
+        <div class="card-info-label">
+            ราคาที่เสนอ
+        </div>
+        <div class="card-info-content card-price">
+            {{ proposal.price | number: 2 }} บาท
+        </div>
+        <div class="card-info-label">
+            จำนวนผู้ติดตาม
+        </div>
+        <div class="card-info-content" ng-repeat="imedia in intersectMedia(proposal.media, proposal.influencer.influencerMedias)">
+            <div class="social-info">
+                <span class="icon-{{imedia.mediaId}}"></span> {{ imedia.followerCount | number }} คน
+            </div>
+        </div>
+        <div class="card-info-label" ng-if="proposal.status == 'Selection'">
+            ระยะเวลาการทำงาน
+        </div>
+        <div class="card-info-content" ng-if="proposal.status == 'Selection'">
+            {{ proposal.completionTime.completionTime }}
+        </div>
+        <div class="card-info-label" ng-if="proposal.status == 'Working'">
+            กำหนดวันส่งงาน
+        </div>
+        <div class="card-info-content" ng-if="proposal.status == 'Working'">
+            {{ proposal.dueDate }}
+        </div>
+    </div>
+</div>

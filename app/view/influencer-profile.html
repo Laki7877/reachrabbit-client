@@ -1,0 +1,151 @@
+<form novalidate name="form">
+<div class="view-influencer-profile">
+
+  <zone-header>
+    <h1>Profile ของฉัน</h1>
+  </zone-header>
+
+  <div class="zone-body" ng-cloak>
+    <div class="container">
+      <div nc-alert="alert"></div>
+
+      <div nc-alert type="info" closable="false">
+        ยิ่งใส่ข้อมูลเยอะคุณยิ่งมีโอกาศที่จะได้รับเลือกเพื่อร่วมงานกับแบรนด์มากขึ้น
+      </div>
+      <div class="card">
+        <div class="card-body">
+
+          <div class="card-row">
+            <div class="card-title col-xs-12">
+              <div class="card-title-content">
+                เชื่อมต่อ Social Media
+              </div>
+            </div>
+          </div>
+
+          <social-linker on-done="linkDone"
+          from-state="influencer-profile"
+          ng-model="formData.influencer.influencerMedias"></social-linker>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+
+          <div class="card-row">
+            <div class="card-title">
+              <div class="card-title-content">
+                เกี่ยวกับผู้สมัคร
+              </div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+                รูปโปรไฟล์
+                </div>
+                <div class="card-body-content">
+                  <uploader-thumb ng-model="formData.profilePicture">
+                  <i class="fa fa-camera" aria-hidden="true"></i><br>เลือกรูป
+              </uploader-thumb>
+            </div>
+          </div>
+
+          <multi-category-selector
+            max-columns="4"
+            max-selected="3"
+            ng-model="formData.influencer.categories">
+          </multi-category-selector>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              ชื่อบน Social Media
+            </div>
+            <div class="card-body-content">
+              <input type="text" ng-model="formData.name" class="form-control">
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              อีเมล
+            </div>
+            <div class="card-body-content">
+              <input type="text" ng-model="formData.email" class="form-control">
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              เบอร์ติดต่อ
+            </div>
+            <div class="card-body-content">
+              <input type="text" ng-model="formData.phoneNumber" class="form-control">
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              เกี่ยวกับฉัน
+            </div>
+            <div class="card-body-content">
+              <textarea rows="3" class="form-control" ng-model="formData.influencer.about" placeholder="อธิบายเกี่ยวกับคุณ"></textarea>
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              Web / Blog ของคุณ
+            </div>
+            <div class="card-body-content">
+              <input type="text" ng-model="formData.influencer.web" class="form-control">
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              เพศ
+            </div>
+            <div class="card-body-content">
+              <div class="input-dropdown">
+                <select class="form-control" ng-model="formData.influencer.gender">
+                  <option value="Male">ชาย</option>
+                  <option value="Female">หญิง</option>
+                </select>
+                <i class="fa fa-caret-down"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              วันเกิด
+            </div>
+            <div class="card-body-content">
+              <p class="input-group">
+                  <input placeholder="-- เลือกวันที่ --" type="text" class="form-control" ng-focus="popup1_open = true" uib-datepicker-popup="{{$root.format}}"
+                    ng-model="formData.influencer.birthday" is-open="popup1_open" required datepicker-options="$root.dateOptions"
+                    show-button-bar="false" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="popup1_open = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+                </p>
+
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+            </div>
+            <div class="card-body-content">
+              <button class="btn-width-lg btn-primary" ng-click="saveProfile(formData)" >บันทึกข้อมูล</button>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</form>

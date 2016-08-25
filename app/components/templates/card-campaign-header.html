@@ -1,0 +1,56 @@
+<div class="card-campaign-header">
+  <div class="card-body">
+    <div class="card-image">
+      <img ng-src="{{campaign.resources[0].url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
+    </div>
+    <div class="card-info card-info-1">
+      <div class="card-info-label">
+        ช่องทางการโปรโมท
+      </div>
+      <div class="card-info-content">
+        <span ng-repeat="media in campaign.media" class="icon-{{media.mediaId}}"></span>
+        <span ng-if="!campaign.media || campaign.media.length == 0">-</span>
+      </div>
+    </div>
+    <div class="card-info card-info-2">
+      <div class="card-info-label">
+        เปิดรับข้อเสนอถึง
+      </div>
+      <div class="card-info-content">
+        {{campaign.proposalDeadline | date}}
+        <span ng-if="!campaign.proposalDeadline">-</span>
+      </div>
+    </div>
+    <div class="card-info card-info-3">
+      <div class="card-info-label">
+        Brand
+      </div>
+      <div class="card-info-content">
+        {{campaign.brand.brandName}}
+        <span ng-if="!campaign.brand.brandName">-</span>
+      </div>
+    </div>
+
+    <div class="col-xs-8">
+    </div>
+
+    <div class="card-info card-info-4">
+      <div class="card-info-label">
+        ค่าตอบแทน
+      </div>
+      <div class="card-info-content">
+        <span ng-if="campaign.fromBudget"> {{campaign.fromBudget | number}} - {{campaign.toBudget | number}}</span>
+        <span ng-if="!campaign.fromBudget">-</span>
+      </div>
+    </div>
+    <div class="card-info card-info-5">
+      <div class="card-info-label">
+        หมวดหมู่
+      </div>
+      <div class="card-info-content">
+        <span ng-if="campaign.category.categoryName">{{campaign.category.categoryName}}</span>
+        <span ng-if="!campaign.category.categoryName">-</span>
+      </div>
+    </div>
+  </div>
+</div>

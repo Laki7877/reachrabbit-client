@@ -1,0 +1,21 @@
+<div class="fileinput fileinput-new" data-provides="fileinput">
+
+    <a class="secondary" ngf-select="upload($file)" >
+        <i class="fa fa-camera"></i> เพิ่มรูปประกอบ (JPG หรือ PNG ขนาดเท่าไรก็ได้)
+    </a>
+    <div class="input-upload-image-sm-preview">
+        <div class="preview-item" ng-repeat="resource in model">
+            <div class="input-upload-image">
+                <i class="fa fa-times-circle btn-delete-image" ng-click="remove($index)"></i>
+                <img ng-src="{{accessor(resource)}}">
+            </div>
+            <!--<a ng-click="remove($index)">{{resource._name | limitTo: 7 }} <i class="fa fa-times-circle"></i></a>-->
+        </div>
+
+        <div class="loading" ng-if="loadingImage">
+          <i class="fa fa-spinner fa-spin image-uploading"></i>
+        </div>
+
+    </div>
+
+</div>

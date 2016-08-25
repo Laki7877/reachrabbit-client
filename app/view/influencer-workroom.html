@@ -1,0 +1,70 @@
+<div class="view-influencer-workroom workroom">
+    <div class="zone-header">
+        <div class="container">
+            <div class="back-btn-for-header">
+                <span ui-sref="influencer-inbox"><i class="fa fa-arrow-left"></i> กลับไป Inbox</span>
+            </div>
+        </div>
+    </div>
+    <div class="zone-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-9">
+                    <div class="chatbox-card">
+                        <div class="chatbox-header">
+                            <h3>{{ proposal.campaign.brand.brandName }}</h3>
+                            <a class="link-view-profile" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId })"><i class="fa fa-info-circle"></i>ดูโปรไฟล์</a>
+                            <div class="chatbox-status">
+                                <span class="status active">คัดเลือก</span>
+                                <i class="fa fa-angle-right"></i>
+                                <span class="status">ดำเนินการ</span>
+                                <i class="fa fa-angle-right"></i>
+                                <span class="status">เสร็จสิ้น</span>
+                            </div>
+                        </div>
+                        <div class="message-area" scroll-glue>
+
+                            <card-influencer-profile ng-model="proposal.influencer" show-social-data="false">
+                                <a ui-sref="influencer-profile" class="link-edit-profile">แก้ไขข้อมูล</a>
+                            </card-influencer-profile>
+                            <div class="message-past" ng-if="hasPastMessage()">
+                                <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
+                            </div>
+                            <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
+                            <div nc-alert="alert"></div>
+                        </div>
+                        <div class="message-input">
+                            <textarea class="form-control" chatarea="sendMessage(formData.messageStr, formData.resources)" rows="4" ng-model="formData.messageStr" placeholder="พิมพ์ข้อความ..." autofocus></textarea>
+                            <div class="pull-right">
+
+                                <uploader-multi template="components/templates/uploader-chat.html" ng-model="formData.resources"></uploader-multi>
+
+                                <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr, formData.resources)">
+                                  <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
+                                </button>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <card-proposal-detail ng-model="proposal">
+                        <button class="btn-secondary btn-width-max" ng-click="editProposal()">แก้ไขข้อเสนอ</button>
+                    </card-proposal-detail>
+
+                    <div class="card-campaign-thumbnail">
+                        <div class="card-thumbnail-image">
+                            <img ng-src="{{proposal.campaign.campaignResources[0].resource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
+                        </div>
+                        <div class="card-body">
+                            {{ proposal.campaign.title }}
+                            <button class="btn-secondary btn-width-max" ui-sref="influencer-campaign-detail-open({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

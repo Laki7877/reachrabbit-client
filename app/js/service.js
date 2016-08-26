@@ -322,8 +322,8 @@ angular.module('myApp.service', ['satellizer'])
                         });
                 });
             },
-            campaignIsApplied: function(campaignId){
-                return $http.get('/campaigns/' + campaignId + '/ispropose');
+            getAppliedProposal: function(campaignId){
+                return $http.get('/campaigns/' + campaignId + '/applied');
             }
         };
     }])

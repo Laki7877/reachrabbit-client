@@ -5,9 +5,9 @@
         <button class="btn-primary btn-width-md" ng-if="!isApplied" ng-click="sendProposal()">
             <i class="fa fa-paper-plane"></i> ยื่นข้อเสนอ
         </button>
-        <a class="btn-primary btn-width-md" ng-if="isApplied" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">
+        <button class="btn-primary btn-width-md" ng-if="isApplied" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">
             <i class="fa fa-paper-plane"></i> ส่งข้อความ
-        </a>
+        </button>
     </div>
     <h2>{{ campaignNee.title }}</h2>
   </zone-header>

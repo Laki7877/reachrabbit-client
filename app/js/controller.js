@@ -312,6 +312,8 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             $scope.alert = new NcAlert();
             $scope.appliedAlert = new NcAlert();
             
+            $scope.proposal = null;
+
             $scope.keywordMap = function(arr) {
                 if (!arr) return [];
                 return arr.map(function(k) {
@@ -357,9 +359,12 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             CampaignService.getOne($stateParams.campaignId)
                 .then(function(campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;
-                    CampaignService.campaignIsApplied(campaignResponse.data.campaignId)
+                    CampaignService.getAppliedProposal(campaignResponse.data.campaignId)
                     .then(function(response){
-                        $scope.isApplied = (response.data.isPropose === true);
+                        $scope.isApplied = _.has(response.data, 'proposalId');
+                        if(!$scope.isApplied){
+                            $scope.proposal = response.data;
+                        }
                     });
 
                     return AccountService.getUser($scope.campaignNee.brandId);

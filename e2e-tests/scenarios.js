@@ -43,7 +43,7 @@ describe('Brand', function() {
 
             state = {};
 
-            state.brandName = element(by.model('formData.brand.brandName'));
+            state.brandName = element(by.model('formData.brandName'));
             state.name = element(by.model('formData.name'));
             state.phoneNumber = element(by.model('formData.phoneNumber'));
             state.email = element(by.model('formData.email'));
@@ -56,6 +56,8 @@ describe('Brand', function() {
             expect(state.email.isPresent()).toBe(true);
             expect(state.password.isPresent()).toBe(true);
             expect(state.submit_btn.isPresent()).toBe(true);
+
+            
         });
 
         it('cannot signup without typing anything', function() {
@@ -69,7 +71,10 @@ describe('Brand', function() {
             state.phoneNumber.sendKeys(chance.phone({ formatted: false }));
             state.email.sendKeys(browser.params.brand_login.user);
             state.password.sendKeys(browser.params.brand_login.password);
+            state.password.sendKeys(protractor.Key.TAB);
             state.submit_btn.click();
+            
+            // browser.pause();
 
             //redirection wait
             browser.ignoreSynchronization = true;
@@ -244,15 +249,23 @@ describe('Brand', function() {
             state.about = element(by.model("formData.brand.about"));
             state.name = element(by.model("formData.brand.brandName"));
             state.website = element(by.model('formData.brand.website'));
+            state.uploader = element(by.css('input[type="file"]'));
+            state.submit_btn = element(by.css('.btn-primary'));
 
             expect(state.about.isPresent()).toBe(true);
             expect(state.name.isPresent()).toBe(true);
             expect(state.website.isPresent()).toBe(true);
+            expect(state.uploader.isPresent()).toBe(true);
+            expect(state.submit_btn.isPresent()).toBe(true);
 
         });
 
         it('can save', function() {
-            browser.sleep(1000);
+            var fileToUpload = 'uniqlo.png';
+            var absolutePath = path.resolve(__dirname, fileToUpload);
+            state.uploader.sendKeys(absolutePath);
+            // state.password.sendKeys(protractor.Key.TAB);
+            state.submit_btn.click();
         });
 
     });
@@ -260,9 +273,43 @@ describe('Brand', function() {
 });
 
 describe('Influencer', function() {
+    var state = {};
+    
+    describe('God Login', function(){
+        beforeAll(function() {
+            browser.executeScript('window.sessionStorage.clear();');
+            browser.executeScript('window.localStorage.clear();');
+            browser.get('portal.html#/influencer-god-login');
+        });
 
+        it('can find inputs', function() {
+            state.username = element(by.model('username'));
+            state.password = element(by.model('password'));
+            state.submit_btn = element(by.css('.btn-primary'));
+
+            expect(state.username.isPresent()).toBe(true);
+            expect(state.password.isPresent()).toBe(true);
+            expect(state.submit_btn.isPresent()).toBe(true);
+        });
+
+        it('can login', function(){
+            state.username.sendKeys(browser.params.god_influencer.user);
+            state.password.sendKeys(browser.params.god_influencer.password);
+            state.submit_btn.click();
+
+            browser.ignoreSynchronization = true;
+            //redirection wait
+            browser.sleep(2300);
+            //angular load wait
+            browser.waitForAngular();
+
+            expect($('.alert.alert-info').isPresent()).toBe(true);
+        });
+
+    });
+    
 });
 
-describe('Chatting', function() {
+xdescribe('Chatting', function() {
 
 });

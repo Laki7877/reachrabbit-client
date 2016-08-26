@@ -122,8 +122,8 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$stateParams', 'ProposalService', 'NcAlert','$state', '$location',
-        function($scope, $uibModal, $interval, $stateParams, ProposalService, NcAlert, $state, $location) {
+    .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$stateParams', 'ProposalService', 'NcAlert','$state', '$location', '$window',
+        function($scope, $uibModal, $interval, $stateParams, ProposalService, NcAlert, $state, $location, $window) {
             $scope.msglist = [];
             $scope.msgLimit = 30;
             $scope.totalElements = 0;
@@ -155,7 +155,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         ProposalService.updateStatus(proposalId, "Complete")
                         .then(function(response){
                             if(response.data.status == 'Complete'){
-                                window.location.reload();
+                                $window.location.reload();
                             }else{
                                 throw new Error("Status integrity check failed");
                             }
@@ -957,6 +957,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
                     $window.location.href = '/brand.html#/brand-campaign-list';
+                    // $location.path('/brand.html#/brand-campaign-list')
                 })
                 .catch(function(err) {
                     $scope.alert.danger(err.data.message);
@@ -1164,8 +1165,8 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             };
         }
     ])
-    .controller('BrandSignupController', ['$scope', '$rootScope', 'BrandAccountService', 'AccountService', 'UserProfile', '$location', '$window', 'NcAlert',
-        function($scope, $rootScope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert) {
+    .controller('BrandSignupController', ['$scope', '$state', '$rootScope', 'BrandAccountService', 'AccountService', 'UserProfile', '$location', '$window', 'NcAlert',
+        function($scope, $state, $rootScope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert) {
 
             $scope.formData = {};
 
@@ -1189,6 +1190,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         Raven.setUserContext(UserProfile.get());
                         //Redirect
                         $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
+                        // $location.update('/brand.html#/brand-campaign-list');
                         $window.location.href = '/brand.html#/brand-campaign-list';
                     })
                     .catch(function(err) {

@@ -3,6 +3,8 @@ var util = require('util');
 var path = require('path');
 var Chance = require('chance');
 var chance = new Chance();
+var EC = protractor.ExpectedConditions;
+
 describe('Brand', function() {
 
     beforeAll(function() {
@@ -39,7 +41,7 @@ describe('Brand', function() {
         it('can find inputs', function() {
             state.signup_btn.click();
 
-            browser.waitForAngular();
+            // browser.waitForAngular();
 
             state = {};
 
@@ -77,13 +79,12 @@ describe('Brand', function() {
             // browser.pause();
 
             //redirection wait
-            browser.ignoreSynchronization = true;
-            browser.sleep(2300);
-            //angular load wait
-            browser.waitForAngular();
+            // browser.ignoreSynchronization = true;
 
-            expect($('.alert.alert-info').isPresent()).toBe(true);
+            browser.sleep(2300);
+
         });
+
     });
 
     describe('Login', function() {
@@ -95,6 +96,9 @@ describe('Brand', function() {
         })
 
         it('can find inputs', function() {
+            // browser.sleep(1000);
+            // browser.waitForAngular();
+
             state.username = element(by.model('formData.username'));
             state.password = element(by.model('formData.password'));
             state.submit_btn = element(by.css('.btn-primary'));
@@ -107,27 +111,24 @@ describe('Brand', function() {
         it('can login', function() {
             state.username.sendKeys(browser.params.brand_login.user);
             state.password.sendKeys(browser.params.brand_login.password);
-            state.submit_btn.click();
 
             browser.ignoreSynchronization = true;
-            //redirection wait
-            browser.sleep(2300);
-            //angular load wait
-            browser.waitForAngular();
+            state.submit_btn.click();
+            browser.ignoreSynchronization = false;
 
-            expect($('.alert.alert-info').isPresent()).toBe(true);
+            browser.sleep(2000);
+            var info = element(by.css(".alert-info"));
+            expect(info.isPresent()).toBe(true);
+            
         });
 
     });
 
-    describe('Modify seeded draft campaign', function() {
+    describe('Campaign', function() {
         var state = {};
-        beforeAll(function() {
-            browser.get('brand.html#/brand-campaign-list');
-        });
 
         it('can find sample draft campaign', function() {
-            browser.sleep(1000);
+            // browser.waitForAngular();
             var cards = element.all(by.repeater("x in myCampaign.content"));
             expect(cards.count()).toEqual(1);
             cards.first().click();
@@ -135,7 +136,8 @@ describe('Brand', function() {
         });
 
         it('can find inputs', function() {
-            browser.sleep(1000);
+            // browser.sleep(1000);
+            // browser.waitForAngular();
 
             state.title = element(by.model('formData.title'));
             state.description = element(by.model('formData.description'));
@@ -162,13 +164,14 @@ describe('Brand', function() {
         });
 
         it('can save as draft', function() {
-            state.title.clear();
+            
 
             var fileToUpload = 'cyanthumb.png';
             var absolutePath = path.resolve(__dirname, fileToUpload);
             state.uploaders.get(0).sendKeys(absolutePath);
             state.uploaders.get(1).sendKeys(absolutePath);
 
+            state.title.clear();
             state.title.sendKeys(chance.name({ gender: "male" }));
             state.description.sendKeys(chance.paragraph({ sentences: 5 }));
             state.keyword.sendKeys(chance.city() + ", " + chance.city() + ", " + chance.city());
@@ -181,16 +184,16 @@ describe('Brand', function() {
             element.all(by.css(".uib-daypicker button")).get(12 + 2).click();
 
             
-            browser.sleep(3000);
+            
+            //wait for upload to finish
             state.save_draft_btn.click();
-            browser.sleep(1000);
 
             expect($('.alert.alert-success').isPresent()).toBe(true);
         });
 
         it('reloads and everything comes back', function() {
             browser.driver.navigate().refresh();
-            browser.sleep(1000);
+            // browser.sleep(1000);
             var new_state = {};
             new_state.thumbImage = element(by.css(".card-image img"));
 
@@ -220,7 +223,7 @@ describe('Brand', function() {
         });
 
         it('can find saved campaign', function() {
-            browser.sleep(1000);
+            // browser.sleep(1000);
             browser.waitForAngular();
             var cards = element.all(by.repeater("x in myCampaign.content"));
             expect(cards.count()).toEqual(1);
@@ -228,7 +231,7 @@ describe('Brand', function() {
         });
 
         it('can publish drafted campaign', function() {
-            browser.sleep(2000);
+            // browser.sleep(2000);
             browser.waitForAngular();
 
             state.publish_btn = element(by.css('.btn-primary'));
@@ -237,7 +240,7 @@ describe('Brand', function() {
 
             state.publish_btn.click();
             
-            browser.sleep(2000);
+            // browser.sleep(2000);
             
             expect($('.alert.alert-success').isPresent()).toBe(true);
         });
@@ -251,7 +254,7 @@ describe('Brand', function() {
         });
 
         it('can find all fields', function() {
-            browser.sleep(1000);
+            // browser.sleep(1000);
             state.about = element(by.model("formData.brand.about"));
             state.name = element(by.model("formData.brand.brandName"));
             state.website = element(by.model('formData.brand.website'));
@@ -289,6 +292,7 @@ describe('Influencer', function() {
         });
 
         it('can find inputs', function() {
+            
             state.username = element(by.model('username'));
             state.password = element(by.model('password'));
             state.submit_btn = element(by.css('.btn-primary'));
@@ -301,16 +305,16 @@ describe('Influencer', function() {
         it('can login', function(){
             state.username.sendKeys(browser.params.god_influencer.user);
             state.password.sendKeys(browser.params.god_influencer.password);
-            state.submit_btn.click();
-
             browser.ignoreSynchronization = true;
-            //redirection wait
-            browser.sleep(2300);
-            //angular load wait
-            browser.waitForAngular();
+            state.submit_btn.click();
+            browser.ignoreSynchronization = false;
 
+            browser.sleep(3000);
             var campaignRepeater = element.all(by.repeater("cam in campaigns.content"));
-            expect(campaignRepeater.count() >= 1).toBe(true);
+            campaignRepeater.count().then(function(ct){
+                expect(ct >= 1).toBeTruthy();
+            });
+            
         });
 
 
@@ -318,7 +322,7 @@ describe('Influencer', function() {
 
     describe('God profile', function(){
         beforeAll(function() {
-            browser.get('portal.html#/influencer-profile');
+            browser.get('influencer.html#/influencer-profile');
         });
 
         it('can edit profile', function(){

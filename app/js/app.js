@@ -100,7 +100,7 @@ angular.module('myApp', [
   MIN_FOLLOWER_COUNT : 1
 })
 //Initialize the app
-.run(['$rootScope', '$location', '$window', 'UserProfile', 'ProposalService', 'amMoment', function($rootScope, $location, $window, UserProfile, ProposalService, amMoment){
+.run(['$rootScope', '$location', '$window', 'UserProfile', 'ProposalService', 'amMoment', '$interval', function($rootScope, $location, $window, UserProfile, ProposalService, amMoment, $interval){
 
   $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
 
@@ -156,18 +156,27 @@ angular.module('myApp', [
     $window.location.href = redirTo;
   };
 
+  $rootScope.pollPending = false;
   $rootScope.pollInbox = function(immediately) {
     var profile = $rootScope.getProfile();
     if(profile) {
-      ProposalService.countInbox({
+      $interval(function(){
+        if($rootScope.pollPending){
+          return;
+        }
+        
+        $rootScope.pollPending = true;
+        ProposalService.countInbox({
           immediate: immediately
         })
         .then(function(res) {
           if(!_.isNil(res.data)) {
             $rootScope.inboxCount = res.data;
           }
-          $rootScope.pollInbox(false);
+          $rootScope.pollPending = false;
+          // $rootScope.pollInbox(false);
         });
+      }, 5000);
     }
   };
 

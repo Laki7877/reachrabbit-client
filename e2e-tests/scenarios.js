@@ -227,17 +227,18 @@ describe('Brand', function() {
         });
 
         it('can publish drafted campaign', function() {
-            browser.sleep(1000);
+            browser.sleep(2000);
+            browser.waitForAngular();
+
             state.publish_btn = element(by.css('.btn-primary'));
 
             expect(state.publish_btn.isPresent()).toBe(true);
 
             state.publish_btn.click();
-
-            browser.sleep(1000);
+            
+            browser.sleep(2000);
             
             expect($('.alert.alert-success').isPresent()).toBe(true);
-            // browser.pause();
         });
 
     });

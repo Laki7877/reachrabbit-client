@@ -29,7 +29,7 @@
             กำหนดวันส่งงาน
         </div>
         <div class="card-info-content" ng-if="proposal.status == 'Working'">
-            {{ proposal.dueDate }}
+            {{ proposal.dueDate | date }}
         </div>
     </div>
 </div>

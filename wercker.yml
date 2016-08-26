@@ -1,10 +1,4 @@
-box: wercker/nodejs
-build:
-  steps:
-    - npm-install
-    - npm-run-protractor
-
-box: wercker/nodejs
+box: nodesource/trusty
 build:
   steps:
     - script:

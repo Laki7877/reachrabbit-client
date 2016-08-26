@@ -65,11 +65,8 @@
           <div class="card-row-basic">
               ข้อความ
           </div>
-          <textarea name="description" class="form-control" rows="4" ng-model="formData.description" ng-model-options="{ updateOn: 'change blur' }" placeholder="คุณจะช่วยโปรโมท Brand อย่างไร และทำไม Brand ถึงควรเลือกคุณ?" maxlength="1000" ng-minlength="100" required></textarea>
-          <div input-error="{
-            required: 'กรุณากรอกข้อมูลให้ครบถ้วน (อย่างน้อย 100 ตัวอักษร)',
-            minlength: 'กรุณากรอกข้อมูลให้ครบถ้วน (อย่างน้อย 100 ตัวอักษร)'
-          }"></div>
+          <textarea name="description" class="form-control" rows="4" ng-model="formData.description" ng-model-options="{ updateOn: 'change blur' }" placeholder="คุณจะช่วยโปรโมท Brand อย่างไร และทำไม Brand ถึงควรเลือกคุณ?" maxlength="1000" required></textarea>
+          <div input-error></div>
         </div>
 
         <div class="card-row-basic text-center" ng-if="!isEditMode">

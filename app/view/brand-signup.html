@@ -1,4 +1,4 @@
-<form name="form" novalidate ng-submit="submit(formData)" ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}">
+<form name="form" novalidate ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}">
   <div class="view-brand-signup">
     <div class="container">
       <div nc-alert='alert'></div>
@@ -54,7 +54,7 @@
             <div input-error></div>
           </div>
 
-          <button class="btn-primary" ng-click="$form.submit()">สมัครสมาชิก</button>
+          <button class="btn-primary" ng-click="submit(formData)">สมัครสมาชิก</button>
 
           <div class="info-text">
             เห็นด้วยกับ <a href="#">เงื่อนไขการใช้งาน</a> โดยการสมัครสมาชิก

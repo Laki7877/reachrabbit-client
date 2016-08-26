@@ -1,4 +1,4 @@
-<form ng-submit="saveProfile(form, formData)" ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}" name="form">
+<form ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}" name="form">
   <div class="view-brand-profile">
     <zone-header>
     <h1>Profile ของฉัน</h1>
@@ -110,7 +110,7 @@
               </div>
               <div class="card-row">
                 <div class="card-button-primary">
-                  <button class="btn-primary btn-width-max" ng-click="form.$submit()">บันทึกข้อมูล</button>
+                  <button class="btn-primary btn-width-max" ng-click="saveProfile(form, formData)">บันทึกข้อมูล</button>
                 </div>
               </div>
             </div>

@@ -362,7 +362,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     CampaignService.getAppliedProposal(campaignResponse.data.campaignId)
                     .then(function(response){
                         $scope.isApplied = _.has(response.data, 'proposalId');
-                        if(!$scope.isApplied){
+                        if($scope.isApplied){
                             $scope.proposal = response.data;
                         }
                     });

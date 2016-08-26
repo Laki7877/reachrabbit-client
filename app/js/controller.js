@@ -128,6 +128,47 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             $scope.msgLimit = 30;
             $scope.totalElements = 0;
 
+            $scope.alert = new NcAlert();
+
+            //Approve Proposal
+            $scope.approveProposal = function(proposal){
+
+               var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'components/templates/brand-approve-proposal-modal.html',
+                    controller: 'YesNoConfirmationModalController',
+                    size: 'sm',
+                    resolve: {
+                        campaign: function() {
+                            return $scope.proposal.campaign;
+                        },
+                        proposal: function(){
+                            return $scope.proposal;
+                        }
+                    }
+                });
+
+                //on user close
+                modalInstance.result.then(function(yesno) {
+                    if(yesno == 'yes'){
+                        var proposalId = proposal.proposalId;
+                        ProposalService.updateStatus(proposalId, "Complete")
+                        .then(function(response){
+                            if(response.data.status == 'Complete'){
+                                window.location.reload();
+                            }else{
+                                throw new Error("Status integrity check failed");
+                            }
+                        })
+                        .catch(function(err){
+                            $scope.alert.danger(err.data.message);
+                        });
+                    }
+                });
+
+                
+            };
+
             //Select Proposal
             $scope.selectProposal = function(){
                 //popup a modal

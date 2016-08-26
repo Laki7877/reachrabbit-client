@@ -345,10 +345,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 });
             };
 
-            CampaignService.campaignIsApplied()
-            .then(function(response){
-                $scope.isApplied = (response.data.isPropose === true);
-            });
+            
 
             $scope.$watch('isApplied', function(applied){
                 if(applied){
@@ -360,6 +357,11 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             CampaignService.getOne($stateParams.campaignId)
                 .then(function(campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;
+                    CampaignService.campaignIsApplied(campaignResponse.data.campaignId)
+                    .then(function(response){
+                        $scope.isApplied = (response.data.isPropose === true);
+                    });
+
                     return AccountService.getUser($scope.campaignNee.brandId);
                 })
                 .then(function(brandUserDataResponse) {

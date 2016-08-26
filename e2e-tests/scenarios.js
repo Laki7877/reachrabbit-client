@@ -221,6 +221,7 @@ describe('Brand', function() {
 
         it('can find saved campaign', function() {
             browser.sleep(1000);
+            browser.waitForAngular();
             var cards = element.all(by.repeater("x in myCampaign.content"));
             expect(cards.count()).toEqual(1);
             cards.first().click();

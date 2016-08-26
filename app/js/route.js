@@ -47,7 +47,7 @@ angular.module('myApp.brand.routes', ['ui.router'])
                 controller: 'BrandProfileController'
             })
             .state('brand-inbox', {
-                url: '/brand-inbox',
+                url: '/brand-inbox/:status?',
                 templateUrl: 'view/brand-inbox.html',
                 controller: 'BrandInboxController'
             })

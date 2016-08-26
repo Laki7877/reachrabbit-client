@@ -36,7 +36,7 @@
         </div>
         <div class="card-row-basic" form-error="form.completionTime">
           <div class="input-dropdown">
-              <select class="form-control" name="completionTime" ng-model="formData.completionTime" ng-options="x as x.completionTime for x in completionTimes" ng-default="-- เลือกระยะเวลา --" required></select>
+              <select class="form-control" name="completionTime" ng-model="formData.completionTime" ng-options="x as x.completionTime for x in completionTimes track by x.completionId" ng-default="-- เลือกระยะเวลา --" required></select>
               <i class="fa fa-caret-down"></i>
           </div>
           <p class="hint-block">เริ่มนับจากวันที่ได้คัดเลือก</p>

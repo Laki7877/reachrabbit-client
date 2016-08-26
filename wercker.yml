@@ -2,7 +2,17 @@ box: nodesource/trusty
 build:
   steps:
     - install-packages:
-        packages: google-chrome
+        packages:  xvfb firefox
+
+    - script:
+        name: Enable virtual display
+        code: |-
+          # Start xvfb which gives the context an virtual display
+          # which is required for tests that require an GUI
+          export DISPLAY=:99.0
+          start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+          # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
+          sleep 3
 
     - npm-install
 
@@ -11,6 +21,6 @@ build:
         code: |
           $(npm bin)/webdriver-manager update
     - script:
-        name: update webdriver
+        name: run tests
         code: |
-          $(npm bin)/run protractor
+          $(npm bin)/protractor e2e-tests/protractor.conf.js --browser=firefox

@@ -637,12 +637,9 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
             $scope.formData.brand = UserProfile.get().brand;
 
-            //Setting up form
-            var campaignId = $stateParams.campaignId;
-            if (campaignId) {
-                //If there is a campaign id in params
-                //we are in edit mode
-                CampaignService.getOne(campaignId)
+
+            function getOne(cid){
+                CampaignService.getOne(cid)
                     .then(function(response) {
                         //overrides the form data
                         $scope.formData = angular.copy(response.data);
@@ -656,6 +653,14 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         $scope.formData.brand = UserProfile.get().brand;
                         $scope.createMode = false;
                     });
+            }
+
+            //Setting up form
+            var campaignId = $stateParams.campaignId;
+            if (campaignId) {
+                //If there is a campaign id in params
+                //we are in edit mode
+                getOne(campaignId);
             } else {
                 $scope.createMode = true;
             }
@@ -689,7 +694,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 //saving
                 CampaignService.save(formData)
                     .then(function(echoresponse) {
-                        $scope.formData = echoresponse.data;
+                        getOne(echoresponse.data.campaignId);
 
                         if (echoresponse.data.status == "Draft") {
                             $scope.alert.success('บันทึกข้อมูลเรียบร้อยแล้ว!');

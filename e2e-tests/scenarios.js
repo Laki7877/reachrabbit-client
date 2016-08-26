@@ -168,7 +168,6 @@ describe('Brand', function() {
             var absolutePath = path.resolve(__dirname, fileToUpload);
             state.uploaders.get(0).sendKeys(absolutePath);
             state.uploaders.get(1).sendKeys(absolutePath);
-            state.uploaders.get(1).sendKeys(absolutePath);
 
             state.title.sendKeys(chance.name({ gender: "male" }));
             state.description.sendKeys(chance.paragraph({ sentences: 5 }));
@@ -308,9 +307,21 @@ describe('Influencer', function() {
             //angular load wait
             browser.waitForAngular();
 
-            expect($('.alert.alert-info').isPresent()).toBe(true);
+            var campaignRepeater = element.all(by.repeater("cam in campaigns.content"));
+            expect(campaignRepeater.count() >= 1).toBe(true);
         });
 
+
+    });
+
+    describe('God profile', function(){
+        beforeAll(function() {
+            browser.get('portal.html#/influencer-profile');
+        });
+
+        it('can edit profile', function(){
+            browser.sleep(1000);
+        });
     });
     
 });

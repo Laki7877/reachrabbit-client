@@ -19,4 +19,7 @@ build:
         name: update webdriver
         code: |
           $(npm bin)/webdriver-manager update
-    - npm-run-protractor
+    - script:
+        name: update webdriver
+        code: |
+          $(npm bin)/run protractor

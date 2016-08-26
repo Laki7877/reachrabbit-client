@@ -60,9 +60,9 @@ angular.module('myApp', [
 //Example Campaign Constants (not mock)
 .constant('ExampleCampaigns', [
       {
-        resources: [{
+        mainResource: {
             url: 'images/example-campaign/main-picture.png'
-        }],
+        },
         title:'Morinaga Koeda รสใหม่',
         toBudget: 2000,
         media: [
@@ -74,9 +74,9 @@ angular.module('myApp', [
         linkTo:'brand-campaign-detail-example'
       },
       {
-        resources: [{
+        mainResource: {
             url: 'images/example-campaign/main-picture.png'
-        }],
+        },
         media: [
           { mediaId: 'instagram' },
           { mediaId: 'youtube' }

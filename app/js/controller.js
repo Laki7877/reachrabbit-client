@@ -308,7 +308,10 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService', '$uibModal', 'DataService',
         function($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService) {
             $scope.campaignNee = null;
+            $scope.isApplied = false;
             $scope.alert = new NcAlert();
+            $scope.appliedAlert = new NcAlert();
+            
             $scope.keywordMap = function(arr) {
                 if (!arr) return [];
                 return arr.map(function(k) {
@@ -341,6 +344,19 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     $state.go('influencer-workroom', { proposalId: proposal.proposalId });
                 });
             };
+
+            CampaignService.campaignIsApplied()
+            .then(function(response){
+                $scope.isApplied = (response.data.isPropose === true);
+            });
+
+            $scope.$watch('isApplied', function(applied){
+                if(applied){
+                    $scope.appliedAlert.info("คุณได้ส่งข้อเสนอให้ Campaign นี้แล้ว");
+                }
+                $scope.appliedAlert.close();
+            });
+
             CampaignService.getOne($stateParams.campaignId)
                 .then(function(campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;
@@ -359,7 +375,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'DataService', 'ExampleCampaigns', '$rootScope',
         function($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope) {
             $scope.handleUserClickThumbnail = function(c) {
-                $state.go('influencer-campaign-detail-open', {
+                $state.go('influencer-campaign-detail', {
                     campaignId: c.campaignId
                 });
             };
@@ -441,10 +457,17 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
 
         }
     ])
-    .controller('InfluencerInboxController', ['$scope', '$filter', 'ProposalService', 'moment', function($scope, $filter, ProposalService, moment) {
+    .controller('InfluencerInboxController', ['$scope', '$filter', '$stateParams', 'ProposalService', 'moment', function($scope, $filter, $stateParams, ProposalService, moment) {
         $scope.statusCounts = {};
+        $scope.statusFilter = 'Selection';
+
+        if($stateParams.status){
+            $scope.statusFilter = $stateParams.status;
+        }
+
         $scope.load = function(params) {
             $scope.params = params;
+            $scope.params.status = $scope.statusFilter;
             ProposalService.getAll(params)
                 .then(function(response) {
                     $scope.proposals = response.data;
@@ -501,10 +524,13 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             });
             $scope.load($scope.params);
         });
+        
         $scope.load({
             sort: ['messageUpdatedAt,desc']
         });
+
         $scope.loadProposalCounts();
+        
     }])
     .controller('InfluencerBrandProfile', ['$scope', 'AccountService', '$stateParams', function($scope, AccountService, $stateParams){
         AccountService.getProfile($stateParams.brandId)
@@ -563,9 +589,10 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
             $scope.resources = [];
             $scope.formData = {
-                resources: []
+                mainResource: null,
+                campaignResources: []
             };
-
+            
             $scope.mediaBooleanDict = {};
             $scope.mediaObjectDict = {};
             $scope.categories = [];
@@ -644,13 +671,13 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                             return Number(probe.fromBudget) === Number($scope.formData.fromBudget) &&
                                 Number(probe.toBudget) === Number($scope.formData.toBudget);
                         });
-                        //Split resources array into two parts
-                        $scope.formData.resources = [];
+                        // //Split resources array into two parts
+                        // $scope.formData.resources = [];
 
-                        if (response.data.resources && response.data.resources.length > 0) {
-                            $scope.formData.resources.push(response.data.resources.shift());
-                            $scope.resources = angular.copy(response.data.resources); //the rest
-                        }
+                        // if (response.data.resources && response.data.resources.length > 0) {
+                        //     $scope.formData.resources.push(response.data.resources.shift());
+                        //     $scope.resources = angular.copy(response.data.resources); //the rest
+                        // }
 
                         // console.log($scope.formData);
 
@@ -678,7 +705,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             $scope.save = function(formData, mediaBooleanDict, mediaObjectDict, status) {
                 $scope.formData.brand = UserProfile.get().brand;
                 $scope.formData.status = status;
-                $scope.formData.resources = $scope.formData.resources.concat($scope.resources || []);
+                // $scope.formData.resources = $scope.formData.resources.concat($scope.resources || []);
 
                 //check for publish case
                 if (status == 'Open') {
@@ -751,10 +778,18 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 });
         };
     }])
-    .controller('BrandInboxController', ['$scope', '$filter', 'ProposalService', 'CampaignService', 'moment', function($scope, $filter, ProposalService, CampaignService, moment) {
+    .controller('BrandInboxController', ['$scope', '$filter', 'ProposalService', 'CampaignService', 'moment', '$stateParams', function($scope, $filter, ProposalService, CampaignService, moment, $stateParams) {
         $scope.statusCounts = {};
+        $scope.statusFilter = 'Selection';
+
+        if($stateParams.status){
+            $scope.statusFilter = $stateParams.status;
+        }
+
         $scope.load = function(params) {
             $scope.params = params;
+            $scope.params.status = $scope.statusFilter;
+
             ProposalService.getAll(params)
                 .then(function(response) {
                     $scope.proposals = response.data;

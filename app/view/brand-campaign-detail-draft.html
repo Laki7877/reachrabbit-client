@@ -22,13 +22,13 @@
                                 <div input-error></div>
                             </div>
                         </div>
-                        <div class="card-row" form-error="form.resource" is-validate="isPublishing($model, $error)">
+                        <div class="card-row" form-error="form.mainResource" is-validate="isPublishing($model, $error)">
                             <div class="card-body-content-label with-input">
                                 รูป Campaign
                             </div>
                             <div class="card-body-content">
-                                <uploader-thumb name="resource"
-                                  ng-model="formData.resources[0]"
+                                <uploader-thumb name="mainResource"
+                                  ng-model="formData.mainResource"
                                   accept=".jpg,.png"
                                   ngf-pattern="'.jpg,.png'"
                                   ngf-max-size="5MB"
@@ -94,13 +94,13 @@
                                 <input type="text" class="form-control" ng-model="formData.website" maxlength="200" placeholder="ถ้ามี">
                             </div>
                         </div>
-                        <div class="card-row" form-error="form.resources">
+                        <div class="card-row" form-error="form.campaignResources">
                             <div class="card-body-content-label">
                                 รูปประกอบ
                             </div>
                             <div class="card-body-content">
                                 <uploader-multi name="resources"
-                                  ng-model="resources"
+                                  ng-model="formData.campaignResources"
                                   accept=".jpg,.png"
                                   ngf-pattern="'.jpg,.png'"
                                   ngf-max-size="5MB"

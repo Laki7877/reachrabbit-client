@@ -18,7 +18,7 @@ exports.config = {
         },
         god_influencer: {
             user: 'influencer@gmail.com',
-            password: 'test12324'
+            password: 'test1234'
         }
     },
 

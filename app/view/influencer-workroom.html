@@ -15,11 +15,11 @@
                             <h3>{{ proposal.campaign.brand.brandName }}</h3>
                             <a class="link-view-profile" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId })"><i class="fa fa-info-circle"></i>ดูโปรไฟล์</a>
                             <div class="chatbox-status">
-                                <span class="status active">คัดเลือก</span>
+                                <span class="status" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
                                 <i class="fa fa-angle-right"></i>
-                                <span class="status">ดำเนินการ</span>
+                                <span class="status" ng-class="{'active': proposal.status == 'Working'}">ดำเนินการ</span>
                                 <i class="fa fa-angle-right"></i>
-                                <span class="status">เสร็จสิ้น</span>
+                                <span class="status" ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span>
                             </div>
                         </div>
                         <div class="message-area" scroll-glue>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="card-body">
                             {{ proposal.campaign.title }}
-                            <button class="btn-secondary btn-width-max" ui-sref="influencer-campaign-detail-open({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
+                            <button class="btn-secondary btn-width-max" ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
                         </div>
                     </div>
                 </div>

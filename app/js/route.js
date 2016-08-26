@@ -74,9 +74,9 @@ angular.module('myApp.influencer.routes', ['ui.router'])
                 templateUrl: 'view/influencer-campaign-list.html',
                 controller: 'InfluencerCampaignListController'
             })
-            .state('influencer-campaign-detail-open', {
-                url: '/influencer-campaign-detail-open/:campaignId',
-                templateUrl: 'view/influencer-campaign-detail-open.html',
+            .state('influencer-campaign-detail', {
+                url: '/influencer-campaign-detail/:campaignId',
+                templateUrl: 'view/influencer-campaign-detail.html',
                 controller: 'InfluencerCampaignDetailController'
             })
             .state('influencer-profile', {
@@ -85,7 +85,7 @@ angular.module('myApp.influencer.routes', ['ui.router'])
                 controller: 'InfluencerProfileController'
             })
             .state('influencer-inbox', {
-                url: '/influencer-inbox',
+                url: '/influencer-inbox/:status?',
                 templateUrl: 'view/influencer-inbox.html',
                 controller: 'InfluencerInboxController'
             })

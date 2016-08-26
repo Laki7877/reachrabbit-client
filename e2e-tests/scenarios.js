@@ -177,7 +177,7 @@ describe('Brand', function() {
             var fileToUpload = 'cyanthumb.png';
             var absolutePath = path.resolve(__dirname, fileToUpload);
             state.uploaders.get(0).sendKeys(absolutePath);
-
+            browser.sleep(6000);
             state.save_draft_btn.click();
             browser.sleep(1000);
 

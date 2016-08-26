@@ -16,7 +16,7 @@ exports.config = {
             user: 'uniqlo@brands.org',
             password: 'test11121'
         },
-        jesus_influencer_login: {
+        god_influencer: {
             user: 'influencer@gmail.com',
             password: 'test12324'
         }

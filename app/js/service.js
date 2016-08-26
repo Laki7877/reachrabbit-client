@@ -421,6 +421,9 @@ angular.module('myApp.service', ['satellizer'])
             },
             getCompletionTime: function () {
                 return $http.get("/data/completiontime");
+            },
+            getBudgets: function(){
+                return $http.get("/data/budgets");
             }
         };
     }])

@@ -114,7 +114,8 @@
                             </div>
                             <div class="card-body-content">
                                 <div class="input-dropdown">
-                                    <select name="budget" class="form-control" ng-model="formData.budget" ng-options="x as budgetDisplayAs(x) disable when x.id == 0 for x in budgets track by x.id" ng-default="-- เลือกค่าตอบแทน --" required>
+                                    <select name="budget" class="form-control" ng-model="formData.budget" 
+                                    ng-options="x as budgetDisplayAs(x) disable when x.id == 0 for x in budgets track by x.budgetId" ng-default="-- เลือกค่าตอบแทน --" required>
                                     </select>
                                     <i class="fa fa-caret-down"></i>
                                 </div>

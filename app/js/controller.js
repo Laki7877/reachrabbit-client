@@ -590,27 +590,18 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             $scope.resources = [];
             $scope.formData = {
                 mainResource: null,
-                campaignResources: []
+                campaignResources: [],
+                budget: null
             };
             
             $scope.mediaBooleanDict = {};
             $scope.mediaObjectDict = {};
             $scope.categories = [];
-            $scope.budgets = [{
-                id: 1,
-                toBudget: 1000,
-                fromBudget: 500
-            }, {
-                id: 2,
-                toBudget: 5000,
-                fromBudget: 1000
-            }, {
-                id: 3,
-                toBudget: 10000,
-                fromBudget: 5000
-            }];
+            $scope.budgets = [];
 
-            $scope.budget = null;
+            DataService.getBudgets().then(function(resp){
+                $scope.budgets = resp.data;
+            });
 
             $scope.dateOptions = _.extend({}, $rootScope.dateOptions, {
                 minDate: new Date()
@@ -644,13 +635,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
             }, true);
 
-            $scope.$watch('budget.id', function() {
-                if ($scope.budget) {
-                    $scope.formData.fromBudget = Number($scope.budget.fromBudget);
-                    $scope.formData.toBudget = Number($scope.budget.toBudget);
-                }
-            });
-
             $scope.formData.brand = UserProfile.get().brand;
 
             //Setting up form
@@ -666,24 +650,9 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         ($scope.formData.media || []).forEach(function(item) {
                             $scope.mediaBooleanDict[item.mediaId] = true;
                         });
-                        //Tell dropdown which budget is matching the budget object
-                        $scope.budget = _.find($scope.budgets, function(probe) {
-                            return Number(probe.fromBudget) === Number($scope.formData.fromBudget) &&
-                                Number(probe.toBudget) === Number($scope.formData.toBudget);
-                        });
-                        // //Split resources array into two parts
-                        // $scope.formData.resources = [];
-
-                        // if (response.data.resources && response.data.resources.length > 0) {
-                        //     $scope.formData.resources.push(response.data.resources.shift());
-                        //     $scope.resources = angular.copy(response.data.resources); //the rest
-                        // }
-
-                        // console.log($scope.formData);
 
                         //ensure non null
                         $scope.formData.keywords = $scope.formData.keywords || [];
-
                         $scope.formData.brand = UserProfile.get().brand;
                         $scope.createMode = false;
                     });

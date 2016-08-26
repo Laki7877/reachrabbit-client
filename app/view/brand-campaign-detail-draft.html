@@ -1,4 +1,4 @@
-<form name="form" ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}" novalidate>
+<form name="form" ng-cloak ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}" novalidate>
     <div class="view-brand-detail-draft">
         <zone-header historyback="true">
         <h2 id="campaign-title">{{ formData.title }}</h2>
@@ -137,7 +137,9 @@
                                 <div input-error></div>
                             </div>
                         </div>
-                        <div class="card-row">
+                        
+                        
+                        <div class="card-row" ng-if="!editOpenState">
                             <div class="card-button-primary">
                                 <button class="btn-primary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')">ลงประกาศ</button>
                                 <br>
@@ -153,6 +155,13 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="card-row" ng-if="editOpenState">
+                            <div class="card-button-primary">
+                                <button class="btn-primary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')">บันทึกการแก้ไข</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -36,10 +36,26 @@ angular.module('myApp.brand.routes', ['ui.router'])
                 templateUrl: 'view/brand-campaign-detail-draft.html',
                 controller: 'CampaignDetailController'
             })
+            .state('brand-campaign-detail-edit', {
+                url: '/brand-campaign-detail-edit/:campaignId',
+                templateUrl: 'view/brand-campaign-detail-draft.html',
+                controller: 'CampaignDetailController',
+                params: {
+                    editOpenState: true
+                }
+            })
             .state('brand-campaign-detail-example', {
                 url: '/brand-campaign-detail-example/:exampleId',
                 templateUrl: 'view/brand-campaign-detail-example.html',
                 controller: 'CampaignExampleController'
+            })
+            .state('brand-campaign-detail-published', {
+                url: '/brand-campaign-detail-published/:campaignId',
+                templateUrl: 'view/brand-campaign-detail-published.html',
+                controller: 'CampaignDetailController',
+                params: {
+                    alert: null,
+                }
             })
             .state('brand-profile', {
                 url: '/brand-profile',

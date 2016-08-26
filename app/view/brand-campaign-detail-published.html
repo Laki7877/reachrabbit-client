@@ -1,20 +1,15 @@
-<div class="view-brand-detail-example">
-
-  <zone-header historyback="true">
+<div ng-cloak class="view-brand-detail-example" >
+  <zone-header historyback="true" historyback-override="brand-campaign-list">
     <div class="action-btn-for-header with-back-btn">
-        <button class="btn-primary btn-width-md" ng-if="!isApplied" ng-click="sendProposal()">
-            <i class="fa fa-paper-plane"></i> ยื่นข้อเสนอ
+        <button class="btn-primary btn-width-md" ui-sref="brand-campaign-detail-edit({ campaignId: campaignNee.campaignId })">
+            <i class="fa fa-paper-plane"></i> แก้ไขข้อมูล
         </button>
-        <a class="btn-primary btn-width-md" ng-if="isApplied" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">
-            <i class="fa fa-paper-plane"></i> ส่งข้อความ
-        </a>
     </div>
     <h2>{{ campaignNee.title }}</h2>
   </zone-header>
 
   <div class="zone-body">
     <div class="container">
-      <div nc-alert="applied-alert"></div>
       <div nc-alert="alert"></div>
 
       <card-campaign-header campaign="campaignNee">
@@ -59,19 +54,6 @@
 
       <card-brand-profile ng-model="campaignNee.brand"></card-brand-profile>
 
-      <div class="card">
-        <div class="card-body text-center">
-            <button class="btn-secondary btn-width-lg btn-with-margin" ui-sref="influencer-campaign-list">
-              กลับไปดู Campaign อื่น
-            </button>
-            <button class="btn-primary btn-width-lg btn-with-margin" ng-if="!isApplied" ng-click="sendProposal()">
-                <i class="fa fa-paper-plane"></i> ยื่นข้อเสนอ
-            </button>
-            <a class="btn-primary btn-width-md" ng-if="isApplied" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">
-              <i class="fa fa-paper-plane"></i> ส่งข้อความ
-          </a>
-        </div>
-      </div>
 
     </div>
   </div>

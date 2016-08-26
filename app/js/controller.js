@@ -582,17 +582,24 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     .controller('CampaignExampleController', ['$scope', '$stateParams', 'ExampleCampaigns', function($scope, $stateParams, ExampleCampaigns) {
         $scope.exampleCampaign = ExampleCampaigns[$stateParams.exampleId];
     }])
-    .controller('CampaignDetailController', ['$scope', '$rootScope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', 'NcAlert', 'validator',
-        function($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, NcAlert, validator) {
+    .controller('CampaignDetailController', ['$scope', '$rootScope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', 'NcAlert', 'validator', '$state',
+        function($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, NcAlert, validator, $state) {
             //initial form data
             $scope.alert = new NcAlert();
-
+            $scope.editOpenState = $stateParams.editOpenState;
+            if($stateParams.alert){
+                $scope.alert.success($stateParams.alert);
+            }
+            
+            
             $scope.resources = [];
             $scope.formData = {
                 mainResource: null,
                 campaignResources: [],
                 budget: null
             };
+
+            $scope.campaignNee = $scope.formData;
             
             $scope.mediaBooleanDict = {};
             $scope.mediaObjectDict = {};
@@ -643,11 +650,19 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                     .then(function(response) {
                         //overrides the form data
                         $scope.formData = angular.copy(response.data);
+                        
                         //Tell checkbox which media are in the array
                         ($scope.formData.media || []).forEach(function(item) {
                             $scope.mediaBooleanDict[item.mediaId] = true;
                         });
 
+                        $scope.campaignNee = $scope.formData;
+
+                        //if is published
+                        if($scope.formData.status === "Open" && !$stateParams.editOpenState){
+                            $state.go('brand-campaign-detail-published', {campaignId: $scope.campaignNee.campaignId});
+                        }
+                        
                         //ensure non null
                         $scope.formData.keywords = $scope.formData.keywords || [];
                         $scope.formData.brand = UserProfile.get().brand;
@@ -694,14 +709,16 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 //saving
                 CampaignService.save(formData)
                     .then(function(echoresponse) {
-                        getOne(echoresponse.data.campaignId);
 
-                        if (echoresponse.data.status == "Draft") {
+                        if($scope.formData.status === "Open"){
+                            $state.go('brand-campaign-detail-published', {campaignId: $scope.campaignNee.campaignId, alert: "ลงประกาศเรียบร้อย" });
+                        }
+                    
+                        if (status == "Draft" && echoresponse.data.status == "Draft") {
+                            getOne(echoresponse.data.campaignId);
                             $scope.alert.success('บันทึกข้อมูลเรียบร้อยแล้ว!');
-                        } else if (echoresponse.data.status == 'Open') {
-                            $scope.alert.success('ลงประกาศสำเร็จ! แต่ใจเย็นสิ ยังไม่ได้ทำ Flow นี้เฟร้ย!');
                         } else {
-                            throw new Error("Weird status");
+                            throw new Error("Internal error in the ether.");
                         }
                     })
                     .catch(function(err) {

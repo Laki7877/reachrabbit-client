@@ -604,19 +604,25 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .directive('zoneHeader', [function () {
+    .directive('zoneHeader', ['$state', function ($state) {
         //To Do: make historyback to True/False
         return {
             restrict: 'EA',
             transclude: true,
             scope: {
-                historyback: '=?'
+                historyback: '=?',
+                historybackOverride: '@?'
             },
             templateUrl: 'components/templates/zone-header.html',
             link: function (scope, element, attrs, ctrl, transclude) {
                 scope.history = {
                     back: function () {
-                        history.back();
+                        if(scope.historybackOverride){
+                            $state.go(scope.historybackOverride);
+                        }else{
+                            history.back();
+                        }
+                        
                     }
                 };
                 /*element.on('click', function() {

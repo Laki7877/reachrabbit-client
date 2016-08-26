@@ -141,7 +141,7 @@ describe('Brand', function() {
             state.description = element(by.model('formData.description'));
             state.keyword = element(by.model('formData.keyword'));
             state.website = element(by.model('formData.website'));
-            state.budget = element(by.model("budget"));
+            state.budget = element(by.model("formData.budget"));
             state.publish_btn = element(by.css('.btn-primary'));
             state.save_draft_btn = element(by.css('.btn-secondary'));
             state.uploaders = element.all(by.css('input[type="file"]'));
@@ -163,21 +163,25 @@ describe('Brand', function() {
 
         it('can save as draft', function() {
             state.title.clear();
+
+            var fileToUpload = 'cyanthumb.png';
+            var absolutePath = path.resolve(__dirname, fileToUpload);
+            state.uploaders.get(0).sendKeys(absolutePath);
+            state.uploaders.get(1).sendKeys(absolutePath);
+
             state.title.sendKeys(chance.name({ gender: "male" }));
             state.description.sendKeys(chance.paragraph({ sentences: 5 }));
             state.keyword.sendKeys(chance.city() + ", " + chance.city() + ", " + chance.city());
             state.website.sendKeys(chance.url());
             state.category.sendKeys("DIY");
-            state.budget.sendKeys("5,000 - 10,000");
+            state.budget.sendKeys("1");
             state.proposalDeadline.click();
 
             //sslect date 12 of this month
             element.all(by.css(".uib-daypicker button")).get(12 + 2).click();
 
-            var fileToUpload = 'cyanthumb.png';
-            var absolutePath = path.resolve(__dirname, fileToUpload);
-            state.uploaders.get(0).sendKeys(absolutePath);
-
+            
+            browser.sleep(3000);
             state.save_draft_btn.click();
             browser.sleep(1000);
 
@@ -194,7 +198,7 @@ describe('Brand', function() {
             new_state.description = element(by.model('formData.description'));
             new_state.keyword = element(by.model('formData.keyword'));
             new_state.website = element(by.model('formData.website'));
-            new_state.budget = element(by.model("budget"));
+            new_state.budget = element(by.model("formData.budget"));
             new_state.publish_btn = element(by.css('.btn-primary'));
             new_state.save_draft_btn = element(by.css('.btn-secondary'));
             new_state.uploaders = element.all(by.css('input[type="file"]'));
@@ -303,9 +307,21 @@ describe('Influencer', function() {
             //angular load wait
             browser.waitForAngular();
 
-            expect($('.alert.alert-info').isPresent()).toBe(true);
+            var campaignRepeater = element.all(by.repeater("cam in campaigns.content"));
+            expect(campaignRepeater.count() >= 1).toBe(true);
         });
 
+
+    });
+
+    describe('God profile', function(){
+        beforeAll(function() {
+            browser.get('portal.html#/influencer-profile');
+        });
+
+        it('can edit profile', function(){
+            browser.sleep(1000);
+        });
     });
     
 });

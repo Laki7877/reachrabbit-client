@@ -22,13 +22,13 @@
                                 <div input-error></div>
                             </div>
                         </div>
-                        <div class="card-row" form-error="form.resource" is-validate="isPublishing($model, $error)">
+                        <div class="card-row" form-error="form.mainResource" is-validate="isPublishing($model, $error)">
                             <div class="card-body-content-label with-input">
                                 รูป Campaign
                             </div>
                             <div class="card-body-content">
-                                <uploader-thumb name="resource"
-                                  ng-model="formData.resources[0]"
+                                <uploader-thumb name="mainResource"
+                                  ng-model="formData.mainResource"
                                   accept=".jpg,.png"
                                   ngf-pattern="'.jpg,.png'"
                                   ngf-max-size="5MB"
@@ -94,17 +94,17 @@
                                 <input type="text" class="form-control" ng-model="formData.website" maxlength="200" placeholder="ถ้ามี">
                             </div>
                         </div>
-                        <div class="card-row" form-error="form.resources">
+                        <div class="card-row" form-error="form.campaignResources">
                             <div class="card-body-content-label">
                                 รูปประกอบ
                             </div>
                             <div class="card-body-content">
                                 <uploader-multi name="resources"
-                                  ng-model="resources"
+                                  ng-model="formData.campaignResources"
                                   accept=".jpg,.png"
                                   ngf-pattern="'.jpg,.png'"
                                   ngf-max-size="5MB"
-                                  ngf-max-files="4"></uploader-multi>
+                                  ngf-max-files="20"></uploader-multi>
                                 <div input-error></div>
                             </div>
                         </div>
@@ -114,7 +114,8 @@
                             </div>
                             <div class="card-body-content">
                                 <div class="input-dropdown">
-                                    <select name="budget" class="form-control" ng-model="budget" ng-options="x as budgetDisplayAs(x) disable when x.id == 0 for x in budgets track by x.id" ng-default="-- เลือกค่าตอบแทน --" required>
+                                    <select name="budget" class="form-control" ng-model="formData.budget" 
+                                    ng-options="x as budgetDisplayAs(x) disable when x.id == 0 for x in budgets track by x.budgetId" ng-default="-- เลือกค่าตอบแทน --" required>
                                     </select>
                                     <i class="fa fa-caret-down"></i>
                                 </div>

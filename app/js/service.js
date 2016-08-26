@@ -209,25 +209,23 @@ angular.module('myApp.service', ['satellizer'])
     }])
     .factory('CampaignService', ['$http', '$q', function ($http, $q) {
         var deserializeCampaign = function (campaign) {
-            campaign.resources = campaign.campaignResources.map(function (campaignResource) {
+            campaign.campaignResources = campaign.campaignResources.map(function (campaignResource) {
                 return campaignResource.resource;
             });
             if (campaign.proposalDeadline) {
                 campaign.proposalDeadline = new Date(campaign.proposalDeadline);
             }
-            delete campaign.campaignResources;
             return campaign;
         };
 
         var serializeCampaign = function (campaign) {
-            campaign.campaignResources = campaign.resources.map(function (resource, index) {
+            campaign.campaignResources = campaign.campaignResources.map(function (resource, index) {
                 return {
                     position: index,
                     resource: resource
                 };
             });
 
-            delete campaign.resources;
             return campaign;
         };
 
@@ -323,6 +321,9 @@ angular.module('myApp.service', ['satellizer'])
                             reject(err);
                         });
                 });
+            },
+            campaignIsApplied: function(campaignId){
+                return $http.get('/campaigns/' + campaignId + '/isPropose');
             }
         };
     }])
@@ -420,6 +421,9 @@ angular.module('myApp.service', ['satellizer'])
             },
             getCompletionTime: function () {
                 return $http.get("/data/completiontime");
+            },
+            getBudgets: function(){
+                return $http.get("/data/budgets");
             }
         };
     }])

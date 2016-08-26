@@ -1,10 +1,11 @@
-<div class="view-influencer-inbox">
+<div class="view-influencer-inbox" ng-cloak>
 
   <zone-header>
     <div class="action-btn-for-header">
       <div class="card-body-content">
         <div class="input-dropdown">
-          <select class="form-control filter" ng-model="filter" ng-options="x.campaignId as x.name for x in filters"></select>
+          <select class="form-control filter" ng-show="filters.length > 0" ng-model="filter" ng-options="x.campaignId as x.name for x in filters">
+          </select>
           <i class="fa fa-caret-down"></i>
         </div>
       </div>
@@ -16,23 +17,23 @@
     <div class="container">
       <div class="card-inbox">
         <div class="tab-selector">
-          <div class="tab active">
+          <div class="tab" ui-sref="influencer-inbox({status: 'Selection'})" ng-class="{'active': params.status == 'Selection'}">
             <h5>คัดเลือก</h5>
-            <h3 ng-bind="statusCounts.selection">-</h3>
+            <h3 ng-bind="statusCounts.selection || 0">-</h3>
           </div>
           <div class="tab-next-step">
             <i class="fa fa-angle-right fa-2x"></i>
           </div>
-          <div class="tab">
+          <div class="tab" ui-sref="influencer-inbox({status: 'Working'})" ng-class="{'active': params.status == 'Working'}">
             <h5>ดำเนินการ</h5>
-            <h3 ng-bind="statusCounts.working">-</h3>
+            <h3 ng-bind="statusCounts.working || 0">-</h3>
           </div>
           <div class="tab-next-step">
             <i class="fa fa-angle-right fa-2x"></i>
           </div>
-          <div class="tab">
+          <div class="tab" ui-sref="influencer-inbox({status: 'Complete'})" ng-class="{'active': params.status == 'Complete'}">
             <h5>เสร็จสิ้น</h5>
-            <h3 ng-bind="statusCounts.complete">-</h3>
+            <h3 ng-bind="statusCounts.complete || 0">-</h3>
           </div>
         </div>
         <div class="card-body">
@@ -48,7 +49,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="proposal in proposals.content">
-                <td class="col-name"><img src="{{proposal.campaign.brand.user.profilePicture.url || 'images/placeholder-profile-picture.png'}}" class="profile-picture" /> {{proposal.campaign.brand.brandName}}</td>
+                <td class="col-name"><img ng-src="{{proposal.campaign.brand.user.profilePicture.url || 'images/placeholder-profile-picture.png'}}" class="profile-picture" /> {{proposal.campaign.brand.brandName}}</td>
                 <td class="col-campaign-name">{{proposal.campaign.title}}</td>
                 <td class="col-price">{{proposal.price | currency:'':2 }} บาท</td>
                 <td class="col-time">{{lastMessageUpdated(proposal)}}</td>

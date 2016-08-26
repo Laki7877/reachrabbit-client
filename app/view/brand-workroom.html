@@ -43,7 +43,7 @@
                                   <uploader-thumb
                                   name="resource"
                                   template="components/templates/uploader-chat.html"
-                                  ng-model="formData.resources[0]"
+                                  ng-model="formData.mainResource"
                                   accept=".jpg,.png"
                                   ngf-pattern="'.jpg,.png'"
                                   ngf-max-size="5MB"></uploader-thumb>
@@ -62,7 +62,7 @@
                       </card-proposal-detail>
                       <div class="card-campaign-thumbnail">
                           <div class="card-thumbnail-image">
-                              <img ng-src="{{proposal.campaign.campaignResources[0].resource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
+                              <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
                           </div>
                           <div class="card-body">
                               {{ proposal.campaign.title }}

@@ -1009,7 +1009,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                             if (mediaId == 'facebook') {
                                 $state.go('influencer-signup-select-page', { authData: response.data });
                             } else {
-                                if(response.pages[0].count < $scope.minFollower) {
+                                if(response.data.pages[0].count < $scope.minFollower) {
                                     $scope.minFollowerError = true;
                                     return;
                                 }

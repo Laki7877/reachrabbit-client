@@ -426,6 +426,8 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     ])
     .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'DataService', 'ExampleCampaigns', '$rootScope',
         function($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope) {
+            $scope.params = {};
+
             $scope.handleUserClickThumbnail = function(c) {
                 $state.go('influencer-campaign-detail', {
                     campaignId: c.campaignId
@@ -443,7 +445,10 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 });
             };
             //Init
-            $scope.load();
+            $scope.load({
+                size: 1000,
+                sort: 'campaignId,desc'
+            });
 
             //Init media data
             DataService.getMedium()
@@ -686,15 +691,17 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                     $scope.categories = response.data;
                 });
 
-            $scope.$watch('mediaBooleanDict', function() {
-                $scope.formData.media = [];
+            var mediaBooleanDictProcess = function(formData){
+                formData.media = [];
                 //tell server which media are checked
                 _.forEach($scope.mediaBooleanDict, function(value, key) {
                     if (value === true) {
-                        $scope.formData.media.push($scope.mediaObjectDict[key]);
+                        formData.media.push($scope.mediaObjectDict[key]);
                     }
                 });
-
+            };
+            $scope.$watch('mediaBooleanDict', function() {
+                mediaBooleanDictProcess($scope.formData);
             }, true);
 
             $scope.formData.brand = UserProfile.get().brand;
@@ -705,7 +712,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                     .then(function(response) {
                         //overrides the form data
                         $scope.formData = angular.copy(response.data);
-
+                        $scope.mediaBooleanDict = {};
                         //Tell checkbox which media are in the array
                         ($scope.formData.media || []).forEach(function(item) {
                             $scope.mediaBooleanDict[item.mediaId] = true;
@@ -747,14 +754,17 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             };
 
             $scope.save = function(formData, mediaBooleanDict, mediaObjectDict, status) {
-                $scope.formData.brand = UserProfile.get().brand;
-                $scope.formData.status = status;
+                formData.brand = UserProfile.get().brand;
+                formData.status = status;
+
+                mediaBooleanDictProcess(formData);
+
                 // $scope.formData.resources = $scope.formData.resources.concat($scope.resources || []);
 
                 //check for publish case
                 if (status == 'Open') {
                     var o = validator.formValidate($scope.form);
-                    if (o || $scope.formData.media.length === 0) {
+                    if (o || formData.media.length === 0) {
                         $scope.form.$setSubmitted();
                         $scope.alert.danger(o.message);
                         return;
@@ -765,7 +775,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 CampaignService.save(formData)
                     .then(function(echoresponse) {
 
-                        if($scope.formData.status === "Open"){
+                        if(formData.status === "Open"){
                             $state.go('brand-campaign-detail-published', {campaignId: $scope.campaignNee.campaignId, alert: "ลงประกาศเรียบร้อย" });
                         }
 

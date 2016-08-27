@@ -448,6 +448,17 @@ describe('Influencer', function() {
 
 });
 
-xdescribe('Chatting', function() {
+describe('Chatting', function() {
+    describe('Influencer can apply to campaign (submit proposal)');
+    describe('Influencer can see that he/she applied');
+    describe('Influencer is taken to workroom');
+    describe('Influencer can send message');
+    describe('Influencer can send message with images attached');
+    describe('Influencer inbox is not empty');
 
+    describe('Brand inbox is not empty');
+    describe('Brand can go into workroom');
+    describe('Brand can see messages influencer sent');
+
+    describe('Brand can select the proposal and state changes');
 });

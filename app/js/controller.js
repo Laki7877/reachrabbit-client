@@ -26,8 +26,8 @@ angular.module('myApp.controller', ['myApp.service'])
             // console.log("Test World");
         };
     }])
-    .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal', 'validator',
-        function($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal, validator) {
+    .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal', 'validator', 'util',
+        function($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal, validator, util) {
             $scope.completionTimes = [];
             $scope.medium = [];
             $scope.formData = {
@@ -38,6 +38,10 @@ angular.module('myApp.controller', ['myApp.service'])
             $scope.proposalNetPrice = 0.00;
             $scope.alert = new NcAlert();
             $scope.selectedMedia = {};
+
+            util.warnOnExit(function() {
+              return $scope.$dirty;
+            });
 
             if($scope.isEditMode){
                 proposal.media.forEach(function(infm){
@@ -166,7 +170,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     }
                 });
 
-                
+
             };
 
             //Select Proposal
@@ -352,7 +356,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             $scope.isApplied = false;
             $scope.alert = new NcAlert();
             $scope.appliedAlert = new NcAlert();
-            
+
             $scope.proposal = null;
 
             $scope.keywordMap = function(arr) {
@@ -388,7 +392,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 });
             };
 
-            
+
 
             $scope.$watch('isApplied', function(applied){
                 if(applied){
@@ -572,13 +576,13 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             });
             $scope.load($scope.params);
         });
-        
+
         $scope.load({
             sort: ['messageUpdatedAt,desc']
         });
 
         $scope.loadProposalCounts();
-        
+
     }])
     .controller('InfluencerBrandProfile', ['$scope', 'AccountService', '$stateParams', function($scope, AccountService, $stateParams){
         AccountService.getProfile($stateParams.brandId)
@@ -630,16 +634,19 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     .controller('CampaignExampleController', ['$scope', '$stateParams', 'ExampleCampaigns', function($scope, $stateParams, ExampleCampaigns) {
         $scope.exampleCampaign = ExampleCampaigns[$stateParams.exampleId];
     }])
-    .controller('CampaignDetailController', ['$scope', '$rootScope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', 'NcAlert', 'validator', '$state',
-        function($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, NcAlert, validator, $state) {
+    .controller('CampaignDetailController', ['$scope', '$rootScope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', 'NcAlert', 'validator', '$state', 'util',
+        function($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, NcAlert, validator, $state, util) {
             //initial form data
             $scope.alert = new NcAlert();
             $scope.editOpenState = $stateParams.editOpenState;
             if($stateParams.alert){
                 $scope.alert.success($stateParams.alert);
             }
-            
-            
+
+            util.warnOnExit(function() {
+              return $scope.$dirty;
+            });
+
             $scope.resources = [];
             $scope.formData = {
                 mainResource: null,
@@ -648,7 +655,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             };
 
             $scope.campaignNee = $scope.formData;
-            
+
             $scope.mediaBooleanDict = {};
             $scope.mediaObjectDict = {};
             $scope.categories = [];
@@ -698,7 +705,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                     .then(function(response) {
                         //overrides the form data
                         $scope.formData = angular.copy(response.data);
-                        
+
                         //Tell checkbox which media are in the array
                         ($scope.formData.media || []).forEach(function(item) {
                             $scope.mediaBooleanDict[item.mediaId] = true;
@@ -710,7 +717,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         if($scope.formData.status === "Open" && !$stateParams.editOpenState){
                             $state.go('brand-campaign-detail-published', {campaignId: $scope.campaignNee.campaignId});
                         }
-                        
+
                         //ensure non null
                         $scope.formData.keywords = $scope.formData.keywords || [];
                         $scope.formData.brand = UserProfile.get().brand;
@@ -761,7 +768,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         if($scope.formData.status === "Open"){
                             $state.go('brand-campaign-detail-published', {campaignId: $scope.campaignNee.campaignId, alert: "ลงประกาศเรียบร้อย" });
                         }
-                    
+
                         if (status == "Draft" && echoresponse.data.status == "Draft") {
                             getOne(echoresponse.data.campaignId);
                             $scope.alert.success('บันทึกข้อมูลเรียบร้อยแล้ว!');
@@ -1098,11 +1105,15 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             });
         };
     }])
-    .controller('InfluencerSignUpController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig', 'validator',
-        function($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator) {
+    .controller('InfluencerSignUpController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig', 'validator', 'util',
+        function($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
 
             var profile = $stateParams.authData;
             $scope.alert = new NcAlert();
+
+            util.warnOnExit(function() {
+              return $scope.$dirty;
+            });
 
             //TODO : get value from provider somewhere or smth
             $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
@@ -1165,12 +1176,16 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             };
         }
     ])
-    .controller('BrandSignupController', ['$scope', '$state', '$rootScope', 'BrandAccountService', 'AccountService', 'UserProfile', '$location', '$window', 'NcAlert',
-        function($scope, $state, $rootScope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert) {
+    .controller('BrandSignupController', ['$scope', '$state', '$rootScope', 'BrandAccountService', 'AccountService', 'UserProfile', '$location', '$window', 'NcAlert', 'util',
+        function($scope, $state, $rootScope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert, util) {
 
             $scope.formData = {};
 
             $scope.alert = new NcAlert();
+
+            util.warnOnExit(function() {
+              return $scope.$dirty;
+            });
 
             $scope.submit = function(brand) {
                 if (!$scope.form.$valid) {

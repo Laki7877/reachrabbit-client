@@ -168,11 +168,15 @@ describe('Brand', function() {
 
             var fileToUpload = 'cyanthumb.png';
             var absolutePath = path.resolve(__dirname, fileToUpload);
+            var campaignName = chance.name() + " / " + chance.ssn({ dashes: false });;
+
+            browser.params.campaignName = campaignName;
+
             state.uploaders.get(0).sendKeys(absolutePath);
             state.uploaders.get(1).sendKeys(absolutePath);
 
             state.title.clear();
-            state.title.sendKeys(chance.name({ gender: "male" }));
+            state.title.sendKeys(campaignName);
             state.description.sendKeys(chance.paragraph({ sentences: 5 }));
             state.keyword.sendKeys(chance.city() + ", " + chance.city() + ", " + chance.city());
             state.website.sendKeys(chance.url());
@@ -209,9 +213,10 @@ describe('Brand', function() {
             new_state.category = element(by.model('formData.category'));
 
             expect(new_state.thumbImage.getAttribute('src') == 'images/placeholder-campaign.png').toBe(false);
-            //TODO: check against valu we entered
+            //TODO: check against value we entered
             expect(new_state.category.$('option:checked').getText("DIY"));
             expect(new_state.budget.$('option:checked').getText("5,000 - 10,000"));
+            expect(new_state.title.getAttribute("value")).toEqual(browser.params.campaignName);
         });
 
     });
@@ -253,7 +258,7 @@ describe('Brand', function() {
             browser.get('brand.html#/brand-profile');
         });
 
-        it('can find all fields', function() {
+        it('(view) can find all fields', function() {
             // browser.sleep(1000);
             state.about = element(by.model("formData.brand.about"));
             state.name = element(by.model("formData.brand.brandName"));
@@ -269,12 +274,45 @@ describe('Brand', function() {
 
         });
 
-        it('can save', function() {
+        it('(edit) can save basic information', function() {
             var fileToUpload = 'uniqlo.png';
             var absolutePath = path.resolve(__dirname, fileToUpload);
+
+            var expectations = {
+                about: chance.paragraph({ sentences: 1 }),
+                name: chance.word({syllables: 4}),
+                website: chance.url()
+            };
+            
             state.uploader.sendKeys(absolutePath);
-            // state.password.sendKeys(protractor.Key.TAB);
+
+            state.about.clear();
+            state.name.clear();
+            state.website.clear();
+
+            state.about.sendKeys(expectations.about);
+            state.name.sendKeys(expectations.name);
+            state.website.sendKeys(expectations.website);
+
             state.submit_btn.click();
+
+            browser.sleep(1000);
+
+            browser.driver.navigate().refresh();
+            
+            var _about = element(by.model("formData.brand.about"));
+            var _name = element(by.model("formData.brand.brandName"));
+            var _website = element(by.model('formData.brand.website'));
+
+            browser.sleep(1000);
+
+            //Back checking 
+            var thumbImage = element(by.css('.input-upload-image img'));
+            expect(thumbImage.isPresent()).toBe(true);
+            
+            expect(_about.getAttribute('value')).toEqual(expectations.about);
+            expect(_name.getAttribute('value')).toEqual(expectations.name);
+            expect(_website.getAttribute('value')).toEqual(expectations.website);   
         });
 
     });
@@ -325,11 +363,89 @@ describe('Influencer', function() {
             browser.get('influencer.html#/influencer-profile');
         });
 
-        it('can edit profile', function(){
-            browser.sleep(1000);
+        it('(view) can find all fields', function() {
+            state.name = element(by.model("formData.name"));
+            state.about = element(by.model('formData.influencer.about'));
+            state.phone = element(by.model('formData.phoneNumber'));
+
+            state.uploader = element(by.css('input[type="file"]'));
+            state.submit_btn = element(by.css('.btn-primary'));
+
+            expect(state.about.isPresent()).toBe(true);
+            expect(state.name.isPresent()).toBe(true);
+            expect(state.uploader.isPresent()).toBe(true);
+            expect(state.submit_btn.isPresent()).toBe(true);
+            expect(state.phone.isPresent()).toBe(true);
+
         });
+
+        it('(edit) can save basic information', function() {
+            var fileToUpload = 'uniqlo.png';
+            var absolutePath = path.resolve(__dirname, fileToUpload);
+
+            var expectations = {
+                about: chance.paragraph({ sentences: 1 }),
+                name: chance.word({syllables: 4}),
+                phone: "0811111111"
+            };
+            
+            state.uploader.sendKeys(absolutePath);
+
+            state.about.clear();
+            state.name.clear();
+            state.phone.clear();
+
+            state.about.sendKeys(expectations.about);
+            state.name.sendKeys(expectations.name);
+            state.phone.sendKeys(expectations.phone);
+
+            state.submit_btn.click();
+
+            browser.sleep(1000);
+
+            browser.driver.navigate().refresh();
+            
+            browser.sleep(1000);
+
+            var _about = element(by.model("formData.influencer.about"));
+            var _name = element(by.model("formData.name"));
+            var _phone = element(by.model("formData.phoneNumber"));
+            browser.sleep(1000);
+
+            //Back checking 
+            var thumbImage = element(by.css('.input-upload-image img'));
+            expect(thumbImage.isPresent()).toBe(true);
+            expect(_about.getAttribute('value')).toEqual(expectations.about);
+            expect(_name.getAttribute('value')).toEqual(expectations.name);
+            expect(_phone.getAttribute('value')).toEqual(expectations.phone);
+
+        });
+
     });
     
+    describe('Can see campaigns detail', function(){
+        beforeAll(function() {
+            browser.get('influencer.html#/influencer-campaign-list');
+        });
+
+        it('can see open campaigns', function(){
+            var cards = element.all(by.repeater("cam in campaigns.content"));
+            cards.count().then(function(ct){
+                expect(ct >= 1).toBeTruthy();
+            });
+            cards.first().click();
+        });
+
+        it('can see campaign detail with correct data', function(){
+           //TODO:  need to refactor this test for a more "connected" testcase
+           //eg. we check that campaign created by brand exist and can be seen by influencer
+           element(by.css('.page-header h2')).getText(function(text){
+               console.log("Title is", text);
+           });
+           expect(element(by.css('.page-header h2')).getText()).toEqual(browser.params.campaignName);
+        });
+    })
+
 });
 
 xdescribe('Chatting', function() {

@@ -9548,11 +9548,17 @@ fieldset[disabled] .btn-clear.active {
   background-color: red;
 }
 /*---Eartamoto Special Code---*/
-textarea.static-textarea {
+.cropArea {
+  background: white;
+  overflow: hidden;
   width: 100%;
-  resize: none;
-  border: none;
-  outline: none;
+  height: 400px;
+}
+.cropTool {
+  padding: 12px;
+}
+.cropTool .toolbar {
+  padding-top: 10px;
 }
 /*---End of the CSS World---*/
 /*---Layout Portal---*/

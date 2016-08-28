@@ -18,6 +18,7 @@ angular.module('myApp', [
   'ngPatternRestrict',
   'angularMoment',
   'luegg.directives',
+  'ngImgCrop',
   //Top level
   'myApp.directives',
   'myApp.routes',

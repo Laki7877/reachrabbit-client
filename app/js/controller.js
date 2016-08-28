@@ -273,7 +273,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             var stop = false;
 
             $interval(function(){
-                if($scope.pollActive == true){
+                if($scope.pollActive === true){
                     return;
                 }
                 console.log("will poll");

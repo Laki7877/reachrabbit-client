@@ -18,7 +18,7 @@ angular.module('myApp.service', ['satellizer'])
         if ($window.sessionStorage.API_OVERRIDE) {
             Config.API_BASE_URI = $window.sessionStorage.API_OVERRIDE;
         }
-        
+
     }])
     .factory('validator', [function() {
       return {
@@ -38,7 +38,18 @@ angular.module('myApp.service', ['satellizer'])
     }])
     .factory('util', ['$window', function ($window) {
         return {
-            warnOnExit: function (fn) {
+            warnOnExit: function (scope, fn) {
+                fn = fn || function() {
+                    return scope.form.$dirty;
+                };
+
+                scope.$on('$stateChangeStart', function(e) {
+                    if(fn()) {
+                        if(!$window.confirm('Changes you made may not be saved.')) {
+                            e.preventDefault();
+                        }
+                    }
+                });
                 $window.onbeforeunload = function () {
                     //Make it prompt on fn return true
                     if (!fn()) {

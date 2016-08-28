@@ -39,9 +39,7 @@ angular.module('myApp.controller', ['myApp.service'])
             $scope.alert = new NcAlert();
             $scope.selectedMedia = {};
 
-            util.warnOnExit(function() {
-              return $scope.$dirty;
-            });
+            util.warnOnExit($scope);
 
             if($scope.isEditMode){
                 proposal.media.forEach(function(infm){
@@ -126,11 +124,12 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$stateParams', 'ProposalService', 'NcAlert','$state', '$location', '$window',
-        function($scope, $uibModal, $interval, $stateParams, ProposalService, NcAlert, $state, $location, $window) {
+    .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$stateParams', 'ProposalService', 'NcAlert','$state', '$location', '$window', 'util',
+        function($scope, $uibModal, $interval, $stateParams, ProposalService, NcAlert, $state, $location, $window, util) {
             $scope.msglist = [];
             $scope.msgLimit = 30;
             $scope.totalElements = 0;
+            util.warnOnExit($scope);
 
             $scope.alert = new NcAlert();
 
@@ -299,7 +298,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         }
                     });
             }, 1000);
-                
+
 
             $scope.$on('$destroy', function() {
                 stop = true;
@@ -326,6 +325,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         $scope.formData = {
                             resources: []
                         };
+                        $scope.form.$setPristine();
                         //scrollBottom();
                     })
                     .catch(function(err) {
@@ -474,10 +474,12 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 });
         }
     ])
-    .controller('InfluencerProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator',
-        function($scope, $window, AccountService, NcAlert, UserProfile, validator) {
+    .controller('InfluencerProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util',
+        function($scope, $window, AccountService, NcAlert, UserProfile, validator, util) {
             $scope.formData = {};
             $scope.alert = new NcAlert();
+            util.warnOnExit($scope);
+
             $scope.isValidate = function(model, error) {
                 if(error === 'required' && model.$name === 'profilePicture') {
                     return $scope.form.$submitted;
@@ -496,6 +498,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         //set back to localstorage
                         UserProfile.set(response.data);
 
+                        $scope.setPristine();
                         $scope.success = true;
                         $scope.alert.success('บันทึกข้อมูลเรียบร้อย!');
                     })
@@ -658,9 +661,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 $scope.alert.success($stateParams.alert);
             }
 
-            util.warnOnExit(function() {
-              return $scope.$dirty;
-            });
+            util.warnOnExit($scope);
 
             $scope.resources = [];
             $scope.formData = {
@@ -784,7 +785,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 //saving
                 CampaignService.save(formData)
                     .then(function(echoresponse) {
-
                         if(formData.status === "Open"){
                             $state.go('brand-campaign-detail-published', {campaignId: $scope.campaignNee.campaignId, alert: "ลงประกาศเรียบร้อย" });
                         }
@@ -792,6 +792,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         if (status == "Draft" && echoresponse.data.status == "Draft") {
                             getOne(echoresponse.data.campaignId);
                             $scope.alert.success('บันทึกข้อมูลเรียบร้อยแล้ว!');
+                            $scope.form.$setPristine();
                         } else {
                             throw new Error("Internal error in the ether.");
                         }
@@ -804,9 +805,11 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
         }
     ])
-    .controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator', function($scope, $window, AccountService, NcAlert, UserProfile, validator) {
+    .controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util', function($scope, $window, AccountService, NcAlert, UserProfile, validator, util) {
         $scope.formData = {};
         $scope.alert = new NcAlert();
+        util.warnOnExit($scope);
+
         AccountService.getProfile()
             .then(function(response) {
                 $scope.formData = response.data;
@@ -836,6 +839,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                     //set back to localstorage
                     UserProfile.set(response.data);
 
+                    $scope.setPristine();
                     $scope.success = true;
                     $scope.alert.success('บันทึกข้อมูลเรียบร้อย!');
                 })
@@ -1131,9 +1135,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             var profile = $stateParams.authData;
             $scope.alert = new NcAlert();
 
-            util.warnOnExit(function() {
-              return $scope.$dirty;
-            });
+            util.warnOnExit($scope);
 
             //TODO : get value from provider somewhere or smth
             $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
@@ -1200,12 +1202,14 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         function($scope, $state, $rootScope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert, util) {
 
             $scope.formData = {};
-
             $scope.alert = new NcAlert();
-
-            util.warnOnExit(function() {
-              return $scope.$dirty;
+            $scope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+                if($scope.form.$dirty) {
+                    e.preventDefault();
+                }
             });
+
+            util.warnOnExit($scope);
 
             $scope.submit = function(brand) {
                 if (!$scope.form.$valid) {

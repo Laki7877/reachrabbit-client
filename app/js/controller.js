@@ -245,7 +245,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             }).then(function(res) {
                 $scope.totalElements = res.data.totalElements;
                 $scope.msglist = res.data.content.reverse();
-                $scope.poll();
+                // $scope.poll();
                 //scrollBottom();
             });
 
@@ -272,11 +272,17 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
 
             var stop = false;
 
-            $scope.poll = function() {
+            $interval(function(){
+                if($scope.pollActive == true){
+                    return;
+                }
+                console.log("will poll");
+                $scope.pollActive = true;
                 ProposalService.getMessagesPoll($scope.proposalId, {
                         timestamp: $scope.msglist.length > 0 ? $scope.msglist[$scope.msglist.length - 1].createdAt : new Date()
                     })
                     .then(function(res) {
+                        $scope.pollActive = false;
                         $scope.totalElements += res.data.length;
                         for (var i = res.data.length - 1; i >= 0; i--) {
                             if ($scope.msglist.length >= $scope.msgLimit) {
@@ -287,13 +293,17 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     })
                     .finally(function() {
                         if (!stop) {
-                            $scope.poll();
+                            console.log("done poll");
+                            // $scope.poll();
+                            // $scope.pollActive = false;
                         }
                     });
-            };
+            }, 1000);
+                
 
             $scope.$on('$destroy', function() {
                 stop = true;
+                $interval.cancel();
             });
 
             $scope.formData = {

@@ -347,7 +347,8 @@ describe('Influencer', function() {
             state.submit_btn.click();
             browser.ignoreSynchronization = false;
 
-            browser.sleep(3000);
+            browser.sleep(1500);
+            
             var campaignRepeater = element.all(by.repeater("cam in campaigns.content"));
             campaignRepeater.count().then(function(ct){
                 expect(ct >= 1).toBeTruthy();
@@ -418,6 +419,25 @@ describe('Influencer', function() {
             expect(_about.getAttribute('value')).toEqual(expectations.about);
             expect(_name.getAttribute('value')).toEqual(expectations.name);
             expect(_phone.getAttribute('value')).toEqual(expectations.phone);
+            
+
+        });
+
+
+        xit('can connect with Instagram', function(){
+            var igbtn = element.all(by.css('.btn-secondary.btn-width-lg')).last();
+            igbtn.click();
+
+            browser.sleep(1000);
+            browser.getAllWindowHandles().then(function (handles) {
+                // switch to the popup
+                browser.switchTo().window(handles[1]);
+                browser.pause();
+
+                // go back to the main window
+                browser.switchTo().window(handles[0]);
+            });
+
 
         });
 
@@ -448,17 +468,79 @@ describe('Influencer', function() {
 
 });
 
-describe('Chatting', function() {
-    describe('Influencer can apply to campaign (submit proposal)');
-    describe('Influencer can see that he/she applied');
-    describe('Influencer is taken to workroom');
-    describe('Influencer can send message');
-    describe('Influencer can send message with images attached');
-    describe('Influencer inbox is not empty');
+describe('Influencer-Brand interaction', function() {
+    it('Influencer can apply to campaign (submit proposal)', function(){
+        var applyBtn = element(by.css(".page-header button"));
+        expect(applyBtn.isPresent()).toBe(true);
+        
+        applyBtn.click();
 
-    describe('Brand inbox is not empty');
-    describe('Brand can go into workroom');
-    describe('Brand can see messages influencer sent');
+        var YtCheckbox = element.all(by.css('.proposal-modal input[type=checkbox]:not([disabled])')).first();
+        var completionTime = element(by.model('formData.completionTime'));
+        var price = element(by.model('formData.price'));
+        var description = element(by.model('formData.description'));
+        
+        expect(YtCheckbox.isPresent()).toBe(true);
+        expect(completionTime.isPresent()).toBe(true);
+        expect(price.isPresent()).toBe(true);
+        expect(description.isPresent()).toBe(true);
 
-    describe('Brand can select the proposal and state changes');
+        var proposedPrice = chance.integer({min: 2000, max: 100000});
+
+        // //TODO: Check that calculated 0.82* proposedPrice appears.
+        // //need model or some identifier
+        YtCheckbox.click().then(function(){
+            description.sendKeys(chance.paragraph({ sentences: 5 }));
+            price.sendKeys(proposedPrice);
+            completionTime.sendKeys("2");
+
+            var sendbtn = element(by.css('.proposal-modal .btn-primary:not([disabled])'));
+            expect(sendbtn.isPresent()).toBe(true);
+
+            sendbtn.click();
+        });
+        
+    });
+    
+    it('Influencer is taken to workroom', function(){
+        
+        expect(element(by.css('.chatbox-card')).isPresent()).toBe(true);
+        
+    });
+
+    xit('Influencer workroom shows correct info', function(){
+
+    });
+
+    it('Influencer can send message', function(){
+        browser.ignoreSynchronization = true;
+        var textarea = element(by.model('formData.messageStr'));
+        var sendBtn = element(by.css('.btn-secondary-highlight'));
+        expect(textarea.isPresent()).toBe(true);
+        expect(sendBtn.isPresent()).toBe(true);
+
+        textarea.sendKeys('Hello');
+        sendBtn.click();
+
+        browser.sleep(1000);
+
+        //check that it appears
+        var messages = element.all(by.repeater('x in msglist'));
+
+        expect(messages.count()).toEqual(2);
+        expect(messages.get(1).element(by.css('.message-content')).getText()).toEqual('Hello');
+    
+    });
+   
+    xit('Influencer can send message with images attached');
+    xit('Influencer inbox is not empty');
+    xit('Influencer can see that he/she applied to given campaign', function(){
+        
+    });
+
+    xit('Brand inbox is not empty');
+    xit('Brand can go into workroom');
+    xit('Brand can see messages influencer sent');
+
+    xit('Brand can select the proposal and state changes');
 });

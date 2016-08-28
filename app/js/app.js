@@ -164,7 +164,6 @@ angular.module('myApp', [
         if($rootScope.pollPending){
           return;
         }
-        
         $rootScope.pollPending = true;
         ProposalService.countInbox({
           immediate: immediately

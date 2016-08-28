@@ -14,10 +14,11 @@ angular.module('myApp.service', ['satellizer'])
         INSTAGRAM_APP_ID: "c428876109c44daa9a54cf568e96e483",
         YOUTUBE_APP_ID: "486841241364-75hb5e24afp7msiitf8t36skfo3mr0h7.apps.googleusercontent.com"
     })
-    .run(['Config', '$window', function (Config, $window) {
+    .run(['Config', '$window', '$location', function (Config, $window, $location) {
         if ($window.sessionStorage.API_OVERRIDE) {
             Config.API_BASE_URI = $window.sessionStorage.API_OVERRIDE;
         }
+        
     }])
     .factory('validator', [function() {
       return {

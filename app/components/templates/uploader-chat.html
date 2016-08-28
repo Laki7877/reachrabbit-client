@@ -1,8 +1,7 @@
-<!---->
-<div class="preview-item" ng-if="model">
+<div class="preview-item" ng-repeat="m in model">
     <div class="input-upload-image">
         <i class="fa fa-times-circle btn-delete-image" ng-click="remove()"></i>
-        <img ng-src="{{accessor(model)}}" />
+        <img ng-src="{{accessor(m)}}" />
     </div>
 </div>
 <i class="fa fa-spinner fa-spin image-uploading" ng-if="loadingImage"></i>

@@ -90,6 +90,7 @@ angular.module('myApp.controller', ['myApp.service'])
 
                 action(formData, campaign.campaignId)
                 .then(function(doneR) {
+                        $scope.form.$setPristine();
                         return $uibModalInstance.close(doneR.data);
                     })
                     .catch(function(err) {
@@ -498,7 +499,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         //set back to localstorage
                         UserProfile.set(response.data);
 
-                        $scope.setPristine();
+                        $scope.form.$setPristine();
                         $scope.success = true;
                         $scope.alert.success('บันทึกข้อมูลเรียบร้อย!');
                     })
@@ -788,14 +789,14 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         if(formData.status === "Open"){
                             $state.go('brand-campaign-detail-published', {campaignId: $scope.campaignNee.campaignId, alert: "ลงประกาศเรียบร้อย" });
                         }
-
                         if (status == "Draft" && echoresponse.data.status == "Draft") {
                             getOne(echoresponse.data.campaignId);
                             $scope.alert.success('บันทึกข้อมูลเรียบร้อยแล้ว!');
-                            $scope.form.$setPristine();
                         } else {
                             throw new Error("Internal error in the ether.");
                         }
+
+                        $scope.form.$setPristine();
                     })
                     .catch(function(err) {
                         $scope.alert.danger(err.data.message);
@@ -839,7 +840,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                     //set back to localstorage
                     UserProfile.set(response.data);
 
-                    $scope.setPristine();
+                    $scope.form.$setPristine();
                     $scope.success = true;
                     $scope.alert.success('บันทึกข้อมูลเรียบร้อย!');
                 })
@@ -985,6 +986,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                     UserProfile.set(profileResp.data);
                     //Tell raven about the user
                     Raven.setUserContext(UserProfile.get());
+
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
                     $window.location.href = '/brand.html#/brand-campaign-list';
@@ -1189,6 +1191,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         UserProfile.set(profileResp.data);
                         //Tell raven about the user
                         Raven.setUserContext(UserProfile.get());
+                        $scope.form.$setPristine();
                         //Redirect change app
                         $window.location.href = '/influencer.html#/influencer-campaign-list';
                     })
@@ -1203,12 +1206,6 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 
             $scope.formData = {};
             $scope.alert = new NcAlert();
-            $scope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
-                if($scope.form.$dirty) {
-                    e.preventDefault();
-                }
-            });
-
             util.warnOnExit($scope);
 
             $scope.submit = function(brand) {
@@ -1229,6 +1226,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         Raven.setUserContext(UserProfile.get());
                         //Redirect
                         $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
+                        $scope.form.$setPristine();
                         // $location.update('/brand.html#/brand-campaign-list');
                         $window.location.href = '/brand.html#/brand-campaign-list';
                     })

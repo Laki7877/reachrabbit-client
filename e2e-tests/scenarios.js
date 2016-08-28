@@ -173,7 +173,9 @@ describe('Brand', function() {
             browser.params.campaignName = campaignName;
 
             state.uploaders.get(0).sendKeys(absolutePath);
-            state.uploaders.get(1).sendKeys(absolutePath);
+            element(by.css('.done-crop-btn')).click();
+            browser.sleep(1000);
+            // state.uploaders.get(1).sendKeys(absolutePath);
 
             state.title.clear();
             state.title.sendKeys(campaignName);
@@ -285,6 +287,8 @@ describe('Brand', function() {
             };
             
             state.uploader.sendKeys(absolutePath);
+            element(by.css('.done-crop-btn')).click();
+            browser.sleep(1000);
 
             state.about.clear();
             state.name.clear();
@@ -391,6 +395,8 @@ describe('Influencer', function() {
             };
             
             state.uploader.sendKeys(absolutePath);
+            element(by.css('.done-crop-btn')).click();
+            browser.sleep(1000);
 
             state.about.clear();
             state.name.clear();

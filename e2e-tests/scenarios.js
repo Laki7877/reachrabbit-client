@@ -526,21 +526,49 @@ describe('Influencer-Brand interaction', function() {
 
         //check that it appears
         var messages = element.all(by.repeater('x in msglist'));
-
         expect(messages.count()).toEqual(2);
         expect(messages.get(1).element(by.css('.message-content')).getText()).toEqual('Hello');
-    
+        browser.ignoreSynchronization = false;
     });
    
     xit('Influencer can send message with images attached');
-    xit('Influencer inbox is not empty');
-    xit('Influencer can see that he/she applied to given campaign', function(){
-        
+
+    it('Brand can see the message sent by influencer', function(){
+
+           browser.executeScript('window.sessionStorage.clear();');
+           browser.executeScript('window.localStorage.clear();');
+           browser.get('portal.html#/brand-login');
+           
+            var username = element(by.model('formData.username'));
+            var password = element(by.model('formData.password'));
+            var submit_btn = element(by.css('.btn-primary'));
+
+            expect(username.isPresent()).toBe(true);
+            expect(password.isPresent()).toBe(true);
+            expect(submit_btn.isPresent()).toBe(true);
+
+            username.sendKeys(browser.params.brand_login.user);
+            password.sendKeys(browser.params.brand_login.password);
+            browser.ignoreSynchronization = true;
+            submit_btn.click();
+            browser.sleep(2000);
+            browser.ignoreSynchronization = false;
+            
+            browser.get('brand.html#/brand-inbox/');
+            
+            
+            var latestProposal = element.all(by.repeater('proposal in proposals.content')).first();
+            expect(latestProposal.isPresent()).toBe(true);
+            latestProposal.element(by.css('.btn-secondary')).click();
+            
+            // browser.pause();
+            //check that inf message appears
+            var messages = element.all(by.repeater('x in msglist'));
+            expect(messages.count()).toEqual(2);
+            expect(messages.get(1).element(by.css('.message-content')).getText()).toEqual('Hello');
+
     });
 
-    xit('Brand inbox is not empty');
-    xit('Brand can go into workroom');
-    xit('Brand can see messages influencer sent');
 
-    xit('Brand can select the proposal and state changes');
+
 });

@@ -44,7 +44,7 @@ angular.module('myApp.service', ['satellizer'])
                 };
 
                 scope.$on('$stateChangeStart', function(e) {
-                    if(fn()) {
+                    if(fn() && !_.isNil(scope.form)) {
                         if(!$window.confirm('Changes you made may not be saved.')) {
                             e.preventDefault();
                         }

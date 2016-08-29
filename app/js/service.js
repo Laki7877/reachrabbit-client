@@ -40,11 +40,11 @@ angular.module('myApp.service', ['satellizer'])
         return {
             warnOnExit: function (scope, fn) {
                 fn = fn || function() {
-                    return scope.form.$dirty;
+                    return (scope.form || {}).$dirty;
                 };
 
                 scope.$on('$stateChangeStart', function(e) {
-                    if(fn() && !_.isNil(scope.form)) {
+                    if(fn()) {
                         if(!$window.confirm('Changes you made may not be saved.')) {
                             e.preventDefault();
                         }

@@ -11,6 +11,9 @@
 angular.module('myApp.directives', ['myApp.service'])
     .filter('truncate', [function () {
         return function (input, maxlen) {
+            if(!input){
+                return input;
+            }
             if (input.length > maxlen) {
                 return input.substring(0, maxlen) + "...";
             }

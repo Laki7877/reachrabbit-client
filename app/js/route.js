@@ -129,6 +129,21 @@ angular.module('myApp.influencer.routes', ['ui.router'])
                 url: '/influencer-brand-profile/:brandId',
                 templateUrl: 'view/influencer-brand-profile.html',
                 controller: 'InfluencerBrandProfile'
+            })
+            .state('influencer-payout-detail', {
+                url: '/influencer-payout-detail',
+                templateUrl: 'view/influencer-payout-detail.html',
+                controller: 'EmptyController'
+            })
+            .state('influencer-payout-history', {
+                url: '/influencer-payout-history',
+                templateUrl: 'view/influencer-payout-history.html',
+                controller: 'EmptyController'
+            })
+            .state('influencer-wallet', {
+                url: '/influencer-wallet',
+                templateUrl: 'view/influencer-wallet.html',
+                controller: 'EmptyController'
             });
 
         //TODO: Campaign-detail

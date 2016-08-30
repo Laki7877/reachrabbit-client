@@ -7629,7 +7629,7 @@ a.secondary {
   color: #648acb;
 }
 .color-green {
-  color: #019386;
+  color: #16bbac;
 }
 .color-yellow {
   color: #f5a623;
@@ -9140,7 +9140,7 @@ fieldset[disabled] .btn-clear.active {
   background: #d8f0dd;
 }
 .alert-success .alert-icon {
-  background: url("../images/icon-rabbit-happy.png") 0 0 no-repeat #019386;
+  background: url("../images/icon-rabbit-happy.png") 0 0 no-repeat #16bbac;
 }
 .alert-danger {
   background: #ffcccb;

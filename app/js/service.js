@@ -40,7 +40,7 @@ angular.module('myApp.service', ['satellizer'])
         return {
             warnOnExit: function (scope, fn) {
                 fn = fn || function() {
-                    return scope.form.$dirty;
+                    return (scope.form || {}).$dirty;
                 };
 
                 scope.$on('$stateChangeStart', function(e) {

@@ -38,6 +38,7 @@ angular.module('myApp.controller', ['myApp.service'])
             $scope.proposalNetPrice = 0.00;
             $scope.alert = new NcAlert();
             $scope.selectedMedia = {};
+            $scope.form = {};
 
             util.warnOnExit($scope);
 
@@ -478,6 +479,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     .controller('InfluencerProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util',
         function($scope, $window, AccountService, NcAlert, UserProfile, validator, util) {
             $scope.formData = {};
+            $scope.form = {};
             $scope.alert = new NcAlert();
             util.warnOnExit($scope);
 
@@ -661,6 +663,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             if($stateParams.alert){
                 $scope.alert.success($stateParams.alert);
             }
+            $scope.form = {};
 
             util.warnOnExit($scope);
 
@@ -812,6 +815,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     ])
     .controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util', function($scope, $window, AccountService, NcAlert, UserProfile, validator, util) {
         $scope.formData = {};
+        $scope.form = {};
         $scope.alert = new NcAlert();
         util.warnOnExit($scope);
 
@@ -1140,6 +1144,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 
             var profile = $stateParams.authData;
             $scope.alert = new NcAlert();
+            $scope.form = {};
 
             util.warnOnExit($scope);
 
@@ -1209,6 +1214,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         function($scope, $state, $rootScope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert, util) {
 
             $scope.formData = {};
+            $scope.form = {};
             $scope.alert = new NcAlert();
             util.warnOnExit($scope);
 

@@ -76,6 +76,21 @@ angular.module('myApp.brand.routes', ['ui.router'])
                 url: '/brand-influencer-profile/:influencerId',
                 templateUrl: 'view/brand-influencer-profile.html',
                 controller: 'BrandInfluencerProfile'
+            })
+            .state('brand-cart', {
+                url: '/brand-cart',
+                templateUrl: 'view/brand-cart.html',
+                controller: 'EmptyController'
+            })
+            .state('brand-transaction-history', {
+                url: '/brand-transaction-history',
+                templateUrl: 'view/brand-transaction-history.html',
+                controller: 'EmptyController'
+            })
+            .state('brand-transaction-detail', {
+                url: '/brand-transaction-detail',
+                templateUrl: 'view/brand-transaction-detail.html',
+                controller: 'EmptyController'
             });
 
     }]);

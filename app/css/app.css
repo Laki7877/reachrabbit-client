@@ -7609,6 +7609,18 @@ a.secondary {
 .clear {
   clear: both;
 }
+.has-error .help-block,
+.has-error .control-label,
+.has-error .radio,
+.has-error .checkbox,
+.has-error .radio-inline,
+.has-error .checkbox-inline,
+.has-error.radio label,
+.has-error.checkbox label,
+.has-error.radio-inline label,
+.has-error.checkbox-inline label {
+  color: #e62117;
+}
 .social-link-title {
   color: #16bbac;
   display: inline;
@@ -9275,6 +9287,8 @@ fieldset[disabled] .btn-clear.active {
 .table .col-name {
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 250px;
 }
 .table .col-name .profile-picture {
   width: 40px;

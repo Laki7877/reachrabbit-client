@@ -13,7 +13,7 @@
                   <div class="col-xs-9">
                       <div class="chatbox-card">
                           <div class="chatbox-header">
-                              <h3>{{ proposal.influencer.user.name }}</h3>
+                              <h3>{{ proposal.influencer.user.name | truncate: 30 }}</h3>
                               <a class="link-view-profile" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId })"><i class="fa fa-info-circle"></i>ดูโปรไฟล์</a>
                               <div class="chatbox-status">
                                   <span class="status" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>

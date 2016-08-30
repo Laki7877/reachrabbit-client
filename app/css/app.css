@@ -9574,6 +9574,9 @@ fieldset[disabled] .btn-clear.active {
 .cropTool .toolbar {
   padding-top: 10px;
 }
+ul.payment-methods {
+  list-style-image: url(../images/icon-facebook.png);
+}
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
 .layout-portal {

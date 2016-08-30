@@ -80,7 +80,7 @@ angular.module('myApp.brand.routes', ['ui.router'])
             .state('brand-cart', {
                 url: '/brand-cart',
                 templateUrl: 'view/brand-cart.html',
-                controller: 'EmptyController'
+                controller: 'CartController'
             })
             .state('brand-transaction-history', {
                 url: '/brand-transaction-history',

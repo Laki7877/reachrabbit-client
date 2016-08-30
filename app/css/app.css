@@ -9378,6 +9378,10 @@ fieldset[disabled] .btn-clear.active {
   padding: 3px 7px 1px 7px;
   border-radius: 15px;
 }
+.table img {
+  margin-right: 10px;
+  width: 30px;
+}
 /*---Workroom---*/
 .workroom {
   background: #16bbac;

@@ -1049,8 +1049,8 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         };
         
         $scope.setLocalhost = function(user, password){
-            $window.sessionStorage.API_OVERRIDE = 'http://localhost:3000'
-        }
+            $window.sessionStorage.API_OVERRIDE = 'http://localhost:3000';
+        };
     }])
     .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'AccountService', 'UserProfile', '$window', 'BusinessConfig',
         function($scope, $rootScope, NcAlert, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {

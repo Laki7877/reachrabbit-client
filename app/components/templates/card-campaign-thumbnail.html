@@ -4,10 +4,10 @@
       <img ng-src="{{campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
     </div>
     <div class="card-body">
-      {{ campaign.title }}
+      {{ campaign.title | truncate: 40 }}
       <div class="card-price">
-        <span ng-if="campaign.fromBudget"> {{campaign.fromBudget | number}} - {{campaign.toBudget | number}} บาท</span>
-        <span ng-if="!campaign.fromBudget">-</span>
+        <span ng-if="campaign.budget"> {{campaign.budget.fromBudget | number}} - {{campaign.budget.toBudget | number}}</span>
+        <span ng-if="!campaign.budget">-</span>
       </div>
     </div>
     <div class="card-footer">

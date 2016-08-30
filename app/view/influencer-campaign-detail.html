@@ -9,7 +9,7 @@
             <i class="fa fa-paper-plane"></i> ส่งข้อความ
         </button>
     </div>
-    <h2>{{ campaignNee.title }}</h2>
+    <h2 ng-bind="campaignNee.title | truncate: 40"></h2>
   </zone-header>
 
   <div class="zone-body">

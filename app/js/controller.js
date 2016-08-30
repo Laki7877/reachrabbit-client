@@ -77,7 +77,7 @@ angular.module('myApp.controller', ['myApp.service'])
                 ProposalService.addToCart($scope.proposal)
                 .then(function(od){
                     $state.go('brand-cart');
-                })
+                });
 
             };
 
@@ -1026,6 +1026,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         //For influencer gods
         $scope.alert = new NcAlert();
         $scope.login = function(username, password) {
+
             $location.search('message', 'nop');
             AccountService.getTokenInfluencer(username, password)
                 .then(function(response) {
@@ -1044,7 +1045,12 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 .catch(function(err) {
                     $scope.alert.danger(err.data.message);
                 });
+        
         };
+        
+        $scope.setLocalhost = function(user, password){
+            $window.sessionStorage.API_OVERRIDE = 'http://localhost:3000'
+        }
     }])
     .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'AccountService', 'UserProfile', '$window', 'BusinessConfig',
         function($scope, $rootScope, NcAlert, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {

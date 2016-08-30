@@ -16,11 +16,17 @@
                           
                           <div class="message-input">
                               <table class="table">
+                                <thead>
+                                  <th></th>
+                                  <th>Influencer</th>
+                                  <th>Campaign</th>
+                                  <th>Price</th>
+                                </thead>
                                 <tbody>
                                   <tr ng-repeat="proposal in cart.proposals">
-                                    <td><img ng-src="{{ proposal.influencer.user.profilePicture.url }}" width="300px"/></td>
+                                    <td><img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-circle"/></td>
                                     <td>{{ proposal.influencer.user.name }}</td>
-                                    <td>{{ proposal.campaign.title }}</td>
+                                    <td>{{ proposal.campaign.title | truncate: 20 }}</td>
                                     <td>{{ proposal.price | number: 0 }}</td>
                                   </tr>
                                 </tbody>

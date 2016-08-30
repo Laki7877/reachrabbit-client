@@ -9188,16 +9188,31 @@ fieldset[disabled] .btn-clear.active {
   padding-bottom: 12px;
   border-bottom: #ff773e 3px solid;
 }
-.navbar .navbar-right li > a {
+.navbar .navbar-right .cart {
+  padding-bottom: 2px;
+}
+.navbar .navbar-right .cart .cart-counter {
+  display: inline-block;
+  transform: translateY(-5px);
+  width: 32px;
+  height: 30px;
+  background: url("../images/icon-cart.png") 0 0 no-repeat;
+  text-align: center;
+  margin-right: 5px;
+  font-size: 14px;
+  padding-left: 3px;
+  color: #ff773e;
+}
+.navbar .navbar-right .profile-dropdown {
   margin: 0px;
 }
-.navbar .navbar-right li > a .caret {
+.navbar .navbar-right .profile-dropdown .caret {
   margin-left: 5px;
 }
 .navbar .navbar-right .profile-picture {
   float: left;
   display: inline-block;
-  margin-top: 10px;
+  transform: translateY(-5px);
   margin-right: 10px;
   width: 30px;
   height: 30px;

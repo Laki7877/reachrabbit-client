@@ -541,9 +541,11 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $scope.load = function(params) {
             $scope.params = params;
             $scope.params.status = $scope.statusFilter;
+
             ProposalService.getAll(params)
                 .then(function(response) {
                     $scope.proposals = response.data;
+
                     _.forEach($scope.proposals.content, function(proposal) {
                       ProposalService.countUnreadMessages(proposal.proposalId)
                         .then(function(res) {
@@ -789,6 +791,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 //saving
                 CampaignService.save(formData)
                     .then(function(echoresponse) {
+                        $scope.form.$setPristine();
                         if(formData.status === "Open"){
                             $state.go('brand-campaign-detail-published', {campaignId: $scope.campaignNee.campaignId, alert: "ลงประกาศเรียบร้อย" });
                         }
@@ -798,8 +801,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         } else {
                             throw new Error("Internal error in the ether.");
                         }
-
-                        $scope.form.$setPristine();
                     })
                     .catch(function(err) {
                         $scope.alert.danger(err.data.message);

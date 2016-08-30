@@ -88,7 +88,7 @@ angular.module('myApp.brand.routes', ['ui.router'])
                 controller: 'EmptyController'
             })
             .state('brand-transaction-detail', {
-                url: '/brand-transaction-detail',
+                url: '/brand-transaction-detail/:transactionId',
                 templateUrl: 'view/brand-transaction-detail.html',
                 controller: 'EmptyController'
             });

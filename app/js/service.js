@@ -421,6 +421,9 @@ angular.module('myApp.service', ['satellizer'])
             },
             addToCart: function(proposal){
                 return $http.post("/proposals/"+proposal.proposalId+ "/cart");
+            },
+            removeFromCart: function(proposal){
+                return $http.delete("/proposals/"+proposal.proposalId+ "/cart");
             }
         };
     }])
@@ -443,6 +446,13 @@ angular.module('myApp.service', ['satellizer'])
                 return $http.get("/data/budgets");
             }
         };
+    }])
+    .factory('TransactionService', ['$http', function($http){
+        return {
+            startTransaction: function(CartArray){
+
+            }
+        }
     }])
     .factory('ResourceService', ['$http', function ($http) {
         return {

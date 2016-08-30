@@ -9,29 +9,38 @@
 
       <div class="row">
                   <div class="col-xs-8">
-                      <div class="chatbox-card">
-                          <div class="chatbox-header">
+                      <div class="card">
+                          <div class="card-header">
                              ข้อเสนอในตระกร้าของคุณ
                           </div>
                           
-                          <div class="message-input">
+                          <div class="card-body">
                               <table class="table">
                                 <thead>
-                                  <th></th>
                                   <th>Influencer</th>
                                   <th>Campaign</th>
                                   <th>Price</th>
                                 </thead>
                                 <tbody>
                                   <tr ng-repeat="proposal in cart.proposals">
-                                    <td><img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-circle"/></td>
-                                    <td>{{ proposal.influencer.user.name }}</td>
+                                    <td><img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-circle"/> 
+                                        {{ proposal.influencer.user.name }}</td>
                                     <td>{{ proposal.campaign.title | truncate: 20 }}</td>
-                                    <td>{{ proposal.price | number: 0 }}</td>
+                                    <td>{{ proposal.price | number: 0 }} <i ng-click="removeFromCart(proposal)" class="fa fa-times-circle"></i> </td>
+                                  </tr>
+                                  <tr>
+                                    <td colspan="3" class="text-align-right">
+                                      <strong>ราคารวม ({{cart.proposals.length || 0}} รายการ): {{ totalPrice(cart.proposals)  | number:0 }} บาท</strong>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td colspan="3" class="text-align-right">
+                                      <a ui-sref="brand-inbox">เลือกข้อเสนอเพิ่ม</a>
+                                    </td>
                                   </tr>
                                 </tbody>
                               </table>
-                              <div class="clear"></div>
+                              
                           </div>
                       </div>
                       <div class="card">
@@ -39,11 +48,23 @@
                           ขั้นตอนการชำระเงิน
                         </div>
                         <div class="card-body">
-                          <ol class="payment-methods">
-                              <li>กด ชำระเงิน เมื่อคุณพอใจกับข้อเสนอทั้งหมดในตระกร้าสินค้าของคุณ</li>
-                              <li>กด นู่นนี่นั่นเพื่อกินข้าว</li>
-                              <li>กด โดโหมะ อาริกาโตะ เพื่อขอบคุณ</li>
-                            </ol>
+                            <div class="media">
+                              <div class="media-left">
+                                <span class="number-circle">1</span>
+                              </div>
+                              <div class="media-body">
+                                กด ชำระเงิน เมื่อคุณพอใจกับข้อเสนอทั้งหมดในตระกร้าสินค้าของคุณ
+                              </div>
+                            </div>
+                            <div class="media">
+                              <div class="media-left">
+                                <span class="number-circle">2</span>
+                              </div>
+                              <div class="media-body">
+                                กด นู่นนี่นั่นเพื่อกินข้าว
+                              </div>
+                            </div>
+                            
                         </div>
                       </div>
                   </div>
@@ -70,16 +91,16 @@
                                 ฟรี
                               </td>
                             </tr>
-                            <tr>
+                            <tr class="color-green">
                               <td>
-                                ยอดสุทธิ
+                                <strong>ยอดสุทธิ</strong>
                               </td>
                               <td>
-                                2,000 บาท
+                                <strong>2,000 บาท</strong>
                               </td>
                             </tr>
                           </table>
-                          <button class="btn btn-primary btn-width-max">ชำระเงิน</button>
+                          <button ng-click="checkout(cart.proposals)" class="btn btn-primary btn-width-max">ชำระเงิน</button>
                         </div>
                       </div>
                   </div>

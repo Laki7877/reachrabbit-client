@@ -910,11 +910,29 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         });
         $scope.loadProposalCounts();
     }])
-    .controller('CartController', ['$scope', 'NcAlert', 'BrandAccountService', '$stateParams', function($scope, NcAlert, BrandAccountService, $stateParams){
+    .controller('CartController', ['$scope', 'NcAlert', 'BrandAccountService', 'ProposalService', '$stateParams', function($scope, NcAlert, BrandAccountService,  ProposalService, $stateParams){
         $scope.alert = new NcAlert();
-        BrandAccountService.getCart().then(function(cart){
-           $scope.cart = cart.data;
-        });
+        var loadCart= function(){
+            BrandAccountService.getCart().then(function(cart){
+            $scope.cart = cart.data;
+            });
+        }
+        $scope.checkout  = function(CartArray){
+            console.log(CartArray);
+        };
+        $scope.totalPrice = function(CartArray){
+            if(!CartArray) return 0;
+            return CartArray.reduce(function(p,c){
+                return p.price + c.price;
+            });
+        };
+        $scope.removeFromCart = function(p){
+            ProposalService.removeFromCart(p)
+            .then(function(){
+               loadCart();
+            });
+        };
+        loadCart();
     }])
     .controller('BrandInfluencerProfile', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function($scope, NcAlert, AccountService, $stateParams){
         $scope.alert = new NcAlert();

@@ -155,6 +155,11 @@ angular.module('myApp.portal.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
         $stateProvider
+            .state('admin-login', {
+                url: "/admin-login",
+                templateUrl: "view/admin-login.html",
+                controller: 'AdminSigninController'
+            })
             .state('brand-login', {
                 url: "/brand-login",
                 templateUrl: "view/brand-login.html",

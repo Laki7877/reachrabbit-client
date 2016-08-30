@@ -190,6 +190,12 @@ angular.module('myApp.service', ['satellizer'])
                     password: password
                 });
             },
+            getAdminToken: function (username, password) {
+                return $http.post("/auth/admin", {
+                    email: username,
+                    password: password
+                });
+            },
             getTokenInfluencer: function (username, password) {
                 return $http.post("/auth/influencer", {
                     email: username,

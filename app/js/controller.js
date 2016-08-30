@@ -742,7 +742,11 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
                         //ensure non null
                         $scope.formData.keywords = $scope.formData.keywords || [];
-                        $scope.formData.brand = UserProfile.get().brand;
+
+                        if(!$scope.formData.brand){
+                             $scope.formData.brand = UserProfile.get().brand;
+                        }
+                        
                         $scope.createMode = false;
                     });
             }
@@ -790,13 +794,11 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 CampaignService.save(formData)
                     .then(function(echoresponse) {
                         if(formData.status === "Open"){
-                            $state.go('brand-campaign-detail-published', {campaignId: $scope.campaignNee.campaignId, alert: "ลงประกาศเรียบร้อย" });
-                        }
-                        if (status == "Draft" && echoresponse.data.status == "Draft") {
+                            console.log(echoresponse, 'x')
+                            $state.go('brand-campaign-detail-published', {campaignId: echoresponse.data.campaignId, alert: "ลงประกาศเรียบร้อย" });
+                        }else if (status == "Draft" && echoresponse.data.status == "Draft") {
                             getOne(echoresponse.data.campaignId);
                             $scope.alert.success('บันทึกข้อมูลเรียบร้อยแล้ว!');
-                        } else {
-                            throw new Error("Internal error in the ether.");
                         }
 
                         $scope.form.$setPristine();

@@ -794,7 +794,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 CampaignService.save(formData)
                     .then(function(echoresponse) {
                         if(formData.status === "Open"){
-                            console.log(echoresponse, 'x')
+                            // console.log(echoresponse, 'x')
                             $state.go('brand-campaign-detail-published', {campaignId: echoresponse.data.campaignId, alert: "ลงประกาศเรียบร้อย" });
                         }else if (status == "Draft" && echoresponse.data.status == "Draft") {
                             getOne(echoresponse.data.campaignId);

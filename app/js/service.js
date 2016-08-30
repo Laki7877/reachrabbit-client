@@ -216,7 +216,9 @@ angular.module('myApp.service', ['satellizer'])
             signup: function (brand) {
                 return $http.post("/signup/brand", brand);
             },
-
+            getCart: function(){
+                return $http.get('/carts');
+            }
         };
     }])
     .factory('CampaignService', ['$http', '$q', function ($http, $q) {
@@ -416,6 +418,9 @@ angular.module('myApp.service', ['satellizer'])
                     method: 'post',
                     data: proposalMessage
                 });
+            },
+            addToCart: function(proposal){
+                return $http.post("/proposals/"+proposal.proposalId+ "/cart");
             }
         };
     }])

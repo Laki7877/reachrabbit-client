@@ -58,7 +58,11 @@
                   </div>
                   <div class="col-xs-3">
                       <card-proposal-detail ng-model="proposal">
-                          <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection'" ng-click="selectProposal(proposal)">เลือกข้อเสนอ</button>
+                           <span class="info-text center" ng-if="proposal.status == 'Selection' && proposal.cartId">คุณได้เลือกข้อเสนอนี้แล้ว</span>
+                           <span class="info-text center" ng-if="proposal.status == 'Selection' && proposal.transactionId">รอคุณชำระเงินก่อนเริ่มดำเนินการ</span>
+                           <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && !proposal.cartId" ng-click="selectProposal(proposal)">เลือกข้อเสนอ</button>
+                           <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && proposal.transactionId"  ui-sref="brand-transaction-detail({transactionId: proposal.transactionId})">ดูรายละเอียดการสั่งซื้อ</button>
+                           <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && proposal.cartId" ui-sref="brand-cart">ดูตะกร้า</button>
                            <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Working'" ng-click="approveProposal(proposal)">อนุมัติงาน</button>
                       </card-proposal-detail>
                       <div class="card-campaign-thumbnail">

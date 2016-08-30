@@ -9632,6 +9632,12 @@ fieldset[disabled] .btn-clear.active {
 ul.payment-methods {
   list-style-image: url(../images/icon-facebook.png);
 }
+.text-align-right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
 .layout-portal {

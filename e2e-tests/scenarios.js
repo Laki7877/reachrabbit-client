@@ -59,7 +59,7 @@ describe('Brand', function() {
             expect(state.password.isPresent()).toBe(true);
             expect(state.submit_btn.isPresent()).toBe(true);
 
-            
+
         });
 
         it('cannot signup without typing anything', function() {
@@ -75,7 +75,7 @@ describe('Brand', function() {
             state.password.sendKeys(browser.params.brand_login.password);
             state.password.sendKeys(protractor.Key.TAB);
             state.submit_btn.click();
-            
+
             // browser.pause();
 
             //redirection wait
@@ -119,7 +119,7 @@ describe('Brand', function() {
             browser.sleep(2000);
             var info = element(by.css(".alert-info"));
             expect(info.isPresent()).toBe(true);
-            
+
         });
 
     });
@@ -132,7 +132,7 @@ describe('Brand', function() {
             var cards = element.all(by.repeater("x in myCampaign.content"));
             expect(cards.count()).toEqual(1);
             cards.first().click();
-            
+
         });
 
         it('can find inputs', function() {
@@ -164,9 +164,9 @@ describe('Brand', function() {
         });
 
         it('can save as draft', function() {
-            
 
-            var fileToUpload = 'cyanthumb.png';
+
+            var fileToUpload = 'cyanthumb.jpg';
             var absolutePath = path.resolve(__dirname, fileToUpload);
             var campaignName = chance.name() + " / " + chance.ssn({ dashes: false });;
 
@@ -189,8 +189,8 @@ describe('Brand', function() {
             //sslect date 12 of this month
             element.all(by.css(".uib-daypicker button")).get(12 + 2).click();
 
-            
-            
+
+
             //wait for upload to finish
             state.save_draft_btn.click();
 
@@ -246,9 +246,9 @@ describe('Brand', function() {
             expect(state.publish_btn.isPresent()).toBe(true);
 
             state.publish_btn.click();
-            
+
             // browser.sleep(2000);
-            
+
             expect($('.alert.alert-success').isPresent()).toBe(true);
         });
 
@@ -277,7 +277,7 @@ describe('Brand', function() {
         });
 
         it('(edit) can save basic information', function() {
-            var fileToUpload = 'uniqlo.png';
+            var fileToUpload = 'greenthumb.jpg';
             var absolutePath = path.resolve(__dirname, fileToUpload);
 
             var expectations = {
@@ -285,7 +285,7 @@ describe('Brand', function() {
                 name: chance.word({syllables: 4}),
                 website: chance.url()
             };
-            
+
             state.uploader.sendKeys(absolutePath);
             element(by.css('.done-crop-btn')).click();
             browser.sleep(1000);
@@ -303,20 +303,20 @@ describe('Brand', function() {
             browser.sleep(1000);
 
             browser.driver.navigate().refresh();
-            
+
             var _about = element(by.model("formData.brand.about"));
             var _name = element(by.model("formData.brand.brandName"));
             var _website = element(by.model('formData.brand.website'));
 
             browser.sleep(1000);
 
-            //Back checking 
+            //Back checking
             var thumbImage = element(by.css('.input-upload-image img'));
             expect(thumbImage.isPresent()).toBe(true);
-            
+
             expect(_about.getAttribute('value')).toEqual(expectations.about);
             expect(_name.getAttribute('value')).toEqual(expectations.name);
-            expect(_website.getAttribute('value')).toEqual(expectations.website);   
+            expect(_website.getAttribute('value')).toEqual(expectations.website);
         });
 
     });
@@ -325,7 +325,7 @@ describe('Brand', function() {
 
 describe('Influencer', function() {
     var state = {};
-    
+
     describe('God Login', function(){
         beforeAll(function() {
             browser.executeScript('window.sessionStorage.clear();');
@@ -334,7 +334,7 @@ describe('Influencer', function() {
         });
 
         it('can find inputs', function() {
-            
+
             state.username = element(by.model('username'));
             state.password = element(by.model('password'));
             state.submit_btn = element(by.css('.btn-primary'));
@@ -352,12 +352,12 @@ describe('Influencer', function() {
             browser.ignoreSynchronization = false;
 
             browser.sleep(1500);
-            
+
             var campaignRepeater = element.all(by.repeater("cam in campaigns.content"));
             campaignRepeater.count().then(function(ct){
                 expect(ct >= 1).toBeTruthy();
             });
-            
+
         });
 
 
@@ -385,7 +385,7 @@ describe('Influencer', function() {
         });
 
         it('(edit) can save basic information', function() {
-            var fileToUpload = 'uniqlo.png';
+            var fileToUpload = 'uniqlo.jpg';
             var absolutePath = path.resolve(__dirname, fileToUpload);
 
             var expectations = {
@@ -393,7 +393,7 @@ describe('Influencer', function() {
                 name: chance.word({syllables: 4}),
                 phone: "0811111111"
             };
-            
+
             state.uploader.sendKeys(absolutePath);
             element(by.css('.done-crop-btn')).click();
             browser.sleep(1000);
@@ -411,7 +411,7 @@ describe('Influencer', function() {
             browser.sleep(1000);
 
             browser.driver.navigate().refresh();
-            
+
             browser.sleep(1000);
 
             var _about = element(by.model("formData.influencer.about"));
@@ -419,13 +419,13 @@ describe('Influencer', function() {
             var _phone = element(by.model("formData.phoneNumber"));
             browser.sleep(1000);
 
-            //Back checking 
+            //Back checking
             var thumbImage = element(by.css('.input-upload-image img'));
             expect(thumbImage.isPresent()).toBe(true);
             expect(_about.getAttribute('value')).toEqual(expectations.about);
             expect(_name.getAttribute('value')).toEqual(expectations.name);
             expect(_phone.getAttribute('value')).toEqual(expectations.phone);
-            
+
 
         });
 
@@ -448,7 +448,7 @@ describe('Influencer', function() {
         });
 
     });
-    
+
     describe('Can see campaigns detail', function(){
         beforeAll(function() {
             browser.get('influencer.html#/influencer-campaign-list');
@@ -478,14 +478,14 @@ describe('Influencer-Brand interaction', function() {
     it('Influencer can apply to campaign (submit proposal)', function(){
         var applyBtn = element(by.css(".page-header button"));
         expect(applyBtn.isPresent()).toBe(true);
-        
+
         applyBtn.click();
 
         var YtCheckbox = element.all(by.css('.proposal-modal input[type=checkbox]:not([disabled])')).first();
         var completionTime = element(by.model('formData.completionTime'));
         var price = element(by.model('formData.price'));
         var description = element(by.model('formData.description'));
-        
+
         expect(YtCheckbox.isPresent()).toBe(true);
         expect(completionTime.isPresent()).toBe(true);
         expect(price.isPresent()).toBe(true);
@@ -505,13 +505,13 @@ describe('Influencer-Brand interaction', function() {
 
             sendbtn.click();
         });
-        
+
     });
-    
+
     it('Influencer is taken to workroom', function(){
-        
+
         expect(element(by.css('.chatbox-card')).isPresent()).toBe(true);
-        
+
     });
 
     xit('Influencer workroom shows correct info', function(){
@@ -536,7 +536,7 @@ describe('Influencer-Brand interaction', function() {
         expect(messages.get(1).element(by.css('.message-content')).getText()).toEqual('Hello');
         browser.ignoreSynchronization = false;
     });
-   
+
     xit('Influencer can send message with images attached');
 
     it('Brand can see the message sent by influencer', function(){
@@ -544,7 +544,7 @@ describe('Influencer-Brand interaction', function() {
            browser.executeScript('window.sessionStorage.clear();');
            browser.executeScript('window.localStorage.clear();');
            browser.get('portal.html#/brand-login');
-           
+
             var username = element(by.model('formData.username'));
             var password = element(by.model('formData.password'));
             var submit_btn = element(by.css('.btn-primary'));
@@ -559,14 +559,14 @@ describe('Influencer-Brand interaction', function() {
             submit_btn.click();
             browser.sleep(2000);
             browser.ignoreSynchronization = false;
-            
+
             browser.get('brand.html#/brand-inbox/');
-            
-            
+
+
             var latestProposal = element.all(by.repeater('proposal in proposals.content')).first();
             expect(latestProposal.isPresent()).toBe(true);
             latestProposal.element(by.css('.btn-secondary')).click();
-            
+
             // browser.pause();
             //check that inf message appears
             var messages = element.all(by.repeater('x in msglist'));

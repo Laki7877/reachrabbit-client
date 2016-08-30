@@ -929,6 +929,9 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         });
         $scope.loadProposalCounts();
     }])
+    .controller('CartController', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function($scope, NcAlert, AccountService, $stateParams){
+        $scope.alert = new NcAlert();
+    }])
     .controller('BrandInfluencerProfile', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function($scope, NcAlert, AccountService, $stateParams){
         $scope.alert = new NcAlert();
         AccountService.getProfile($stateParams.influencerId)

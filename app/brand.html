@@ -44,15 +44,22 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
+                    <li ui-sref-active="active">
+                      <a class="cart" ui-sref="brand-cart">
+                        <span class="cart-counter">9</span>
+                        Cart
+                      </a>
+                    </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span ng-bind="$root.getProfile().brand.brandName | truncate: 15"></span><span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a ui-sref="brand-profile">Profile ของฉัน</a></li>
-                            <li><a ng-click="$root.signOut()">ออกจากระบบ</a></li>
-                        </ul>
+                      <a class="profile-dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
+                          <span ng-bind="$root.getProfile().brand.brandName | truncate: 15"></span><span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a ui-sref="brand-profile">Profile ของฉัน</a></li>
+                          <li><a ui-sref="brand-transaction-history">รายการสั่งซื้อ</a></li>
+                          <li><a ng-click="$root.signOut()">ออกจากระบบ</a></li>
+                      </ul>
                     </li>
                 </ul>
             </div>

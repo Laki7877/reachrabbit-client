@@ -1,0 +1,90 @@
+<div class="view-brand-cart">
+  <zone-header historyback="false">
+    <h1>Cart (X รายการ)</h1>
+  </zone-header>
+  <div class="zone-body">
+    <div class="container">
+
+      <div nc-alert='alert' closable="true"></div>
+
+      <div class="row">
+                  <div class="col-xs-8">
+                      <div class="chatbox-card">
+                          <div class="chatbox-header">
+                             ข้อเสนอในตระกร้าของคุณ
+                          </div>
+                          
+                          <div class="message-input">
+                              <table class="table">
+                                <thead>
+                                  <th></th>
+                                  <th>Influencer</th>
+                                  <th>Campaign</th>
+                                  <th>Price</th>
+                                </thead>
+                                <tbody>
+                                  <tr ng-repeat="proposal in cart.proposals">
+                                    <td><img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-circle"/></td>
+                                    <td>{{ proposal.influencer.user.name }}</td>
+                                    <td>{{ proposal.campaign.title | truncate: 20 }}</td>
+                                    <td>{{ proposal.price | number: 0 }}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <div class="clear"></div>
+                          </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header">
+                          ขั้นตอนการชำระเงิน
+                        </div>
+                        <div class="card-body">
+                          <ol class="payment-methods">
+                              <li>กด ชำระเงิน เมื่อคุณพอใจกับข้อเสนอทั้งหมดในตระกร้าสินค้าของคุณ</li>
+                              <li>กด นู่นนี่นั่นเพื่อกินข้าว</li>
+                              <li>กด โดโหมะ อาริกาโตะ เพื่อขอบคุณ</li>
+                            </ol>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-xs-4">
+                      <div class="card">
+                        <div class="card-header">
+                          สรุปการสั่งซื้อ
+                        </div>
+                        <div class="card-body">
+                           <table class="table">
+                            <tr>
+                              <td>
+                                ราคารวม
+                              </td>
+                              <td>
+                                2,000 บาท
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                ค่าธรรมเนียม
+                              </td>
+                              <td>
+                                ฟรี
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                ยอดสุทธิ
+                              </td>
+                              <td>
+                                2,000 บาท
+                              </td>
+                            </tr>
+                          </table>
+                          <button class="btn btn-primary btn-width-max">ชำระเงิน</button>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+
+    </div>
+  </div>
+</div>

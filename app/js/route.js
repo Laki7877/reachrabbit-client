@@ -76,6 +76,21 @@ angular.module('myApp.brand.routes', ['ui.router'])
                 url: '/brand-influencer-profile/:influencerId',
                 templateUrl: 'view/brand-influencer-profile.html',
                 controller: 'BrandInfluencerProfile'
+            })
+            .state('brand-cart', {
+                url: '/brand-cart',
+                templateUrl: 'view/brand-cart.html',
+                controller: 'CartController'
+            })
+            .state('brand-transaction-history', {
+                url: '/brand-transaction-history',
+                templateUrl: 'view/brand-transaction-history.html',
+                controller: 'EmptyController'
+            })
+            .state('brand-transaction-detail', {
+                url: '/brand-transaction-detail',
+                templateUrl: 'view/brand-transaction-detail.html',
+                controller: 'EmptyController'
             });
 
     }]);
@@ -114,6 +129,21 @@ angular.module('myApp.influencer.routes', ['ui.router'])
                 url: '/influencer-brand-profile/:brandId',
                 templateUrl: 'view/influencer-brand-profile.html',
                 controller: 'InfluencerBrandProfile'
+            })
+            .state('influencer-payout-detail', {
+                url: '/influencer-payout-detail',
+                templateUrl: 'view/influencer-payout-detail.html',
+                controller: 'EmptyController'
+            })
+            .state('influencer-payout-history', {
+                url: '/influencer-payout-history',
+                templateUrl: 'view/influencer-payout-history.html',
+                controller: 'EmptyController'
+            })
+            .state('influencer-wallet', {
+                url: '/influencer-wallet',
+                templateUrl: 'view/influencer-wallet.html',
+                controller: 'EmptyController'
             });
 
         //TODO: Campaign-detail

@@ -13,7 +13,7 @@
                     <div class="col-xs-9">
                         <div class="chatbox-card">
                             <div class="chatbox-header">
-                                <h3>{{ proposal.campaign.brand.brandName }}</h3>
+                                <h3>{{ proposal.campaign.brand.brandName | truncate: 30 }}</h3>
                                 <a class="link-view-profile" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId })"><i class="fa fa-info-circle"></i>ดูโปรไฟล์</a>
                                 <div class="chatbox-status">
                                     <span class="status" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
@@ -28,7 +28,7 @@
                                 <card-influencer-profile ng-model="proposal.influencer" show-social-data="false">
                                     <a ui-sref="influencer-profile" class="link-edit-profile">แก้ไขข้อมูล</a>
                                 </card-influencer-profile>
-                                
+
                                 <div class="message-past" ng-if="hasPastMessage()">
                                     <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
                                 </div>
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="pull-right" form-error="form.resource">
                                     <div input-error class="pull-left"></div>
-                                    
+
                                     <uploader-multi
                                     name="resource"
                                     template="components/templates/uploader-chat.html"
@@ -70,7 +70,7 @@
                                 <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
                             </div>
                             <div class="card-body">
-                                {{ proposal.campaign.title }}
+                                {{ proposal.campaign.title | truncate: 35 }}
                                 <button class="btn-secondary btn-width-max" ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
                             </div>
                         </div>

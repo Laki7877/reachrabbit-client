@@ -4,7 +4,7 @@
       <img ng-src="{{campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
     </div>
     <div class="card-body">
-      {{ campaign.title | truncate: 40 }}
+      {{ campaign.title | truncate: 50 }}
       <div class="card-price">
         <span ng-if="campaign.budget"> {{campaign.budget.fromBudget | number}} - {{campaign.budget.toBudget | number}}</span>
         <span ng-if="!campaign.budget">-</span>

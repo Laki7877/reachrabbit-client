@@ -54,10 +54,36 @@ a.secondary{
 .clear{
   clear: both;
 }
+
+.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
+    color: @color-red;
+}
+.color-red{
+  color: @color-red;
+}
+.color-blue{
+  color: @color-blue;
+}
+.color-green{
+  color: @color-green;
+}
+.color-yellow{
+  color: @color-yellow;
+}
+
 .social-link-title{
   &:extend(h5);
   color: @color-theme-secondary;
   display: inline;
+}
+
+.number-circle{
+  display: inline-block;
+  padding: 0px 6px;
+  background: @color-theme-secondary;
+  color: @color-white;
+  border-radius: 50%;
+  margin-right: 5px;
 }
 
 #loading-bar .bar{
@@ -434,7 +460,6 @@ a.secondary{
   color: @color-grey-darker;
 }
 .card-info{
-  .make-xs-column(2);
   .card-info-label{
     font-size: 12px;
     color: @color-grey-darker;
@@ -530,6 +555,7 @@ a.secondary{
     padding: 15px 0px;
   }
   .card-info{
+    .make-xs-column(2);
     margin-top: 38px;
   }
   .card-info-3{
@@ -590,6 +616,9 @@ a.secondary{
     padding: 0px;
     padding-right: 15px;
   }
+  .card-info{
+    .make-xs-column(2);
+  }
   .card-info-1, .card-info-2, .card-info-3, {
     margin-top: 50px;
   }
@@ -643,6 +672,16 @@ a.secondary{
   &:extend(.card);
   min-height: 250px;
   margin-bottom: 20px;
+}
+
+.card-transaction-header{
+  &:extend(.card);
+  .card-info{
+    .make-xs-column(3);
+    .card-info-content{
+      color:@color-black;
+    }
+  }
 }
 
 /*---Thumbnail---*/
@@ -842,7 +881,25 @@ a.secondary{
     border-bottom: @color-theme-primary 3px solid;
   }
   .navbar-right{
-    li > a{
+    .cart{
+      padding-bottom: 0px;
+      .cart-counter{
+        display: inline-block;
+        transform:translateY(-5px);
+        width: 32px;
+        height: 30px;
+        background: url("../images/icon-cart.png") 0 0 no-repeat;
+        text-align: center;
+        margin-right: 5px;
+        font-size: 14px;
+        padding-left: 3px;
+        color: @color-theme-primary;
+      }
+    }
+    .dropdown-menu li > a{
+      margin: 0px;
+    }
+    .profile-dropdown{
       margin: 0px;
       .caret{
         margin-left: 5px;
@@ -852,7 +909,7 @@ a.secondary{
       &:extend(.img-circle);
       float: left;
       display: inline-block;
-      margin-top: 10px;
+      transform:translateY(-5px);
       margin-right: 10px;
       width: 30px;
       height: 30px;
@@ -946,6 +1003,8 @@ a.secondary{
   .col-name{
     white-space: nowrap;
     text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 250px;
     .profile-picture{
       &:extend(.img-circle);
       width: 40px;
@@ -984,6 +1043,10 @@ a.secondary{
       padding: 3px 7px 1px 7px;
       border-radius: 15px;
     }
+  }
+  img{
+    margin-right: 10px;
+    width: 30px;
   }
 }
 
@@ -1285,6 +1348,10 @@ a.secondary{
   .toolbar{
     padding-top:10px;
   }
+}
+
+ul.payment-methods {
+    list-style-image: url(../images/icon-facebook.png);
 }
 
 /*---End of the CSS World---*/

@@ -113,19 +113,6 @@ angular.module('myApp.controller', ['myApp.service'])
             });
         }
     ])
-    .controller('YesNoConfirmationModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal',
-        function($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal) {
-            $scope.yes = function(){
-                 $uibModalInstance.close('yes');
-            };
-        }]);
-/////////////// /////////////// /////////////// /////////////// ///////////////
-/*
-    INFLUENCER
-*/
-/////////////// /////////////// /////////////// /////////////// ///////////////
-
-angular.module('myApp.influencer.controller', ['myApp.service'])
     .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$stateParams', 'ProposalService', 'NcAlert','$state', '$location', '$window', 'util',
         function($scope, $uibModal, $interval, $stateParams, ProposalService, NcAlert, $state, $location, $window, util) {
             $scope.msglist = [];
@@ -176,34 +163,10 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
 
             //Select Proposal
             $scope.selectProposal = function(){
-                //popup a modal
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'components/templates/brand-select-status-modal.html',
-                    controller: 'YesNoConfirmationModalController',
-                    size: 'sm',
-                    resolve: {
-                        campaign: function() {
-                            return $scope.proposal.campaign;
-                        },
-                        proposal: function(){
-                            return $scope.proposal;
-                        }
-                    }
+                ProposalService.addToCart($scope.proposal)
+                .then(function(od){
+                    $state.go('brand-cart');
                 });
-
-                //on user close
-                modalInstance.result.then(function(yesno) {
-
-                    if(yesno == 'yes'){
-                        ProposalService.updateStatus($scope.proposal.proposalId, 'Working')
-                        .then(function(od){
-                            window.location.reload();
-                        });
-                    }
-                });
-
-
             };
 
             //Edit Proposal
@@ -362,6 +325,19 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             }
         }
     ])
+    .controller('YesNoConfirmationModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal',
+        function($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal) {
+            $scope.yes = function(){
+                 $uibModalInstance.close('yes');
+            };
+        }]);
+/////////////// /////////////// /////////////// /////////////// ///////////////
+/*
+    INFLUENCER
+*/
+/////////////// /////////////// /////////////// /////////////// ///////////////
+
+angular.module('myApp.influencer.controller', ['myApp.service'])
     .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService', '$uibModal', 'DataService',
         function($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService) {
             $scope.campaignNee = null;

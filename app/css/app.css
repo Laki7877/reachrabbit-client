@@ -6199,6 +6199,7 @@ button.list-group-item-danger.active:focus {
 .card-campaign-description,
 .card-thumbnail,
 .card-inbox,
+.card-transaction-header,
 .workroom .card-proposal-detail,
 .chatbox-card,
 .workroom .card-campaign-thumbnail {
@@ -7621,9 +7622,29 @@ a.secondary {
 .has-error.checkbox-inline label {
   color: #e62117;
 }
+.color-red {
+  color: #e62117;
+}
+.color-blue {
+  color: #648acb;
+}
+.color-green {
+  color: #019386;
+}
+.color-yellow {
+  color: #f5a623;
+}
 .social-link-title {
   color: #16bbac;
   display: inline;
+}
+.number-circle {
+  display: inline-block;
+  padding: 0px 6px;
+  background: #16bbac;
+  color: #ffffff;
+  border-radius: 50%;
+  margin-right: 5px;
 }
 #loading-bar .bar {
   background: #ff773e !important;
@@ -7909,6 +7930,7 @@ a.secondary {
 .card-campaign-description,
 .card-thumbnail,
 .card-inbox,
+.card-transaction-header,
 .workroom .card-proposal-detail,
 .chatbox-card,
 .workroom .card-campaign-thumbnail {
@@ -8019,20 +8041,6 @@ a.secondary {
   float: right;
   color: #8692a8;
 }
-.card-info,
-.card-info-1,
-.card-info-2,
-.card-info-3,
-.card-info-4,
-.card-info-5,
-.card-info-6 {
-  position: relative;
-  float: left;
-  width: 16.66666667%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
 .card-info .card-info-label {
   font-size: 12px;
   color: #8692a8;
@@ -8100,6 +8108,12 @@ a.secondary {
   padding: 15px 0px;
 }
 .card-campaign-list-item .card-info {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
   margin-top: 38px;
 }
 .card-campaign-list-item .card-info-3 {
@@ -8176,6 +8190,14 @@ a.secondary {
   padding: 0px;
   padding-right: 15px;
 }
+.card-campaign-header .card-info {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
 .card-campaign-header .card-info-1,
 .card-campaign-header .card-info-2,
 .card-campaign-header .card-info-3 {
@@ -8221,6 +8243,17 @@ a.secondary {
 .card-inbox {
   min-height: 250px;
   margin-bottom: 20px;
+}
+.card-transaction-header .card-info {
+  position: relative;
+  float: left;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.card-transaction-header .card-info .card-info-content {
+  color: #3e4a5e;
 }
 /*---Thumbnail---*/
 .thumbnail-column {
@@ -9189,7 +9222,7 @@ fieldset[disabled] .btn-clear.active {
   border-bottom: #ff773e 3px solid;
 }
 .navbar .navbar-right .cart {
-  padding-bottom: 2px;
+  padding-bottom: 0px;
 }
 .navbar .navbar-right .cart .cart-counter {
   display: inline-block;
@@ -9202,6 +9235,9 @@ fieldset[disabled] .btn-clear.active {
   font-size: 14px;
   padding-left: 3px;
   color: #ff773e;
+}
+.navbar .navbar-right .dropdown-menu li > a {
+  margin: 0px;
 }
 .navbar .navbar-right .profile-dropdown {
   margin: 0px;

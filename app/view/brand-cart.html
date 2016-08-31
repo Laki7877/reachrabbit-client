@@ -1,6 +1,6 @@
 <div class="view-brand-cart">
   <zone-header historyback="false">
-    <h1>Cart (X รายการ)</h1>
+    <h1>Cart ({{cart.proposals.length || 0}} รายการ)</h1>
   </zone-header>
   <div class="zone-body">
     <div class="container">
@@ -8,103 +8,118 @@
       <div nc-alert='alert' closable="true"></div>
 
       <div class="row">
-                  <div class="col-xs-8">
-                      <div class="card">
-                          <div class="card-header">
-                             ข้อเสนอในตระกร้าของคุณ
-                          </div>
-                          
-                          <div class="card-body">
-                              <table class="table">
-                                <thead>
-                                  <th>Influencer</th>
-                                  <th>Campaign</th>
-                                  <th>Price</th>
-                                </thead>
-                                <tbody>
-                                  <tr ng-repeat="proposal in cart.proposals">
-                                    <td><img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-circle"/> 
-                                        {{ proposal.influencer.user.name }}</td>
-                                    <td>{{ proposal.campaign.title | truncate: 20 }}</td>
-                                    <td>{{ proposal.price | number: 0 }} <i ng-click="removeFromCart(proposal)" class="fa fa-times-circle"></i> </td>
-                                  </tr>
-                                  <tr>
-                                    <td colspan="3" class="text-align-right">
-                                      <strong>ราคารวม ({{cart.proposals.length || 0}} รายการ): {{ totalPrice(cart.proposals)  | number:0 }} บาท</strong>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td colspan="3" class="text-align-right">
-                                      <a ui-sref="brand-inbox">เลือกข้อเสนอเพิ่ม</a>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                              
-                          </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-header">
-                          ขั้นตอนการชำระเงิน
-                        </div>
-                        <div class="card-body">
-                            <div class="media">
-                              <div class="media-left">
-                                <span class="number-circle">1</span>
-                              </div>
-                              <div class="media-body">
-                                กด ชำระเงิน เมื่อคุณพอใจกับข้อเสนอทั้งหมดในตระกร้าสินค้าของคุณ
-                              </div>
-                            </div>
-                            <div class="media">
-                              <div class="media-left">
-                                <span class="number-circle">2</span>
-                              </div>
-                              <div class="media-body">
-                                กด นู่นนี่นั่นเพื่อกินข้าว
-                              </div>
-                            </div>
-                            
-                        </div>
-                      </div>
-                  </div>
-                  <div class="col-xs-4">
-                      <div class="card">
-                        <div class="card-header">
-                          สรุปการสั่งซื้อ
-                        </div>
-                        <div class="card-body">
-                           <table class="table">
-                            <tr>
-                              <td>
-                                ราคารวม
-                              </td>
-                              <td>
-                                2,000 บาท
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                ค่าธรรมเนียม
-                              </td>
-                              <td>
-                                ฟรี
-                              </td>
-                            </tr>
-                            <tr class="color-green">
-                              <td>
-                                <strong>ยอดสุทธิ</strong>
-                              </td>
-                              <td>
-                                <strong>2,000 บาท</strong>
-                              </td>
-                            </tr>
-                          </table>
-                          <button ng-click="checkout(cart.proposals)" class="btn btn-primary btn-width-max">ชำระเงิน</button>
-                        </div>
-                      </div>
-                  </div>
+        <div class="col-xs-8">
+            <div class="card">
+                <div class="card-header">
+                   ข้อเสนอในตระกร้าของคุณ
+                </div>
+
+                <div class="card-body">
+                    <table class="table with-no-margin">
+                      <thead>
+                        <th>Influencer</th>
+                        <th>Campaign</th>
+                        <th class="text-align-right">ราคา (บาท)</th>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="proposal in cart.proposals">
+                          <td class="col-name">
+                            <img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="profile-picture"/>
+                             {{ proposal.influencer.user.name }}
+                          </td>
+                          <td class="col-campaign-name">{{ proposal.campaign.title}}</td>
+                          <td class="text-align-right">{{ proposal.price | number: 0 }} <a><i ng-click="removeFromCart(proposal)" class="fa fa-times-circle color-grey"></i></a> </td>
+                        </tr>
+                        <tr class="total-price">
+                          <td colspan="3">
+                            <strong>ราคารวม ({{cart.proposals.length || 0}} รายการ) : {{ totalPrice(cart.proposals)  | number:0 }} บาท</strong>
+                            <a ui-sref="brand-inbox">เลือกข้อเสนอเพิ่ม</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                ขั้นตอนการชำระเงิน
               </div>
+              <div class="card-body with-extra-padding">
+                  <div class="media">
+                    <div class="media-left">
+                      <span class="number-circle">1</span>
+                    </div>
+                    <div class="media-body">
+                      กด “ชำระเงิน” เมื่อคุณพอใจกับข้อเสนอทั้งหมดในตระก้าสินค้าของคุณ
+                    </div>
+                  </div>
+                  <div class="media">
+                    <div class="media-left">
+                      <span class="number-circle">2</span>
+                    </div>
+                    <div class="media-body">
+                      จ่ายเงินด้วยการโอนเงินผ่านบัญชีธนาคาร
+                    </div>
+                  </div>
+                  <div class="media">
+                    <div class="media-left">
+                      <span class="number-circle">3</span>
+                    </div>
+                    <div class="media-body">
+                        Influencer จะเริ่มงานทันที่เมือเราได้รับเงินจากคุณ
+                    </div>
+                  </div>
+                  <div class="media">
+                    <div class="media-left">
+                      <span class="number-circle">4</span>
+                    </div>
+                    <div class="media-body">
+                        Influnecer จะได้รับเงินเมื่อคุณอนุมัติงานของพวกเขา หาก Influencer ไม่สามารถส่งงานให้คุณภายในเวลาที่กำหนดคุณจะได้รับเงินคืน 100% <a href="#">ดูรายละเอียดการคืนเงินได้ที่นี่ </a>
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+        </div>
+
+        <div class="col-xs-4">
+            <div class="card">
+              <div class="card-header text-center">
+                สรุปการสั่งซื้อ
+              </div>
+              <div class="card-body">
+                 <table class="table">
+                  <tr>
+                    <td class="no-top-border">
+                      ราคารวม
+                    </td>
+                    <td class="text-align-right no-top-border">
+                      {{ totalPrice(cart.proposals)  | number:0 }} บาท
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      ค่าธรรมเนียม
+                    </td>
+                    <td class="text-align-right">
+                      ฟรี
+                    </td>
+                  </tr>
+                  <tr class="color-green">
+                    <td>
+                      <strong>ยอดสุทธิ</strong>
+                    </td>
+                    <td class="text-align-right">
+                      <strong>{{ totalPrice(cart.proposals)  | number:0 }} บาท</strong>
+                    </td>
+                  </tr>
+                </table>
+                <button ng-click="checkout(cart.proposals)" class="btn btn-primary btn-width-max">ชำระเงิน</button>
+              </div>
+            </div>
+        </div>
+      </div>
 
     </div>
   </div>

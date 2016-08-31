@@ -1,7 +1,7 @@
 <form name="form" ng-cloak ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}" novalidate>
     <div class="view-brand-detail-draft">
         <zone-header historyback="true">
-        <h2 id="campaign-title" ng-bind="formData.title | truncate: 50"></h2>
+        <h1 id="campaign-title" ng-bind="formData.title | truncate: 50"></h1>
         </zone-header>
         <div class="zone-body">
             <div class="container">
@@ -115,7 +115,7 @@
                             </div>
                             <div class="card-body-content">
                                 <div class="input-dropdown">
-                                    <select name="budget" class="form-control" ng-model="formData.budget" 
+                                    <select name="budget" class="form-control" ng-model="formData.budget"
                                     ng-options="x as budgetDisplayAs(x) disable when x.id == 0 for x in budgets track by x.budgetId" ng-default="-- เลือกค่าตอบแทน --" required>
                                     </select>
                                     <i class="fa fa-caret-down"></i>
@@ -138,8 +138,8 @@
                                 <div input-error></div>
                             </div>
                         </div>
-                        
-                        
+
+
                         <div class="card-row" ng-if="!editOpenState">
                             <div class="card-button-primary">
                                 <button class="btn-primary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')">ลงประกาศ</button>

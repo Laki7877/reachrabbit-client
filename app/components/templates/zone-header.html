@@ -1,7 +1,7 @@
 <div class="zone-header">
   <div class="container">
-    <div class="page-header">
-      <div ng-if="historyback" div class="back-btn-for-header">
+    <div ng-class="{'page-header with-history-back': historyback, 'page-header': !historyback}">
+      <div ng-if="historyback" class="back-btn-for-header">
         <span ng-click="history.back()"><i class="fa fa-arrow-left"></i> กลับไปหน้าก่อน</span>
       </div>
       <ng-transclude></ng-transclude>

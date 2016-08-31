@@ -724,7 +724,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         if(!$scope.formData.brand){
                              $scope.formData.brand = UserProfile.get().brand;
                         }
-                        
+
                         $scope.createMode = false;
                     });
             }

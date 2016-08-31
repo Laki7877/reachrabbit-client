@@ -9254,6 +9254,15 @@ fieldset[disabled] .btn-clear.active {
   padding-left: 3px;
   color: #ff773e;
 }
+.navbar .navbar-right .wallet .wallet-icon {
+  display: inline-block;
+  float: left;
+  transform: translateY(-4px);
+  width: 30px;
+  height: 30px;
+  background: url("../images/icon-wallet.png") 0 0 no-repeat;
+  margin-right: 10px;
+}
 .navbar .navbar-right .dropdown-menu li > a {
   margin: 0px;
 }

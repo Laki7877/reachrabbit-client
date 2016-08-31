@@ -904,11 +904,11 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         });
         $scope.loadProposalCounts();
     }])
-    .controller('CartController', ['$scope', 'NcAlert', 'BrandAccountService', 'ProposalService', '$stateParams', function($scope, NcAlert, BrandAccountService,  ProposalService, $stateParams){
+    .controller('CartController', ['$scope', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function($scope, NcAlert, BrandAccountService,  ProposalService, TransactionService, $stateParams){
         $scope.alert = new NcAlert();
         var loadCart= function(){
             BrandAccountService.getCart().then(function(cart){
-            $scope.cart = cart.data;
+                $scope.cart = cart.data;
             });
         };
         $scope.checkout  = function(CartArray){
@@ -926,6 +926,14 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                loadCart();
             });
         };
+        $scope.createTransaction = function(){
+            return TransactionService.create().then(function(transaction){
+                $state.go("brand-transaction-detail", {transactionId: transaction.transactionId })
+            })
+            .catch(function(err){
+                $scope.alert.danger(err.data.message);
+            })
+        };
         loadCart();
     }])
     .controller('BrandInfluencerProfile', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function($scope, NcAlert, AccountService, $stateParams){
@@ -935,6 +943,13 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             $scope.influencer = response.data;
         });
 
+    }])
+    .controller('TransactionController', ['$scope', 'NcAlert', '$stateParams', 'TransactionService',  function($scope, NcAlert, $stateParams, TransactionService){
+        var cartId = $stateParams.cartId;
+        TransactionService.getByCart(cartId)
+        .then(function(transaction){
+            $scope.transaction = transaction.data;
+        });
     }]);
 
 

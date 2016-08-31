@@ -16,7 +16,7 @@
                 หมายเลขการสั่งซื้อ
               </div>
               <div class="card-info-content">
-                ABK9504
+                {{transaction.transactionNumber}}
               </div>
             </div>
             <div class="card-info">
@@ -24,10 +24,10 @@
                 สถานะ
               </div>
               <div class="card-info-content">
-                <span class="color-yellow"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
+                <span class="color-yellow" ng-if="transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
                 <!-- For other status -->
-                <!-- <span class="color-green"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span> -->
-                <!-- <span class="color-grey"><i class="fa fa-ban"></i> หมดอายุ</span> -->
+                <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span> 
+                 <span class="color-grey" ng-if="transaction.status == 'Expired'"><i class="fa fa-ban"></i> หมดอายุ</span> 
               </div>
             </div>
             <div class="card-info">
@@ -43,7 +43,7 @@
                 ราคารวม
               </div>
               <div class="card-info-content">
-                <span class="color-green">200,000 บาท</span>
+                <span class="color-green">{{ transaction.amount | number }} บาท</span>
               </div>
             </div>
           </div>
@@ -126,7 +126,7 @@
                 </div>
                 <div class="media-body">
                   เมื่อชำระเงินแล้ว กรุณาส่งหลักฐานมาให้ทาง ReachRabbit ตรวจสอบ กรุณาส่งหลักฐานพร้อม<br>
-                  หมายเลขการสั่งซื้อ <b class="color-green">ABK9504</b> มาได้ที่ &nbsp
+                  หมายเลขการสั่งซื้อ <b class="color-green">{{transaction.transactionNumber}}</b> มาได้ที่ &nbsp
                   <b class="color-green"><img src="images/logo-line.png" width="30" />&nbsp @reachrabbit</b>
                   &nbsp หรือ &nbsp
                   <b class="color-green"><img src="images/icon-email.png"> hi@reachrabbit.com</b>
@@ -167,17 +167,17 @@
                     <th class="text-align-right">ราคา (บาท)</th>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="proposal in cart.proposals">
+                    <tr ng-repeat="proposal in transaction.brandTransactionDocument.cart.proposals">
                       <td class="col-name">
                         <img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="profile-picture"/>
-                         {{ proposal.influencer.user.name }}
+                         {{ proposal.influencer.user.name | truncate: 15 }}
                       </td>
-                      <td class="col-campaign-name">{{ proposal.campaign.title}}</td>
-                      <td class="text-align-right">{{ proposal.price | number: 0 }} <a><i ng-click="removeFromCart(proposal)" class="fa fa-times-circle color-grey"></i></a> </td>
+                      <td class="col-campaign-name">{{ proposal.campaign.title | truncate: 30}}</td>
+                      <td class="text-align-right">{{ proposal.price | number: 0 }} </td>
                     </tr>
                     <tr class="total-price">
                       <td colspan="3">
-                        <strong>ราคารวม ({{cart.proposals.length || 0}} รายการ) : {{ totalPrice(cart.proposals)  | number:0 }} บาท</strong>
+                        <strong>ราคารวม ({{transaction.brandTransactionDocument.cart.proposals.length || 0}} รายการ) : {{ transaction.amount  | number:0 }} บาท</strong>
                       </td>
                     </tr>
                   </tbody>

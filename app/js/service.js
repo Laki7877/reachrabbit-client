@@ -455,8 +455,14 @@ angular.module('myApp.service', ['satellizer'])
     }])
     .factory('TransactionService', ['$http', function($http){
         return {
-            startTransaction: function(CartArray){
-
+            create: function(){
+                return $http.post('/transactions/');
+            },
+            getAll: function(){
+                return $http.get('/transactions/');
+            },
+            getByCart: function(cartId){
+                return $http.get('/carts/' + cartId + '/transaction/')
             }
         };
     }])
@@ -535,6 +541,13 @@ angular.module('myApp.service', ['satellizer'])
             },
             set: function (profile) {
                 $window.localStorage.profile = JSON.stringify(profile);
+            }
+        };
+    }])
+    .factory('AdminService', ['$http', function($http){
+        return {
+            confirmTransaction: function(Transaction){
+                
             }
         };
     }]);

@@ -419,6 +419,17 @@ a.secondary{
     &:extend(.row);
     margin-bottom: 20px;
   }
+  .card-row-2-column{
+    &:extend(.row);
+    margin: 15px -7.5px;
+    .col{
+      .make-xs-column(6);
+      padding: 0px 7.5px;
+      .checkbox{
+        margin-top: 32px;
+      }
+    }
+  }
   .card-body-content-label{
     .make-xs-column(2);
     text-align: right;
@@ -908,6 +919,17 @@ a.secondary{
         font-size: 14px;
         padding-left: 3px;
         color: @color-theme-primary;
+      }
+    }
+    .wallet{
+      .wallet-icon{
+        display: inline-block;
+        float: left;
+        transform:translateY(-4px);
+        width: 30px;
+        height: 30px;
+        background: url("../images/icon-wallet.png") 0 0 no-repeat;
+        margin-right: 10px;
       }
     }
     .dropdown-menu li > a{

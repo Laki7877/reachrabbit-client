@@ -54,7 +54,9 @@ a.secondary{
 .clear{
   clear: both;
 }
-
+.with-no-margin{
+  margin: 0px;
+}
 .has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
     color: @color-red;
 }
@@ -69,6 +71,9 @@ a.secondary{
 }
 .color-yellow{
   color: @color-yellow;
+}
+.color-grey{
+  color: @color-grey-darker;
 }
 
 .social-link-title{
@@ -425,6 +430,9 @@ a.secondary{
   }
   .card-button-primary{
     .make-xs-column-offset(2);
+  }
+  &.with-extra-padding{
+    padding: 30px 15px;
   }
   .with-input{
     margin-top: 7px;
@@ -997,6 +1005,22 @@ a.secondary{
     tr{
       td{
         vertical-align: middle;
+        &.no-top-border{
+          border-top: 0px;
+        }
+      }
+    }
+  }
+  .total-price{
+    td{
+      text-align: right;
+      strong{
+        display: block;
+        margin-top: 5px;
+      }
+      a{
+        display: block;
+        margin-top: 5px;
       }
     }
   }

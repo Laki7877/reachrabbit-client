@@ -7610,6 +7610,9 @@ a.secondary {
 .clear {
   clear: both;
 }
+.with-no-margin {
+  margin: 0px;
+}
 .has-error .help-block,
 .has-error .control-label,
 .has-error .radio,
@@ -7633,6 +7636,9 @@ a.secondary {
 }
 .color-yellow {
   color: #f5a623;
+}
+.color-grey {
+  color: #8692a8;
 }
 .social-link-title {
   color: #16bbac;
@@ -8001,6 +8007,9 @@ a.secondary {
 }
 .card-body .card-button-primary {
   margin-left: 16.66666667%;
+}
+.card-body.with-extra-padding {
+  padding: 30px 15px;
 }
 .card-body .with-input {
   margin-top: 7px;
@@ -9334,6 +9343,20 @@ fieldset[disabled] .btn-clear.active {
 }
 .table tbody tr td {
   vertical-align: middle;
+}
+.table tbody tr td.no-top-border {
+  border-top: 0px;
+}
+.table .total-price td {
+  text-align: right;
+}
+.table .total-price td strong {
+  display: block;
+  margin-top: 5px;
+}
+.table .total-price td a {
+  display: block;
+  margin-top: 5px;
 }
 .table .col-name {
   white-space: nowrap;

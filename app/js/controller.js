@@ -1030,7 +1030,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/admin.html#/admin-login");
-                    $window.location.href = '/admin.html';
+                    $window.location.href = '/admin.html#/admin-transaction-history';
                     // $location.path('/brand.html#/brand-campaign-list')
                 })
                 .catch(function(err) {
@@ -1279,4 +1279,23 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             };
 
         }
-    ]);
+    ])
+
+/////////////// /////////////// /////////////// /////////////// ///////////////
+/*
+      _        ______     ____    ____   _____   ____  _____
+     / \      |_   _ `.  |_   \  /   _| |_   _| |_   \|_   _|
+    / _ \       | | `. \   |   \/   |     | |     |   \ | |
+   / ___ \      | |  | |   | |\  /| |     | |     | |\ \| |
+ _/ /   \ \_   _| |_.' /  _| |_\/_| |_   _| |_   _| |_\   |_
+|____| |____| |______.'  |_____||_____| |_____| |_____|\____|
+
+*/
+/////////////// /////////////// /////////////// /////////////// ///////////////
+    .controller('AdminTransactionHistoryController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
+
+    }])
+    .controller('AdminPayoutRequestsController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
+
+    }])
+;

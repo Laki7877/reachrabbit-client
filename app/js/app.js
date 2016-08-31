@@ -30,7 +30,8 @@ angular.module('myApp', [
   //Routes
   'myApp.portal.routes',
   'myApp.brand.routes',
-  'myApp.influencer.routes'
+  'myApp.influencer.routes',
+  'myApp.admin.routes'
 ])
 //Mock data for testing
 .constant('MockData', {

@@ -21,7 +21,10 @@
                 สถานะ
               </div>
               <div class="card-info-content">
-                รอการชำระเงิน
+                <span class="color-yellow"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
+                <!-- For other status -->
+                <!-- <span class="color-green"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span> -->
+                <!-- <span class="color-grey"><i class="fa fa-ban"></i> หมดอายุ</span> -->
               </div>
             </div>
             <div class="card-info">
@@ -29,7 +32,7 @@
                 กรุณาชำระเงินภายใน
               </div>
               <div class="card-info-content">
-                <span class="color-yellow"><i class="fa fa-clock-o"></i> 3 วัน 2 ชั่วโมง</span>
+                3 วัน 2 ชั่วโมง
               </div>
             </div>
             <div class="card-info">
@@ -141,6 +144,46 @@
           </div>
 
         </div>
+
+        <div class="card">
+
+            <div class="card-body">
+
+                <div class="card-row">
+                  <div class="card-title col-xs-12">
+                    <div class="card-title-content">
+                       สรุปรายการสั่งซื้อ
+                    </div>
+                  </div>
+                </div>
+
+                <table class="table with-no-margin">
+                  <thead>
+                    <th>Influencer</th>
+                    <th>Campaign</th>
+                    <th class="text-align-right">ราคา (บาท)</th>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="proposal in cart.proposals">
+                      <td class="col-name">
+                        <img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="profile-picture"/>
+                         {{ proposal.influencer.user.name }}
+                      </td>
+                      <td class="col-campaign-name">{{ proposal.campaign.title}}</td>
+                      <td class="text-align-right">{{ proposal.price | number: 0 }} <a><i ng-click="removeFromCart(proposal)" class="fa fa-times-circle color-grey"></i></a> </td>
+                    </tr>
+                    <tr class="total-price">
+                      <td colspan="3">
+                        <strong>ราคารวม ({{cart.proposals.length || 0}} รายการ) : {{ totalPrice(cart.proposals)  | number:0 }} บาท</strong>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
       </div>
 
 

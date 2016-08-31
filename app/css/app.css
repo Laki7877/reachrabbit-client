@@ -227,6 +227,7 @@ th {
   p,
   h2,
   h3,
+  .zone-header .with-history-back h1,
   .card-title .card-title-content,
   .proposal-modal .modal-title {
     orphans: 3;
@@ -234,6 +235,7 @@ th {
   }
   h2,
   h3,
+  .zone-header .with-history-back h1,
   .card-title .card-title-content,
   .proposal-modal .modal-title {
     page-break-after: avoid;
@@ -1202,6 +1204,7 @@ h6,
 .h5,
 .h6,
 .social-link-title,
+.zone-header .with-history-back h1,
 .radio-card .radio-label,
 .input-upload-image-sm i,
 .card-title .card-title-content,
@@ -1253,6 +1256,7 @@ h2,
 .h2,
 h3,
 .h3,
+.zone-header .with-history-back h1,
 .card-title .card-title-content,
 .proposal-modal .modal-title {
   margin-top: 20px;
@@ -1311,7 +1315,8 @@ h1,
   font-size: 36px;
 }
 h2,
-.h2 {
+.h2,
+.zone-header .with-history-back h1 {
   font-size: 30px;
 }
 h3,
@@ -7547,7 +7552,8 @@ h1 {
   font-family: 'Kanit', sans-serif;
   font-size: 32px;
 }
-h2 {
+h2,
+.zone-header .with-history-back h1 {
   font-family: 'Kanit', sans-serif;
   font-size: 24px;
 }
@@ -7697,6 +7703,9 @@ a.secondary {
 }
 .zone-header h1 {
   margin-top: 30px;
+}
+.zone-header .with-history-back h1 {
+  margin-top: 5px;
 }
 .zone-header h2 {
   margin-top: 5px;

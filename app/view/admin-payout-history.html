@@ -24,7 +24,7 @@
                 <td class="col-campaign-name">{{ transaction.influencerTransactionDocument[0].wallet.proposals[0].influencer.user.name }}</td>
                 <td class="col-price">{{ transaction.status }}</td>
                 <td>{{ transaction.transactionId }}</td>
-                <td class="col-rabbit-score">{{ transaction.proposals.length || '0' }}</td>
+                <td class="col-rabbit-score">{{ transaction.influencerTransactionDocument[0].wallet.proposals.length || '0' }}</td>
                 <td class="col-time">{{ transaction.amount }}</td>
                 <td class="col-button">
                   <button class="btn-secondary" ui-sref="admin-transaction-detail({transactionId: transaction.transactionId})">ดูรายละเอียด</button>

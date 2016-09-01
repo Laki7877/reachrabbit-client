@@ -1320,10 +1320,10 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             };
 
         }
-    ])
+    ]);
 
-/////////////// /////////////// /////////////// /////////////// ///////////////
-/*
+/*/////////////// /////////////// /////////////// /////////////// ///////////////
+
       _        ______     ____    ____   _____   ____  _____
      / \      |_   _ `.  |_   \  /   _| |_   _| |_   \|_   _|
     / _ \       | | `. \   |   \/   |     | |     |   \ | |
@@ -1331,8 +1331,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
  _/ /   \ \_   _| |_.' /  _| |_\/_| |_   _| |_   _| |_\   |_
 |____| |____| |______.'  |_____||_____| |_____| |_____|\____|
 
-*/
-/////////////// /////////////// /////////////// /////////////// ///////////////
+
+/////////////// /////////////// /////////////// /////////////// ///////////////*/
+angular.module('myApp.admin.controller', ['myApp.service'])
     .controller('AdminTransactionHistoryController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {        
         //Load campaign data
         $scope.load = function(data) {

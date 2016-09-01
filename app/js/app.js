@@ -27,6 +27,7 @@ angular.module('myApp', [
   'myApp.portal.controller',
   'myApp.brand.controller',
   'myApp.influencer.controller',
+  'myApp.admin.controller',
   //Routes
   'myApp.portal.routes',
   'myApp.brand.routes',

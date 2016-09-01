@@ -565,7 +565,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         };
         $scope.lastMessageUpdated = function(proposal) {
             if (moment(proposal.messageUpdatedAt).isBefore(moment().endOf('day').subtract(1, 'days'))) {
-                return $filter('amDateFormat')(proposal.messageUpdatedAt, 'll');
+                return $filter('amDateFormat')(proposal.messageUpdatedAt, 'D MMM YY');
             }
             return $filter('amCalendar')(proposal.messageUpdatedAt);
         };
@@ -1070,7 +1070,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                     Raven.setUserContext(UserProfile.get());
 
                     //Redirect
-                    $rootScope.setUnauthorizedRoute("/admin.html#/admin-login");
+                    $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
                     $window.location.href = '/admin.html#/admin-transaction-history';
                     // $location.path('/brand.html#/brand-campaign-list')
                 })
@@ -1333,8 +1333,15 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 
 */
 /////////////// /////////////// /////////////// /////////////// ///////////////
-    .controller('AdminTransactionHistoryController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
-
+    .controller('AdminTransactionHistoryController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {        
+        //Load campaign data
+        $scope.load = function(data) {
+            $scope.params = data;
+            TransactionService.getAll(data).then(function(response) {
+                $scope.transactions = response.data;
+            });
+        };
+        $scope.load();
     }])
     .controller('TransactionController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService){
         

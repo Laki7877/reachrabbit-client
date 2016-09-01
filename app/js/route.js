@@ -33,6 +33,11 @@ angular.module('myApp.admin.routes', ['ui.router'])
                 url: '/admin-transaction-detail/:cartId',
                 templateUrl: 'view/admin-transaction-detail.html',
                 controller: 'TransactionController'
+            })
+            .state('admin-payout-history', {
+                url: '/admin-payout-history',
+                templateUrl: 'view/admin-payout-history.html',
+                controller: 'AdminPayoutHistoryController'
             });
     }]);
 

@@ -9438,6 +9438,10 @@ fieldset[disabled] .btn-clear.active {
   padding: 3px 7px 1px 7px;
   border-radius: 15px;
 }
+.table .bank-logo {
+  width: 40px;
+  margin-right: 5px;
+}
 /*---Workroom---*/
 .workroom {
   background: #16bbac;

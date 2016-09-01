@@ -462,7 +462,7 @@ angular.module('myApp.service', ['satellizer'])
                 return $http.get('/transactions/');
             },
             getByCart: function(cartId){
-                return $http.get('/carts/' + cartId + '/transaction/')
+                return $http.get('/carts/' + cartId + '/transaction/');
             }
         };
     }])

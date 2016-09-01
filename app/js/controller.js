@@ -904,7 +904,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         });
         $scope.loadProposalCounts();
     }])
-    .controller('CartController', ['$scope', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function($scope, NcAlert, BrandAccountService,  ProposalService, TransactionService, $stateParams){
+    .controller('CartController', ['$scope', '$state', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function($scope, $state, NcAlert, BrandAccountService,  ProposalService, TransactionService, $stateParams){
         $scope.alert = new NcAlert();
         var loadCart= function(){
             BrandAccountService.getCart().then(function(cart){
@@ -928,11 +928,11 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         };
         $scope.createTransaction = function(){
             return TransactionService.create().then(function(transaction){
-                $state.go("brand-transaction-detail", {transactionId: transaction.transactionId })
+                $state.go("brand-transaction-detail", {transactionId: transaction.transactionId });
             })
             .catch(function(err){
                 $scope.alert.danger(err.data.message);
-            })
+            });
         };
         loadCart();
     }])

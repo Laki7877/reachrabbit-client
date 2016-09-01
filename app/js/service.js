@@ -453,7 +453,12 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('TransactionService', ['$http', function($http){
+    .factory('TransactionService', ['$http', '$q', function($http, $q){
+        var deserialize = function(transaction){
+            transaction.expiredAt = new Date(transaction.expiredAt);
+            return transaction;
+        };
+
         return {
             create: function(){
                 return $http.post('/transactions');
@@ -462,8 +467,17 @@ angular.module('myApp.service', ['satellizer'])
                 return $http.get('/transactions');
             },
             getByCart: function(cartId){
-                return $http.get('/carts/' + cartId + '/transaction/');
-            }
+                return $q(function(resolve, reject){
+                    $http.get('/carts/' + cartId + '/transaction/')
+                    .then(function(transactionResponse){
+                        transactionResponse.data = deserialize(transactionResponse.data);
+                        resolve(transactionResponse);
+                    })
+                    .catch(function(err){
+                        reject(err);
+                    });
+                });
+            } 
         };
     }])
     .factory('ResourceService', ['$http', function ($http) {

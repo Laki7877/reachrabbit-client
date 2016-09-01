@@ -9438,9 +9438,9 @@ fieldset[disabled] .btn-clear.active {
   padding: 3px 7px 1px 7px;
   border-radius: 15px;
 }
-.table img {
-  margin-right: 10px;
-  width: 30px;
+.table .bank-logo {
+  width: 40px;
+  margin-right: 5px;
 }
 /*---Workroom---*/
 .workroom {
@@ -9464,6 +9464,9 @@ fieldset[disabled] .btn-clear.active {
 }
 .workroom .card-proposal-detail .social-info {
   margin: 5px 0px;
+}
+.workroom .card-proposal-detail .info-text {
+  margin-bottom: 5px;
 }
 .workroom .card-campaign-thumbnail .card-thumbnail-image {
   height: 140px;
@@ -9729,6 +9732,9 @@ ul.payment-methods {
 .layout-portal .view-influencer-signup-confirmation {
   margin-top: 90px;
 }
+.layout-portal .view-admin-login {
+  margin-top: 140px;
+}
 /*---Layout Brand---*/
 .layout-brand {
   background-color: #f9f9fb;
@@ -9800,6 +9806,14 @@ ul.payment-methods {
 }
 .layout-influencer .view-influencer-profile .btn-secondary-active[disabled] {
   opacity: 1;
+}
+/*---Layout Admin---*/
+.layout-brand {
+  background-color: #f9f9fb;
+  /* Specific View in Layout Portal */
+}
+.layout-brand .container {
+  width: 970px;
 }
 tags-input {
   display: block;

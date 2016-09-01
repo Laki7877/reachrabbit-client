@@ -24,10 +24,10 @@
                 สถานะ
               </div>
               <div class="card-info-content">
-                <span class="color-yellow" ng-if="transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
+                <span class="color-yellow" ng-if="!isExpired() && transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
                 <!-- For other status -->
-                <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span> 
-                 <span class="color-grey" ng-if="transaction.status == 'Expired'"><i class="fa fa-ban"></i> หมดอายุ</span> 
+                <span class="color-green" ng-if="!isExpired() && transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span> 
+                 <span class="color-grey" ng-if="isExpired()"><i class="fa fa-ban"></i> หมดอายุ</span> 
               </div>
             </div>
             <div class="card-info">
@@ -35,7 +35,7 @@
                 กรุณาชำระเงินภายใน
               </div>
               <div class="card-info-content">
-                3 วัน 2 ชั่วโมง
+                {{ timeLeft()[0] }} วัน {{ timeLeft()[1] }} ชั่วโมง {{ timeLeft()[2]}} นาที
               </div>
             </div>
             <div class="card-info">

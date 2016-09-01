@@ -953,6 +953,13 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             $scope.transaction = transaction.data;
         });
         
+        $scope.isExpired = function(){
+            if(!$scope.transaction){
+                return false;
+            }
+            return $scope.transaction.expiredAt.getTime() <= (new Date()).getTime();
+        };
+
         $scope.timeLeft = function(){
             if(!$scope.transaction){
                 return;

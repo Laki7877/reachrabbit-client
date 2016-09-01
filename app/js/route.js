@@ -163,7 +163,7 @@ angular.module('myApp.influencer.routes', ['ui.router'])
             .state('influencer-wallet', {
                 url: '/influencer-wallet',
                 templateUrl: 'view/influencer-wallet.html',
-                controller: 'EmptyController'
+                controller: 'WalletController'
             });
 
         //TODO: Campaign-detail

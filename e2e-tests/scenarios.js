@@ -334,7 +334,7 @@ describe('Influencer', function() {
         });
 
         it('can find inputs', function() {
-
+            
             state.username = element(by.model('username'));
             state.password = element(by.model('password'));
             state.submit_btn = element(by.css('.btn-primary'));
@@ -345,6 +345,8 @@ describe('Influencer', function() {
         });
 
         it('can login', function(){
+            state.username.clear();
+            state.password.clear();
             state.username.sendKeys(browser.params.god_influencer.user);
             state.password.sendKeys(browser.params.god_influencer.password);
             browser.ignoreSynchronization = true;

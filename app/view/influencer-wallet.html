@@ -4,7 +4,7 @@
   </zone-header>
   <div class="zone-body">
     <div class="container">
-
+      <div nc-alert="alert"></div>
       <div class="row">
         <div class="col-xs-8">
             <div class="card">
@@ -20,14 +20,14 @@
                         <th class="text-align-right">รายได้ (บาท) <a><i class="fa fa-question-circle color-grey"></i></a></th>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td class="col-campaign-name">Hello world this is a campaign name</td>
-                          <td class="text-align-right">50,000</td>
-                          <td class="text-align-right">41,000</td>
+                        <tr ng-repeat="proposal in wallet.proposals">
+                          <td class="col-campaign-name">{{proposal.campaign.title}}</td>
+                          <td class="text-align-right">{{ proposal.price | number }} </td>
+                          <td class="text-align-right" ng-init='proposal.income = proposal.price * PostDeductionFeeMultiplier'>{{ proposal.income | number }}</td>
                         </tr>
                         <tr class="total-price">
                           <td colspan="3">
-                            <strong>รายได้รวม (1 รายการ) : 41,000 บาท</strong>
+                            <strong>รายได้รวม ({{ wallet.proposals.length | number: 0 }} รายการ ) : 41,000 บาท</strong>
                           </td>
                         </tr>
                       </tbody>
@@ -54,25 +54,25 @@
                         <div class="col">
                           <label>ธนาคาร</label>
                           <div class="input-dropdown">
-                              <select class="form-control" required></select>
+                              <select class="form-control" ng-model="formData.bank" ng-options="bank as bank.bankName for bank in bankOptions track by bank.bankId"></select>
                               <i class="fa fa-caret-down"></i>
                           </div>
                         </div>
                         <div class="col">
                           <label>เลขที่บัญชี</label>
-                              <input class="form-control"/>
+                              <input class="form-control" ng-model="formData.accountNumber"/>
                         </div>
                       </div>
                       <div class="card-row-2-column">
                         <div class="col">
                           <label>ชื่อบัญชี</label>
                           <div class="input-dropdown">
-                              <input class="form-control"/>
+                              <input class="form-control" ng-model="formData.accountName"/>
                           </div>
                         </div>
                         <div class="col">
                           <div class="checkbox">
-                            <label><input type="checkbox" value="">จดจำรายละเอียดสำหรับครั้งหน้า</label>
+                            <label><input type="checkbox" ng-model="formData.rememberBankDetail">จดจำรายละเอียดสำหรับครั้งหน้า</label>
                           </div>
                         </div>
                       </div>
@@ -111,8 +111,8 @@
                     <td class="no-top-border">
                       รายได้รวม
                     </td>
-                    <td class="text-align-right no-top-border">
-                      41,000 บาท
+                    <td class="text-align-right no-top-border"> 
+                      {{ $root.sumReduce(wallet.proposals, 'income') | number }} บาท
                     </td>
                   </tr>
                   <tr>
@@ -120,7 +120,7 @@
                       ค่าธรรมเนียมการโอน
                     </td>
                     <td class="text-align-right">
-                      -30 บาท
+                    {{TransferFee|number}} บาท
                     </td>
                   </tr>
                   <tr class="color-green">
@@ -128,11 +128,11 @@
                       <strong>ยอดถอน</strong>
                     </td>
                     <td class="text-align-right">
-                      <strong>40,970 บาท</strong>
+                      <strong>{{ $root.sumReduce(wallet.proposals, 'income') + TransferFee | number }} บาท</strong>
                     </td>
                   </tr>
                 </table>
-                <button ng-click="checkout(cart.proposals)" class="btn btn-primary btn-width-max">ถอนเงิน</button>
+                <button ng-click="requestPayout()" class="btn btn-primary btn-width-max">ถอนเงิน</button>
               </div>
             </div>
         </div>

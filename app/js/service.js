@@ -69,7 +69,7 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('baseUrlInjector', ['Config', '$window', '$rootScope', function (Config, $window, $rootScope) {
+    .factory('baseUrlInjector', ['Config', '$window', '$q', '$rootScope', function (Config, $window, $q, $rootScope) {
         var inj = {
             request: function (cc) {
                 if (cc.url[0] === "/") {
@@ -231,6 +231,12 @@ angular.module('myApp.service', ['satellizer'])
             signup: function (influencer) {
                 return $http.post("/signup/influencer", influencer);
             },
+            getWallet: function(){
+                return $http.get("/wallets");
+            },
+            requestPayout: function(doc){
+                return $http.post('/wallets/payout', doc);
+            }
         };
     }])
     .factory('BrandAccountService', ['$http', function ($http) {

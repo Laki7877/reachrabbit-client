@@ -930,7 +930,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         };
         $scope.createTransaction = function(){
             return TransactionService.create().then(function(transaction){
-                $state.go("brand-transaction-detail", {transactionId: transaction.transactionId });
+                $state.go("brand-transaction-detail", {cartId: $scope.cart.cartId });
             })
             .catch(function(err){
                 $scope.alert.danger(err.data.message);
@@ -952,6 +952,23 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         .then(function(transaction){
             $scope.transaction = transaction.data;
         });
+        
+        $scope.timeLeft = function(){
+            if(!$scope.transaction){
+                return;
+            }
+
+            var tleft = (new Date()).getTime() - $scope.transaction.expiredAt.getTime();
+            var tleftAbs = Math.abs(tleft);
+            var Decimal = tleftAbs/(1000 * 3600 * 24);
+            var HourDecimal = (Decimal % 1)*24;
+            var DAY = Math.floor(Decimal);
+            var HOUR =  Math.floor(HourDecimal);
+            var MINUTE = Math.floor((HourDecimal % 1)*60);
+
+            return [DAY, HOUR, MINUTE];
+        };
+        
     }]);
 
 

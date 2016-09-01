@@ -196,7 +196,7 @@ angular.module('myApp', [
       if(UserProfile.get().brand){
         BrandAccountService.getCart()
         .then(function(cart){
-          $rootScope.cartCount = cart.data.proposals.length;
+          $rootScope.cartCount = (cart.data.proposals || []).length;
         });
       }
   });

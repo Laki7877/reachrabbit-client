@@ -35,6 +35,9 @@
           <table-static ng-if="transactions.totalElements == 0">ไม่มี Transaction</table-static>
         </div>
       </div>
+      <nav class="text-center" aria-label="Page navigation">
+        <pagination ng-model="transactions" callback="load"></pagination>
+      </nav>
     </div>
   </div>
 </div>

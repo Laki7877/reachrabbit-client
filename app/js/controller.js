@@ -946,6 +946,18 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         });
 
     }])
+    .controller('TransactionHistoryController', ['$scope', 'NcAlert', '$state', '$stateParams', 'TransactionService', function($scope, NcAlert, $state, $stateParams, TransactionService) {
+        //Load campaign data
+        $scope.load = function(data) {
+            $scope.params = data;
+            TransactionService.getAll(data).then(function(response) {
+                $scope.transactions = response.data;
+            });
+        };
+        $scope.load({
+            sort: 'updatedAt,desc'
+        });
+    }])
     .controller('TransactionController', ['$scope', 'NcAlert', '$stateParams', 'TransactionService',  function($scope, NcAlert, $stateParams, TransactionService){
         var cartId = $stateParams.cartId;
         TransactionService.getByCart(cartId)
@@ -1007,10 +1019,6 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             $window.location.href = "/brand.html#/brand-campaign-list";
             return;
         }
-
-        $scope.$watch('formData.username', function(e) {
-            console.log($scope.formData);
-        }, true);
         $window.localStorage.removeItem('token');
         $scope.messageCode = $location.search().message;
         $scope.alert = new NcAlert();
@@ -1341,7 +1349,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 $scope.transactions = response.data;
             });
         };
-        $scope.load();
+        $scope.load({
+            sort: 'updatedAt,desc'
+        });
     }])
     .controller('AdminPayoutHistoryController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
 

@@ -9814,11 +9814,11 @@ ul.payment-methods {
   opacity: 1;
 }
 /*---Layout Admin---*/
-.layout-brand {
+.layout-admin {
   background-color: #f9f9fb;
   /* Specific View in Layout Portal */
 }
-.layout-brand .container {
+.layout-admin .container {
   width: 970px;
 }
 tags-input {

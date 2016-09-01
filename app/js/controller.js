@@ -36,7 +36,7 @@ angular.module('myApp.controller', ['myApp.service'])
                 $scope.transaction = transaction.data;
 
                 if($scope.isExpired()){
-                    $scope.alert.warning("การสั่งซื้อของ Brand นี้ได้หมดอายุลงแล้ว");
+                    $scope.alert.warning("การสั่งซื้อนี้ได้หมดอายุลงแล้ว");
                 }
             })
             .catch(function(err){

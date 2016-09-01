@@ -73,6 +73,9 @@ angular.module('myApp.controller', ['myApp.service'])
             AdminService.confirmTransaction($scope.transaction)
             .then(function(response){
                 loadData();
+            })
+            .catch(function(err){
+                $scope.alert.danger(err.data.message);
             });
         };
 

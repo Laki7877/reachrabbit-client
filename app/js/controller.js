@@ -796,6 +796,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         AccountService.getProfile()
             .then(function(response) {
                 $scope.formData = response.data;
+                console.log($scope.formData);
                 delete $scope.formData.password;
             })
             .catch(function(err) {

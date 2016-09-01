@@ -64,6 +64,7 @@ module.exports = function (grunt) {
         globals: {
           jQuery: true,
           angular: true,
+          JSOG: true,
           window: true,
           history: true,
           $: true,

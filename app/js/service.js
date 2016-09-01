@@ -18,7 +18,6 @@ angular.module('myApp.service', ['satellizer'])
         if ($window.sessionStorage.API_OVERRIDE) {
             Config.API_BASE_URI = $window.sessionStorage.API_OVERRIDE;
         }
-
     }])
     .factory('validator', [function() {
       return {
@@ -127,6 +126,20 @@ angular.module('myApp.service', ['satellizer'])
         $httpProvider.interceptors.push('authStatusCheckInjector');
         $httpProvider.defaults.headers.post = { 'Content-Type': 'application/json' };
         $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json' };
+        
+        $httpProvider.defaults.transformResponse.unshift(function(data, headersGetter) {
+          if (data && headersGetter()['content-type'] && headersGetter()['content-type'].startsWith('application/json')) {
+            return JSOG.parse(data);
+           }
+          return data;
+        });
+
+        $httpProvider.defaults.transformRequest.unshift(function(data, headersGetter) {
+            if(data && headersGetter()['content-type'] && headersGetter()['content-type'].startsWith('application/json')) {
+                return JSOG.encode(data);
+            }
+            return data;
+        });
 
     }])
     .factory('AccountService', ['$http', '$q', function ($http, $q) {
@@ -555,10 +568,10 @@ angular.module('myApp.service', ['satellizer'])
                 if (!$window.localStorage.profile) {
                     return null;
                 }
-                return JSON.parse($window.localStorage.profile);
+                return JSOG.parse($window.localStorage.profile);
             },
             set: function (profile) {
-                $window.localStorage.profile = JSON.stringify(profile);
+                $window.localStorage.profile = JSOG.stringify(profile);
             }
         };
     }])

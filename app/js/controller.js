@@ -1353,7 +1353,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             sort: 'updatedAt,desc'
         });
     }])
-    .controller('AdminPayoutHistoryController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
-
+    .controller('TransactionController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService){
+        
     }])
-;
+    .controller('AdminPayoutRequestsController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
+
+    }]);

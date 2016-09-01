@@ -21,14 +21,14 @@
             <tbody>
               <tr ng-repeat="transaction in transactions.content">
                 <td class="col-date">{{ transaction.updatedAt | amDateFormat : 'll' }}</td>
-                <td class="col-campaign-name">{{ transaction.brandTransactionDocument[0].cart.proposals[0].campaign.brand.brandName }}</td>
+                <td class="col-campaign-name">{{ transaction.brandTransactionDocument.cart.proposals[0].campaign.brand.brandName }}</td>
                 <td class="col-status">
                   <span class="color-yellow" ng-if="!isExpired(transaction) && transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
                   <span class="color-green" ng-if="!isExpired(transaction) && transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span>
                   <span class="color-grey" ng-if="isExpired(transaction)"><i class="fa fa-ban"></i> หมดอายุ</span>
                 </td>
                 <td class="text-center">{{ transaction.transactionNumber }}</td>
-                <td class="text-center">{{ transaction.brandTransactionDocument[0].cart.proposals.length || '0' }}</td>
+                <td class="text-center">{{ transaction.brandTransactionDocument.cart.proposals.length || '0' }}</td>
                 <td class="col-price">{{ transaction.amount | currency: '': 0 }}</td>
                 <td class="col-button">
                   <button class="btn-secondary" ui-sref="admin-transaction-detail({cartId: transaction.brandTransactionDocument.cart.cartId })">ดูรายละเอียด</button>

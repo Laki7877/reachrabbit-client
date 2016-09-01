@@ -47,7 +47,7 @@
                 <ul class="nav navbar-nav navbar-right">
                   <li ui-sref-active="active">
                     <a class="wallet" ui-sref="influencer-wallet">
-                      <span class="wallet-icon"></span>{{ $root.walletBalance | number }} บาท
+                      <span class="wallet-icon"></span>{{ $root.walletBalance | number:0 }} บาท
                     </a>
                   </li>
                   <li class="dropdown">

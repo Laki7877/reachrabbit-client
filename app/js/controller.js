@@ -3,6 +3,7 @@
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
  * @author     Natt Phenjati <natt@phenjati.com>
+ * @author     Poon Wu <poon.wu@gmail.com>
  * @since      S04E02
  */
 /* jshint node: true */
@@ -381,6 +382,21 @@ angular.module('myApp.controller', ['myApp.service'])
             }
         }
     ])
+    .controller('PayoutHistoryController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
+        //Load campaign data
+        $scope.isExpired = function(T){
+            return T.expiredAt <= (new Date());
+        };
+        $scope.load = function(data) {
+            $scope.params = data;
+            TransactionService.getAll(_.extend(data, { type: 'Payout' })).then(function(response) {
+                $scope.transactions = response.data;
+            });
+        };
+        $scope.load({
+            sort: 'updatedAt,desc'
+        });
+    }])
     .controller('YesNoConfirmationModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal',
         function($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal) {
             $scope.yes = function(){
@@ -666,7 +682,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $scope.loadProposalCounts();
 
     }])
-    .controller('InfluencerBrandProfile', ['$scope', 'AccountService', '$stateParams', function($scope, AccountService, $stateParams){
+    .controller('InfluencerBrandProfileController', ['$scope', 'AccountService', '$stateParams', function($scope, AccountService, $stateParams){
         AccountService.getProfile($stateParams.brandId)
         .then(function(response){
             $scope.brand = response.data;

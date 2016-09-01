@@ -148,17 +148,17 @@ angular.module('myApp.influencer.routes', ['ui.router'])
             .state('influencer-brand-profile', {
                 url: '/influencer-brand-profile/:brandId',
                 templateUrl: 'view/influencer-brand-profile.html',
-                controller: 'InfluencerBrandProfile'
+                controller: 'InfluencerBrandProfileController'
             })
             .state('influencer-payout-detail', {
                 url: '/influencer-payout-detail',
                 templateUrl: 'view/influencer-payout-detail.html',
-                controller: 'EmptyController'
+                controller: 'PayoutDetailController'
             })
             .state('influencer-payout-history', {
                 url: '/influencer-payout-history',
                 templateUrl: 'view/influencer-payout-history.html',
-                controller: 'EmptyController'
+                controller: 'PayoutHistoryController'
             })
             .state('influencer-wallet', {
                 url: '/influencer-wallet',

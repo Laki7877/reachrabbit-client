@@ -4,13 +4,40 @@
   </zone-header>
   <div class="zone-body">
     <div class="container">
-
-      <div nc-alert type="info" closable="true">
-        Hello World
+      <div class="card-inbox">
+        <div class="card-body">
+          <table ng-if="transactions.numberOfElements > 0" class="table" sorter ng-model="transactions" callback="load">
+            <thead>
+              <tr>
+                <th class="col-name" sort="updatedAt">วันที่แกไขล่าสุด</th>
+                <th class="col-campaign-name" sort="user.userId">Influencer</th>
+                <th class="col-price" sort="status">สถานะ</th>
+                <th sort="transactionId">รหัสการถอนเงิน</th>
+                <th class="col-rabbit-score" sort="proposals">จำนวนรายการ</th>
+                <th class="col-time" sort="amount">ยอมถอน(บาท)</th>
+                <th class="col-button"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="transaction in transactions.content">
+                <td class="col-name">{{ transaction.updatedAt | amCalendar }}</td>
+                <td class="col-campaign-name">{{ transaction.influencerTransactionDocument[0].wallet.proposals[0].influencer.user.name }}</td>
+                <td class="col-price">{{ transaction.status }}</td>
+                <td>{{ transaction.transactionId }}</td>
+                <td class="col-rabbit-score">{{ transaction.influencerTransactionDocument[0].wallet.proposals.length || '0' }}</td>
+                <td class="col-time">{{ transaction.amount }}</td>
+                <td class="col-button">
+                  <button class="btn-secondary" ui-sref="admin-transaction-detail({transactionId: transaction.transactionId})">ดูรายละเอียด</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table-static ng-if="transactions.totalElements == 0">ไม่มี Transaction</table-static>
+        </div>
       </div>
-
-      <!-- Contetn Go Here -->
-
+      <nav class="text-center" aria-label="Page navigation">
+        <pagination ng-model="transactions" callback="load"></pagination>
+      </nav>
     </div>
   </div>
 </div>

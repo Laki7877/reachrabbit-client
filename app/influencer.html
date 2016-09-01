@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="bower_components/json-formatter/dist/json-formatter.min.css">
     <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
     <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
     <link rel="stylesheet" href="bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.css">
@@ -72,6 +73,12 @@
   <![endif]-->
 
     <div ui-view ng-cloak></div>
+    <div class="container">
+            <small>Super Debugger for <strong>D TEAM</strong></small>
+            <div class="card-body">
+                <json-formatter json="$root.debuggah" open="1"></json-formatter>
+            </div>
+    </div>
     <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
@@ -92,6 +99,7 @@
     <script src="bower_components/angular-moment/angular-moment.js"></script>
     <script src="bower_components/ng-pattern-restrict/src/ng-pattern-restrict.min.js"></script>
     <script src="bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.js"></script>
+    <script src="bower_components/json-formatter/dist/json-formatter.min.js"></script>
 
     <script src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
     <script src="bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>

@@ -19,6 +19,7 @@ angular.module('myApp', [
   'angularMoment',
   'luegg.directives',
   'ngImgCrop',
+  'jsonFormatter',
   //Top level
   'myApp.directives',
   'myApp.routes',
@@ -200,11 +201,8 @@ angular.module('myApp', [
           $rootScope.cartCount = (cart.data.proposals || []).length;
         });
       }
+      $rootScope.debuggah = {};
   });
 
-  //Route change event
-  $rootScope.$on('$routeChangeStart', function(event, next, current) {
-    console.log('$routeChangeStart', event, next, current);
-  });
 
 }]);

@@ -69,7 +69,7 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('baseUrlInjector', ['Config', '$window', function (Config, $window) {
+    .factory('baseUrlInjector', ['Config', '$window', '$rootScope', function (Config, $window, $rootScope) {
         var inj = {
             request: function (cc) {
                 if (cc.url[0] === "/") {
@@ -79,6 +79,22 @@ angular.module('myApp.service', ['satellizer'])
                     cc.skipAuthorization = true;
                 }
                 return cc;
+            },
+            response: function(cx){
+                if(cx.config.url.endsWith('.html')){
+                    return cx;
+                }
+
+                if(cx.config.url.endsWith('poll')){
+                    return cx;
+                }
+
+                if(!$rootScope.debuggah){
+                    $rootScope.debuggah = {};
+                }
+                
+                $rootScope.debuggah[cx.config.method + " " + cx.config.url] =  cx.data;
+                return cx;
             }
         };
         return inj;
@@ -127,6 +143,9 @@ angular.module('myApp.service', ['satellizer'])
         $httpProvider.interceptors.push('authStatusCheckInjector');
         $httpProvider.defaults.headers.post = { 'Content-Type': 'application/json' };
         $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json' };
+
+
+
 
     }])
     .factory('AccountService', ['$http', '$q', function ($http, $q) {

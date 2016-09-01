@@ -20,6 +20,16 @@ angular.module('myApp.routes', ['ui.router'])
 
     }]);
 
+angular.module('myApp.admin.routes', ['ui.router'])
+    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+
+        $stateProvider
+            .state('admin-transaction-history', {
+                url: '/admin-transaction-history',
+                templateUrl: 'view/admin-transaction-history.html',
+                controller: 'AdminTransactionHistoryController'
+            });
+    }]);
 
 angular.module('myApp.brand.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -149,7 +159,6 @@ angular.module('myApp.influencer.routes', ['ui.router'])
         //TODO: Campaign-detail
 
     }]);
-
 
 angular.module('myApp.portal.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {

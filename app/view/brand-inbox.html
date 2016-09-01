@@ -44,7 +44,7 @@
                 <th class="col-price" sort="price">ราคาที่เสนอ</th>
                 <th ng-if="params.status == 'Working'">วันที่กำหนดส่ง</th>
                 <th ng-if="params.status == 'Complete'">วันที่เสร็จงาน</th>
-                <th class="col-rabbit-score" sort="score">Rabbit Score <i class="fa fa-question-circle"></i></th>
+                <th ng-if="params.status == 'Selection'" class="col-rabbit-score" sort="score">Rabbit Score <i class="fa fa-question-circle"></i></th>
                 <th class="col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
                 <th class="col-button">คุยงาน</th>
               </tr>
@@ -56,7 +56,7 @@
                 <td class="col-price">{{proposal.price | currency:'':2 }} บาท</td>
                 <td ng-if="params.status == 'Working'">{{ proposal.dueDate | date }}</td>
                 <td ng-if="params.status == 'Complete'">{{ proposal.completeDate | date }}</td>
-                <td class="col-rabbit-score">{{proposal.score || '0'}}%</td>
+                <td ng-if="params.status == 'Selection'" class="col-rabbit-score">{{proposal.score || '0'}}%</td>
                 <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
                 <td class="col-button">
                   <button class="btn-secondary" ui-sref="brand-workroom({proposalId: proposal.proposalId})">คุยงาน</button>

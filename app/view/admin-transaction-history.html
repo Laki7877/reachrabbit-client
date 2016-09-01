@@ -32,7 +32,7 @@
                 <td class="col-rabbit-score">{{ transaction.brandTransactionDocument.cart.proposals.length || '0' }}</td>
                 <td class="col-time">{{ transaction.amount | currency: '' : 2}} บาท</td>
                 <td class="col-button">
-                  <button class="btn-secondary" ui-sref="admin-transaction-detail({cartId: transaction.transactionId })">ดูรายละเอียด</button>
+                  <button class="btn-secondary" ui-sref="admin-transaction-detail({cartId: transaction.brandTransactionDocument.cart.cartId })">ดูรายละเอียด</button>
                 </td>
               </tr>
             </tbody>

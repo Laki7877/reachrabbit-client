@@ -26,6 +26,41 @@ angular.module('myApp.controller', ['myApp.service'])
             // console.log("Test World");
         };
     }])
+    .controller('TransactionController', ['$scope', 'NcAlert', '$stateParams', 'TransactionService',  function($scope, NcAlert, $stateParams, TransactionService){
+        var cartId = $stateParams.cartId;
+        $scope.alert = new NcAlert();
+        TransactionService.getByCart(cartId)
+        .then(function(transaction){
+            $scope.transaction = transaction.data;
+        })
+        .catch(function(err){
+            $scope.alert.danger(err.data.message);
+        });
+        
+        $scope.isExpired = function(){
+            if(!$scope.transaction){
+                return false;
+            }
+            return $scope.transaction.expiredAt.getTime() <= (new Date()).getTime();
+        };
+
+        $scope.timeLeft = function(){
+            if(!$scope.transaction){
+                return;
+            }
+
+            var tleft = (new Date()).getTime() - $scope.transaction.expiredAt.getTime();
+            var tleftAbs = Math.abs(tleft);
+            var Decimal = tleftAbs/(1000 * 3600 * 24);
+            var HourDecimal = (Decimal % 1)*24;
+            var DAY = Math.floor(Decimal);
+            var HOUR =  Math.floor(HourDecimal);
+            var MINUTE = Math.floor((HourDecimal % 1)*60);
+
+            return [DAY, HOUR, MINUTE];
+        };
+        
+    }])
     .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal', 'validator', 'util',
         function($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal, validator, util) {
             $scope.completionTimes = [];
@@ -945,37 +980,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             $scope.influencer = response.data;
         });
 
-    }])
-    .controller('TransactionController', ['$scope', 'NcAlert', '$stateParams', 'TransactionService',  function($scope, NcAlert, $stateParams, TransactionService){
-        var cartId = $stateParams.cartId;
-        TransactionService.getByCart(cartId)
-        .then(function(transaction){
-            $scope.transaction = transaction.data;
-        });
-        
-        $scope.isExpired = function(){
-            if(!$scope.transaction){
-                return false;
-            }
-            return $scope.transaction.expiredAt.getTime() <= (new Date()).getTime();
-        };
-
-        $scope.timeLeft = function(){
-            if(!$scope.transaction){
-                return;
-            }
-
-            var tleft = (new Date()).getTime() - $scope.transaction.expiredAt.getTime();
-            var tleftAbs = Math.abs(tleft);
-            var Decimal = tleftAbs/(1000 * 3600 * 24);
-            var HourDecimal = (Decimal % 1)*24;
-            var DAY = Math.floor(Decimal);
-            var HOUR =  Math.floor(HourDecimal);
-            var MINUTE = Math.floor((HourDecimal % 1)*60);
-
-            return [DAY, HOUR, MINUTE];
-        };
-        
     }]);
 
 
@@ -1343,9 +1347,6 @@ angular.module('myApp.admin.controller', ['myApp.service'])
             });
         };
         $scope.load();
-    }])
-    .controller('TransactionController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService){
-        
     }])
     .controller('AdminPayoutRequestsController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
 

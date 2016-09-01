@@ -9729,6 +9729,9 @@ ul.payment-methods {
 .layout-portal .view-influencer-signup-confirmation {
   margin-top: 90px;
 }
+.layout-portal .view-admin-login {
+  margin-top: 140px;
+}
 /*---Layout Brand---*/
 .layout-brand {
   background-color: #f9f9fb;
@@ -9800,6 +9803,14 @@ ul.payment-methods {
 }
 .layout-influencer .view-influencer-profile .btn-secondary-active[disabled] {
   opacity: 1;
+}
+/*---Layout Admin---*/
+.layout-brand {
+  background-color: #f9f9fb;
+  /* Specific View in Layout Portal */
+}
+.layout-brand .container {
+  width: 970px;
 }
 tags-input {
   display: block;

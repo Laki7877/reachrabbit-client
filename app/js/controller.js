@@ -394,6 +394,32 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
+    .controller('WalletController', ['$scope', '$state', 'InfluencerAccountService', 'DataService','BusinessConfig', 'NcAlert', function($scope, $state, InfluencerAccountService, DataService,BusinessConfig, NcAlert){
+        $scope.wallet = {};
+        $scope.alert = new NcAlert();
+        $scope.formData = {};
+
+        InfluencerAccountService.getWallet().then(function(walletResponse){
+            $scope.wallet = walletResponse.data;
+        });
+
+        DataService.getBanks().then(function(bankResponse){
+            $scope.bankOptions = bankResponse.data;
+        });
+
+        $scope.PostDeductionFeeMultiplier = (1-BusinessConfig.INFLUENCER_FEE);
+        $scope.TransferFee = -1*BusinessConfig.INFLUENCER_BANK_TF_FEE;
+        
+        $scope.requestPayout = function(){
+            InfluencerAccountService.requestPayout()
+            .then(function(ias){
+                $state.go('influencer-payout-history');
+            })
+            .catch(function(err){
+                $scope.alert.danger(err.data.message);
+            });
+        };
+    }])
     .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService', '$uibModal', 'DataService',
         function($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService) {
             $scope.campaignNee = null;

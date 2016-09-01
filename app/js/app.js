@@ -102,7 +102,9 @@ angular.module('myApp', [
 
 }])
 .constant('BusinessConfig', {
-  MIN_FOLLOWER_COUNT : 1
+  MIN_FOLLOWER_COUNT : 1,
+  INFLUENCER_FEE: 0.18,
+  INFLUENCER_BANK_TF_FEE: 30
 })
 //Initialize the app
 .run(['$rootScope', '$location', '$window', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', function($rootScope, $location, $window, UserProfile, BrandAccountService, ProposalService, amMoment, $interval){
@@ -128,6 +130,20 @@ angular.module('myApp', [
         sameElse : 'L'
     },
   });
+
+  //Take Sum of Array
+  //Using value of property path PropertyString
+  $rootScope.sumReduce = function(Array, PropertyString){
+    if(!Array){
+      return 0;
+    }
+
+    var start = {};
+    start[PropertyString] = 0;
+    return Array.reduce(function(p,c){
+      return _.get(p, PropertyString) + _.get(c, PropertyString);
+    }, start);
+  };
 
   //Configure Raven in production mode
   // Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();

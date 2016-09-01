@@ -747,6 +747,11 @@ a.secondary{
   &:extend(.btn all);
   .button-variant(@color-white, @color-theme-secondary, @color-theme-secondary-darker);
 }
+.btn-trace{
+  &:extend(.btn all);
+  .button-variant(@color-black, @color-grey, @color-grey);
+  border-color: @color-grey-darker;
+}
 .btn-social{
   &:extend(.btn all);
   padding-left: 32px;

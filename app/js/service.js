@@ -231,6 +231,12 @@ angular.module('myApp.service', ['satellizer'])
             signup: function (influencer) {
                 return $http.post("/signup/influencer", influencer);
             },
+            getWallet: function(){
+                return $http.get("/wallets");
+            },
+            requestPayout: function(){
+                return $http.post('/wallets/payout');
+            }
         };
     }])
     .factory('BrandAccountService', ['$http', function ($http) {

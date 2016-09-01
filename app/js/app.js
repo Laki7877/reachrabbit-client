@@ -199,7 +199,7 @@ angular.module('myApp', [
           $rootScope.cartCount = cart.data.proposals.length;
         });
       }
-  })
+  });
 
   //Route change event
   $rootScope.$on('$routeChangeStart', function(event, next, current) {

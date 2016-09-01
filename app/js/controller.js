@@ -1432,7 +1432,7 @@ angular.module('myApp.admin.controller', ['myApp.service'])
         };
         $scope.load = function(data) {
             $scope.params = data;
-            TransactionService.getAll(data).then(function(response) {
+            TransactionService.getAll(_.extend(data, { type: 'Payin' })).then(function(response) {
                 $scope.transactions = response.data;
             });
         };
@@ -1440,6 +1440,18 @@ angular.module('myApp.admin.controller', ['myApp.service'])
             sort: 'updatedAt,desc'
         });
     }])
-    .controller('AdminPayoutRequestsController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
-
+    .controller('AdminPayoutHistoryController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
+        //Load campaign data
+        $scope.isExpired = function(T){
+            return T.expiredAt <= (new Date());
+        };
+        $scope.load = function(data) {
+            $scope.params = data;
+            TransactionService.getAll(_.extend(data, { type: 'Payout' })).then(function(response) {
+                $scope.transactions = response.data;
+            });
+        };
+        $scope.load({
+            sort: 'updatedAt,desc'
+        });
     }]);

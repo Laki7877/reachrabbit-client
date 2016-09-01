@@ -21,7 +21,7 @@
             <tbody>
               <tr ng-repeat="transaction in transactions.content">
                 <td class="col-name">{{ transaction.updatedAt | amCalendar }}</td>
-                <td class="col-campaign-name">{{ transaction.user.brand.brandName }}</td>
+                <td class="col-campaign-name">{{ transaction.influencerTransactionDocument[0].wallet.proposals[0].influencer.user.name }}</td>
                 <td class="col-price">{{ transaction.status }}</td>
                 <td>{{ transaction.transactionId }}</td>
                 <td class="col-rabbit-score">{{ transaction.proposals.length || '0' }}</td>

@@ -456,10 +456,10 @@ angular.module('myApp.service', ['satellizer'])
     .factory('TransactionService', ['$http', function($http){
         return {
             create: function(){
-                return $http.post('/transactions/');
+                return $http.post('/transactions');
             },
             getAll: function(){
-                return $http.get('/transactions/');
+                return $http.get('/transactions');
             },
             getByCart: function(cartId){
                 return $http.get('/carts/' + cartId + '/transaction/');

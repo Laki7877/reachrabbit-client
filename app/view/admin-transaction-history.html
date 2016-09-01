@@ -23,9 +23,9 @@
                 <td class="col-date">{{ transaction.updatedAt | amDateFormat : 'D MMM YY' }}</td>
                 <td class="col-campaign-name">{{ transaction.brandTransactionDocument.cart.proposals[0].campaign.brand.brandName }}</td>
                 <td class="col-status">
-                  <span class="color-yellow" ng-if="transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
-                  <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span>
-                  <span class="color-grey" ng-if="transaction.status == 'Expired'"><i class="fa fa-ban"></i> หมดอายุ</span>
+                  <span class="color-yellow" ng-if="!isExpired(transaction) && transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
+                  <span class="color-green" ng-if="!isExpired(transaction) && transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span>
+                  <span class="color-grey" ng-if="isExpired(transaction)"><i class="fa fa-ban"></i> หมดอายุ</span>
                 </td>
                 <td class="text-center">{{ transaction.transactionNumber }}</td>
                 <td class="text-center">{{ transaction.brandTransactionDocument.cart.proposals.length || '0' }}</td>

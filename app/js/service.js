@@ -464,11 +464,23 @@ angular.module('myApp.service', ['satellizer'])
                 return $http.post('/transactions');
             },
             getAll: function(params){
-                return $http({
-                    url: '/transactions',
-                    method: 'get', 
-                    params: params
+                return $q(function(resolve, reject){
+                    $http({
+                        url: '/transactions',
+                        method: 'get', 
+                        params: params
+                    })
+                    .then(function(transactionResponse){
+                        transactionResponse.data.content = transactionResponse.data.content.map(function(M){
+                            return deserialize(M);
+                        });
+                        resolve(transactionResponse);
+                    })
+                    .catch(function(err){
+                        reject(err);
+                    });
                 });
+
             },
             getByCart: function(cartId){
                 return $q(function(resolve, reject){
@@ -565,7 +577,7 @@ angular.module('myApp.service', ['satellizer'])
     .factory('AdminService', ['$http', function($http){
         return {
             confirmTransaction: function(Transaction){
-                
+                return $http.put('/transactions/' + Transaction.transactionId + '/confirm');
             }
         };
     }]);

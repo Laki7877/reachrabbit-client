@@ -26,16 +26,25 @@ angular.module('myApp.controller', ['myApp.service'])
             // console.log("Test World");
         };
     }])
-    .controller('TransactionController', ['$scope', 'NcAlert', '$stateParams', 'TransactionService',  function($scope, NcAlert, $stateParams, TransactionService){
+    .controller('TransactionDetailController', ['$scope', 'NcAlert', '$stateParams', 'TransactionService', 'AdminService', function($scope, NcAlert, $stateParams, TransactionService, AdminService){
         var cartId = $stateParams.cartId;
         $scope.alert = new NcAlert();
-        TransactionService.getByCart(cartId)
-        .then(function(transaction){
-            $scope.transaction = transaction.data;
-        })
-        .catch(function(err){
-            $scope.alert.danger(err.data.message);
-        });
+        
+        var loadData = function(){
+            TransactionService.getByCart(cartId)
+            .then(function(transaction){
+                $scope.transaction = transaction.data;
+
+                if($scope.isExpired()){
+                    $scope.alert.warning("การสั่งซื้อของ Brand นี้ได้หมดอายุลงแล้ว");
+                }
+            })
+            .catch(function(err){
+                $scope.alert.danger(err.data.message);
+            });
+        };
+
+        loadData();
         
         $scope.isExpired = function(){
             if(!$scope.transaction){
@@ -59,6 +68,15 @@ angular.module('myApp.controller', ['myApp.service'])
 
             return [DAY, HOUR, MINUTE];
         };
+
+        $scope.approve = function(){
+            AdminService.confirmTransaction($scope.transaction)
+            .then(function(response){
+                loadData();
+            });
+        };
+
+        
         
     }])
     .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal', 'validator', 'util',
@@ -1379,6 +1397,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 angular.module('myApp.admin.controller', ['myApp.service'])
     .controller('AdminTransactionHistoryController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {        
         //Load campaign data
+        $scope.isExpired = function(T){
+            return T.expiredAt <= (new Date());
+        };
         $scope.load = function(data) {
             $scope.params = data;
             TransactionService.getAll(data).then(function(response) {

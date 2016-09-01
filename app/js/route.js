@@ -32,7 +32,7 @@ angular.module('myApp.admin.routes', ['ui.router'])
             .state('admin-transaction-detail', {
                 url: '/admin-transaction-detail/:cartId',
                 templateUrl: 'view/admin-transaction-detail.html',
-                controller: 'TransactionController'
+                controller: 'TransactionDetailController'
             })
             .state('admin-payout-history', {
                 url: '/admin-payout-history',
@@ -110,7 +110,7 @@ angular.module('myApp.brand.routes', ['ui.router'])
             .state('brand-transaction-detail', {
                 url: '/brand-transaction-detail/:cartId',
                 templateUrl: 'view/brand-transaction-detail.html',
-                controller: 'TransactionController'
+                controller: 'TransactionDetailController'
             });
 
     }]);

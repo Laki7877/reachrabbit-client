@@ -9438,10 +9438,6 @@ fieldset[disabled] .btn-clear.active {
   padding: 3px 7px 1px 7px;
   border-radius: 15px;
 }
-.table img {
-  margin-right: 10px;
-  width: 30px;
-}
 /*---Workroom---*/
 .workroom {
   background: #16bbac;
@@ -9464,6 +9460,9 @@ fieldset[disabled] .btn-clear.active {
 }
 .workroom .card-proposal-detail .social-info {
   margin: 5px 0px;
+}
+.workroom .card-proposal-detail .info-text {
+  margin-bottom: 5px;
 }
 .workroom .card-campaign-thumbnail .card-thumbnail-image {
   height: 140px;

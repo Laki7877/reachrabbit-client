@@ -19,7 +19,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="transaction in transactions.content">
-                <td class="col-name">{{ transaction.updatedAt | amDateFormat : 'D MMM YY' }}</td>
+                <td class="col-name">{{ transaction.updatedAt | amDateFormat : 'll' }}</td>
                 <td>
                   <span class="color-yellow" ng-if="transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
                   <!-- For other status -->

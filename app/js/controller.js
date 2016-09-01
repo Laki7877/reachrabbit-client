@@ -621,7 +621,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         };
         $scope.lastMessageUpdated = function(proposal) {
             if (moment(proposal.messageUpdatedAt).isBefore(moment().endOf('day').subtract(1, 'days'))) {
-                return $filter('amDateFormat')(proposal.messageUpdatedAt, 'D MMM YY');
+                return $filter('amDateFormat')(proposal.messageUpdatedAt, 'll');
             }
             return $filter('amCalendar')(proposal.messageUpdatedAt);
         };

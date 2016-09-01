@@ -234,6 +234,9 @@ angular.module('myApp.service', ['satellizer'])
             getWallet: function(){
                 return $http.get("/wallets");
             },
+            getWalletBalance: function(){
+                return $http.get("/wallets/balance");
+            },
             requestPayout: function(doc){
                 return $http.post('/wallets/payout', doc);
             }

@@ -107,7 +107,8 @@ angular.module('myApp', [
   INFLUENCER_BANK_TF_FEE: 30
 })
 //Initialize the app
-.run(['$rootScope', '$location', '$window', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', function($rootScope, $location, $window, UserProfile, BrandAccountService, ProposalService, amMoment, $interval){
+.run(['$rootScope', 'InfluencerAccountService',  '$location', '$window', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig',
+function($rootScope, InfluencerAccountService, $location, $window, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig){
 
   $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
 
@@ -216,7 +217,19 @@ angular.module('myApp', [
         .then(function(cart){
           $rootScope.cartCount = (cart.data.proposals || []).length;
         });
+      }else if(UserProfile.get().influencer){
+        $rootScope.walletBalance = 0;
+        InfluencerAccountService.getWallet()
+        .then(function(walletResponse){
+          var k = walletResponse.data.proposals;
+          $rootScope.walletBalance = k.reduce(function(p,c){
+            return (p.price + c.price)* (1-BusinessConfig.INFLUENCER_FEE);
+          }, {
+            price: 0
+          });
+        });
       }
+      
       $rootScope.debuggah = {};
   });
 

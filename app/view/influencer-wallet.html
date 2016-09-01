@@ -27,7 +27,7 @@
                         </tr>
                         <tr class="total-price">
                           <td colspan="3">
-                            <strong>รายได้รวม ({{ wallet.proposals.length | number: 0 }} รายการ ) : 41,000 บาท</strong>
+                            <strong>รายได้รวม ({{ wallet.proposals.length | number: 0 }} รายการ ) : {{ $root.sumReduce(wallet.proposals, 'income') | number }} บาท</strong>
                           </td>
                         </tr>
                       </tbody>

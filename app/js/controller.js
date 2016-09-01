@@ -918,6 +918,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             if(!CartArray) return 0;
             return CartArray.reduce(function(p,c){
                 return p.price + c.price;
+            }, {
+                price: 0
             });
         };
         $scope.removeFromCart = function(p){

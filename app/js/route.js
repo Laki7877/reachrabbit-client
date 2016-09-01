@@ -28,6 +28,11 @@ angular.module('myApp.admin.routes', ['ui.router'])
                 url: '/admin-transaction-history',
                 templateUrl: 'view/admin-transaction-history.html',
                 controller: 'AdminTransactionHistoryController'
+            })
+            .state('admin-transaction-detail', {
+                url: '/admin-transaction-detail/:cartId',
+                templateUrl: 'view/admin-transaction-detail.html',
+                controller: 'TransactionController'
             });
     }]);
 

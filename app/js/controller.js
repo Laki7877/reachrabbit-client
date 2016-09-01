@@ -1336,7 +1336,9 @@ angular.module('myApp.portal.controller', ['myApp.service'])
     .controller('AdminTransactionHistoryController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
 
     }])
+    .controller('TransactionController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService){
+        
+    }])
     .controller('AdminPayoutRequestsController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
 
-    }])
-;
+    }]);

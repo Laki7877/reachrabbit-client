@@ -9395,6 +9395,12 @@ fieldset[disabled] .btn-clear.active {
   display: block;
   margin-top: 5px;
 }
+.table .col-date {
+  width: 100px;
+}
+.table .col-status {
+  width: 150px;
+}
 .table .col-name {
   white-space: nowrap;
   text-overflow: ellipsis;

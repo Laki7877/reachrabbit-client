@@ -4,7 +4,43 @@
   </zone-header>
   <div class="zone-body">
     <div class="container">
-
+      <div class="card-inbox">
+        <div class="card-body">
+          <table ng-if="transactions.numberOfElements > 0" class="table" sorter ng-model="transactions" callback="load">
+            <thead>
+              <tr>
+                <th class="col-name" sort="updatedAt">วันที่แกไขล่าสุด</th>
+                <th sort="status">สถานะ</th>
+                <th class="text-center" sort="transactionId">หมายเลขการสั่งซื้อ</th>
+                <th class="col-rabbit-score" sort="proposals">จำนวนข้อเสนอ</th>
+                <th class="col-time" sort="amount">ราคารวม(บาท)</th>
+                <th class="col-button"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="transaction in transactions.content">
+                <td class="col-name">{{ transaction.updatedAt | amDateFormat : 'D MMM YY' }}</td>
+                <td>
+                  <span class="color-yellow" ng-if="transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
+                  <!-- For other status -->
+                  <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span> 
+                   <span class="color-grey" ng-if="transaction.status == 'Expired'"><i class="fa fa-ban"></i> หมดอายุ</span>
+                </td>
+                <td class="text-center">{{ transaction.transactionNumber }}</td>
+                <td class="col-rabbit-score">{{ transaction.brandTransactionDocument.cart.proposals.length || '0' }}</td>
+                <td class="col-time">{{ transaction.amount | currency: '': 0 }}</td>
+                <td class="col-button">
+                  <button class="btn-secondary" ui-sref="admin-transaction-detail({transactionId: transaction.transactionId})">ดูรายละเอียด</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table-static ng-if="transactions.totalElements == 0">ไม่มี Transaction</table-static>
+        </div>
+      </div>
+      <nav class="text-center" aria-label="Page navigation">
+        <pagination ng-model="transactions" callback="load"></pagination>
+      </nav>
     </div>
   </div>
 </div>

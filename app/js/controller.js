@@ -980,6 +980,49 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             $scope.influencer = response.data;
         });
 
+    }])
+    .controller('TransactionHistoryController', ['$scope', 'NcAlert', '$state', '$stateParams', 'TransactionService', function($scope, NcAlert, $state, $stateParams, TransactionService) {
+        //Load campaign data
+        $scope.load = function(data) {
+            $scope.params = data;
+            TransactionService.getAll(data).then(function(response) {
+                $scope.transactions = response.data;
+            });
+        };
+        $scope.load({
+            sort: 'updatedAt,desc'
+        });
+    }])
+    .controller('TransactionController', ['$scope', 'NcAlert', '$stateParams', 'TransactionService',  function($scope, NcAlert, $stateParams, TransactionService){
+        var cartId = $stateParams.cartId;
+        TransactionService.getByCart(cartId)
+        .then(function(transaction){
+            $scope.transaction = transaction.data;
+        });
+        
+        $scope.isExpired = function(){
+            if(!$scope.transaction){
+                return false;
+            }
+            return $scope.transaction.expiredAt.getTime() <= (new Date()).getTime();
+        };
+
+        $scope.timeLeft = function(){
+            if(!$scope.transaction){
+                return;
+            }
+
+            var tleft = (new Date()).getTime() - $scope.transaction.expiredAt.getTime();
+            var tleftAbs = Math.abs(tleft);
+            var Decimal = tleftAbs/(1000 * 3600 * 24);
+            var HourDecimal = (Decimal % 1)*24;
+            var DAY = Math.floor(Decimal);
+            var HOUR =  Math.floor(HourDecimal);
+            var MINUTE = Math.floor((HourDecimal % 1)*60);
+
+            return [DAY, HOUR, MINUTE];
+        };
+        
     }]);
 
 
@@ -1011,10 +1054,6 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             $window.location.href = "/brand.html#/brand-campaign-list";
             return;
         }
-
-        $scope.$watch('formData.username', function(e) {
-            console.log($scope.formData);
-        }, true);
         $window.localStorage.removeItem('token');
         $scope.messageCode = $location.search().message;
         $scope.alert = new NcAlert();
@@ -1346,7 +1385,9 @@ angular.module('myApp.admin.controller', ['myApp.service'])
                 $scope.transactions = response.data;
             });
         };
-        $scope.load();
+        $scope.load({
+            sort: 'updatedAt,desc'
+        });
     }])
     .controller('AdminPayoutRequestsController', ['$scope', '$state', 'TransactionService', function($scope, $state, TransactionService) {
 

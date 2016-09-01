@@ -463,8 +463,12 @@ angular.module('myApp.service', ['satellizer'])
             create: function(){
                 return $http.post('/transactions');
             },
-            getAll: function(){
-                return $http.get('/transactions');
+            getAll: function(params){
+                return $http({
+                    url: '/transactions',
+                    method: 'get', 
+                    params: params
+                });
             },
             getByCart: function(cartId){
                 return $q(function(resolve, reject){

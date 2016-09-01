@@ -105,7 +105,7 @@ angular.module('myApp.brand.routes', ['ui.router'])
             .state('brand-transaction-history', {
                 url: '/brand-transaction-history',
                 templateUrl: 'view/brand-transaction-history.html',
-                controller: 'EmptyController'
+                controller: 'TransactionHistoryController'
             })
             .state('brand-transaction-detail', {
                 url: '/brand-transaction-detail/:cartId',

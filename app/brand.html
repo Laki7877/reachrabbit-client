@@ -46,7 +46,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li ui-sref-active="active">
                       <a class="cart" ui-sref="brand-cart">
-                        <span class="cart-counter">X</span>
+                        <span class="cart-counter">{{ $root.cartCount || 0 }}</span>
                         Cart
                       </a>
                     </li>

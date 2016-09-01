@@ -96,13 +96,14 @@ angular.module('myApp', [
   // $locationProvider.hashPrefix('');
   // $routeProvider.otherwise({redirectTo: '/404'});
   cfpLoadingBarProvider.includeSpinner = false;
+  
 
 }])
 .constant('BusinessConfig', {
   MIN_FOLLOWER_COUNT : 1
 })
 //Initialize the app
-.run(['$rootScope', '$location', '$window', 'UserProfile', 'ProposalService', 'amMoment', '$interval', function($rootScope, $location, $window, UserProfile, ProposalService, amMoment, $interval){
+.run(['$rootScope', '$location', '$window', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', function($rootScope, $location, $window, UserProfile, BrandAccountService, ProposalService, amMoment, $interval){
 
   $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
 
@@ -188,6 +189,17 @@ angular.module('myApp', [
   $rootScope.getPath = function(){
     return $location.path();
   };
+ 
+  $rootScope.$on('$stateChangeStart', 
+  function(event, toState, toParams, fromState, fromParams, options){ 
+      //in case of brand
+      if(UserProfile.get().brand){
+        BrandAccountService.getCart()
+        .then(function(cart){
+          $rootScope.cartCount = cart.data.proposals.length;
+        });
+      }
+  })
 
   //Route change event
   $rootScope.$on('$routeChangeStart', function(event, next, current) {

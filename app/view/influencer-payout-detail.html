@@ -5,11 +5,153 @@
   <div class="zone-body">
     <div class="container">
 
-      <div nc-alert type="info" closable="true">
-        Hello World
+
+      <div class="row">
+        <div class="col-xs-8">
+            <div class="card">
+                <div class="card-header">
+                   รายได้ที่ยังไม่ได้ถอนออก
+                </div>
+
+                <div class="card-body">
+                    <table class="table with-no-margin">
+                      <thead>
+                        <th>Campaign</th>
+                        <th class="text-align-right">ราคาที่เสนอ (บาท)</th>
+                        <th class="text-align-right">รายได้ (บาท) <a><i class="fa fa-question-circle color-grey"></i></a></th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="col-campaign-name">Hello world this is a campaign name</td>
+                          <td class="text-align-right">50,000</td>
+                          <td class="text-align-right">41,000</td>
+                        </tr>
+                        <tr class="total-price">
+                          <td colspan="3">
+                            <strong>รายได้รวม (1 รายการ) : 41,000 บาท</strong>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                ขั้นตอนการชำระเงิน
+              </div>
+              <div class="card-body with-extra-padding">
+                  <div class="media">
+                    <div class="media-left">
+                      <span class="number-circle">1</span>
+                    </div>
+                    <div class="media-body">
+                      <div class="card-row">
+                        <div class="col-xs-12">
+                          ระบุข้อมูลบัญชีที่ต้องการให้โอน
+                        </div>
+                      </div>
+                      <div class="card-row-2-column">
+                        <div class="col">
+                          <label>ธนาคาร</label>
+                          <div class="input-dropdown">
+                              <select class="form-control" required disabled></select>
+                              <i class="fa fa-caret-down"></i>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <label>เลขที่บัญชี</label>
+                              <input class="form-control" disabled/>
+                        </div>
+                      </div>
+                      <div class="card-row-2-column">
+                        <div class="col">
+                          <label>ชื่อบัญชี</label>
+                          <div class="input-dropdown">
+                              <input class="form-control" disabled/>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <!-- <div class="checkbox">
+                            <label><input type="checkbox" value="">จดจำรายละเอียดสำหรับครั้งหน้า</label>
+                          </div> -->
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="media">
+                    <div class="media-left">
+                      <span class="number-circle">2</span>
+                    </div>
+                    <div class="media-body">
+                      ตรวจสอบและกด ถอนเงิน
+                    </div>
+                  </div>
+                  <div class="media">
+                    <div class="media-left">
+                      <span class="number-circle">3</span>
+                    </div>
+                    <div class="media-body">
+                      ReachRabbit จะโอนเงินให้คุณภายใน 3 วันทำการ
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+        </div>
+
+        <div class="col-xs-4">
+            <div class="card">
+              <div class="card-header text-center">
+                สรุปการถอนเงิน
+              </div>
+              <div class="card-body">
+                 <table class="table">
+                   <tr>
+                     <td colspan="2" class="no-top-border">
+                       <p>
+                         หลักฐานการโอน
+                       </p>
+                       <img src="images/example-campaign/brand-logo.jpg" class="img-responsive" />
+                     </td>
+                   </tr>
+                   <tr>
+                     <td colspan="2" class="no-top-border text-center color-yellow">
+                       -- <i class="fa fa-clock-o"></i> กำลังดำเนินการโอนเงิน --
+                     </td>
+                   </tr>
+                  <tr>
+                    <td class="no-top-border">
+                      รายได้รวม
+                    </td>
+                    <td class="text-align-right no-top-border">
+                      41,000 บาท
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      ค่าธรรมเนียมการโอน
+                    </td>
+                    <td class="text-align-right">
+                      -30 บาท
+                    </td>
+                  </tr>
+                  <tr class="color-green">
+                    <td>
+                      <strong>ยอดถอน</strong>
+                    </td>
+                    <td class="text-align-right">
+                      <strong>40,970 บาท</strong>
+                    </td>
+                  </tr>
+                </table>
+                <button ng-click="checkout(cart.proposals)" class="btn btn-primary btn-width-max">ถอนเงิน</button>
+              </div>
+            </div>
+        </div>
       </div>
 
-      <!-- Contetn Go Here -->
 
     </div>
   </div>

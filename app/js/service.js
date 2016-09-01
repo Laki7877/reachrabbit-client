@@ -463,7 +463,7 @@ angular.module('myApp.service', ['satellizer'])
             },
             getByCart: function(cartId){
                 return $http.get('/carts/' + cartId + '/transaction/');
-            }
+            } 
         };
     }])
     .factory('ResourceService', ['$http', function ($http) {

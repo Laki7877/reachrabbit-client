@@ -28,7 +28,7 @@
                 </td>
                 <td class="text-center">{{ transaction.transactionNumber }}</td>
                 <td class="col-rabbit-score">{{ transaction.brandTransactionDocument.cart.proposals.length || '0' }}</td>
-                <td class="col-time">{{ transaction.amount }}</td>
+                <td class="col-time">{{ transaction.amount | currency: '': 0 }}</td>
                 <td class="col-button">
                   <button class="btn-secondary" ui-sref="admin-transaction-detail({transactionId: transaction.transactionId})">ดูรายละเอียด</button>
                 </td>

@@ -42,7 +42,7 @@
                 หมดอายุวันที่
               </div>
               <div class="card-info-content">
-                {{ transaction.expiredAt | date }} นาที
+                {{ transaction.expiredAt | date }} 
               </div>
             </div>
             <div class="card-info" ng-if="!isExpired() && transaction.status == 'Complete'">
@@ -50,7 +50,7 @@
                 ชำระเงินวันที่
               </div>
               <div class="card-info-content">
-                {{ transaction.completedAt | date }} นาที
+                {{ transaction.completedAt | date }} 
               </div>
             </div>
             <div class="card-info">

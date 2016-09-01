@@ -411,12 +411,13 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $scope.TransferFee = -1*BusinessConfig.INFLUENCER_BANK_TF_FEE;
         
         $scope.requestPayout = function(){
-            InfluencerAccountService.requestPayout()
+            InfluencerAccountService.requestPayout($scope.formData)
             .then(function(ias){
+                console.log(ias);
                 $state.go('influencer-payout-history');
             })
             .catch(function(err){
-                $scope.alert.danger(err.data.message);
+                return $scope.alert.danger(err.data.message);
             });
         };
     }])

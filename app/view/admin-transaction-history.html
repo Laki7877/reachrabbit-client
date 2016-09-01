@@ -12,7 +12,7 @@
                 <th class="col-date" sort="updatedAt">แก้ไขล่าสุด</th>
                 <th class="col-campaign-name" sort="user.userId">Brand</th>
                 <th class="col-status" sort="status">สถานะ</th>
-                <th sort="transactionId">หมายเลขการสั่งซื้อ</th>
+                <th class="text-center" sort="transactionId">หมายเลขการสั่งซื้อ</th>
                 <th class="text-center" sort="proposals">จำนวนข้อเสนอ</th>
                 <th class="col-price" sort="amount">ราคารวม (บาท)</th>
                 <th class="col-button"></th>
@@ -28,8 +28,8 @@
                   <span class="color-grey" ng-if="transaction.status == 'Expired'"><i class="fa fa-ban"></i> หมดอายุ</span>
                 </td>
                 <td class="text-center">{{ transaction.transactionNumber }}</td>
-                <td class="col-rabbit-score">{{ transaction.brandTransactionDocument.cart.proposals.length || '0' }}</td>
-                <td class="col-time">{{ transaction.amount | currency: '': 0 }}</td>
+                <td class="text-center">{{ transaction.brandTransactionDocument.cart.proposals.length || '0' }}</td>
+                <td class="col-price">{{ transaction.amount | currency: '': 0 }}</td>
                 <td class="col-button">
                   <button class="btn-secondary" ui-sref="admin-transaction-detail({cartId: transaction.brandTransactionDocument.cart.cartId })">ดูรายละเอียด</button>
                 </td>

@@ -27,7 +27,7 @@
                 <td class="col-rabbit-score">{{ transaction.influencerTransactionDocument[0].wallet.proposals.length || '0' }}</td>
                 <td class="col-time">{{ transaction.amount }}</td>
                 <td class="col-button">
-                  <button class="btn-secondary" ui-sref="admin-transaction-detail({transactionId: transaction.transactionId})">ดูรายละเอียด</button>
+                  <button class="btn-secondary" ui-sref="influencer-payout-detail({transactionId: transaction.transactionId})">ดูรายละเอียด</button>
                 </td>
               </tr>
             </tbody>

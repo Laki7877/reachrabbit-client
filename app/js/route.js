@@ -151,7 +151,7 @@ angular.module('myApp.influencer.routes', ['ui.router'])
                 controller: 'InfluencerBrandProfileController'
             })
             .state('influencer-payout-detail', {
-                url: '/influencer-payout-detail',
+                url: '/influencer-payout-detail/:transactionId',
                 templateUrl: 'view/influencer-payout-detail.html',
                 controller: 'PayoutDetailController'
             })

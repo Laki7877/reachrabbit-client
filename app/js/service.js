@@ -521,7 +521,10 @@ angular.module('myApp.service', ['satellizer'])
                         reject(err);
                     });
                 });
-            } 
+            },
+            getByTransactionId: function(transactionId){
+               return $http.get("/transactions/" + transactionId); 
+            }
         };
     }])
     .factory('ResourceService', ['$http', function ($http) {

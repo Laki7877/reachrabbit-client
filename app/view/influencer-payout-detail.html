@@ -55,7 +55,7 @@
                         <div class="col">
                           <label>ธนาคาร</label>
                           <div class="input-dropdown">
-                              <select class="form-control" required disabled></select>
+                              <select ng-model="bank" class="form-control" required disabled></select>
                               <i class="fa fa-caret-down"></i>
                           </div>
                         </div>
@@ -70,11 +70,6 @@
                           <div class="input-dropdown">
                               <input class="form-control" disabled/>
                           </div>
-                        </div>
-                        <div class="col">
-                          <!-- <div class="checkbox">
-                            <label><input type="checkbox" value="">จดจำรายละเอียดสำหรับครั้งหน้า</label>
-                          </div> -->
                         </div>
                       </div>
 
@@ -146,7 +141,6 @@
                     </td>
                   </tr>
                 </table>
-                <button ng-click="checkout(cart.proposals)" class="btn btn-primary btn-width-max">ถอนเงิน</button>
               </div>
             </div>
         </div>

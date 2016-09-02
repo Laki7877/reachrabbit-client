@@ -687,6 +687,12 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         .then(function(response){
             $scope.brand = response.data;
         });
+    }])
+    .controller('PayoutDetailController', ['$scope', 'TransactionService', '$state', '$stateParams', function($scope, TransactionService, $state, $stateParams){
+        TransactionService.getByTransactionId($stateParams.transactionId)
+        .then(function(response){
+            $scope.payout = response.data;
+        });
     }]);
 
 /////////////// /////////////// /////////////// /////////////// ///////////////

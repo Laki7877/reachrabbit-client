@@ -47,7 +47,7 @@
                 <ul class="nav navbar-nav navbar-right">
                   <li ui-sref-active="active">
                     <a class="wallet" ui-sref="influencer-wallet">
-                      <span class="wallet-icon"></span>{{ $root.walletBalance | number:0 }} บาท
+                      <span class="wallet-icon"></span><span ng-bind="$root.walletBalance | number:0"></span> บาท
                     </a>
                   </li>
                   <li class="dropdown">
@@ -72,6 +72,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
+    <div nc-alert="$root.rootError"></div>
     <div ui-view ng-cloak></div>
     
     <div ng-include="'components/templates/debugga.html'"></div>

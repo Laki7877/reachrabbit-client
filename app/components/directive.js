@@ -705,6 +705,7 @@ angular.module('myApp.directives', ['myApp.service'])
                 };
 
                 scope.upload = function (ifile) {
+                    if(!ifile) return;
                     var processFile = function(file){
                         if (file === null) {
                             //TODO: maybe do dismiss will fixthat bug?
@@ -735,9 +736,14 @@ angular.module('myApp.directives', ['myApp.service'])
                             animation: false,
                             backdrop: 'static',
                             templateUrl: 'components/templates/uploader-crop.html',
-                            controller: ['$scope', 'file', 'cropOption', function ($scope, file, cropOption) {
+                            controller: ['$scope', 'file', 'cropOption', '$uibModalInstance', function ($scope, file, cropOption, $uibModalInstance) {
                                 $scope.thumbFile = file;
                                 $scope.cropOption = cropOption;
+
+                                $scope.dismiss = function () {
+                                    $uibModalInstance.dismiss();
+                                };
+                                
                             }],
                             size: 'lg',
                             resolve: {

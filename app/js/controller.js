@@ -689,10 +689,33 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         });
     }])
     .controller('PayoutDetailController', ['$scope', 'TransactionService', '$state', '$stateParams', function($scope, TransactionService, $state, $stateParams){
+        $scope.tDoc = [];
+      
         TransactionService.getByTransactionId($stateParams.transactionId)
         .then(function(response){
             $scope.payout = response.data;
+            var _base = null;
+            $scope.payout.influencerTransactionDocument
+            .sort(function(i, x){
+                return i.documentId - x.documentId;
+            })
+            .forEach(function(sortedDoc){
+                if(sortedDoc.type == "Base"){
+                    var item = {
+                        title: sortedDoc.wallet.proposals[0].campaign.title,
+                        price: sortedDoc.amount
+                    };
+
+                    _base = item;
+                    $scope.tDoc.push(item);
+                }else if(sortedDoc.type == "Fee"){
+                    _base.fee = sortedDoc.amount;
+                }else if(sortedDoc.type == 'TransferFee'){
+                    $scope.transferFeeDoc = sortedDoc;
+                }
+            });
         });
+
     }]);
 
 /////////////// /////////////// /////////////// /////////////// ///////////////

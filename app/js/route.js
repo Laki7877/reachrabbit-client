@@ -38,6 +38,11 @@ angular.module('myApp.admin.routes', ['ui.router'])
                 url: '/admin-payout-history',
                 templateUrl: 'view/admin-payout-history.html',
                 controller: 'AdminPayoutHistoryController'
+            })
+            .state('admin-payout-detail',{
+                url: '/admin-payout-detail/:transactionId',
+                templateUrl: 'view/admin-payout-detail.html',
+                controller: 'PayoutDetailController'
             });
     }]);
 

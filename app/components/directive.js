@@ -677,6 +677,7 @@ angular.module('myApp.directives', ['myApp.service'])
                 accept: '@?',
                 aspectRatio: '=?',
                 onError: '&?',
+                noCrop: '=?',
                 accessor: '&?' //function that defines how to access the url of the model
             },
             templateUrl: function (elem, attr) {
@@ -704,33 +705,9 @@ angular.module('myApp.directives', ['myApp.service'])
                 };
 
                 scope.upload = function (ifile) {
-
-                    var modalInstance = $uibModal.open({
-                        animation: false,
-                        backdrop: 'static',
-                        templateUrl: 'components/templates/uploader-crop.html',
-                        controller: ['$scope', 'file', 'cropOption', function ($scope, file, cropOption) {
-                            $scope.thumbFile = file;
-                            $scope.cropOption = cropOption;
-                        }],
-                        size: 'lg',
-                        resolve: {
-                            file: function () {
-                                return ifile;
-                            },
-                            cropOption: function(){
-                                return {
-                                    aspectRatio: Number(scope.aspectRatio)   
-                                };
-                            }
-                        }
-                    });
-
-                    //on user close
-                    modalInstance.result.then(function (dataUrl) {
-                        // console.log(dataUrl);
-                        var file = Upload.dataUrltoBlob(dataUrl, 'cropped_content.png');
+                    var processFile = function(file){
                         if (file === null) {
+                            //TODO: maybe do dismiss will fixthat bug?
                             return;
                         }
                         scope.loadingImage = false;
@@ -751,7 +728,41 @@ angular.module('myApp.directives', ['myApp.service'])
                                     scope.model = data;
                                 });
                         });
-                    });
+                    };
+
+                    if(!scope.noCrop){
+                        var modalInstance = $uibModal.open({
+                            animation: false,
+                            backdrop: 'static',
+                            templateUrl: 'components/templates/uploader-crop.html',
+                            controller: ['$scope', 'file', 'cropOption', function ($scope, file, cropOption) {
+                                $scope.thumbFile = file;
+                                $scope.cropOption = cropOption;
+                            }],
+                            size: 'lg',
+                            resolve: {
+                                file: function () {
+                                    return ifile;
+                                },
+                                cropOption: function(){
+                                    return {
+                                        aspectRatio: Number(scope.aspectRatio)   
+                                    };
+                                }
+                            }
+                        });
+
+                        //on user close
+                        modalInstance.result.then(function (dataUrl) {
+                            // console.log(dataUrl);
+                            var file = Upload.dataUrltoBlob(dataUrl, 'cropped_content.png');
+                            processFile(file);
+                        });
+                        
+                    }else{
+                        processFile(ifile);
+                    }
+                    
 
                    
                 };

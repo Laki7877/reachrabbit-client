@@ -397,7 +397,8 @@ angular.module('myApp.controller', ['myApp.service'])
             sort: 'updatedAt,desc'
         });
     }])
-    .controller('PayoutDetailController', ['$scope', 'TransactionService', 'AdminService', '$state', '$stateParams', function ($scope, TransactionService, AdminService, $state, $stateParams) {
+    .controller('PayoutDetailController', ['$scope', 'TransactionService', 'AdminService', 'NcAlert', '$state', '$stateParams', function ($scope, TransactionService, AdminService, NcAlert, $state, $stateParams) {
+        $scope.alert = new NcAlert();
         var loadTdoc = function () {
             $scope.tDoc = [];
 
@@ -432,6 +433,9 @@ angular.module('myApp.controller', ['myApp.service'])
             AdminService.confirmPayout($stateParams.transactionId, $scope.slipResource)
                 .then(function () {
                     loadTdoc();
+                })
+                .catch(function(err){
+                    $scope.alert.danger(err.data.message);
                 });
         };
 

@@ -607,8 +607,12 @@ angular.module('myApp.service', ['satellizer'])
     }])
     .factory('AdminService', ['$http', function($http){
         return {
+            //Confirm Payin (TODO: Rename)
             confirmTransaction: function(Transaction){
                 return $http.put('/transactions/' + Transaction.transactionId + '/confirm');
+            },
+            confirmPayout: function(TransactionId, Slip){
+                return $http.put('/transactions/' + TransactionId + '/paid', Slip);
             }
         };
     }]);

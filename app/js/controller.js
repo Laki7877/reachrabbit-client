@@ -188,7 +188,7 @@ angular.module('myApp.controller', ['myApp.service'])
             };
 			
 			$scope.hasCart = function(proposal){
-                if(proposal.cartId) return false;
+                if(!proposal.cartId) return false;
                 return true;
             };
 

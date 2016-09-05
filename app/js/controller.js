@@ -186,6 +186,11 @@ angular.module('myApp.controller', ['myApp.service'])
                     return pred.proposalId == proposal;
                 });
             };
+			
+			$scope.hasCart = function(proposal){
+                if(proposal.cartId) return false;
+                return true;
+            };
 
             //Approve Proposal
             $scope.approveProposal = function (proposal) {

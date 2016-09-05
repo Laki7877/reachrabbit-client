@@ -170,14 +170,22 @@ angular.module('myApp.controller', ['myApp.service'])
             });
         }
     ])
-    .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util',
-        function ($scope, $uibModal, $interval, $stateParams, ProposalService, NcAlert, $state, $location, $window, util) {
+    .controller('WorkroomController', ['$scope', '$uibModal', '$interval','$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util',
+        function ($scope, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util) {
             $scope.msglist = [];
             $scope.msgLimit = 30;
             $scope.totalElements = 0;
             util.warnOnExit($scope);
 
             $scope.alert = new NcAlert();
+            
+            $scope.hasInWallet = function(proposal){
+                if(!$rootScope.wallet) return false;
+                if(!$rootScope.wallet.proposals) return false;
+                return _.find($rootScope.wallet.proposals, function(pred){
+                    return pred.proposalId == proposal;
+                });
+            };
 
             //Approve Proposal
             $scope.approveProposal = function (proposal) {

@@ -223,6 +223,7 @@ angular.module('myApp', [
             InfluencerAccountService.getWallet()
               .then(function (walletResponse) {
                 var k = walletResponse.data.proposals;
+                $rootScope.wallet = walletResponse.data;
                 if (!k) {
                   $rootScope.walletBalance = 0;
                   return;

@@ -25,7 +25,9 @@
                             </div>
                             <div class="message-area" scroll-glue>
 
-                                <card-influencer-profile ng-model="proposal.influencer" show-social-data="false"></card-influencer-profile>
+                                <card-influencer-profile ng-model="proposal.influencer" show-social-data="false">
+                                  <a ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId })" class="link-to-profile">ดูโปรไฟล์</a>
+                                </card-influencer-profile>
 
                                 <div class="message-past" ng-if="hasPastMessage()">
                                     <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>

@@ -5,7 +5,11 @@
   <div class="message-body">
     <div class="message-heading">
       <h4>{{message.user.name}}</h4>
-      <div class="message-time">{{message.createdAt | amDateFormat: $root.formats[4]}}</div>
+      <div class="message-time">
+        <span ng-if="message.messageId">{{message.createdAt | amDateFormat: $root.formats[4]}}
+        </span>
+        <span ng-if="!message.messageId"><i class="fa-li fa fa-spinner fa-spin"></i></span>
+      </div>
       <div class="clear"></div>
     </div>
     <div class="message-content">

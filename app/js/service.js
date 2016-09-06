@@ -199,6 +199,9 @@ angular.module('myApp.service', ['satellizer'])
             saveProfile: function (profile) {
                 return $http.put("/profile", profile);
             },
+            saveBank: function(bank){
+                return $http.put("/profile/bank", bank); 
+            },
             /*
              * get token
              * return {"token": <token>}

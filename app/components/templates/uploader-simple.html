@@ -1,8 +1,8 @@
-<div class="fileinput fileinput-new" data-provides="fileinput">
+<div class="fileinput fileinput-new btn-width-max" data-provides="fileinput">
     <button ngf-select="upload($file)"
       ngf-accept="accept"
       on-click="pristine()"
-        ng-if="!loadingImage && !accessor(model)" class="btn  btn-width-lg">
+        ng-if="!loadingImage && !accessor(model)" class="btn-secondary btn-width-max">
         <i class="fa fa-camera"></i> เลือกไฟล์ภาพ
      </button>
     <div ng-if="loadingImage" class="input-upload-image">

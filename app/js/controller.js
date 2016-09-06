@@ -1011,7 +1011,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         });
         $scope.loadProposalCounts();
     }])
-    .controller('CartController', ['$scope', '$state', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function($scope, $state, NcAlert, BrandAccountService,  ProposalService, TransactionService, $stateParams){
+    .controller('CartController', ['$scope', '$rootScope', '$state', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function ($scope,$rootScope, $state, NcAlert, BrandAccountService, ProposalService, TransactionService, $stateParams) {
         $scope.alert = new NcAlert();
         var loadCart= function(){
             BrandAccountService.getCart().then(function(cart){
@@ -1021,19 +1021,19 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         $scope.checkout  = function(CartArray){
             console.log(CartArray);
         };
-        $scope.totalPrice = function(CartArray){
-            if(!CartArray) return 0;
-            return CartArray.reduce(function(p,c){
-                return p.price + c.price;
-            }, {
-                price: 0
-            });
+        $scope.totalPrice = function (CartArray) {
+            if (!CartArray) return 0;
+            return CartArray.reduce(function (p, c) {
+                return p + c.price;
+            }, 0);
         };
         $scope.removeFromCart = function(p){
             ProposalService.removeFromCart(p)
-            .then(function(){
-               loadCart();
-            });
+                .then(function () {
+                    loadCart();
+                    //refresh rootscope counter
+                    $rootScope.cartCount = Number($rootScope.cartCount) - 1;
+                });
         };
         $scope.createTransaction = function(){
             return TransactionService.create().then(function(transaction){

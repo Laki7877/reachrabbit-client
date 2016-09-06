@@ -139,11 +139,9 @@ angular.module('myApp', [
           return 0;
         }
 
-        var start = {};
-        start[PropertyString] = 0;
         return Array.reduce(function (p, c) {
-          return _.get(p, PropertyString) + _.get(c, PropertyString);
-        }, start);
+          return p + _.get(c, PropertyString);
+        }, 0);
       };
 
       //Configure Raven in production mode
@@ -230,10 +228,8 @@ angular.module('myApp', [
                 }
 
                 $rootScope.walletBalance = k.reduce(function (p, c) {
-                  return (p.price + c.price) * (1 - BusinessConfig.INFLUENCER_FEE);
-                }, {
-                    price: 0
-                  });
+                  return (p + c.price) * (1 - BusinessConfig.INFLUENCER_FEE);
+                }, 0);
               });
           }
 

@@ -11,10 +11,10 @@
               <tr>
                 <th class="col-name" sort="updatedAt">วันที่แกไขล่าสุด</th>
                 <th class="col-campaign-name" sort="user.userId">Influencer</th>
-                <th class="col-price" sort="status">สถานะ</th>
+                <th class="col-status" sort="status">สถานะ</th>
                 <th sort="transactionId">รหัสการถอนเงิน</th>
                 <th class="col-rabbit-score" sort="proposals">จำนวนรายการ</th>
-                <th class="col-time" sort="amount">ยอมถอน(บาท)</th>
+                <th class="col-time" sort="amount">ยอดถอน(บาท)</th>
                 <th class="col-button"></th>
               </tr>
             </thead>
@@ -22,10 +22,13 @@
               <tr ng-repeat="transaction in transactions.content">
                 <td class="col-name">{{ transaction.updatedAt | amCalendar }}</td>
                 <td class="col-campaign-name">{{ transaction.influencerTransactionDocument[0].wallet.proposals[0].influencer.user.name }}</td>
-                <td class="col-price">{{ transaction.status }}</td>
-                <td>{{ transaction.transactionId }}</td>
+                <td class="col-status">
+                  <span class="color-yellow" ng-if="transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอรับเงิน</span>
+                  <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ได้รับเงินแล้ว</span> 
+                </td>
+                <td>{{ transaction.transactionNumber }}</td>
                 <td class="col-rabbit-score">{{ transaction.influencerTransactionDocument[0].wallet.proposals.length || '0' }}</td>
-                <td class="col-time">{{ transaction.amount }}</td>
+                <td class="col-time">{{ transaction.amount | number: 0 }}</td>
                 <td class="col-button">
                   <button class="btn-secondary" ui-sref="admin-payout-detail({transactionId: transaction.transactionId})">ดูรายละเอียด</button>
                 </td>

@@ -37,7 +37,7 @@ angular.module('myApp.admin.routes', ['ui.router'])
             .state('admin-payout-history', {
                 url: '/admin-payout-history',
                 templateUrl: 'view/admin-payout-history.html',
-                controller: 'AdminPayoutHistoryController'
+                controller: 'PayoutHistoryController'
             })
             .state('admin-payout-detail',{
                 url: '/admin-payout-detail/:transactionId',

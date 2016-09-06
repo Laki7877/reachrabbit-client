@@ -47,7 +47,7 @@
                 <ul class="nav navbar-nav navbar-right">
                   <li ui-sref-active="active">
                     <a class="wallet" ui-sref="influencer-wallet">
-                      <span class="wallet-icon"></span><span ng-bind="$root.walletBalance | number:0"></span> บาท
+                      <span class="wallet-icon"></span><span ng-bind="($root.walletBalance || 0) | number: 0"></span> บาท
                     </a>
                   </li>
                   <li class="dropdown">

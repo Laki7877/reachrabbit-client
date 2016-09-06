@@ -169,8 +169,8 @@ angular.module('myApp.controller', ['myApp.service'])
             });
         }
     ])
-    .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$stateParams', 'ProposalService', 'NcAlert','$state', '$location', '$window', 'util',
-        function($scope, $uibModal, $interval, $stateParams, ProposalService, NcAlert, $state, $location, $window, util) {
+    .controller('WorkroomController', ['$scope', '$rootScope', '$uibModal', '$interval', '$stateParams', 'ProposalService', 'NcAlert','$state', '$location', '$window', 'util',
+        function($scope, $rootScope, $uibModal, $interval, $stateParams, ProposalService, NcAlert, $state, $location, $window, util) {
             $scope.msglist = [];
             $scope.pendingList = [];
             $scope.msgLimit = 30;
@@ -359,12 +359,14 @@ angular.module('myApp.controller', ['myApp.service'])
                     proposal: {
                         proposalId: $scope.proposalId
                     },
+                    user: $rootScope.getProfile(),
                     resources: attachments,
                     referenceId: ref
                 };
                 $scope.pendingList.push(msg);
+                $scope.msglist.push(msg);
 
-                ProposalService.sendMessage(msg)
+                ProposalService.sendMessage(_.omit(msg, ['user']))
                     .then(function(resp) {
                         //$scope.msglist.push(resp.data);
                         $scope.formData = {

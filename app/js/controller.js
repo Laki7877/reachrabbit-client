@@ -186,6 +186,11 @@ angular.module('myApp.controller', ['myApp.service'])
                     return pred.proposalId == proposal;
                 });
             };
+			
+			$scope.hasCart = function(proposal){
+                if(!proposal.cartId) return false;
+                return true;
+            };
 
             //Approve Proposal
             $scope.approveProposal = function (proposal) {
@@ -1098,6 +1103,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     .controller('TransactionHistoryController', ['$scope', 'NcAlert', '$state', '$stateParams', 'TransactionService', function ($scope, NcAlert, $state, $stateParams, TransactionService) {
         //Load campaign data
         $scope.load = function (data) {
+			data.type = 'Payin';
             $scope.params = data;
             TransactionService.getAll(data).then(function (response) {
                 $scope.transactions = response.data;

@@ -2,7 +2,7 @@
   <zone-header historyback="true" historyback-override="brand-campaign-list">
     <div class="action-btn-for-header with-back-btn">
         <button class="btn-primary btn-width-md" ui-sref="brand-campaign-detail-edit({ campaignId: campaignNee.campaignId })">
-            <i class="fa fa-paper-plane"></i> แก้ไขข้อมูล
+            <i class="fa fa-pencil"></i> แก้ไขข้อมูล
         </button>
     </div>
     <h1 ng-bind="campaignNee.title | truncate: 50"></h1>
@@ -54,6 +54,16 @@
 
       <card-brand-profile ng-model="campaignNee.brand"></card-brand-profile>
 
+      <div class="card">
+        <div class="card-body text-center">
+          <button class="btn-secondary btn-width-lg btn-with-margin" ui-sref="brand-campaign-list">
+            ดู Campaign อื่นๆ
+          </button>
+          <button class="btn-primary btn-width-lg btn-with-margin" ui-sref="brand-campaign-detail-edit({ campaignId: campaignNee.campaignId })">
+            <i class="fa fa-pencil"></i> แก้ไขข้อมูล
+          </button>
+        </div>
+      </div>
 
     </div>
   </div>

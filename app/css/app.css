@@ -8294,7 +8294,7 @@ a.secondary {
 .card-profile h4 {
   color: #16bbac;
 }
-.card-profile a.link-edit-profile {
+.card-profile a.link-to-profile {
   display: inline-block;
   float: right;
   margin-top: -20px;
@@ -9923,6 +9923,10 @@ ul.payment-methods {
 .layout-portal .view-brand-signup {
   margin-top: 50px;
 }
+.layout-portal .view-brand-signup .info-text a {
+  color: #8692a8;
+  text-decoration: underline;
+}
 .layout-portal .view-influencer-portal {
   margin-top: 140px;
 }
@@ -9934,6 +9938,10 @@ ul.payment-methods {
 }
 .layout-portal .view-influencer-signup-confirmation {
   margin-top: 90px;
+}
+.layout-portal .view-influencer-signup-confirmation .info-text a {
+  color: #8692a8;
+  text-decoration: underline;
 }
 .layout-portal .view-admin-login {
   margin-top: 140px;

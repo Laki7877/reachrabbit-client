@@ -334,7 +334,7 @@ describe('Influencer', function() {
         });
 
         it('can find inputs', function() {
-            
+
             state.username = element(by.model('username'));
             state.password = element(by.model('password'));
             state.submit_btn = element(by.css('.btn-primary'));
@@ -467,10 +467,10 @@ describe('Influencer', function() {
         it('can see campaign detail with correct data', function(){
            //TODO:  need to refactor this test for a more "connected" testcase
            //eg. we check that campaign created by brand exist and can be seen by influencer
-           element(by.css('.page-header h2')).getText(function(text){
+           element(by.css('.page-header h1')).getText(function(text){
                console.log("Title is", text);
            });
-           expect(element(by.css('.page-header h2')).getText()).toEqual(browser.params.campaignName);
+           expect(element(by.css('.page-header h1')).getText()).toEqual(browser.params.campaignName);
         });
     })
 

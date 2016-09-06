@@ -22,12 +22,12 @@
                       <tbody>
                         <tr ng-repeat="proposal in wallet.proposals">
                           <td class="col-campaign-name">{{proposal.campaign.title}}</td>
-                          <td class="text-align-right">{{ proposal.price | number }} </td>
-                          <td class="text-align-right" ng-init='proposal.income = proposal.price * PostDeductionFeeMultiplier'>{{ proposal.income | number }}</td>
+                          <td class="text-align-right">{{ proposal.price | number:0 }} </td>
+                          <td class="text-align-right" ng-init='proposal.income = proposal.price * PostDeductionFeeMultiplier'>{{ proposal.income | number :0 }}</td>
                         </tr>
                         <tr class="total-price">
                           <td colspan="3">
-                            <strong>รายได้รวม ({{ wallet.proposals.length | number: 0 }} รายการ ) : {{ $root.sumReduce(wallet.proposals, 'income') | number }} บาท</strong>
+                            <strong>รายได้รวม ({{ wallet.proposals.length | number: 0 }} รายการ ) : {{ $root.sumReduce(wallet.proposals, 'income') | number:0 }} บาท</strong>
                           </td>
                         </tr>
                       </tbody>
@@ -112,7 +112,7 @@
                       รายได้รวม
                     </td>
                     <td class="text-align-right no-top-border"> 
-                      {{ $root.sumReduce(wallet.proposals, 'income') | number }} บาท
+                      {{ $root.sumReduce(wallet.proposals, 'income') | number:0 }} บาท
                     </td>
                   </tr>
                   <tr>
@@ -120,7 +120,7 @@
                       ค่าธรรมเนียมการโอน
                     </td>
                     <td class="text-align-right">
-                    {{TransferFee|number}} บาท
+                    {{TransferFee|number:0}} บาท
                     </td>
                   </tr>
                   <tr class="color-green">
@@ -128,7 +128,7 @@
                       <strong>ยอดถอน</strong>
                     </td>
                     <td class="text-align-right">
-                      <strong>{{ $root.sumReduce(wallet.proposals, 'income') + TransferFee | number }} บาท</strong>
+                      <strong>{{ $root.sumReduce(wallet.proposals, 'income') + TransferFee | number:0 }} บาท</strong>
                     </td>
                   </tr>
                 </table>

@@ -231,8 +231,9 @@ angular.module('myApp', [
                 }
 
                 $rootScope.walletBalance = k.reduce(function (p, c) {
-                  return (p + c.price) * (1 - BusinessConfig.INFLUENCER_FEE);
-                }, 0);
+                  return (p + c.price);
+                }, 0) * (1 - BusinessConfig.INFLUENCER_FEE);
+                
               });
           }
 

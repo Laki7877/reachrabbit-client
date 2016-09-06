@@ -1460,7 +1460,23 @@ angular.module('myApp.portal.controller', ['myApp.service'])
             };
 
         }
-    ]);
+    ])
+    .controller('PayoutHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
+        //Load campaign data
+        $scope.isExpired = function (T) {
+            return T.expiredAt <= (new Date());
+        };
+        $scope.load = function (data) {
+            $scope.params = data;
+            TransactionService.getAll(_.extend(data, { type: 'Payout' })).then(function (response) {
+                $scope.transactions = response.data;
+            });
+        };
+        $scope.load({
+            sort: 'updatedAt,desc'
+        });
+    }]);
+
 
 /*/////////////// /////////////// /////////////// /////////////// ///////////////
 
@@ -1482,21 +1498,6 @@ angular.module('myApp.admin.controller', ['myApp.service'])
         $scope.load = function (data) {
             $scope.params = data;
             TransactionService.getAll(_.extend(data, { type: 'Payin' })).then(function (response) {
-                $scope.transactions = response.data;
-            });
-        };
-        $scope.load({
-            sort: 'updatedAt,desc'
-        });
-    }])
-    .controller('AdminPayoutHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
-        //Load campaign data
-        $scope.isExpired = function (T) {
-            return T.expiredAt <= (new Date());
-        };
-        $scope.load = function (data) {
-            $scope.params = data;
-            TransactionService.getAll(_.extend(data, { type: 'Payout' })).then(function (response) {
                 $scope.transactions = response.data;
             });
         };

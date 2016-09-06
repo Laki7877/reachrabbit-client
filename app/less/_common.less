@@ -1203,6 +1203,9 @@ a.secondary{
     }
     .message{
       &:extend(.media all);
+      &.message-offline {
+        opacity: 0.5
+      }
       padding: 10px 15px;
       .message-left{
         &:extend(.media-left all);

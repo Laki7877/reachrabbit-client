@@ -173,6 +173,7 @@ angular.module('myApp.controller', ['myApp.service'])
     .controller('WorkroomController', ['$scope', '$uibModal', '$interval','$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util',
         function ($scope, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util) {
             $scope.msglist = [];
+            $scope.pendingList = [];
             $scope.msgLimit = 30;
             $scope.totalElements = 0;
             util.warnOnExit($scope);
@@ -310,7 +311,6 @@ angular.module('myApp.controller', ['myApp.service'])
                 if ($scope.pollActive === true) {
                     return;
                 }
-                console.log("will poll");
                 $scope.pollActive = true;
                 ProposalService.getMessagesPoll($scope.proposalId, {
                     timestamp: $scope.msglist.length > 0 ? $scope.msglist[$scope.msglist.length - 1].createdAt : new Date()
@@ -318,11 +318,24 @@ angular.module('myApp.controller', ['myApp.service'])
                     .then(function (res) {
                         $scope.pollActive = false;
                         $scope.totalElements += res.data.length;
+                        var idx = -1;
                         for (var i = res.data.length - 1; i >= 0; i--) {
                             if ($scope.msglist.length >= $scope.msgLimit) {
                                 $scope.msglist.shift();
                             }
-                            $scope.msglist.push(res.data[i]);
+                            for(var j = 0; j < $scope.pendingList.length; j++) {
+                                if($scope.pendingList[j].referenceId === res.data[i].referenceId) {
+                                    _.extend($scope.pendingList[j], res.data[i]);
+                                    idx = j;
+                                    break;
+                                }
+                            }
+
+                            if(idx >= 0) {
+                                $scope.pendingList.splice(j, 1);
+                            } else {
+                                $scope.msglist.push(res.data[i]);
+                            }
                         }
                     })
                     .finally(function () {
@@ -348,13 +361,20 @@ angular.module('myApp.controller', ['myApp.service'])
                 if (_.isEmpty(messageStr) && _.isEmpty(attachments)) {
                     return;
                 }
-                ProposalService.sendMessage({
+                var msg = {
                     message: messageStr,
                     proposal: {
                         proposalId: $scope.proposalId
                     },
-                    resources: attachments
-                })
+                    user: $rootScope.getProfile(),
+                    resources: attachments,
+                    referenceId: sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(new Date().getTime())).substr(0, 7)
+                };
+
+                $scope.msglist.push(msg);
+                $scope.pendingList.push(msg);
+
+                ProposalService.sendMessage(_.omit(msg, 'user'))
                     .then(function (resp) {
                         //$scope.msglist.push(resp.data);
                         $scope.formData = {

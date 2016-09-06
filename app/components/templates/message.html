@@ -1,4 +1,4 @@
-<div class="message" ng-class="{'bot-message': message.user.role === 'Bot' }">
+<div class="message" ng-class="{'bot-message': message.user.role === 'Bot', 'message-offline' : !(message.messageId !== undefined) }">
   <div class="message-left">
     <img class="media-object" ng-src="{{message.user.profilePicture.url || 'images/placeholder-profile-picture.png'}}">
   </div>

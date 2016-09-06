@@ -114,6 +114,7 @@ angular.module('myApp', [
 
       //Configure angular moment
       amMoment.changeLocale('th', {
+        monthsShort : 'ม.ค._ก.พ._มี.ค._เม.ย._พ.ค._มิ.ย._ก.ค._ส.ค._ก.ย._ต.ค._พ.ย._ธ.ค.'.split('_'),
         longDateFormat: {
           LT: 'H:mm',
           LTS: 'H:m:s',
@@ -180,22 +181,24 @@ angular.module('myApp', [
       $rootScope.pollInbox = function (immediately) {
         var profile = $rootScope.getProfile();
         if (profile) {
+          var imm = immediately;
           $interval(function () {
             if ($rootScope.pollPending) {
               return;
             }
             $rootScope.pollPending = true;
             ProposalService.countInbox({
-              immediate: immediately
+              immediate: imm
             })
               .then(function (res) {
+                imm = false;
                 if (!_.isNil(res.data)) {
                   $rootScope.inboxCount = res.data;
                 }
                 $rootScope.pollPending = false;
                 // $rootScope.pollInbox(false);
               });
-          }, 5000);
+          }, 1000);
         }
       };
 

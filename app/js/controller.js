@@ -3,7 +3,6 @@
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
  * @author     Natt Phenjati <natt@phenjati.com>
- * @author     Poon Wu <poon.wu@gmail.com>
  * @since      S04E02
  */
 /* jshint node: true */
@@ -170,27 +169,15 @@ angular.module('myApp.controller', ['myApp.service'])
             });
         }
     ])
-    .controller('WorkroomController', ['$scope', '$uibModal', '$interval','$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util',
-        function ($scope, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util) {
+    .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util',
+        function ($scope, $uibModal, $interval, $stateParams, ProposalService, NcAlert, $state, $location, $window, util) {
             $scope.msglist = [];
+            $scope.pendingList = [];
             $scope.msgLimit = 30;
             $scope.totalElements = 0;
             util.warnOnExit($scope);
 
             $scope.alert = new NcAlert();
-            
-            $scope.hasInWallet = function(proposal){
-                if(!$rootScope.wallet) return false;
-                if(!$rootScope.wallet.proposals) return false;
-                return _.find($rootScope.wallet.proposals, function(pred){
-                    return pred.proposalId == proposal;
-                });
-            };
-			
-			$scope.hasCart = function(proposal){
-                if(!proposal.cartId) return false;
-                return true;
-            };
 
             //Approve Proposal
             $scope.approveProposal = function (proposal) {
@@ -305,12 +292,12 @@ angular.module('myApp.controller', ['myApp.service'])
             };
 
             var stop = false;
+            var found = null;
 
             $interval(function () {
                 if ($scope.pollActive === true) {
                     return;
                 }
-                console.log("will poll");
                 $scope.pollActive = true;
                 ProposalService.getMessagesPoll($scope.proposalId, {
                     timestamp: $scope.msglist.length > 0 ? $scope.msglist[$scope.msglist.length - 1].createdAt : new Date()
@@ -318,11 +305,26 @@ angular.module('myApp.controller', ['myApp.service'])
                     .then(function (res) {
                         $scope.pollActive = false;
                         $scope.totalElements += res.data.length;
+
                         for (var i = res.data.length - 1; i >= 0; i--) {
+                            found = -1;
                             if ($scope.msglist.length >= $scope.msgLimit) {
                                 $scope.msglist.shift();
                             }
-                            $scope.msglist.push(res.data[i]);
+
+                            for (var j = 0; j < $scope.pendingList.length; j++) {
+                                if ($scope.pendingList[j].referenceId === res.data[i].referenceId) {
+                                    _.extend($scope.pendingList[j], res.data[i]);
+                                    found = j;
+                                    break;
+                                }
+                            }
+                            if (found >= 0) {
+                                $scope.pendingList.splice(found, 1);
+                            }
+                            else {
+                                $scope.msglist.push(res.data[i]);
+                            }
                         }
                     })
                     .finally(function () {
@@ -348,13 +350,21 @@ angular.module('myApp.controller', ['myApp.service'])
                 if (_.isEmpty(messageStr) && _.isEmpty(attachments)) {
                     return;
                 }
-                ProposalService.sendMessage({
+
+                // reference id
+                var ref = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(new Date().getTime())).substr(0, 7);
+
+                var msg = {
                     message: messageStr,
                     proposal: {
                         proposalId: $scope.proposalId
                     },
-                    resources: attachments
-                })
+                    resources: attachments,
+                    referenceId: ref
+                };
+                $scope.pendingList.push(msg);
+
+                ProposalService.sendMessage(msg)
                     .then(function (resp) {
                         //$scope.msglist.push(resp.data);
                         $scope.formData = {
@@ -395,64 +405,6 @@ angular.module('myApp.controller', ['myApp.service'])
             }
         }
     ])
-    .controller('PayoutHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
-        //Load campaign data
-        $scope.isExpired = function (T) {
-            return T.expiredAt <= (new Date());
-        };
-        $scope.load = function (data) {
-            $scope.params = data;
-            TransactionService.getAll(_.extend(data, { type: 'Payout' })).then(function (response) {
-                $scope.transactions = response.data;
-            });
-        };
-        $scope.load({
-            sort: 'updatedAt,desc'
-        });
-    }])
-    .controller('PayoutDetailController', ['$scope', 'TransactionService', 'AdminService', 'NcAlert', '$state', '$stateParams', function ($scope, TransactionService, AdminService, NcAlert, $state, $stateParams) {
-        $scope.alert = new NcAlert();
-        var loadTdoc = function () {
-            $scope.tDoc = [];
-
-            TransactionService.getByTransactionId($stateParams.transactionId)
-                .then(function (response) {
-                    $scope.payout = response.data;
-                    var _base = null;
-                    $scope.payout.influencerTransactionDocument
-                        .sort(function (i, x) {
-                            return i.documentId - x.documentId;
-                        })
-                        .forEach(function (sortedDoc) {
-                            if (sortedDoc.type == "Base") {
-                                var item = {
-                                    title: sortedDoc.wallet.proposals[0].campaign.title,
-                                    price: sortedDoc.amount
-                                };
-
-                                _base = item;
-                                $scope.tDoc.push(item);
-                            } else if (sortedDoc.type == "Fee") {
-                                _base.fee = sortedDoc.amount;
-                            } else if (sortedDoc.type == 'TransferFee') {
-                                $scope.transferFeeDoc = sortedDoc;
-                            }
-                        });
-                });
-        };
-        loadTdoc();
-
-        $scope.adminConfirm = function () {
-            AdminService.confirmPayout($stateParams.transactionId, $scope.slipResource)
-                .then(function () {
-                    loadTdoc();
-                })
-                .catch(function(err){
-                    $scope.alert.danger(err.data.message);
-                });
-        };
-
-    }])
     .controller('YesNoConfirmationModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal',
         function ($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal) {
             $scope.yes = function () {
@@ -471,20 +423,23 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $scope.alert = new NcAlert();
         $scope.formData = {};
 
-        AccountService.getProfile().then(function(profile){
-            UserProfile.set(profile);
-            $scope.formData.bank = profile.influencer.bank;
-            $scope.formData.accountNumber = profile.influencer.accountNumber;
-            $scope.formData.accountName = profile.influencer.accountName;
-        });
+        AccountService.getProfile()
+            .then(function (profile) {
+                UserProfile.set(profile);
+                $scope.formData.bank = profile.influencer.bank;
+                $scope.formData.accountNumber = profile.influencer.accountNumber;
+                $scope.formData.accountName = profile.influencer.accountName;
+            });
 
-        InfluencerAccountService.getWallet().then(function (walletResponse) {
-            $scope.wallet = walletResponse.data;
-        });
+        InfluencerAccountService.getWallet()
+            .then(function (walletResponse) {
+                $scope.wallet = walletResponse.data;
+            });
 
-        DataService.getBanks().then(function (bankResponse) {
-            $scope.bankOptions = bankResponse.data;
-        });
+        DataService.getBanks()
+            .then(function (bankResponse) {
+                $scope.bankOptions = bankResponse.data;
+            });
 
         $scope.PostDeductionFeeMultiplier = (1 - BusinessConfig.INFLUENCER_FEE);
         $scope.TransferFee = -1 * BusinessConfig.INFLUENCER_BANK_TF_FEE;
@@ -495,15 +450,15 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
 
             InfluencerAccountService.requestPayout($scope.formData)
                 .then(function (ias) {
-                    if($scope.rememberBankDetail){
+                    if ($scope.rememberBankDetail) {
                         AccountService.saveBank({
                             accountName: $scope.formData.accountName,
                             accountNumber: $scope.formData.accountNumber,
                             bank: $scope.formData.bank,
-                        }).then(function(){
+                        }).then(function () {
                             $state.go('influencer-payout-history');
                         });
-                    }else{
+                    } else {
                         $state.go('influencer-payout-history');
                     }
                 })
@@ -757,12 +712,13 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $scope.loadProposalCounts();
 
     }])
-    .controller('InfluencerBrandProfileController', ['$scope', 'AccountService', '$stateParams', function ($scope, AccountService, $stateParams) {
+    .controller('InfluencerBrandProfile', ['$scope', 'AccountService', '$stateParams', function ($scope, AccountService, $stateParams) {
         AccountService.getProfile($stateParams.brandId)
             .then(function (response) {
                 $scope.brand = response.data;
             });
     }]);
+
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
 d8888b. d8888b.  .d8b.  d8b   db d8888b.
@@ -1077,7 +1033,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         });
         $scope.loadProposalCounts();
     }])
-    .controller('CartController', ['$scope', '$rootScope', '$state', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function ($scope,$rootScope, $state, NcAlert, BrandAccountService, ProposalService, TransactionService, $stateParams) {
+    .controller('CartController', ['$scope', '$rootScope', '$state', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function ($scope, $rootScope, $state, NcAlert, BrandAccountService, ProposalService, TransactionService, $stateParams) {
         $scope.alert = new NcAlert();
         var loadCart = function () {
             BrandAccountService.getCart().then(function (cart) {
@@ -1122,7 +1078,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     .controller('TransactionHistoryController', ['$scope', 'NcAlert', '$state', '$stateParams', 'TransactionService', function ($scope, NcAlert, $state, $stateParams, TransactionService) {
         //Load campaign data
         $scope.load = function (data) {
-			data.type = 'Payin';
+            data.type = 'Payin';
             $scope.params = data;
             TransactionService.getAll(data).then(function (response) {
                 $scope.transactions = response.data;
@@ -1517,7 +1473,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////*/
 angular.module('myApp.admin.controller', ['myApp.service'])
     .controller('AdminTransactionHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
-        //Load campaign data
+        //Load campaign data9
         $scope.isExpired = function (T) {
             return T.expiredAt <= (new Date());
         };

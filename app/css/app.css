@@ -9716,6 +9716,9 @@ fieldset[disabled] .btn-clear.active {
 .chatbox-card .message-area .message {
   padding: 10px 15px;
 }
+.chatbox-card .message-area .message.message-offline {
+  opacity: 0.5;
+}
 .chatbox-card .message-area .message .message-left {
   padding-right: 15px;
 }

@@ -1,0 +1,48 @@
+<div class="facebook-profile">
+	<div class="card-body">		
+      <div class="card-row">
+        <div class="card-title col-xs-12">
+          <div class="card-title-content">
+          	{{data.name}}
+          </div>
+        </div>
+      </div>
+      <div class="card-row">
+      	<div class="col-xs-6">
+	      	<div class="card-info col-xs-4">
+	      		<div class="card-info-label">จำนวนคน Like เพจ</div>
+	      		<div class="card-content">
+	      			<strong>{{data.likes | currency:'':0}}</strong>
+	      			<small>คน</small>
+	      		</div>
+	      	</div>
+	      	<div class="card-info col-xs-4">
+	      		<div class="card-info-label">ค่าเฉลี่ย Like</div>
+	      		<div class="card-content">
+	      			<strong>{{data.averageLikes | currency:'':0}}</strong>
+	      			<i class="fa fa-thumbs-up"></i> 
+	      		</div>
+	      	</div>
+	      	<div class="card-info col-xs-4">
+	      		<div class="card-info-label">ค่าเฉลี่ย Comments <i class="fa fa-question-circle"></i></div>
+	      		<div class="card-content">
+	      			<strong>{{data.averageComments | currency:'':0}}</strong>
+	      			<i class="fa fa-commenting"></i> 
+	      		</div>
+	      	</div>
+	    </div>
+	    <div class="col-xs-6">
+	      	<div class="card-info col-xs-4">
+	      		<div class="card-info-label">ค่าเฉลี่ย Shares <i class="fa fa-question-circle"></i></div>
+	      		<div class="card-content">
+	      			<strong>{{data.averageShares | currency:'':0}}</strong>
+	      			<i class="fa fa-share-alt"></i> 
+	      		</div>
+	      	</div>
+	      	<div class="col-xs-4 col-xs-offset-4">
+		      	<button class="btn-secondary pull-right">ดูบน Facebook</button>
+		    </div>
+	    </div>
+      </div>
+	</div>
+</div>

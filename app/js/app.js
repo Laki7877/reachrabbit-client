@@ -221,6 +221,9 @@ angular.module('myApp', [
       $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams, options) {
           //in case of brand
+          if(!UserProfile.get()) {
+            return;
+          }
           if (UserProfile.get().brand) {
             BrandAccountService.getCart()
               .then(function (cart) {

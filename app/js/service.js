@@ -197,6 +197,13 @@ angular.module('myApp.service', ['satellizer'])
                         });
                 });
             },
+            getFacebookProfile: function(id) {
+                var url = '/profile/facebook';
+                if(!_.isNil(id)) {
+                    url = '/profile/' + id + '/facebook';
+                }
+                return $http.get(url);
+            },
             saveProfile: function (profile) {
                 return $http.put("/profile", profile);
             },

@@ -9,6 +9,15 @@
 'use strict';
 
 angular.module('myApp.directives', ['myApp.service'])
+    .directive('facebookProfile', [function() {
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=ngModel'
+            },
+            templateUrl: 'components/templates/facebook-profile.html'
+        };
+    }])
     .filter('truncate', [function () {
         return function (input, maxlen) {
             if(!input){
@@ -364,7 +373,7 @@ angular.module('myApp.directives', ['myApp.service'])
                                                 name: page.name,
                                                 id: authData.id
                                             };
-                                            $uibModalInstance.close(authData);
+                                            $uibModalInstance.close(authobject);
                                         };
                                     }],
                                     resolve: {

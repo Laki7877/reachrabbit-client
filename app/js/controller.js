@@ -665,6 +665,11 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 $scope.saveProfile($scope.formData, true);
             };
 
+            AccountService.getFacebookProfile()
+                .then(function(response) {
+                    $scope.facebook = response.data;
+                });
+
             AccountService.getProfile()
                 .then(function (response) {
                     $scope.formData = response.data;

@@ -36,7 +36,7 @@ module.exports = function (grunt) {
             }
         },
         protractor: {
-          command: 'protractor e2e-tests/protractor.conf.js --verbose',
+          command: 'npm run protractor-test',
              options: {
                 stderr: true,
                 stdout: true

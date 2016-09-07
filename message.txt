@@ -7,4 +7,4 @@ Y88b.        888    888     888888    888
 Y88b  d88P   888    Y88b. .d88P888        
  "Y8888P"    888     "Y88888P" 888        
 
-PLEASE NOW USE `grunt` TO DO EVERYTHING. INCLUDING BUILD / WATCH LESS AND START SERVER.
+Please use "grunt test" instead.

@@ -1,7 +1,7 @@
 //jshint strict: false
 exports.config = {
 
-    allScriptsTimeout: 100000,
+    allScriptsTimeout: 120000,
 
     specs: [
         '*.js'
@@ -17,7 +17,7 @@ exports.config = {
             password: 'test11121'
         },
         god_influencer: {
-            user: 'influencer@gmail.com',
+            user: 'influencer@reachrabbit.com',
             password: 'test1234'
         },
         facebook_login: {
@@ -27,6 +27,10 @@ exports.config = {
         ig_login: {
             user: 'eastduckman',
             password: 'Ahancer123!'
+        },
+        admin_login: {
+            user: 'admin@reachrabbit.com',
+            password: 'test1234'
         }
     },
 

@@ -426,27 +426,11 @@ angular.module('myApp.service', ['satellizer'])
                     params: params
                 });
             },
-            countInbox: function (params) {
-                return $http({
-                    url: '/proposals/count/poll',
-                    method: 'get',
-                    params: params,
-                    ignoreLoadingBar: true
-                });
-            },
             countUnreadMessages: function (proposalId, params) {
                 return $http({
                     url: '/proposals/' + proposalId + '/proposalmessages/count',
                     method: 'get',
                     params: params
-                });
-            },
-            getMessagesPoll: function (proposalId, params) {
-                return $http({
-                    url: '/proposals/' + proposalId + '/proposalmessages/poll',
-                    method: 'get',
-                    params: params,
-                    ignoreLoadingBar: true
                 });
             },
             sendMessage: function (proposalMessage) {
@@ -618,4 +602,24 @@ angular.module('myApp.service', ['satellizer'])
                 return $http.put('/transactions/' + TransactionId + '/paid', Slip);
             }
         };
+    }])
+    .factory('LongPollingService', ['$http', function($http){
+       return {
+           countInbox: function (params) {
+                return $http({
+                    url: '/proposals/count/poll',
+                    method: 'get',
+                    params: params,
+                    ignoreLoadingBar: true
+                });
+            },
+            getMessagesPoll: function (proposalId, params) {
+                return $http({
+                    url: '/proposals/' + proposalId + '/proposalmessages/poll',
+                    method: 'get',
+                    params: params,
+                    ignoreLoadingBar: true
+                });
+            }
+       };
     }]);

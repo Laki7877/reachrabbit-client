@@ -170,8 +170,8 @@ angular.module('myApp.controller', ['myApp.service'])
             });
         }
     ])
-    .controller('WorkroomController', ['$scope', '$uibModal', '$interval','$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util',
-        function ($scope, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util) {
+    .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util', 'LongPollingService',
+        function ($scope, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util, LongPollingService) {
             $scope.msglist = [];
             $scope.pendingList = [];
             $scope.msgLimit = 30;
@@ -179,17 +179,17 @@ angular.module('myApp.controller', ['myApp.service'])
             util.warnOnExit($scope);
 
             $scope.alert = new NcAlert();
-            
-            $scope.hasInWallet = function(proposal){
-                if(!$rootScope.wallet) return false;
-                if(!$rootScope.wallet.proposals) return false;
-                return _.find($rootScope.wallet.proposals, function(pred){
+
+            $scope.hasInWallet = function (proposal) {
+                if (!$rootScope.wallet) return false;
+                if (!$rootScope.wallet.proposals) return false;
+                return _.find($rootScope.wallet.proposals, function (pred) {
                     return pred.proposalId == proposal;
                 });
             };
-			
-			$scope.hasCart = function(proposal){
-                if(!proposal.cartId) return false;
+
+            $scope.hasCart = function (proposal) {
+                if (!proposal.cartId) return false;
                 return true;
             };
 
@@ -312,7 +312,7 @@ angular.module('myApp.controller', ['myApp.service'])
                     return;
                 }
                 $scope.pollActive = true;
-                ProposalService.getMessagesPoll($scope.proposalId, {
+                LongPollingService.getMessagesPoll($scope.proposalId, {
                     timestamp: $scope.msglist.length > 0 ? $scope.msglist[$scope.msglist.length - 1].createdAt : new Date()
                 })
                     .then(function (res) {
@@ -323,15 +323,15 @@ angular.module('myApp.controller', ['myApp.service'])
                             if ($scope.msglist.length >= $scope.msgLimit) {
                                 $scope.msglist.shift();
                             }
-                            for(var j = 0; j < $scope.pendingList.length; j++) {
-                                if($scope.pendingList[j].referenceId === res.data[i].referenceId) {
+                            for (var j = 0; j < $scope.pendingList.length; j++) {
+                                if ($scope.pendingList[j].referenceId === res.data[i].referenceId) {
                                     _.extend($scope.pendingList[j], res.data[i]);
                                     idx = j;
                                     break;
                                 }
                             }
 
-                            if(idx >= 0) {
+                            if (idx >= 0) {
                                 $scope.pendingList.splice(j, 1);
                             } else {
                                 $scope.msglist.push(res.data[i]);
@@ -350,7 +350,7 @@ angular.module('myApp.controller', ['myApp.service'])
 
             $scope.$on('$destroy', function () {
                 stop = true;
-                $interval.cancel();
+                // $interval.cancel();
             });
 
             $scope.formData = {
@@ -467,7 +467,7 @@ angular.module('myApp.controller', ['myApp.service'])
                 .then(function () {
                     loadTdoc();
                 })
-                .catch(function(err){
+                .catch(function (err) {
                     $scope.alert.danger(err.data.message);
                 });
         };
@@ -1078,7 +1078,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         });
         $scope.loadProposalCounts();
     }])
-    .controller('CartController', ['$scope', '$rootScope', '$state', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function ($scope,$rootScope, $state, NcAlert, BrandAccountService, ProposalService, TransactionService, $stateParams) {
+    .controller('CartController', ['$scope', '$rootScope', '$state', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function ($scope, $rootScope, $state, NcAlert, BrandAccountService, ProposalService, TransactionService, $stateParams) {
         $scope.alert = new NcAlert();
         var loadCart = function () {
             BrandAccountService.getCart().then(function (cart) {
@@ -1123,7 +1123,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     .controller('TransactionHistoryController', ['$scope', 'NcAlert', '$state', '$stateParams', 'TransactionService', function ($scope, NcAlert, $state, $stateParams, TransactionService) {
         //Load campaign data
         $scope.load = function (data) {
-			data.type = 'Payin';
+            data.type = 'Payin';
             $scope.params = data;
             TransactionService.getAll(data).then(function (response) {
                 $scope.transactions = response.data;

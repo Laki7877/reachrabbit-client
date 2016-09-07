@@ -103,11 +103,12 @@ angular.module('myApp', [
     MIN_FOLLOWER_COUNT: 1,
     INFLUENCER_FEE: 0.18,
     INFLUENCER_BANK_TF_FEE: 30,
-    DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"]
+    DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"],
+    PROTRACTOR_PORT: 9900
   })
   //Initialize the app
-  .run(['$rootScope', 'InfluencerAccountService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig',
-    function ($rootScope, InfluencerAccountService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig) {
+  .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig',
+    function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig) {
 
       $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
       $rootScope.SHOW_DEBUGGA = false;
@@ -185,7 +186,6 @@ angular.module('myApp', [
       };
 
       $rootScope.pollPending = false;
-
       $rootScope.pollInbox = function (immediately) {
         var profile = $rootScope.getProfile();
         if (profile) {
@@ -195,7 +195,7 @@ angular.module('myApp', [
               return;
             }
             $rootScope.pollPending = true;
-            ProposalService.countInbox({
+            LongPollingService.countInbox({
               immediate: imm
             }).then(function (res) {
                 imm = false;
@@ -208,11 +208,7 @@ angular.module('myApp', [
           }, 1000);
         }
       };
-
-      $interval(function(){
-        $rootScope.pollInbox(true);
-        $interval.cancel();
-      }, 90000);
+      $rootScope.pollInbox(true);
 
       $rootScope.goTo = function (path) {
         console.error("$root.goTo is deprecated. Please stahp using it.");
@@ -259,5 +255,8 @@ angular.module('myApp', [
             var d = new Date(datestr);
             return d.getTime() <= (new Date()).getTime();
         };
+
+
+       
 
     }]);

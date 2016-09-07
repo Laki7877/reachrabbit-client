@@ -5,19 +5,19 @@ var Chance = require('chance');
 var chance = new Chance();
 var EC = protractor.ExpectedConditions;
 
-describe('Brand', function() {
+describe('Brand', function () {
 
-    beforeAll(function() {
-        browser.params.brand_login.user = chance.email();
+    beforeAll(function () {
+        browser.params.brand_login.user = chance.email({domain: "reachrabbit.com"});
     });
 
-    describe('Signup', function() {
+    describe('Signup', function () {
         var state = {};
-        beforeAll(function() {
+        beforeAll(function () {
             browser.get('portal.html#/brand-login');
         });
 
-        it('can find inputs', function() {
+        it('can find inputs', function () {
             state.username = element(by.model('formData.username'));
             state.password = element(by.model('formData.password'));
 
@@ -30,7 +30,7 @@ describe('Brand', function() {
             expect(state.signup_btn.isPresent()).toBe(true);
         });
 
-        it('fails to login with bad credentials', function() {
+        it('fails to login with bad credentials', function () {
             state.username.sendKeys("x" + browser.params.brand_login.user);
             state.password.sendKeys(browser.params.brand_login.password);
             state.submit_btn.click();
@@ -38,7 +38,7 @@ describe('Brand', function() {
             expect($('.alert.alert-danger').isPresent()).toBe(true);
         });
 
-        it('can find inputs', function() {
+        it('can find inputs', function () {
             state.signup_btn.click();
 
             // browser.waitForAngular();
@@ -62,14 +62,14 @@ describe('Brand', function() {
 
         });
 
-        it('cannot signup without typing anything', function() {
+        it('cannot signup without typing anything', function () {
             state.submit_btn.click();
             expect($('.alert.alert-danger').isPresent()).toBe(true);
         });
 
-        it('can signup when form is complete', function() {
-            state.name.sendKeys(chance.capitalize(chance.word({length:10})));
-            state.brandName.sendKeys(chance.capitalize(chance.word({length:10})) + " Co Ltd");
+        it('can signup when form is complete', function () {
+            state.name.sendKeys(chance.capitalize(chance.word({ length: 10 })));
+            state.brandName.sendKeys(chance.capitalize(chance.word({ length: 10 })) + " Co Ltd");
             state.phoneNumber.sendKeys(chance.phone({ formatted: false }));
             state.email.sendKeys(browser.params.brand_login.user);
             state.password.sendKeys(browser.params.brand_login.password);
@@ -81,21 +81,21 @@ describe('Brand', function() {
             //redirection wait
             // browser.ignoreSynchronization = true;
 
-            browser.sleep(2300);
+            browser.sleep(5000);
 
         });
 
     });
 
-    describe('Login', function() {
+    describe('Login', function () {
         var state = {};
-        beforeAll(function() {
+        beforeAll(function () {
             browser.executeScript('window.sessionStorage.clear();');
             browser.executeScript('window.localStorage.clear();');
             browser.get('portal.html#/brand-login');
         })
 
-        it('can find inputs', function() {
+        it('can find inputs', function () {
             // browser.sleep(1000);
             // browser.waitForAngular();
 
@@ -108,7 +108,7 @@ describe('Brand', function() {
             expect(state.submit_btn.isPresent()).toBe(true);
         });
 
-        it('can login', function() {
+        it('can login', function () {
             state.username.sendKeys(browser.params.brand_login.user);
             state.password.sendKeys(browser.params.brand_login.password);
 
@@ -117,17 +117,17 @@ describe('Brand', function() {
             browser.ignoreSynchronization = false;
 
             browser.sleep(2000);
-            var info = element(by.css(".alert-info"));
-            expect(info.isPresent()).toBe(true);
+            // var info = element(by.css(".alert-info"));
+            // expect(info.isPresent()).toBe(true);
 
         });
 
     });
 
-    describe('Campaign', function() {
+    describe('Campaign', function () {
         var state = {};
 
-        it('can find sample draft campaign', function() {
+        it('can find sample draft campaign', function () {
             // browser.waitForAngular();
             var cards = element.all(by.repeater("x in myCampaign.content"));
             expect(cards.count()).toEqual(1);
@@ -135,7 +135,7 @@ describe('Brand', function() {
 
         });
 
-        it('can find inputs', function() {
+        it('can find inputs', function () {
             // browser.sleep(1000);
             // browser.waitForAngular();
 
@@ -163,7 +163,7 @@ describe('Brand', function() {
 
         });
 
-        it('can save as draft', function() {
+        it('can save as draft', function () {
 
 
             var fileToUpload = 'cyanthumb.jpg';
@@ -189,7 +189,7 @@ describe('Brand', function() {
             //sslect date 12 of this month
             element.all(by.css(".uib-daypicker button")).get(12 + 2).click();
 
-
+            state.title.sendKeys(protractor.Key.TAB);
 
             //wait for upload to finish
             state.save_draft_btn.click();
@@ -197,7 +197,7 @@ describe('Brand', function() {
             expect($('.alert.alert-success').isPresent()).toBe(true);
         });
 
-        it('reloads and everything comes back', function() {
+        it('reloads and everything comes back', function () {
             browser.driver.navigate().refresh();
             // browser.sleep(1000);
             var new_state = {};
@@ -223,13 +223,13 @@ describe('Brand', function() {
 
     });
 
-    describe('Modify and publish draft campaign', function() {
+    describe('Modify and publish draft campaign', function () {
         var state = {};
-        beforeAll(function() {
+        beforeAll(function () {
             browser.get('brand.html#/brand-campaign-list');
         });
 
-        it('can find saved campaign', function() {
+        it('can find saved campaign', function () {
             // browser.sleep(1000);
             browser.waitForAngular();
             var cards = element.all(by.repeater("x in myCampaign.content"));
@@ -237,7 +237,7 @@ describe('Brand', function() {
             cards.first().click();
         });
 
-        it('can publish drafted campaign', function() {
+        it('can publish drafted campaign', function () {
             // browser.sleep(2000);
             browser.waitForAngular();
 
@@ -254,13 +254,13 @@ describe('Brand', function() {
 
     });
 
-    describe('Profile', function() {
+    describe('Profile', function () {
         var state = {};
-        beforeAll(function() {
+        beforeAll(function () {
             browser.get('brand.html#/brand-profile');
         });
 
-        it('(view) can find all fields', function() {
+        it('(view) can find all fields', function () {
             // browser.sleep(1000);
             state.about = element(by.model("formData.brand.about"));
             state.name = element(by.model("formData.brand.brandName"));
@@ -276,13 +276,13 @@ describe('Brand', function() {
 
         });
 
-        it('(edit) can save basic information', function() {
+        it('(edit) can save basic information', function () {
             var fileToUpload = 'greenthumb.jpg';
             var absolutePath = path.resolve(__dirname, fileToUpload);
 
             var expectations = {
                 about: chance.paragraph({ sentences: 1 }),
-                name: chance.word({syllables: 4}),
+                name: chance.word({ syllables: 4 }),
                 website: chance.url()
             };
 
@@ -323,17 +323,17 @@ describe('Brand', function() {
 
 });
 
-describe('Influencer', function() {
+describe('Influencer', function () {
     var state = {};
 
-    describe('God Login', function(){
-        beforeAll(function() {
+    describe('God Login', function () {
+        beforeAll(function () {
             browser.executeScript('window.sessionStorage.clear();');
             browser.executeScript('window.localStorage.clear();');
             browser.get('portal.html#/influencer-god-login');
         });
 
-        it('can find inputs', function() {
+        it('can find inputs', function () {
 
             state.username = element(by.model('username'));
             state.password = element(by.model('password'));
@@ -344,7 +344,7 @@ describe('Influencer', function() {
             expect(state.submit_btn.isPresent()).toBe(true);
         });
 
-        it('can login', function(){
+        it('can login', function () {
             state.username.clear();
             state.password.clear();
             state.username.sendKeys(browser.params.god_influencer.user);
@@ -356,7 +356,7 @@ describe('Influencer', function() {
             browser.sleep(1500);
 
             var campaignRepeater = element.all(by.repeater("cam in campaigns.content"));
-            campaignRepeater.count().then(function(ct){
+            campaignRepeater.count().then(function (ct) {
                 expect(ct >= 1).toBeTruthy();
             });
 
@@ -365,12 +365,12 @@ describe('Influencer', function() {
 
     });
 
-    describe('God profile', function(){
-        beforeAll(function() {
+    describe('God profile', function () {
+        beforeAll(function () {
             browser.get('influencer.html#/influencer-profile');
         });
 
-        it('(view) can find all fields', function() {
+        it('(view) can find all fields', function () {
             state.name = element(by.model("formData.name"));
             state.about = element(by.model('formData.influencer.about'));
             state.phone = element(by.model('formData.phoneNumber'));
@@ -386,14 +386,14 @@ describe('Influencer', function() {
 
         });
 
-        it('(edit) can save basic information', function() {
-            var fileToUpload = 'uniqlo.jpg';
+        it('(edit) can save basic information', function () {
+            var fileToUpload = 'god.jpg';
             var absolutePath = path.resolve(__dirname, fileToUpload);
 
             var expectations = {
                 about: chance.paragraph({ sentences: 1 }),
-                name: chance.word({syllables: 4}),
-                phone: "0811111111"
+                name: 'Godamoto ' + chance.word({ syllables: 4 }),
+                phone: "0811111211"
             };
 
             state.uploader.sendKeys(absolutePath);
@@ -432,7 +432,7 @@ describe('Influencer', function() {
         });
 
 
-        xit('can connect with Instagram', function(){
+        xit('can connect with Instagram', function () {
             var igbtn = element.all(by.css('.btn-secondary.btn-width-lg')).last();
             igbtn.click();
 
@@ -451,33 +451,33 @@ describe('Influencer', function() {
 
     });
 
-    describe('Can see campaigns detail', function(){
-        beforeAll(function() {
+    describe('Can see campaigns detail', function () {
+        beforeAll(function () {
             browser.get('influencer.html#/influencer-campaign-list');
         });
 
-        it('can see open campaigns', function(){
+        it('can see open campaigns', function () {
             var cards = element.all(by.repeater("cam in campaigns.content"));
-            cards.count().then(function(ct){
+            cards.count().then(function (ct) {
                 expect(ct >= 1).toBeTruthy();
             });
             cards.first().click();
         });
 
-        it('can see campaign detail with correct data', function(){
-           //TODO:  need to refactor this test for a more "connected" testcase
-           //eg. we check that campaign created by brand exist and can be seen by influencer
-           element(by.css('.page-header h1')).getText(function(text){
-               console.log("Title is", text);
-           });
-           expect(element(by.css('.page-header h1')).getText()).toEqual(browser.params.campaignName);
+        it('can see campaign detail with correct data', function () {
+            //TODO:  need to refactor this test for a more "connected" testcase
+            //eg. we check that campaign created by brand exist and can be seen by influencer
+            element(by.css('.page-header h1')).getText(function (text) {
+                console.log("Title is", text);
+            });
+            expect(element(by.css('.page-header h1')).getText()).toEqual(browser.params.campaignName);
         });
     })
 
 });
 
-describe('Influencer-Brand interaction', function() {
-    it('Influencer can apply to campaign (submit proposal)', function(){
+describe('Influencer-Brand interaction', function () {
+    it('Influencer can apply to campaign (submit proposal)', function () {
         var applyBtn = element(by.css(".page-header button"));
         expect(applyBtn.isPresent()).toBe(true);
 
@@ -493,11 +493,11 @@ describe('Influencer-Brand interaction', function() {
         expect(price.isPresent()).toBe(true);
         expect(description.isPresent()).toBe(true);
 
-        var proposedPrice = chance.integer({min: 2000, max: 100000});
+        var proposedPrice = chance.integer({ min: 2000, max: 100000 });
 
         // //TODO: Check that calculated 0.82* proposedPrice appears.
         // //need model or some identifier
-        YtCheckbox.click().then(function(){
+        YtCheckbox.click().then(function () {
             description.sendKeys(chance.paragraph({ sentences: 5 }));
             price.sendKeys(proposedPrice);
             completionTime.sendKeys("2");
@@ -506,21 +506,20 @@ describe('Influencer-Brand interaction', function() {
             expect(sendbtn.isPresent()).toBe(true);
 
             sendbtn.click();
+            browser.sleep(1000);
         });
 
     });
 
-    it('Influencer is taken to workroom', function(){
-
+    it('Influencer is taken to workroom', function () {
         expect(element(by.css('.chatbox-card')).isPresent()).toBe(true);
+    });
+
+    xit('Influencer workroom shows correct info', function () {
 
     });
 
-    xit('Influencer workroom shows correct info', function(){
-
-    });
-
-    it('Influencer can send message', function(){
+    it('Influencer can send message', function () {
         browser.ignoreSynchronization = true;
         var textarea = element(by.model('formData.messageStr'));
         var sendBtn = element(by.css('.btn-secondary-highlight'));
@@ -541,42 +540,111 @@ describe('Influencer-Brand interaction', function() {
 
     xit('Influencer can send message with images attached');
 
-    it('Brand can see the message sent by influencer', function(){
+    it('Brand can see the message sent by influencer', function () {
 
-           browser.executeScript('window.sessionStorage.clear();');
-           browser.executeScript('window.localStorage.clear();');
-           browser.get('portal.html#/brand-login');
+        browser.executeScript('window.sessionStorage.clear();');
+        browser.executeScript('window.localStorage.clear();');
+        browser.get('portal.html#/brand-login');
 
-            var username = element(by.model('formData.username'));
-            var password = element(by.model('formData.password'));
-            var submit_btn = element(by.css('.btn-primary'));
+        var username = element(by.model('formData.username'));
+        var password = element(by.model('formData.password'));
+        var submit_btn = element(by.css('.btn-primary'));
 
-            expect(username.isPresent()).toBe(true);
-            expect(password.isPresent()).toBe(true);
-            expect(submit_btn.isPresent()).toBe(true);
+        expect(username.isPresent()).toBe(true);
+        expect(password.isPresent()).toBe(true);
+        expect(submit_btn.isPresent()).toBe(true);
 
-            username.sendKeys(browser.params.brand_login.user);
-            password.sendKeys(browser.params.brand_login.password);
-            browser.ignoreSynchronization = true;
-            submit_btn.click();
-            browser.sleep(2000);
-            browser.ignoreSynchronization = false;
+        username.sendKeys(browser.params.brand_login.user);
+        password.sendKeys(browser.params.brand_login.password);
+        browser.ignoreSynchronization = true;
+        submit_btn.click();
+        browser.sleep(2000);
+        browser.ignoreSynchronization = false;
 
-            browser.get('brand.html#/brand-inbox/');
+        browser.get('brand.html#/brand-inbox/');
 
+        var latestProposal = element.all(by.repeater('proposal in proposals.content')).first();
+        expect(latestProposal.isPresent()).toBe(true);
+        latestProposal.element(by.css('.btn-secondary')).click();
 
-            var latestProposal = element.all(by.repeater('proposal in proposals.content')).first();
-            expect(latestProposal.isPresent()).toBe(true);
-            latestProposal.element(by.css('.btn-secondary')).click();
-
-            // browser.pause();
-            //check that inf message appears
-            var messages = element.all(by.repeater('x in msglist'));
-            expect(messages.count()).toEqual(2);
-            expect(messages.get(1).element(by.css('.message-content')).getText()).toEqual('Hello');
+        // browser.pause();
+        //check that inf message appears
+        var messages = element.all(by.repeater('x in msglist'));
+        expect(messages.count()).toEqual(2);
+        expect(messages.get(1).element(by.css('.message-content')).getText()).toEqual('Hello');
 
     });
 
+});
 
+describe('Brand can add influencer to cart', function(){
+       it('can can choose proposal', function(){
+            var chooseProposalBtn = element(by.css('.btn-primary'));
+            chooseProposalBtn.click();
+       });
+
+       it('has cart of size 1', function(){
+
+         var cartList = element.all(by.repeater('proposal in cart.proposals'));
+         expect(cartList.count()).toEqual(1);
+
+       });
+
+       xit('has correct cart fee sum');
+
+       it('can can checkout', function(){
+            var checkoutBtn = element(by.css('.btn-primary'));
+            checkoutBtn.click();
+       });
+
+       it('can see brand-transaction-detail', function(){
+            var transactionNumber = element(by.binding('transaction.transactionNumber'));
+
+            transactionNumber.getText().then(function(text){
+                browser.params.transactionNumber = text;
+                expect(transactionNumber.isPresent()).toBe(true);
+            });
+            
+       });
 
 });
+
+
+describe('Admin can approve payment', function(){
+    beforeAll(function(){
+        browser.executeScript('window.sessionStorage.clear();');
+        browser.executeScript('window.localStorage.clear();');
+        browser.get('portal.html#/admin-login');
+
+        var username = element(by.model('formData.username'));
+        var password = element(by.model('formData.password'));
+        var submit_btn = element(by.css('.btn-primary'));
+
+        username.sendKeys(browser.params.admin_login.user);
+        password.sendKeys(browser.params.admin_login.password);
+
+        submit_btn.click();
+    });
+
+    it('can find transaction history', function(){
+        element.all(by.repeater('transaction in transactions.content')).count().then(function(ct){
+            expect(ct).toBeGreaterThan(0);
+        });
+    });
+
+    it('can approve payment from brand', function(){
+        var transactionList = element.all(by.repeater('transaction in transactions.content'));
+        var transactionNumber = transactionList.get(0).element(by.binding('transaction.transactionNumber'));
+        var detailBtn = transactionList.get(0).element(by.css('.btn-secondary'));
+
+        expect(transactionNumber.getText()).toEqual(browser.params.transactionNumber);
+        detailBtn.click();
+
+        var btnApproveBtn = element(by.css('.btn-primary'));
+        btnApproveBtn.click();
+
+        expect(element(by.css('.color-green .fa-check-circle-o')).isPresent()).toBe(true)
+    });
+    
+});
+

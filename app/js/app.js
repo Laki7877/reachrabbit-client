@@ -98,19 +98,26 @@ angular.module('myApp', [
     // $locationProvider.hashPrefix('');
     // $routeProvider.otherwise({redirectTo: '/404'});
     cfpLoadingBarProvider.includeSpinner = false;
-
-
   }])
   .constant('BusinessConfig', {
     MIN_FOLLOWER_COUNT: 1,
     INFLUENCER_FEE: 0.18,
-    INFLUENCER_BANK_TF_FEE: 30
+    INFLUENCER_BANK_TF_FEE: 30,
+    DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"]
   })
   //Initialize the app
   .run(['$rootScope', 'InfluencerAccountService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig',
     function ($rootScope, InfluencerAccountService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig) {
 
       $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
+      $rootScope.SHOW_DEBUGGA = false;
+      
+      //check if we are in dev environment
+      //TODO we will move all this to Config.json when
+      //we later implement webpack
+      if(BusinessConfig.DEV_ENV_HOST.indexOf($location.host()) !== -1){
+        $rootScope.SHOW_DEBUGGA = true;
+      }
 
       //Configure angular moment
       amMoment.changeLocale('th', {

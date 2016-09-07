@@ -141,8 +141,9 @@ angular.module('myApp.service', ['satellizer'])
         //Intercept all $http request and add appropriate stuff
         $httpProvider.interceptors.push('baseUrlInjector');
         $httpProvider.interceptors.push('authStatusCheckInjector');
-        $httpProvider.defaults.headers.post = { 'Content-Type': 'application/json' };
-        $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json' };
+        $httpProvider.defaults.headers.post = { 'Content-Type': 'application/json', 'Accept-Language': 'th' };
+        $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json','Accept-Language': 'th' };
+		$httpProvider.defaults.headers.get = { 'Accept-Language': 'th' };
 
 
 

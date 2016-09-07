@@ -9322,7 +9322,7 @@ fieldset[disabled] .btn-clear.active {
   height: 48px;
   border-radius: 24px;
   float: right;
-  margin-top: 25px;
+  margin-top: -25px;
   margin-right: -68px;
   background: url("../images/icon-plus-sign.png") 0 0 no-repeat #ff773e;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -9957,18 +9957,24 @@ ul.payment-methods {
 .layout-brand .container {
   width: 970px;
 }
+.layout-brand .view-brand-campaign-list .zone-header {
+  height: 200px;
+}
+.layout-brand .view-brand-campaign-list .zone-body {
+  margin-top: 0px;
+}
+.layout-brand .view-brand-campaign-list .example-campaign {
+  display: block;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px dashed #d8dfe7;
+}
 .layout-brand .view-brand-profile .input-upload-image {
   width: 127px;
   height: 127px;
 }
 .layout-brand .view-brand-profile .input-upload-image .fa-camera {
   margin-top: 38px;
-}
-.layout-brand .view-brand-campaign-list .example-campaign {
-  margin-top: 30px;
-}
-.layout-brand .view-brand-campaign-list .example-campaign h2 {
-  margin-bottom: 20px;
 }
 /*---Layout Influencer---*/
 .layout-influencer {

@@ -480,11 +480,6 @@ a.secondary{
     }
   }
 }
-.card-status{
-  &:extend(h5);
-  float: right;
-  color: @color-grey-darker;
-}
 .card-info{
   .card-info-label{
     font-size: 12px;
@@ -588,13 +583,24 @@ a.secondary{
     .make-xs-column(3);
   }
   .card-button{
-    margin-top: 40px;
+    margin-top: 20px;
+    button[disabled]{
+      margin-top: 10px;
+      color: @color-black;
+    }
+    &.status-draft{
+      margin-top: 35px;
+    }
   }
   .card-title{
     .make-xs-column(9);
   }
   .card-image{
     height: 136px;
+    &.expired{
+      -webkit-filter: grayscale(100%);
+	     filter: grayscale(100%);
+    }
   }
 }
 
@@ -707,6 +713,37 @@ a.secondary{
     .card-info-content{
       color:@color-black;
     }
+  }
+}
+
+/*---flag---*/
+.flag{
+  .status{
+    width: 120px;
+    display: block;
+    position: absolute;
+    padding: 4px 20px 3px 16px;
+    font-family: @font-primary;
+    color: @color-white;
+    background: @color-red;
+    left: 0px;
+    top: 10px;
+    -webkit-clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+  }
+  .status-open{
+    background: @color-theme-secondary;
+  }
+  .status-closed{
+    background: @color-grey-darker;
+  }
+  .status-draft{
+    display: none;
+  }
+  .status-example{
+    padding-left: 15px;
+    width: 150px;
+    background: @color-blue;
   }
 }
 

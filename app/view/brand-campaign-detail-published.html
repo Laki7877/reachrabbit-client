@@ -1,8 +1,11 @@
-<div ng-cloak class="view-brand-detail-example" >
+<div ng-cloak class="view-brand-detail-published">
   <zone-header historyback="true" historyback-override="brand-campaign-list">
     <div class="action-btn-for-header with-back-btn">
         <button class="btn-primary btn-width-md" ui-sref="brand-campaign-detail-edit({ campaignId: campaignNee.campaignId })">
             <i class="fa fa-pencil"></i> แก้ไขข้อมูล
+        </button>
+        <button type="button" class="btn-secondary" data-toggle="modal" data-target="#myModal">
+          Modal Demo
         </button>
     </div>
     <h1 ng-bind="campaignNee.title | truncate: 50"></h1>
@@ -65,6 +68,27 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal message-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="images/hello-rabbit.png" class="hello-rabbit" />
+        <h3>ยินดีด้วย! คุณได้เปิดรับข้อเสนอแล้ว</h3>
+        <p>
+          เราจะแจ้งเตือนคุณได้รับข้อเสนอจาก Influencer ที่<br>
+          <span class="color-green">XXX@mail.com</span> หรือ เช็คได้ที่ <span class="color-green">Inbox</span> ของเรา
+        </p>
+        <button type="button" class="btn-secondary btn-width-lg" data-dismiss="modal">ดูรายละเอียด Campaign</button>
+        <div class="checkbox">
+          <label><input type="checkbox" value="">รับทราบแล้วไม่ต้องแสดงอีก</label>
+        </div>
+      </div>
     </div>
   </div>
 </div>

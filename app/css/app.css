@@ -9906,6 +9906,25 @@ fieldset[disabled] .btn-clear.active {
 .select-proposal-modal .modal-title {
   color: #16bbac;
 }
+.message-modal {
+  text-align: center;
+}
+.message-modal .modal-dialog {
+  margin-top: 140px;
+}
+.message-modal .modal-dialog .modal-content {
+  border-radius: 10px;
+}
+.message-modal .hello-rabbit {
+  margin-top: -100px;
+}
+.message-modal h3 {
+  color: #16bbac;
+  margin-bottom: 10px;
+}
+.message-modal p {
+  margin-bottom: 20px;
+}
 /*---Other debugging stuff---*/
 .api_override_box {
   position: absolute;

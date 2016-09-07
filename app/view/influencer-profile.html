@@ -9,9 +9,9 @@
     <div class="container">
       <div nc-alert="alert"></div>
 
-      <div nc-alert type="info" closable="false">
+      <!-- <div nc-alert type="info" closable="false">
         ยิ่งใส่ข้อมูลเยอะคุณยิ่งมีโอกาศที่จะได้รับเลือกเพื่อร่วมงานกับแบรนด์มากขึ้น
-      </div>
+      </div> -->
       <div class="card">
         <div class="card-body">
 
@@ -142,14 +142,14 @@
             </div>
           </div>
 
-          <div class="card-row">
+          <!-- <div class="card-row">
             <div class="card-body-content-label with-input">
             </div>
             <div class="card-body-content">
               <button class="btn-width-lg btn-primary" ng-click="saveProfile(formData)" >บันทึกข้อมูล</button>
               <button class="btn-width-lg btn-secondary" ui-sref="influencer-profile-published" >ดู Profile ของฉัน</button>
             </div>
-          </div>
+          </div> -->
 
 
         </div>
@@ -158,4 +158,10 @@
     </div>
   </div>
 </div>
+
+<div class="floating-bar">
+  <button class="btn-width-lg btn-secondary-highlight btn-with-margin" ui-sref="influencer-profile-published" >ดู Profile ของฉัน</button>
+  <button class="btn-width-lg btn-primary btn-with-margin" ng-click="saveProfile(formData)" >บันทึกข้อมูล</button>
+</div>
+
 </form>

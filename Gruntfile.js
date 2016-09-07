@@ -36,7 +36,7 @@ module.exports = function (grunt) {
             }
         },
         protractor: {
-          command: 'npm run protractor',
+          command: 'npm run protractor-test',
              options: {
                 stderr: true,
                 stdout: true

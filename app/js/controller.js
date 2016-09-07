@@ -842,7 +842,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             });
 
             $scope.budgetDisplayAs = function (budgetObject) {
-                return $filter('number')(budgetObject.fromBudget) + " - " + $filter('number')(budgetObject.toBudget);
+                return $filter('number')(budgetObject.fromBudget) + " - " + $filter('number')(budgetObject.toBudget) + " บาท ต่อคน";
             };
 
             //Fetch initial datasets

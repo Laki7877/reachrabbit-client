@@ -214,6 +214,19 @@ a.secondary{
   }
 }
 
+.form-control::-webkit-input-placeholder {
+  color:@color-grey-darker;
+}
+.form-control::-moz-placeholder {
+  color:@color-grey-darker;
+}
+.form-control:-ms-input-placeholder {
+  color:@color-grey-darker;
+}
+input:-moz-placeholder {
+  color:@color-grey-darker; 
+}
+
 .input-dropdown{
   position: relative;
   .form-control {
@@ -597,6 +610,9 @@ a.secondary{
   }
   .card-image{
     height: 136px;
+    img{
+      width: 100%;
+    }
     &.expired{
       -webkit-filter: grayscale(100%);
 	     filter: grayscale(100%);
@@ -647,6 +663,9 @@ a.secondary{
     height: 198px;
     padding: 0px;
     padding-right: 15px;
+    img{
+      width: 100%;
+    }
   }
   .card-info{
     .make-xs-column(2);
@@ -679,7 +698,7 @@ a.secondary{
     height: 194px;
     overflow: hidden;
     img{
-      &:extend(.img-responsive);
+      width: 100%;
     }
   }
   .card-body{

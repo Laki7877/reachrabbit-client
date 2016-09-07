@@ -1134,9 +1134,7 @@ img {
 .card-portal .logo img,
 .card-portal .profile-picture .profile-picture-image,
 .card-campaign-description .card-body .description-image,
-.card-thumbnail .card-thumbnail-image img,
-.chatbox-card .message-area .message .message-body .message-content img,
-.workroom .card-campaign-thumbnail .card-thumbnail-image img {
+.chatbox-card .message-area .message .message-body .message-content img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -7865,6 +7863,18 @@ a.secondary {
 .input-group-btn button i {
   margin: 0px 5px;
 }
+.form-control::-webkit-input-placeholder {
+  color: #8692a8;
+}
+.form-control::-moz-placeholder {
+  color: #8692a8;
+}
+.form-control:-ms-input-placeholder {
+  color: #8692a8;
+}
+input:-moz-placeholder {
+  color: #8692a8;
+}
 .input-dropdown {
   position: relative;
 }
@@ -8267,6 +8277,9 @@ a.secondary {
 .card-campaign-list-item .card-image {
   height: 136px;
 }
+.card-campaign-list-item .card-image img {
+  width: 100%;
+}
 .card-campaign-list-item .card-image.expired {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
@@ -8323,6 +8336,9 @@ a.secondary {
   padding: 0px;
   padding-right: 15px;
 }
+.card-campaign-header .card-image img {
+  width: 100%;
+}
 .card-campaign-header .card-info {
   position: relative;
   float: left;
@@ -8355,6 +8371,10 @@ a.secondary {
   background-color: #d8dfe7;
   height: 194px;
   overflow: hidden;
+}
+.card-thumbnail .card-thumbnail-image img,
+.workroom .card-campaign-thumbnail .card-thumbnail-image img {
+  width: 100%;
 }
 .card-thumbnail .card-price,
 .workroom .card-campaign-thumbnail .card-price {

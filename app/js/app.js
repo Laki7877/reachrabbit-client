@@ -178,6 +178,7 @@ angular.module('myApp', [
       };
 
       $rootScope.pollPending = false;
+      
       $rootScope.pollInbox = function (immediately) {
         var profile = $rootScope.getProfile();
         if (profile) {
@@ -189,8 +190,7 @@ angular.module('myApp', [
             $rootScope.pollPending = true;
             ProposalService.countInbox({
               immediate: imm
-            })
-              .then(function (res) {
+            }).then(function (res) {
                 imm = false;
                 if (!_.isNil(res.data)) {
                   $rootScope.inboxCount = res.data;
@@ -201,6 +201,11 @@ angular.module('myApp', [
           }, 1000);
         }
       };
+
+      $interval(function(){
+        $rootScope.pollInbox(true);
+        $interval.cancel();
+      }, 90000);  
 
       $rootScope.goTo = function (path) {
         console.error("$root.goTo is deprecated. Please stahp using it.");

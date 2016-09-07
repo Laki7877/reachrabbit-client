@@ -19,10 +19,13 @@ module.exports = function (grunt) {
     },
     concurrent: {
         dev: {
-            tasks: ['shell:autoless', 'connect'],
+            tasks: ['shell:autoless', 'connect:server'],
             options: {
                 logConcurrentOutput: true
             }
+        },
+        test:{
+          tasks: ['connect:testserver', 'shell:protractor']
         }
     },
     shell: {
@@ -30,6 +33,13 @@ module.exports = function (grunt) {
              command: 'node node_modules/autoless/bin/autoless app/less app/css',
              options: {
                 stderr: true
+            }
+        },
+        protractor: {
+          command: 'npm run protractor-test',
+             options: {
+                stderr: true,
+                stdout: true
             }
         }
     },
@@ -51,6 +61,13 @@ module.exports = function (grunt) {
       server: {
         options: {
           port: process.env.PORT || 8080,
+          base: 'app',
+          keepalive: true
+        }
+      },
+      testserver: {
+        options: {
+          port: 9900,
           base: 'app',
           keepalive: true
         }
@@ -89,5 +106,5 @@ module.exports = function (grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'concurrent:dev']);
-
+  grunt.registerTask('test', ['concurrent:test']);
 };

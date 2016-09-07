@@ -5,17 +5,6 @@ var Chance = require('chance');
 var chance = new Chance();
 var EC = protractor.ExpectedConditions;
 
-describe('Preparation', function () {
-    it('disables long polling', function () {
-        browser.addMockModule('myApp.service', function () {
-            angular.module('myApp.service').service('LongPollingService', function () {
-                this.countInbox = {};
-                this.getMessagesPoll = {};
-            });
-        });
-    });
-});
-
 describe('Brand', function () {
 
     beforeAll(function () {
@@ -92,7 +81,7 @@ describe('Brand', function () {
             //redirection wait
             // browser.ignoreSynchronization = true;
 
-            browser.sleep(2300);
+            browser.sleep(5000);
 
         });
 
@@ -200,7 +189,7 @@ describe('Brand', function () {
             //sslect date 12 of this month
             element.all(by.css(".uib-daypicker button")).get(12 + 2).click();
 
-
+            state.title.sendKeys(protractor.Key.TAB);
 
             //wait for upload to finish
             state.save_draft_btn.click();
@@ -398,13 +387,13 @@ describe('Influencer', function () {
         });
 
         it('(edit) can save basic information', function () {
-            var fileToUpload = 'uniqlo.jpg';
+            var fileToUpload = 'god.jpg';
             var absolutePath = path.resolve(__dirname, fileToUpload);
 
             var expectations = {
                 about: chance.paragraph({ sentences: 1 }),
-                name: chance.word({ syllables: 4 }),
-                phone: "0811111111"
+                name: 'Godamoto ' + chance.word({ syllables: 4 }),
+                phone: "0811111211"
             };
 
             state.uploader.sendKeys(absolutePath);

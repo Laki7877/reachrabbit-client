@@ -36,7 +36,7 @@ exports.config = {
 
     resultJsonOutputFile: 'test-report.json',
 
-    baseUrl: 'http://localhost:8080/',
+    baseUrl: 'http://localhost:9900/',
 
     framework: 'jasmine',
     onPrepare: function() {

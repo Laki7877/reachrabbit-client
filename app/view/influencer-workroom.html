@@ -76,6 +76,11 @@
                                 <button class="btn-secondary btn-width-max" ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
                             </div>
                         </div>
+
+                        <button type="button" class="btn-secondary" data-toggle="modal" data-target="#message-modal">
+                          Modal Demo
+                        </button>
+
                     </div>
                 </div>
 
@@ -83,3 +88,23 @@
         </div>
     </div>
 </form>
+
+<!-- Message Modal -->
+<div class="modal message-modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="images/hello-rabbit.png" class="hello-rabbit" />
+        <h3>คุณได้ส่งข้อเสนอให้ Brand แล้ว</h3>
+        <p>
+          หากคุณผ่านการคัดเลือก เราจะแจ้งเตือนคุณที่<br>
+          <span class="color-green">XXX@mail.com</span> หรือ เช็คได้ที่ <span class="color-green">Inbox</span> ของเรา
+        </p>
+        <button type="button" class="btn-secondary btn-width-lg" data-dismiss="modal">ดูห้องคุยงาน</button>
+        <div class="checkbox">
+          <label><input type="checkbox" value="">ไม่ต้องแสดงอีก</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

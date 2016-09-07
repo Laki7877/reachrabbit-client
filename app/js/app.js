@@ -107,9 +107,28 @@ angular.module('myApp', [
     PROTRACTOR_PORT: 9900
   })
   //Initialize the app
-  .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig',
-    function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig) {
-
+  .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce',
+    function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce) {
+      function removeParam(key, sourceURL) {
+          var rtn = sourceURL.split("?")[0],
+              param,
+              params_arr = [],
+              queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+          if (queryString !== "") {
+              params_arr = queryString.split("&");
+              for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+                  param = params_arr[i].split("=")[0];
+                  if (param === key) {
+                      params_arr.splice(i, 1);
+                  }
+              }
+              rtn = rtn + "?" + params_arr.join("&");
+          }
+          return rtn;
+      }
+      $rootScope.trustSrc = function(src) {
+        return $sce.trustAsResourceUrl(removeParam('autoplay', src));
+      };
       $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
       $rootScope.SHOW_DEBUGGA = false;
       

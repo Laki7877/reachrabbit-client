@@ -9,13 +9,18 @@
 'use strict';
 
 angular.module('myApp.directives', ['myApp.service'])
-    .directive('facebookProfile', [function() {
+    .directive('facebookProfile', ['$window', function($window) {
         return {
             restrict: 'E',
             scope: {
                 data: '=ngModel'
             },
-            templateUrl: 'components/templates/facebook-profile.html'
+            templateUrl: 'components/templates/facebook-profile.html',
+            link: function(scope) {
+                scope.gotoPage = function() {
+                    $window.open(scope.data.link);
+                };
+            }
         };
     }])
     .filter('truncate', [function () {

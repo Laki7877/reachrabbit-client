@@ -8173,6 +8173,42 @@ input:-moz-placeholder {
 .card-title .card-title-content a {
   color: #16bbac;
 }
+.card-gallery {
+  -webkit-column-count: 2;
+  -webkit-column-gap: 10px;
+  -webkit-column-fill: auto;
+  -moz-column-count: 2;
+  -moz-column-gap: 10px;
+  -moz-column-fill: auto;
+  column-count: 2;
+  column-gap: 15px;
+  column-fill: auto;
+}
+.card-gallery-item {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: #d8dfe7;
+  display: inline-block;
+  column-break-inside: avoid;
+  margin: 15px;
+}
+.card-gallery-item .card-gallery-video {
+  width: 100%;
+  min-height: 300px;
+}
+.card-gallery-item img {
+  width: 100%;
+  height: auto;
+}
+.card-gallery-info {
+  margin-bottom: 5px;
+}
+.card-gallery-info .card-info > * {
+  text-align: center;
+}
+.card-gallery-message {
+  padding: 15px;
+  white-space: pre-wrap;
+}
 .card-info .card-info-label {
   font-size: 12px;
   color: #8692a8;

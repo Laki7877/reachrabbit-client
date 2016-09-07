@@ -140,6 +140,11 @@ angular.module('myApp.influencer.routes', ['ui.router'])
                 templateUrl: 'view/influencer-profile.html',
                 controller: 'InfluencerProfileController'
             })
+            .state('influencer-profile-published', {
+                url: '/influencer-profile-published',
+                templateUrl: 'view/influencer-profile-published.html',
+                controller: 'InfluencerProfileController'
+            })
             .state('influencer-inbox', {
                 url: '/influencer-inbox/:status?',
                 templateUrl: 'view/influencer-inbox.html',

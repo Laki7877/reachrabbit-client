@@ -197,6 +197,13 @@ angular.module('myApp.service', ['satellizer'])
                         });
                 });
             },
+            getYouTubeProfile: function(id){
+                var url = '/profile/google';
+                if(!_.isNil(id)) {
+                    url = '/profile/' + id + '/google';
+                }
+                return $http.get(url);
+            },
             getFacebookProfile: function(id) {
                 var url = '/profile/facebook';
                 if(!_.isNil(id)) {

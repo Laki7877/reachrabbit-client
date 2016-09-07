@@ -415,6 +415,20 @@ angular.module('myApp.controller', ['myApp.service'])
             }
         }
     ])
+    .controller('InfluencerProfilePortfolioController', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function ($scope, NcAlert, AccountService, $stateParams) {
+        $scope.alert = new NcAlert();
+        AccountService.getProfile($stateParams.influencerId)
+            .then(function (response) {
+                $scope.influencer = response.data;
+            });
+
+    }])
+    .controller('BrandProfilePortfolioController', ['$scope', 'AccountService', '$stateParams', function ($scope, AccountService, $stateParams) {
+        AccountService.getProfile($stateParams.brandId)
+            .then(function (response) {
+                $scope.brand = response.data;
+            });
+    }])
     .controller('PayoutHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
         //Load campaign data
         $scope.isExpired = function (T) {
@@ -762,12 +776,6 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
 
         $scope.loadProposalCounts();
 
-    }])
-    .controller('InfluencerBrandProfileController', ['$scope', 'AccountService', '$stateParams', function ($scope, AccountService, $stateParams) {
-        AccountService.getProfile($stateParams.brandId)
-            .then(function (response) {
-                $scope.brand = response.data;
-            });
     }]);
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
@@ -1116,14 +1124,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 });
         };
         loadCart();
-    }])
-    .controller('BrandInfluencerProfile', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function ($scope, NcAlert, AccountService, $stateParams) {
-        $scope.alert = new NcAlert();
-        AccountService.getProfile($stateParams.influencerId)
-            .then(function (response) {
-                $scope.influencer = response.data;
-            });
-
     }])
     .controller('TransactionHistoryController', ['$scope', 'NcAlert', '$state', '$stateParams', 'TransactionService', function ($scope, NcAlert, $state, $stateParams, TransactionService) {
         //Load campaign data

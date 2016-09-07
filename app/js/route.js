@@ -100,7 +100,7 @@ angular.module('myApp.brand.routes', ['ui.router'])
             .state('brand-influencer-profile', {
                 url: '/brand-influencer-profile/:influencerId',
                 templateUrl: 'view/brand-influencer-profile.html',
-                controller: 'BrandInfluencerProfile'
+                controller: 'InfluencerProfilePortfolioController'
             })
             .state('brand-cart', {
                 url: '/brand-cart',
@@ -158,7 +158,7 @@ angular.module('myApp.influencer.routes', ['ui.router'])
             .state('influencer-brand-profile', {
                 url: '/influencer-brand-profile/:brandId',
                 templateUrl: 'view/influencer-brand-profile.html',
-                controller: 'InfluencerBrandProfileController'
+                controller: 'BrandProfilePortfolioController'
             })
             .state('influencer-payout-detail', {
                 url: '/influencer-payout-detail/:transactionId',

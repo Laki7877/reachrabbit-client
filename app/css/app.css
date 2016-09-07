@@ -9539,6 +9539,17 @@ fieldset[disabled] .btn-clear.active {
   background: #3e4a5e;
   border: 0px;
 }
+/*---Floating Bar---*/
+.floating-bar {
+  z-index: 9;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.2);
+  padding: 7.5px 0px;
+}
 /*---Date Picker---*/
 .uib-daypicker .btn,
 .uib-monthpicker .btn,
@@ -10066,6 +10077,9 @@ ul.payment-methods {
 .layout-influencer .view-influencer-campaign-list .card-thumbnail .card-body,
 .layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail .card-body {
   height: 93px;
+}
+.layout-influencer .view-influencer-profile {
+  padding-bottom: 80px;
 }
 .layout-influencer .view-influencer-profile .input-upload-image {
   width: 127px;

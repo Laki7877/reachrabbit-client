@@ -103,7 +103,8 @@ angular.module('myApp', [
     MIN_FOLLOWER_COUNT: 1,
     INFLUENCER_FEE: 0.18,
     INFLUENCER_BANK_TF_FEE: 30,
-    DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"]
+    DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"],
+    PROTRACTOR_PORT: 9900
   })
   //Initialize the app
   .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig',
@@ -254,5 +255,8 @@ angular.module('myApp', [
             var d = new Date(datestr);
             return d.getTime() <= (new Date()).getTime();
         };
+
+
+       
 
     }]);

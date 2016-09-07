@@ -604,9 +604,15 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('LongPollingService', ['$http', function($http){
+    .factory('LongPollingService', ['$http','$q', 'BusinessConfig', '$location', function($http, $q, BusinessConfig, $location){
        return {
            countInbox: function (params) {
+                if($location.port() == BusinessConfig.PROTRACTOR_PORT){
+                    return $q(function (resolve, reject) {
+                        resolve();
+                    });
+                }
+
                 return $http({
                     url: '/proposals/count/poll',
                     method: 'get',
@@ -615,6 +621,12 @@ angular.module('myApp.service', ['satellizer'])
                 });
             },
             getMessagesPoll: function (proposalId, params) {
+                if($location.port() == BusinessConfig.PROTRACTOR_PORT){
+                    return $q(function (resolve, reject) {
+                        resolve();
+                    });
+                }
+                
                 return $http({
                     url: '/proposals/' + proposalId + '/proposalmessages/poll',
                     method: 'get',

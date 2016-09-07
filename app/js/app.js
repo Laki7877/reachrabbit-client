@@ -73,7 +73,7 @@ angular.module('myApp', [
         { mediaId: 'facebook' }
       ],
       fromBudget: 200,
-      proposalDeadline: new Date(),
+      proposalDeadline: moment(new Date()).add(30, 'days').toDate(),
       category: { categoryName: 'ความสวยแมว' },
       linkTo: 'brand-campaign-detail-example'
     },
@@ -88,7 +88,7 @@ angular.module('myApp', [
       title: 'Morinaga Koeda รสกาก',
       toBudget: 1000,
       fromBudget: 500,
-      proposalDeadline: new Date(),
+      proposalDeadline: moment(new Date()).add(30, 'days').toDate(),
       category: { categoryName: 'เกมส์' },
       linkTo: 'brand-campaign-detail-example'
     }
@@ -240,12 +240,19 @@ angular.module('myApp', [
                 $rootScope.walletBalance = k.reduce(function (p, c) {
                   return (p + c.price);
                 }, 0) * (1 - BusinessConfig.INFLUENCER_FEE);
-                
+
               });
           }
 
           $rootScope.debuggah = {};
         });
 
+        $rootScope.isExpired = function (datestr) {
+            if (!datestr) {
+                return false;
+            }
+            var d = new Date(datestr);
+            return d.getTime() <= (new Date()).getTime();
+        };
 
     }]);

@@ -746,6 +746,7 @@ input:-moz-placeholder {
       .make-xs-column(2);
       strong{
         &:extend(h3);
+        font-family: @font-secondary;
       }
       small{
         color:@color-grey-darker;
@@ -759,6 +760,40 @@ input:-moz-placeholder {
       .make-xs-column(4);
     }
   }
+  .card-gallery{
+    .card-gallery-item {
+      box-shadow: @global-shadow-depth-1;
+      background-color:@color-grey;
+      display: inline-block;
+      column-break-inside: avoid;
+      .card-gallery-video {
+        width: 100%;
+        min-height: 300px;
+      }
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    .card-gallery-info {
+      .card-info > *{
+        text-align: center;
+      }
+      .card-info{
+        margin-bottom: 15px;
+        .card-content{
+          &:extend(h4);
+        }
+      }
+    }
+    .card-gallery-message {
+      padding: 15px;
+      white-space: pre-wrap;
+    }
+  }
+}
+.facebook-profile{
+  &:extend(.social-media-profile all);
   .card-gallery {
     -webkit-column-count: 2;
     -webkit-column-gap: 10px;
@@ -769,39 +804,24 @@ input:-moz-placeholder {
     column-count: 2;
     column-gap: 15px;
     column-fill: auto;
-  }
-  .card-gallery-item {
-    box-shadow: @global-shadow-depth-1;
-    background-color:@color-grey;
-    display: inline-block;
-    column-break-inside: avoid;
-    margin: 7.5px 0px;
-    .card-gallery-video {
-      width: 100%;
-      min-height: 300px;
-    }
-    img {
-      width: 100%;
-      height: auto;
+    .card-gallery-item{
+      margin: 7.5px 0px;
     }
   }
-  .card-gallery-info {
-    .card-info > *{
-      text-align: center;
-    }
-    .card-info{
-      margin-bottom: 15px;
-      .card-content{
-        &:extend(h4);
+}
+.instagram-profile{
+  &:extend(.social-media-profile all);
+  .card-gallery{
+    margin-top: -7.5px;
+    .card-gallery-item{
+      margin: 15px 0px;
+      .card-gallery-info{
+        padding-top: 15px;
       }
     }
   }
-  .card-gallery-message {
-    padding: 15px;
-    white-space: pre-wrap;
-  }
 }
-.facebook-profile{
+.youtube-profile{
   &:extend(.social-media-profile all);
 }
 
@@ -825,11 +845,14 @@ input:-moz-placeholder {
       color: @color-white;
       background: @color-grey-darker;
     }
-    a.plain-link{
-      color: @color-theme-primary;
-      background: none;
-      margin-bottom: 0px;
-      padding-bottom: 0px;
+    &.plain-link{
+      border-top: 0px !important;
+      a{
+        color: @color-theme-primary;
+        background: none !important;
+        margin-bottom: 0px !important;
+        padding-bottom: 0px !important;
+      }
     }
   }
 }

@@ -816,13 +816,30 @@ input:-moz-placeholder {
     .card-gallery-item{
       margin: 15px 0px;
       .card-gallery-info{
-        padding-top: 15px;
+        .card-info{
+          margin-top: 8px;
+          margin-bottom: 8px;
+        }
       }
     }
   }
 }
 .youtube-profile{
   &:extend(.social-media-profile all);
+  .card-gallery{
+    margin-top: -7.5px;
+    .card-gallery-item{
+      margin: 15px 0px;
+      .card-gallery-info{
+        .card-gallery-message {
+          white-space:normal;
+        }
+        .card-info{
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
 }
 
 /*---Tabs---*/

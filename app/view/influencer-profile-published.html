@@ -7,32 +7,6 @@
 
       <card-influencer-profile ng-model="influencer"></card-influencer-profile>
 
-      <!--<ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
-          <a class="facebook-tab" aria-controls="facebook" role="tab" data-toggle="tab" aria-expanded="true">
-            <span class="icon-facebook"></span>Facebook
-          </a>
-        </li>
-        <li role="presentation">
-          <a class="instagram-tab" aria-controls="instagram" role="tab" data-toggle="tab" aria-expanded="false">
-            <span class="icon-instagram"></span>Instagram
-          </a>
-        </li>
-        <li role="presentation">
-          <a class="youtube-tab" aria-controls="youtube" role="tab" data-toggle="tab" aria-expanded="false">
-            <span class="icon-youtube"></span>YouTube
-          </a>
-        </li>
-        <li role="presentation">
-          <a class="plain-link" ui-sref="influencer-profile">
-            + เชื่อมต่อช่องทางอื่น
-          </a>
-        </li>
-      </ul>
-      <div class="social-media-profile-wrapper">
-        <facebook-profile ng-model="facebook"></facebook-profile>
-      </div>-->
-
       <uib-tabset active="activePill" type="tabs">
         <uib-tab index="0" heading="Facebook" class="facebook-tab">
           <uib-tab-heading>
@@ -181,12 +155,10 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
               </div>
             </div>
-
-            <!-- instagram-tab -->
+            <!-- End instagram-tab -->
           </div>
         </uib-tab>
         <uib-tab index="2" heading="YouTube" class="youtube-tab">
@@ -194,7 +166,113 @@
             <span class="icon-youtube"></span> YouTube
           </uib-tab-heading>
           <div class="social-media-profile-wrapper">
-            Coming soon.
+            <!-- youtube-tab -->
+            <div class="youtube-profile">
+              <div class="card-body">
+                  <div class="card-row">
+                    <div class="card-title col-xs-12">
+                      <div class="card-title-content">
+                          Youtube Channel Name
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-overview card-row">
+                    <div class="card-info">
+                      <div class="card-info-label">จำนวน Subscriber</div>
+                      <div class="card-content">
+                        <strong>9,999</strong>
+                        <small>คน</small>
+                      </div>
+                    </div>
+                    <div class="card-info">
+                      <div class="card-info-label">ยอด View ทั้งหมด</div>
+                      <div class="card-content">
+                        <strong>9,999</strong>
+                        <i class="fa fa-eye"></i>
+                      </div>
+                    </div>
+                    <div class="card-info">
+                      <div class="card-info-label">ค่าเฉลี่ย View <i class="fa fa-question-circle"></i></div>
+                      <div class="card-content">
+                        <strong>999</strong>
+                        <i class="fa fa-eye"></i>
+                      </div>
+                    </div>
+                    <div class="card-info">
+                      <div class="card-info-label">ค่าเฉลี่ย Like <i class="fa fa-question-circle"></i></div>
+                      <div class="card-content">
+                        <strong>999</strong>
+                        <i class="fa fa-share-alt"></i>
+                      </div>
+                    </div>
+                    <div class="card-button">
+                      <button ng-click="gotoPage()" class="btn-secondary pull-right btn-width-md">ดูบน YouTube</button>
+                    </div>
+                  </div>
+                  <div class="card-gallery card-row">
+
+                    <div class="col-xs-6">
+                      <div class="card-gallery-item">
+                        <img src="images/example-campaign/jon-snow-at-the-wall.jpg"/>
+                        <div class="card-gallery-info">
+                            <div class="card-gallery-message col-xs-12">
+                              โปรเจ็กเตอร์ยะเยือกโมหจริต แคนยอนไมค์วีไอพี ฟอร์มกิฟท์เอ็กซ์เพรสคีตปฏิภาณรูบิก ไมค์โมจิช็อคตรวจทานอุปัทวเหตุ...
+                            </div>
+                            <div class="card-info col-xs-3 col-xs-offset-3">
+                              <div class="card-info-label">Views</div>
+                              <div class="card-content">9,999</div>
+                            </div>
+                            <div class="card-info col-xs-3">
+                              <div class="card-info-label">Like</div>
+                              <div class="card-content">99</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                      <div class="card-gallery-item">
+                        <img src="images/example-campaign/jon-snow-at-the-wall.jpg"/>
+                        <div class="card-gallery-info">
+                            <div class="card-gallery-message col-xs-12">
+                              โปรเจ็กเตอร์ยะเยือกโมหจริต แคนยอนไมค์วีไอพี ฟอร์มกิฟท์เอ็กซ์เพรสคีตปฏิภาณรูบิก ไมค์โมจิช็อคตรวจทานอุปัทวเหตุ...
+                            </div>
+                            <div class="card-info col-xs-3 col-xs-offset-3">
+                              <div class="card-info-label">Views</div>
+                              <div class="card-content">9,999</div>
+                            </div>
+                            <div class="card-info col-xs-3">
+                              <div class="card-info-label">Like</div>
+                              <div class="card-content">99</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                      <div class="card-gallery-item">
+                        <img src="images/example-campaign/jon-snow-at-the-wall.jpg"/>
+                        <div class="card-gallery-info">
+                            <div class="card-gallery-message col-xs-12">
+                              โปรเจ็กเตอร์ยะเยือกโมหจริต แคนยอนไมค์วีไอพี ฟอร์มกิฟท์เอ็กซ์เพรสคีตปฏิภาณรูบิก ไมค์โมจิช็อคตรวจทานอุปัทวเหตุ...
+                            </div>
+                            <div class="card-info col-xs-3 col-xs-offset-3">
+                              <div class="card-info-label">Views</div>
+                              <div class="card-content">9,999</div>
+                            </div>
+                            <div class="card-info col-xs-3">
+                              <div class="card-info-label">Like</div>
+                              <div class="card-content">99</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+              </div>
+            </div>
+            <!-- End youtube-tab -->
           </div>
         </uib-tab>
         <uib-tab index="3" heading="+ เชื่อมต่อช่องทางอื่น" class="plain-link" ui-sref="influencer-profile">

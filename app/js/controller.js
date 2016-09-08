@@ -492,7 +492,21 @@ angular.module('myApp.controller', ['myApp.service'])
             $scope.yes = function () {
                 $uibModalInstance.close('yes');
             };
-        }]);
+        }])
+    .controller('CampaignMessageModalController',['$scope','email','campaignId', 'CampaignService','$uibModalInstance',
+        function ($scope, email,campaignId, CampaignService, $uibModalInstance) {
+        $scope.email = email;
+        $scope.notify = true;
+        $scope.dismiss = function(){
+            if($scope.notify){
+                CampaignService.dismissNotification(campaignId)
+                .then(function(){
+                    $uibModalInstance.close();
+                });
+            }
+            $uibModalInstance.close();
+        };
+    }]);
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
     INFLUENCER
@@ -820,8 +834,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     .controller('CampaignExampleController', ['$scope', '$stateParams', 'ExampleCampaigns', function ($scope, $stateParams, ExampleCampaigns) {
         $scope.exampleCampaign = ExampleCampaigns[$stateParams.exampleId];
     }])
-    .controller('CampaignDetailController', ['$scope', '$rootScope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', 'NcAlert', 'validator', '$state', 'util',
-        function ($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, NcAlert, validator, $state, util) {
+    .controller('CampaignDetailController', ['$scope', '$rootScope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', '$uibModal', 'NcAlert', 'validator', '$state', 'util',
+        function ($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, $uibModal, NcAlert, validator, $state, util) {
             //initial form data
             $scope.alert = new NcAlert();
             $scope.editOpenState = $stateParams.editOpenState;
@@ -910,6 +924,23 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
                         if (!$scope.formData.brand) {
                             $scope.formData.brand = UserProfile.get().brand;
+                        }
+                        if(!$scope.formData.rabbitFlag) {
+                            var modalInstance = $uibModal.open({
+                                animation: true,
+                                templateUrl: 'components/templates/brand-publish-campaign-modal.html',
+                                controller: 'CampaignMessageModalController',
+                                size: 'sm',
+                                windowClass: 'message-modal',
+                                resolve: {
+                                    email: function () {
+                                        return UserProfile.get().email;
+                                    },
+                                    campaignId: function() {
+                                        return $scope.formData.campaignId;
+                                    }
+                                }
+                            });
                         }
 
                         $scope.createMode = false;
@@ -1168,7 +1199,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             return [DAY, HOUR, MINUTE];
         };
 
-    }]);
+    }])
+    ;
 
 
 /////////////// /////////////// /////////////// /////////////// ///////////////

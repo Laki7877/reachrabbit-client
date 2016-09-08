@@ -514,7 +514,7 @@ angular.module('myApp.controller', ['myApp.service'])
     .controller('CampaignMessageModalController',['$scope', 'email', 'campaignId', 'CampaignService', '$uibModalInstance',
         function ($scope, email, campaignId, CampaignService, $uibModalInstance) {
             $scope.email = email;
-            $scope.notify = true;
+            $scope.notify = false;
             $scope.dismiss = function(){
                 if($scope.notify){
                     CampaignService.dismissNotification(campaignId)
@@ -528,7 +528,7 @@ angular.module('myApp.controller', ['myApp.service'])
     .controller('ProposalMessageModalController',['$scope', 'email', 'proposalId', 'ProposalService', '$uibModalInstance',
         function ($scope, email, proposalId, ProposalService, $uibModalInstance) {
             $scope.email = email;
-            $scope.notify = true;
+            $scope.notify = false;
             $scope.dismiss = function(){
                 if($scope.notify){
                     ProposalService.dismissNotification(proposalId)
@@ -722,6 +722,15 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         $scope.alert.danger(err.data.message);
                     });
             };
+
+            $scope.hasMedia = function(mediaId) {
+                for(var i=0; i < $scope.influencer.influencerMedias.length; i++){
+                    if($scope.influencer.influencerMedias[i].media.mediaId == mediaId){
+                        return true;
+                    }
+                }
+               return false;
+            }
 
             $scope.linkDone = function () {
                 $scope.saveProfile($scope.formData, true);

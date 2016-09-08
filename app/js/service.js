@@ -463,6 +463,9 @@ angular.module('myApp.service', ['satellizer'])
             },
             removeFromCart: function(proposal){
                 return $http.delete("/proposals/"+proposal.proposalId+ "/cart");
+            },
+            dismissNotification: function(proposalId){
+                return $http.put("/proposals/"+proposalId+ "/dismiss");
             }
         };
     }])

@@ -170,8 +170,8 @@ angular.module('myApp.controller', ['myApp.service'])
             });
         }
     ])
-    .controller('WorkroomController', ['$scope', '$uibModal', '$interval', '$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util', 'LongPollingService',
-        function ($scope, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util, LongPollingService) {
+    .controller('WorkroomController', ['$scope','UserProfile', '$uibModal', '$interval', '$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util', 'LongPollingService',
+        function ($scope, UserProfile, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util, LongPollingService) {
             $scope.msglist = [];
             $scope.pendingList = [];
             $scope.msgLimit = 30;
@@ -393,6 +393,24 @@ angular.module('myApp.controller', ['myApp.service'])
             ProposalService.getOne($scope.proposalId)
                 .then(function (proposalResponse) {
                     $scope.proposal = proposalResponse.data;
+                    if(UserProfile.get().influencer && !$scope.proposal.rabbitFlag && $scope.proposal.status == 'Selection') {
+                        var modalInstance = $uibModal.open({
+                            animation: true,
+                            templateUrl: 'components/templates/influencer-proposal-message.modal.html',
+                            controller: 'ProposalMessageModalController',
+                            size: 'sm',
+                            windowClass: 'message-modal',
+                            backdrop: 'static',
+                            resolve: {
+                                email: function () {
+                                    return UserProfile.get().email;
+                                },
+                                proposalId: function() {
+                                    return $scope.proposal.proposalId;
+                                }
+                            }
+                        });
+                    }
                 });
 
             /* JS for Chat Area */
@@ -493,20 +511,34 @@ angular.module('myApp.controller', ['myApp.service'])
                 $uibModalInstance.close('yes');
             };
         }])
-    .controller('CampaignMessageModalController',['$scope','email','campaignId', 'CampaignService','$uibModalInstance',
-        function ($scope, email,campaignId, CampaignService, $uibModalInstance) {
-        $scope.email = email;
-        $scope.notify = true;
-        $scope.dismiss = function(){
-            if($scope.notify){
-                CampaignService.dismissNotification(campaignId)
-                .then(function(){
-                    $uibModalInstance.close();
-                });
-            }
-            $uibModalInstance.close();
-        };
-    }]);
+    .controller('CampaignMessageModalController',['$scope', 'email', 'campaignId', 'CampaignService', '$uibModalInstance',
+        function ($scope, email, campaignId, CampaignService, $uibModalInstance) {
+            $scope.email = email;
+            $scope.notify = true;
+            $scope.dismiss = function(){
+                if($scope.notify){
+                    CampaignService.dismissNotification(campaignId)
+                    .then(function(){
+                        $uibModalInstance.close();
+                    });
+                }
+                $uibModalInstance.close();
+            };
+    }])
+    .controller('ProposalMessageModalController',['$scope', 'email', 'proposalId', 'ProposalService', '$uibModalInstance',
+        function ($scope, email, proposalId, ProposalService, $uibModalInstance) {
+            $scope.email = email;
+            $scope.notify = true;
+            $scope.dismiss = function(){
+                if($scope.notify){
+                    ProposalService.dismissNotification(proposalId)
+                    .then(function(){
+                        $uibModalInstance.close();
+                    });
+                }
+                $uibModalInstance.close();
+            };
+     }]);
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
     INFLUENCER
@@ -932,6 +964,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                                 controller: 'CampaignMessageModalController',
                                 size: 'sm',
                                 windowClass: 'message-modal',
+                                backdrop: 'static',
                                 resolve: {
                                     email: function () {
                                         return UserProfile.get().email;

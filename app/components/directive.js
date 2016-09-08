@@ -23,6 +23,20 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
+    .directive('youtubeProfile', ['$window', function($window){
+        return {
+            restrict: 'E',
+            scope: {
+                data : '=ngModel'
+            },
+            templateUrl: "components/templates/youtube-profile.html",
+            link: function(scope){
+                scope.gotoPage = function(link) {
+                    $window.open(link);
+                };
+            }
+        };
+    }])
     .filter('truncate', [function () {
         return function (input, maxlen) {
             if(!input){

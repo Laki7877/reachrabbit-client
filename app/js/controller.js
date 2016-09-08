@@ -736,6 +736,15 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 $scope.saveProfile($scope.formData, true);
             };
 
+
+            var ytMedia = _.find($scope.influencer.influencerMedias, function(o){
+                return o.media.mediaId == "google";
+            });
+            AccountService.getYouTubeProfile(ytMedia.socialId)
+            .then(function(response){
+                $scope.youtube = response.data;
+            });
+
             AccountService.getFacebookProfile()
                 .then(function(response) {
                     $scope.facebook = response.data;

@@ -230,10 +230,8 @@ th {
   .zone-header .with-history-back h1,
   .card-title .card-title-content,
   .social-media-profile .card-overview .card-info strong,
-  .social-media-profile .card-gallery-info .card-info .card-content,
   .proposal-modal .modal-title,
-  .facebook-profile .card-overview .card-info strong,
-  .facebook-profile .card-gallery-info .card-info .card-content {
+  .facebook-profile .card-overview .card-info strong {
     orphans: 3;
     widows: 3;
   }
@@ -242,10 +240,8 @@ th {
   .zone-header .with-history-back h1,
   .card-title .card-title-content,
   .social-media-profile .card-overview .card-info strong,
-  .social-media-profile .card-gallery-info .card-info .card-content,
   .proposal-modal .modal-title,
-  .facebook-profile .card-overview .card-info strong,
-  .facebook-profile .card-gallery-info .card-info .card-content {
+  .facebook-profile .card-overview .card-info strong {
     page-break-after: avoid;
   }
   .navbar {
@@ -1221,6 +1217,7 @@ h6,
 .card-thumbnail .card-body,
 .social-media-profile .card-overview .card-info strong,
 .social-media-profile .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
@@ -1270,10 +1267,8 @@ h3,
 .zone-header .with-history-back h1,
 .card-title .card-title-content,
 .social-media-profile .card-overview .card-info strong,
-.social-media-profile .card-gallery-info .card-info .card-content,
 .proposal-modal .modal-title,
-.facebook-profile .card-overview .card-info strong,
-.facebook-profile .card-gallery-info .card-info .card-content {
+.facebook-profile .card-overview .card-info strong {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -1303,9 +1298,12 @@ h6,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
+.facebook-profile .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -1337,10 +1335,8 @@ h3,
 .h3,
 .card-title .card-title-content,
 .social-media-profile .card-overview .card-info strong,
-.social-media-profile .card-gallery-info .card-info .card-content,
 .proposal-modal .modal-title,
-.facebook-profile .card-overview .card-info strong,
-.facebook-profile .card-gallery-info .card-info .card-content {
+.facebook-profile .card-overview .card-info strong {
   font-size: 24px;
 }
 h4,
@@ -1350,8 +1346,11 @@ h4,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
+.facebook-profile .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 18px;
 }
@@ -6311,6 +6310,7 @@ button.list-group-item-danger.active:focus {
 .card-thumbnail,
 .card-inbox,
 .card-transaction-header,
+.social-media-profile-wrapper,
 .workroom .card-proposal-detail,
 .chatbox-card,
 .workroom .card-campaign-thumbnail {
@@ -7672,10 +7672,8 @@ h2,
 h3,
 .card-title .card-title-content,
 .social-media-profile .card-overview .card-info strong,
-.social-media-profile .card-gallery-info .card-info .card-content,
 .proposal-modal .modal-title,
-.facebook-profile .card-overview .card-info strong,
-.facebook-profile .card-gallery-info .card-info .card-content {
+.facebook-profile .card-overview .card-info strong {
   font-family: 'Kanit', sans-serif;
   font-size: 18px;
   font-weight: normal;
@@ -7687,8 +7685,11 @@ h4,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
+.facebook-profile .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 16px;
   font-weight: normal;
@@ -8073,6 +8074,7 @@ input:-moz-placeholder {
 .card-thumbnail,
 .card-inbox,
 .card-transaction-header,
+.social-media-profile-wrapper,
 .workroom .card-proposal-detail,
 .chatbox-card,
 .workroom .card-campaign-thumbnail {
@@ -8433,6 +8435,9 @@ input:-moz-placeholder {
   color: #3e4a5e;
 }
 /*---Social Media Profile---*/
+.social-media-profile-wrapper {
+  box-shadow: none;
+}
 .social-media-profile .card-overview .card-info,
 .facebook-profile .card-overview .card-info {
   position: relative;
@@ -8503,32 +8508,59 @@ input:-moz-placeholder {
   padding: 15px;
   white-space: pre-wrap;
 }
-/*---- Component: Tabs ----*/
+/*---- Tabs ----*/
 .nav-tabs {
+  margin-top: 30px;
   border-bottom: 0px;
 }
 .nav-tabs li {
-  min-width: 90px;
+  min-width: 150px;
   text-align: center;
-  font-size: 16px;
 }
 .nav-tabs li a {
+  color: #3e4a5e;
   margin-right: 5px;
-  border: 0px solid #d8dfe7;
-  background: #ffffff;
-  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border: 0px;
+  background: #d8dfe7;
+  border-radius: 0px;
+}
+.nav-tabs li a:hover {
+  color: #ffffff;
+  background: #8692a8;
+}
+.nav-tabs li a.plain-link {
+  color: #ff773e;
+  background: none;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: #3e4a5e;
-  background-color: #fff;
-  border: 1px solid #d8dfe7;
-  border-bottom-color: transparent;
+  background-color: #ffffff;
+  border: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 15px;
+  border-bottom: 0px;
+  border-top: 4px solid;
+  margin-top: -4px;
   cursor: pointer;
 }
-.with-tabs {
-  border-top-left-radius: 0px;
+.nav-tabs > li.active > a.facebook-tab,
+.nav-tabs > li.active > a:hover.facebook-tab,
+.nav-tabs > li.active > a:focus.facebook-tab {
+  border-top-color: #3b5998;
+}
+.nav-tabs > li.active > a.instagram-tab,
+.nav-tabs > li.active > a:hover.instagram-tab,
+.nav-tabs > li.active > a:focus.instagram-tab {
+  border-top-color: #df3d79;
+}
+.nav-tabs > li.active > a.youtube-tab,
+.nav-tabs > li.active > a:hover.youtube-tab,
+.nav-tabs > li.active > a:focus.youtube-tab {
+  border-top-color: #e62117;
 }
 /*---flag---*/
 .flag .status {

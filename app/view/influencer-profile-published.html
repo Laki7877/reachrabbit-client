@@ -9,18 +9,30 @@
 
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
-          <a href="#facebook" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Facebook</a>
+          <a href="#facebook" class="facebook-tab" aria-controls="facebook" role="tab" data-toggle="tab" aria-expanded="true">
+            <span class="icon-facebook"></span>Facebook
+          </a>
         </li>
-        <li role="presentation" class="">
-          <a href="#instagram" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">Instagram</a>
+        <li role="presentation">
+          <a href="#instagram" class="instagram-tab" aria-controls="instagram" role="tab" data-toggle="tab" aria-expanded="false">
+            <span class="icon-instagram"></span>Instagram
+          </a>
         </li>
-        <li role="presentation" class="">
-          <a href="#youtube" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">YouTube</a>
+        <li role="presentation">
+          <a href="#youtube" class="youtube-tab" aria-controls="youtube" role="tab" data-toggle="tab" aria-expanded="false">
+            <span class="icon-youtube"></span>YouTube
+          </a>
+        </li>
+        <li role="presentation">
+          <a class="plain-link" ui-sref="influencer-profile">
+            + เชื่อมต่อช่องทางอื่น
+          </a>
         </li>
       </ul>
-      <div class="card">
+      <div class="social-media-profile-wrapper">
         <facebook-profile ng-model="facebook"></facebook-profile>
       </div>
+
     </div>
   </div>
 </div>

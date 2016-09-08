@@ -1,0 +1,60 @@
+<div class="instagram-profile">
+  <div class="card-body">
+      <div class="card-row">
+        <div class="card-title col-xs-12">
+          <div class="card-title-content">@{{data.username}}</div>
+        </div>
+      </div>
+      <div class="card-overview card-row">
+        <div class="card-info">
+          <div class="card-info-label">จำนวน Follower</div>
+          <div class="card-content">
+            <strong>{{data.followers | currency:'':0}}</strong>
+            <small>คน</small>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-info-label">จำนวนโพสทั้งหทด</div>
+          <div class="card-content">
+            <strong>{{data.totalPosts | currency:'':0}}</strong>
+            <small>โพส</small>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-info-label">ค่าเฉลี่ย Likes <i class="fa fa-question-circle"></i></div>
+          <div class="card-content">
+            <strong>{{data.averageLikes | currency:'':0}}</strong>
+            <i class="fa fa-share-alt"></i>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-info-label">ค่าเฉลี่ย Commment <i class="fa fa-question-circle"></i></div>
+          <div class="card-content">
+            <strong>{{data.averageComments | currency:'':0}}</strong>
+            <i class="fa fa-commenting"></i>
+          </div>
+        </div>
+        <div class="card-button">
+          <button ng-click="gotoPage()" class="btn-secondary pull-right btn-width-md">ดูบน Instagram</button>
+        </div>
+      </div>
+      <div class="card-gallery card-row">
+        <div ng-repeat="post in data.posts" class="col-xs-3">
+          <div class="card-gallery-item">
+            <img ng-if="post.type=='image'" ng-src="{{$root.trustSrc(post.image)}}"/>
+            <iframe class="card-gallery-video" ng-if="post.type=='video'" ng-src="{{$root.trustSrc(post.video)}}" frameBorder="0"></iframe>
+            <div class="card-gallery-info">
+                <div class="card-info col-xs-6">
+                  <div class="card-info-label">Likes</div>
+                  <div class="card-content">{{post.likes}}</div>
+                </div>
+                <div class="card-info col-xs-6">
+                  <div class="card-info-label">Comments</div>
+                  <div class="card-content">{{post.comments}}</div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

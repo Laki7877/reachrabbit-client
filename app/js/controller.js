@@ -740,6 +740,10 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 .then(function(response) {
                     $scope.facebook = response.data;
                 });
+            AccountService.getInstagramProfile()
+                .then(function(response) {
+                    $scope.instagram = response.data;
+                });
 
             AccountService.getProfile()
                 .then(function (response) {

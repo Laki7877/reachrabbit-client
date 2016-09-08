@@ -390,6 +390,9 @@ angular.module('myApp.service', ['satellizer'])
             },
             getAppliedProposal: function(campaignId){
                 return $http.get('/campaigns/' + campaignId + '/applied');
+            },
+            dismissNotification: function(campaignId){
+                return $http.put('/campaigns/' + campaignId + '/dismiss');
             }
         };
     }])

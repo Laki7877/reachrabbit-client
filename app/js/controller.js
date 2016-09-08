@@ -493,9 +493,19 @@ angular.module('myApp.controller', ['myApp.service'])
                 $uibModalInstance.close('yes');
             };
         }])
-    .controller('CampaignMessageModalController',['$scope','email',
-        function ($scope, email) {
+    .controller('CampaignMessageModalController',['$scope','email','campaignId', 'CampaignService','$uibModalInstance',
+        function ($scope, email,campaignId, CampaignService, $uibModalInstance) {
         $scope.email = email;
+        $scope.notify = true;
+        $scope.dismiss = function(){
+            if($scope.notify){
+                CampaignService.dismissNotification(campaignId)
+                .then(function(){
+                    $uibModalInstance.close();
+                });
+            }
+            $uibModalInstance.close();
+        };
     }]);
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
@@ -925,6 +935,9 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                                 resolve: {
                                     email: function () {
                                         return UserProfile.get().email;
+                                    },
+                                    campaignId: function() {
+                                        return $scope.formData.campaignId;
                                     }
                                 }
                             });

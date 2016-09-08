@@ -229,7 +229,9 @@ th {
   h3,
   .zone-header .with-history-back h1,
   .card-title .card-title-content,
-  .proposal-modal .modal-title {
+  .social-media-profile .card-overview .card-info strong,
+  .proposal-modal .modal-title,
+  .facebook-profile .card-overview .card-info strong {
     orphans: 3;
     widows: 3;
   }
@@ -237,7 +239,9 @@ th {
   h3,
   .zone-header .with-history-back h1,
   .card-title .card-title-content,
-  .proposal-modal .modal-title {
+  .social-media-profile .card-overview .card-info strong,
+  .proposal-modal .modal-title,
+  .facebook-profile .card-overview .card-info strong {
     page-break-after: avoid;
   }
   .navbar {
@@ -1211,10 +1215,15 @@ h6,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-overview .card-info strong,
+.social-media-profile .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
 .proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong,
+.facebook-profile .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-family: inherit;
   font-weight: 500;
@@ -1257,7 +1266,9 @@ h3,
 .h3,
 .zone-header .with-history-back h1,
 .card-title .card-title-content,
-.proposal-modal .modal-title {
+.social-media-profile .card-overview .card-info strong,
+.proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -1287,9 +1298,12 @@ h6,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
+.facebook-profile .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -1320,7 +1334,9 @@ h2,
 h3,
 .h3,
 .card-title .card-title-content,
-.proposal-modal .modal-title {
+.social-media-profile .card-overview .card-info strong,
+.proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong {
   font-size: 24px;
 }
 h4,
@@ -1330,8 +1346,11 @@ h4,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
+.facebook-profile .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 18px;
 }
@@ -6291,6 +6310,7 @@ button.list-group-item-danger.active:focus {
 .card-thumbnail,
 .card-inbox,
 .card-transaction-header,
+.social-media-profile-wrapper,
 .workroom .card-proposal-detail,
 .chatbox-card,
 .workroom .card-campaign-thumbnail {
@@ -7651,7 +7671,9 @@ h2,
 }
 h3,
 .card-title .card-title-content,
-.proposal-modal .modal-title {
+.social-media-profile .card-overview .card-info strong,
+.proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong {
   font-family: 'Kanit', sans-serif;
   font-size: 18px;
   font-weight: normal;
@@ -7663,8 +7685,11 @@ h4,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
+.facebook-profile .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 16px;
   font-weight: normal;
@@ -8049,6 +8074,7 @@ input:-moz-placeholder {
 .card-thumbnail,
 .card-inbox,
 .card-transaction-header,
+.social-media-profile-wrapper,
 .workroom .card-proposal-detail,
 .chatbox-card,
 .workroom .card-campaign-thumbnail {
@@ -8172,42 +8198,6 @@ input:-moz-placeholder {
 }
 .card-title .card-title-content a {
   color: #16bbac;
-}
-.card-gallery {
-  -webkit-column-count: 2;
-  -webkit-column-gap: 10px;
-  -webkit-column-fill: auto;
-  -moz-column-count: 2;
-  -moz-column-gap: 10px;
-  -moz-column-fill: auto;
-  column-count: 2;
-  column-gap: 15px;
-  column-fill: auto;
-}
-.card-gallery-item {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  background-color: #d8dfe7;
-  display: inline-block;
-  column-break-inside: avoid;
-  margin: 15px;
-}
-.card-gallery-item .card-gallery-video {
-  width: 100%;
-  min-height: 300px;
-}
-.card-gallery-item img {
-  width: 100%;
-  height: auto;
-}
-.card-gallery-info {
-  margin-bottom: 5px;
-}
-.card-gallery-info .card-info > * {
-  text-align: center;
-}
-.card-gallery-message {
-  padding: 15px;
-  white-space: pre-wrap;
 }
 .card-info .card-info-label {
   font-size: 12px;
@@ -8443,6 +8433,134 @@ input:-moz-placeholder {
 }
 .card-transaction-header .card-info .card-info-content {
   color: #3e4a5e;
+}
+/*---Social Media Profile---*/
+.social-media-profile-wrapper {
+  box-shadow: none;
+}
+.social-media-profile .card-overview .card-info,
+.facebook-profile .card-overview .card-info {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.social-media-profile .card-overview .card-info small,
+.facebook-profile .card-overview .card-info small {
+  color: #8692a8;
+}
+.social-media-profile .card-overview .card-info i,
+.facebook-profile .card-overview .card-info i {
+  margin-left: 5px;
+  color: #8692a8;
+}
+.social-media-profile .card-overview .card-button,
+.facebook-profile .card-overview .card-button {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.social-media-profile .card-gallery,
+.facebook-profile .card-gallery {
+  -webkit-column-count: 2;
+  -webkit-column-gap: 10px;
+  -webkit-column-fill: auto;
+  -moz-column-count: 2;
+  -moz-column-gap: 10px;
+  -moz-column-fill: auto;
+  column-count: 2;
+  column-gap: 15px;
+  column-fill: auto;
+}
+.social-media-profile .card-gallery-item,
+.facebook-profile .card-gallery-item {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: #d8dfe7;
+  display: inline-block;
+  column-break-inside: avoid;
+  margin: 7.5px 0px;
+}
+.social-media-profile .card-gallery-item .card-gallery-video,
+.facebook-profile .card-gallery-item .card-gallery-video {
+  width: 100%;
+  min-height: 300px;
+}
+.social-media-profile .card-gallery-item img,
+.facebook-profile .card-gallery-item img {
+  width: 100%;
+  height: auto;
+}
+.social-media-profile .card-gallery-info .card-info > *,
+.facebook-profile .card-gallery-info .card-info > * {
+  text-align: center;
+}
+.social-media-profile .card-gallery-info .card-info,
+.facebook-profile .card-gallery-info .card-info {
+  margin-bottom: 15px;
+}
+.social-media-profile .card-gallery-message,
+.facebook-profile .card-gallery-message {
+  padding: 15px;
+  white-space: pre-wrap;
+}
+/*---- Tabs ----*/
+.nav-tabs {
+  margin-top: 30px;
+  border-bottom: 0px;
+}
+.nav-tabs li {
+  min-width: 150px;
+  text-align: center;
+}
+.nav-tabs li a {
+  color: #3e4a5e;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border: 0px;
+  background: #d8dfe7;
+  border-radius: 0px;
+}
+.nav-tabs li a:hover {
+  color: #ffffff;
+  background: #8692a8;
+}
+.nav-tabs li a.plain-link {
+  color: #ff773e;
+  background: none;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: #ffffff;
+  border: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 15px;
+  border-bottom: 0px;
+  border-top: 4px solid;
+  margin-top: -4px;
+  cursor: pointer;
+}
+.nav-tabs > li.active > a.facebook-tab,
+.nav-tabs > li.active > a:hover.facebook-tab,
+.nav-tabs > li.active > a:focus.facebook-tab {
+  border-top-color: #3b5998;
+}
+.nav-tabs > li.active > a.instagram-tab,
+.nav-tabs > li.active > a:hover.instagram-tab,
+.nav-tabs > li.active > a:focus.instagram-tab {
+  border-top-color: #df3d79;
+}
+.nav-tabs > li.active > a.youtube-tab,
+.nav-tabs > li.active > a:hover.youtube-tab,
+.nav-tabs > li.active > a:focus.youtube-tab {
+  border-top-color: #e62117;
 }
 /*---flag---*/
 .flag .status {

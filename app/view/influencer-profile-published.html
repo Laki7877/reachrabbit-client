@@ -5,14 +5,61 @@
   <div class="zone-body">
     <div class="container">
 
-      <div nc-alert type="info" closable="true">
-        Hello World
-      </div>
+      <card-influencer-profile ng-model="influencer"></card-influencer-profile>
 
-      <!-- Contetn Go Here -->
-      <div class="card">
+      <!--<ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a class="facebook-tab" aria-controls="facebook" role="tab" data-toggle="tab" aria-expanded="true">
+            <span class="icon-facebook"></span>Facebook
+          </a>
+        </li>
+        <li role="presentation">
+          <a class="instagram-tab" aria-controls="instagram" role="tab" data-toggle="tab" aria-expanded="false">
+            <span class="icon-instagram"></span>Instagram
+          </a>
+        </li>
+        <li role="presentation">
+          <a class="youtube-tab" aria-controls="youtube" role="tab" data-toggle="tab" aria-expanded="false">
+            <span class="icon-youtube"></span>YouTube
+          </a>
+        </li>
+        <li role="presentation">
+          <a class="plain-link" ui-sref="influencer-profile">
+            + เชื่อมต่อช่องทางอื่น
+          </a>
+        </li>
+      </ul>
+      <div class="social-media-profile-wrapper">
         <facebook-profile ng-model="facebook"></facebook-profile>
-      </div>
+      </div>-->
+
+      <uib-tabset active="activePill" type="tabs">
+        <uib-tab index="0" heading="Facebook">
+          <uib-tab-heading class="facebook-tab">
+            <span class="icon-facebook"></span>Facebook
+          </uib-tab-heading>
+          <div class="social-media-profile-wrapper">
+            <facebook-profile ng-model="facebook"></facebook-profile>
+          </div>
+        </uib-tab>
+        <uib-tab index="1" heading="Instagram">
+          <uib-tab-heading class="instagram-tab">
+            <span class="icon-instagram"></span> Instagram
+          </uib-tab-heading>
+          <div class="social-media-profile-wrapper">
+            Coming soon.
+          </div>
+        </uib-tab>
+        <uib-tab index="2" heading="YouTube">
+          <uib-tab-heading class="youtube-tab">
+            <span class="icon-youtube"></span> YouTube
+          </uib-tab-heading>
+          <div class="social-media-profile-wrapper">
+            Coming soon.
+          </div>
+        </uib-tab>
+      </uib-tabset>
+
     </div>
   </div>
 </div>

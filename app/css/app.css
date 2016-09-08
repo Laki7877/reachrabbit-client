@@ -8561,8 +8561,21 @@ input:-moz-placeholder {
 .instagram-profile .card-gallery .card-gallery-item {
   margin: 15px 0px;
 }
-.instagram-profile .card-gallery .card-gallery-item .card-gallery-info {
-  padding-top: 15px;
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-info .card-info {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.youtube-profile .card-gallery {
+  margin-top: -7.5px;
+}
+.youtube-profile .card-gallery .card-gallery-item {
+  margin: 15px 0px;
+}
+.youtube-profile .card-gallery .card-gallery-item .card-gallery-info .card-gallery-message {
+  white-space: normal;
+}
+.youtube-profile .card-gallery .card-gallery-item .card-gallery-info .card-info {
+  margin-bottom: 15px;
 }
 /*---Tabs---*/
 .nav-tabs {

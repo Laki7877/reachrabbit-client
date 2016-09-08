@@ -130,6 +130,7 @@ describe('Brand', function () {
         it('can find sample draft campaign', function () {
             // browser.waitForAngular();
             var cards = element.all(by.repeater("x in myCampaign.content"));
+            
             expect(cards.count()).toEqual(1);
             cards.first().click();
 
@@ -199,7 +200,6 @@ describe('Brand', function () {
 
         it('reloads and everything comes back', function () {
             browser.driver.navigate().refresh();
-            // browser.sleep(1000);
             var new_state = {};
             new_state.thumbImage = element(by.css(".card-image img"));
 
@@ -213,6 +213,7 @@ describe('Brand', function () {
             new_state.uploaders = element.all(by.css('input[type="file"]'));
             new_state.proposalDeadline = element(by.model("formData.proposalDeadline"));
             new_state.category = element(by.model('formData.category'));
+            
 
             expect(new_state.thumbImage.getAttribute('src') == 'images/placeholder-campaign.png').toBe(false);
             //TODO: check against value we entered
@@ -223,14 +224,13 @@ describe('Brand', function () {
 
     });
 
-    describe('Modify and publish draft campaign', function () {
+    xdescribe('Modify and publish draft campaign', function () {
         var state = {};
         beforeAll(function () {
             browser.get('brand.html#/brand-campaign-list');
         });
 
         it('can find saved campaign', function () {
-            // browser.sleep(1000);
             browser.waitForAngular();
             var cards = element.all(by.repeater("x in myCampaign.content"));
             expect(cards.count()).toEqual(1);
@@ -238,7 +238,6 @@ describe('Brand', function () {
         });
 
         it('can publish drafted campaign', function () {
-            // browser.sleep(2000);
             browser.waitForAngular();
 
             state.publish_btn = element(by.css('.btn-primary'));
@@ -247,7 +246,8 @@ describe('Brand', function () {
 
             state.publish_btn.click();
 
-            // browser.sleep(2000);
+            //clcik on fat ass rabbit
+            element(by.css('.btn-secondary-highlight.btn-width-lg')).click();
 
             expect($('.alert.alert-success').isPresent()).toBe(true);
         });

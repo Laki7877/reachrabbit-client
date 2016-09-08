@@ -84,6 +84,7 @@ module.exports = function (grunt) {
           window: true,
           moment: true,
           history: true,
+          document: true,
           sjcl: true,
           $: true,
           _: true,

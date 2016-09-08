@@ -987,7 +987,9 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         if (!$scope.formData.brand) {
                             $scope.formData.brand = UserProfile.get().brand;
                         }
-                        if(!$scope.formData.rabbitFlag) {
+                        
+                        if(!$scope.formData.rabbitFlag && $scope.formData.status === 'Open' && !document.querySelector(".message-modal")) {
+                            
                             var modalInstance = $uibModal.open({
                                 animation: true,
                                 templateUrl: 'components/templates/brand-publish-campaign-modal.html',

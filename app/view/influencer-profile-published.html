@@ -1,6 +1,11 @@
 <div class="view-influencer-profile-published">
-  <zone-header historyback="true">
-    <h1>Profile ของฉัน</h1>
+  <zone-header historyback="false">
+    <h1 ng-bind="influencer.user.name | truncate: 50"></h1>
+    <div class="action-btn-for-header">
+        <button class="btn-primary btn-width-md" ui-sref="influencer-profile">
+            <i class="fa fa-pencil"></i> แก้ไขข้อมูล
+        </button>
+    </div>
   </zone-header>
   <div class="zone-body">
     <div class="container">

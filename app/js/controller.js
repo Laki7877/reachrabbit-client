@@ -730,7 +730,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     }
                 }
                return false;
-            }
+            };
 
             $scope.linkDone = function () {
                 $scope.saveProfile($scope.formData, true);

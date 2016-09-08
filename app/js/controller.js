@@ -693,6 +693,8 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             $scope.form = {};
             $scope.alert = new NcAlert();
             util.warnOnExit($scope);
+            $scope.influencer = UserProfile.get().influencer;
+            $scope.influencer.user = UserProfile.get();
 
             $scope.isValidate = function (model, error) {
                 if (error === 'required' && model.$name === 'profilePicture') {

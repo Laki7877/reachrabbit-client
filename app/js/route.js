@@ -43,6 +43,11 @@ angular.module('myApp.admin.routes', ['ui.router'])
                 url: '/admin-payout-detail/:transactionId',
                 templateUrl: 'view/admin-payout-detail.html',
                 controller: 'PayoutDetailController'
+            })
+            .state('admin-ig-reloader', {
+                url: '/admin-ig-reloader',
+                templateUrl: 'view/admin-ig-reloader.html',
+                controller: 'EmptyController'
             });
     }]);
 

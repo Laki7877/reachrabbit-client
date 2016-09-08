@@ -687,9 +687,12 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 });
         }
     ])
-    .controller('InfluencerProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util',
-        function ($scope, $window, AccountService, NcAlert, UserProfile, validator, util) {
+    .controller('InfluencerProfileController', ['$scope', '$window', '$stateParams', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util',
+        function ($scope, $window, $stateParams, AccountService, NcAlert, UserProfile, validator, util) {
             $scope.formData = {};
+            if($stateParams.showToolbar){
+                $scope.showStickyToolbar = true;
+            }
             $scope.form = {};
             $scope.alert = new NcAlert();
             util.warnOnExit($scope);
@@ -773,6 +776,9 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     .controller('InfluencerInboxController', ['$scope', '$filter', '$stateParams', 'ProposalService', 'moment', function ($scope, $filter, $stateParams, ProposalService, moment) {
         $scope.statusCounts = {};
         $scope.statusFilter = 'Selection';
+        $scope.showStickyToolbar = false;
+
+        
 
         if ($stateParams.status) {
             $scope.statusFilter = $stateParams.status;
@@ -1106,13 +1112,21 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 });
         };
     }])
-    .controller('BrandInboxController', ['$scope', '$filter', 'ProposalService', 'CampaignService', 'moment', '$stateParams', function ($scope, $filter, ProposalService, CampaignService, moment, $stateParams) {
+    .controller('BrandInboxController', ['$scope', '$filter', '$rootScope', 'ProposalService', 'CampaignService', 'moment', '$stateParams', function ($scope, $filter, $rootScope, ProposalService, CampaignService, moment, $stateParams) {
         $scope.statusCounts = {};
         $scope.statusFilter = 'Selection';
 
         if ($stateParams.status) {
             $scope.statusFilter = $stateParams.status;
         }
+
+        $scope.calculateReach= function(proposal){
+            var mediaList =  _.intersectionBy((proposal.influencer.influencerMedias || []).map(function (mi) {
+                        mi.mediaId = mi.media.mediaId;
+                        return mi;
+            }), proposal.media, 'mediaId');
+            return $rootScope.sumReduce(mediaList, 'followerCount');
+        };
 
         $scope.load = function (params) {
             $scope.params = params;
@@ -1439,7 +1453,6 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                                     $window.location.href = '/influencer.html#/influencer-campaign-list';
                                 });
                         } else {
-                            // console.log(response.data);
                             if (mediaId == 'facebook') {
                                 $state.go('influencer-signup-select-page', { authData: response.data });
                             } else {
@@ -1447,6 +1460,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                                     $scope.minFollowerError = true;
                                     return;
                                 }
+
                                 $state.go('influencer-signup-confirmation', { authData: response.data });
                             }
                         }
@@ -1553,7 +1567,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         Raven.setUserContext(UserProfile.get());
                         $scope.form.$setPristine();
                         //Redirect change app
-                        $window.location.href = '/influencer.html#/influencer-campaign-list';
+                        $window.location.href = '/influencer.html#/influencer-campaign-list?showToolbar';
                     })
                     .catch(function (err) {
                         $scope.alert.danger(err.data.message);

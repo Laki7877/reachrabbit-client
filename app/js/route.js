@@ -146,7 +146,7 @@ angular.module('myApp.influencer.routes', ['ui.router'])
                 controller: 'InfluencerProfileController'
             })
             .state('influencer-profile-published', {
-                url: '/influencer-profile-published',
+                url: '/influencer-profile-published?showToolbar',
                 templateUrl: 'view/influencer-profile-published.html',
                 controller: 'InfluencerProfileController'
             })

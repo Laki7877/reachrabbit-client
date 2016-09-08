@@ -9,8 +9,11 @@
       <p ng-if="influencer.about.length > 0">
         {{influencer.about}}
       </p>
-      <p ng-if="!influencer.about || influencer.about.length == 0">
+      <p ng-if="!isInfluencer && (!influencer.about || influencer.about.length == 0)">
         -
+      </p>
+      <p ng-if="isInfluencer && (!influencer.about || influencer.about.length == 0)">
+        [ยังไม่มีข้อมูล] คุณสามารถเพิ่มข้อมูลเกี่ยวกับตัวคุณเพื่อช่วยในการตัดสินใจของ Brand
       </p>
 
       <div ng-show="showSocialData">

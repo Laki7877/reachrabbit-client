@@ -476,7 +476,7 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .directive('cardInfluencerProfile', [function () {
+    .directive('cardInfluencerProfile', ['UserProfile', function (UserProfile) {
         return {
             restrict: 'AE',
             transclude: true,
@@ -495,7 +495,10 @@ angular.module('myApp.directives', ['myApp.service'])
                     scope.showSocialData = true;
                 }
 
-
+                scope.isInfluencer = false;
+                if(UserProfile.get().influencer){
+                    scope.isInfluencer = true;
+                }
 
                 scope.joinCat = function (A) {
                     return A.map(function (o) {

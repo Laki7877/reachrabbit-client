@@ -9,13 +9,29 @@
 'use strict';
 
 angular.module('myApp.directives', ['myApp.service'])
+    .directive('instagramProfile', ['$window', function($window) {
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=ngModel'
+            },
+            replace: true,
+            templateUrl: 'components/templates/social-instagram-profile.html',
+            link: function(scope) {
+                scope.gotoPage = function() {
+                    $window.open('https://www.instagram.com/' + scope.data.username);
+                };
+            }
+        };
+    }])
     .directive('facebookProfile', ['$window', function($window) {
         return {
             restrict: 'E',
             scope: {
                 data: '=ngModel'
             },
-            templateUrl: 'components/templates/facebook-profile.html',
+            replace: true,
+            templateUrl: 'components/templates/social-facebook-profile.html',
             link: function(scope) {
                 scope.gotoPage = function() {
                     $window.open(scope.data.link);
@@ -771,7 +787,7 @@ angular.module('myApp.directives', ['myApp.service'])
                                 $scope.dismiss = function () {
                                     $uibModalInstance.dismiss();
                                 };
-                                
+
                             }],
                             size: 'lg',
                             resolve: {
@@ -780,7 +796,7 @@ angular.module('myApp.directives', ['myApp.service'])
                                 },
                                 cropOption: function(){
                                     return {
-                                        aspectRatio: Number(scope.aspectRatio)   
+                                        aspectRatio: Number(scope.aspectRatio)
                                     };
                                 }
                             }
@@ -792,13 +808,13 @@ angular.module('myApp.directives', ['myApp.service'])
                             var file = Upload.dataUrltoBlob(dataUrl, 'cropped_content.png');
                             processFile(file);
                         });
-                        
+
                     }else{
                         processFile(ifile);
                     }
-                    
 
-                   
+
+
                 };
 
             }

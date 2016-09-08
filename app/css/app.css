@@ -10166,7 +10166,9 @@ fieldset[disabled] .btn-clear.active {
   margin-top: 140px;
 }
 .message-modal .modal-dialog .modal-content {
+  border: 0px;
   border-radius: 10px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 .message-modal .hello-rabbit {
   margin-top: -100px;

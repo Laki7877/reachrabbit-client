@@ -92,7 +92,7 @@ angular.module('myApp.service', ['satellizer'])
                 if(!$rootScope.debuggah){
                     $rootScope.debuggah = {};
                 }
-                
+
                 $rootScope.debuggah[cx.config.method + " " + cx.config.url] =  cx.data;
                 return cx;
             }
@@ -210,11 +210,18 @@ angular.module('myApp.service', ['satellizer'])
                 }
                 return $http.get(url);
             },
+            getInstagramProfile: function(id) {
+                var url = '/profile/instagram';
+                if(!_.isNil(id)) {
+                    url = '/profile/' + id + '/instagram';
+                }
+                return $http.get(url);
+            },
             saveProfile: function (profile) {
                 return $http.put("/profile", profile);
             },
             saveBank: function(bank){
-                return $http.put("/profile/bank", bank); 
+                return $http.put("/profile/bank", bank);
             },
             /*
              * get token
@@ -502,7 +509,7 @@ angular.module('myApp.service', ['satellizer'])
                 return $q(function(resolve, reject){
                     $http({
                         url: '/transactions',
-                        method: 'get', 
+                        method: 'get',
                         params: params
                     })
                     .then(function(transactionResponse){
@@ -530,7 +537,7 @@ angular.module('myApp.service', ['satellizer'])
                 });
             },
             getByTransactionId: function(transactionId){
-               return $http.get("/transactions/" + transactionId); 
+               return $http.get("/transactions/" + transactionId);
             }
         };
     }])
@@ -645,7 +652,7 @@ angular.module('myApp.service', ['satellizer'])
                         resolve();
                     });
                 }
-                
+
                 return $http({
                     url: '/proposals/' + proposalId + '/proposalmessages/poll',
                     method: 'get',

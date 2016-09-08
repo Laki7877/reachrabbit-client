@@ -5,11 +5,19 @@
   <div class="zone-body">
     <div class="container">
 
-      <div nc-alert type="info" closable="true">
-        Hello World
-      </div>
+      <card-influencer-profile ng-model="influencer"></card-influencer-profile>
 
-      <!-- Contetn Go Here -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#facebook" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Facebook</a>
+        </li>
+        <li role="presentation" class="">
+          <a href="#instagram" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">Instagram</a>
+        </li>
+        <li role="presentation" class="">
+          <a href="#youtube" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">YouTube</a>
+        </li>
+      </ul>
       <div class="card">
         <facebook-profile ng-model="facebook"></facebook-profile>
       </div>

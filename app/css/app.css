@@ -229,7 +229,11 @@ th {
   h3,
   .zone-header .with-history-back h1,
   .card-title .card-title-content,
-  .proposal-modal .modal-title {
+  .social-media-profile .card-overview .card-info strong,
+  .social-media-profile .card-gallery-info .card-info .card-content,
+  .proposal-modal .modal-title,
+  .facebook-profile .card-overview .card-info strong,
+  .facebook-profile .card-gallery-info .card-info .card-content {
     orphans: 3;
     widows: 3;
   }
@@ -237,7 +241,11 @@ th {
   h3,
   .zone-header .with-history-back h1,
   .card-title .card-title-content,
-  .proposal-modal .modal-title {
+  .social-media-profile .card-overview .card-info strong,
+  .social-media-profile .card-gallery-info .card-info .card-content,
+  .proposal-modal .modal-title,
+  .facebook-profile .card-overview .card-info strong,
+  .facebook-profile .card-gallery-info .card-info .card-content {
     page-break-after: avoid;
   }
   .navbar {
@@ -1211,10 +1219,14 @@ h6,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-overview .card-info strong,
+.social-media-profile .card-gallery-info .card-info .card-content,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
 .proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong,
+.facebook-profile .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-family: inherit;
   font-weight: 500;
@@ -1257,7 +1269,11 @@ h3,
 .h3,
 .zone-header .with-history-back h1,
 .card-title .card-title-content,
-.proposal-modal .modal-title {
+.social-media-profile .card-overview .card-info strong,
+.social-media-profile .card-gallery-info .card-info .card-content,
+.proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong,
+.facebook-profile .card-gallery-info .card-info .card-content {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -1320,7 +1336,11 @@ h2,
 h3,
 .h3,
 .card-title .card-title-content,
-.proposal-modal .modal-title {
+.social-media-profile .card-overview .card-info strong,
+.social-media-profile .card-gallery-info .card-info .card-content,
+.proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong,
+.facebook-profile .card-gallery-info .card-info .card-content {
   font-size: 24px;
 }
 h4,
@@ -7651,7 +7671,11 @@ h2,
 }
 h3,
 .card-title .card-title-content,
-.proposal-modal .modal-title {
+.social-media-profile .card-overview .card-info strong,
+.social-media-profile .card-gallery-info .card-info .card-content,
+.proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong,
+.facebook-profile .card-gallery-info .card-info .card-content {
   font-family: 'Kanit', sans-serif;
   font-size: 18px;
   font-weight: normal;
@@ -8173,42 +8197,6 @@ input:-moz-placeholder {
 .card-title .card-title-content a {
   color: #16bbac;
 }
-.card-gallery {
-  -webkit-column-count: 2;
-  -webkit-column-gap: 10px;
-  -webkit-column-fill: auto;
-  -moz-column-count: 2;
-  -moz-column-gap: 10px;
-  -moz-column-fill: auto;
-  column-count: 2;
-  column-gap: 15px;
-  column-fill: auto;
-}
-.card-gallery-item {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  background-color: #d8dfe7;
-  display: inline-block;
-  column-break-inside: avoid;
-  margin: 15px;
-}
-.card-gallery-item .card-gallery-video {
-  width: 100%;
-  min-height: 300px;
-}
-.card-gallery-item img {
-  width: 100%;
-  height: auto;
-}
-.card-gallery-info {
-  margin-bottom: 5px;
-}
-.card-gallery-info .card-info > * {
-  text-align: center;
-}
-.card-gallery-message {
-  padding: 15px;
-  white-space: pre-wrap;
-}
 .card-info .card-info-label {
   font-size: 12px;
   color: #8692a8;
@@ -8443,6 +8431,104 @@ input:-moz-placeholder {
 }
 .card-transaction-header .card-info .card-info-content {
   color: #3e4a5e;
+}
+/*---Social Media Profile---*/
+.social-media-profile .card-overview .card-info,
+.facebook-profile .card-overview .card-info {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.social-media-profile .card-overview .card-info small,
+.facebook-profile .card-overview .card-info small {
+  color: #8692a8;
+}
+.social-media-profile .card-overview .card-info i,
+.facebook-profile .card-overview .card-info i {
+  margin-left: 5px;
+  color: #8692a8;
+}
+.social-media-profile .card-overview .card-button,
+.facebook-profile .card-overview .card-button {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.social-media-profile .card-gallery,
+.facebook-profile .card-gallery {
+  -webkit-column-count: 2;
+  -webkit-column-gap: 10px;
+  -webkit-column-fill: auto;
+  -moz-column-count: 2;
+  -moz-column-gap: 10px;
+  -moz-column-fill: auto;
+  column-count: 2;
+  column-gap: 15px;
+  column-fill: auto;
+}
+.social-media-profile .card-gallery-item,
+.facebook-profile .card-gallery-item {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: #d8dfe7;
+  display: inline-block;
+  column-break-inside: avoid;
+  margin: 7.5px 0px;
+}
+.social-media-profile .card-gallery-item .card-gallery-video,
+.facebook-profile .card-gallery-item .card-gallery-video {
+  width: 100%;
+  min-height: 300px;
+}
+.social-media-profile .card-gallery-item img,
+.facebook-profile .card-gallery-item img {
+  width: 100%;
+  height: auto;
+}
+.social-media-profile .card-gallery-info .card-info > *,
+.facebook-profile .card-gallery-info .card-info > * {
+  text-align: center;
+}
+.social-media-profile .card-gallery-info .card-info,
+.facebook-profile .card-gallery-info .card-info {
+  margin-bottom: 15px;
+}
+.social-media-profile .card-gallery-message,
+.facebook-profile .card-gallery-message {
+  padding: 15px;
+  white-space: pre-wrap;
+}
+/*---- Component: Tabs ----*/
+.nav-tabs {
+  border-bottom: 0px;
+}
+.nav-tabs li {
+  min-width: 90px;
+  text-align: center;
+  font-size: 16px;
+}
+.nav-tabs li a {
+  margin-right: 5px;
+  border: 0px solid #d8dfe7;
+  background: #ffffff;
+  padding-bottom: 5px;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #3e4a5e;
+  background-color: #fff;
+  border: 1px solid #d8dfe7;
+  border-bottom-color: transparent;
+  cursor: pointer;
+}
+.with-tabs {
+  border-top-left-radius: 0px;
 }
 /*---flag---*/
 .flag .status {

@@ -224,7 +224,7 @@ a.secondary{
   color:@color-grey-darker;
 }
 input:-moz-placeholder {
-  color:@color-grey-darker; 
+  color:@color-grey-darker;
 }
 
 .input-dropdown{
@@ -493,43 +493,6 @@ input:-moz-placeholder {
     }
   }
 }
-.card-gallery {
-  -webkit-column-count: 2;
-  -webkit-column-gap: 10px;
-  -webkit-column-fill: auto;
-  -moz-column-count: 2;
-  -moz-column-gap: 10px;
-  -moz-column-fill: auto;
-  column-count: 2;
-  column-gap: 15px;
-  column-fill: auto;
-}
-.card-gallery-item {
-  box-shadow: @global-shadow-depth-1;
-  background-color:@color-grey;
-  display: inline-block;
-  column-break-inside: avoid;
-  margin: 15px;
-  .card-gallery-video {
-    width: 100%;
-    min-height: 300px;
-  }
-  img {
-    width: 100%;
-    height: auto;
-  }
-}
-.card-gallery-info {
-  .card-info > *{
-    text-align: center;
-  }
-  margin-bottom: 5px;
-}
-.card-gallery-message {
-  padding: 15px;
-  white-space: pre-wrap;
-}
-
 .card-info{
   .card-info-label{
     font-size: 12px;
@@ -771,6 +734,99 @@ input:-moz-placeholder {
     }
   }
 }
+
+/*---Social Media Profile---*/
+.social-media-profile{
+  .card-overview{
+    .card-info{
+      .make-xs-column(2);
+      strong{
+        &:extend(h3);
+      }
+      small{
+        color:@color-grey-darker;
+      }
+      i{
+        margin-left: 5px;
+        color:@color-grey-darker;
+      }
+    }
+    .card-button{
+      .make-xs-column(4);
+    }
+  }
+  .card-gallery {
+    -webkit-column-count: 2;
+    -webkit-column-gap: 10px;
+    -webkit-column-fill: auto;
+    -moz-column-count: 2;
+    -moz-column-gap: 10px;
+    -moz-column-fill: auto;
+    column-count: 2;
+    column-gap: 15px;
+    column-fill: auto;
+  }
+  .card-gallery-item {
+    box-shadow: @global-shadow-depth-1;
+    background-color:@color-grey;
+    display: inline-block;
+    column-break-inside: avoid;
+    margin: 7.5px 0px;
+    .card-gallery-video {
+      width: 100%;
+      min-height: 300px;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .card-gallery-info {
+    .card-info > *{
+      text-align: center;
+    }
+    .card-info{
+      margin-bottom: 15px;
+      .card-content{
+        &:extend(h3);
+      }
+    }
+  }
+  .card-gallery-message {
+    padding: 15px;
+    white-space: pre-wrap;
+  }
+}
+.facebook-profile{
+  &:extend(.social-media-profile all);
+}
+
+/*---- Component: Tabs ----*/
+.nav-tabs{
+  border-bottom: 0px;
+  li{
+    min-width: 90px;
+    text-align: center;
+    font-size: 16px;
+    a{
+      margin-right: 5px;
+      border: 0px solid @color-grey;
+      background: @color-white;
+      padding-bottom: 5px;
+    }
+  }
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    color: @color-black;
+    background-color: #fff;
+    border: 1px solid @color-grey;
+    border-bottom-color: transparent;
+    cursor: pointer;
+}
+.with-tabs{
+  border-top-left-radius: 0px;
+}
+
 
 /*---flag---*/
 .flag{

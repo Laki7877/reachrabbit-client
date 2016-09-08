@@ -805,17 +805,17 @@ input:-moz-placeholder {
   &:extend(.social-media-profile all);
 }
 
-/*---- Tabs ----*/
+/*---Tabs---*/
 .nav-tabs{
   margin-top: 30px;
   border-bottom: 0px;
   li{
     min-width: 150px;
     text-align: center;
+    margin-right: 5px;
     a{
       &:extend(h4);
       color: @color-black;
-      margin-right: 5px;
       margin-bottom: 5px;
       border: 0px;
       background: @color-grey;
@@ -839,20 +839,21 @@ input:-moz-placeholder {
     margin-bottom: 0px;
     padding-bottom: 15px;
     border-bottom: 0px;
-    border-top: 4px solid;
-    margin-top: -4px;
     cursor: pointer;
-    &.facebook-tab{
-      border-top-color: @color-facebook;
-    }
-    &.instagram-tab{
-      border-top-color: @color-instagram;
-    }
-    &.youtube-tab{
-      border-top-color: @color-youtube;
-    }
 }
-
+.nav-tabs>li.active{
+  border-top: 4px solid;
+  margin-top: -4px;
+  &.facebook-tab{
+    border-top-color: @color-facebook;
+  }
+  &.instagram-tab{
+    border-top-color: @color-instagram;
+  }
+  &.youtube-tab{
+    border-top-color: @color-youtube;
+  }
+}
 
 
 /*---flag---*/

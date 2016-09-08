@@ -8508,7 +8508,7 @@ input:-moz-placeholder {
   padding: 15px;
   white-space: pre-wrap;
 }
-/*---- Tabs ----*/
+/*---Tabs---*/
 .nav-tabs {
   margin-top: 30px;
   border-bottom: 0px;
@@ -8516,10 +8516,10 @@ input:-moz-placeholder {
 .nav-tabs li {
   min-width: 150px;
   text-align: center;
+  margin-right: 5px;
 }
 .nav-tabs li a {
   color: #3e4a5e;
-  margin-right: 5px;
   margin-bottom: 5px;
   border: 0px;
   background: #d8dfe7;
@@ -8543,23 +8543,19 @@ input:-moz-placeholder {
   margin-bottom: 0px;
   padding-bottom: 15px;
   border-bottom: 0px;
-  border-top: 4px solid;
-  margin-top: -4px;
   cursor: pointer;
 }
-.nav-tabs > li.active > a.facebook-tab,
-.nav-tabs > li.active > a:hover.facebook-tab,
-.nav-tabs > li.active > a:focus.facebook-tab {
+.nav-tabs > li.active {
+  border-top: 4px solid;
+  margin-top: -4px;
+}
+.nav-tabs > li.active.facebook-tab {
   border-top-color: #3b5998;
 }
-.nav-tabs > li.active > a.instagram-tab,
-.nav-tabs > li.active > a:hover.instagram-tab,
-.nav-tabs > li.active > a:focus.instagram-tab {
+.nav-tabs > li.active.instagram-tab {
   border-top-color: #df3d79;
 }
-.nav-tabs > li.active > a.youtube-tab,
-.nav-tabs > li.active > a:hover.youtube-tab,
-.nav-tabs > li.active > a:focus.youtube-tab {
+.nav-tabs > li.active.youtube-tab {
   border-top-color: #e62117;
 }
 /*---flag---*/

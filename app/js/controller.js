@@ -1029,7 +1029,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                             $scope.formData.brand = UserProfile.get().brand;
                         }
 
-                        if(!$scope.formData.rabbitFlag && $scope.formData.status === 'Open' && !document.querySelector(".message-modal")) {
+                        if(!$scope.formData.rabbitFlag && $scope.formData.status === 'Open' && !$stateParams.editOpenState && !document.querySelector(".message-modal")) {
 
                             var modalInstance = $uibModal.open({
                                 animation: true,

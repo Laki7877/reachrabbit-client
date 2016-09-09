@@ -45,7 +45,7 @@ angular.module('myApp.directives', ['myApp.service'])
             scope: {
                 data : '=ngModel'
             },
-            templateUrl: "components/templates/youtube-profile.html",
+            templateUrl: "components/templates/social-youtube-profile.html",
             link: function(scope){
                 scope.gotoPage = function(link) {
                     $window.open(link);

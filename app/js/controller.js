@@ -434,11 +434,52 @@ angular.module('myApp.controller', ['myApp.service'])
         }
     ])
     .controller('InfluencerProfilePortfolioController', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function ($scope, NcAlert, AccountService, $stateParams) {
+        $scope.formData = {};
         $scope.alert = new NcAlert();
+        $scope.hasMedia = function(mediaId) {
+            for(var i=0; i < _.get($scope.formData, 'influencer.influencerMedias',[]).length; i++){
+                if($scope.formData.influencer.influencerMedias[i].media.mediaId == mediaId){
+                    return true;
+                }
+            }
+           return false;
+        };
+        // fetch profile
         AccountService.getProfile($stateParams.influencerId)
             .then(function (response) {
-                $scope.influencer = response.data;
+                $scope.formData = response.data;
+                $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
+
+                // fetch each media
+                if($scope.hasMedia('google')) {
+                  AccountService.getYouTubeProfile($stateParams.influencerId)
+                      .then(function(response){
+                          $scope.youtube = response.data;
+                      });
+                }
+                if($scope.hasMedia('facebook')) {
+                  AccountService.getFacebookProfile($stateParams.influencerId)
+                      .then(function(response) {
+                          $scope.facebook = response.data;
+                      });
+                }
+                if($scope.hasMedia('instagram')) {
+                  AccountService.getInstagramProfile($stateParams.influencerId)
+                      .then(function(response) {
+                          $scope.instagram = response.data;
+                      });
+                }
+
+                // assign categories
+                _.forEach($scope.formData.influencer.categories, function (r) {
+                    r._selected = true;
+                });
+                delete $scope.formData.password;
+            })
+            .catch(function (err) {
+                $scope.alert.danger(err.data.message);
             });
+
 
     }])
     .controller('BrandProfilePortfolioController', ['$scope', 'AccountService', '$stateParams', function ($scope, AccountService, $stateParams) {
@@ -689,13 +730,11 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     ])
     .controller('InfluencerProfileController', ['$scope', '$window', '$stateParams', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util',
         function ($scope, $window, $stateParams, AccountService, NcAlert, UserProfile, validator, util) {
-            $scope.formData = {};
-            if($stateParams.showToolbar){
-                $scope.showStickyToolbar = true;
-            }
-            $scope.form = {};
-            $scope.alert = new NcAlert();
             util.warnOnExit($scope);
+            $scope.showStickyToolbar = !_.isNil($stateParams.showToolbar);
+            $scope.form = {};
+            $scope.formData = {};
+            $scope.alert = new NcAlert();
             $scope.influencer = UserProfile.get().influencer;
             $scope.influencer.user = UserProfile.get();
 
@@ -725,47 +764,45 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         $scope.alert.danger(err.data.message);
                     });
             };
-
             $scope.hasMedia = function(mediaId) {
-                for(var i=0; i < $scope.influencer.influencerMedias.length; i++){
-                    if($scope.influencer.influencerMedias[i].media.mediaId == mediaId){
+                for(var i=0; i < _.get($scope.formData, 'influencer.influencerMedias',[]).length; i++){
+                    if($scope.formData.influencer.influencerMedias[i].media.mediaId == mediaId){
                         return true;
                     }
                 }
                return false;
             };
-
             $scope.linkDone = function () {
                 $scope.saveProfile($scope.formData, true);
             };
 
-
-            var ytMedia = _.find($scope.influencer.influencerMedias, function(o){
-                return o.media.mediaId == "google";
-            });
-
-            if(ytMedia){
-            AccountService.getYouTubeProfile(ytMedia.socialId)
-            .then(function(response){
-                $scope.youtube = response.data;
-            });
-
-            }
-            
-            AccountService.getFacebookProfile()
-                .then(function(response) {
-                    $scope.facebook = response.data;
-                });
-            AccountService.getInstagramProfile()
-                .then(function(response) {
-                    $scope.instagram = response.data;
-                });
-
+            // fetch profile
             AccountService.getProfile()
                 .then(function (response) {
                     $scope.formData = response.data;
                     $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
 
+                    // fetch each media
+                    if($scope.hasMedia('google')) {
+                      AccountService.getYouTubeProfile()
+                          .then(function(response){
+                              $scope.youtube = response.data;
+                          });
+                    }
+                    if($scope.hasMedia('facebook')) {
+                      AccountService.getFacebookProfile()
+                          .then(function(response) {
+                              $scope.facebook = response.data;
+                          });
+                    }
+                    if($scope.hasMedia('instagram')) {
+                      AccountService.getInstagramProfile()
+                          .then(function(response) {
+                              $scope.instagram = response.data;
+                          });
+                    }
+
+                    // assign categories
                     _.forEach($scope.formData.influencer.categories, function (r) {
                         r._selected = true;
                     });
@@ -782,7 +819,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $scope.statusFilter = 'Selection';
         $scope.showStickyToolbar = false;
 
-        
+
 
         if ($stateParams.status) {
             $scope.statusFilter = $stateParams.status;
@@ -991,9 +1028,9 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         if (!$scope.formData.brand) {
                             $scope.formData.brand = UserProfile.get().brand;
                         }
-                        
+
                         if(!$scope.formData.rabbitFlag && $scope.formData.status === 'Open' && !document.querySelector(".message-modal")) {
-                            
+
                             var modalInstance = $uibModal.open({
                                 animation: true,
                                 templateUrl: 'components/templates/brand-publish-campaign-modal.html',

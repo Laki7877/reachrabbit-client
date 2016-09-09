@@ -199,9 +199,10 @@ angular.module('myApp.service', ['satellizer'])
             },
             getYouTubeProfile: function(id){
                 var url = '/profile/google';
-                return $http.get(url, {
-                    params: { channel_id: id  }
-                });
+                if(!_.isNil(id)) {
+                    url = '/profile/' + id + '/google';
+                }
+                return $http.get(url);
             },
             getFacebookProfile: function(id) {
                 var url = '/profile/facebook';

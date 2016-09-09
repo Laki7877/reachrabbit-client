@@ -1573,7 +1573,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         Raven.setUserContext(UserProfile.get());
                         $scope.form.$setPristine();
                         //Redirect change app
-                        $window.location.href = '/influencer.html#/influencer-campaign-list?showToolbar';
+                        $window.location.href = '/influencer.html#/influencer-profile-published?showToolbar';
                     })
                     .catch(function (err) {
                         $scope.alert.danger(err.data.message);

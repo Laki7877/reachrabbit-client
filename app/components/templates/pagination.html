@@ -1,11 +1,11 @@
-<div ng-if="model && model.totalPages > 1">
-  <ul class="pagination">
+<div>
+  <ul class="pagination" ng-if="model && model.totalPages > 1">
     <li>
       <a ng-click="prev()" aria-label="Previous">
         <i class="fa fa-angle-left"></i>
       </a>
     </li>
-    <li ng-repeat="n in counter() track by $index" class="active">
+    <li ng-repeat="n in counter() track by $index" ng-class="{ 'active' : model.number === $index}">
       <a ng-click="goto($index)">{{$index+1}}</a>
     </li>
     <li>

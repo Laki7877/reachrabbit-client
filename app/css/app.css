@@ -10254,6 +10254,12 @@ ul.payment-methods {
   color: white;
   font-size: small;
 }
+.view-admin-campaign-list .col-campaign-name {
+  max-width: 150px;
+}
+.view-admin-campaign-list .col-name {
+  max-width: 150px;
+}
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
 .layout-portal {

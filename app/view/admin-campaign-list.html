@@ -1,0 +1,53 @@
+<div class="view-admin-campaign-list">
+  <zone-header>
+    <h1>All Campaigns</h1>
+  </zone-header>
+  <div class="zone-body">
+    <div class="container">
+      <div class="card-inbox">
+        <div class="card-body">
+          <table ng-if="campaigns.numberOfElements > 0" class="table" sorter ng-model="campaigns" callback="load">
+            <thead>
+              <tr>
+                <th class="col-time" sort="updatedAt">วันที่แก้ไขล่าสุด</th>
+                <th class="col-campaign-name" sort="title">Campaign</th>
+                <th class="col-name" sort="brand.brandName">Brand</th>
+                <th sort="status">สถานะ</th>
+                <th>คัดเลือก</th>
+                <th>ดำเนินการ</th>
+                <th>เสร็จสิ้น</th>
+                <th class="col-button"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="campaign in campaigns.content">
+                <td class="col-time">{{campaign.createdAt | amDateFormat: $root.formats[4]}}</td>
+                <td class="col-campaign-name">{{campaign.title}}</td>
+                <td class="col-name">{{campaign.brand.brandName}}</td>
+                <td ng-class="{
+                  'color-green': campaign.status === 'Open',
+                  'color-black': campaign.status === 'Draft',
+                  'color-grey': campaign.status !== 'Draft' && campaign.status !== 'Open'
+                }">
+                  <span ng-if="campaign.status === 'Draft'">ฉบับร่าง</span>
+                  <span ng-if="campaign.status === 'Open'">เปิดรับข้อเสนอ</span>
+                  <span ng-if="campaign.status !== 'Draft' && campaign.status !== 'Open'">ปิดรับข้อเสนอ</span>
+                </td>
+                <td>{{campaign.count.Selection}}</td>
+                <td>{{campaign.count.Working}}</td>
+                <td>{{campaign.count.Complete}}</td>
+                <td class="col-button">
+                  <button class="btn-secondary" ui-sref="admin-campaign-detail({campaignId: campaign.campaignId})">คุยงาน</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table-static ng-if="campaigns.totalElements == 0">ไม่มี Campaign</table-static>
+        </div>
+      </div>
+      <nav class="text-center" aria-label="Page navigation">
+        <pagination ng-model="campaigns" callback="load"></pagination>
+      </nav>
+    </div>
+  </div>
+</div>

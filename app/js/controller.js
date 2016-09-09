@@ -1683,6 +1683,47 @@ angular.module('myApp.admin.controller', ['myApp.service'])
             sort: 'updatedAt,desc'
         });
     }])
+    .controller('AdminCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService',
+        function ($scope, $state, $stateParams, CampaignService, NcAlert, AccountService) {
+            $scope.campaignNee = null;
+            $scope.alert = new NcAlert();
+
+            $scope.keywordMap = function (arr) {
+                if (!arr) return [];
+                return arr.map(function (k) {
+                    return k.keyword;
+                });
+            };
+            console.log($stateParams);
+            CampaignService.getOne($stateParams.campaignId)
+                .then(function (campaignResponse) {
+                    $scope.campaignNee = campaignResponse.data;
+                    return AccountService.getUser($scope.campaignNee.brandId);
+                })
+                .then(function (brandUserDataResponse) {
+                    $scope.brandUserInfo = brandUserDataResponse.data;
+                })
+                .catch(function (err) {
+                    $scope.alert.danger(err.data.message);
+                });
+        }
+    ])
+    .controller('AdminCampaignListController', ['$scope', 'CampaignService', function($scope, CampaignService) {
+
+        //Load campaign data
+        $scope.load = function (data) {
+            $scope.params = data;
+            CampaignService.getAll(data).then(function (response) {
+                $scope.campaigns = response.data;
+                _.map($scope.campaigns.content, function(c) {
+                  c.count = _.countBy(c.proposals, 'status');
+                  return c;
+                });
+            });
+        };
+        //Init
+        $scope.load();
+    }])
     .controller('AdminPayoutHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
         //Load campaign data
         $scope.isExpired = function (T) {

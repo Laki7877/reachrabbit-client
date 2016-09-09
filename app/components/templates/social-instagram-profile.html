@@ -41,8 +41,12 @@
       <div class="card-gallery card-row">
         <div ng-repeat="post in data.posts" class="col-xs-3">
           <div class="card-gallery-item">
-            <img ng-if="post.type=='image'" ng-src="{{$root.trustSrc(post.image)}}"/>
-            <iframe class="card-gallery-video" ng-if="post.type=='video'" ng-src="{{$root.trustSrc(post.video)}}" frameBorder="0" autoplay="false"></iframe>
+            <div class="card-gallery-image" ng-if="post.type=='image'">
+              <img ng-src="{{$root.trustSrc(post.image)}}"/>
+            </div>
+            <div class="card-gallery-video" ng-if="post.type=='video'">
+              <iframe ng-src="{{$root.trustSrc(post.video)}}" frameBorder="0" frameBorder="0" autoplay="false"></iframe>
+            </div>
             <div class="card-gallery-info">
                 <div class="card-info col-xs-6">
                   <div class="card-info-label">Likes</div>

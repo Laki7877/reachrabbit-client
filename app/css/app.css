@@ -8561,6 +8561,34 @@ input:-moz-placeholder {
   width: 100%;
   margin: 15px 0px;
 }
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-image {
+  width: 205px;
+  height: 205px;
+  overflow: hidden;
+  position: relative;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-image img {
+  position: absolute;
+  left: -100%;
+  right: -100%;
+  top: -100%;
+  bottom: -100%;
+  margin: auto;
+  width: auto;
+  height: auto;
+  max-height: 100%;
+  min-width: 100%;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video {
+  width: 205px;
+  height: 205px;
+  min-height: 205px;
+  overflow: hidden;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video iframe {
+  width: 205px;
+  height: 205px;
+}
 .instagram-profile .card-gallery .card-gallery-item .card-gallery-info .card-info {
   margin-top: 8px;
   margin-bottom: 8px;

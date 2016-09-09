@@ -8007,6 +8007,7 @@ input:-moz-placeholder {
 }
 .input-upload-image img {
   width: 100%;
+  max-width: 596px;
 }
 .input-upload-image .btn-delete-image {
   color: #8692a8;

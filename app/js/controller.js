@@ -743,11 +743,15 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             var ytMedia = _.find($scope.influencer.influencerMedias, function(o){
                 return o.media.mediaId == "google";
             });
+
+            if(ytMedia){
             AccountService.getYouTubeProfile(ytMedia.socialId)
             .then(function(response){
                 $scope.youtube = response.data;
             });
 
+            }
+            
             AccountService.getFacebookProfile()
                 .then(function(response) {
                     $scope.facebook = response.data;

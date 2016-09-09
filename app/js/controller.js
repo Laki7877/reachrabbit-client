@@ -449,6 +449,7 @@ angular.module('myApp.controller', ['myApp.service'])
             .then(function (response) {
                 $scope.formData = response.data;
                 $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
+                $scope.formData.influencer.user = $scope.formData.user;
 
                 // fetch each media
                 if($scope.hasMedia('google')) {
@@ -1029,7 +1030,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                             $scope.formData.brand = UserProfile.get().brand;
                         }
 
-                        if(!$scope.formData.rabbitFlag && $scope.formData.status === 'Open' && !document.querySelector(".message-modal")) {
+                        if(!$scope.formData.rabbitFlag && $scope.formData.status === 'Open' && !$stateParams.editOpenState && !document.querySelector(".message-modal")) {
 
                             var modalInstance = $uibModal.open({
                                 animation: true,

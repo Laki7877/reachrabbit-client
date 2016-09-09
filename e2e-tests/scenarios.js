@@ -130,7 +130,7 @@ describe('Brand', function () {
         it('can find sample draft campaign', function () {
             // browser.waitForAngular();
             var cards = element.all(by.repeater("x in myCampaign.content"));
-            
+
             expect(cards.count()).toEqual(1);
             cards.first().click();
 
@@ -213,18 +213,18 @@ describe('Brand', function () {
             new_state.uploaders = element.all(by.css('input[type="file"]'));
             new_state.proposalDeadline = element(by.model("formData.proposalDeadline"));
             new_state.category = element(by.model('formData.category'));
-            
+
 
             expect(new_state.thumbImage.getAttribute('src') == 'images/placeholder-campaign.png').toBe(false);
             //TODO: check against value we entered
             expect(new_state.category.$('option:checked').getText("DIY"));
-            expect(new_state.budget.$('option:checked').getText("5,000 - 10,000"));
+            expect(new_state.budget.$('option:checked').getText("5,000 - 10,000 บาท ต่อคน"));
             expect(new_state.title.getAttribute("value")).toEqual(browser.params.campaignName);
         });
 
     });
 
-    xdescribe('Modify and publish draft campaign', function () {
+    describe('Modify and publish draft campaign', function () {
         var state = {};
         beforeAll(function () {
             browser.get('brand.html#/brand-campaign-list');
@@ -246,9 +246,12 @@ describe('Brand', function () {
 
             state.publish_btn.click();
 
-            //clcik on fat ass rabbit
-            element(by.css('.btn-secondary-highlight.btn-width-lg')).click();
-
+            //click on fat ass rabbit - "No i'm that that fat" Hello Rabbit
+            var doNotShowBtn = element(by.css('.message-modal .checkbox input'));
+            var continueBtn = element(by.css('.message-modal .btn-secondary-highlight'));
+            doNotShowBtn.click();
+            continueBtn.click();
+          
             expect($('.alert.alert-success').isPresent()).toBe(true);
         });
 
@@ -511,7 +514,11 @@ describe('Influencer-Brand interaction', function () {
 
     });
 
-    it('Influencer is taken to workroom', function () {
+    it('Influencer is taken to workroom and can close message modal', function () {
+        var doNotShowBtn = element(by.css('.message-modal .checkbox input'));
+        var continueBtn = element(by.css('.message-modal .btn-secondary-highlight'));
+        doNotShowBtn.click();
+        continueBtn.click();
         expect(element(by.css('.chatbox-card')).isPresent()).toBe(true);
     });
 
@@ -604,7 +611,7 @@ describe('Brand can add influencer to cart', function(){
                 browser.params.transactionNumber = text;
                 expect(transactionNumber.isPresent()).toBe(true);
             });
-            
+
        });
 
 });
@@ -645,6 +652,5 @@ describe('Admin can approve payment', function(){
 
         expect(element(by.css('.color-green .fa-check-circle-o')).isPresent()).toBe(true)
     });
-    
-});
 
+});

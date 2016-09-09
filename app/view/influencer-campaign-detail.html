@@ -11,11 +11,14 @@
     </div>
     <h1 ng-bind="campaignNee.title | truncate: 40"></h1>
   </zone-header>
-
   <div class="zone-body">
     <div class="container">
       <div nc-alert="appliedAlert"></div>
       <div nc-alert="alert"></div>
+
+      <div nc-alert type="info" closable="true" ng-if="isApplied">
+        คุณได้ส่งข้อเสนอให้ Campaign นี้แล้ว
+      </div>
 
       <card-campaign-header campaign="campaignNee">
       </card-campaign-header>

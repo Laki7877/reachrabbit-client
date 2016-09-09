@@ -44,6 +44,16 @@ angular.module('myApp.admin.routes', ['ui.router'])
                 templateUrl: 'view/admin-payout-detail.html',
                 controller: 'PayoutDetailController'
             })
+            .state('admin-campaign-list',{
+                url: '/admin-campaign-list',
+                templateUrl: 'view/admin-campaign-list.html',
+                controller: 'AdminCampaignListController'
+            })
+            .state('admin-campaign-detail',{
+                url: '/admin-campaign-detail/:campaignId',
+                templateUrl: 'view/admin-campaign-detail.html',
+                controller: 'AdminCampaignDetailController'
+            })
             .state('admin-ig-reloader', {
                 url: '/admin-ig-reloader',
                 templateUrl: 'view/admin-ig-reloader.html',

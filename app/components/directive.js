@@ -292,7 +292,6 @@ angular.module('myApp.directives', ['myApp.service'])
     .directive('pagination', [function () {
         return {
             restrict: 'EA',
-            replace: true,
             templateUrl: 'components/templates/pagination.html',
             scope: {
                 model: '=ngModel',
@@ -300,6 +299,7 @@ angular.module('myApp.directives', ['myApp.service'])
             },
             link: function (scope, element, attrs, ctrl, transclude) {
                 scope.sizeOptions = [10, 20, 40];
+                scope.array = [];
                 var update = function (extend) {
                     var newPageable = _.pick(scope.model, ['size', 'sort']);
                     newPageable.sort = newPageable.sort ? _.map(newPageable.sort, function (e) {
@@ -328,7 +328,11 @@ angular.module('myApp.directives', ['myApp.service'])
                 };
                 //Get int as array
                 scope.counter = function () {
-                    return new Array(_.get(scope, 'model.totalPages', 0));
+                    scope.array.length = 0;
+                    for(var i = 0; i < _.get(scope, 'model.totalPages', 0); i++) {
+                        scope.array.push(null);
+                    }
+                    return scope.array;
                 };
                 scope.$watch('model.size', function (size) {
                     if (!_.isNil(size)) {

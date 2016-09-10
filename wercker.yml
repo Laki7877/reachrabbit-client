@@ -1,5 +1,5 @@
 box: nodesource/trusty
-build:
+dev:
   steps:
     - install-packages:
         packages:  xvfb firefox

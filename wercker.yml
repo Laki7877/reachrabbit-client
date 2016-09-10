@@ -1,5 +1,5 @@
 box: nodesource/trusty
-dev:
+build:
   steps:
     - install-packages:
         packages:  xvfb firefox
@@ -14,7 +14,7 @@ dev:
           # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
           sleep 3
 
-    - npm-install
+    - npm-install--dev
 
     - script:
         name: update webdriver

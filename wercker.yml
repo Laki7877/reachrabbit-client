@@ -1,4 +1,4 @@
-box: nodesource/trusty
+box: risto-stevcev/ubuntu14.04-nodejs@1.0.7
 build:
   steps:
     - install-packages:

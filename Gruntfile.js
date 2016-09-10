@@ -26,6 +26,9 @@ module.exports = function (grunt) {
         },
         test:{
           tasks: ['connect:testserver', 'shell:protractor']
+        },
+        testff: {
+          tasks: ['connect:testserver', 'shell:protractorff']
         }
     },
     shell: {
@@ -41,6 +44,13 @@ module.exports = function (grunt) {
                 stderr: true,
                 stdout: true
             }
+        },
+        protractorff:{
+          command: 'npm run protractor-test-ff',
+          options:{
+            stderr:true,
+            stdout:true
+          }
         }
     },
     watch: {
@@ -108,4 +118,6 @@ module.exports = function (grunt) {
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'concurrent:dev']);
   grunt.registerTask('test', ['concurrent:test']);
+  grunt.registerTask('testff', ['concurrent:testff']);
+
 };

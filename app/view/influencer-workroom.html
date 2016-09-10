@@ -16,11 +16,14 @@
                                 <h3>{{ proposal.campaign.brand.brandName | truncate: 30 }}</h3>
                                 <a class="link-view-profile" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId })"><i class="fa fa-info-circle"></i>ดูโปรไฟล์</a>
                                 <div class="chatbox-status">
-                                    <span class="status" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
+                                    <span tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และรอการคัดเลือกจาก Brand คุณจะได้รับแจ้งหากผ่านการคัดเลือก"
+                                        class="status" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
                                     <i class="fa fa-angle-right"></i>
-                                    <span class="status" ng-class="{'active': proposal.status == 'Working'}">ดำเนินการ</span>
+                                    <span class="status" tooltip-placement="bottom" uib-tooltip="ทำงานตามที่ได้ตกลงกัน และส่งงานให้ Brand ตรวจสอบและอนุมัติ"
+                                        ng-class="{'active': proposal.status == 'Working'}">ดำเนินการ</span>
                                     <i class="fa fa-angle-right"></i>
-                                    <span class="status" ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span>
+                                    <span class="status" tooltip-placement="bottom" uib-tooltip="ยินดีด้วย! งานคุณเสร็จสิ้นแล้ว คุณสามารถถอนเงินจากระบบได้เมื่อต้องการ"
+                                        ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span>
                                 </div>
                             </div>
                             <div class="message-area" scroll-glue>
@@ -36,20 +39,16 @@
                                 <div nc-alert="alert"></div>
                             </div>
                             <div class="message-input">
-                                <textarea chatarea="sendMessage(formData.messageStr, formData.resources)" class="form-control" rows="4" ng-model="formData.messageStr" placeholder="พิมพ์ข้อความ..." autofocus maxlength="1000"></textarea>
+                                <textarea chatarea="sendMessage(formData.messageStr, formData.resources)" class="form-control" rows="4" ng-model="formData.messageStr"
+                                    placeholder="พิมพ์ข้อความ..." autofocus maxlength="1000"></textarea>
                                 <div class="pull-left">
                                     <div>{{formData.messageStr.length || '0'}}/1000</div>
                                 </div>
                                 <div class="pull-right" form-error="form.resource">
                                     <div input-error class="pull-left"></div>
 
-                                    <uploader-multi
-                                    name="resource"
-                                    template="components/templates/uploader-chat.html"
-                                    ng-model="formData.resources"
-                                    accept=".jpg,.png"
-                                    ngf-pattern="'.jpg,.png'"
-                                    ngf-max-size="5MB"></uploader-multi>
+                                    <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png"
+                                        ngf-pattern="'.jpg,.png'" ngf-max-size="5MB"></uploader-multi>
 
                                     <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr, formData.resources)">
                                         <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ

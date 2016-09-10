@@ -16,11 +16,11 @@
                                 <h3>{{ proposal.influencer.user.name | truncate: 30 }}</h3>
                                 <a class="link-view-profile" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId })"><i class="fa fa-info-circle"></i>ดูโปรไฟล์</a>
                                 <div class="chatbox-status">
-                                    <span class="status" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
+                                    <span class="status" tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงานกับ Influencer และเลือกข้อเสนอเมื่อคุณพอใจเพื่อชำระเงินและเริ่มงาน" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
                                     <i class="fa fa-angle-right"></i>
-                                    <span class="status" ng-class="{'active': proposal.status == 'Working'}">ดำเนินการ</span>
+                                    <span class="status" tooltip-placement="bottom" uib-tooltip="รอตรวจสอบงานจาก Influencer และอนุมัติงานเมื่อคุณพอใจ" ng-class="{'active': proposal.status == 'Working'}">ดำเนินการ</span>
                                     <i class="fa fa-angle-right"></i>
-                                    <span class="status" ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span>
+                                    <span class="status" tooltip-placement="bottom" uib-tooltip="ยินดีด้วย! งานคุณเสร็จสิ้นแล้ว คุณสามารถติดตามผลได้จากหน้า Dashboard" ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span>
                                 </div>
                             </div>
                             <div class="message-area" scroll-glue>

@@ -15,6 +15,7 @@ build:
           sleep 3
 
     - npm-install
+    - bower-install
 
     - script:
         name: update webdriver

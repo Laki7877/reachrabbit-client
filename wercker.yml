@@ -1,8 +1,8 @@
-box: risto-stevcev/ubuntu14.04-nodejs@1.0.7
+box: nodesource/trusty
 build:
   steps:
     - install-packages:
-        packages:  xvfb firefox
+        packages:  xvfb firefox selenium default-jre
 
     - script:
         name: Enable virtual display

@@ -19,8 +19,8 @@ build:
     - script:
         name: update webdriver
         code: |
-          $(npm bin) ./node_modules/.bin/webdriver-manager update
+          $(npm bin)/webdriver-manager update
     - script:
         name: run tests
         code: |
-          $(npm bin) ./node_modules/.bin/protractor e2e-tests/protractor.conf.js --browser=firefox
+          $(npm bin)/protractor e2e-tests/protractor.conf.js --browser=firefox

@@ -588,10 +588,17 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('WalletController', ['$scope', '$state', 'InfluencerAccountService', 'DataService', 'BusinessConfig', 'NcAlert', function ($scope, $state, InfluencerAccountService, DataService, BusinessConfig, NcAlert) {
+    .controller('WalletController', ['$scope', '$state', 'UserProfile', 'InfluencerAccountService', 'AccountService', 'DataService', 'BusinessConfig', 'NcAlert', function ($scope, $state, UserProfile, InfluencerAccountService, AccountService, DataService, BusinessConfig, NcAlert) {
         $scope.wallet = {};
         $scope.alert = new NcAlert();
         $scope.formData = {};
+
+        AccountService.getProfile().then(function(profile){
+            UserProfile.set(profile);
+            $scope.formData.bank = profile.influencer.bank;
+            $scope.formData.accountNumber = profile.influencer.accountNumber;
+            $scope.formData.accountName = profile.influencer.accountName;
+        });
 
         InfluencerAccountService.getWallet().then(function (walletResponse) {
             $scope.wallet = walletResponse.data;
@@ -605,15 +612,28 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $scope.TransferFee = -1 * BusinessConfig.INFLUENCER_BANK_TF_FEE;
 
         $scope.requestPayout = function () {
+            //if user chekced the chekbx
+            //we save bank detail first
+
             InfluencerAccountService.requestPayout($scope.formData)
                 .then(function (ias) {
-                    console.log(ias);
-                    $state.go('influencer-payout-history');
+                    if($scope.rememberBankDetail){
+                        AccountService.saveBank({
+                            accountName: $scope.formData.accountName,
+                            accountNumber: $scope.formData.accountNumber,
+                            bank: $scope.formData.bank,
+                        }).then(function(){
+                            $state.go('influencer-payout-history');
+                        });
+                    }else{
+                        $state.go('influencer-payout-history');
+                    }
                 })
                 .catch(function (err) {
                     return $scope.alert.danger(err.data.message);
                 });
         };
+
     }])
     .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService', '$uibModal', 'DataService',
         function ($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService) {

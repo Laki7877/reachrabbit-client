@@ -5,7 +5,7 @@ var Chance = require('chance');
 var chance = new Chance();
 var EC = protractor.ExpectedConditions;
 
-describe('Brand', function () {
+xdescribe('Brand', function () {
 
     beforeAll(function () {
         browser.params.brand_login.user = chance.email({domain: "reachrabbit.com"});
@@ -326,7 +326,7 @@ describe('Brand', function () {
 
 });
 
-describe('Influencer', function () {
+xdescribe('Influencer', function () {
     var state = {};
 
     describe('God Login', function () {
@@ -479,7 +479,7 @@ describe('Influencer', function () {
 
 });
 
-describe('Influencer-Brand interaction', function () {
+xdescribe('Influencer-Brand interaction', function () {
     it('Influencer can apply to campaign (submit proposal)', function () {
         var applyBtn = element(by.css(".page-header button"));
         expect(applyBtn.isPresent()).toBe(true);
@@ -584,7 +584,7 @@ describe('Influencer-Brand interaction', function () {
 
 });
 
-describe('Brand can add influencer to cart', function(){
+xdescribe('Brand can add influencer to cart', function(){
        it('can can choose proposal', function(){
             var chooseProposalBtn = element(by.css('.btn-primary'));
             chooseProposalBtn.click();
@@ -616,8 +616,7 @@ describe('Brand can add influencer to cart', function(){
 
 });
 
-
-describe('Admin can approve payment', function(){
+xdescribe('Admin can approve payment', function(){
     beforeAll(function(){
         browser.executeScript('window.sessionStorage.clear();');
         browser.executeScript('window.localStorage.clear();');
@@ -653,4 +652,68 @@ describe('Admin can approve payment', function(){
         expect(element(by.css('.color-green .fa-check-circle-o')).isPresent()).toBe(true)
     });
 
+});
+
+describe('Influencer Payment', function(){
+    
+    describe('God Login', function () {
+        var state = {};
+        beforeAll(function () {
+            browser.executeScript('window.sessionStorage.clear();');
+            browser.executeScript('window.localStorage.clear();');
+            browser.get('portal.html#/influencer-god-login');
+        });
+
+        it('can find inputs', function () {
+
+            state.username = element(by.model('username'));
+            state.password = element(by.model('password'));
+            state.submit_btn = element(by.css('.btn-primary'));
+
+            expect(state.username.isPresent()).toBe(true);
+            expect(state.password.isPresent()).toBe(true);
+            expect(state.submit_btn.isPresent()).toBe(true);
+        });
+
+        it('can login', function () {
+            state.username.clear();
+            state.password.clear();
+            state.username.sendKeys(browser.params.god_influencer.user);
+            state.password.sendKeys(browser.params.god_influencer.password);
+            browser.ignoreSynchronization = true;
+            state.submit_btn.click();
+            browser.ignoreSynchronization = false;
+
+            browser.sleep(1500);
+
+            var campaignRepeater = element.all(by.repeater("cam in campaigns.content"));
+            campaignRepeater.count().then(function (ct) {
+                expect(ct >= 1).toBeTruthy();
+            });
+
+        });
+
+
+    });
+
+    it('can click on wallet in top bar', function(){
+        var walletBtn = element(by.css('.wallet'));
+        walletBtn.click();
+
+        element(by.model('formData.bank')).sendKeys('ธ');
+        element(by.model('formData.accountNumber')).sendKeys('1444000010100');
+        element(by.model('formData.accountName')).sendKeys('Sample Account');
+    });
+
+    it('can request payout', function(){
+        element(by.css('.btn-primary')).click();
+    });
+});
+
+describe('Admin Payment', function(){
+    it('can upload and confirm payout');
+});
+
+describe('Influencer', function(){
+    it('can see status change and payment slip');
 });

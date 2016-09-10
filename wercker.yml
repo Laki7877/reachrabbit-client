@@ -2,7 +2,7 @@ box: nodesource/trusty
 build:
   steps:
     - install-packages:
-        packages:  xvfb firefox selenium default-jre
+        packages:  xvfb firefox default-jre
 
     - script:
         name: Enable virtual display

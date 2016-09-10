@@ -15,7 +15,10 @@ build:
           sleep 3
 
     - npm-install
-    - bower-install
+    - script:
+        name: install bower
+        code: |
+          $(npm bin)/bower install 
 
     - script:
         name: update webdriver

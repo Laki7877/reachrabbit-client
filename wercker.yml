@@ -18,8 +18,7 @@ build:
     - script:
         name: install bower
         code: |
-          $(npm bin)/bower install 
-
+          $(npm bin)/bower install --allow-root
     - script:
         name: update webdriver
         code: |

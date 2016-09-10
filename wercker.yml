@@ -14,7 +14,7 @@ build:
           # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
           sleep 3
 
-    - npm-install--dev
+    - npm-install
 
     - script:
         name: update webdriver

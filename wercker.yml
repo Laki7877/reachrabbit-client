@@ -19,7 +19,7 @@ build:
     - script:
         name: update webdriver
         code: |
-          ./node_modules/.bin/webdriver-manager update
+          $(npm bin) ./node_modules/.bin/webdriver-manager update
     - script:
         name: run tests
         code: |

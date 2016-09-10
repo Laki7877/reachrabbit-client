@@ -8,7 +8,7 @@ var EC = protractor.ExpectedConditions;
 describe('Brand', function () {
 
     beforeAll(function () {
-        browser.params.brand_login.user = chance.email({domain: "reachrabbit.com"});
+        browser.params.brand_login.user = chance.email({ domain: "reachrabbit.com" });
     });
 
     describe('Signup', function () {
@@ -251,7 +251,7 @@ describe('Brand', function () {
             var continueBtn = element(by.css('.message-modal .btn-secondary-highlight'));
             doNotShowBtn.click();
             continueBtn.click();
-          
+
             expect($('.alert.alert-success').isPresent()).toBe(true);
         });
 
@@ -584,40 +584,40 @@ describe('Influencer-Brand interaction', function () {
 
 });
 
-describe('Brand can add influencer to cart', function(){
-       it('can can choose proposal', function(){
-            var chooseProposalBtn = element(by.css('.btn-primary'));
-            chooseProposalBtn.click();
-       });
+describe('Brand can add influencer to cart', function () {
+    it('can can choose proposal', function () {
+        var chooseProposalBtn = element(by.css('.btn-primary'));
+        chooseProposalBtn.click();
+    });
 
-       it('has cart of size 1', function(){
+    it('has cart of size 1', function () {
 
-         var cartList = element.all(by.repeater('proposal in cart.proposals'));
-         expect(cartList.count()).toEqual(1);
+        var cartList = element.all(by.repeater('proposal in cart.proposals'));
+        expect(cartList.count()).toEqual(1);
 
-       });
+    });
 
-       xit('has correct cart fee sum');
+    xit('has correct cart fee sum');
 
-       it('can can checkout', function(){
-            var checkoutBtn = element(by.css('.btn-primary'));
-            checkoutBtn.click();
-       });
+    it('can can checkout', function () {
+        var checkoutBtn = element(by.css('.btn-primary'));
+        checkoutBtn.click();
+    });
 
-       it('can see brand-transaction-detail', function(){
-            var transactionNumber = element(by.binding('transaction.transactionNumber'));
+    it('can see brand-transaction-detail', function () {
+        var transactionNumber = element(by.binding('transaction.transactionNumber'));
 
-            transactionNumber.getText().then(function(text){
-                browser.params.transactionNumber = text;
-                expect(transactionNumber.isPresent()).toBe(true);
-            });
+        transactionNumber.getText().then(function (text) {
+            browser.params.transactionNumber = text;
+            expect(transactionNumber.isPresent()).toBe(true);
+        });
 
-       });
+    });
 
 });
 
-describe('Admin can approve payment', function(){
-    beforeAll(function(){
+describe('Admin can approve payment', function () {
+    beforeAll(function () {
         browser.executeScript('window.sessionStorage.clear();');
         browser.executeScript('window.localStorage.clear();');
         browser.get('portal.html#/admin-login');
@@ -632,13 +632,13 @@ describe('Admin can approve payment', function(){
         submit_btn.click();
     });
 
-    it('can find transaction history', function(){
-        element.all(by.repeater('transaction in transactions.content')).count().then(function(ct){
+    it('can find transaction history', function () {
+        element.all(by.repeater('transaction in transactions.content')).count().then(function (ct) {
             expect(ct).toBeGreaterThan(0);
         });
     });
 
-    it('can approve payment from brand', function(){
+    it('can approve payment from brand', function () {
         var transactionList = element.all(by.repeater('transaction in transactions.content'));
         var transactionNumber = transactionList.get(0).element(by.binding('transaction.transactionNumber'));
         var detailBtn = transactionList.get(0).element(by.css('.btn-secondary'));
@@ -654,8 +654,8 @@ describe('Admin can approve payment', function(){
 
 });
 
-describe('Brand can approve work', function(){
-     it('Brand approve work', function () {
+describe('Brand can approve work', function () {
+    it('Brand approve work', function () {
 
         browser.executeScript('window.sessionStorage.clear();');
         browser.executeScript('window.localStorage.clear();');
@@ -696,8 +696,8 @@ describe('Brand can approve work', function(){
 
 });
 
-describe('Influencer Payment', function(){
-    
+describe('Influencer Payment', function () {
+
     describe('God Login', function () {
         var state = {};
         beforeAll(function () {
@@ -738,7 +738,7 @@ describe('Influencer Payment', function(){
 
     });
 
-    it('can click on wallet in top bar', function(){
+    it('can click on wallet in top bar', function () {
         var walletBtn = element(by.css('.wallet'));
         walletBtn.click();
 
@@ -747,15 +747,105 @@ describe('Influencer Payment', function(){
         element(by.model('formData.accountName')).sendKeys('Sample Account');
     });
 
-    it('can request payout', function(){
+    it('can request payout', function () {
         element(by.css('.btn-primary')).click();
     });
 });
 
-describe('Admin Payment', function(){
-    it('can upload and confirm payout');
+describe('Admin Payment', function () {
+
+    beforeAll(function () {
+        browser.executeScript('window.sessionStorage.clear();');
+        browser.executeScript('window.localStorage.clear();');
+        browser.get('portal.html#/admin-login');
+
+        var username = element(by.model('formData.username'));
+        var password = element(by.model('formData.password'));
+        var submit_btn = element(by.css('.btn-primary'));
+
+        username.sendKeys(browser.params.admin_login.user);
+        password.sendKeys(browser.params.admin_login.password);
+
+        submit_btn.click();
+
+        browser.sleep(1000);
+    });
+
+    it('can find payouts', function () {
+        browser.get('admin.html#/admin-payout-history');
+        element.all(by.repeater('transaction in transactions.content')).count().then(function (ct) {
+            expect(ct).toBeGreaterThan(0);
+        });
+    });
+
+    it('can confirm payout', function () {
+        var latestTrans = element.all(by.repeater('transaction in transactions.content')).first();
+        latestTrans.element(by.css('.btn-secondary')).click();
+
+        var uploader = element(by.css('input[type="file"]'));
+
+        var fileToUpload = 'cyanthumb.jpg';
+        var absolutePath = path.resolve(__dirname, fileToUpload);
+        uploader.sendKeys(absolutePath);
+
+        element(by.css('.btn-primary')).click();
+        browser.sleep(1000);
+    });
 });
 
-describe('Influencer', function(){
-    it('can see status change and payment slip');
+describe('Influencer', function () {
+    describe('God Login', function () {
+        var state = {};
+        beforeAll(function () {
+            browser.executeScript('window.sessionStorage.clear();');
+            browser.executeScript('window.localStorage.clear();');
+            browser.get('portal.html#/influencer-god-login');
+        });
+
+        it('can find inputs', function () {
+
+            state.username = element(by.model('username'));
+            state.password = element(by.model('password'));
+            state.submit_btn = element(by.css('.btn-primary'));
+
+            expect(state.username.isPresent()).toBe(true);
+            expect(state.password.isPresent()).toBe(true);
+            expect(state.submit_btn.isPresent()).toBe(true);
+        });
+
+        it('can login', function () {
+            state.username.clear();
+            state.password.clear();
+            state.username.sendKeys(browser.params.god_influencer.user);
+            state.password.sendKeys(browser.params.god_influencer.password);
+            browser.ignoreSynchronization = true;
+            state.submit_btn.click();
+            browser.ignoreSynchronization = false;
+
+            browser.sleep(1500);
+        });
+
+
+    });
+
+    it('can see status change and payment slip', function () {
+        browser.get('portal.html#/influencer-payout-history');
+
+        element.all(by.repeater('transaction in transactions.content')).count().then(function (ct) {
+            expect(ct).toBeGreaterThan(0);
+        });
+
+        var latestPayout = element.all(by.repeater('transaction in transactions.content')).first();
+        
+        //check status is correct
+        var greenStatus = latestPayout.element(by.css('.color-green'));
+        expect(greenStatus.isPresent()).toBe(true);
+
+        //click on it
+        latestPayout.element(by.css('.btn-secondary')).click();
+        //check slip is there
+        var prollySlip = element(by.css("table img"));
+        expect(prollySlip.isPresent()).toBe(true);
+
+    });
 });

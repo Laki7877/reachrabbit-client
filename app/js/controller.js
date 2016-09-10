@@ -594,10 +594,10 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $scope.formData = {};
 
         AccountService.getProfile().then(function(profile){
-            UserProfile.set(profile);
-            $scope.formData.bank = profile.influencer.bank;
-            $scope.formData.accountNumber = profile.influencer.accountNumber;
-            $scope.formData.accountName = profile.influencer.accountName;
+            UserProfile.set(profile.data);
+            $scope.formData.bank = profile.data.influencer.bank;
+            $scope.formData.accountNumber = profile.data.influencer.accountNumber;
+            $scope.formData.accountName = profile.data.influencer.accountName;
         });
 
         InfluencerAccountService.getWallet().then(function (walletResponse) {

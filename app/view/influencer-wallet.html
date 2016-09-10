@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-  <div class="zone-body" ng-if="$root.sumReduce(wallet.proposals, 'income') > 0">
+  <div class="zone-body" ng-if="$root.sumReduce(wallet.proposals, 'income') != 0">
     <div class="container">
       <div nc-alert="alert"></div>
       <div class="row">

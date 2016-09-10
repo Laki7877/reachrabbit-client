@@ -5,7 +5,7 @@ var Chance = require('chance');
 var chance = new Chance();
 var EC = protractor.ExpectedConditions;
 
-xdescribe('Brand', function () {
+describe('Brand', function () {
 
     beforeAll(function () {
         browser.params.brand_login.user = chance.email({domain: "reachrabbit.com"});
@@ -326,7 +326,7 @@ xdescribe('Brand', function () {
 
 });
 
-xdescribe('Influencer', function () {
+describe('Influencer', function () {
     var state = {};
 
     describe('God Login', function () {
@@ -479,7 +479,7 @@ xdescribe('Influencer', function () {
 
 });
 
-xdescribe('Influencer-Brand interaction', function () {
+describe('Influencer-Brand interaction', function () {
     it('Influencer can apply to campaign (submit proposal)', function () {
         var applyBtn = element(by.css(".page-header button"));
         expect(applyBtn.isPresent()).toBe(true);
@@ -584,7 +584,7 @@ xdescribe('Influencer-Brand interaction', function () {
 
 });
 
-xdescribe('Brand can add influencer to cart', function(){
+describe('Brand can add influencer to cart', function(){
        it('can can choose proposal', function(){
             var chooseProposalBtn = element(by.css('.btn-primary'));
             chooseProposalBtn.click();
@@ -616,7 +616,7 @@ xdescribe('Brand can add influencer to cart', function(){
 
 });
 
-xdescribe('Admin can approve payment', function(){
+describe('Admin can approve payment', function(){
     beforeAll(function(){
         browser.executeScript('window.sessionStorage.clear();');
         browser.executeScript('window.localStorage.clear();');
@@ -650,6 +650,48 @@ xdescribe('Admin can approve payment', function(){
         btnApproveBtn.click();
 
         expect(element(by.css('.color-green .fa-check-circle-o')).isPresent()).toBe(true)
+    });
+
+});
+
+describe('Brand can approve work', function(){
+     it('Brand approve work', function () {
+
+        browser.executeScript('window.sessionStorage.clear();');
+        browser.executeScript('window.localStorage.clear();');
+        browser.get('portal.html#/brand-login');
+
+        var username = element(by.model('formData.username'));
+        var password = element(by.model('formData.password'));
+        var submit_btn = element(by.css('.btn-primary'));
+
+        expect(username.isPresent()).toBe(true);
+        expect(password.isPresent()).toBe(true);
+        expect(submit_btn.isPresent()).toBe(true);
+
+        username.sendKeys(browser.params.brand_login.user);
+        password.sendKeys(browser.params.brand_login.password);
+        browser.ignoreSynchronization = true;
+        submit_btn.click();
+        browser.sleep(2000);
+        browser.ignoreSynchronization = false;
+
+        browser.get('brand.html#/brand-inbox/Working');
+
+        var latestProposal = element.all(by.repeater('proposal in proposals.content')).first();
+        expect(latestProposal.isPresent()).toBe(true);
+        latestProposal.element(by.css('.btn-secondary')).click();
+
+        //click on approve button
+        element(by.css('.btn-primary')).click();
+
+        browser.sleep(1000);
+
+        //modal confirm
+        element(by.css('.btn-primary')).click();
+
+        browser.sleep(1000);
+
     });
 
 });

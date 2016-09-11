@@ -5,7 +5,7 @@ var Chance = require('chance');
 var chance = new Chance();
 var EC = protractor.ExpectedConditions;
 
-browser.driver.manage().window().setSize(1200, 800);
+browser.driver.manage().window().maximize();
 
 describe('Brand', function () {
 

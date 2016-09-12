@@ -801,7 +801,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 .then(function (response) {
                     $scope.formData = response.data;
                     $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
-                    $scope.formData.influencer.user = $scope.formData;
+                    $scope.formData.influencer.user = { name : $scope.formData.name, profilePicture: $scope.formData.profilePicture };
 
                     // fetch each media
                     if($scope.hasMedia('google')) {

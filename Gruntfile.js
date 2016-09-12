@@ -19,10 +19,16 @@ module.exports = function (grunt) {
     },
     concurrent: {
         dev: {
-            tasks: ['shell:autoless', 'connect'],
+            tasks: ['shell:autoless', 'connect:server'],
             options: {
                 logConcurrentOutput: true
             }
+        },
+        test:{
+          tasks: ['connect:testserver', 'shell:protractor']
+        },
+        testff: {
+          tasks: ['connect:testserver', 'shell:protractorff']
         }
     },
     shell: {
@@ -31,6 +37,20 @@ module.exports = function (grunt) {
              options: {
                 stderr: true
             }
+        },
+        protractor: {
+          command: 'npm run protractor-test',
+             options: {
+                stderr: true,
+                stdout: true
+            }
+        },
+        protractorff:{
+          command: 'npm run protractor-test-ff',
+          options:{
+            stderr:true,
+            stdout:true
+          }
         }
     },
     watch: {
@@ -54,6 +74,13 @@ module.exports = function (grunt) {
           base: 'app',
           keepalive: true
         }
+      },
+      testserver: {
+        options: {
+          port: 9900,
+          base: 'app',
+          keepalive: true
+        }
       }
     },
     //JSHint code check
@@ -65,7 +92,9 @@ module.exports = function (grunt) {
           jQuery: true,
           angular: true,
           window: true,
+          moment: true,
           history: true,
+          document: true,
           sjcl: true,
           $: true,
           _: true,
@@ -88,5 +117,7 @@ module.exports = function (grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'concurrent:dev']);
+  grunt.registerTask('test', ['concurrent:test']);
+  grunt.registerTask('testff', ['concurrent:testff']);
 
 };

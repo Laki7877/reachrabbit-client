@@ -27,7 +27,7 @@
                   <span class="color-green" ng-if="!isExpired(transaction) && transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span>
                   <span class="color-grey" ng-if="isExpired(transaction)"><i class="fa fa-ban"></i> หมดอายุ</span>
                 </td>
-                <td class="text-center">{{ transaction.transactionNumber }}</td>
+                <td class="text-center" ng-bind="transaction.transactionNumber"></td>
                 <td class="text-center">{{ transaction.brandTransactionDocument.cart.proposals.length || '0' }}</td>
                 <td class="col-price">{{ transaction.amount | currency: '': 0 }}</td>
                 <td class="col-button">

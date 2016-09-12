@@ -1,7 +1,7 @@
 .DS_Store
 test-report.json
 node_modules
-bower_components
+#bower_components
 
 # vim tmp files
 *.swp

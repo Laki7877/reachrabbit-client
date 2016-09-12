@@ -2,139 +2,151 @@
   <zone-header historyback="false">
     <h1>My Wallet</h1>
   </zone-header>
-  <div class="zone-body">
+  <div class="zone-body" ng-if="$root.sumReduce(wallet.proposals, 'income') == 0">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="card">
+            <div class="card-body">Your wallet is empty</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="zone-body" ng-if="$root.sumReduce(wallet.proposals, 'income') != 0">
     <div class="container">
       <div nc-alert="alert"></div>
       <div class="row">
         <div class="col-xs-8">
-            <div class="card">
-                <div class="card-header">
-                   รายได้ที่ยังไม่ได้ถอนออก
-                </div>
-
-                <div class="card-body">
-                    <table class="table with-no-margin">
-                      <thead>
-                        <th>Campaign</th>
-                        <th class="text-align-right">ราคาที่เสนอ (บาท)</th>
-                        <th class="text-align-right">รายได้ (บาท) <a><i class="fa fa-question-circle color-grey"></i></a></th>
-                      </thead>
-                      <tbody>
-                        <tr ng-repeat="proposal in wallet.proposals">
-                          <td class="col-campaign-name">{{proposal.campaign.title}}</td>
-                          <td class="text-align-right">{{ proposal.price | number:0 }} </td>
-                          <td class="text-align-right" ng-init='proposal.income = proposal.price * PostDeductionFeeMultiplier'>{{ proposal.income | number :0 }}</td>
-                        </tr>
-                        <tr class="total-price">
-                          <td colspan="3">
-                            <strong>รายได้รวม ({{ wallet.proposals.length | number: 0 }} รายการ ) : {{ $root.sumReduce(wallet.proposals, 'income') | number:0 }} บาท</strong>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-
-                </div>
+          <div class="card">
+            <div class="card-header">
+              รายได้ที่ยังไม่ได้ถอนออก
             </div>
-            <div class="card">
-              <div class="card-header">
-                ขั้นตอนการชำระเงิน
-              </div>
-              <div class="card-body with-extra-padding">
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">1</span>
-                    </div>
-                    <div class="media-body">
-                      <div class="card-row">
-                        <div class="col-xs-12">
-                          ระบุข้อมูลบัญชีที่ต้องการให้โอน
-                        </div>
-                      </div>
-                      <div class="card-row-2-column">
-                        <div class="col">
-                          <label>ธนาคาร</label>
-                          <div class="input-dropdown">
-                              <select class="form-control" ng-model="formData.bank" ng-options="bank as bank.bankName for bank in bankOptions track by bank.bankId"></select>
-                              <i class="fa fa-caret-down"></i>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <label>เลขที่บัญชี</label>
-                              <input class="form-control" ng-model="formData.accountNumber"/>
-                        </div>
-                      </div>
-                      <div class="card-row-2-column">
-                        <div class="col">
-                          <label>ชื่อบัญชี</label>
-                          <div class="input-dropdown">
-                              <input class="form-control" ng-model="formData.accountName"/>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="checkbox">
-                            <label><input type="checkbox" ng-model="formData.rememberBankDetail">จดจำรายละเอียดสำหรับครั้งหน้า</label>
-                          </div>
-                        </div>
-                      </div>
 
-                    </div>
-                  </div>
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">2</span>
-                    </div>
-                    <div class="media-body">
-                      ตรวจสอบและกด ถอนเงิน
-                    </div>
-                  </div>
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">3</span>
-                    </div>
-                    <div class="media-body">
-                      ReachRabbit จะโอนเงินให้คุณภายใน 3 วันทำการ
-                    </div>
-                  </div>
+            <div class="card-body">
+              <table class="table with-no-margin">
+                <thead>
+                  <th>Campaign</th>
+                  <th class="text-align-right">ราคาที่เสนอ (บาท)</th>
+                  <th uib-tooltip="รายได้ของคุณได้ทำการหักค่าธรรมเนียมในการใช้ระบบ 18% เรียบร้อยแล้ว ReachRabbit จะใช้ค่าธรรมเนียมเพื่อพัฒนาระบบและหางานให้คุณอย่างต่อเนื่องค่ะ"
+                    tooltip-placement="top" class="text-align-right">รายได้ (บาท) <a><i class="fa fa-question-circle color-grey"></i></a></th>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="proposal in wallet.proposals">
+                    <td class="col-campaign-name">{{proposal.campaign.title}}</td>
+                    <td class="text-align-right">{{ proposal.price | number:0 }} </td>
+                    <td class="text-align-right" ng-init='proposal.income = proposal.price * PostDeductionFeeMultiplier'>{{ proposal.income | number :0 }}</td>
+                  </tr>
+                  <tr class="total-price">
+                    <td colspan="3">
+                      <strong>รายได้รวม ({{ wallet.proposals.length | number: 0 }} รายการ ) : {{ $root.sumReduce(wallet.proposals, 'income') | number:0 }} บาท</strong>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
-              </div>
             </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              ขั้นตอนการชำระเงิน
+            </div>
+            <div class="card-body with-extra-padding">
+              <div class="media">
+                <div class="media-left">
+                  <span class="number-circle">1</span>
+                </div>
+                <div class="media-body">
+                  <div class="card-row">
+                    <div class="col-xs-12">
+                      ระบุข้อมูลบัญชีที่ต้องการให้โอน
+                    </div>
+                  </div>
+                  <div class="card-row-2-column">
+                    <div class="col">
+                      <label>ธนาคาร</label>
+                      <div class="input-dropdown">
+                        <select class="form-control" ng-model="formData.bank" ng-options="bank as bank.bankName for bank in bankOptions track by bank.bankId"></select>
+                        <i class="fa fa-caret-down"></i>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <label>เลขที่บัญชี</label>
+                      <input class="form-control" ng-model="formData.accountNumber" />
+                    </div>
+                  </div>
+                  <div class="card-row-2-column">
+                    <div class="col">
+                      <label>ชื่อบัญชี</label>
+                      <div class="input-dropdown">
+                        <input class="form-control" ng-model="formData.accountName" />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="checkbox">
+                        <label><input type="checkbox" ng-model="formData.rememberBankDetail">จดจำรายละเอียดสำหรับครั้งหน้า</label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="media">
+                <div class="media-left">
+                  <span class="number-circle">2</span>
+                </div>
+                <div class="media-body">
+                  ตรวจสอบและกด ถอนเงิน
+                </div>
+              </div>
+              <div class="media">
+                <div class="media-left">
+                  <span class="number-circle">3</span>
+                </div>
+                <div class="media-body">
+                  ReachRabbit จะโอนเงินให้คุณภายใน 3 วันทำการ
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
 
         <div class="col-xs-4">
-            <div class="card">
-              <div class="card-header text-center">
-                สรุปการถอนเงิน
-              </div>
-              <div class="card-body">
-                 <table class="table">
-                  <tr>
-                    <td class="no-top-border">
-                      รายได้รวม
-                    </td>
-                    <td class="text-align-right no-top-border"> 
-                      {{ $root.sumReduce(wallet.proposals, 'income') | number:0 }} บาท
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      ค่าธรรมเนียมการโอน
-                    </td>
-                    <td class="text-align-right">
-                    {{TransferFee|number:0}} บาท
-                    </td>
-                  </tr>
-                  <tr class="color-green">
-                    <td>
-                      <strong>ยอดถอน</strong>
-                    </td>
-                    <td class="text-align-right">
-                      <strong>{{ $root.sumReduce(wallet.proposals, 'income') + TransferFee | number:0 }} บาท</strong>
-                    </td>
-                  </tr>
-                </table>
-                <button ng-click="requestPayout()" class="btn btn-primary btn-width-max">ถอนเงิน</button>
-              </div>
+          <div class="card">
+            <div class="card-header text-center">
+              สรุปการถอนเงิน
             </div>
+            <div class="card-body">
+              <table class="table">
+                <tr>
+                  <td class="no-top-border">
+                    รายได้รวม
+                  </td>
+                  <td class="text-align-right no-top-border">
+                    {{ $root.sumReduce(wallet.proposals, 'income') | number:0 }} บาท
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    ค่าธรรมเนียมการโอน
+                  </td>
+                  <td class="text-align-right">
+                    {{TransferFee|number:0}} บาท
+                  </td>
+                </tr>
+                <tr class="color-green">
+                  <td>
+                    <strong>ยอดถอน</strong>
+                  </td>
+                  <td class="text-align-right">
+                    <strong>{{ $root.sumReduce(wallet.proposals, 'income') + TransferFee | number:0 }} บาท</strong>
+                  </td>
+                </tr>
+              </table>
+              <button ng-click="requestPayout()" class="btn btn-primary btn-width-max">ถอนเงิน</button>
+            </div>
+          </div>
         </div>
       </div>
 

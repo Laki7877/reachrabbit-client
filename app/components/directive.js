@@ -9,6 +9,50 @@
 'use strict';
 
 angular.module('myApp.directives', ['myApp.service'])
+    .directive('instagramProfile', ['$window', function($window) {
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=ngModel'
+            },
+            replace: true,
+            templateUrl: 'components/templates/social-instagram-profile.html',
+            link: function(scope) {
+                scope.gotoPage = function() {
+                    $window.open('https://www.instagram.com/' + scope.data.username);
+                };
+            }
+        };
+    }])
+    .directive('facebookProfile', ['$window', function($window) {
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=ngModel'
+            },
+            replace: true,
+            templateUrl: 'components/templates/social-facebook-profile.html',
+            link: function(scope) {
+                scope.gotoPage = function() {
+                    $window.open(scope.data.link);
+                };
+            }
+        };
+    }])
+    .directive('youtubeProfile', ['$window', function($window){
+        return {
+            restrict: 'E',
+            scope: {
+                data : '=ngModel'
+            },
+            templateUrl: "components/templates/social-youtube-profile.html",
+            link: function(scope){
+                scope.gotoPage = function(link) {
+                    $window.open(link);
+                };
+            }
+        };
+    }])
     .filter('truncate', [function () {
         return function (input, maxlen) {
             if(!input){
@@ -248,7 +292,6 @@ angular.module('myApp.directives', ['myApp.service'])
     .directive('pagination', [function () {
         return {
             restrict: 'EA',
-            replace: true,
             templateUrl: 'components/templates/pagination.html',
             scope: {
                 model: '=ngModel',
@@ -256,6 +299,7 @@ angular.module('myApp.directives', ['myApp.service'])
             },
             link: function (scope, element, attrs, ctrl, transclude) {
                 scope.sizeOptions = [10, 20, 40];
+                scope.array = [];
                 var update = function (extend) {
                     var newPageable = _.pick(scope.model, ['size', 'sort']);
                     newPageable.sort = newPageable.sort ? _.map(newPageable.sort, function (e) {
@@ -284,7 +328,11 @@ angular.module('myApp.directives', ['myApp.service'])
                 };
                 //Get int as array
                 scope.counter = function () {
-                    return new Array(_.get(scope, 'model.totalPages', 0));
+                    scope.array.length = 0;
+                    for(var i = 0; i < _.get(scope, 'model.totalPages', 0); i++) {
+                        scope.array.push(null);
+                    }
+                    return scope.array;
                 };
                 scope.$watch('model.size', function (size) {
                     if (!_.isNil(size)) {
@@ -364,7 +412,7 @@ angular.module('myApp.directives', ['myApp.service'])
                                                 name: page.name,
                                                 id: authData.id
                                             };
-                                            $uibModalInstance.close(authData);
+                                            $uibModalInstance.close(authobject);
                                         };
                                     }],
                                     resolve: {
@@ -432,7 +480,7 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .directive('cardInfluencerProfile', [function () {
+    .directive('cardInfluencerProfile', ['UserProfile', function (UserProfile) {
         return {
             restrict: 'AE',
             transclude: true,
@@ -451,7 +499,10 @@ angular.module('myApp.directives', ['myApp.service'])
                     scope.showSocialData = true;
                 }
 
-
+                scope.isInfluencer = false;
+                if(UserProfile.get().influencer){
+                    scope.isInfluencer = true;
+                }
 
                 scope.joinCat = function (A) {
                     return A.map(function (o) {
@@ -743,7 +794,7 @@ angular.module('myApp.directives', ['myApp.service'])
                                 $scope.dismiss = function () {
                                     $uibModalInstance.dismiss();
                                 };
-                                
+
                             }],
                             size: 'lg',
                             resolve: {
@@ -752,7 +803,7 @@ angular.module('myApp.directives', ['myApp.service'])
                                 },
                                 cropOption: function(){
                                     return {
-                                        aspectRatio: Number(scope.aspectRatio)   
+                                        aspectRatio: Number(scope.aspectRatio)
                                     };
                                 }
                             }
@@ -764,13 +815,13 @@ angular.module('myApp.directives', ['myApp.service'])
                             var file = Upload.dataUrltoBlob(dataUrl, 'cropped_content.png');
                             processFile(file);
                         });
-                        
+
                     }else{
                         processFile(ifile);
                     }
-                    
 
-                   
+
+
                 };
 
             }

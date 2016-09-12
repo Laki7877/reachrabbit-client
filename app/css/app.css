@@ -229,7 +229,11 @@ th {
   h3,
   .zone-header .with-history-back h1,
   .card-title .card-title-content,
-  .proposal-modal .modal-title {
+  .social-media-profile .card-overview .card-info strong,
+  .proposal-modal .modal-title,
+  .facebook-profile .card-overview .card-info strong,
+  .instagram-profile .card-overview .card-info strong,
+  .youtube-profile .card-overview .card-info strong {
     orphans: 3;
     widows: 3;
   }
@@ -237,7 +241,11 @@ th {
   h3,
   .zone-header .with-history-back h1,
   .card-title .card-title-content,
-  .proposal-modal .modal-title {
+  .social-media-profile .card-overview .card-info strong,
+  .proposal-modal .modal-title,
+  .facebook-profile .card-overview .card-info strong,
+  .instagram-profile .card-overview .card-info strong,
+  .youtube-profile .card-overview .card-info strong {
     page-break-after: avoid;
   }
   .navbar {
@@ -1134,9 +1142,7 @@ img {
 .card-portal .logo img,
 .card-portal .profile-picture .profile-picture-image,
 .card-campaign-description .card-body .description-image,
-.card-thumbnail .card-thumbnail-image img,
-.chatbox-card .message-area .message .message-body .message-content img,
-.workroom .card-campaign-thumbnail .card-thumbnail-image img {
+.chatbox-card .message-area .message .message-body .message-content img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -1210,14 +1216,22 @@ h6,
 .radio-card .radio-label,
 .input-upload-image-sm i,
 .card-title .card-title-content,
-.card-status,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-overview .card-info strong,
+.social-media-profile .card-gallery .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
 .proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong,
+.facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
+.instagram-profile .card-overview .card-info strong,
+.instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
+.youtube-profile .card-overview .card-info strong,
+.youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-family: inherit;
   font-weight: 500;
@@ -1260,7 +1274,11 @@ h3,
 .h3,
 .zone-header .with-history-back h1,
 .card-title .card-title-content,
-.proposal-modal .modal-title {
+.social-media-profile .card-overview .card-info strong,
+.proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong,
+.instagram-profile .card-overview .card-info strong,
+.youtube-profile .card-overview .card-info strong {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -1287,13 +1305,17 @@ h6,
 .social-link-title,
 .radio-card .radio-label,
 .input-upload-image-sm i,
-.card-status,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-gallery .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
+.facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
+.instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
+.youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -1324,7 +1346,11 @@ h2,
 h3,
 .h3,
 .card-title .card-title-content,
-.proposal-modal .modal-title {
+.social-media-profile .card-overview .card-info strong,
+.proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong,
+.instagram-profile .card-overview .card-info strong,
+.youtube-profile .card-overview .card-info strong {
   font-size: 24px;
 }
 h4,
@@ -1334,15 +1360,19 @@ h4,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-gallery .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
+.facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
+.instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
+.youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 18px;
 }
 h5,
 .h5,
 .social-link-title,
-.card-status,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 14px;
 }
@@ -6296,6 +6326,7 @@ button.list-group-item-danger.active:focus {
 .card-thumbnail,
 .card-inbox,
 .card-transaction-header,
+.social-media-profile-wrapper,
 .workroom .card-proposal-detail,
 .chatbox-card,
 .workroom .card-campaign-thumbnail {
@@ -7656,7 +7687,11 @@ h2,
 }
 h3,
 .card-title .card-title-content,
-.proposal-modal .modal-title {
+.social-media-profile .card-overview .card-info strong,
+.proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong,
+.instagram-profile .card-overview .card-info strong,
+.youtube-profile .card-overview .card-info strong {
   font-family: 'Kanit', sans-serif;
   font-size: 18px;
   font-weight: normal;
@@ -7668,8 +7703,13 @@ h4,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-gallery .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
+.facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
+.instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
+.youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 16px;
   font-weight: normal;
@@ -7678,7 +7718,6 @@ h4,
 }
 h5,
 .social-link-title,
-.card-status,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 14px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -7869,6 +7908,18 @@ a.secondary {
 .input-group-btn button i {
   margin: 0px 5px;
 }
+.form-control::-webkit-input-placeholder {
+  color: #8692a8;
+}
+.form-control::-moz-placeholder {
+  color: #8692a8;
+}
+.form-control:-ms-input-placeholder {
+  color: #8692a8;
+}
+input:-moz-placeholder {
+  color: #8692a8;
+}
 .input-dropdown {
   position: relative;
 }
@@ -7956,6 +8007,7 @@ a.secondary {
 }
 .input-upload-image img {
   width: 100%;
+  max-width: 596px;
 }
 .input-upload-image .btn-delete-image {
   color: #8692a8;
@@ -8043,6 +8095,7 @@ a.secondary {
 .card-thumbnail,
 .card-inbox,
 .card-transaction-header,
+.social-media-profile-wrapper,
 .workroom .card-proposal-detail,
 .chatbox-card,
 .workroom .card-campaign-thumbnail {
@@ -8167,10 +8220,6 @@ a.secondary {
 .card-title .card-title-content a {
   color: #16bbac;
 }
-.card-status {
-  float: right;
-  color: #8692a8;
-}
 .card-info .card-info-label {
   font-size: 12px;
   color: #8692a8;
@@ -8255,7 +8304,14 @@ a.secondary {
   padding-right: 15px;
 }
 .card-campaign-list-item .card-button {
-  margin-top: 40px;
+  margin-top: 20px;
+}
+.card-campaign-list-item .card-button button[disabled] {
+  margin-top: 10px;
+  color: #3e4a5e;
+}
+.card-campaign-list-item .card-button.status-draft {
+  margin-top: 35px;
 }
 .card-campaign-list-item .card-title {
   position: relative;
@@ -8267,6 +8323,13 @@ a.secondary {
 }
 .card-campaign-list-item .card-image {
   height: 136px;
+}
+.card-campaign-list-item .card-image img {
+  width: 100%;
+}
+.card-campaign-list-item .card-image.expired {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 .card-profile .card-body {
   padding: 15px 0px;
@@ -8320,6 +8383,9 @@ a.secondary {
   padding: 0px;
   padding-right: 15px;
 }
+.card-campaign-header .card-image img {
+  width: 100%;
+}
 .card-campaign-header .card-info {
   position: relative;
   float: left;
@@ -8353,6 +8419,10 @@ a.secondary {
   height: 194px;
   overflow: hidden;
 }
+.card-thumbnail .card-thumbnail-image img,
+.workroom .card-campaign-thumbnail .card-thumbnail-image img {
+  width: 100%;
+}
 .card-thumbnail .card-price,
 .workroom .card-campaign-thumbnail .card-price {
   margin-top: 5px;
@@ -8384,6 +8454,239 @@ a.secondary {
 }
 .card-transaction-header .card-info .card-info-content {
   color: #3e4a5e;
+}
+/*---Social Media Profile---*/
+.social-media-profile-wrapper {
+  box-shadow: none;
+}
+.social-media-profile .card-overview .card-info,
+.facebook-profile .card-overview .card-info,
+.instagram-profile .card-overview .card-info,
+.youtube-profile .card-overview .card-info {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.social-media-profile .card-overview .card-info strong,
+.facebook-profile .card-overview .card-info strong,
+.instagram-profile .card-overview .card-info strong,
+.youtube-profile .card-overview .card-info strong {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.social-media-profile .card-overview .card-info small,
+.facebook-profile .card-overview .card-info small,
+.instagram-profile .card-overview .card-info small,
+.youtube-profile .card-overview .card-info small {
+  color: #8692a8;
+}
+.social-media-profile .card-overview .card-info i,
+.facebook-profile .card-overview .card-info i,
+.instagram-profile .card-overview .card-info i,
+.youtube-profile .card-overview .card-info i {
+  margin-left: 5px;
+  color: #8692a8;
+}
+.social-media-profile .card-overview .card-button,
+.facebook-profile .card-overview .card-button,
+.instagram-profile .card-overview .card-button,
+.youtube-profile .card-overview .card-button {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.social-media-profile .card-gallery .card-gallery-item,
+.facebook-profile .card-gallery .card-gallery-item,
+.instagram-profile .card-gallery .card-gallery-item,
+.youtube-profile .card-gallery .card-gallery-item {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: #d8dfe7;
+  display: inline-block;
+}
+.social-media-profile .card-gallery .card-gallery-item .card-gallery-video,
+.facebook-profile .card-gallery .card-gallery-item .card-gallery-video,
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video,
+.youtube-profile .card-gallery .card-gallery-item .card-gallery-video {
+  width: 100%;
+  min-height: 300px;
+}
+.social-media-profile .card-gallery .card-gallery-item img,
+.facebook-profile .card-gallery .card-gallery-item img,
+.instagram-profile .card-gallery .card-gallery-item img,
+.youtube-profile .card-gallery .card-gallery-item img {
+  width: 100%;
+  height: auto;
+}
+.social-media-profile .card-gallery .card-gallery-info .card-info > *,
+.facebook-profile .card-gallery .card-gallery-info .card-info > *,
+.instagram-profile .card-gallery .card-gallery-info .card-info > *,
+.youtube-profile .card-gallery .card-gallery-info .card-info > * {
+  text-align: center;
+}
+.social-media-profile .card-gallery .card-gallery-info .card-info,
+.facebook-profile .card-gallery .card-gallery-info .card-info,
+.instagram-profile .card-gallery .card-gallery-info .card-info,
+.youtube-profile .card-gallery .card-gallery-info .card-info {
+  margin-bottom: 15px;
+}
+.social-media-profile .card-gallery .card-gallery-message,
+.facebook-profile .card-gallery .card-gallery-message,
+.instagram-profile .card-gallery .card-gallery-message,
+.youtube-profile .card-gallery .card-gallery-message {
+  padding: 15px;
+  white-space: pre-wrap;
+}
+.facebook-profile .card-gallery {
+  -webkit-column-count: 2;
+  -webkit-column-gap: 10px;
+  -webkit-column-fill: auto;
+  -moz-column-count: 2;
+  -moz-column-gap: 10px;
+  -moz-column-fill: auto;
+  column-count: 2;
+  column-gap: 15px;
+  column-fill: auto;
+}
+.facebook-profile .card-gallery .card-gallery-item {
+  margin: 7.5px 0px;
+}
+.instagram-profile .card-gallery {
+  margin-top: -7.5px;
+}
+.instagram-profile .card-gallery .card-gallery-item {
+  width: 100%;
+  margin: 15px 0px;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-image {
+  width: 205px;
+  height: 205px;
+  overflow: hidden;
+  position: relative;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-image img {
+  position: absolute;
+  left: -100%;
+  right: -100%;
+  top: -100%;
+  bottom: -100%;
+  margin: auto;
+  width: auto;
+  height: auto;
+  max-height: 100%;
+  min-width: 100%;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video {
+  width: 205px;
+  height: 205px;
+  min-height: 205px;
+  overflow: hidden;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video iframe {
+  width: 205px;
+  height: 205px;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-info .card-info {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.youtube-profile .card-gallery {
+  margin-top: -7.5px;
+}
+.youtube-profile .card-gallery .card-gallery-item {
+  width: 100%;
+  margin: 15px 0px;
+}
+.youtube-profile .card-gallery .card-gallery-item .card-gallery-info .card-gallery-message {
+  white-space: normal;
+}
+.youtube-profile .card-gallery .card-gallery-item .card-gallery-info .card-info {
+  margin-bottom: 15px;
+}
+/*---Tabs---*/
+.nav-tabs {
+  margin-top: 30px;
+  border-bottom: 0px;
+}
+.nav-tabs li {
+  min-width: 150px;
+  text-align: center;
+  margin-right: 5px;
+}
+.nav-tabs li a {
+  color: #3e4a5e;
+  margin-bottom: 5px;
+  border: 0px;
+  background: #d8dfe7;
+  border-radius: 0px;
+}
+.nav-tabs li a:hover {
+  color: #ffffff;
+  background: #8692a8;
+}
+.nav-tabs li.plain-link {
+  border-top: 0px !important;
+}
+.nav-tabs li.plain-link a {
+  color: #ff773e;
+  background: none !important;
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: #ffffff;
+  border: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 15px;
+  border-bottom: 0px;
+  cursor: pointer;
+}
+.nav-tabs > li.active {
+  border-top: 4px solid;
+  margin-top: -4px;
+}
+.nav-tabs > li.active.facebook-tab {
+  border-top-color: #3b5998;
+}
+.nav-tabs > li.active.instagram-tab {
+  border-top-color: #df3d79;
+}
+.nav-tabs > li.active.youtube-tab {
+  border-top-color: #e62117;
+}
+/*---flag---*/
+.flag .status {
+  width: 120px;
+  display: block;
+  position: absolute;
+  padding: 4px 20px 3px 16px;
+  font-family: 'Kanit', sans-serif;
+  color: #ffffff;
+  background: #e62117;
+  left: 0px;
+  top: 10px;
+  -webkit-clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+}
+.flag .status-open {
+  background: #16bbac;
+}
+.flag .status-closed {
+  background: #8692a8;
+}
+.flag .status-draft {
+  display: none;
+}
+.flag .status-example {
+  padding-left: 15px;
+  width: 150px;
+  background: #648acb;
 }
 /*---Thumbnail---*/
 .thumbnail-column {
@@ -9501,12 +9804,24 @@ fieldset[disabled] .btn-clear.active {
 }
 .navbar .dropdown-menu li > a {
   padding-left: 15px;
+  padding-right: 15px;
 }
 .navbar .open > a,
 .navbar .open > a:hover,
 .navbar .open > a:focus {
   background: #3e4a5e;
   border: 0px;
+}
+/*---Floating Bar---*/
+.floating-bar {
+  z-index: 9;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.2);
+  padding: 7.5px 0px;
 }
 /*---Date Picker---*/
 .uib-daypicker .btn,
@@ -9875,6 +10190,27 @@ fieldset[disabled] .btn-clear.active {
 .select-proposal-modal .modal-title {
   color: #16bbac;
 }
+.message-modal {
+  text-align: center;
+}
+.message-modal .modal-dialog {
+  margin-top: 140px;
+}
+.message-modal .modal-dialog .modal-content {
+  border: 0px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.message-modal .hello-rabbit {
+  margin-top: -100px;
+}
+.message-modal h3 {
+  color: #16bbac;
+  margin-bottom: 10px;
+}
+.message-modal p {
+  margin-bottom: 20px;
+}
 /*---Other debugging stuff---*/
 .api_override_box {
   position: absolute;
@@ -9906,6 +10242,25 @@ ul.payment-methods {
 }
 .center {
   text-align: center;
+}
+.sticky-toolbar {
+  background-color: #495366;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  padding: 25px;
+  left: 0px;
+}
+.sticky-toolbar .info {
+  margin-bottom: 10px;
+  color: white;
+  font-size: small;
+}
+.view-admin-campaign-list .col-campaign-name {
+  max-width: 150px;
+}
+.view-admin-campaign-list .col-name {
+  max-width: 150px;
 }
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
@@ -10016,6 +10371,9 @@ ul.payment-methods {
 .layout-influencer .view-influencer-campaign-list .card-thumbnail .card-body,
 .layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail .card-body {
   height: 93px;
+}
+.layout-influencer .view-influencer-profile {
+  padding-bottom: 80px;
 }
 .layout-influencer .view-influencer-profile .input-upload-image {
   width: 127px;

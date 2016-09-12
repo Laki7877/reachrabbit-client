@@ -170,8 +170,8 @@ angular.module('myApp.controller', ['myApp.service'])
             });
         }
     ])
-    .controller('WorkroomController', ['$scope', '$uibModal', '$interval','$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util',
-        function ($scope, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util) {
+    .controller('WorkroomController', ['$scope','UserProfile', '$uibModal', '$interval', '$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util', 'LongPollingService',
+        function ($scope, UserProfile, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util, LongPollingService) {
             $scope.msglist = [];
             $scope.pendingList = [];
             $scope.msgLimit = 30;
@@ -179,17 +179,17 @@ angular.module('myApp.controller', ['myApp.service'])
             util.warnOnExit($scope);
 
             $scope.alert = new NcAlert();
-            
-            $scope.hasInWallet = function(proposal){
-                if(!$rootScope.wallet) return false;
-                if(!$rootScope.wallet.proposals) return false;
-                return _.find($rootScope.wallet.proposals, function(pred){
+
+            $scope.hasInWallet = function (proposal) {
+                if (!$rootScope.wallet) return false;
+                if (!$rootScope.wallet.proposals) return false;
+                return _.find($rootScope.wallet.proposals, function (pred) {
                     return pred.proposalId == proposal;
                 });
             };
-			
-			$scope.hasCart = function(proposal){
-                if(!proposal.cartId) return false;
+
+            $scope.hasCart = function (proposal) {
+                if (!proposal.cartId) return false;
                 return true;
             };
 
@@ -312,7 +312,7 @@ angular.module('myApp.controller', ['myApp.service'])
                     return;
                 }
                 $scope.pollActive = true;
-                ProposalService.getMessagesPoll($scope.proposalId, {
+                LongPollingService.getMessagesPoll($scope.proposalId, {
                     timestamp: $scope.msglist.length > 0 ? $scope.msglist[$scope.msglist.length - 1].createdAt : new Date()
                 })
                     .then(function (res) {
@@ -323,15 +323,15 @@ angular.module('myApp.controller', ['myApp.service'])
                             if ($scope.msglist.length >= $scope.msgLimit) {
                                 $scope.msglist.shift();
                             }
-                            for(var j = 0; j < $scope.pendingList.length; j++) {
-                                if($scope.pendingList[j].referenceId === res.data[i].referenceId) {
+                            for (var j = 0; j < $scope.pendingList.length; j++) {
+                                if ($scope.pendingList[j].referenceId === res.data[i].referenceId) {
                                     _.extend($scope.pendingList[j], res.data[i]);
                                     idx = j;
                                     break;
                                 }
                             }
 
-                            if(idx >= 0) {
+                            if (idx >= 0) {
                                 $scope.pendingList.splice(j, 1);
                             } else {
                                 $scope.msglist.push(res.data[i]);
@@ -350,7 +350,7 @@ angular.module('myApp.controller', ['myApp.service'])
 
             $scope.$on('$destroy', function () {
                 stop = true;
-                $interval.cancel();
+                // $interval.cancel();
             });
 
             $scope.formData = {
@@ -393,6 +393,24 @@ angular.module('myApp.controller', ['myApp.service'])
             ProposalService.getOne($scope.proposalId)
                 .then(function (proposalResponse) {
                     $scope.proposal = proposalResponse.data;
+                    if(UserProfile.get().influencer && !$scope.proposal.rabbitFlag && $scope.proposal.status == 'Selection') {
+                        var modalInstance = $uibModal.open({
+                            animation: true,
+                            templateUrl: 'components/templates/influencer-proposal-message.modal.html',
+                            controller: 'ProposalMessageModalController',
+                            size: 'sm',
+                            windowClass: 'message-modal',
+                            backdrop: 'static',
+                            resolve: {
+                                email: function () {
+                                    return UserProfile.get().email;
+                                },
+                                proposalId: function() {
+                                    return $scope.proposal.proposalId;
+                                }
+                            }
+                        });
+                    }
                 });
 
             /* JS for Chat Area */
@@ -415,6 +433,62 @@ angular.module('myApp.controller', ['myApp.service'])
             }
         }
     ])
+    .controller('InfluencerProfilePortfolioController', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function ($scope, NcAlert, AccountService, $stateParams) {
+        $scope.formData = {};
+        $scope.alert = new NcAlert();
+        $scope.hasMedia = function(mediaId) {
+            for(var i=0; i < _.get($scope.formData, 'influencer.influencerMedias',[]).length; i++){
+                if($scope.formData.influencer.influencerMedias[i].media.mediaId == mediaId){
+                    return true;
+                }
+            }
+           return false;
+        };
+        // fetch profile
+        AccountService.getProfile($stateParams.influencerId)
+            .then(function (response) {
+                $scope.formData = response.data;
+                $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
+                $scope.formData.influencer.user = $scope.formData.user;
+
+                // fetch each media
+                if($scope.hasMedia('google')) {
+                  AccountService.getYouTubeProfile($stateParams.influencerId)
+                      .then(function(response){
+                          $scope.youtube = response.data;
+                      });
+                }
+                if($scope.hasMedia('facebook')) {
+                  AccountService.getFacebookProfile($stateParams.influencerId)
+                      .then(function(response) {
+                          $scope.facebook = response.data;
+                      });
+                }
+                if($scope.hasMedia('instagram')) {
+                  AccountService.getInstagramProfile($stateParams.influencerId)
+                      .then(function(response) {
+                          $scope.instagram = response.data;
+                      });
+                }
+
+                // assign categories
+                _.forEach($scope.formData.influencer.categories, function (r) {
+                    r._selected = true;
+                });
+                delete $scope.formData.password;
+            })
+            .catch(function (err) {
+                $scope.alert.danger(err.data.message);
+            });
+
+
+    }])
+    .controller('BrandProfilePortfolioController', ['$scope', 'AccountService', '$stateParams', function ($scope, AccountService, $stateParams) {
+        AccountService.getProfile($stateParams.brandId)
+            .then(function (response) {
+                $scope.brand = response.data;
+            });
+    }])
     .controller('PayoutHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
         //Load campaign data
         $scope.isExpired = function (T) {
@@ -467,7 +541,7 @@ angular.module('myApp.controller', ['myApp.service'])
                 .then(function () {
                     loadTdoc();
                 })
-                .catch(function(err){
+                .catch(function (err) {
                     $scope.alert.danger(err.data.message);
                 });
         };
@@ -478,7 +552,35 @@ angular.module('myApp.controller', ['myApp.service'])
             $scope.yes = function () {
                 $uibModalInstance.close('yes');
             };
-        }]);
+        }])
+    .controller('CampaignMessageModalController',['$scope', 'email', 'campaignId', 'CampaignService', '$uibModalInstance',
+        function ($scope, email, campaignId, CampaignService, $uibModalInstance) {
+            $scope.email = email;
+            $scope.notify = false;
+            $scope.dismiss = function(){
+                if($scope.notify){
+                    CampaignService.dismissNotification(campaignId)
+                    .then(function(){
+                        $uibModalInstance.close();
+                    });
+                }
+                $uibModalInstance.close();
+            };
+    }])
+    .controller('ProposalMessageModalController',['$scope', 'email', 'proposalId', 'ProposalService', '$uibModalInstance',
+        function ($scope, email, proposalId, ProposalService, $uibModalInstance) {
+            $scope.email = email;
+            $scope.notify = false;
+            $scope.dismiss = function(){
+                if($scope.notify){
+                    ProposalService.dismissNotification(proposalId)
+                    .then(function(){
+                        $uibModalInstance.close();
+                    });
+                }
+                $uibModalInstance.close();
+            };
+     }]);
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
     INFLUENCER
@@ -486,10 +588,17 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('WalletController', ['$scope', '$state', 'InfluencerAccountService', 'DataService', 'BusinessConfig', 'NcAlert', function ($scope, $state, InfluencerAccountService, DataService, BusinessConfig, NcAlert) {
+    .controller('WalletController', ['$scope', '$state', 'UserProfile', 'InfluencerAccountService', 'AccountService', 'DataService', 'BusinessConfig', 'NcAlert', function ($scope, $state, UserProfile, InfluencerAccountService, AccountService, DataService, BusinessConfig, NcAlert) {
         $scope.wallet = {};
         $scope.alert = new NcAlert();
         $scope.formData = {};
+
+        AccountService.getProfile().then(function(profile){
+            UserProfile.set(profile.data);
+            $scope.formData.bank = profile.data.influencer.bank;
+            $scope.formData.accountNumber = profile.data.influencer.accountNumber;
+            $scope.formData.accountName = profile.data.influencer.accountName;
+        });
 
         InfluencerAccountService.getWallet().then(function (walletResponse) {
             $scope.wallet = walletResponse.data;
@@ -503,15 +612,28 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
         $scope.TransferFee = -1 * BusinessConfig.INFLUENCER_BANK_TF_FEE;
 
         $scope.requestPayout = function () {
+            //if user chekced the chekbx
+            //we save bank detail first
+
             InfluencerAccountService.requestPayout($scope.formData)
                 .then(function (ias) {
-                    console.log(ias);
-                    $state.go('influencer-payout-history');
+                    if($scope.rememberBankDetail){
+                        AccountService.saveBank({
+                            accountName: $scope.formData.accountName,
+                            accountNumber: $scope.formData.accountNumber,
+                            bank: $scope.formData.bank,
+                        }).then(function(){
+                            $state.go('influencer-payout-history');
+                        });
+                    }else{
+                        $state.go('influencer-payout-history');
+                    }
                 })
                 .catch(function (err) {
                     return $scope.alert.danger(err.data.message);
                 });
         };
+
     }])
     .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService', '$uibModal', 'DataService',
         function ($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService) {
@@ -627,12 +749,14 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 });
         }
     ])
-    .controller('InfluencerProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util',
-        function ($scope, $window, AccountService, NcAlert, UserProfile, validator, util) {
-            $scope.formData = {};
-            $scope.form = {};
-            $scope.alert = new NcAlert();
+    .controller('InfluencerProfileController', ['$scope', '$window', '$stateParams', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util',
+        function ($scope, $window, $stateParams, AccountService, NcAlert, UserProfile, validator, util) {
             util.warnOnExit($scope);
+            $scope.showStickyToolbar = !_.isNil($stateParams.showToolbar);
+            $scope.form = {};
+            $scope.formData = {};
+            $scope.alert = new NcAlert();
+           
 
             $scope.isValidate = function (model, error) {
                 if (error === 'required' && model.$name === 'profilePicture') {
@@ -660,16 +784,46 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         $scope.alert.danger(err.data.message);
                     });
             };
-
+            $scope.hasMedia = function(mediaId) {
+                for(var i=0; i < _.get($scope.formData, 'influencer.influencerMedias',[]).length; i++){
+                    if($scope.formData.influencer.influencerMedias[i].media.mediaId == mediaId){
+                        return true;
+                    }
+                }
+               return false;
+            };
             $scope.linkDone = function () {
                 $scope.saveProfile($scope.formData, true);
             };
 
+            // fetch profile
             AccountService.getProfile()
                 .then(function (response) {
                     $scope.formData = response.data;
                     $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
+                    $scope.formData.influencer.user = { name : $scope.formData.name, profilePicture: $scope.formData.profilePicture };
 
+                    // fetch each media
+                    if($scope.hasMedia('google')) {
+                      AccountService.getYouTubeProfile()
+                          .then(function(response){
+                              $scope.youtube = response.data;
+                          });
+                    }
+                    if($scope.hasMedia('facebook')) {
+                      AccountService.getFacebookProfile()
+                          .then(function(response) {
+                              $scope.facebook = response.data;
+                          });
+                    }
+                    if($scope.hasMedia('instagram')) {
+                      AccountService.getInstagramProfile()
+                          .then(function(response) {
+                              $scope.instagram = response.data;
+                          });
+                    }
+
+                    // assign categories
                     _.forEach($scope.formData.influencer.categories, function (r) {
                         r._selected = true;
                     });
@@ -684,6 +838,9 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
     .controller('InfluencerInboxController', ['$scope', '$filter', '$stateParams', 'ProposalService', 'moment', function ($scope, $filter, $stateParams, ProposalService, moment) {
         $scope.statusCounts = {};
         $scope.statusFilter = 'Selection';
+        $scope.showStickyToolbar = false;
+
+
 
         if ($stateParams.status) {
             $scope.statusFilter = $stateParams.status;
@@ -757,12 +914,6 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
 
         $scope.loadProposalCounts();
 
-    }])
-    .controller('InfluencerBrandProfileController', ['$scope', 'AccountService', '$stateParams', function ($scope, AccountService, $stateParams) {
-        AccountService.getProfile($stateParams.brandId)
-            .then(function (response) {
-                $scope.brand = response.data;
-            });
     }]);
 /////////////// /////////////// /////////////// /////////////// ///////////////
 /*
@@ -807,8 +958,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     .controller('CampaignExampleController', ['$scope', '$stateParams', 'ExampleCampaigns', function ($scope, $stateParams, ExampleCampaigns) {
         $scope.exampleCampaign = ExampleCampaigns[$stateParams.exampleId];
     }])
-    .controller('CampaignDetailController', ['$scope', '$rootScope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', 'NcAlert', 'validator', '$state', 'util',
-        function ($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, NcAlert, validator, $state, util) {
+    .controller('CampaignDetailController', ['$scope', '$rootScope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', '$uibModal', 'NcAlert', 'validator', '$state', 'util',
+        function ($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, $uibModal, NcAlert, validator, $state, util) {
             //initial form data
             $scope.alert = new NcAlert();
             $scope.editOpenState = $stateParams.editOpenState;
@@ -842,7 +993,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             });
 
             $scope.budgetDisplayAs = function (budgetObject) {
-                return $filter('number')(budgetObject.fromBudget) + " - " + $filter('number')(budgetObject.toBudget);
+                return $filter('number')(budgetObject.fromBudget) + " - " + $filter('number')(budgetObject.toBudget) + " บาท ต่อคน";
             };
 
             //Fetch initial datasets
@@ -897,6 +1048,26 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 
                         if (!$scope.formData.brand) {
                             $scope.formData.brand = UserProfile.get().brand;
+                        }
+
+                        if(!$scope.formData.rabbitFlag && $scope.formData.status === 'Open' && !$stateParams.editOpenState && !document.querySelector(".message-modal")) {
+
+                            var modalInstance = $uibModal.open({
+                                animation: true,
+                                templateUrl: 'components/templates/brand-publish-campaign-modal.html',
+                                controller: 'CampaignMessageModalController',
+                                size: 'sm',
+                                windowClass: 'message-modal',
+                                backdrop: 'static',
+                                resolve: {
+                                    email: function () {
+                                        return UserProfile.get().email;
+                                    },
+                                    campaignId: function() {
+                                        return $scope.formData.campaignId;
+                                    }
+                                }
+                            });
                         }
 
                         $scope.createMode = false;
@@ -1005,13 +1176,21 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 });
         };
     }])
-    .controller('BrandInboxController', ['$scope', '$filter', 'ProposalService', 'CampaignService', 'moment', '$stateParams', function ($scope, $filter, ProposalService, CampaignService, moment, $stateParams) {
+    .controller('BrandInboxController', ['$scope', '$filter', '$rootScope', 'ProposalService', 'CampaignService', 'moment', '$stateParams', function ($scope, $filter, $rootScope, ProposalService, CampaignService, moment, $stateParams) {
         $scope.statusCounts = {};
         $scope.statusFilter = 'Selection';
 
         if ($stateParams.status) {
             $scope.statusFilter = $stateParams.status;
         }
+
+        $scope.calculateReach= function(proposal){
+            var mediaList =  _.intersectionBy((proposal.influencer.influencerMedias || []).map(function (mi) {
+                        mi.mediaId = mi.media.mediaId;
+                        return mi;
+            }), proposal.media, 'mediaId');
+            return $rootScope.sumReduce(mediaList, 'followerCount');
+        };
 
         $scope.load = function (params) {
             $scope.params = params;
@@ -1078,7 +1257,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         });
         $scope.loadProposalCounts();
     }])
-    .controller('CartController', ['$scope', '$rootScope', '$state', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function ($scope,$rootScope, $state, NcAlert, BrandAccountService, ProposalService, TransactionService, $stateParams) {
+    .controller('CartController', ['$scope', '$rootScope', '$state', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function ($scope, $rootScope, $state, NcAlert, BrandAccountService, ProposalService, TransactionService, $stateParams) {
         $scope.alert = new NcAlert();
         var loadCart = function () {
             BrandAccountService.getCart().then(function (cart) {
@@ -1112,18 +1291,10 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         };
         loadCart();
     }])
-    .controller('BrandInfluencerProfile', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function ($scope, NcAlert, AccountService, $stateParams) {
-        $scope.alert = new NcAlert();
-        AccountService.getProfile($stateParams.influencerId)
-            .then(function (response) {
-                $scope.influencer = response.data;
-            });
-
-    }])
     .controller('TransactionHistoryController', ['$scope', 'NcAlert', '$state', '$stateParams', 'TransactionService', function ($scope, NcAlert, $state, $stateParams, TransactionService) {
         //Load campaign data
         $scope.load = function (data) {
-			data.type = 'Payin';
+            data.type = 'Payin';
             $scope.params = data;
             TransactionService.getAll(data).then(function (response) {
                 $scope.transactions = response.data;
@@ -1163,7 +1334,8 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             return [DAY, HOUR, MINUTE];
         };
 
-    }]);
+    }])
+    ;
 
 
 /////////////// /////////////// /////////////// /////////////// ///////////////
@@ -1345,7 +1517,6 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                                     $window.location.href = '/influencer.html#/influencer-campaign-list';
                                 });
                         } else {
-                            // console.log(response.data);
                             if (mediaId == 'facebook') {
                                 $state.go('influencer-signup-select-page', { authData: response.data });
                             } else {
@@ -1353,6 +1524,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                                     $scope.minFollowerError = true;
                                     return;
                                 }
+
                                 $state.go('influencer-signup-confirmation', { authData: response.data });
                             }
                         }
@@ -1459,7 +1631,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                         Raven.setUserContext(UserProfile.get());
                         $scope.form.$setPristine();
                         //Redirect change app
-                        $window.location.href = '/influencer.html#/influencer-campaign-list';
+                        $window.location.href = '/influencer.html#/influencer-profile-published?showToolbar';
                     })
                     .catch(function (err) {
                         $scope.alert.danger(err.data.message);
@@ -1531,6 +1703,47 @@ angular.module('myApp.admin.controller', ['myApp.service'])
         $scope.load({
             sort: 'updatedAt,desc'
         });
+    }])
+    .controller('AdminCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService',
+        function ($scope, $state, $stateParams, CampaignService, NcAlert, AccountService) {
+            $scope.campaignNee = null;
+            $scope.alert = new NcAlert();
+
+            $scope.keywordMap = function (arr) {
+                if (!arr) return [];
+                return arr.map(function (k) {
+                    return k.keyword;
+                });
+            };
+            console.log($stateParams);
+            CampaignService.getOne($stateParams.campaignId)
+                .then(function (campaignResponse) {
+                    $scope.campaignNee = campaignResponse.data;
+                    return AccountService.getUser($scope.campaignNee.brandId);
+                })
+                .then(function (brandUserDataResponse) {
+                    $scope.brandUserInfo = brandUserDataResponse.data;
+                })
+                .catch(function (err) {
+                    $scope.alert.danger(err.data.message);
+                });
+        }
+    ])
+    .controller('AdminCampaignListController', ['$scope', 'CampaignService', function($scope, CampaignService) {
+
+        //Load campaign data
+        $scope.load = function (data) {
+            $scope.params = data;
+            CampaignService.getAll(data).then(function (response) {
+                $scope.campaigns = response.data;
+                _.map($scope.campaigns.content, function(c) {
+                  c.count = _.countBy(c.proposals, 'status');
+                  return c;
+                });
+            });
+        };
+        //Init
+        $scope.load();
     }])
     .controller('AdminPayoutHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
         //Load campaign data

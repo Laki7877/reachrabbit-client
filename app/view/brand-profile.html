@@ -29,7 +29,6 @@
                   accept=".jpg,.png"
                   ngf-pattern="'.jpg,.png'"
                   ngf-max-size="5MB"
-                  ngf-dimensions="$width > 400 && $height > 400"
                   required>
                   <i class="fa fa-camera"></i><br>เลือกรูป
                   </uploader-thumb>
@@ -55,7 +54,7 @@
               </div>
               <div class="card-row">
                 <div class="card-body-content-label with-input">
-                  เว็บไซน์ของ Brand
+                  เว็บไซต์ของ Brand
                 </div>
                 <div class="card-body-content">
                   <input type="text" ng-model="formData.brand.website" class="form-control" maxlength="200">

@@ -43,6 +43,21 @@ angular.module('myApp.admin.routes', ['ui.router'])
                 url: '/admin-payout-detail/:transactionId',
                 templateUrl: 'view/admin-payout-detail.html',
                 controller: 'PayoutDetailController'
+            })
+            .state('admin-campaign-list',{
+                url: '/admin-campaign-list',
+                templateUrl: 'view/admin-campaign-list.html',
+                controller: 'AdminCampaignListController'
+            })
+            .state('admin-campaign-detail',{
+                url: '/admin-campaign-detail/:campaignId',
+                templateUrl: 'view/admin-campaign-detail.html',
+                controller: 'AdminCampaignDetailController'
+            })
+            .state('admin-ig-reloader', {
+                url: '/admin-ig-reloader',
+                templateUrl: 'view/admin-ig-reloader.html',
+                controller: 'EmptyController'
             });
     }]);
 
@@ -100,7 +115,7 @@ angular.module('myApp.brand.routes', ['ui.router'])
             .state('brand-influencer-profile', {
                 url: '/brand-influencer-profile/:influencerId',
                 templateUrl: 'view/brand-influencer-profile.html',
-                controller: 'BrandInfluencerProfile'
+                controller: 'InfluencerProfilePortfolioController'
             })
             .state('brand-cart', {
                 url: '/brand-cart',
@@ -141,7 +156,7 @@ angular.module('myApp.influencer.routes', ['ui.router'])
                 controller: 'InfluencerProfileController'
             })
             .state('influencer-profile-published', {
-                url: '/influencer-profile-published',
+                url: '/influencer-profile-published?showToolbar',
                 templateUrl: 'view/influencer-profile-published.html',
                 controller: 'InfluencerProfileController'
             })
@@ -158,7 +173,7 @@ angular.module('myApp.influencer.routes', ['ui.router'])
             .state('influencer-brand-profile', {
                 url: '/influencer-brand-profile/:brandId',
                 templateUrl: 'view/influencer-brand-profile.html',
-                controller: 'InfluencerBrandProfileController'
+                controller: 'BrandProfilePortfolioController'
             })
             .state('influencer-payout-detail', {
                 url: '/influencer-payout-detail/:transactionId',

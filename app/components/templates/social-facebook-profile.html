@@ -1,0 +1,65 @@
+<div class="facebook-profile">
+	<div class="card-body">
+      <div class="card-row">
+        <div class="card-title col-xs-12">
+          <div class="card-title-content">
+          	{{data.name}}
+          </div>
+        </div>
+      </div>
+      <div class="card-overview card-row ">
+      	<div class="card-info">
+      		<div class="card-info-label">จำนวนคน Like เพจ</div>
+      		<div class="card-content">
+      			<strong>{{data.likes | currency:'':0}}</strong>
+      			<small>คน</small>
+      		</div>
+      	</div>
+      	<div class="card-info">
+      		<div class="card-info-label">ค่าเฉลี่ย Like</div>
+      		<div class="card-content">
+      			<strong>{{data.averageLikes | currency:'':0}}</strong>
+      			<i class="fa fa-thumbs-up"></i>
+      		</div>
+      	</div>
+      	<div class="card-info">
+      		<div class="card-info-label">ค่าเฉลี่ย Comments <i class="fa fa-question-circle"></i></div>
+      		<div class="card-content">
+      			<strong>{{data.averageComments | currency:'':0}}</strong>
+      			<i class="fa fa-commenting"></i>
+      		</div>
+      	</div>
+      	<div class="card-info">
+      		<div class="card-info-label">ค่าเฉลี่ย Shares <i class="fa fa-question-circle"></i></div>
+      		<div class="card-content">
+      			<strong>{{data.averageShares | currency:'':0}}</strong>
+      			<i class="fa fa-share-alt"></i>
+      		</div>
+      	</div>
+      	<div class="card-button">
+	      	<button ng-click="gotoPage()" class="btn-secondary pull-right btn-width-md">ดูบน Facebook</button>
+	    	</div>
+      </div>
+      <div class="card-gallery">
+      	<div class="card-gallery-item" ng-repeat="post in data.posts track by $index">
+      		<img ng-if="post.picture && !post.video" ng-src="{{post.picture}}" />
+      		<iframe class="card-gallery-video" ng-if="post.video" ng-src="{{$root.trustSrc(post.video)}}" frameBorder="0"></iframe>
+      		<div class="card-gallery-message col-xs-12" ng-bind-html="post.message"></div>
+      		<div class="card-gallery-info">
+		      		<div class="card-info col-xs-4">
+		      			<div class="card-info-label">Likes</div>
+		      			<div class="card-content">{{post.likes}}</div>
+		      		</div>
+		      		<div class="card-info col-xs-4">
+		      			<div class="card-info-label">Comments</div>
+		      			<div class="card-content">{{post.comments}}</div>
+		      		</div>
+		      		<div class="card-info col-xs-4">
+		      			<div class="card-info-label">Shares</div>
+		      			<div class="card-content">{{post.shares}}</div>
+		      		</div>
+	      	</div>
+      	</div>
+      </div>
+	</div>
+</div>

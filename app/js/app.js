@@ -73,7 +73,7 @@ angular.module('myApp', [
         { mediaId: 'facebook' }
       ],
       fromBudget: 200,
-      proposalDeadline: new Date(),
+      proposalDeadline: moment(new Date()).add(30, 'days').toDate(),
       category: { categoryName: 'ความสวยแมว' },
       linkTo: 'brand-campaign-detail-example'
     },
@@ -88,7 +88,7 @@ angular.module('myApp', [
       title: 'Morinaga Koeda รสกาก',
       toBudget: 1000,
       fromBudget: 500,
-      proposalDeadline: new Date(),
+      proposalDeadline: moment(new Date()).add(30, 'days').toDate(),
       category: { categoryName: 'เกมส์' },
       linkTo: 'brand-campaign-detail-example'
     }
@@ -103,12 +103,32 @@ angular.module('myApp', [
     MIN_FOLLOWER_COUNT: 1,
     INFLUENCER_FEE: 0.18,
     INFLUENCER_BANK_TF_FEE: 30,
-    DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"]
+    DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"],
+    PROTRACTOR_PORT: 9900
   })
   //Initialize the app
-  .run(['$rootScope', 'InfluencerAccountService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig',
-    function ($rootScope, InfluencerAccountService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig) {
-
+  .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce',
+    function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce) {
+      function removeParam(key, sourceURL) {
+          var rtn = sourceURL.split("?")[0],
+              param,
+              params_arr = [],
+              queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+          if (queryString !== "") {
+              params_arr = queryString.split("&");
+              for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+                  param = params_arr[i].split("=")[0];
+                  if (param === key) {
+                      params_arr.splice(i, 1);
+                  }
+              }
+              rtn = rtn + "?" + params_arr.join("&");
+          }
+          return rtn;
+      }
+      $rootScope.trustSrc = function(src) {
+        return $sce.trustAsResourceUrl(removeParam('autoplay', src));
+      };
       $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
       $rootScope.SHOW_DEBUGGA = false;
       
@@ -185,7 +205,6 @@ angular.module('myApp', [
       };
 
       $rootScope.pollPending = false;
-      
       $rootScope.pollInbox = function (immediately) {
         var profile = $rootScope.getProfile();
         if (profile) {
@@ -195,7 +214,7 @@ angular.module('myApp', [
               return;
             }
             $rootScope.pollPending = true;
-            ProposalService.countInbox({
+            LongPollingService.countInbox({
               immediate: imm
             }).then(function (res) {
                 imm = false;
@@ -208,11 +227,7 @@ angular.module('myApp', [
           }, 1000);
         }
       };
-
-      $interval(function(){
-        $rootScope.pollInbox(true);
-        $interval.cancel();
-      }, 90000);  
+      $rootScope.pollInbox(true);
 
       $rootScope.goTo = function (path) {
         console.error("$root.goTo is deprecated. Please stahp using it.");
@@ -226,6 +241,9 @@ angular.module('myApp', [
       $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams, options) {
           //in case of brand
+          if(!UserProfile.get()) {
+            return;
+          }
           if (UserProfile.get().brand) {
             BrandAccountService.getCart()
               .then(function (cart) {
@@ -245,12 +263,22 @@ angular.module('myApp', [
                 $rootScope.walletBalance = k.reduce(function (p, c) {
                   return (p + c.price);
                 }, 0) * (1 - BusinessConfig.INFLUENCER_FEE);
-                
+
               });
           }
 
           $rootScope.debuggah = {};
         });
 
+        $rootScope.isExpired = function (datestr) {
+            if (!datestr) {
+                return false;
+            }
+            var d = new Date(datestr);
+            return d.getTime() <= (new Date()).getTime();
+        };
+
+
+       
 
     }]);

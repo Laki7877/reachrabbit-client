@@ -5,7 +5,38 @@
   <div class="zone-body">
     <div class="container">
 
-      <card-influencer-profile ng-model="influencer"></card-influencer-profile>
+      <card-influencer-profile ng-model="formData.influencer"></card-influencer-profile>
+      <uib-tabset active="activePill" type="tabs">
+        <uib-tab ng-if="hasMedia('facebook')" index="0" heading="Facebook" class="facebook-tab">
+          <uib-tab-heading>
+            <span class="icon-facebook"></span>Facebook
+          </uib-tab-heading>
+          <div class="social-media-profile-wrapper">
+            <facebook-profile ng-model="facebook"></facebook-profile>
+          </div>
+        </uib-tab>
+        <uib-tab ng-if="hasMedia('instagram')" index="1" heading="Instagram" class="instagram-tab">
+          <uib-tab-heading>
+            <span class="icon-instagram"></span> Instagram
+          </uib-tab-heading>
+          <div class="social-media-profile-wrapper">
+            <instagram-profile ng-model="instagram"></instagram-profile>
+          </div>
+        </uib-tab>
+        <uib-tab ng-if="hasMedia('google')" index="2" heading="YouTube" class="youtube-tab">
+          <uib-tab-heading>
+            <span class="icon-youtube"></span> YouTube
+          </uib-tab-heading>
+          <div class="social-media-profile-wrapper">
+            <youtube-profile ng-model="youtube"></youtube-profile>
+          </div>
+        </uib-tab>
+        <uib-tab ng-if="influencer.influencerMedias.length < 3" index="3" heading="+ เชื่อมต่อช่องทางอื่น" class="plain-link" ui-sref="influencer-profile">
+          <uib-tab-heading>
+            + เชื่อมต่อช่องทางอื่น
+          </uib-tab-heading>
+        </uib-tab>
+      </uib-tabset>
 
     </div>
   </div>

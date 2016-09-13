@@ -289,7 +289,16 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .directive('pagination', [function () {
+    .provider('$pagination', [function() {
+        this.defaultSizeOptions = [10, 20, 40];
+        this.setDefaultSizeOptions = this.setDefaultSizes = function(array) {
+            this.defaultSizeOptions = array;
+        };
+        this.$get = function() {
+            return this;
+        };
+    }])
+    .directive('pagination', ['$pagination', function ($pagination) {
         return {
             restrict: 'EA',
             templateUrl: 'components/templates/pagination.html',
@@ -298,9 +307,9 @@ angular.module('myApp.directives', ['myApp.service'])
                 callback: '=callback'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
-                scope.sizeOptions = [10, 20, 40];
+                scope.sizeOptions = $pagination.defaultSizeOptions;
                 scope.array = [];
-                var update = function (extend) {
+                scope.update = function (extend) {
                     var newPageable = _.pick(scope.model, ['size', 'sort']);
                     newPageable.sort = newPageable.sort ? _.map(newPageable.sort, function (e) {
                         return e.property + ',' + _.lowerCase(e.direction);
@@ -314,17 +323,17 @@ angular.module('myApp.directives', ['myApp.service'])
                     if (scope.model.last) {
                         return false;
                     }
-                    update({ page: scope.model.number + 1 });
+                    scope.update({ page: scope.model.number + 1 });
                 };
                 scope.prev = function () {
                     //Stop if no previous
                     if (scope.model.first) {
                         return false;
                     }
-                    update({ page: scope.model.number - 1 });
+                    scope.update({ page: scope.model.number - 1 });
                 };
                 scope.goto = function (i) {
-                    update({ page: i });
+                    scope.update({ page: i });
                 };
                 //Get int as array
                 scope.counter = function () {
@@ -334,11 +343,6 @@ angular.module('myApp.directives', ['myApp.service'])
                     }
                     return scope.array;
                 };
-                scope.$watch('model.size', function (size) {
-                    if (!_.isNil(size)) {
-                        update({ size: size });
-                    }
-                });
             }
         };
     }])

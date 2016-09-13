@@ -1715,7 +1715,6 @@ angular.module('myApp.admin.controller', ['myApp.service'])
                     return k.keyword;
                 });
             };
-            console.log($stateParams);
             CampaignService.getOne($stateParams.campaignId)
                 .then(function (campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;
@@ -1736,10 +1735,6 @@ angular.module('myApp.admin.controller', ['myApp.service'])
             $scope.params = data;
             CampaignService.getAll(data).then(function (response) {
                 $scope.campaigns = response.data;
-                _.map($scope.campaigns.content, function(c) {
-                  c.count = _.countBy(c.proposals, 'status');
-                  return c;
-                });
             });
         };
         //Init

@@ -1055,7 +1055,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                         if(!$scope.formData.rabbitFlag && $scope.formData.status === 'Open' && !$stateParams.editOpenState && !document.querySelector(".message-modal")) {
 
                             var modalInstance = $uibModal.open({
-                                animation: true,
+                                animation: false,
                                 templateUrl: 'components/templates/brand-publish-campaign-modal.html',
                                 controller: 'CampaignMessageModalController',
                                 size: 'sm',
@@ -1100,6 +1100,10 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             $scope.save = function (formData, mediaBooleanDict, mediaObjectDict, status) {
                 formData.brand = UserProfile.get().brand;
                 formData.status = status;
+
+                if( formData.website && formData.website.length > 1 && !formData.website.startsWith("http")){
+                    formData.website = "http://" + formData.website;
+                }
 
                 mediaBooleanDictProcess(formData);
 

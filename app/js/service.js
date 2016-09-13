@@ -190,9 +190,9 @@ angular.module('myApp.service', ['satellizer'])
 
                         resolve(response);
                     })
-                        .catch(function (err) {
-                            reject(err);
-                        });
+                    .catch(function (err) {
+                      reject(err);
+                    });
                 });
             },
             getYouTubeProfile: function(id){

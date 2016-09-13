@@ -101,7 +101,6 @@ angular.module('myApp.controller', ['myApp.service'])
 
             if ($scope.isEditMode) {
                 proposal.media.forEach(function (infm) {
-                    console.log(infm);
                     $scope.selectedMedia[infm.mediaId] = true;
                 });
                 $scope.formData = proposal;
@@ -677,8 +676,6 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 });
             };
 
-
-
             $scope.$watch('isApplied', function (applied) {
                 if (applied) {
                     $scope.appliedAlert.info("คุณได้ส่งข้อเสนอให้ Campaign นี้แล้ว");
@@ -705,8 +702,6 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);
                 });
-
-
         }
     ])
     .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'DataService', 'ExampleCampaigns', '$rootScope',
@@ -970,6 +965,13 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 mainResource: null,
                 campaignResources: [],
                 budget: null
+            };
+
+            $scope.remove = function() {
+                CampaignService.delete($scope.campaignNee.campaignId)
+                    .then(function() {
+                        $state.go('brand-campaign-list');
+                    });
             };
 
             $scope.campaignNee = $scope.formData;

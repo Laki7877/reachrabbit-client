@@ -43,6 +43,19 @@ If you want to contribute, please join our [gitter chat](https://gitter.im/Crack
 #### JSPM
 	import "ng-img-crop-full-extended/compile/unminified/ng-img-crop.js";
 
+## How to Use
+
+``` javascript
+angular.module('app', ['ngImgCrop'])
+.controller(function($scope){
+	$scope.myImage = 'https://raw.githubusercontent.com/CrackerakiUA/ngImgCropFullExtended/master/screenshots/live.jpg';
+	$scope.myCroppedImage = ''; // in this variable you will have dataUrl of cropped area.
+});
+```
+``` html
+<img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+```
+
 ## Documentation
 
 You can checkout all options under [our wiki page](https://github.com/CrackerakiUA/ngImgCropFullExtended/wiki/Options)

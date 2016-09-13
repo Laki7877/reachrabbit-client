@@ -4,7 +4,7 @@ use strict;
 
 my ($arg, $i, $j, $targ);
 
-my @targets = qw/sjcl aes bitArray codecString codecHex codecBase32 codecBase64 codecBytes sha256 sha512 sha1 ccm cbc ocb2 gcm hmac pbkdf2 scrypt random convenience bn ecc srp ccmArrayBuffer codecArrayBuffer ripemd160/;
+my @targets = qw/sjcl aes bitArray codecString codecHex codecBase32 codecBase64 codecBytes codecZ85 sha256 sha512 sha1 ccm ctr cbc ocb2 ocb2progressive gcm hmac pbkdf2 scrypt random convenience bn ecc srp ccmArrayBuffer codecArrayBuffer ripemd160/;
 my %deps = ('aes'=>'sjcl',
             'bitArray'=>'sjcl',
             'codecString'=>'bitArray',
@@ -12,12 +12,15 @@ my %deps = ('aes'=>'sjcl',
             'codecBase64'=>'bitArray',
             'codecBase32'=>'bitArray',
             'codecBytes'=>'bitArray',
+            'codecZ85'=>'bitArray',
             'sha256'=>'codecString',
             'sha512'=>'codecString',
             'sha1'=>'codecString',
             'ripemd160' => 'codecString',
             'ccm'=>'bitArray,aes',
+            'ctr'=>'bitArray,aes',
             'ocb2'=>'bitArray,aes',
+            'ocb2progressive'=>'ocb2',
             'gcm'=>'bitArray,aes',
             'hmac'=>'sha256',
             'pbkdf2'=>'hmac',
@@ -32,11 +35,12 @@ my %deps = ('aes'=>'sjcl',
             'codecArrayBuffer'=>'bitArray');
 
 my $compress = "closure";
+my $exported = 1;
 
 my %enabled = ();
 $enabled{$_} = 0 foreach (@targets);
 
-# by default, all but codecBytes, srp, bn
+# by default, all but codecBytes, codecZ85, srp, bn
 $enabled{$_} = 1 foreach (qw/aes bitArray codecString codecHex codecBase32 codecBase64 sha256 ccm ocb2 gcm hmac pbkdf2 random convenience/);
 
 # argument parsing
@@ -71,6 +75,8 @@ while (my $arg = shift @ARGV) {
     $enabled{$targ} = -1;
   } elsif ($arg =~ /^--?compress(?:or|ion)?=(none|closure|yui)$/) {
     $compress = $1;
+  } elsif ($arg =~ /^--?no-export$/) {
+    $exported = 0;
   } else {
     my $targets = join " ", @targets;
     $targets =~ s/sjcl //;
@@ -86,6 +92,8 @@ Valid arguments are:
 
   --with-TARGET: require TARGET
   --without-TARGET: forbid TARGET
+
+  --no-export: do not export sjcl
 
   --help: show this message
 
@@ -117,6 +125,8 @@ foreach my $i (@targets) {
     }
   }
 }
+
+$config = "exports $config" if $exported;
 
 # reverse
 foreach my $i (reverse @targets) {

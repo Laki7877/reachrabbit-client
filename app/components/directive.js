@@ -687,10 +687,11 @@ angular.module('myApp.directives', ['myApp.service'])
     .directive('cardCampaignHeader', [function () {
         return {
             restrict: 'EA',
-            scope: { campaign: '=' },
+            scope: { campaign: '=', remove: "&", removeable: "&" },
             templateUrl: 'components/templates/card-campaign-header.html',
             link: function (scope, element, attrs, ctrl, transclude) {
-
+                scope.remove = scope.remove || _.noop;
+                scope.removable = scope.removeable || _.noop;
             }
         };
     }])

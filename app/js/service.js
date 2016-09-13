@@ -333,6 +333,12 @@ angular.module('myApp.service', ['satellizer'])
                         });
                 });
             },
+            delete: function(id) {
+                return $http({
+                    url: '/campaigns/' + id,
+                    method: 'delete'
+                });
+            },
             getAll: function (params) {
                 //TODO: make universal getter
                 return $q(function (resolve, reject) {
@@ -606,7 +612,7 @@ angular.module('myApp.service', ['satellizer'])
         };
     }])
     .factory('UserProfile', ['$rootScope', '$window', function ($rootScope, $window) {
-        var user = null;
+        var user = JSON.parse($window.localStorage.profile);
         var dirty = false;
         return {
             get: function () {

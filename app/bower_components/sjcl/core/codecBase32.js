@@ -3,7 +3,10 @@
  * @author Nils Kenneweg
  */
 
-/** @namespace Base32 encoding/decoding */
+/**
+ * Base32 encoding/decoding
+ * @namespace
+ */
 sjcl.codec.base32 = {
   /** The base32 alphabet.
    * @private
@@ -51,7 +54,7 @@ sjcl.codec.base32 = {
 
     if (_hex) {
       c = sjcl.codec.base32._hexChars;
-      format = "base32hex"
+      format = "base32hex";
     }
 
     for (i=0; i<str.length; i++) {

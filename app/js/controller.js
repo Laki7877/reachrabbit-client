@@ -1162,6 +1162,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 $scope.alert.danger(o.message);
                 return;
             }
+
             AccountService.saveProfile(profile)
                 .then(function (response) {
                     delete response.data.password;
@@ -1194,6 +1195,9 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             return $rootScope.sumReduce(mediaList, 'followerCount');
         };
 
+        //TODO: Make this generic
+        $scope.httpPending = true;
+
         $scope.load = function (params) {
             $scope.params = params;
             $scope.params.status = $scope.statusFilter;
@@ -1208,7 +1212,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                             });
                     });
                 });
-            CampaignService.getActiveCampaigns()
+            return CampaignService.getActiveCampaigns()
                 .then(function (response) {
                     $scope.filters = _.map(response.data, function (e) {
                         return {
@@ -1248,16 +1252,24 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             }
             return $filter('amCalendar')(proposal.messageUpdatedAt);
         };
+
         $scope.$watch('filter', function () {
             _.extend($scope.params, {
                 campaignId: $scope.filter
             });
-            $scope.load($scope.params);
+            $scope.httpPending = true;
+            $scope.load($scope.params)
+            .then(function(){
+              $scope.httpPending = false;
+            });
         });
         $scope.load({
             sort: ['messageUpdatedAt,desc']
+        }).then(function(){
+            $scope.loadProposalCounts();
+            $scope.httpPending = false;
         });
-        $scope.loadProposalCounts();
+
     }])
     .controller('CartController', ['$scope', '$rootScope', '$state', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function ($scope, $rootScope, $state, NcAlert, BrandAccountService, ProposalService, TransactionService, $stateParams) {
         $scope.alert = new NcAlert();
@@ -1717,6 +1729,13 @@ angular.module('myApp.admin.controller', ['myApp.service'])
                     return k.keyword;
                 });
             };
+
+            $scope.changeToDraft = function() {
+                CampaignService.save(_.extend({}, $scope.campaignNee, {status: 'Draft'})).then(function(response) {
+                    _.extend($scope.campaignNee, response.data);
+                });
+            };
+            
             CampaignService.getOne($stateParams.campaignId)
                 .then(function (campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;

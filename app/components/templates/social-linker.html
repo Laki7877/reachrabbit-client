@@ -19,6 +19,9 @@
                 <div class="media-body">
                     <button class="btn-secondary-active btn-width-lg" disabled ng-click="startAuthFlow(media.mediaId)">
                         <i class="glyphicon glyphicon-ok" aria-hidden="true"></i> เชื่อมต่อช่องทางนี้แล้ว</button>
+                    <div class="media-close color-grey" ng-click="unlink(media.mediaId)">
+                        <i class="fa fa-times-circle"></i> ยกเลิกการเชื่อมต่อ
+                    </div>
                 </div>
             </div>
         </div>

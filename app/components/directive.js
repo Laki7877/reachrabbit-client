@@ -9,6 +9,33 @@
 'use strict';
 
 angular.module('myApp.directives', ['myApp.service'])
+    .directive('urlMask', [function() {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function(scope, elem, attrs, ctrl) {
+                function formatter(value) {
+                    if(ctrl.$isEmpty(value)) {
+                        return value;
+                    }
+                    if(value.startsWith('http://')) {
+                        return value.substr(7);
+                    }
+                    return value;
+                }
+
+                function parser(value) {
+                    if(ctrl.$isEmpty(value)) {
+                        return null;
+                    }
+                    return 'http://' + value; 
+                }
+
+                ctrl.$formatters.push(formatter);
+                ctrl.$parsers.push(parser);
+            }
+        };
+    }])
     .directive('instagramProfile', ['$window', function($window) {
         return {
             restrict: 'E',
@@ -389,7 +416,12 @@ angular.module('myApp.directives', ['myApp.service'])
                     scope.mediaList = mediumResponse.data;
                 });
 
-
+                scope.unlink = function(mediaId) {
+                    _.pullAllBy(scope.model, [{media: {mediaId: mediaId}}], 'media.mediaId');
+                    if(scope.onDone) {
+                        scope.onDone();
+                    }
+                };
                 scope.startAuthFlow = function (mediaId) {
                     if (mediaId == 'youtube') {
                         mediaId = 'google';

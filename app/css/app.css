@@ -8427,13 +8427,20 @@ input:-moz-placeholder {
 }
 .card-thumbnail .card-thumbnail-image,
 .workroom .card-campaign-thumbnail .card-thumbnail-image {
-  background-color: #d8dfe7;
+  background-color: #3e4a5e;
   height: 194px;
   overflow: hidden;
 }
-.card-thumbnail .card-thumbnail-image img,
-.workroom .card-campaign-thumbnail .card-thumbnail-image img {
+.card-thumbnail .card-thumbnail-image .campaign-image,
+.workroom .card-campaign-thumbnail .card-thumbnail-image .campaign-image {
   width: 100%;
+}
+.card-thumbnail .card-thumbnail-image.expired .campaign-image,
+.workroom .card-campaign-thumbnail .card-thumbnail-image.expired .campaign-image {
+  z-index: 1;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 0.5;
 }
 .card-thumbnail .card-price,
 .workroom .card-campaign-thumbnail .card-price {
@@ -8695,6 +8702,14 @@ input:-moz-placeholder {
   top: 10px;
   -webkit-clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
   clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+  z-index: 99;
+}
+.flag img.flag-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  bottom: -10px;
+  left: 0px;
 }
 .flag .status-open {
   background: #16bbac;
@@ -10389,6 +10404,12 @@ ul.payment-methods {
 .layout-influencer .view-influencer-campaign-list .card-thumbnail,
 .layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail {
   margin-bottom: 30px;
+}
+.layout-influencer .view-influencer-campaign-list .card-thumbnail .flag .status,
+.layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail .flag .status {
+  left: 5px;
+  top: 15px;
+  padding-left: 12px;
 }
 .layout-influencer .view-influencer-campaign-list .card-thumbnail .card-body,
 .layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail .card-body {

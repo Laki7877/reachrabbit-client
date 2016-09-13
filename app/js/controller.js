@@ -1416,7 +1416,12 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
-                    $window.location.href = '/brand.html#/brand-campaign-list';
+                    var bounce = '/brand.html#/brand-campaign-list';
+                    if($location.search().bounce_route){
+                      bounce = ('/brand.html#' + $location.search().bounce_route);
+                    }
+                    $window.location.href = bounce;
+
                     // $location.path('/brand.html#/brand-campaign-list')
                 })
                 .catch(function (err) {
@@ -1452,7 +1457,12 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
-                    $window.location.href = '/admin.html#/admin-transaction-history';
+
+                    var bounce = '/admin.html#/admin-transaction-history';
+                    if($location.search().bounce_route){
+                      bounce = ('/admin.html#' + $location.search().bounce_route);
+                    }
+                    $window.location.href = bounce;
                     // $location.path('/brand.html#/brand-campaign-list')
                 })
                 .catch(function (err) {
@@ -1484,7 +1494,11 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                     Raven.setUserContext(UserProfile.get());
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
-                    $window.location.href = '/influencer.html#/influencer-campaign-list';
+                    var bounce = '/influencer.html#/influencer-campaign-list';
+                    if($location.search().bounce_route){
+                      bounce = '/influencer.html#' + $location.search().bounce_route;
+                    }
+                    $window.location.href = bounce;
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);
@@ -1515,8 +1529,8 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                 });
         };
     }])
-    .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'AccountService', 'UserProfile', '$window', 'BusinessConfig',
-        function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {
+    .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$location', '$auth', '$state', '$stateParams', 'AccountService', 'UserProfile', '$window', 'BusinessConfig',
+        function ($scope, $rootScope, NcAlert, $location, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {
             $scope.alert = new NcAlert();
             $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
 
@@ -1540,7 +1554,11 @@ angular.module('myApp.portal.controller', ['myApp.service'])
                                     //Tell raven about the user
                                     Raven.setUserContext(UserProfile.get());
                                     //Redirect change app
-                                    $window.location.href = '/influencer.html#/influencer-campaign-list';
+                                    var bounce = '/influencer.html#/influencer-campaign-list';
+                                    if($location.search().bounce_route){
+                                      bounce = '/influencer.html#' + $location.search().bounce_route;
+                                    }
+                                    $window.location.href = bounce;
                                 });
                         } else {
                             if (mediaId == 'facebook') {

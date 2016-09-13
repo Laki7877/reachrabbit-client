@@ -109,6 +109,9 @@ angular.module('myApp', [
   //Initialize the app
   .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce',
     function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce) {
+
+
+
       function removeParam(key, sourceURL) {
           var rtn = sourceURL.split("?")[0],
               param,
@@ -129,6 +132,8 @@ angular.module('myApp', [
       $rootScope.trustSrc = function(src) {
         return $sce.trustAsResourceUrl(removeParam('autoplay', src));
       };
+
+
       $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
       $rootScope.SHOW_DEBUGGA = false;
 
@@ -191,16 +196,15 @@ angular.module('myApp', [
 
       //Global function helpers
       $rootScope.getProfile = UserProfile.get;
-      $rootScope.signOut = function (msg) {
+      $rootScope.signOut = function (bounce_route) {
         //clear localstorage
         var ur = $window.localStorage.unauthorized_route;
         if (!ur) {
           ur = "/";
         }
-        var redirTo = ur + (msg ? '?message=' + msg : '');
+        var redirTo = ur + (bounce_route ? '?bounce_route=' + bounce_route : '');
         $window.localStorage.clear();
         //navigate to login
-        console.log("redirecting to", redirTo);
         $window.location.href = redirTo;
       };
 
@@ -274,7 +278,7 @@ angular.module('myApp', [
             if (!datestr) {
                 return false;
             }
-            var d = new Date(datestr);
+            var d = moment(datestr, 'YYYY-MM-DD HH:mm').toDate();
             return d.getTime() <= (new Date()).getTime();
         };
 

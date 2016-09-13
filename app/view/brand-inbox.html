@@ -56,7 +56,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="proposal in proposals.content">
-                <td class="col-name"><img src="{{proposal.influencer.user.profilePicture.url  || 'images/placeholder-profile-picture.png'}}" class="profile-picture" /> {{proposal.influencer.user.name}}</td>
+                <td class="col-name"><img ng-src="{{proposal.influencer.user.profilePicture.url  || 'images/placeholder-profile-picture.png'}}" class="profile-picture" /> {{proposal.influencer.user.name}}</td>
                 <td class="col-campaign-name">{{proposal.campaign.title}}</td>
                 <td class="col-price">{{proposal.price | currency:'':0 }}</td>
                 <td ng-if="params.status == 'Working'">{{ proposal.dueDate | date }}</td>

@@ -1162,6 +1162,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 $scope.alert.danger(o.message);
                 return;
             }
+
             AccountService.saveProfile(profile)
                 .then(function (response) {
                     delete response.data.password;

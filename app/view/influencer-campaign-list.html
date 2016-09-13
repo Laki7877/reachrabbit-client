@@ -1,3 +1,4 @@
+
 <div class="view-influencer-campaign-list">
   <div class="zone-header">
     <div class="container">
@@ -36,7 +37,9 @@
         </div>
       </div>
 
-      <div class="thumbnails">
+      <cute-bunny></cute-bunny>
+
+      <div class="thumbnails" cute-bunny-hide>
         <card-campaign-thumbnail ng-repeat="cam in campaigns.content"
         on-click="handleUserClickThumbnail"
         campaign="cam"></card-campaign-thumbnail>

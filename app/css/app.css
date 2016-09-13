@@ -10376,6 +10376,12 @@ ul.payment-methods {
   display: inline-block;
   cursor: pointer;
 }
+.card-close {
+  cursor: pointer;
+  display: block;
+  float: right;
+  padding: 12px 13px 0 0;
+}
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
 .layout-portal {

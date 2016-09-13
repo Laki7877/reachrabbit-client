@@ -41,9 +41,6 @@
           </div>
         </div>
         <div class="card-body">
-          <div class="empty-state">
-            <img src="images/icon-empty-folder.png"/>ยังไม่มีห้องคุยงานในขั้นตอนนี้
-          </div>
           <table ng-if="proposals.numberOfElements > 0" class="table" sorter ng-model="proposals" callback="load">
             <thead>
               <tr>
@@ -74,7 +71,11 @@
               </tr>
             </tbody>
           </table>
-          <table-static ng-if="proposals.totalElements == 0">ไม่มี Campaign</table-static>
+          <table-static ng-if="proposals.totalElements == 0">
+            <div class="empty-state">
+              <img src="images/icon-empty-folder.png"/>ยังไม่มีห้องคุยงานในขั้นตอนนี้
+            </div>
+          </table-static>
         </div>
       </div>
       <div class="info-text text-center">

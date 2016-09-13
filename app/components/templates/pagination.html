@@ -15,7 +15,7 @@
     </li>
   </ul>
   <div class="pagination input-dropdown pull-right">
-    <select class="form-control paginator" ng-options="x as x for x in sizeOptions" ng-model="model.size"></select>
+    <select class="form-control paginator" ng-options="x as x for x in sizeOptions" ng-model="model.size" ng-change="update({size: model.size})"></select>
     <i class="fa fa-caret-down"></i>
   </div>
 </div>

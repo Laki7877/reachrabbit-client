@@ -168,7 +168,8 @@ angular.module('myApp.service', ['satellizer'])
                             response.data.influencer.birthday = new Date(response.data.influencer.birthday);
                         }
 
-                        //TOOD: QUick fix until DB team go one way
+
+                        //TOOD: Quick fix until DB team go one wayaaaaaas
                         // var x = Object.keys(response.data);
                         // response.data.user = {};
                         // x.forEach(function (key) {

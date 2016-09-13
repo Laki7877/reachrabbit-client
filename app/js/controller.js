@@ -714,7 +714,9 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 });
             };
             $scope.$watch('filter', function () {
-                $scope.load(_.extend($scope.params, { mediaId: $scope.filter }));
+                if($scope.filter) {
+                    $scope.load(_.extend($scope.params, { mediaId: $scope.filter }));
+                }
             });
 
             //Load campaign data
@@ -928,8 +930,28 @@ angular.module('myApp.brand.controller', ['myApp.service'])
      */
     .controller('CampaignListController', ['$scope', 'CampaignService', 'DataService', 'ExampleCampaigns', function ($scope, CampaignService, DataService, ExampleCampaigns) {
         $scope.myCampaign = [];
+        $scope.filters = [
+        {
+            status: undefined,
+            name: 'แสดง Campaign ทั้งหมด'
+        },
+        {
+            status: 'Draft',
+            name: 'เฉพาะ ฉบับร่าง'
+        }, 
+        {
+            status: 'Open',
+            name: 'เฉพาะ ดำเนินการ'
+        },
+        {
+            status: 'Complete',
+            name: 'เฉพาะ เสร็จสิ้น'
+        }];
+
         $scope.$watch('filter', function () {
-            $scope.load(_.extend($scope.params, { mediaId: $scope.filter }));
+            if($scope.filter) {
+                $scope.load(_.extend($scope.params, { status: $scope.filter }));
+            }
         });
 
         //Load campaign data

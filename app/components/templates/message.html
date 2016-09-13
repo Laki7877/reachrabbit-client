@@ -6,7 +6,7 @@
     <div class="message-heading">
       <h4>{{message.user.name}}</h4>
       <div class="message-time">
-        <span ng-if="message.messageId">{{message.createdAt | amDateFormat: $root.formats[4]}}
+        <span ng-if="message.messageId">{{message.createdAt | amDateFormat: 'LT - D MMM YY'}}
         </span>
       </div>
       <div class="clear"></div>

@@ -3,11 +3,9 @@
   <zone-header>
     <div class="action-btn-for-header">
       <div class="card-body-content">
-        <div class="input-dropdown">
-          <select class="form-control filter" ng-show="filters.length > 0" ng-model="filter" ng-options="x.campaignId as x.name for x in filters">
-          </select>
-          <i class="fa fa-caret-down"></i>
-        </div>
+        <!--div class="input-dropdown">
+          <input class="form-control filter" ng-model="filter" placeholder="ชือ Campaign"/>
+        </div-->
       </div>
     </div>
     <h1>Inbox</h1>
@@ -21,22 +19,28 @@
       <div cute-bunny-hide class="card-inbox">
         <div class="tab-selector">
           <div class="tab" ui-sref="influencer-inbox({status: 'Selection'})" ng-class="{'active': params.status == 'Selection'}">
-            <h5>คัดเลือก</h5>
-            <h3 ng-bind="statusCounts.selection || 0">-</h3>
+            <h5>คัดเลือก
+              <div class="proposal-alert" ng-if="statusCounts.selection.unreadMessageCount > 0"></div>
+            </h5>
+            <h3 ng-bind="statusCounts.selection.proposalCount || 0">-</h3>
           </div>
           <div class="tab-next-step">
             <i class="fa fa-angle-right fa-2x"></i>
           </div>
           <div class="tab" ui-sref="influencer-inbox({status: 'Working'})" ng-class="{'active': params.status == 'Working'}">
-            <h5>ดำเนินการ</h5>
-            <h3 ng-bind="statusCounts.working || 0">-</h3>
+            <h5>ดำเนินการ
+              <div class="proposal-alert" ng-if="statusCounts.working.unreadMessageCount > 0"></div>
+            </h5>
+            <h3 ng-bind="statusCounts.working.proposalCount || 0">-</h3>
           </div>
           <div class="tab-next-step">
             <i class="fa fa-angle-right fa-2x"></i>
           </div>
           <div class="tab" ui-sref="influencer-inbox({status: 'Complete'})" ng-class="{'active': params.status == 'Complete'}">
-            <h5>เสร็จสิ้น</h5>
-            <h3 ng-bind="statusCounts.complete || 0">-</h3>
+            <h5>เสร็จสิ้น
+              <div class="proposal-alert" ng-if="statusCounts.complete.unreadMessageCount > 0"></div>
+            </h5>
+            <h3 ng-bind="statusCounts.complete.proposalCount || 0">-</h3>
           </div>
         </div>
         <div class="card-body">

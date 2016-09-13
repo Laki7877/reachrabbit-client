@@ -31,6 +31,12 @@
       </div>
       <div class="page-header">
         <h1>My Campaign</h1>
+        <div class="form-group">
+          <div class="input-dropdown">
+              <select class="form-control filter" ng-model="filter" ng-options="x.status as x.name for x in filters"></select>
+            <i class="fa fa-caret-down"></i>
+          </div>
+        </div>
       </div>
       <cute-bunny></cute-bunny>
       <div cute-bunny-hide ng-repeat="x in myCampaign.content">

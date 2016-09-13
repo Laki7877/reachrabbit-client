@@ -1,7 +1,11 @@
 <div class="thumbnail-column" ng-click="onClick(campaign)">
   <div class="card-thumbnail">
-    <div class="card-thumbnail-image">
-      <img ng-src="{{campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
+    <div class="card-thumbnail-image" ng-class="{'expired':$root.isExpired(campaign.proposalDeadline)}">
+      <div class="flag">
+        <span ng-if="campaign.status == 'Open'" class="status status-open">เปิดรับข้อเสนอ<img src="images/flag-corner-applied.png" alt="" class="flag-corner"/></span>
+        <span ng-if="$root.isExpired(campaign.proposalDeadline)" class="status status-closed">ปิดรับข้อเสนอ<img src="images/flag-corner-applied.png" alt="" class="flag-corner"/></span>
+      </div>
+      <img ng-src="{{campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="campaign-image"/>
     </div>
     <div class="card-body">
       {{ campaign.title | truncate: 50 }}

@@ -705,11 +705,19 @@ input:-moz-placeholder {
   &:extend(.card);
   &:extend(.card-clickable all);
   .card-thumbnail-image{
-    background-color: @color-grey;
+    background-color: @color-black;
     height: 194px;
     overflow: hidden;
-    img{
+    .campaign-image{
       width: 100%;
+    }
+    &.expired{
+      .campaign-image{
+        z-index: 1;
+        -webkit-filter: grayscale(100%);
+  	     filter: grayscale(100%);
+         opacity: (.5);
+      }
     }
   }
   .card-body{
@@ -964,6 +972,14 @@ input:-moz-placeholder {
     top: 10px;
     -webkit-clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
     clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+    z-index: 99;
+  }
+  img.flag-corner{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    bottom: -10px;
+    left: 0px;
   }
   .status-open{
     background: @color-theme-secondary;

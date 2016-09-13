@@ -756,8 +756,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             $scope.form = {};
             $scope.formData = {};
             $scope.alert = new NcAlert();
-            $scope.influencer = UserProfile.get().influencer;
-            $scope.influencer.user = UserProfile.get();
+           
 
             $scope.isValidate = function (model, error) {
                 if (error === 'required' && model.$name === 'profilePicture') {
@@ -802,6 +801,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 .then(function (response) {
                     $scope.formData = response.data;
                     $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
+                    $scope.formData.influencer.user = { name : $scope.formData.name, profilePicture: $scope.formData.profilePicture };
 
                     // fetch each media
                     if($scope.hasMedia('google')) {

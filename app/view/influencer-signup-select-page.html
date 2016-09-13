@@ -2,21 +2,23 @@
   <div class="container">
     <form no-validate>
     <div class="card-portal">
-      <div class="card-body">
+      <div class="card-body ">
         <div class="logo">
           <h3>เลือกบัญชีที่จะใช้สมัคร</h3>
         </div>
-        <div class="radio-card" ng-repeat="page in pages | orderBy:'count':true track by $index">
-          <label>
-            <input type="radio"  ng-value="page" ng-model="formData.selectedPage" ng-disabled="page.count < minFollower" ng-disabled="page.count < minFollower">
-            <div class="radio-label">
-              {{ page.name }}
-            </div>
-            <div class="radio-info">
-              มีผู้ติดตาม {{page.count | number}} คน
-            </div>
-            <img class="radio-image" ng-src="{{ page.picture }}" />
-          </label>
+        <div class="card-pages">
+          <div class="radio-card" ng-repeat="page in pages | orderBy:'count':true track by $index">
+            <label>
+              <input type="radio"  ng-value="page" ng-model="formData.selectedPage" ng-disabled="page.count < minFollower" ng-disabled="page.count < minFollower">
+              <div class="radio-label">
+                {{ page.name }}
+              </div>
+              <div class="radio-info">
+                มีผู้ติดตาม {{page.count | number}} คน
+              </div>
+              <img class="radio-image" ng-src="{{ page.picture }}" />
+            </label>
+          </div>
         </div>
         <div class="text-center">
           <button class="btn-primary btn-width-md" ng-click="choosePage(formData.selectedPage)">เลือกบัญชี</button>

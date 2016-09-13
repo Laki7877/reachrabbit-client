@@ -43,7 +43,13 @@
           </div>
         </div>
       </div>
-
+      <div class="card-campaign-description" ng-if="campaignNee.status !== 'Draft'">
+        <div class="card-body">
+          <div class="card-row text-center">
+            <button class="btn-secondary" ng-click="changeToDraft()">เปลี่ยนสถานะเป็น "ฉบับร่าง"</button>
+          </div>
+        </div>
+      </div>
       <card-brand-profile ng-model="campaignNee.brand"></card-brand-profile>
     </div>
   </div>

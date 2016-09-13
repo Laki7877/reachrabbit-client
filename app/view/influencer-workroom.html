@@ -16,13 +16,13 @@
                                 <h3>{{ proposal.campaign.brand.brandName | truncate: 30 }}</h3>
                                 <a class="link-view-profile" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId })"><i class="fa fa-info-circle"></i>ดูโปรไฟล์</a>
                                 <div class="chatbox-status">
-                                    <span tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และรอการคัดเลือกจาก Brand คุณจะได้รับแจ้งหากผ่านการคัดเลือก"
+                                    <span tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ รอการคัดเลือกจาก Brand"
                                         class="status" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
                                     <i class="fa fa-angle-right"></i>
-                                    <span class="status" tooltip-placement="bottom" uib-tooltip="ทำงานตามที่ได้ตกลงกัน และส่งงานให้ Brand ตรวจสอบและอนุมัติ"
+                                    <span class="status" tooltip-placement="bottom" uib-tooltip="ทำงานตามที่ได้ตกลงกัน และส่งงานให้ Brand อนุมัติ"
                                         ng-class="{'active': proposal.status == 'Working'}">ดำเนินการ</span>
                                     <i class="fa fa-angle-right"></i>
-                                    <span class="status" tooltip-placement="bottom" uib-tooltip="ยินดีด้วย! งานคุณเสร็จสิ้นแล้ว คุณสามารถถอนเงินจากระบบได้เมื่อต้องการ"
+                                    <span class="status" tooltip-placement="bottom" uib-tooltip="งานเสร็จแล้ว คุณสามารถถอนเงินจากระบบได้เมื่อต้องการ"
                                         ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span>
                                 </div>
                             </div>

@@ -1166,6 +1166,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 $scope.alert.danger(o.message);
                 return;
             }
+
             AccountService.saveProfile(profile)
                 .then(function (response) {
                     delete response.data.password;
@@ -1732,6 +1733,13 @@ angular.module('myApp.admin.controller', ['myApp.service'])
                     return k.keyword;
                 });
             };
+
+            $scope.changeToDraft = function() {
+                CampaignService.save(_.extend({}, $scope.campaignNee, {status: 'Draft'})).then(function(response) {
+                    _.extend($scope.campaignNee, response.data);
+                });
+            };
+            
             CampaignService.getOne($stateParams.campaignId)
                 .then(function (campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;

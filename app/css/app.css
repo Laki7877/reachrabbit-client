@@ -10299,7 +10299,7 @@ div:focus {
 }
 .tooltip .tooltip-inner {
   padding: 10px;
-  max-width: 250px;
+  max-width: 240px;
 }
 /*---Eartamoto Special Code---*/
 .cropArea {
@@ -10341,6 +10341,11 @@ ul.payment-methods {
 }
 .view-admin-campaign-list .col-name {
   max-width: 150px;
+}
+.media-close {
+  margin-left: 15px;
+  display: inline-block;
+  cursor: pointer;
 }
 /*---End of the CSS World---*/
 /*---Layout Portal---*/

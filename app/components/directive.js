@@ -477,7 +477,7 @@ angular.module('myApp.directives', ['myApp.service'])
             transclude: true,
             templateUrl: 'components/templates/card-brand-profile.html',
             scope: {
-                brand: '=ngModel'
+                profile: '=ngModel'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
 

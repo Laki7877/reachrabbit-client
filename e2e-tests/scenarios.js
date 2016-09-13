@@ -168,8 +168,6 @@ describe('Brand', function () {
 
         it('can save as draft', function () {
 
-            browser.executeScript("document.body.style.zoom='50%';");
-
             var fileToUpload = 'cyanthumb.jpg';
             var absolutePath = path.resolve(__dirname, fileToUpload);
             var campaignName = chance.name() + " / " + chance.ssn({ dashes: false });;
@@ -633,6 +631,7 @@ describe('Admin can approve payment', function () {
         password.sendKeys(browser.params.admin_login.password);
 
         submit_btn.click();
+        browser.sleep(1000);
     });
 
     it('can find transaction history', function () {
@@ -752,6 +751,7 @@ describe('Influencer Payment', function () {
 
     it('can request payout', function () {
         element(by.css('.btn-primary')).click();
+        browser.sleep(1500);
     });
 });
 
@@ -832,14 +832,14 @@ describe('Influencer', function () {
     });
 
     it('can see status change and payment slip', function () {
-        browser.get('portal.html#/influencer-payout-history');
+        browser.get('influencer.html#/influencer-payout-history');
 
         element.all(by.repeater('transaction in transactions.content')).count().then(function (ct) {
             expect(ct).toBeGreaterThan(0);
         });
 
         var latestPayout = element.all(by.repeater('transaction in transactions.content')).first();
-        
+
         //check status is correct
         var greenStatus = latestPayout.element(by.css('.color-green'));
         expect(greenStatus.isPresent()).toBe(true);

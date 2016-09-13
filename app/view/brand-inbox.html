@@ -36,6 +36,9 @@
           </div>
         </div>
         <div class="card-body">
+          <div class="empty-state">
+            <img src="images/icon-empty-folder.png"/>ยังไม่มีห้องคุยงานในขั้นตอนนี้
+          </div>
           <table ng-if="proposals.numberOfElements > 0" class="table" sorter ng-model="proposals" callback="load">
             <thead>
               <tr>

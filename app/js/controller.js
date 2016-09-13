@@ -1615,11 +1615,6 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         var authData = $stateParams.authData;
         $scope.pages = authData.pages;
 
-        //populate page for test
-        for(var i = 0; i < 10; i++) {
-            $scope.pages.push(_.extend({}, $scope.pages[0]));
-        }
-
         $scope.formData = {
             selectedPage: null
         };

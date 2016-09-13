@@ -411,17 +411,20 @@ angular.module('myApp.directives', ['myApp.service'])
       return {
         restrict: 'AE',
         link: function(scope, element, attrs){
-          scope.$watch(function(){
-            return $http.pendingRequests.reduce(function(p, c){
+            scope.$watch(function(){
+              return $http.pendingRequests.reduce(function(p, c){
+                if(_.isFunction(c.ignoreLoadingBar)) {
+                  return p + (c.ignoreLoadingBar(c) ? 0 : 1);
+                }
                 return p + (c.ignoreLoadingBar ? 0 : 1);
-            }, 0);
-          }, function(r){
-            if(r === 0){
-              element.show();
-            }else{
-              element.hide();
-            }
-          });
+              }, 0);
+            }, function(r){
+              if(r === 0){
+                element.show();
+              }else{
+                element.hide();
+              }
+            });
         }
       };
     }])

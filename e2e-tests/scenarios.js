@@ -168,8 +168,6 @@ describe('Brand', function () {
 
         it('can save as draft', function () {
 
-            browser.executeScript("document.body.style.zoom='50%';");
-
             var fileToUpload = 'cyanthumb.jpg';
             var absolutePath = path.resolve(__dirname, fileToUpload);
             var campaignName = chance.name() + " / " + chance.ssn({ dashes: false });;

@@ -10,7 +10,7 @@
           <table ng-if="transactions.numberOfElements > 0" class="table" sorter ng-model="transactions" callback="load">
             <thead>
               <tr>
-                <th class="col-name" sort="updatedAt">วันที่แกไขล่าสุด</th>
+                <th class="col-date" sort="updatedAt">วันที่แกไขล่าสุด</th>
                 <th class="col-campaign-name" sort="user.userId">Influencer</th>
                 <th class="col-status" sort="status">สถานะ</th>
                 <th sort="transactionId">รหัสการถอนเงิน</th>
@@ -21,7 +21,7 @@
             </thead>
             <tbody>
               <tr ng-repeat="transaction in transactions.content">
-                <td class="col-name">{{ transaction.updatedAt | amCalendar }}</td>
+                <td class="col-date">{{ transaction.updatedAt | amDateFormat : 'll' }}</td>
                 <td class="col-campaign-name">{{ transaction.influencerTransactionDocument[0].wallet.proposals[0].influencer.user.name }}</td>
                 <td class="col-status">
                   <span class="color-yellow" ng-if="transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอรับเงิน</span>

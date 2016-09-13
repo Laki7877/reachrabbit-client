@@ -6,7 +6,8 @@
     <div class="container">
       <div nc-alert="alert"></div>
 
-      <div class="row">
+      <cute-bunny></cute-bunny>
+      <div class="row" cute-bunny-hide>
         <div class="col-xs-8">
             <div class="card">
                 <div class="card-header">
@@ -140,12 +141,12 @@
                       <strong>{{payout.amount | number: 0}} บาท</strong>
                     </td>
                   </tr>
-                  <tr>
+                  <tr ng-if="!payout.slip.url">
                     <td colspan="2">
                         แนบหลักฐานการโอนเงิน
                     </td>
                   </tr>
-                  <tr >
+                  <tr ng-if="!payout.slip.url">
                       <td colspan="2" class="no-top-border text-center">
                           <uploader-thumb template="components/templates/uploader-simple.html" no-crop="true" ng-model="slipResource"></uploader-thumb>
                       </td>

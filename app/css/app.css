@@ -6326,6 +6326,7 @@ button.list-group-item-danger.active:focus {
 .card-thumbnail,
 .card-inbox,
 .card-transaction-header,
+.card-loader,
 .social-media-profile-wrapper,
 .workroom .card-proposal-detail,
 .chatbox-card,
@@ -8105,6 +8106,7 @@ input:-moz-placeholder {
 .card-thumbnail,
 .card-inbox,
 .card-transaction-header,
+.card-loader,
 .social-media-profile-wrapper,
 .workroom .card-proposal-detail,
 .chatbox-card,
@@ -8464,6 +8466,16 @@ input:-moz-placeholder {
 }
 .card-transaction-header .card-info .card-info-content {
   color: #3e4a5e;
+}
+.card-loader h3 {
+  display: inline-block;
+  margin-left: 5px;
+  transform: translateY(1px);
+}
+.card-loader img {
+  width: 60px;
+  border-radius: 50%;
+  margin: 10px;
 }
 /*---Social Media Profile---*/
 .social-media-profile-wrapper {

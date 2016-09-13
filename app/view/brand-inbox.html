@@ -15,11 +15,11 @@
   <div class="zone-body">
     <div class="container">
 
-      <div class="card-loader">
+      <div class="card-loader" ng-if="httpPending">
         <img src="images/Jumping.gif" alt="" /><h3>โหลดดิ่งอยู่จ้า...</h3>
       </div>
 
-      <div class="card-inbox">
+      <div class="card-inbox" ng-if="!httpPending">
         <div class="tab-selector">
           <div class="tab" ui-sref="brand-inbox({status: 'Selection'})" ng-class="{'active': params.status == 'Selection'}">
             <h5>คัดเลือก</h5>

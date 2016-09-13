@@ -943,7 +943,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         {
             status: 'Draft',
             name: 'เฉพาะ ฉบับร่าง'
-        }, 
+        },
         {
             status: 'Open',
             name: 'เฉพาะ ดำเนินการ'
@@ -1614,6 +1614,12 @@ angular.module('myApp.portal.controller', ['myApp.service'])
     .controller('InfluencerFacebookPageSelectionController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'BusinessConfig', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, BusinessConfig) {
         var authData = $stateParams.authData;
         $scope.pages = authData.pages;
+
+        //populate page for test
+        for(var i = 0; i < 10; i++) {
+            $scope.pages.push(_.extend({}, $scope.pages[0]));
+        }
+
         $scope.formData = {
             selectedPage: null
         };

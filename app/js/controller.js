@@ -968,9 +968,13 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             };
 
             $scope.remove = function() {
+                console.log($scope.campaignNee.campaignId);
                 CampaignService.delete($scope.campaignNee.campaignId)
                     .then(function() {
                         $state.go('brand-campaign-list');
+                    })
+                    .catch(function (err) {
+                        $scope.alert.danger(err.data.message);
                     });
             };
 

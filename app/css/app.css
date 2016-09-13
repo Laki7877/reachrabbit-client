@@ -10253,8 +10253,14 @@ div:focus {
 .proposal-modal textarea {
   resize: vertical;
 }
+.proposal-modal h4 {
+  color: #16bbac;
+}
 .proposal-modal .card-row-basic {
   margin-top: 5px;
+}
+.proposal-modal .card-row-basic-label {
+  margin-top: 15px;
 }
 .proposal-modal .help-block {
   text-align: right;
@@ -10375,6 +10381,12 @@ ul.payment-methods {
   margin-left: 15px;
   display: inline-block;
   cursor: pointer;
+}
+.card-close {
+  cursor: pointer;
+  display: block;
+  float: right;
+  padding: 12px 13px 0 0;
 }
 /*---End of the CSS World---*/
 /*---Layout Portal---*/

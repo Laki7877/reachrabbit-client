@@ -8,7 +8,7 @@
         ช่องทางการโปรโมท
       </div>
       <div class="card-info-content">
-        <span ng-repeat="media in campaign.media" class="icon-{{media.mediaId}}"></span>
+        <span ng-repeat="media in campaign.media track by $index" class="icon-{{media.mediaId}}"></span>
         <span ng-if="!campaign.media || campaign.media.length == 0">-</span>
       </div>
     </div>
@@ -29,6 +29,9 @@
         {{campaign.brand.brandName | truncate: 20 }}
         <span ng-if="!campaign.brand.brandName">-</span>
       </div>
+    </div>
+    <div ng-click="remove()" ng-if="removeable()" class="card-close color-grey">
+      <div><i class="fa fa-trash"></i> ลบ Campaign นี้</div>
     </div>
 
     <div class="col-xs-8">

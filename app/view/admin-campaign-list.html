@@ -9,7 +9,7 @@
           <table ng-if="campaigns.numberOfElements > 0" class="table" sorter ng-model="campaigns" callback="load">
             <thead>
               <tr>
-                <th class="col-time" sort="updatedAt">วันที่แก้ไขล่าสุด</th>
+                <th class="col-time" sort="updateAt">วันที่แก้ไขล่าสุด</th>
                 <th class="col-campaign-name" sort="title">Campaign</th>
                 <th class="col-name" sort="brand.brandName">Brand</th>
                 <th sort="status">สถานะ</th>
@@ -28,7 +28,7 @@
                   'color-green': campaign.status === 'Open',
                   'color-black': campaign.status === 'Draft',
                   'color-grey': campaign.status !== 'Draft' && campaign.status !== 'Open'
-                }">
+                }" class="text-center">
                   <span ng-if="campaign.status === 'Draft'">ฉบับร่าง</span>
                   <span ng-if="campaign.status === 'Open'">เปิดรับข้อเสนอ</span>
                   <span ng-if="campaign.status !== 'Draft' && campaign.status !== 'Open'">ปิดรับข้อเสนอ</span>
@@ -37,7 +37,7 @@
                 <td>{{campaign.countProposalWorking}}</td>
                 <td>{{campaign.countProposalComplete}}</td>
                 <td class="col-button">
-                  <button class="btn-secondary" ui-sref="admin-campaign-detail({campaignId: campaign.campaignId})">คุยงาน</button>
+                  <button class="btn-secondary" ui-sref="admin-campaign-detail({campaignId: campaign.campaignId})">ดูรายละเอียด</button>
                 </td>
               </tr>
             </tbody>

@@ -321,7 +321,7 @@ angular.module('myApp.service', ['satellizer'])
             delete: function(id) {
                 return $http({
                     url: '/campaigns/' + id,
-                    method: 'delete'
+                    method: 'DELETE'
                 });
             },
             getAll: function (params) {

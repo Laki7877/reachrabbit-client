@@ -705,11 +705,19 @@ input:-moz-placeholder {
   &:extend(.card);
   &:extend(.card-clickable all);
   .card-thumbnail-image{
-    background-color: @color-grey;
+    background-color: @color-black;
     height: 194px;
     overflow: hidden;
-    img{
+    .campaign-image{
       width: 100%;
+    }
+    &.expired{
+      .campaign-image{
+        z-index: 1;
+        -webkit-filter: grayscale(100%);
+  	     filter: grayscale(100%);
+         opacity: (.5);
+      }
     }
   }
   .card-body{
@@ -743,6 +751,20 @@ input:-moz-placeholder {
     .card-info-content{
       color:@color-black;
     }
+  }
+}
+
+.card-loader{
+  &:extend(.card);
+  h3{
+    display: inline-block;
+    margin-left: 5px;
+    transform:translateY(1px);
+  }
+  img{
+    width: 60px;
+    border-radius: 50%;
+    margin: 10px;
   }
 }
 
@@ -950,6 +972,14 @@ input:-moz-placeholder {
     top: 10px;
     -webkit-clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
     clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+    z-index: 99;
+  }
+  img.flag-corner{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    bottom: -10px;
+    left: 0px;
   }
   .status-open{
     background: @color-theme-secondary;
@@ -1242,11 +1272,25 @@ input:-moz-placeholder {
 }
 
 /*---Date Picker---*/
-.uib-daypicker .btn, .uib-monthpicker .btn{
+.nc-dt-button .btn, .btn.active, .uib-title, .uib-right, .uib-left{
   border:none;
   padding:8px;
+  border-radius: 0px;
 }
 
+.nc-dt-button .btn.selected, .nc-dt-button  .btn.active, .nc-dt-button  .btn:focus{
+  background-color: @color-theme-secondary;
+  box-shadow: none;
+  color: white;
+}
+
+div:focus{
+    outline: none;
+}
+
+.nc-dt-disable{
+  background-color: lighten(@color-grey-darker, 1%);
+}
 /*---Mutli Selector---*/
 .multi-tag-selector{
   padding-top: 5px;
@@ -1742,6 +1786,7 @@ ul.payment-methods {
     font-size: small;
   }
 }
+
 
 .view-admin-campaign-list {
   .col-campaign-name {

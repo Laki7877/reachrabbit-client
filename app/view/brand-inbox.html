@@ -14,6 +14,11 @@
 
   <div class="zone-body">
     <div class="container">
+
+      <div class="card-loader">
+        <img src="images/Jumping.gif" alt="" /><h3>โหลดดิ่งอยู่จ้า...</h3>
+      </div>
+
       <div class="card-inbox">
         <div class="tab-selector">
           <div class="tab" ui-sref="brand-inbox({status: 'Selection'})" ng-class="{'active': params.status == 'Selection'}">
@@ -44,7 +49,11 @@
                 <th class="col-price" sort="price">ราคา (บาท)</th>
                 <th ng-if="params.status == 'Working'">วันที่กำหนดส่ง</th>
                 <th ng-if="params.status == 'Complete'">วันที่เสร็จงาน</th>
-                <th uib-tooltip="Reach ของ Influencer ถูกคำนวณโดยการเอาผู้ติดตามจากช่องทางโซเชียลมีเดียที่ถูกเสนอ มาบวกรวมกัน" tooltip-placement="top" ng-if="params.status == 'Selection'" class="col-rabbit-score" sort="score">Reach <i class="fa fa-question-circle"></i></th>
+                <th ng-if="params.status == 'Selection'" class="col-rabbit-score" sort="score">
+                  <span uib-tooltip="Reach ของ Influencer ถูกคำนวณโดยการเอาผู้ติดตามจากช่องทางโซเชียลมีเดียที่ถูกเสนอ มาบวกรวมกัน" tooltip-placement="top" >
+                    Reach <i class="fa fa-question-circle"></i>
+                  </span>
+                </th>
                 <th class="col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
                 <th class="col-button">คุยงาน</th>
               </tr>

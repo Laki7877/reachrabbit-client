@@ -6326,6 +6326,7 @@ button.list-group-item-danger.active:focus {
 .card-thumbnail,
 .card-inbox,
 .card-transaction-header,
+.card-loader,
 .social-media-profile-wrapper,
 .workroom .card-proposal-detail,
 .chatbox-card,
@@ -8105,6 +8106,7 @@ input:-moz-placeholder {
 .card-thumbnail,
 .card-inbox,
 .card-transaction-header,
+.card-loader,
 .social-media-profile-wrapper,
 .workroom .card-proposal-detail,
 .chatbox-card,
@@ -8425,13 +8427,20 @@ input:-moz-placeholder {
 }
 .card-thumbnail .card-thumbnail-image,
 .workroom .card-campaign-thumbnail .card-thumbnail-image {
-  background-color: #d8dfe7;
+  background-color: #3e4a5e;
   height: 194px;
   overflow: hidden;
 }
-.card-thumbnail .card-thumbnail-image img,
-.workroom .card-campaign-thumbnail .card-thumbnail-image img {
+.card-thumbnail .card-thumbnail-image .campaign-image,
+.workroom .card-campaign-thumbnail .card-thumbnail-image .campaign-image {
   width: 100%;
+}
+.card-thumbnail .card-thumbnail-image.expired .campaign-image,
+.workroom .card-campaign-thumbnail .card-thumbnail-image.expired .campaign-image {
+  z-index: 1;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 0.5;
 }
 .card-thumbnail .card-price,
 .workroom .card-campaign-thumbnail .card-price {
@@ -8464,6 +8473,16 @@ input:-moz-placeholder {
 }
 .card-transaction-header .card-info .card-info-content {
   color: #3e4a5e;
+}
+.card-loader h3 {
+  display: inline-block;
+  margin-left: 5px;
+  transform: translateY(1px);
+}
+.card-loader img {
+  width: 60px;
+  border-radius: 50%;
+  margin: 10px;
 }
 /*---Social Media Profile---*/
 .social-media-profile-wrapper {
@@ -8683,6 +8702,14 @@ input:-moz-placeholder {
   top: 10px;
   -webkit-clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
   clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+  z-index: 99;
+}
+.flag img.flag-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  bottom: -10px;
+  left: 0px;
 }
 .flag .status-open {
   background: #16bbac;
@@ -9834,22 +9861,57 @@ fieldset[disabled] .btn-clear.active {
   padding: 7.5px 0px;
 }
 /*---Date Picker---*/
-.uib-daypicker .btn,
-.uib-monthpicker .btn,
-.uib-daypicker .btn-primary,
-.uib-monthpicker .btn-primary,
-.uib-daypicker .btn-secondary,
-.uib-monthpicker .btn-secondary,
-.uib-daypicker .btn-secondary-highlight,
-.uib-monthpicker .btn-secondary-highlight,
-.uib-daypicker .btn-secondary-active,
-.uib-monthpicker .btn-secondary-active,
-.uib-daypicker .btn-trace,
-.uib-monthpicker .btn-trace,
-.uib-daypicker .btn-social,
-.uib-monthpicker .btn-social {
+.nc-dt-button .btn,
+.btn.active,
+.uib-title,
+.uib-right,
+.uib-left,
+.nc-dt-button .btn-primary,
+.btn-primary.active,
+.nc-dt-button .btn-secondary,
+.btn-secondary.active,
+.nc-dt-button .btn-secondary-highlight,
+.btn-secondary-highlight.active,
+.nc-dt-button .btn-secondary-active,
+.btn-secondary-active.active,
+.nc-dt-button .btn-trace,
+.btn-trace.active,
+.nc-dt-button .btn-social,
+.btn-social.active {
   border: none;
   padding: 8px;
+  border-radius: 0px;
+}
+.nc-dt-button .btn.selected,
+.nc-dt-button .btn.active,
+.nc-dt-button .btn:focus,
+.nc-dt-button .btn-primary.selected,
+.nc-dt-button .btn-primary.active,
+.nc-dt-button .btn-primary:focus,
+.nc-dt-button .btn-secondary.selected,
+.nc-dt-button .btn-secondary.active,
+.nc-dt-button .btn-secondary:focus,
+.nc-dt-button .btn-secondary-highlight.selected,
+.nc-dt-button .btn-secondary-highlight.active,
+.nc-dt-button .btn-secondary-highlight:focus,
+.nc-dt-button .btn-secondary-active.selected,
+.nc-dt-button .btn-secondary-active.active,
+.nc-dt-button .btn-secondary-active:focus,
+.nc-dt-button .btn-trace.selected,
+.nc-dt-button .btn-trace.active,
+.nc-dt-button .btn-trace:focus,
+.nc-dt-button .btn-social.selected,
+.nc-dt-button .btn-social.active,
+.nc-dt-button .btn-social:focus {
+  background-color: #16bbac;
+  box-shadow: none;
+  color: white;
+}
+div:focus {
+  outline: none;
+}
+.nc-dt-disable {
+  background-color: #8995aa;
 }
 /*---Mutli Selector---*/
 .multi-tag-selector {
@@ -10382,6 +10444,12 @@ ul.payment-methods {
 .layout-influencer .view-influencer-campaign-list .card-thumbnail,
 .layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail {
   margin-bottom: 30px;
+}
+.layout-influencer .view-influencer-campaign-list .card-thumbnail .flag .status,
+.layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail .flag .status {
+  left: 5px;
+  top: 15px;
+  padding-left: 12px;
 }
 .layout-influencer .view-influencer-campaign-list .card-thumbnail .card-body,
 .layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail .card-body {

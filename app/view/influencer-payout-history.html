@@ -4,7 +4,7 @@
   </zone-header>
   <div class="zone-body">
     <div class="container">
-      <div class="card-inbox">
+      <div class="card">
         <div class="card-body">
           <table ng-if="transactions.numberOfElements > 0" class="table" sorter ng-model="transactions" callback="load">
             <thead>
@@ -22,7 +22,7 @@
                 <td class="col-name">{{ transaction.updatedAt | date }}</td>
                 <td class="col-status">
                   <span class="color-yellow" ng-if="transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอรับเงิน</span>
-                  <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ได้รับเงินแล้ว</span> 
+                  <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ได้รับเงินแล้ว</span>
                 </td>
                 <td>{{ transaction.transactionNumber }}</td>
                 <td class="col-rabbit-score">{{ transaction.influencerTransactionDocument[0].wallet.proposals.length || 0 }}</td>

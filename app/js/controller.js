@@ -756,7 +756,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             $scope.form = {};
             $scope.formData = {};
             $scope.alert = new NcAlert();
-           
+
 
             $scope.isValidate = function (model, error) {
                 if (error === 'required' && model.$name === 'profilePicture') {
@@ -984,7 +984,14 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             });
 
             $scope.dateOptions = _.extend({}, $rootScope.dateOptions, {
-                minDate: new Date()
+                minDate: new Date(),
+                customClass: function(object){
+                  if(object.date.getTime() < (new Date()).getTime()) {
+                      return ["nc-dt-button", "nc-dt-disable"];
+                  }
+
+                  return "nc-dt-button";
+                }
             });
 
             $scope.budgetDisplayAs = function (budgetObject) {

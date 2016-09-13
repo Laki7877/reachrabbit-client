@@ -143,10 +143,7 @@ angular.module('myApp.service', ['satellizer'])
         $httpProvider.interceptors.push('authStatusCheckInjector');
         $httpProvider.defaults.headers.post = { 'Content-Type': 'application/json', 'Accept-Language': 'th' };
         $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json','Accept-Language': 'th' };
-		$httpProvider.defaults.headers.get = { 'Accept-Language': 'th' };
-
-
-
+		    $httpProvider.defaults.headers.get = { 'Accept-Language': 'th' };
 
     }])
     .factory('AccountService', ['$http', '$q', function ($http, $q) {

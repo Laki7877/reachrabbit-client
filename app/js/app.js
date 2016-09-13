@@ -131,7 +131,7 @@ angular.module('myApp', [
       };
       $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
       $rootScope.SHOW_DEBUGGA = false;
-      
+
       //check if we are in dev environment
       //TODO we will move all this to Config.json when
       //we later implement webpack
@@ -186,7 +186,7 @@ angular.module('myApp', [
         showWeeks: false
       };
 
-      $rootScope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate', 'LT - D MMM YY'];
+      $rootScope.formats = ['dd MMMM yyyy', 'dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate', 'LT - D MMM YY'];
       $rootScope.format = $rootScope.formats[0];
 
       //Global function helpers
@@ -279,6 +279,6 @@ angular.module('myApp', [
         };
 
 
-       
+
 
     }]);

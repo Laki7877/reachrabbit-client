@@ -384,13 +384,23 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .directive('cuteBunny', [function(){
+    .directive('cuteBunny', ['$http', function($http){
         return {
           restrict: 'AE',
           templateUrl: 'components/templates/cute-bunny.html',
           transclude: true,
           link: function(scope, element, attrs){
-
+            scope.$watch(function(){
+              return $http.pendingRequests.reduce(function(p, c){
+                  return p + (c.ignoreLoadingBar ? 0 : 1);
+              }, 0);
+            }, function(r){
+              if(r === 0){
+                element.hide();
+              }else{
+                element.show();
+              }
+            });
           }
         };
     }])
@@ -398,10 +408,17 @@ angular.module('myApp.directives', ['myApp.service'])
       return {
         restrict: 'AE',
         link: function(scope, element, attrs){
-          var isloading = $http.pendingRequests.length !== 0;
-          if(isloading){
-            element.hide();
-          }
+          scope.$watch(function(){
+            return $http.pendingRequests.reduce(function(p, c){
+                return p + (c.ignoreLoadingBar ? 0 : 1);
+            }, 0);
+          }, function(r){
+            if(r === 0){
+              element.show();
+            }else{
+              element.hide();
+            }
+          });
         }
       };
     }])

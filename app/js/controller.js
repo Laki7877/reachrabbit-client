@@ -1239,7 +1239,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         $scope.loadProposalCounts = function () {
             $scope.httpPending = true;
             //Selection status
-            ProposalService.count({
+            return ProposalService.count({
                 status: 'Selection'
             })
             .then(function (res) {

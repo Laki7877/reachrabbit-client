@@ -508,11 +508,10 @@ angular.module('myApp.controller', ['myApp.service'])
             sort: 'updatedAt,desc'
         });
     }])
-    .controller('PayoutDetailController', ['$scope', 'TransactionService', 'AdminService', 'NcAlert', '$state', '$stateParams', function ($scope, TransactionService, AdminService, NcAlert, $state, $stateParams) {
+    .controller('PayoutDetailController', ['$scope', 'TransactionService', 'AdminService','AccountService', 'NcAlert', '$state', '$stateParams', function ($scope, TransactionService, AdminService, AccountService, NcAlert, $state, $stateParams) {
         $scope.alert = new NcAlert();
         var loadTdoc = function () {
             $scope.tDoc = [];
-
             TransactionService.getByTransactionId($stateParams.transactionId)
                 .then(function (response) {
                     $scope.payout = response.data;
@@ -536,6 +535,10 @@ angular.module('myApp.controller', ['myApp.service'])
                                 $scope.transferFeeDoc = sortedDoc;
                             }
                         });
+                    return AccountService.getUser($scope.payout.userId);
+                })
+                .then(function(res) {
+                  $scope.user = res.data;
                 });
         };
         loadTdoc();

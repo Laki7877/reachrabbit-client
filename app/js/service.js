@@ -437,14 +437,18 @@ angular.module('myApp.service', ['satellizer'])
                 return $http({
                     url: '/proposals/' + proposalId + '/proposalmessages',
                     method: 'get',
-                    params: params
+                    params: params,
+                    ignoreLoadingBar: function(c) {
+                      return c.params.timestamp ? true : false;
+                    }
                 });
             },
             getNewMessages: function (proposalId, params) {
                 return $http({
                     url: '/proposals/' + proposalId + '/proposalmessages/new',
                     method: 'get',
-                    params: params
+                    params: params,
+                    ignoreLoadingBar: true
                 });
             },
             countUnreadMessages: function (proposalId, params) {
@@ -458,7 +462,8 @@ angular.module('myApp.service', ['satellizer'])
                 return $http({
                     url: '/proposals/' + proposalMessage.proposal.proposalId + '/proposalmessages',
                     method: 'post',
-                    data: proposalMessage
+                    data: proposalMessage,
+                    ignoreLoadingBar: true
                 });
             },
             addToCart: function(proposal){

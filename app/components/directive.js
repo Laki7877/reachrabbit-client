@@ -392,7 +392,10 @@ angular.module('myApp.directives', ['myApp.service'])
           link: function(scope, element, attrs){
             scope.$watch(function(){
               return $http.pendingRequests.reduce(function(p, c){
-                  return p + (c.ignoreLoadingBar ? 0 : 1);
+                if(_.isFunction(c.ignoreLoadingBar)) {
+                  return p + (c.ignoreLoadingBar(c) ? 0 : 1);
+                }
+                return p + (c.ignoreLoadingBar ? 0 : 1);
               }, 0);
             }, function(r){
               if(r === 0){
@@ -724,10 +727,10 @@ angular.module('myApp.directives', ['myApp.service'])
     .directive('cardCampaignHeader', [function () {
         return {
             restrict: 'EA',
-            scope: { 
-                campaign: '=', 
-                remove: "&?", 
-                removeable: "&?" 
+            scope: {
+                campaign: '=',
+                remove: "&?",
+                removeable: "&?"
             },
             templateUrl: 'components/templates/card-campaign-header.html',
             link: function (scope, element, attrs, ctrl, transclude) {

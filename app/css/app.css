@@ -9885,6 +9885,9 @@ fieldset[disabled] .btn-clear.active {
   padding: 8px;
   border-radius: 0px;
 }
+.nc-dt-button .text-info {
+  color: #16bbac;
+}
 .nc-dt-button .btn.selected,
 .nc-dt-button .btn.active,
 .nc-dt-button .btn:focus,
@@ -9908,6 +9911,29 @@ fieldset[disabled] .btn-clear.active {
 .nc-dt-button .btn-social:focus {
   background-color: #16bbac;
   box-shadow: none;
+  color: white;
+}
+.nc-dt-button .btn.selected .text-info,
+.nc-dt-button .btn.active .text-info,
+.nc-dt-button .btn:focus .text-info,
+.nc-dt-button .btn-primary.selected .text-info,
+.nc-dt-button .btn-primary.active .text-info,
+.nc-dt-button .btn-primary:focus .text-info,
+.nc-dt-button .btn-secondary.selected .text-info,
+.nc-dt-button .btn-secondary.active .text-info,
+.nc-dt-button .btn-secondary:focus .text-info,
+.nc-dt-button .btn-secondary-highlight.selected .text-info,
+.nc-dt-button .btn-secondary-highlight.active .text-info,
+.nc-dt-button .btn-secondary-highlight:focus .text-info,
+.nc-dt-button .btn-secondary-active.selected .text-info,
+.nc-dt-button .btn-secondary-active.active .text-info,
+.nc-dt-button .btn-secondary-active:focus .text-info,
+.nc-dt-button .btn-trace.selected .text-info,
+.nc-dt-button .btn-trace.active .text-info,
+.nc-dt-button .btn-trace:focus .text-info,
+.nc-dt-button .btn-social.selected .text-info,
+.nc-dt-button .btn-social.active .text-info,
+.nc-dt-button .btn-social:focus .text-info {
   color: white;
 }
 div:focus {

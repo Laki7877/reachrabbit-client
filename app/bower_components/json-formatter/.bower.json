@@ -41,6 +41,5 @@
   },
   "_source": "https://github.com/mohsen1/json-formatter.git",
   "_target": "^0.6.0",
-  "_originalSource": "json-formatter",
-  "_direct": true
+  "_originalSource": "json-formatter"
 }

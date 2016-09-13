@@ -43,6 +43,12 @@
           <div input-error></div>
         </div>
         <div class="card-row-basic">
+            ราคาแนะนำ <i uib-tooltip="นี่คือราคาที่ Brand แนะนำ แต่คุณสามารถเสนอราคาต่างจากนี้ได้" tooltip-placement="top" class="fa fa-question-circle"></i>
+        </div>
+        <div class="card-row-basic">
+          <span class="color-green">{{campaign.budget.fromBudget | currency: '':0}} - {{campaign.budget.toBudget | currency: '':0}} บาท</span>
+        </div>
+        <div class="card-row-basic">
             ราคาที่คุณเสนอ
         </div>
         <div class="card-row-basic" form-error="form.price">

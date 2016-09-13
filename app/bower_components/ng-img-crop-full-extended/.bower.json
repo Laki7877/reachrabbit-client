@@ -1,7 +1,7 @@
 {
   "name": "ng-img-crop-full-extended",
   "prettyName": "ngImgCropFullExtended",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "authors": [
     {
       "name": "Alex Kaul",
@@ -25,6 +25,10 @@
     {
       "name": "Honchar Denys",
       "email": "crackeraki@gmail.com"
+    },
+    {
+      "name": "Rick de Graaff",
+      "email": "info@rickdegraaff.nl"
     }
   ],
   "repository": {
@@ -53,14 +57,13 @@
   "dependencies": {
     "angular": "1.4.0"
   },
-  "_release": "0.5.6",
+  "_release": "0.5.7",
   "_resolution": {
     "type": "version",
-    "tag": "0.5.6",
-    "commit": "e9f50207d895496bb92729b3508a32e43c7da391"
+    "tag": "0.5.7",
+    "commit": "5b10e2b7a625cc12a4408f3d064468cd38a54130"
   },
   "_source": "https://github.com/CrackerakiUA/ngImgCropExtended.git",
   "_target": "^0.5.6",
-  "_originalSource": "ngImgCropFullExtended",
-  "_direct": true
+  "_originalSource": "ngImgCropFullExtended"
 }

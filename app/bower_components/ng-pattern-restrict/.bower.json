@@ -38,6 +38,6 @@
     "commit": "a4daa683c13db58ee98c7f7d53e6299502a14054"
   },
   "_source": "git://github.com/poonwu/ng-pattern-restrict.git",
-  "_target": "^0.2.2",
+  "_target": "*",
   "_originalSource": "poonwu/ng-pattern-restrict"
 }

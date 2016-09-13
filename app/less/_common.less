@@ -1281,11 +1281,18 @@ input:-moz-placeholder {
   padding:8px;
   border-radius: 0px;
 }
-
+.nc-dt-button{
+  .text-info{
+    color: @color-theme-secondary;
+  }
+}
 .nc-dt-button .btn.selected, .nc-dt-button  .btn.active, .nc-dt-button  .btn:focus{
   background-color: @color-theme-secondary;
   box-shadow: none;
   color: white;
+  .text-info{
+    color: white;
+  }
 }
 
 div:focus{

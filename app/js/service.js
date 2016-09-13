@@ -190,9 +190,9 @@ angular.module('myApp.service', ['satellizer'])
 
                         resolve(response);
                     })
-                        .catch(function (err) {
-                            reject(err);
-                        });
+                    .catch(function (err) {
+                      reject(err);
+                    });
                 });
             },
             getYouTubeProfile: function(id){
@@ -606,7 +606,7 @@ angular.module('myApp.service', ['satellizer'])
         };
     }])
     .factory('UserProfile', ['$rootScope', '$window', function ($rootScope, $window) {
-        var user = null;
+        var user = JSON.parse($window.localStorage.profile);
         var dirty = false;
         return {
             get: function () {

@@ -1200,9 +1200,9 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         };
 
         //TODO: Make this generic
-        $scope.httpPending = true;
 
         $scope.load = function (params) {
+            $scope.httpPending = true;
             $scope.params = params;
             $scope.params.status = $scope.statusFilter;
 
@@ -1231,22 +1231,26 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 });
         };
         $scope.loadProposalCounts = function () {
+            $scope.httpPending = true;
             //Selection status
             ProposalService.count({
                 status: 'Selection'
-            }).then(function (res) {
+            })
+            .then(function (res) {
                 $scope.statusCounts.selection = res.data;
-            });
-            //Working status
-            ProposalService.count({
-                status: 'Working'
-            }).then(function (res) {
+                //Working status
+                return ProposalService.count({
+                    status: 'Working'
+                });
+            })
+            .then(function (res) {
                 $scope.statusCounts.working = res.data;
-            });
-            //Complete status
-            ProposalService.count({
-                status: 'Complete'
-            }).then(function (res) {
+                //Complete status
+                return ProposalService.count({
+                    status: 'Complete'
+                });
+            })
+            .then(function (res) {
                 $scope.statusCounts.complete = res.data;
             });
         };
@@ -1257,21 +1261,23 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             return $filter('amCalendar')(proposal.messageUpdatedAt);
         };
 
-        $scope.$watch('filter', function () {
-            _.extend($scope.params, {
-                campaignId: $scope.filter
-            });
-            $scope.httpPending = true;
-            $scope.load($scope.params)
-            .then(function(){
-              $scope.httpPending = false;
-            });
-        });
         $scope.load({
             sort: ['messageUpdatedAt,desc']
-        }).then(function(){
-            $scope.loadProposalCounts();
-            $scope.httpPending = false;
+        })
+        .then(function(){
+            return $scope.loadProposalCounts();
+        })
+        .then(function(){
+          $scope.httpPending = false;
+          $scope.$watch('filter', function () {
+              _.extend($scope.params, {
+                  campaignId: $scope.filter
+              });
+              $scope.load($scope.params)
+              .then(function(){
+                $scope.httpPending = false;
+              });
+          });
         });
 
     }])
@@ -1739,7 +1745,7 @@ angular.module('myApp.admin.controller', ['myApp.service'])
                     _.extend($scope.campaignNee, response.data);
                 });
             };
-            
+
             CampaignService.getOne($stateParams.campaignId)
                 .then(function (campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;

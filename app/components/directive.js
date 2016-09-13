@@ -28,7 +28,7 @@ angular.module('myApp.directives', ['myApp.service'])
                     if(ctrl.$isEmpty(value)) {
                         return null;
                     }
-                    return 'http://' + value; 
+                    return 'http://' + value;
                 }
 
                 ctrl.$formatters.push(formatter);
@@ -384,7 +384,27 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
+    .directive('cuteBunny', [function(){
+        return {
+          restrict: 'AE',
+          templateUrl: 'components/templates/cute-bunny.html',
+          transclude: true,
+          link: function(scope, element, attrs){
 
+          }
+        };
+    }])
+    .directive('cuteBunnyHide', ['$http', function($http){
+      return {
+        restrict: 'AE',
+        link: function(scope, element, attrs){
+          var isloading = $http.pendingRequests.length !== 0;
+          if(isloading){
+            element.hide();
+          }
+        }
+      };
+    }])
     .directive('socialLinker', ['DataService', 'BusinessConfig', '$auth', '$state', '$uibModal', function (DataService, BusinessConfig, $auth, $state, $uibModal) {
         return {
             restrict: 'AE',

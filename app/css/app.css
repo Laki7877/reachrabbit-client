@@ -9846,22 +9846,57 @@ fieldset[disabled] .btn-clear.active {
   padding: 7.5px 0px;
 }
 /*---Date Picker---*/
-.uib-daypicker .btn,
-.uib-monthpicker .btn,
-.uib-daypicker .btn-primary,
-.uib-monthpicker .btn-primary,
-.uib-daypicker .btn-secondary,
-.uib-monthpicker .btn-secondary,
-.uib-daypicker .btn-secondary-highlight,
-.uib-monthpicker .btn-secondary-highlight,
-.uib-daypicker .btn-secondary-active,
-.uib-monthpicker .btn-secondary-active,
-.uib-daypicker .btn-trace,
-.uib-monthpicker .btn-trace,
-.uib-daypicker .btn-social,
-.uib-monthpicker .btn-social {
+.nc-dt-button .btn,
+.btn.active,
+.uib-title,
+.uib-right,
+.uib-left,
+.nc-dt-button .btn-primary,
+.btn-primary.active,
+.nc-dt-button .btn-secondary,
+.btn-secondary.active,
+.nc-dt-button .btn-secondary-highlight,
+.btn-secondary-highlight.active,
+.nc-dt-button .btn-secondary-active,
+.btn-secondary-active.active,
+.nc-dt-button .btn-trace,
+.btn-trace.active,
+.nc-dt-button .btn-social,
+.btn-social.active {
   border: none;
   padding: 8px;
+  border-radius: 0px;
+}
+.nc-dt-button .btn.selected,
+.nc-dt-button .btn.active,
+.nc-dt-button .btn:focus,
+.nc-dt-button .btn-primary.selected,
+.nc-dt-button .btn-primary.active,
+.nc-dt-button .btn-primary:focus,
+.nc-dt-button .btn-secondary.selected,
+.nc-dt-button .btn-secondary.active,
+.nc-dt-button .btn-secondary:focus,
+.nc-dt-button .btn-secondary-highlight.selected,
+.nc-dt-button .btn-secondary-highlight.active,
+.nc-dt-button .btn-secondary-highlight:focus,
+.nc-dt-button .btn-secondary-active.selected,
+.nc-dt-button .btn-secondary-active.active,
+.nc-dt-button .btn-secondary-active:focus,
+.nc-dt-button .btn-trace.selected,
+.nc-dt-button .btn-trace.active,
+.nc-dt-button .btn-trace:focus,
+.nc-dt-button .btn-social.selected,
+.nc-dt-button .btn-social.active,
+.nc-dt-button .btn-social:focus {
+  background-color: #16bbac;
+  box-shadow: none;
+  color: white;
+}
+div:focus {
+  outline: none;
+}
+.nc-dt-disable {
+  background-color: #8995aa;
 }
 /*---Mutli Selector---*/
 .multi-tag-selector {

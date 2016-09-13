@@ -99,11 +99,20 @@ angular.module('myApp.service', ['satellizer'])
         };
         return inj;
     }])
-    .factory('authStatusCheckInjector', ['$q', '$rootScope', function ($q, $rootScope) {
+    .factory('authStatusCheckInjector', ['$q', '$rootScope', '$location', function ($q, $rootScope, $location) {
         var service = this;
         service.responseError = function (response) {
             if (response.status == 401) {
-                $rootScope.signOut('401');
+                //TODO: change this later
+                if($location.absUrl().includes("brand.html")){
+                  $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
+                }else if($location.absUrl().includes("influencer.html")){
+                  $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+                }else if($location.absUrl().includes("admin.html")){
+                  $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
+                }
+
+                $rootScope.signOut($location.path());
             }
 
             if (!response.data) {
@@ -162,32 +171,8 @@ angular.module('myApp.service', ['satellizer'])
                 return $q(function (resolve, reject) {
                     $http.get(path).then(function (response) {
                         if (_.has(response.data, 'influencer.birthday')) {
-                            response.data.influencer.birthday = new Date(response.data.influencer.birthday);
+                            response.data.influencer.birthday = moment(response.data.influencer.birthday, 'YYYY-MM-DD HH:mm:ss').toDate();
                         }
-
-
-                        //TOOD: Quick fix until DB team go one wayaaaaaas
-                        // var x = Object.keys(response.data);
-                        // response.data.user = {};
-                        // x.forEach(function (key) {
-                        //     //out in
-                        //     response.data.user[key] = response.data[key];
-                        //     if (response.data.influencer) {
-                        //         //in to out
-                        //         var infl = Object.keys(response.data.influencer);
-                        //         infl.forEach(function (infKey) {
-                        //             response.data[infKey] = response.data.influencer[infKey];
-                        //         });
-                        //     }
-                        //     if (response.data.brand) {
-                        //         //in to out
-                        //         var brad = Object.keys(response.data.brand);
-                        //         brad.forEach(function (infKey) {
-                        //             response.data[infKey] = response.data.brand[infKey];
-                        //         });
-                        //     }
-                        // });
-
                         resolve(response);
                     })
                     .catch(function (err) {
@@ -284,7 +269,7 @@ angular.module('myApp.service', ['satellizer'])
                 return campaignResource.resource;
             });
             if (campaign.proposalDeadline) {
-                campaign.proposalDeadline = new Date(campaign.proposalDeadline);
+                campaign.proposalDeadline = moment(campaign.proposalDeadline, 'YYYY-MM-DD HH:mm').toDate();
             }
             return campaign;
         };
@@ -502,7 +487,7 @@ angular.module('myApp.service', ['satellizer'])
     }])
     .factory('TransactionService', ['$http', '$q', function($http, $q){
         var deserialize = function(transaction){
-            transaction.expiredAt = new Date(transaction.expiredAt);
+            transaction.expiredAt = moment(transaction.expiredAt, 'YYYY-MM-DD HH:mm').toDate();
             return transaction;
         };
 

@@ -8714,6 +8714,9 @@ input:-moz-placeholder {
 .flag .status-open {
   background: #16bbac;
 }
+.flag .status-applied {
+  background: #16bbac;
+}
 .flag .status-closed {
   background: #8692a8;
 }
@@ -10458,6 +10461,7 @@ ul.payment-methods {
   left: 5px;
   top: 15px;
   padding-left: 12px;
+  width: 110px;
 }
 .layout-influencer .view-influencer-campaign-list .card-thumbnail .card-body,
 .layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail .card-body {

@@ -2,8 +2,8 @@
   <div class="card-thumbnail">
     <div class="card-thumbnail-image" ng-class="{'expired':$root.isExpired(campaign.proposalDeadline) && !campaign.isApply }">
       <div class="flag">
-        <span ng-if="campaign.isApply" class="status status-open">สมัครแล้ว<img src="images/flag-corner-applied.png" alt="" class="flag-corner"/></span>
-        <span ng-if="!campaign.isApply && $root.isExpired(campaign.proposalDeadline)" class="status status-closed">ปิดรับข้อเสนอ<img src="images/flag-corner-applied.png" alt="" class="flag-corner"/></span>
+        <span ng-if="campaign.isApply" class="status status-applied"><i class="fa fa-check-circle-o"></i> สมัครแล้ว<img src="images/flag-corner-applied.png" alt="" class="flag-corner"/></span>
+        <span ng-if="!campaign.isApply && $root.isExpired(campaign.proposalDeadline)" class="status status-closed">ปิดรับข้อเสนอ<img src="images/flag-corner-closed.png" alt="" class="flag-corner"/></span>
       </div>
       <img ng-src="{{campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="campaign-image"/>
     </div>

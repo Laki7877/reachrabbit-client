@@ -932,11 +932,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
      * Campaign List controller - thank god it's work.
      */
     .controller('CampaignListController', ['$scope', 'CampaignService', 'DataService', 'ExampleCampaigns', function ($scope, CampaignService, DataService, ExampleCampaigns) {
-        $scope.testHit = function () {
-            var scope = $scope;
-            console.log("Test World");
-        };
-
         $scope.myCampaign = [];
         $scope.$watch('filter', function () {
             $scope.load(_.extend($scope.params, { mediaId: $scope.filter }));
@@ -950,7 +945,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             });
         };
         //Init
-        $scope.load();
+        $scope.load({ sort: 'updatedAt,desc' });
 
         //Example campaign section
         $scope.exampleCampaign = ExampleCampaigns;
@@ -1715,7 +1710,6 @@ angular.module('myApp.admin.controller', ['myApp.service'])
                     return k.keyword;
                 });
             };
-            console.log($stateParams);
             CampaignService.getOne($stateParams.campaignId)
                 .then(function (campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;
@@ -1736,10 +1730,6 @@ angular.module('myApp.admin.controller', ['myApp.service'])
             $scope.params = data;
             CampaignService.getAll(data).then(function (response) {
                 $scope.campaigns = response.data;
-                _.map($scope.campaigns.content, function(c) {
-                  c.count = _.countBy(c.proposals, 'status');
-                  return c;
-                });
             });
         };
         //Init

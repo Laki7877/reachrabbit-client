@@ -4,6 +4,7 @@ body{
   font-family: @font-secondary;
   color: @color-black;
 }
+
 h1{
   font-family: @font-primary;
   font-size: 32px;
@@ -1272,11 +1273,25 @@ input:-moz-placeholder {
 }
 
 /*---Date Picker---*/
-.uib-daypicker .btn, .uib-monthpicker .btn{
+.nc-dt-button .btn, .btn.active, .uib-title, .uib-right, .uib-left{
   border:none;
   padding:8px;
+  border-radius: 0px;
 }
 
+.nc-dt-button .btn.selected, .nc-dt-button  .btn.active, .nc-dt-button  .btn:focus{
+  background-color: @color-theme-secondary;
+  box-shadow: none;
+  color: white;
+}
+
+div:focus{
+    outline: none;
+}
+
+.nc-dt-disable{
+  background-color: lighten(@color-grey-darker, 1%);
+}
 /*---Mutli Selector---*/
 .multi-tag-selector{
   padding-top: 5px;
@@ -1781,6 +1796,7 @@ ul.payment-methods {
     font-size: small;
   }
 }
+
 
 .view-admin-campaign-list {
   .col-campaign-name {

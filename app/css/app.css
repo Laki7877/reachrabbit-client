@@ -7956,6 +7956,8 @@ input:-moz-placeholder {
   top: 10px;
 }
 .radio-card {
+  overflow-y: scroll;
+  max-height: 600px;
   transition: all 0.3s;
   position: relative;
   padding: 15px;

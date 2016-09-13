@@ -995,14 +995,18 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             };
 
             $scope.remove = function() {
-                console.log($scope.campaignNee.campaignId);
-                CampaignService.delete($scope.campaignNee.campaignId)
-                    .then(function() {
-                        $state.go('brand-campaign-list');
-                    })
-                    .catch(function (err) {
-                        $scope.alert.danger(err.data.message);
-                    });
+                $uibModal.open({
+                    templateUrl: 'components/templates/campaign-delete-confirmation-modal.html',
+                    size: 'sm'
+                }).result.then(function() {
+                    CampaignService.delete($scope.campaignNee.campaignId)
+                        .then(function() {
+                            $state.go('brand-campaign-list');
+                        })
+                        .catch(function (err) {
+                            $scope.alert.danger(err.data.message);
+                        });
+                });
             };
 
             $scope.campaignNee = $scope.formData;

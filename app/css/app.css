@@ -10393,6 +10393,9 @@ ul.payment-methods {
   padding: 12px 13px 0 0;
 }
 .proposal-alert {
+  margin-left: 6px;
+}
+.proposal-alert > div {
   background: #e62117;
   display: inline-block;
   width: 6px;

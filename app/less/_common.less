@@ -1839,12 +1839,16 @@ ul.payment-methods {
   padding: 12px 13px 0 0;
 }
 .proposal-alert {
-    background: @color-red;
-    display:inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 15px;
-    vertical-align: top;
+    margin-left: 6px;
+    & > div {
+      background: @color-red;
+      display:inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 15px;
+      vertical-align: top;
+
+    }
 }
 
 /*---End of the CSS World---*/

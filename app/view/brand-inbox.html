@@ -19,8 +19,7 @@
       <div class="card-inbox" cute-bunny-hide>
         <div class="tab-selector">
           <div class="tab" ui-sref="brand-inbox({status: 'Selection'})" ng-class="{'active': params.status == 'Selection'}">
-            <h5>คัดเลือก
-              <div class="proposal-alert" ng-if="statusCounts.selection.unreadMessageCount > 0"></div>
+            <h5 ng-class="{ 'proposal-alert' : statusCounts.selection.unreadMessageCount > 0 }">คัดเลือก<div></div>
             </h5>
             <h3 ng-bind="statusCounts.selection.proposalCount || 0">-</h3>
           </div>
@@ -28,8 +27,7 @@
             <i class="fa fa-angle-right fa-2x"></i>
           </div>
           <div class="tab" ui-sref="brand-inbox({status: 'Working'})" ng-class="{'active': params.status == 'Working'}">
-            <h5>ดำเนินการ
-              <div class="proposal-alert" ng-if="statusCounts.working.unreadMessageCount > 0"></div>
+            <h5 ng-class="{ 'proposal-alert' : statusCounts.selection.unreadMessageCount > 0 }">ดำเนินการ<div></div>
             </h5>
             <h3 ng-bind="statusCounts.working.proposalCount || 0">-</h3>
           </div>
@@ -37,8 +35,7 @@
             <i class="fa fa-angle-right fa-2x"></i>
           </div>
           <div class="tab" ui-sref="brand-inbox({status: 'Complete'})" ng-class="{'active': params.status == 'Complete'}">
-            <h5>เสร็จสิ้น
-              <div class="proposal-alert" ng-if="statusCounts.complete.unreadMessageCount > 0"></div>
+            <h5 ng-class="{ 'proposal-alert' : statusCounts.complete.unreadMessageCount > 0 }">เสร็จสิ้น<div></div>
             </h5>
             <h3 ng-bind="statusCounts.complete.proposalCount || 0">-</h3>
           </div>

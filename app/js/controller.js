@@ -79,9 +79,6 @@ angular.module('myApp.controller', ['myApp.service'])
                     $scope.alert.danger(err.data.message);
                 });
         };
-
-
-
     }])
     .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal', 'validator', 'util',
         function ($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal, validator, util) {
@@ -316,24 +313,34 @@ angular.module('myApp.controller', ['myApp.service'])
                 })
                     .then(function (res) {
                         $scope.pollActive = false;
-                        $scope.totalElements += res.data.length;
-                        var idx = -1;
-                        for (var i = res.data.length - 1; i >= 0; i--) {
-                            if ($scope.msglist.length >= $scope.msgLimit) {
-                                $scope.msglist.shift();
-                            }
-                            for (var j = 0; j < $scope.pendingList.length; j++) {
-                                if ($scope.pendingList[j].referenceId === res.data[i].referenceId) {
-                                    _.extend($scope.pendingList[j], res.data[i]);
-                                    idx = j;
-                                    break;
+                        if(!res.data) {
+                            return null;
+                        }
+                        return ProposalService.getNewMessages($scope.proposalId, {
+                            timestamp: res.data
+                        });
+                    })
+                    .then(function (res) {
+                        if(res) {
+                            $scope.totalElements += res.data.length;
+                            var idx = -1;
+                            for (var i = res.data.length - 1; i >= 0; i--) {
+                                if ($scope.msglist.length >= $scope.msgLimit) {
+                                    $scope.msglist.shift();
                                 }
-                            }
+                                for (var j = 0; j < $scope.pendingList.length; j++) {
+                                    if ($scope.pendingList[j].referenceId === res.data[i].referenceId) {
+                                        _.extend($scope.pendingList[j], res.data[i]);
+                                        idx = j;
+                                        break;
+                                    }
+                                }
 
-                            if (idx >= 0) {
-                                $scope.pendingList.splice(j, 1);
-                            } else {
-                                $scope.msglist.push(res.data[i]);
+                                if (idx >= 0) {
+                                    $scope.pendingList.splice(j, 1);
+                                } else {
+                                    $scope.msglist.push(res.data[i]);
+                                }
                             }
                         }
                     })
@@ -479,8 +486,6 @@ angular.module('myApp.controller', ['myApp.service'])
             .catch(function (err) {
                 $scope.alert.danger(err.data.message);
             });
-
-
     }])
     .controller('BrandProfilePortfolioController', ['$scope', 'AccountService', '$stateParams', function ($scope, AccountService, $stateParams) {
         AccountService.getProfile($stateParams.brandId)

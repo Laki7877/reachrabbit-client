@@ -7,6 +7,7 @@
                 </div>
             </div>
         </div>
+
         <div class="zone-body">
             <div class="container">
                 <div class="row">
@@ -23,7 +24,8 @@
                                     <span class="status" tooltip-placement="bottom" uib-tooltip="งานของคุณเสร็จสิ้นแล้ว" ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span>
                                 </div>
                             </div>
-                            <div class="message-area" scroll-glue>
+                            <cute-bunny></cute-bunny>
+                            <div class="message-area" cute-bunny-hide scroll-glue>
 
                                 <card-influencer-profile ng-model="proposal.influencer" show-social-data="false">
                                   <a ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId })" class="link-to-profile">ดูโปรไฟล์</a>
@@ -35,7 +37,7 @@
                                 <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
                                 <div nc-alert="alert"></div>
                             </div>
-                            <div class="message-input">
+                            <div class="message-input" cute-bunny-hide>
                                 <textarea chatarea="sendMessage(formData.messageStr, formData.resources)" class="form-control" rows="4" ng-model="formData.messageStr"
                                     placeholder="พิมพ์ข้อความ..." autofocus maxlength="1000"></textarea>
                                 <div class="pull-left">
@@ -55,7 +57,7 @@
                         </div>
                     </div>
                     <div class="col-xs-3">
-                        <card-proposal-detail ng-model="proposal">
+                        <card-proposal-detail ng-model="proposal" cute-bunny-hide>
                             <div class="info-text text-center">
                                 <span ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Incart'">คุณได้เลือกข้อเสนอนี้แล้ว</span>
                                 <span ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Checkout'">รอคุณชำระเงินก่อนเริ่มดำเนินการ</span>
@@ -65,7 +67,7 @@
                             <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && proposal.cartId && proposal.cart.status != 'Checkout'" ui-sref="brand-cart">ดูตะกร้า</button>
                             <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Working'" ng-click="approveProposal(proposal)">อนุมัติงาน</button>
                         </card-proposal-detail>
-                        <div class="card-campaign-thumbnail">
+                        <div class="card-campaign-thumbnail" cute-bunny-hide>
                             <div class="card-thumbnail-image">
                                 <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
                             </div>

@@ -610,17 +610,16 @@ angular.module('myApp.service', ['satellizer'])
     }])
     .factory('UserProfile', ['$rootScope', '$window', function ($rootScope, $window) {
         var user = null;
+        var dirty = false;
         return {
             get: function () {
-                if (!$window.localStorage.profile) {
-                    return null;
-                }
-                if(user === null) {
-                    user = JSON.parse($window.localStorage.profile); 
+                if(dirty) {
+                    user = JSON.parse($window.localStorage.profile);
                 }
                 return user;
             },
             set: function (profile) {
+                dirty = true;
                 $window.localStorage.profile = JSON.stringify(profile);
             }
         };

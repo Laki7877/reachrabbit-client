@@ -10293,6 +10293,14 @@ div:focus {
 .api_override_box span {
   background-color: red;
 }
+/*---Tooltip---*/
+.tooltip {
+  font-size: 16px;
+}
+.tooltip .tooltip-inner {
+  padding: 10px;
+  max-width: 250px;
+}
 /*---Eartamoto Special Code---*/
 .cropArea {
   overflow: hidden;

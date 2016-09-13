@@ -932,11 +932,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
      * Campaign List controller - thank god it's work.
      */
     .controller('CampaignListController', ['$scope', 'CampaignService', 'DataService', 'ExampleCampaigns', function ($scope, CampaignService, DataService, ExampleCampaigns) {
-        $scope.testHit = function () {
-            var scope = $scope;
-            console.log("Test World");
-        };
-
         $scope.myCampaign = [];
         $scope.$watch('filter', function () {
             $scope.load(_.extend($scope.params, { mediaId: $scope.filter }));
@@ -950,7 +945,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
             });
         };
         //Init
-        $scope.load();
+        $scope.load({ sort: 'updatedAt,desc' });
 
         //Example campaign section
         $scope.exampleCampaign = ExampleCampaigns;

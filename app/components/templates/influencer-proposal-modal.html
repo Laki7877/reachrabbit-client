@@ -31,7 +31,7 @@
               </label>
         </div>-->
 
-        <div class="card-row-basic">
+        <div class="card-row-basic-label">
             ระยะเวลาทำงาน
         </div>
         <div class="card-row-basic" form-error="form.completionTime">
@@ -43,22 +43,21 @@
           <div input-error></div>
         </div>
         <div class="card-row-basic">
-            ราคาแนะนำ <i uib-tooltip="นี่คือราคาที่ Brand แนะนำ แต่คุณสามารถเสนอราคาต่างจากนี้ได้" tooltip-placement="top" class="fa fa-question-circle"></i>
+            ราคาแนะนำ <i uib-tooltip="นี่คือราคาที่ Brand แนะนำ แต่คุณสามารถเสนอราคาต่างจากนี้ได้" tooltip-placement="right" class="fa fa-question-circle"></i>
+            <h4>{{campaign.budget.fromBudget | currency: '':0}} - {{campaign.budget.toBudget | currency: '':0}} บาท</h4>
         </div>
-        <div class="card-row-basic">
-          <span class="color-green">{{campaign.budget.fromBudget | currency: '':0}} - {{campaign.budget.toBudget | currency: '':0}} บาท</span>
-        </div>
-        <div class="card-row-basic">
+
+        <div class="card-row-basic-label">
             ราคาที่คุณเสนอ
         </div>
         <div class="card-row-basic" form-error="form.price">
-          <div class="input-group">
-              <input name="price" class="form-control" ng-model="formData.price" required maxlength="10" ng-pattern-restrict="^[0-9]*$"/>
-              <span class="input-group-addon" id="basic-addon1">บาท</span>
-          </div>
-          <div input-error></div>
+            <div class="input-group">
+                <input name="price" class="form-control" ng-model="formData.price" required maxlength="10" ng-pattern-restrict="^[0-9]*$"/>
+                <span class="input-group-addon" id="basic-addon1">บาท</span>
+            </div>
+            <div input-error></div>
         </div>
-        <div class="card-row-basic">
+        <div class="card-row-basic-label">
             คุณจะได้รับ
         </div>
         <div class="card-row-basic input-group">
@@ -84,6 +83,7 @@
         <div class="card-row-basic text-center" ng-if="isEditMode">
             <div class="button-bar">
                 <button class="btn-primary btn-width-lg" ng-click="submit(formData)" ng-disabled="formData.media.length < 1">แก้ไขข้อเสนอ</button>
+                <p class="hint-block">Brand จะได้รับแจ้งหลังคุณแก้ไขข้อเสนอ</p>
             </div>
         </div>
       </form>

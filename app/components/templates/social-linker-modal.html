@@ -7,7 +7,7 @@
         <div class="card-pages">
           <div class="radio-card" ng-repeat="page in pages | orderBy:'count':true track by $index">
             <label>
-              <input type="radio"  ng-value="page" ng-model="formData.selectedPage" ng-disabled="page.count < minFollower" ng-disabled="page.count < minFollower">
+              <input type="radio"  ng-value="page" ng-model="formData.selectedPage" ng-disabled="page.count < minFollower">
               <div class="radio-label">
                 {{ page.name }}
               </div>

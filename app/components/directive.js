@@ -389,7 +389,15 @@ angular.module('myApp.directives', ['myApp.service'])
                     scope.mediaList = mediumResponse.data;
                 });
 
+                scope.unlink = function(mediaId) {
+                    console.log(scope.model.length);
+                    _.pullAllBy(scope.model, [{media: {mediaId: mediaId}}], 'media.mediaId');
 
+                    console.log(scope.model);
+                    if(scope.onDone) {
+                        scope.onDone();
+                    }
+                };
                 scope.startAuthFlow = function (mediaId) {
                     if (mediaId == 'youtube') {
                         mediaId = 'google';

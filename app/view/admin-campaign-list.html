@@ -33,9 +33,9 @@
                   <span ng-if="campaign.status === 'Open'">เปิดรับข้อเสนอ</span>
                   <span ng-if="campaign.status !== 'Draft' && campaign.status !== 'Open'">ปิดรับข้อเสนอ</span>
                 </td>
-                <td>{{campaign.count.Selection}}</td>
-                <td>{{campaign.count.Working}}</td>
-                <td>{{campaign.count.Complete}}</td>
+                <td>{{campaign.countProposalSelection}}</td>
+                <td>{{campaign.countProposalWorking}}</td>
+                <td>{{campaign.countProposalComplete}}</td>
                 <td class="col-button">
                   <button class="btn-secondary" ui-sref="admin-campaign-detail({campaignId: campaign.campaignId})">คุยงาน</button>
                 </td>

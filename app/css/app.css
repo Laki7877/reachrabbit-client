@@ -10272,6 +10272,11 @@ ul.payment-methods {
 .view-admin-campaign-list .col-name {
   max-width: 150px;
 }
+.media-close {
+  margin-left: 15px;
+  display: inline-block;
+  cursor: pointer;
+}
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
 .layout-portal {

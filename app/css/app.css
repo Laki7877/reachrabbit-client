@@ -8467,6 +8467,12 @@ input:-moz-placeholder {
   min-height: 250px;
   margin-bottom: 20px;
 }
+.card-inbox .card-loader {
+  box-shadow: none !important;
+  border: 0 !important;
+  text-align: center;
+  margin-top: 40px !important;
+}
 .card-transaction-header .card-info {
   position: relative;
   float: left;

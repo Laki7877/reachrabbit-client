@@ -13,15 +13,12 @@
 
   <div class="zone-body">
     <div class="container">
-
-      <cute-bunny></cute-bunny>
-
-      <div cute-bunny-hide class="card-inbox">
+      <div class="card-inbox">
         <div class="tab-selector">
           <div class="tab" ui-sref="influencer-inbox({status: 'Selection'})" ng-class="{'active': params.status == 'Selection'}">
             <h5 ng-class="{ 'proposal-alert' : statusCounts.selection.unreadMessageCount > 0 }">คัดเลือก<div></div>
             </h5>
-            <h3 ng-bind="statusCounts.selection.proposalCount || 0">-</h3>
+            <h3 ng-bind="statusCounts.selection.proposalCount || '-'">-</h3>
           </div>
           <div class="tab-next-step">
             <i class="fa fa-angle-right fa-2x"></i>
@@ -29,7 +26,7 @@
           <div class="tab" ui-sref="influencer-inbox({status: 'Working'})" ng-class="{'active': params.status == 'Working'}">
             <h5 ng-class="{ 'proposal-alert' : statusCounts.selection.unreadMessageCount > 0 }">ดำเนินการ<div></div>
             </h5>
-            <h3 ng-bind="statusCounts.working.proposalCount || 0">-</h3>
+            <h3 ng-bind="statusCounts.working.proposalCount || '-'">-</h3>
           </div>
           <div class="tab-next-step">
             <i class="fa fa-angle-right fa-2x"></i>
@@ -37,10 +34,11 @@
           <div class="tab" ui-sref="influencer-inbox({status: 'Complete'})" ng-class="{'active': params.status == 'Complete'}">
             <h5 ng-class="{ 'proposal-alert' : statusCounts.complete.unreadMessageCount > 0 }">เสร็จสิ้น<div></div>
             </h5>
-            <h3 ng-bind="statusCounts.complete.proposalCount || 0">-</h3>
+            <h3 ng-bind="statusCounts.complete.proposalCount || '-'">-</h3>
           </div>
         </div>
-        <div class="card-body">
+        <cute-bunny></cute-bunny>
+        <div class="card-body" cute-bunny-hide>
           <table ng-if="proposals.numberOfElements > 0" class="table" sorter ng-model="proposals" callback="load">
             <thead>
               <tr>

@@ -134,7 +134,7 @@ angular.module('myApp.service', ['satellizer'])
         //Facebook account
         $authProvider.facebook({
             clientId: Config.FACEBOOK_APP_ID,
-            scope: ['pages_show_list', 'manage_pages']
+            scope: ['pages_show_list']
         });
 
         $authProvider.instagram({
@@ -238,6 +238,9 @@ angular.module('myApp.service', ['satellizer'])
              */
             signup: function (influencer) {
                 return $http.post("/signup/influencer", influencer);
+            },
+            getWalletTransaction: function(id) {
+              return $http.get('/wallets/' + id + '/transaction');
             },
             getWallet: function(){
                 return $http.get("/wallets");

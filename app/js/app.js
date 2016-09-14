@@ -281,8 +281,4 @@ angular.module('myApp', [
             var d = moment(datestr, 'YYYY-MM-DD HH:mm').toDate();
             return d.getTime() <= (new Date()).getTime();
         };
-
-
-
-
     }]);

@@ -166,8 +166,8 @@ angular.module('myApp.controller', ['myApp.service'])
             });
         }
     ])
-    .controller('WorkroomController', ['$scope','UserProfile', '$uibModal', '$interval', '$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util', 'LongPollingService',
-        function ($scope, UserProfile, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util, LongPollingService) {
+    .controller('WorkroomController', ['$scope','UserProfile', '$uibModal', '$interval', '$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util', 'LongPollingService', '$timeout', 'InfluencerAccountService',
+        function ($scope, UserProfile, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util, LongPollingService, $timeout, InfluencerAccountService) {
             $scope.msglist = [];
             $scope.pendingList = [];
             $scope.msgLimit = 30;
@@ -177,11 +177,8 @@ angular.module('myApp.controller', ['myApp.service'])
             $scope.alert = new NcAlert();
 
             $scope.hasInWallet = function (proposal) {
-                if (!$rootScope.wallet) return false;
-                if (!$rootScope.wallet.proposals) return false;
-                return _.find($rootScope.wallet.proposals, function (pred) {
-                    return pred.proposalId == proposal;
-                });
+                if (proposal.wallet) return false;
+                return proposal.wallet !== 'Paid';
             };
 
             $scope.hasCart = function (proposal) {
@@ -191,7 +188,6 @@ angular.module('myApp.controller', ['myApp.service'])
 
             //Approve Proposal
             $scope.approveProposal = function (proposal) {
-
                 var modalInstance = $uibModal.open({
                     animation: true,
                     templateUrl: 'components/templates/brand-approve-proposal-modal.html',
@@ -224,8 +220,6 @@ angular.module('myApp.controller', ['myApp.service'])
                             });
                     }
                 });
-
-
             };
 
             //Select Proposal
@@ -269,6 +263,7 @@ angular.module('myApp.controller', ['myApp.service'])
                 $(".message-area").delay(10).animate({ scrollTop: 500 }, '1000', function () { });
             }
 
+            //get messages
             $scope.proposalId = $stateParams.proposalId;
             ProposalService.getMessages($scope.proposalId, {
                 sort: ['createdAt,desc'],
@@ -276,6 +271,12 @@ angular.module('myApp.controller', ['myApp.service'])
             }).then(function (res) {
                 $scope.totalElements = res.data.totalElements;
                 $scope.msglist = res.data.content.reverse();
+
+
+                //hackish scroll down on load
+                $timeout(function() {
+                  $scope.scroll = true;
+                }, 1000);
                 // $scope.poll();
                 //scrollBottom();
             });
@@ -399,6 +400,16 @@ angular.module('myApp.controller', ['myApp.service'])
             ProposalService.getOne($scope.proposalId)
                 .then(function (proposalResponse) {
                     $scope.proposal = proposalResponse.data;
+                    //load transactionid if this is influencer
+                    if(UserProfile.get().influencer &&
+                      $scope.proposal.status === 'Complete' &&
+                      $scope.proposal.wallet &&
+                      $scope.proposal.wallet.status === 'Paid') {
+                      InfluencerAccountService.getWalletTransaction($scope.proposal.wallet.walletId)
+                        .then(function(res) {
+                          $scope.transactionId = res.data.transactionId;
+                        });
+                    }
                     if(UserProfile.get().influencer && !$scope.proposal.rabbitFlag && $scope.proposal.status == 'Selection') {
                         var modalInstance = $uibModal.open({
                             animation: true,
@@ -420,10 +431,9 @@ angular.module('myApp.controller', ['myApp.service'])
                 });
 
             /* JS for Chat Area */
-            setChatArea();
 
             $(window).resize(function () {
-                setChatArea();
+                $scope.scroll = true;
             });
 
             function setChatArea() {
@@ -624,7 +634,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
 
             InfluencerAccountService.requestPayout($scope.formData)
                 .then(function (ias) {
-                    if($scope.rememberBankDetail){
+                    if($scope.formData.rememberBankDetail){
                         AccountService.saveBank({
                             accountName: $scope.formData.accountName,
                             accountNumber: $scope.formData.accountNumber,
@@ -1420,10 +1430,11 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 
         $scope.formData = {};
 
+        /*
         if (_.get(u, 'influencer')) {
             $window.location.href = "/influencer.html#/influencer-campaign-list";
             return;
-        }
+        } */
 
         if (_.get(u, 'brand')) {
             $window.location.href = "/brand.html#/brand-campaign-list";
@@ -1508,10 +1519,16 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         };
     }])
     .controller('InfluencerSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
+        var u = UserProfile.get();
         $scope.formData = {};
         $window.localStorage.removeItem('token');
         $scope.messageCode = $location.search().message;
         $scope.alert = new NcAlert();
+
+        if (_.get(u, 'influencer')) {
+            $window.location.href = "/influencer.html#/influencer-campaign-list";
+            return;
+        }
 
         if ($scope.messageCode == "401") {
             $scope.alert.warning("<strong>401</strong> Unauthorized or Session Expired");

@@ -958,9 +958,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         }];
 
         $scope.$watch('filter', function () {
-            if($scope.filter) {
-                $scope.load(_.extend($scope.params, { status: $scope.filter }));
-            }
+            $scope.load(_.extend($scope.params, { status: $scope.filter }));
         });
 
         //Load campaign data

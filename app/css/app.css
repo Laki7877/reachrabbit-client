@@ -10117,6 +10117,7 @@ div:focus {
 }
 .chatbox-card .chatbox-header .chatbox-status {
   float: right;
+  cursor: pointer;
 }
 .chatbox-card .chatbox-header .chatbox-status .status.active {
   color: #ff773e;

@@ -1,7 +1,8 @@
 <form name="form" ng-cloak ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}" novalidate>
     <div class="view-brand-detail-draft">
         <zone-header historyback="true">
-        <h1 id="campaign-title" ng-bind="formData.title | truncate: 50"></h1>
+        <h1 id="campaign-title" ng-if="formData.title" ng-bind="formData.title | truncate: 50">{{formData.title | truncate: 50}}</h1>
+        <h1 id="campaign-title" ng-if="!formData.title">Campaign ใหม่</h1>
         </zone-header>
         <div class="zone-body">
             <div class="container">
@@ -128,7 +129,7 @@
                             </div>
                             <div class="card-body-content">
                                 <p class="input-group">
-                                  
+
                                     <input name="proposalDeadline" placeholder="-- เลือกวันปิดรับข้อเสนอ --" type="text" class="form-control" ng-focus="popup1_open = true"
                                           uib-datepicker-popup="{{$root.format}}" ng-model="formData.proposalDeadline" is-open="popup1_open" datepicker-options="dateOptions" show-button-bar="false" readonly
                                           close-text="Close" required/>

@@ -8625,7 +8625,8 @@ input:-moz-placeholder {
   min-height: 205px;
   overflow: hidden;
 }
-.instagram-profile .card-gallery .card-gallery-item .card-gallery-video iframe {
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video iframe,
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video video {
   width: 205px;
   height: 205px;
 }

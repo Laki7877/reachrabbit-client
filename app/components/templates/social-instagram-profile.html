@@ -45,7 +45,9 @@
               <img ng-src="{{$root.trustSrc(post.image)}}"/>
             </div>
             <div class="card-gallery-video" ng-if="post.type=='video'">
-              <iframe ng-src="{{$root.trustSrc(post.video)}}" frameBorder="0" frameBorder="0" autoplay="false"></iframe>
+              <video controls>
+                  <source ng-src="{{$root.trustSrc(post.video)}}" type="video/mp4">
+              </video>
             </div>
             <div class="card-gallery-info">
                 <div class="card-info col-xs-6">

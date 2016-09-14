@@ -595,7 +595,7 @@ angular.module('myApp.controller', ['myApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('myApp.influencer.controller', ['myApp.service'])
-    .controller('WalletController', ['$scope', '$state', 'UserProfile', 'InfluencerAccountService', 'AccountService', 'DataService', 'BusinessConfig', 'NcAlert', function ($scope, $state, UserProfile, InfluencerAccountService, AccountService, DataService, BusinessConfig, NcAlert) {
+    .controller('WalletController', ['$rootScope', '$scope', '$state', 'UserProfile', 'InfluencerAccountService', 'AccountService', 'DataService', 'BusinessConfig', 'NcAlert', function ($rootScope, $scope, $state, UserProfile, InfluencerAccountService, AccountService, DataService, BusinessConfig, NcAlert) {
         $scope.wallet = {};
         $scope.alert = new NcAlert();
         $scope.formData = {};
@@ -629,7 +629,8 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                             accountName: $scope.formData.accountName,
                             accountNumber: $scope.formData.accountNumber,
                             bank: $scope.formData.bank,
-                        }).then(function(){
+                        }).then(function(res){
+                            UserProfile.set(res.data);
                             $state.go('influencer-payout-history');
                         });
                     }else{

@@ -2,24 +2,7 @@
   <zone-header historyback="false">
     <h1>My Wallet</h1>
   </zone-header>
-  <div class="zone-body" ng-if="$root.sumReduce(wallet.proposals, 'income') == 0">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="card">
-            <div class="card-body">
-              <table-static>
-                <div class="empty-state">
-                  <img src="images/icon-empty-folder.png"/>ยังไม่มียอดให้ถอดในขณะนี้
-                </div>
-              </table-static>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="zone-body" ng-if="$root.sumReduce(wallet.proposals, 'income') != 0">
+  <div class="zone-body">
     <div class="container">
       <div nc-alert="alert"></div>
       <div class="row">
@@ -30,7 +13,7 @@
             </div>
 
             <div class="card-body">
-              <table class="table with-no-margin">
+              <table class="table with-no-margin" ng-if="wallet.proposals">
                 <thead>
                   <th>Campaign</th>
                   <th class="text-align-right">ราคาที่เสนอ (บาท)</th>
@@ -50,7 +33,11 @@
                   </tr>
                 </tbody>
               </table>
-
+              <table-static>
+                <div class="empty-state" ng-if="!wallet.proposals">
+                  <img src="images/icon-empty-folder.png"/>ยังไม่มียอดให้ถอดในขณะนี้
+                </div>
+              </table-static>
             </div>
           </div>
           <div class="card">
@@ -146,11 +133,12 @@
                     <strong>ยอดถอน</strong>
                   </td>
                   <td class="text-align-right">
-                    <strong>{{ $root.sumReduce(wallet.proposals, 'income') + TransferFee | number:0 }} บาท</strong>
+                    <strong ng-if="wallet.proposals">{{ $root.sumReduce(wallet.proposals, 'income') + TransferFee | number:0 }} บาท</strong>
+                    <strong ng-if="!wallet.proposals">ยังไม่มี</strong>
                   </td>
                 </tr>
               </table>
-              <button ng-click="requestPayout()" class="btn btn-primary btn-width-max">ถอนเงิน</button>
+              <button ng-disabled="!wallet.proposals" ng-click="requestPayout()" class="btn btn-primary btn-width-max">ถอนเงิน</button>
             </div>
           </div>
         </div>

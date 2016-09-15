@@ -10459,7 +10459,7 @@ ul.payment-methods {
 /*---Layout Brand---*/
 .layout-brand {
   background-color: #f9f9fb;
-  /* Specific View in Layout Portal */
+  /* Specific View in Layout Brand */
 }
 .layout-brand .container {
   width: 970px;
@@ -10475,6 +10475,9 @@ ul.payment-methods {
   margin-top: 30px;
   padding-top: 30px;
   border-top: 1px dashed #d8dfe7;
+}
+.layout-brand .view-brand-campaign-detail-published .card-profile a.link-to-profile {
+  margin-top: -60px;
 }
 .layout-brand .view-brand-profile .input-upload-image {
   width: 127px;

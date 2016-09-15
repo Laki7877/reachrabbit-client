@@ -1,11 +1,11 @@
-<div ng-cloak class="view-brand-detail-published">
+<div ng-cloak class="viewport view-brand-campaign-detail-published">
   <zone-header historyback="true" historyback-override="brand-campaign-list">
     <div class="action-btn-for-header with-back-btn">
         <button class="btn-primary btn-width-md" ui-sref="brand-campaign-detail-edit({ campaignId: campaignNee.campaignId })">
             <i class="fa fa-pencil"></i> แก้ไขข้อมูล
         </button>
     </div>
-    <h1 ng-bind="campaignNee.title | truncate: 50"></h1>
+    <h1 ng-bind="campaignNee.title | truncate: 60"></h1>
   </zone-header>
 
   <div class="zone-body">
@@ -52,7 +52,9 @@
         </div>
       </div>
 
-      <card-brand-profile ng-model="campaignNee.brand"></card-brand-profile>
+      <card-brand-profile ng-model="campaignNee.brand">
+        <a ui-sref="brand-profile" class="link-to-profile">แก้ไขโปรไฟล์</a>
+      </card-brand-profile>
 
       <div class="card">
         <div class="card-body text-center">

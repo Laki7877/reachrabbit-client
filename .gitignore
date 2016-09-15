@@ -2,7 +2,8 @@
 test-report.json
 node_modules
 bower_components
-
+*.log
+*.log.*
 # vim tmp files
 *.swp
 *.un~

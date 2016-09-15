@@ -845,7 +845,10 @@ angular.module('myApp.directives', ['myApp.service'])
                 };
 
                 scope.upload = function (ifile) {
-                    if(!ifile) return;
+                    if(!ifile){
+                      return;
+                    }
+
                     var processFile = function(file){
                         if (file === null) {
                             //TODO: maybe do dismiss will fixthat bug?
@@ -863,7 +866,7 @@ angular.module('myApp.directives', ['myApp.service'])
                                 scope.progressPercentage = progressPercentage;
                             };
 
-                            $uploader.upload('/resources', { file: file }, evtHandler)
+                            $uploader.upload('/resources', { file: file}, evtHandler)
                                 .then(function (data) {
                                     scope.loadingImage = false;
                                     scope.model = data;

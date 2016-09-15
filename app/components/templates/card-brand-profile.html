@@ -1,16 +1,17 @@
 <div class="card-profile">
   <div class="card-body">
     <div class="card-image">
-      <img ng-src="{{ profile.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-responsive"/>
+      <img ng-src="{{ profile.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-responsive"/>
     </div>
     <div class="card-title">
-      <div class="card-title-content pre">
-        เกี่ยวกับ {{ profile.brand.brandName }}
+      <div class="card-title-content">
+        เกี่ยวกับ {{ profile.brandName }}
       </div>
     </div>
     <div class="col-xs-10">
-      <div class="static-textarea">{{ profile.brand.about || "ติดต่อ " + profile.brand.brandName + " เพื่อเรียนรู้ข้อมูลเพิ่มเติม" }}</div>
-      <a ng-href="{{profile.brand.website}}"> {{ profile.brand.website }}</a>
+      <div class="static-textarea pre">{{ profile.about || "ยังไม่มีข้อมูล" }}</div>
+      <a ng-href="{{profile.brand.website}}"> {{ profile.website }}</a>
+      <ng-transclude></ng-transclude>
     </div>
   </div>
 </div>

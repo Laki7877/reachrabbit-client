@@ -1,4 +1,4 @@
-<div class="view-influencer-wallet">
+<div class="viewport view-influencer-wallet">
   <zone-header historyback="true">
     <h1>รายละเอียดการถอนเงิน (รหัส: {{ payout.transactionNumber }}) / Influencer: {{ user.name }}</h1>
   </zone-header>
@@ -148,7 +148,7 @@
                   </tr>
                   <tr ng-if="!payout.slip.url">
                       <td colspan="2" class="no-top-border text-center">
-                          <uploader-thumb template="components/templates/uploader-simple.html" no-crop="true" ng-model="slipResource"></uploader-thumb>
+                          <uploader-thumb template="components/templates/uploader-simple.html" no-crop="true" ng-model="formData.slipResource"></uploader-thumb>
                       </td>
                   </tr>
                   <tr >

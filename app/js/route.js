@@ -8,7 +8,7 @@
 'use strict';
 
 
-angular.module('myApp.routes', ['ui.router'])
+angular.module('reachRabbitApp.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('404', {
@@ -20,7 +20,7 @@ angular.module('myApp.routes', ['ui.router'])
 
     }]);
 
-angular.module('myApp.admin.routes', ['ui.router'])
+angular.module('reachRabbitApp.admin.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
         $stateProvider
@@ -61,7 +61,7 @@ angular.module('myApp.admin.routes', ['ui.router'])
             });
     }]);
 
-angular.module('myApp.brand.routes', ['ui.router'])
+angular.module('reachRabbitApp.brand.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
         /* Brands */
@@ -135,7 +135,7 @@ angular.module('myApp.brand.routes', ['ui.router'])
 
     }]);
 
-angular.module('myApp.influencer.routes', ['ui.router'])
+angular.module('reachRabbitApp.influencer.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
         /* Influencer */
@@ -195,7 +195,7 @@ angular.module('myApp.influencer.routes', ['ui.router'])
 
     }]);
 
-angular.module('myApp.portal.routes', ['ui.router'])
+angular.module('reachRabbitApp.portal.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
         $stateProvider

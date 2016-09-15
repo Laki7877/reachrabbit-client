@@ -20,7 +20,7 @@
 */
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
-angular.module('myApp.controller', ['myApp.service'])
+angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
     .controller('EmptyController', ['$scope', '$uibModal', function ($scope, $uibModal) {
         $scope.testHit = function () {
             var scope = $scope;
@@ -605,7 +605,7 @@ angular.module('myApp.controller', ['myApp.service'])
 */
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
-angular.module('myApp.influencer.controller', ['myApp.service'])
+angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'])
     .controller('WalletController', ['$rootScope', '$scope', '$state', 'UserProfile', 'InfluencerAccountService', 'AccountService', 'DataService', 'BusinessConfig', 'NcAlert', function ($rootScope, $scope, $state, UserProfile, InfluencerAccountService, AccountService, DataService, BusinessConfig, NcAlert) {
         $scope.wallet = {};
         $scope.alert = new NcAlert();
@@ -966,7 +966,7 @@ Y8888P' 88   YD YP   YP VP   V8P Y8888D'
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 
-angular.module('myApp.brand.controller', ['myApp.service'])
+angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
     /*
      * Campaign List controller - thank god it's work.
      */
@@ -1446,16 +1446,10 @@ angular.module('myApp.brand.controller', ['myApp.service'])
 */
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
-angular.module('myApp.portal.controller', ['myApp.service'])
+angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
     .controller('BrandSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
         var u = UserProfile.get();
-
         $scope.formData = {};
-        if (_.get(u, 'brand')) {
-            $window.location.href = "/brand.html#/brand-campaign-list";
-            return;
-        }
-
         $window.localStorage.removeItem('token');
         $scope.alert = new NcAlert();
 
@@ -1533,17 +1527,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         var u = UserProfile.get();
         $scope.formData = {};
         $window.localStorage.removeItem('token');
-        $scope.messageCode = $location.search().message;
         $scope.alert = new NcAlert();
-
-        if (_.get(u, 'influencer')) {
-            $window.location.href = "/influencer.html#/influencer-campaign-list";
-            return;
-        }
-
-        if ($scope.messageCode == "401") {
-            $scope.alert.warning("<strong>401</strong> Unauthorized or Session Expired");
-        }
 
         $scope.login = function (username, password) {
             $location.search('message', 'nop');
@@ -1798,7 +1782,7 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 
 
 /////////////// /////////////// /////////////// /////////////// ///////////////*/
-angular.module('myApp.admin.controller', ['myApp.service'])
+angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
     .controller('AdminTransactionHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
         //Load campaign data
         $scope.isExpired = function (T) {

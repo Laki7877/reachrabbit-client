@@ -8,7 +8,7 @@
 /* jshint node: true */
 'use strict';
 
-angular.module('myApp.directives', ['myApp.service'])
+angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
     .directive('urlMask', [function() {
         return {
             restrict: 'A',

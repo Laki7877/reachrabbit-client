@@ -6,9 +6,7 @@
     </div>
     <div class="col-xs-10">
       <small>เกี่ยวกับ {{ influencer.user.name }}</small>
-      <p ng-if="influencer.about.length > 0">
-        {{influencer.about}}
-      </p>
+      <p class="pre" ng-if="influencer.about.length > 0">{{influencer.about}}</p>
       <p ng-if="!isInfluencer && (!influencer.about || influencer.about.length == 0)">
         -
       </p>

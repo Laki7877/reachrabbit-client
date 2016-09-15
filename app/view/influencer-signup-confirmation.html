@@ -2,54 +2,54 @@
   <div class="container">
     <div nc-alert="alert"></div>
     <form name="form" ng-model-options="{ updateOn: 'change blur' }" no-validate>
-    <div class="card-portal">
-      <div class="card-body">
+      <div class="card-portal">
+        <div class="card-body">
 
-        <div class="profile-picture">
-          <img ng-src="{{formData.profilePicture}}" class="profile-picture-image" />
-          <img ng-src="images/icon-{{formData.media.mediaId}}-lg.png" class="profile-social-media-icon">
-          <div class="profile-picture-title">
-            {{ formData.name }}
+          <div class="profile-picture">
+            <img ng-src="{{formData.profilePicture}}" class="profile-picture-image" />
+            <img ng-src="images/icon-{{formData.media.mediaId}}-lg.png" class="profile-social-media-icon">
+            <div class="profile-picture-title">
+              {{ formData.name }}
+            </div>
+            <div class="profile-picture-info">
+              มีผู้ติดตาม {{ formData.pages[0].count }} คน
+            </div>
           </div>
-          <div class="profile-picture-info">
-            มีผู้ติดตาม {{ formData.pages[0].count }} คน
-          </div>
-        </div>
 
-        <div class="form-group" form-error="form.name">
-          <label>ชื่อบน Social Media</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-            <input type="text" name="name" class="form-control" required ng-model="formData.name" maxlength="100">
+          <div class="form-group" form-error="form.name">
+            <label>ชื่อบน Social Media</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+              <input type="text" name="name" class="form-control" required ng-model="formData.name" maxlength="100">
+            </div>
+            <div input-error></div>
           </div>
-          <div input-error></div>
-        </div>
 
-        <div class="form-group" form-error="form.email">
-          <label>อีเมล</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-            <input type="email" class="form-control" required ng-model="formData.email" maxlength="100">
+          <div class="form-group" form-error="form.email">
+            <label>อีเมล</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+              <input type="email" class="form-control" required ng-model="formData.email" maxlength="100">
+            </div>
+            <div input-error></div>
           </div>
-          <div input-error></div>
-        </div>
 
-        <div class="form-group" form-error="form.phoneNumber">
-          <label>เบอร์ติดต่อ</label>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
-            <input type="text" class="form-control" required ng-model="formData.phoneNumber" ng-pattern-restrict="^[0-9]*$" maxlength="20">
+          <div class="form-group" form-error="form.phoneNumber">
+            <label>เบอร์ติดต่อ</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
+              <input type="text" class="form-control" required ng-model="formData.phoneNumber" ng-pattern-restrict="^[0-9]*$" maxlength="20">
+            </div>
+            <div input-error></div>
           </div>
-          <div input-error></div>
-        </div>
-        <div class="info-text">
-          คุณเห็นด้วยกับ <a href="http://www.reachrabbit.com/terms.html" target="_blank">เงื่อนไขการใช้งาน</a><br>
-          และ <a href="http://www.reachrabbit.com/privacy.html" target="_blank">นโยบายความเป็นส่วนตัว</a> โดยการสมัครสมาชิก
-        </div>
-        <button ng-click="register()" class="btn-primary">สมัครสมาชิก</button>
+          <div class="info-text">
+            คุณเห็นด้วยกับ <a href="http://www.reachrabbit.com/terms.html" target="_blank">เงื่อนไขการใช้งาน</a><br>
+            และ <a href="http://www.reachrabbit.com/privacy.html" target="_blank">นโยบายความเป็นส่วนตัว</a> โดยการสมัครสมาชิก
+          </div>
+          <button ng-click="register()" class="btn-primary">สมัครสมาชิก</button>
 
+        </div>
       </div>
-    </div>
     </form>
     <div class="signup-pill">
       ต้องการเลือกช่องทางอื่น <a  ui-sref="influencer-portal">กดที่นี่</a>

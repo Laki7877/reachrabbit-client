@@ -1687,8 +1687,8 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
 
 
             $scope.register = function () {
-
                 var o = validator.formValidate($scope.form);
+                $scope.form.$setSubmitted();
                 if (o) {
                     $scope.alert.danger(o.message);
                     return;

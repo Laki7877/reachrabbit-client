@@ -323,7 +323,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                         });
                     })
                     .then(function (res) {
-                        if(res.data) {
+                        if(res && res.data) {
                             $scope.totalElements += res.data.length;
                             for (var i = res.data.length - 1; i >= 0; i--) {
                                 if ($scope.msglist.length >= $scope.msgLimit) {

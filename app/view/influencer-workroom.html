@@ -64,7 +64,7 @@
                             <button ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'WaitForPayout'" class="btn-primary btn-width-max" ui-sref="influencer-wallet">ถอนเงิน</button>
                             <div ng-if="proposal.status == 'Complete' && proposal.wallet.status !== 'WaitForPayout'" class="text-center" >
                               <small ng-if="proposal.wallet.status === 'Paid'" class="color-grey">คุณได้รับเงินแล้ว</small>
-                              <button class="btn-secondary btn-width-max" ui-sref="influencer-payout-detail({transactionId: transactionId})">
+                              <button class="btn-secondary btn-width-max" ui-sref="influencer-payout-detail({walletId: proposal.wallet.walletId})">
                                   <span ng-if="proposal.wallet.status === 'Paid'"> ดูหลักฐานการโอน </span>
                                   <span ng-if="proposal.wallet.status === 'Pending'"> ดูรายการถอนเงิน </span>
                               </button>

@@ -508,11 +508,11 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             sort: 'updatedAt,desc'
         });
     }])
-    .controller('PayoutDetailController', ['$scope', 'TransactionService', 'AdminService','AccountService', 'NcAlert', '$state', '$stateParams', function ($scope, TransactionService, AdminService, AccountService, NcAlert, $state, $stateParams) {
+    .controller('PayoutDetailController', ['$scope', 'WalletService', 'AdminService','AccountService', 'NcAlert', '$state', '$stateParams', function ($scope, WalletService, AdminService, AccountService, NcAlert, $state, $stateParams) {
         $scope.alert = new NcAlert();
         var loadTdoc = function () {
             $scope.tDoc = [];
-            TransactionService.getByTransactionId($stateParams.transactionId)
+            WalletService.getWalletTransaction($stateParams.walletId)
                 .then(function (response) {
                     $scope.payout = response.data;
                     var _base = null;

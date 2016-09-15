@@ -1,7 +1,7 @@
 <form name="form" ng-cloak ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}" novalidate>
     <div class="view-brand-detail-draft">
         <zone-header historyback="true">
-        <h1 id="campaign-title" ng-if="formData.title" ng-bind="formData.title | truncate: 50">{{formData.title | truncate: 50}}</h1>
+        <h1 id="campaign-title" ng-if="formData.title" ng-bind="formData.title | truncate: 60"></h1>
         <h1 id="campaign-title" ng-if="!formData.title">Campaign ใหม่</h1>
         </zone-header>
         <div class="zone-body">
@@ -19,7 +19,7 @@
                                 ชื่อ Campaign
                             </div>
                             <div class="card-body-content">
-                                <input name="title" type="text" required ng-model="formData.title" class="form-control" maxlength="100">
+                                <input name="title" type="text" required ng-model="formData.title" class="form-control" maxlength="60">
                                 <div input-error></div>
                             </div>
                         </div>

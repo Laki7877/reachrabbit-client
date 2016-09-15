@@ -75,7 +75,7 @@
                                 <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
                             </div>
                             <div class="card-body">
-                                {{ proposal.campaign.title | truncate: 35 }}
+                                {{ proposal.campaign.title | truncate: 60 }}
                                 <button class="btn-secondary btn-width-max" ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
                             </div>
                         </div>

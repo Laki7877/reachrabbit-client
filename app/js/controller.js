@@ -169,7 +169,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
     .controller('WorkroomController', ['$scope','UserProfile', '$uibModal', '$interval', '$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util', 'LongPollingService', '$timeout', 'InfluencerAccountService',
         function ($scope, UserProfile, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util, LongPollingService, $timeout, InfluencerAccountService) {
             $scope.msglist = [];
-            $scope.pendingList = [];
+            $scope.msgHash = {};
             $scope.msgLimit = 30;
             $scope.totalElements = 0;
             util.warnOnExit($scope);
@@ -303,61 +303,51 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             };
 
             var stop = false;
+            var timestamp = new Date();
 
-            $interval(function () {
-                if ($scope.pollActive === true) {
+            var interval = $interval(function () {
+                if ($scope.pollActive || stop) {
                     return;
                 }
                 $scope.pollActive = true;
                 LongPollingService.getMessagesPoll($scope.proposalId, {
-                    timestamp: $scope.msglist.length > 0 ? $scope.msglist[$scope.msglist.length - 1].createdAt : new Date()
+                    timestamp: timestamp
                 })
                     .then(function (res) {
-                        $scope.pollActive = false;
                         if(!res.data) {
                             return null;
                         }
+                        timestamp = timestamp;
                         return ProposalService.getNewMessages($scope.proposalId, {
                             timestamp: res.data
                         });
                     })
                     .then(function (res) {
-                        if(res) {
+                        if(res && res.data) {
                             $scope.totalElements += res.data.length;
-                            var idx = -1;
                             for (var i = res.data.length - 1; i >= 0; i--) {
                                 if ($scope.msglist.length >= $scope.msgLimit) {
                                     $scope.msglist.shift();
                                 }
-                                for (var j = 0; j < $scope.pendingList.length; j++) {
-                                    if ($scope.pendingList[j].referenceId === res.data[i].referenceId) {
-                                        _.extend($scope.pendingList[j], res.data[i]);
-                                        idx = j;
-                                        break;
-                                    }
-                                }
-
-                                if (idx >= 0) {
-                                    $scope.pendingList.splice(j, 1);
+                                if(!_.isNil($scope.msgHash[res.data[i].referenceId])) {
+                                    _.extend($scope.msgHash[res.data[i].referenceId], res.data[i]);
                                 } else {
+                                    // from server
                                     $scope.msglist.push(res.data[i]);
                                 }
                             }
                         }
                     })
                     .finally(function () {
-                        if (!stop) {
-                            console.log("done poll");
-                            // $scope.poll();
-                            // $scope.pollActive = false;
-                        }
+                        timestamp = new Date();
+                        $scope.pollActive = false;
                     });
             }, 1000);
 
 
             $scope.$on('$destroy', function () {
                 stop = true;
-                // $interval.cancel();
+                interval.cancel();
             });
 
             $scope.formData = {
@@ -379,7 +369,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 };
 
                 $scope.msglist.push(msg);
-                $scope.pendingList.push(msg);
+                $scope.msgHash[msg.referenceId] = msg;
 
                 ProposalService.sendMessage(_.omit(msg, 'user'))
                     .then(function (resp) {

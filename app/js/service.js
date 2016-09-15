@@ -123,10 +123,10 @@ angular.module('myApp.service', ['satellizer'])
         };
         return service;
     }])
-    .config(['$authProvider', 'Config', '$httpProvider', '$window', function ($authProvider, Config, $httpProvider, $window) {
+    .config(['$authProvider', 'Config', '$httpProvider', function ($authProvider, Config, $httpProvider) {
         $authProvider.baseUrl = Config.API_BASE_URI;
-        if ($window.sessionStorage.API_OVERRIDE) {
-            $authProvider.baseUrl = $window.sessionStorage.API_OVERRIDE;
+        if (window.sessionStorage.API_OVERRIDE) {
+            $authProvider.baseUrl = window.sessionStorage.API_OVERRIDE;
         }
         //Google account
         $authProvider.google({

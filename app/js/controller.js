@@ -773,7 +773,16 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
             $scope.form = {};
             $scope.formData = {};
             $scope.alert = new NcAlert();
-
+            $scope.genderOptions = [{
+                name: 'ชาย',
+                value: 'Male'
+            }, {
+                name: 'หญิง',
+                value: 'Female'
+            }, {
+                name: 'อื่นๆ',
+                value: 'Not Specified'
+            }];
 
             $scope.isValidate = function (model, error) {
                 if (error === 'required' && model.$name === 'profilePicture') {
@@ -1010,7 +1019,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 $scope.alert.success($stateParams.alert);
             }
             $scope.form = {};
-
             util.warnOnExit($scope);
 
             $scope.resources = [];

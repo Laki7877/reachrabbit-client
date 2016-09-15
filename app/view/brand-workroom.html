@@ -9,8 +9,7 @@
         </div>
         <div class="zone-body">
             <div class="container">
-                <cute-bunny></cute-bunny>
-                <div class="row" cute-bunny-hide>
+                <div class="row">
                     <div class="col-xs-9">
                         <div class="chatbox-card">
                             <div class="chatbox-header">
@@ -25,17 +24,20 @@
                                 </div>
                             </div>
                             <div class="message-area" scroll-glue="scroll">
-                                <card-influencer-profile ng-model="proposal.influencer" show-social-data="false">
-                                  <a ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId })" class="link-to-profile">ดูโปรไฟล์</a>
-                                </card-influencer-profile>
+                                <cute-bunny></cute-bunny>
+                                <div cute-bunny-hide>
+                                    <card-influencer-profile ng-model="proposal.influencer" show-social-data="false">
+                                      <a ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId })" class="link-to-profile">ดูโปรไฟล์</a>
+                                    </card-influencer-profile>
 
-                                <div class="message-past" ng-if="hasPastMessage()">
-                                    <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
+                                    <div class="message-past" ng-if="hasPastMessage()">
+                                        <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
+                                    </div>
+                                    <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
+                                    <div nc-alert="alert"></div>
                                 </div>
-                                <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
-                                <div nc-alert="alert"></div>
                             </div>
-                            <div class="message-input" cute-bunny-hide>
+                            <div class="message-input">
                                 <textarea chatarea="sendMessage(formData.messageStr, formData.resources)" class="form-control" rows="4" ng-model="formData.messageStr"
                                     placeholder="พิมพ์ข้อความ..." autofocus maxlength="1000"></textarea>
                                 <div class="pull-left">
@@ -44,7 +46,7 @@
                                 <div class="pull-right" form-error="form.resource">
                                     <div input-error class="pull-left"></div>
                                     <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png"
-                                        ngf-pattern="'.jpg,.png'" ngf-max-size="5MB"></uploader-multi>
+                                        ngf-pattern="'.jpg,.png'" ngf-max-size="5MB" ngf-max-files="1"></uploader-multi>
 
                                     <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr, formData.resources)">
                                     <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ

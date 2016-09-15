@@ -34,6 +34,7 @@
                                   ngf-pattern="'.jpg,.png'"
                                   ngf-max-size="5MB"
                                   aspect-ratio="1.5"
+                                  is-loading="formData.loadingImage1"
                                   required>
                                 <i class="fa fa-camera"></i><br> เลือกรูป JPG หรือ PNG<br>อย่างน้อย 600 x 400 px
                                 </uploader-thumb>
@@ -72,7 +73,7 @@
                         </div>
                         <div class="card-row" form-error="form.description" is-validate="isPublishing()">
                             <div class="card-body-content-label with-input">
-                                สิ่งที่อยากให้ทำ
+                                รายละเอียด
                             </div>
                             <div class="card-body-content">
                                 <textarea name="description" class="form-control" ng-model="formData.description" rows="9" maxlength="5000" required></textarea>
@@ -105,7 +106,8 @@
                                   accept=".jpg,.png"
                                   ngf-pattern="'.jpg,.png'"
                                   ngf-max-size="5MB"
-                                  ngf-max-files="20"></uploader-multi>
+                                  ngf-max-files="20"
+                                  is-loading="formData.loadingImage2"></uploader-multi>
                                 <div input-error></div>
                             </div>
                         </div>
@@ -144,18 +146,16 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="card-row" ng-if="!editOpenState">
                             <div class="card-button-primary">
-                                <button class="btn-primary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')">ลงประกาศ</button>
+                                <button class="btn-primary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">ลงประกาศ</button>
                                 <br>
                                 <div class="info-text">
                                     บันทึกและเปิดรับข้อเสนอ
                                 </div>
                             </div>
                             <div class="card-button-secondary">
-                                <button class="btn-secondary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Draft')">บันทึกข้อมูล</button>
+                                <button class="btn-secondary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Draft')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกข้อมูล</button>
                                 <br>
                                 <div class="info-text">
                                     บันทึกเพื่อแก้ไขภายหลัง
@@ -165,7 +165,7 @@
 
                         <div class="card-row" ng-if="editOpenState">
                             <div class="card-button-primary">
-                                <button class="btn-primary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')">บันทึกการแก้ไข</button>
+                                <button class="btn-primary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกการแก้ไข</button>
                             </div>
                         </div>
 

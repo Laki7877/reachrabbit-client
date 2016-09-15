@@ -3,7 +3,7 @@
     <div class="card-image" ng-class="{'expired':$root.isExpired(campaign.proposalDeadline)}">
       <div class="flag">
         <span ng-if="campaign.status === 'Open'" class="status status-open">เปิดรับข้อเสนอ</span>
-        <span ng-if="campaign.status === 'Draft'" class="status status-open">ฉบับร่าง</span>
+        <!-- <span ng-if="campaign.status === 'Draft'" class="status status-open">ฉบับร่าง</span> -->
         <span ng-if="campaign.status !== 'Draft' && $root.isExpired(campaign.proposalDeadline)" class="status status-closed">ปิดรับข้อเสนอ</span>
         <span ng-if="!campaign.status" class="status status-example">ตัวอย่าง Campaign</span>
       </div>

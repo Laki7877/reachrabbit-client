@@ -771,7 +771,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                 value: 'Female'
             }, {
                 name: 'อื่นๆ',
-                value: 'Not Specified'
+                value: 'NotSpecified'
             }];
 
             $scope.isValidate = function (model, error) {
@@ -1182,7 +1182,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                     .then(function (echoresponse) {
                         $scope.form.$setPristine();
                         if (formData.status === "Open") {
-                            $state.go('brand-campaign-detail-published', { campaignId: echoresponse.data.campaignId, alert: "แก้ไขข้อมูล และ ลงประกาศเรียบร้อยใหม่เรียบร้อยแล้ว" });
+                            $state.go('brand-campaign-detail-published', { campaignId: echoresponse.data.campaignId, alert: "ลงประกาศเรียบร้อย" });
                         } else if (status == "Draft" && echoresponse.data.status == "Draft") {
                             getOne(echoresponse.data.campaignId);
                             $scope.alert.success('บันทึกข้อมูลเรียบร้อยแล้ว!');

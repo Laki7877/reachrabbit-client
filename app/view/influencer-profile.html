@@ -115,10 +115,7 @@
             </div>
             <div class="card-body-content">
               <div class="input-dropdown">
-                <select class="form-control" name="gender" ng-model="formData.influencer.gender">
-                  <option value="Male">ชาย</option>
-                  <option value="Female">หญิง</option>
-                </select>
+                <select class="form-control" name="gender" ng-model="formData.influencer.gender" ng-options="x.value as x.name for x in genderOptions" ng-default="-- เลือกเพศ --"></select>
                 <i class="fa fa-caret-down"></i>
               </div>
             </div>

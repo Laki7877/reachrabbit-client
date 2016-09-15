@@ -8410,6 +8410,10 @@ input:-moz-placeholder {
   padding-left: 15px;
   padding-right: 15px;
 }
+.card-campaign-header .card-info .price {
+  font-size: 14px;
+  margin-top: 14px;
+}
 .card-campaign-header .card-info-1,
 .card-campaign-header .card-info-2,
 .card-campaign-header .card-info-3 {

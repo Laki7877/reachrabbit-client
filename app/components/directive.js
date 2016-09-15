@@ -815,6 +815,7 @@ angular.module('myApp.directives', ['myApp.service'])
                 height: '=',
                 model: '=ngModel',
                 accept: '@?',
+                loadingImage: '=?isLoading',
                 aspectRatio: '=?',
                 onError: '&?',
                 noCrop: '=?',
@@ -993,6 +994,7 @@ angular.module('myApp.directives', ['myApp.service'])
             transclude: true,
             scope: {
                 model: '=ngModel',
+                loadingImage: '=?isLoading',
                 accept: '@?',
                 onError: '&?',
                 accessor: '&?' //function that defines how to access the url of the model
@@ -1040,7 +1042,6 @@ angular.module('myApp.directives', ['myApp.service'])
                                 scope.progressPercentage = progressPercentage;
                             };
 
-                            console.log(scope.loadingImage);
                             $uploader.upload('/resources', { file: file }, evtHandler)
                                 .then(function (data) {
                                     scope.loadingImage = false;

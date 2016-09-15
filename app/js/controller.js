@@ -1019,7 +1019,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
                 $scope.alert.success($stateParams.alert);
             }
             $scope.form = {};
-
             util.warnOnExit($scope);
 
             $scope.resources = [];

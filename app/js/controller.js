@@ -545,7 +545,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
         $scope.formData = {};
 
         $scope.adminConfirm = function () {
-            AdminService.confirmPayout($stateParams.walletId, $scope.formData.slipResource)
+            AdminService.confirmPayout($scope.formData.transactionId, $scope.formData.slipResource)
                 .then(function () {
                     loadTdoc();
                 })

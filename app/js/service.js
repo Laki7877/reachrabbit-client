@@ -234,6 +234,13 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             }
         };
     }])
+    .factory('WalletService', ['$http', function($http){
+        return {
+            getWalletTransaction: function(id) {
+              return $http.get('/wallets/' + id + '/transaction');
+            }
+        };
+    }])
     .factory('InfluencerAccountService', ['$http', function ($http) {
         return {
             /*

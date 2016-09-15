@@ -40,7 +40,7 @@ angular.module('reachRabbitApp.admin.routes', ['ui.router'])
                 controller: 'PayoutHistoryController'
             })
             .state('admin-payout-detail',{
-                url: '/admin-payout-detail/:transactionId',
+                url: '/admin-payout-detail/:walletId',
                 templateUrl: 'view/admin-payout-detail.html',
                 controller: 'PayoutDetailController'
             })
@@ -176,7 +176,7 @@ angular.module('reachRabbitApp.influencer.routes', ['ui.router'])
                 controller: 'BrandProfilePortfolioController'
             })
             .state('influencer-payout-detail', {
-                url: '/influencer-payout-detail/:transactionId',
+                url: '/influencer-payout-detail/:walletId',
                 templateUrl: 'view/influencer-payout-detail.html',
                 controller: 'PayoutDetailController'
             })

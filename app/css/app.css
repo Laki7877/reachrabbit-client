@@ -10141,6 +10141,9 @@ div:focus {
   overflow-y: scroll;
   height: 400px;
 }
+.chatbox-card .message-area .card-loader {
+  margin: 15px;
+}
 .chatbox-card .message-area .message-past {
   text-align: center;
   padding: 23px 10px 20px;

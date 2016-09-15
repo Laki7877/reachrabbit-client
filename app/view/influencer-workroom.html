@@ -9,8 +9,7 @@
         </div>
         <div class="zone-body">
             <div class="container">
-                <cute-bunny></cute-bunny>
-                <div class="row" cute-bunny-hide>
+                <div class="row">
                     <div class="col-xs-9">
                         <div class="chatbox-card">
                             <div class="chatbox-header">
@@ -28,16 +27,18 @@
                                 </div>
                             </div>
                             <div class="message-area" scroll-glue="scroll">
+                                <cute-bunny></cute-bunny>
+                                <div cute-bunny-hide>
+                                    <card-influencer-profile ng-model="proposal.influencer" show-social-data="false">
+                                        <a ui-sref="influencer-profile" class="link-to-profile">แก้ไขข้อมูล</a>
+                                    </card-influencer-profile>
 
-                                <card-influencer-profile ng-model="proposal.influencer" show-social-data="false">
-                                    <a ui-sref="influencer-profile" class="link-to-profile">แก้ไขข้อมูล</a>
-                                </card-influencer-profile>
-
-                                <div class="message-past" ng-if="hasPastMessage()">
-                                    <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
+                                    <div class="message-past" ng-if="hasPastMessage()">
+                                        <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
+                                    </div>
+                                    <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
+                                    <div nc-alert="alert"></div>
                                 </div>
-                                <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
-                                <div nc-alert="alert"></div>
                             </div>
                             <div class="message-input">
                                 <textarea chatarea="sendMessage(formData.messageStr, formData.resources)" class="form-control" rows="4" ng-model="formData.messageStr"
@@ -56,11 +57,10 @@
                                 </div>
                                 <div class="clear"></div>
                             </div>
-
                         </div>
                     </div>
                     <div class="col-xs-3">
-                        <card-proposal-detail ng-model="proposal">
+                        <card-proposal-detail ng-model="proposal" cute-bunny-hide>
                             <button ng-if="proposal.status == 'Complete' && hasInWallet(proposal)" class="btn-primary btn-width-max" ui-sref="influencer-wallet">ถอนเงิน</button>
                             <div ng-if="proposal.status == 'Complete' && !hasInWallet(proposal)" class="text-center" >
                               <small class="color-grey">คุณได้รับเงินแล้ว</small>
@@ -69,7 +69,7 @@
                             <button ng-if="proposal.status == 'Selection' && !hasCart(proposal)" class="btn-secondary btn-width-max" ng-click="editProposal()">แก้ไขข้อเสนอ</button>
                         </card-proposal-detail>
 
-                        <div class="card-campaign-thumbnail">
+                        <div class="card-campaign-thumbnail" cute-bunny-hide>
                             <div class="card-thumbnail-image">
                                 <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
                             </div>

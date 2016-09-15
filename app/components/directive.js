@@ -472,6 +472,11 @@ angular.module('myApp.directives', ['myApp.service'])
                     $auth.authenticate(mediaId)
                         .then(function (response) {
                             var linkedProfile = response.data;
+
+                            if(!_.isNil(response.data.token)) {
+                                throw 'Media นี้ได้ทำการสมัครไปแล้ว';
+                            }
+
                             if (mediaId == 'facebook') {
                                 $uibModal.open({
                                     templateUrl: 'components/templates/social-linker-modal.html',
@@ -521,7 +526,7 @@ angular.module('myApp.directives', ['myApp.service'])
                             }
                         })
                         .catch(function (err) {
-                            if(scope.onDone) scope.onDone(err);
+                            if(scope.onDone) scope.onDone({data: {message: err }});
                         });
 
                 };

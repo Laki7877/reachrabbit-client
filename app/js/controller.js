@@ -1143,6 +1143,13 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
             } else {
                 $scope.createMode = true;
             }
+            var today = moment();
+
+            $scope.isRecommendedDate = function() {
+                if($scope.formData && $scope.formData.proposalDeadline && moment($scope.formData.proposalDeadline).subtract(13, 'day').isBefore(today)) {
+                    return true;
+                }
+            };
 
             $scope.isInvalidMedia = function () {
                 return $scope.formData.media.length === 0 && $scope.form.$submitted && $scope.formData.status == 'Open';

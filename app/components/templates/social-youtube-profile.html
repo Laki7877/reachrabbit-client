@@ -26,19 +26,19 @@
             <div class="card-info">
                 <div class="card-info-label">ค่าเฉลี่ย View <i class="fa fa-question-circle"></i></div>
                 <div class="card-content">
-                    <strong>{{ data.channel.statistics.viewCount/data.channel.statistics.subscriberCount | number: 0 }}</strong>
+                    <strong>{{ data.channel.statistics.viewCount/data.videos.length | number: 0 }}</strong>
                     <i class="fa fa-eye"></i>
                 </div>
             </div>
             <div class="card-info">
                 <div class="card-info-label">ค่าเฉลี่ย Like <i class="fa fa-question-circle"></i></div>
                 <div class="card-content">
-                    <strong>999</strong>
+                    <strong>{{ $root.sumReduce(data.videos, 'statistics.likeCount')/data.videos.length }}</strong>
                     <i class="fa fa-thumb-up"></i>
                 </div>
             </div>
             <div class="card-button">
-                <button ng-click="gotoPage()" class="btn-secondary pull-right btn-width-md">ดูบน YouTube</button>
+                <a target="_blank" ng-href="https://www.youtube.com/channel/{{ data.channel.id }}" class="btn-secondary pull-right btn-width-md">ดูบน YouTube</a>
             </div>
         </div>
         <div class="card-gallery card-row">
@@ -56,8 +56,10 @@
                         </div>
                         <div class="card-info col-xs-3">
                             <div class="card-info-label">Like</div>
-                            <div class="card-content">{{item.statistics.likeCount | number: 0}}</div>
+                            <div class="card-content" ng-if="item.statistics.likeCount == 0 || item.statistics.likeCount">{{item.statistics.likeCount | number: 0}}</div>
+                            <div class="card-content" ng-if="item.statistics.likeCount !== 0 && !item.statistics.likeCount"><small>N/A</small></div>
                         </div>
+
                     </div>
                 </div>
             </div>

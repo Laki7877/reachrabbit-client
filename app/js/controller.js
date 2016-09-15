@@ -1444,12 +1444,6 @@ angular.module('myApp.portal.controller', ['myApp.service'])
 
         $scope.formData = {};
 
-        /*
-        if (_.get(u, 'influencer')) {
-            $window.location.href = "/influencer.html#/influencer-campaign-list";
-            return;
-        } */
-
         if (_.get(u, 'brand')) {
             $window.location.href = "/brand.html#/brand-campaign-list";
             return;

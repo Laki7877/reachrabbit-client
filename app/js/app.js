@@ -8,7 +8,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('reachRabbitApp', [
   'angular-loading-bar',
   'ui.bootstrap',
   'ngFileUpload',
@@ -21,19 +21,19 @@ angular.module('myApp', [
   'ngImgCrop',
   'jsonFormatter',
   //Top level
-  'myApp.directives',
-  'myApp.routes',
-  'myApp.controller',
+  'reachRabbitApp.directives',
+  'reachRabbitApp.routes',
+  'reachRabbitApp.controller',
   //Controllers
-  'myApp.portal.controller',
-  'myApp.brand.controller',
-  'myApp.influencer.controller',
-  'myApp.admin.controller',
+  'reachRabbitApp.portal.controller',
+  'reachRabbitApp.brand.controller',
+  'reachRabbitApp.influencer.controller',
+  'reachRabbitApp.admin.controller',
   //Routes
-  'myApp.portal.routes',
-  'myApp.brand.routes',
-  'myApp.influencer.routes',
-  'myApp.admin.routes'
+  'reachRabbitApp.portal.routes',
+  'reachRabbitApp.brand.routes',
+  'reachRabbitApp.influencer.routes',
+  'reachRabbitApp.admin.routes'
 ])
   //Mock data for testing
   .constant('MockData', {
@@ -106,30 +106,27 @@ angular.module('myApp', [
     DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"],
     PROTRACTOR_PORT: 9900
   })
-  //Initialize the app
   .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce',
     function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce) {
 
-
-
       function removeParam(key, sourceURL) {
-          var rtn = sourceURL.split("?")[0],
-              param,
-              params_arr = [],
-              queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
-          if (queryString !== "") {
-              params_arr = queryString.split("&");
-              for (var i = params_arr.length - 1; i >= 0; i -= 1) {
-                  param = params_arr[i].split("=")[0];
-                  if (param === key) {
-                      params_arr.splice(i, 1);
-                  }
-              }
-              rtn = rtn + "?" + params_arr.join("&");
+        var rtn = sourceURL.split("?")[0],
+          param,
+          params_arr = [],
+          queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+        if (queryString !== "") {
+          params_arr = queryString.split("&");
+          for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+            param = params_arr[i].split("=")[0];
+            if (param === key) {
+              params_arr.splice(i, 1);
+            }
           }
-          return rtn;
+          rtn = rtn + "?" + params_arr.join("&");
+        }
+        return rtn;
       }
-      $rootScope.trustSrc = function(src) {
+      $rootScope.trustSrc = function (src) {
         return $sce.trustAsResourceUrl(removeParam('autoplay', src));
       };
 
@@ -140,13 +137,13 @@ angular.module('myApp', [
       //check if we are in dev environment
       //TODO we will move all this to Config.json when
       //we later implement webpack
-      if(BusinessConfig.DEV_ENV_HOST.indexOf($location.host()) !== -1){
+      if (BusinessConfig.DEV_ENV_HOST.indexOf($location.host()) !== -1) {
         $rootScope.SHOW_DEBUGGA = true;
       }
 
       //Configure angular moment
       amMoment.changeLocale('th', {
-        monthsShort : 'ม.ค._ก.พ._มี.ค._เม.ย._พ.ค._มิ.ย._ก.ค._ส.ค._ก.ย._ต.ค._พ.ย._ธ.ค.'.split('_'),
+        monthsShort: 'ม.ค._ก.พ._มี.ค._เม.ย._พ.ค._มิ.ย._ก.ค._ส.ค._ก.ย._ต.ค._พ.ย._ธ.ค.'.split('_'),
         longDateFormat: {
           LT: 'H:mm',
           LTS: 'H:m:s',
@@ -208,31 +205,6 @@ angular.module('myApp', [
         $window.location.href = redirTo;
       };
 
-      $rootScope.pollPending = false;
-      $rootScope.pollInbox = function (immediately) {
-        var profile = $rootScope.getProfile();
-        if (profile) {
-          var imm = immediately;
-          $interval(function () {
-            if ($rootScope.pollPending) {
-              return;
-            }
-            $rootScope.pollPending = true;
-            LongPollingService.countInbox({
-              immediate: imm
-            }).then(function (res) {
-                imm = false;
-                if (!_.isNil(res.data)) {
-                  $rootScope.inboxCount = res.data;
-                }
-                $rootScope.pollPending = false;
-                // $rootScope.pollInbox(false);
-              });
-          }, 1000);
-        }
-      };
-      $rootScope.pollInbox(true);
-
       $rootScope.goTo = function (path) {
         console.error("$root.goTo is deprecated. Please stahp using it.");
       };
@@ -245,7 +217,7 @@ angular.module('myApp', [
       $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams, options) {
           //in case of brand
-          if(!UserProfile.get()) {
+          if (!UserProfile.get()) {
             return;
           }
           if (UserProfile.get().brand) {
@@ -274,11 +246,40 @@ angular.module('myApp', [
           $rootScope.debuggah = {};
         });
 
-        $rootScope.isExpired = function (datestr) {
-            if (!datestr) {
-                return false;
-            }
-            var d = moment(datestr, 'YYYY-MM-DD HH:mm').toDate();
-            return d.getTime() <= (new Date()).getTime();
+      $rootScope.isExpired = function (datestr) {
+        if (!datestr) {
+          return false;
+        }
+        var d = moment(datestr, 'YYYY-MM-DD HH:mm').toDate();
+        return d.getTime() <= (new Date()).getTime();
+      };
+
+      //Only init polling if User is logged in
+      if (UserProfile.get()) {
+        $rootScope.pollPending = false;
+        $rootScope.pollInbox = function (immediately) {
+          var profile = $rootScope.getProfile();
+          if (profile) {
+            var imm = immediately;
+            $interval(function () {
+              if ($rootScope.pollPending) {
+                return;
+              }
+              $rootScope.pollPending = true;
+              LongPollingService.countInbox({
+                immediate: imm
+              }).then(function (res) {
+                imm = false;
+                if (!_.isNil(res.data)) {
+                  $rootScope.inboxCount = res.data;
+                }
+                $rootScope.pollPending = false;
+                // $rootScope.pollInbox(false);
+              });
+            }, 1000);
+          }
         };
+        $rootScope.pollInbox(true);
+
+      }
     }]);

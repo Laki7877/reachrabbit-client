@@ -1,5 +1,5 @@
 <form name="form" ng-cloak ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}" novalidate>
-    <div class="view-brand-detail-draft">
+    <div class="viewport view-brand-detail-draft">
         <zone-header historyback="true">
         <h1 id="campaign-title" ng-if="formData.title" ng-bind="formData.title | truncate: 60"></h1>
         <h1 id="campaign-title" ng-if="!formData.title">Campaign ใหม่</h1>
@@ -75,7 +75,7 @@
                                 สิ่งที่อยากให้ทำ
                             </div>
                             <div class="card-body-content">
-                                <textarea name="description" class="form-control" ng-model="formData.description" rows="4" maxlength="5000" required></textarea>
+                                <textarea name="description" class="form-control" ng-model="formData.description" rows="9" maxlength="5000" required></textarea>
                                 <div input-error></div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                 Keyword สำคัญ
                             </div>
                             <div class="card-body-content">
-                                <input name="keyword" type="text" ng-model="formData.keyword" class="form-control" placeholder="Keyword ที่สำคัญแยกด้วยคอมม่า" maxlength="100">
+                                <input name="keyword" type="text" ng-model="formData.keyword" class="form-control" placeholder="Keyword สำคัญที่อยากให้ influencer พูดถึง" maxlength="100">
                             </div>
                         </div>
                         <div class="card-row">
@@ -92,7 +92,7 @@
                                 เว็บไซต์ของสินค้า
                             </div>
                             <div class="card-body-content">
-                                <input type="text" class="form-control" ng-model="formData.website" maxlength="200" placeholder="ถ้ามี">
+                                <input type="text" class="form-control" ng-model="formData.website" maxlength="200" placeholder="www.example.com">
                             </div>
                         </div>
                         <div class="card-row" form-error="form.campaignResources">

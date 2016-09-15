@@ -830,8 +830,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 }
             };
             $scope.rollBack = function() {
-                $scope.formData = _.merge({}, $scope.profile)
-                    .then();
+                $scope.formData = _.merge({}, $scope.profile);
             };
 
             // fetch profile

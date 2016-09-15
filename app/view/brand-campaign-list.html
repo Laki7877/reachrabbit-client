@@ -46,7 +46,7 @@
         <pagination ng-model="myCampaign" callback="load"></pagination>
       </nav>
 
-      <div class="example-campaign">
+      <div class="example-campaign" cute-bunny-hide>
         <!-- <h2>ตัวอย่าง Campaign</h2> -->
         <div ng-repeat="x in exampleCampaign">
           <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-example({ exampleId: $index })"></card-campaign-list-item>

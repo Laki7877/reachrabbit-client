@@ -12,7 +12,7 @@
       <div class="clear"></div>
     </div>
     <div class="message-content">
-      <div ng-transclude></div>
+      <div class="pre" ng-transclude></div>
       <span ng-bind="message.message"></span>
       <img ng-repeat="resource in message.resources" ng-src="{{resource.url}}">
     </div>

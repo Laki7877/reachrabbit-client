@@ -1,6 +1,6 @@
 <div class="card-campaign-list-item">
   <div class="card-body">
-    <div class="card-image" ng-class="{'expired':$root.isExpired(campaign.proposalDeadline)}">
+    <div class="card-image" ng-class="{'expired':campaign.status !== 'Draft' && $root.isExpired(campaign.proposalDeadline)}">
       <div class="flag">
         <span ng-if="campaign.status === 'Open'" class="status status-open">เปิดรับข้อเสนอ</span>
         <!-- <span ng-if="campaign.status === 'Draft'" class="status status-open">ฉบับร่าง</span> -->

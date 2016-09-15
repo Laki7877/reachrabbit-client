@@ -125,6 +125,9 @@ angular.module('myApp.service', ['satellizer'])
     }])
     .config(['$authProvider', 'Config', '$httpProvider', function ($authProvider, Config, $httpProvider) {
         $authProvider.baseUrl = Config.API_BASE_URI;
+        if (window.sessionStorage.API_OVERRIDE) {
+            $authProvider.baseUrl = window.sessionStorage.API_OVERRIDE;
+        }
         //Google account
         $authProvider.google({
             clientId: Config.YOUTUBE_APP_ID,
@@ -589,6 +592,7 @@ angular.module('myApp.service', ['satellizer'])
             var options = _.extend({
                 url: Config.API_BASE_URI + url,
                 data: data,
+                ignoreLoadingBar: true,
                 headers: { 'X-Auth-Token': $window.localStorage.token },
             }, opts);
 

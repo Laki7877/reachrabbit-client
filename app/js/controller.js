@@ -552,9 +552,10 @@ angular.module('myApp.controller', ['myApp.service'])
                 });
         };
         loadTdoc();
+        $scope.formData = {};
 
         $scope.adminConfirm = function () {
-            AdminService.confirmPayout($stateParams.transactionId, $scope.slipResource)
+            AdminService.confirmPayout($stateParams.transactionId, $scope.formData.slipResource)
                 .then(function () {
                     loadTdoc();
                 })

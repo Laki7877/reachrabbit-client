@@ -5,14 +5,14 @@
         <span ng-if="campaign.status == 'Open'" class="status status-open">เปิดรับข้อเสนอ</span>
         <span ng-if="campaign.status == 'Draft'" class="status status-draft">ฉบับร่าง</span>
         <span ng-if="$root.isExpired(campaign.proposalDeadline)" class="status status-closed">ปิดรับข้อเสนอ</span>
-        <!-- <span ng-if="campaign.status == 'Closed'" class="status status-closed">ปิดรับข้อเสนอ</span> -->
         <span ng-if="!campaign.status" class="status status-example">ตัวอย่าง Campaign</span>
       </div>
       <img ng-src="{{campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
     </div>
     <div class="card-title">
       <div class="card-title-content">
-        <a>{{campaign.title | truncate: 60}}</a>
+        <a ng-if="campaign.title">{{campaign.title | truncate: 60}}</a>
+        <a ng-if="!campaign.title">Campaign ใหม่</a>
         <span ng-repeat="media in campaign.media" class="icon-{{ media.mediaId }}"></span>
         <!-- <div class="card-status">
           <span ng-if="campaign.status == 'Open'">สถานะ: เปิดรับข้อเสนอ</span>

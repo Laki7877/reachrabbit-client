@@ -1,7 +1,6 @@
 {
   "name": "ng-pattern-restrict",
-  "version": "0.2.2",
-  "homepage": "https://github.com/AlphaGit/ng-pattern-restrict",
+  "homepage": "https://github.com/poonwu/ng-pattern-restrict",
   "authors": [
     "Alpha <alphagma@gmail.com>"
   ],
@@ -31,13 +30,12 @@
   "dependencies": {
     "angular": "^1.2.27 ^1.3.0"
   },
-  "_release": "0.2.2",
+  "_release": "694c85bd97",
   "_resolution": {
-    "type": "version",
-    "tag": "v0.2.2",
-    "commit": "a4daa683c13db58ee98c7f7d53e6299502a14054"
+    "type": "commit",
+    "commit": "694c85bd9792d1ea68a48b60e3f179d1ef1c387f"
   },
-  "_source": "git://github.com/poonwu/ng-pattern-restrict.git",
-  "_target": "*",
-  "_originalSource": "poonwu/ng-pattern-restrict"
+  "_source": "https://github.com/poonwu/ng-pattern-restrict.git",
+  "_target": "694c85bd9792d1ea68a48b60e3f179d1ef1c387f",
+  "_originalSource": "https://github.com/poonwu/ng-pattern-restrict.git"
 }

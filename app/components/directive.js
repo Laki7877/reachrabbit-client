@@ -521,7 +521,7 @@ angular.module('myApp.directives', ['myApp.service'])
                             }
                         })
                         .catch(function (err) {
-                            console.log("Linking failed", err);
+                            if(scope.onDone) scope.onDone(err);
                         });
 
                 };

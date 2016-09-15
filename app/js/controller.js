@@ -780,7 +780,7 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 }
                 return true;
             };
-            $scope.saveProfile = function (profile, bypass) {
+            $scope.saveProfile = function (profile, bypass, rollback) {
                 var o = validator.formValidate($scope.form);
                 if (o && !bypass) {
                     return $scope.alert.danger(o.message);
@@ -795,8 +795,12 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                         $scope.form.$setPristine();
                         $scope.success = true;
                         $scope.alert.success('บันทึกข้อมูลเรียบร้อย!');
+                        $scope.profile = _.merge({}, $scope.formData);
                     })
                     .catch(function (err) {
+                        if(rollback) {
+                            $scope.rollBack();
+                        }
                         $scope.alert.danger(err.data.message);
                     });
             };
@@ -808,8 +812,16 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                 }
                return false;
             };
-            $scope.linkDone = function () {
-                $scope.saveProfile($scope.formData, true);
+            $scope.linkDone = function (err) {
+                if(err) {
+                    $scope.alert.danger(err.data.message);
+                } else {
+                    $scope.saveProfile($scope.formData, true, true);
+                }
+            };
+            $scope.rollBack = function() {
+                $scope.formData = _.merge({}, $scope.profile)
+                    .then();
             };
 
             // fetch profile
@@ -843,12 +855,13 @@ angular.module('myApp.influencer.controller', ['myApp.service'])
                     _.forEach($scope.formData.influencer.categories, function (r) {
                         r._selected = true;
                     });
-                    delete $scope.formData.password;
+
+                    //save state
+                    $scope.profile = _.merge({}, $scope.formData);
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);
                 });
-
         }
     ])
     .controller('InfluencerInboxController', ['$scope', '$filter', '$stateParams', 'ProposalService', 'moment', function ($scope, $filter, $stateParams, ProposalService, moment) {
@@ -1189,6 +1202,7 @@ angular.module('myApp.brand.controller', ['myApp.service'])
     ])
     .controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util', function ($scope, $window, AccountService, NcAlert, UserProfile, validator, util) {
         $scope.formData = {};
+        $scope.profile = {};
         $scope.form = {};
         $scope.alert = new NcAlert();
         util.warnOnExit($scope);
@@ -1196,7 +1210,6 @@ angular.module('myApp.brand.controller', ['myApp.service'])
         AccountService.getProfile()
             .then(function (response) {
                 $scope.formData = response.data;
-                delete $scope.formData.password;
             })
             .catch(function (err) {
                 $scope.alert.danger(err.data.message);

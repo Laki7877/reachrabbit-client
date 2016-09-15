@@ -7,7 +7,7 @@
 /* jshint node: true */
 'use strict';
 
-angular.module('myApp.service', ['satellizer'])
+angular.module('reachRabbitApp.service', ['satellizer'])
     .constant('Config', {
         API_BASE_URI: 'http://bella.reachrabbit.co:8080',
         FACEBOOK_APP_ID: "1648733485452450",

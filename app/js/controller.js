@@ -1443,18 +1443,13 @@ angular.module('myApp.portal.controller', ['myApp.service'])
         var u = UserProfile.get();
 
         $scope.formData = {};
-
         if (_.get(u, 'brand')) {
             $window.location.href = "/brand.html#/brand-campaign-list";
             return;
         }
-        $window.localStorage.removeItem('token');
-        $scope.messageCode = $location.search().message;
-        $scope.alert = new NcAlert();
 
-        if ($scope.messageCode == "401") {
-            $scope.alert.warning("<strong>401</strong> Unauthorized or Session Expired");
-        }
+        $window.localStorage.removeItem('token');
+        $scope.alert = new NcAlert();
 
         $scope.login = function () {
             $location.search('message', 'nop');

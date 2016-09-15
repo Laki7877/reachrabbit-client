@@ -32,7 +32,8 @@ angular.module('ngPatternRestrict', [])
             eventsBound = false, // have we bound our events yet?
             // functions
             getCaretPosition, // function to get the caret position, set in detectGetCaretPositionMethods
-            setCaretPosition; // function to set the caret position, set in detectSetCaretPositionMethods
+            setCaretPosition, // function to set the caret position, set in detectSetCaretPositionMethods
+            lastPristine = ngModelController.$pristine; // store last pristine state
 
           //-------------------------------------------------------------------
           // caret position
@@ -145,7 +146,13 @@ angular.module('ngPatternRestrict', [])
             // empty string, we don't have the chance of validating it against a regex. All we can do is assume it's wrong,
             // since the browser is rejecting it either way.
             var newValue = iElement.val(),
-              inputValidity = iElement.prop("validity");
+              inputValidity = iElement.prop("validity")
+              test = false;
+
+            if(newValue === oldValue) {
+              return;
+            }
+
             if (newValue === "" && iElement.attr("type") !== "text" && inputValidity && inputValidity.badInput) {
               DEBUG && showDebugInfo("Value cannot be verified. Should be invalid. Reverting back to:", oldValue);
               evt.preventDefault();
@@ -157,6 +164,7 @@ angular.module('ngPatternRestrict', [])
             } else if (regex.test(newValue)) {
               DEBUG && showDebugInfo("New value passed validation against", regex, newValue);
               updateCurrentValue(newValue);
+              test = true;
             } else {
               DEBUG && showDebugInfo("New value did NOT pass validation against", regex, newValue, "Reverting back to:", oldValue);
               evt.preventDefault();
@@ -168,6 +176,9 @@ angular.module('ngPatternRestrict', [])
             if (ngModelController) {
               scope.$apply(function () {
                 ngModelController.$setViewValue(oldValue);
+                if(!test && lastPristine) {
+                   ngModelController.$setPristine();
+                }
               });
             }
           }

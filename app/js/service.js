@@ -137,7 +137,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
         //Facebook account
         $authProvider.facebook({
             clientId: Config.FACEBOOK_APP_ID,
-            scope: ['pages_show_list']
+            scope: ['pages_show_list', 'email']
         });
 
         $authProvider.instagram({

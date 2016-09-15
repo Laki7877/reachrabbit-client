@@ -963,8 +963,6 @@ d8888b. d8888b.  .d8b.  d8b   db d8888b.
 Y8888P' 88   YD YP   YP VP   V8P Y8888D'
 */
 /////////////// /////////////// /////////////// /////////////// ///////////////
-
-
 angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
     /*
      * Campaign List controller - thank god it's work.
@@ -1214,6 +1212,12 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
         $scope.form = {};
         $scope.alert = new NcAlert();
         util.warnOnExit($scope);
+        
+        $scope.setShowPassword = function(){
+            $scope.showPassword = true;
+        };
+
+        $scope.showPassword = false;
 
         AccountService.getProfile()
             .then(function (response) {

@@ -56,10 +56,7 @@
                   เว็บไซต์ของ Brand
                 </div>
                 <div class="card-body-content">
-                  <div class="input-group">
-                    <span class="input-group-addon">http://</span>
                     <input type="text" ng-model="formData.brand.website" class="form-control" maxlength="200" url-mask placeholder="www.example.com"/>
-                  </div>
                 </div>
               </div>
             </div>
@@ -100,12 +97,20 @@
                   <div input-error></div>
                 </div>
               </div>
-              <div class="card-row" form-error="form.password">
+              <div class="card-row" ng-if="!showPassword" form-error="form.email">
+                 <div class="card-body-content-label with-input">
+                  
+                </div>
+                <div class="card-body-content">
+                  <a ng-click="setShowPassword()"><i class="fa fa-lock"></i> ตั้งรหัสผ่านใหม่</a>
+                </div>
+              </div>
+              <div class="card-row" ng-if="showPassword" form-error="form.password">
                 <div class="card-body-content-label with-input">
                   ตั้งรหัสผ่านใหม่
                 </div>
                 <div class="card-body-content">
-                  <input type="password" name="password" ng-model="formData.password" name="password" class="form-control" ng-minlength="8" maxlength="100">
+                  <input type="password" name="password" ng-model="formData.password" class="form-control" ng-minlength="8" maxlength="100">
                   <div input-error></div>
                 </div>
               </div>

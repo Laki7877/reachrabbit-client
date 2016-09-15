@@ -23,8 +23,10 @@
                       <tbody>
                         <tr ng-repeat="proposal in cart.proposals">
                           <td class="col-name">
-                            <img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="profile-picture"/>
-                             {{ proposal.influencer.user.name }}
+                            <a ui-sref="brand-workroom({proposalId: proposal.proposalId})">
+                              <img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="profile-picture"/>
+                               {{ proposal.influencer.user.name }}
+                            </a>
                           </td>
                           <td class="col-campaign-name">{{ proposal.campaign.title}}</td>
                           <td class="text-align-right">{{ proposal.price | number: 0 }} <a><i ng-click="removeFromCart(proposal)" class="fa fa-times-circle color-grey"></i></a> </td>

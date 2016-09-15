@@ -9,6 +9,11 @@
 'use strict';
 
 angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
+    .filter('newlinify', [function(){
+        return function (input) {
+            return input.replace(/\n/g, '</br>');
+        };
+    }])
     .directive('urlMask', [function() {
         return {
             restrict: 'A',

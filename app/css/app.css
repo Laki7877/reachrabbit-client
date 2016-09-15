@@ -10414,6 +10414,14 @@ ul.payment-methods {
 .pre {
   white-space: pre-wrap;
 }
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
 .layout-portal {

@@ -68,15 +68,17 @@ angular.module('reachRabbitApp', [
       mainResource: {
         url: 'images/example-campaign/main-picture.png'
       },
-      title: 'Rabbit ลิปครีมแมต 7 Days 7 Looks',
+      title: 'Rabbit Lipstick 7 Days 7 Looks',
       media: [
         { mediaId: 'facebook' },
         { mediaId: 'youtube' },
         { mediaId: 'instagram' }
       ],
-      fromBudget: 10000,
-      toBudget: 50000,
-      brand: 'Rabbit Lipstick',
+      budget: {
+        fromBudget: 10000,
+        toBudget: 50000
+      },
+      brand:{brandName:'Rabbit Lipstick'},
       proposalDeadline: moment(new Date()).add(30, 'days').toDate(),
       category: { categoryName: 'ความงาม' },
       linkTo: 'brand-campaign-detail-example'

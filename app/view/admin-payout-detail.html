@@ -151,7 +151,7 @@
                           <uploader-thumb template="components/templates/uploader-simple.html" no-crop="true" ng-model="formData.slipResource"></uploader-thumb>
                       </td>
                   </tr>
-                  <tr >
+                  <tr ng-if="payout.status !== 'Complete'">
                       <td colspan="2" class="no-top-border">
                           <button class="btn btn-width-max btn-primary" ng-click="adminConfirm()">ยืนยันการโอนเงิน</button>
                       </td>

@@ -6,7 +6,7 @@
         <div class="logo">
           <h3>เลือกบัญชีที่จะใช้สมัคร</h3>
         </div>
-        <div class="card-pages">
+        <div class="scrollable-rabio">
           <div class="radio-card" ng-repeat="page in pages | orderBy:'count':true track by $index">
             <label>
               <input type="radio"  ng-value="page" ng-model="formData.selectedPage" ng-disabled="page.count < minFollower">

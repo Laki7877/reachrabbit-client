@@ -8592,6 +8592,7 @@ input:-moz-placeholder {
 }
 .facebook-profile .card-gallery .card-gallery-item {
   max-width: 44%;
+  margin-bottom: 15px;
 }
 .instagram-profile .card-gallery {
   margin-top: -7.5px;

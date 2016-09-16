@@ -347,7 +347,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
 
             $scope.$on('$destroy', function () {
                 stop = true;
-                interval.cancel();
+                $interval.cancel(interval);
             });
 
             $scope.formData = {
@@ -455,7 +455,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             .then(function (response) {
                 $scope.formData = response.data;
                 $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
-                $scope.formData.influencer.user = $scope.formData.user;
+                $scope.formData.influencer.user = $scope.formData;
 
                 // fetch each media
                 if($scope.hasMedia('google')) {
@@ -1209,7 +1209,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
         $scope.form = {};
         $scope.alert = new NcAlert();
         util.warnOnExit($scope);
-        
+
         $scope.setShowPassword = function(){
             $scope.showPassword = true;
         };

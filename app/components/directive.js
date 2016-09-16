@@ -581,7 +581,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             transclude: true,
             templateUrl: 'components/templates/card-influencer-profile.html',
             scope: {
-                influencer: '=ngModel',
+                profile: '=ngModel',
                 _showSocialData: '=?showSocialData'
             },
             link: function (scope, element, attrs, ctrl, transclude) {

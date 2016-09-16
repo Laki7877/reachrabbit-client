@@ -7999,7 +7999,7 @@ input:-moz-placeholder {
 .radio-card.disabled .radio-image {
   opacity: 0.5;
 }
-.scrollable-rabio {
+.scrollable-radio {
   overflow-y: scroll;
   padding: 0px 10px;
   margin: 0px -10px;

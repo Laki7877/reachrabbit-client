@@ -4,7 +4,7 @@
         <h4 class="modal-title">กรุณาเลือกช่องทางที่ใช้งาน</h4>
     </div>
     <div class="card-body">
-        <div class="scrollable-rabio">
+        <div class="scrollable-radio">
           <div class="radio-card" ng-repeat="page in pages | orderBy:'count':true track by $index">
             <label>
               <input type="radio"  ng-value="page" ng-model="formData.selectedPage" ng-disabled="page.count < minFollower">

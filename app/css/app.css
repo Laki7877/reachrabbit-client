@@ -8172,6 +8172,9 @@ input:-moz-placeholder {
   padding-right: 15px;
   text-align: right;
 }
+.card-body .card-body-content-label .fa-question-circle {
+  color: #8692a8;
+}
 .card-body .card-body-content {
   position: relative;
   float: left;

@@ -7,7 +7,7 @@
       <form novalidate name="form">
         <div nc-alert='alert'></div>
         <div class="card-row-basic">
-            ช่องทางการโปรโมท
+            ช่องทางการโปรโมท <i uib-tooltip="เลือกช่องทางที่คุณจะโปรโมทสินค้าให้กับ Brand สามารถเลือกได้มากกว่าหนึ่งช่องทาง" tooltip-placement="right" class="fa fa-question-circle"></i>
         </div>
 
         <div class="card-row-basic" ng-repeat="media in campaign.media">
@@ -18,21 +18,9 @@
                     คุณยังไม่ได้เชื่อมต่อ <a ng-click="$close()" ui-sref="influencer-profile">เชือมต่อช่องทางนี้</a></span>
             </label>
         </div>
-        <!--<div class="card-row-basic">
-            <label class="promotion-medium">
-                <input type="checkbox"/>
-                <img ng-src="images/icon-instagram-lg.png" class="profile-social-media-icon" /> Instagram
-            </label>
-        </div>
-        <div class="card-row-basic">
-            <label class="promotion-medium disabled">
-                <input type="checkbox" disabled/>
-                <img ng-src="images/icon-google-lg.png" class="profile-social-media-icon" /> YouTube คุณยังไม่ได้เชื่อมต่อ <a href="#">เชือมต่อช่องทางนี้</a>
-              </label>
-        </div>-->
 
         <div class="card-row-basic-label">
-            ระยะเวลาทำงาน
+            ระยะเวลาทำงาน <i uib-tooltip="คุณจะต้องใช้เวลานานแค่ไหน เพื่อเสร็จงานตามข้อเสนอ?" tooltip-placement="right" class="fa fa-question-circle"></i>
         </div>
         <div class="card-row-basic" form-error="form.completionTime">
           <div class="input-dropdown">
@@ -48,7 +36,7 @@
         </div>
 
         <div class="card-row-basic-label">
-            ราคาที่คุณเสนอ
+            ราคาที่คุณเสนอ <i uib-tooltip="ราคาที่คุณเสนอให้ Brand พิจารณา สามารถแก้ไขได้ภายหลัง" tooltip-placement="right" class="fa fa-question-circle"></i>
         </div>
         <div class="card-row-basic" form-error="form.price">
             <div class="input-group">
@@ -58,7 +46,7 @@
             <div input-error></div>
         </div>
         <div class="card-row-basic-label">
-            คุณจะได้รับ
+            คุณจะได้รับ <i uib-tooltip="รายได้ของคุณหลังหักค่าธรรมเนียมการใช้ระบบ 18% เราจะช่วยหางานให้คุณเพิ่ม และพัฒนาระบบให้ดีขึ้นค่ะ :)" tooltip-placement="right" class="fa fa-question-circle"></i>
         </div>
         <div class="card-row-basic input-group">
             <input type="text" class="form-control" value="{{ proposalNetPrice | number: 0}}" disabled/>
@@ -67,8 +55,8 @@
         <p class="hint-block">หลังหักค่าธรรมเนียม</p>
 
         <div form-error="form.description" ng-if="!isEditMode">
-          <div class="card-row-basic">
-              ข้อความ
+          <div class="card-row-basic-label">
+              ข้อความ  <i uib-tooltip="Brand จะดูข้อความนี้เพื่อพิจารณาข้อเสนอ ให้อธิบายว่าคุณจะช่วย Brand โปรโมทอย่างไร และทำไมถึงควรเลือกคุณ?" tooltip-placement="right" class="fa fa-question-circle"></i>
           </div>
           <textarea name="description" class="form-control" rows="4" ng-model="formData.description" ng-model-options="{ updateOn: 'change blur' }" placeholder="คุณจะช่วยโปรโมท Brand อย่างไร และทำไม Brand ถึงควรเลือกคุณ?" maxlength="1000" required></textarea>
           <div input-error></div>

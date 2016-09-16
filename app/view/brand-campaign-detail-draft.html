@@ -15,8 +15,8 @@
                 <div class="card-campaign-description" >
                     <div class="card-body">
                         <div class="card-row" form-error="form.title" is-validate="isPublishing()">
-                            <div class="card-body-content-label with-input">
-                                ชื่อ Campaign
+                            <div class="card-body-content-label with-input" uib-tooltip="ชื่อ Campaign ควรเขียนให้สั้น และได้ใจความ" tooltip-placement="bottom">
+                                ชื่อ Campaign <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
                                 <input name="title" type="text" required ng-model="formData.title" class="form-control" maxlength="60">
@@ -24,8 +24,8 @@
                             </div>
                         </div>
                         <div class="card-row" form-error="form.mainResource" is-validate="isPublishing($model, $error)">
-                            <div class="card-body-content-label with-input">
-                                รูป Campaign
+                            <div class="card-body-content-label with-input" uib-tooltip="รูป Campaign เป็นรูปหลักที่ Influencer จะเห็น ควรเลือกให้เห็นสินค้าชัดเจน" tooltip-placement="bottom">
+                                รูป Campaign <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
                                 <uploader-thumb name="mainResource"
@@ -42,8 +42,8 @@
                             </div>
                         </div>
                         <div class="card-row">
-                            <div class="card-body-content-label with-checkbox">
-                                ช่องทางการโปรโมท
+                            <div class="card-body-content-label with-checkbox" uib-tooltip="เลือกช่องทางที่คุณอยากให้ Influencer นำเสนอ เพื่อโปรโมทสินค้าคุณ" tooltip-placement="bottom">
+                                ช่องทางโปรโมท <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
                                 <div class="checkbox" ng-repeat="media in medium">
@@ -58,8 +58,8 @@
                             </div>
                         </div>
                         <div class="card-row" form-error="form.category" is-validate="isPublishing()">
-                            <div class="card-body-content-label with-input">
-                                หมวดหมู่
+                            <div class="card-body-content-label with-input" uib-tooltip="เลือกหมวดหมู่ที่ใกล้เคียงกับสินค้าของคุณมากที่สุด" tooltip-placement="bottom">
+                                หมวดหมู่ <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
                                 <div class="input-dropdown">
@@ -72,8 +72,8 @@
                             </div>
                         </div>
                         <div class="card-row" form-error="form.description" is-validate="isPublishing()">
-                            <div class="card-body-content-label with-input">
-                                รายละเอียด
+                            <div class="card-body-content-label with-input" uib-tooltip="อธิบายรายละเอียดของงาน แต่อย่าลืมให้โอกาส Influencer ได้ใช้ความคิดสร้างสรรค์ด้วยนะคะ!" tooltip-placement="bottom">
+                                รายละเอียด <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
                                 <textarea name="description" class="form-control" ng-model="formData.description" rows="9" maxlength="5000" required></textarea>
@@ -81,24 +81,24 @@
                             </div>
                         </div>
                         <div class="card-row">
-                            <div class="card-body-content-label with-input">
-                                Keyword สำคัญ
+                            <div class="card-body-content-label with-input" uib-tooltip="Keyword สำคัญที่คุณอยากให้ Influencer เน้นในงานที่ทำ อาจเป็นชื่อสินค้า หรือสโลแกนก็ได้" tooltip-placement="bottom">
+                                Keyword สำคัญ <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
                                 <input name="keyword" type="text" ng-model="formData.keyword" class="form-control" placeholder="Keyword สำคัญที่อยากให้ influencer พูดถึง" maxlength="100">
                             </div>
                         </div>
                         <div class="card-row">
-                            <div class="card-body-content-label with-input">
-                                เว็บไซต์ของสินค้า
+                            <div class="card-body-content-label with-input" uib-tooltip="ใส่เว็บไซต์ของสินค้า เพื่อให้ Influencer ศึกษาข้อมูลเพิ่มเติม มาใช้ประกอบการทำงานได้" tooltip-placement="bottom">
+                                เว็บไซต์ของสินค้า <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
                                 <input type="text" class="form-control" ng-model="formData.website" maxlength="200" placeholder="www.example.com">
                             </div>
                         </div>
                         <div class="card-row" form-error="form.campaignResources">
-                            <div class="card-body-content-label">
-                                รูปประกอบ
+                            <div class="card-body-content-label" uib-tooltip="รูปประกอบ เพื่อช่วยเพิ่มความเข้าใจเกี่ยวกับสินค้าหรือแคมเปญของคุณ" tooltip-placement="bottom">
+                                รูปประกอบ <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
                                 <uploader-multi name="resources"
@@ -112,8 +112,8 @@
                             </div>
                         </div>
                         <div class="card-row" form-error="form.budget" is-validate="isPublishing()">
-                            <div class="card-body-content-label with-input">
-                                ค่าตอบแทน
+                            <div class="card-body-content-label with-input" uib-tooltip="เลือกช่วงราคาตามงบประมาณต่อคนของคุณ แต่ Influencer สามารถเสนอราคาต่างจากนี้เพื่อให้คุณพิจารณาได้" tooltip-placement="bottom">
+                                ค่าตอบแทน <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
                                 <div class="input-dropdown">
@@ -126,8 +126,8 @@
                             </div>
                         </div>
                         <div class="card-row" form-error="form.proposalDeadline" is-validate="isPublishing()">
-                            <div class="card-body-content-label with-input">
-                                เปิดรับข้อเสนอถึง
+                            <div class="card-body-content-label with-input" uib-tooltip="คุณจะเปิดให้ Influencer สามารถส่งข้อเสนอให้คุณจนถึงวันที่ระบุนี้ แนะนำให้เปิดไว้อย่างน้อย 2 อาทิตย์จากวันที่สร้าง Campaign" tooltip-placement="bottom">
+                                เปิดรับข้อเสนอถึง <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
                                 <p class="input-group">

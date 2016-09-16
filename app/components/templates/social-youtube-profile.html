@@ -17,21 +17,21 @@
                 </div>
             </div>
             <div class="card-info">
-                <div class="card-info-label">ยอด View ทั้งหมด</div>
+                <div class="card-info-label" uib-tooltip="ยอด View ทั้งหมด รวมจากทุกวิดีโอใน YouTube ใน Channel นี้" tooltip-placement="top">ยอด View ทั้งหมด <i class="fa fa-question-circle"></i></div>
                 <div class="card-content">
                     <strong>{{ data.channel.statistics.viewCount | number: 0 }}</strong>
                     <i class="fa fa-eye"></i>
                 </div>
             </div>
             <div class="card-info">
-                <div class="card-info-label">ค่าเฉลี่ย View <i class="fa fa-question-circle"></i></div>
+                <div class="card-info-label" uib-tooltip="ค่าเฉลี่ย View ถูกคำนวณจาก 20 วิดีโอล่าสุด" tooltip-placement="top">ค่าเฉลี่ย View <i class="fa fa-question-circle"></i></div>
                 <div class="card-content">
                     <strong>{{ data.channel.statistics.viewCount/data.videos.length | number: 0 }}</strong>
                     <i class="fa fa-eye"></i>
                 </div>
             </div>
             <div class="card-info">
-                <div class="card-info-label">ค่าเฉลี่ย Like <i class="fa fa-question-circle"></i></div>
+                <div class="card-info-label" uib-tooltip="ค่าเฉลี่ย Like ถูกคำนวณจาก 20 วิดีโอล่าสุด" tooltip-placement="top">ค่าเฉลี่ย Like <i class="fa fa-question-circle"></i></div>
                 <div class="card-content">
                     <strong>{{ $root.sumReduce(data.videos, 'statistics.likeCount')/data.videos.length }}</strong>
                     <i class="fa fa-thumb-up"></i>

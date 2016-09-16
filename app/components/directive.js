@@ -68,6 +68,12 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                 scope.gotoPage = function() {
                     $window.open(scope.data.link);
                 };
+                scope.isYoutubeVideo = function(url) {
+                  if(url && url.indexOf('youtube') >= 0) {
+                    return true;
+                  }
+                  return false;
+                };
             }
         };
     }])

@@ -8558,6 +8558,12 @@ input:-moz-placeholder {
   width: 100%;
   min-height: 300px;
 }
+.social-media-profile .card-gallery .card-gallery-item .card-gallery-video video,
+.facebook-profile .card-gallery .card-gallery-item .card-gallery-video video,
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video video,
+.youtube-profile .card-gallery .card-gallery-item .card-gallery-video video {
+  width: 100%;
+}
 .social-media-profile .card-gallery .card-gallery-item img,
 .facebook-profile .card-gallery .card-gallery-item img,
 .instagram-profile .card-gallery .card-gallery-item img,
@@ -8584,19 +8590,8 @@ input:-moz-placeholder {
   padding: 15px;
   white-space: pre-wrap;
 }
-.facebook-profile .card-gallery {
-  -webkit-column-count: 2;
-  -webkit-column-gap: 10px;
-  -webkit-column-fill: auto;
-  -moz-column-count: 2;
-  -moz-column-gap: 10px;
-  -moz-column-fill: auto;
-  column-count: 2;
-  column-gap: 15px;
-  column-fill: auto;
-}
 .facebook-profile .card-gallery .card-gallery-item {
-  margin: 7.5px 0px;
+  max-width: 44%;
 }
 .instagram-profile .card-gallery {
   margin-top: -7.5px;

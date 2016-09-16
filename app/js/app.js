@@ -18,6 +18,7 @@ angular.module('reachRabbitApp', [
   'ngPatternRestrict',
   'angularMoment',
   'luegg.directives',
+  'wu.masonry',
   'ngImgCrop',
   'jsonFormatter',
   //Top level

@@ -40,10 +40,15 @@
 	      	<button ng-click="gotoPage()" class="btn-secondary pull-right btn-width-md">ดูบน Facebook</button>
 	    	</div>
       </div>
-      <div class="card-gallery">
-      	<div class="card-gallery-item" ng-repeat="post in data.posts track by $index">
+      <div class="card-gallery" masonry reload-on-show reload-on-resize masonry-options="{ gutter:15, columnWidth: '.card-gallery-item', transitionDuration: '0.2s' }">
+      	<div class="card-gallery-item masonry-brick" ng-repeat="post in data.posts track by $index">
       		<img ng-if="post.picture && !post.video" ng-src="{{post.picture}}" />
-      		<iframe class="card-gallery-video" ng-if="post.video" ng-src="{{$root.trustSrc(post.video)}}" frameBorder="0" autoplay="0"></iframe>
+      		<iframe ng-if="post.video && isYoutubeVideo(post.video)" class="card-gallery-video" ng-if="post.video" ng-src="{{$root.trustSrc(post.video)}}" frameBorder="0" autoplay="0"></iframe>
+          <div class="card-gallery-video" ng-if="post.video && !isYoutubeVideo(post.video)">
+              <video controls>
+                  <source ng-src="{{$root.trustSrc(post.video)}}" type="video/mp4">
+              </video>
+          </div>
       		<div class="card-gallery-message col-xs-12" ng-bind-html="post.message"></div>
       		<div class="card-gallery-info">
 		      		<div class="card-info col-xs-4">

@@ -68,29 +68,17 @@ angular.module('reachRabbitApp', [
       mainResource: {
         url: 'images/example-campaign/main-picture.png'
       },
-      title: 'Morinaga Koeda รสใหม่',
-      toBudget: 2000,
+      title: 'Rabbit ลิปครีมแมต 7 Days 7 Looks',
       media: [
-        { mediaId: 'facebook' }
+        { mediaId: 'facebook' },
+        { mediaId: 'youtube' },
+        { mediaId: 'instagram' }
       ],
-      fromBudget: 200,
+      fromBudget: 10000,
+      toBudget: 50000,
+      brand: 'Rabbit Lipstick',
       proposalDeadline: moment(new Date()).add(30, 'days').toDate(),
-      category: { categoryName: 'ความสวยแมว' },
-      linkTo: 'brand-campaign-detail-example'
-    },
-    {
-      mainResource: {
-        url: 'images/example-campaign/main-picture.png'
-      },
-      media: [
-        { mediaId: 'instagram' },
-        { mediaId: 'youtube' }
-      ],
-      title: 'Morinaga Koeda รสกาก',
-      toBudget: 1000,
-      fromBudget: 500,
-      proposalDeadline: moment(new Date()).add(30, 'days').toDate(),
-      category: { categoryName: 'เกมส์' },
+      category: { categoryName: 'ความงาม' },
       linkTo: 'brand-campaign-detail-example'
     }
   ])

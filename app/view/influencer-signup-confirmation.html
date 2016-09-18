@@ -29,7 +29,7 @@
             <label>อีเมล</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-              <input type="email" class="form-control" required ng-model="formData.email" maxlength="100">
+              <input type="email" name="email" class="form-control" required ng-model="formData.email" maxlength="100">
             </div>
             <div input-error></div>
           </div>
@@ -38,7 +38,7 @@
             <label>เบอร์ติดต่อ</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
-              <input type="text" class="form-control" required ng-model="formData.phoneNumber" ng-pattern-restrict="^[0-9]*$" maxlength="20">
+              <input type="text" name="phoneNumber" class="form-control" required ng-model="formData.phoneNumber" ng-pattern-restrict="^[0-9]*$" maxlength="20">
             </div>
             <div input-error></div>
           </div>

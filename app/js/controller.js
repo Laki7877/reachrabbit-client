@@ -370,6 +370,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
 
                 $scope.msglist.push(msg);
                 $scope.msgHash[msg.referenceId] = msg;
+                $scope.formData.messageStr = '';
 
                 ProposalService.sendMessage(_.omit(msg, 'user'))
                     .then(function (resp) {

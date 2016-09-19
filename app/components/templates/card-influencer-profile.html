@@ -8,7 +8,7 @@
       <small>เกี่ยวกับ {{ profile.user.name }}</small>
       <p ng-if="profile.about.length > 0" ng-bind-html="profile.about | newlinify">
       </p>
-      <a ng-if="profile.web" ng-href="{{profile.web | maskUrl}}" target="_blank"> {{ profile.web  }}</a>
+      <a ng-if="profile.website" ng-href="{{profile.website}}" target="_blank"> {{ profile.website }}</a>
       <p ng-if="!isInfluencer && (!profile.about || profile.about.length == 0)">
         -
       </p>

@@ -317,6 +317,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                         if (!res.data) {
                             return null;
                         }
+                        timestamp = new Date();
                         return ProposalService.getNewMessages($scope.proposalId, {
                             timestamp: res.data
                         });
@@ -348,7 +349,6 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                         }
                     })
                     .finally(function () {
-                        timestamp = new Date();
                         $scope.pollActive = false;
                     });
             }, 1000);

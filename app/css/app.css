@@ -10484,11 +10484,12 @@ ul.payment-methods {
 .layout-portal .view-influencer-portal {
   margin-top: 140px;
 }
-.layout-portal .view-signup-select-page {
+.layout-portal .view-influencer-signup-select-page {
   margin-top: 90px;
 }
-.layout-portal .view-signup-select-page h3 {
+.layout-portal .view-influencer-signup-select-page h3 {
   font-style: normal;
+  margin-bottom: 10px;
 }
 .layout-portal .view-influencer-signup-select-page .card-body {
   padding-bottom: 0px;

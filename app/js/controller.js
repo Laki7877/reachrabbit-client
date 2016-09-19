@@ -734,9 +734,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                 });
             };
             $scope.$watch('filter', function () {
-                if ($scope.filter) {
-                    $scope.load(_.extend($scope.params, { mediaId: $scope.filter }));
-                }
+                $scope.load(_.extend($scope.params, { mediaId: $scope.filter }));
             });
 
             //Load campaign data

@@ -112,7 +112,13 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                   $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
                 }
 
-                $rootScope.signOut($location.path());
+                var bounce_url = $location.path();
+                if($location.absUrl().includes($location.path())){
+                    $rootScope.signOut();
+                }else{
+                    $rootScope.signOut(bounce_url);
+                }
+               
             }
 
             if (!response.data) {

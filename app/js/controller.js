@@ -709,18 +709,6 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             CampaignService.getOne($stateParams.campaignId)
                 .then(function (campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;
-                    CampaignService.getAppliedProposal(campaignResponse.data.campaignId)
-                        .then(function (response) {
-                            $scope.isApplied = _.has(response.data, 'proposalId');
-                            if ($scope.isApplied) {
-                                $scope.proposal = response.data;
-                            }
-                        });
-
-                    return AccountService.getUser($scope.campaignNee.brandId);
-                })
-                .then(function (brandUserDataResponse) {
-                    $scope.brandUserInfo = brandUserDataResponse.data;
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);
@@ -1835,10 +1823,6 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
             CampaignService.getOne($stateParams.campaignId)
                 .then(function (campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;
-                    return AccountService.getUser($scope.campaignNee.brandId);
-                })
-                .then(function (brandUserDataResponse) {
-                    $scope.brandUserInfo = brandUserDataResponse.data;
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);

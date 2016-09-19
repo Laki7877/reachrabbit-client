@@ -8308,7 +8308,6 @@ input:-moz-placeholder {
 .card-portal button {
   margin-top: 15px;
   margin-bottom: 5px;
-  width: 100%;
 }
 .card-campaign-list-item {
   margin-bottom: 20px;
@@ -9705,7 +9704,8 @@ fieldset[disabled] .btn-clear.active {
 .btn-width-md {
   width: 127px;
 }
-.btn-width-lg {
+.btn-width-lg,
+.layout-portal .view-influencer-signup-select-page button {
   width: 206px;
 }
 .btn-width-max {

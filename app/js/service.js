@@ -131,7 +131,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
         //Google account
         $authProvider.google({
             clientId: Config.YOUTUBE_APP_ID,
-            scope: ['https://www.googleapis.com/auth/youtube', 'https://www.googleapis.com/auth/userinfo.email']
+            scope: ['https://www.googleapis.com/auth/youtube.readonly', 'https://www.googleapis.com/auth/userinfo.email']
         });
 
         //Facebook account

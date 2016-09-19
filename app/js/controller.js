@@ -317,7 +317,6 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                         if (!res.data) {
                             return null;
                         }
-                        timestamp = timestamp;
                         return ProposalService.getNewMessages($scope.proposalId, {
                             timestamp: res.data
                         });
@@ -329,8 +328,18 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                                 if ($scope.msglist.length >= $scope.msgLimit) {
                                     $scope.msglist.shift();
                                 }
-                                if (!_.isNil($scope.msgHash[res.data[i].referenceId])) {
-                                    _.extend($scope.msgHash[res.data[i].referenceId], res.data[i]);
+                                if (_.has($scope.msgHash, res.data[i].referenceId)) {
+                                    if(_.has($scope.msgHash[res.data[i].referenceId], 'messageId')) {
+                                        if(_.get($scope.msgHash[res.data[i].referenceId], 'messageId') ===
+                                            res.data[i].messageId) {
+                                            // resolved
+                                        } else {
+                                            // new one
+                                            $scope.msglist.push(res.data[i]);
+                                        }
+                                    } else {
+                                        _.extend($scope.msgHash[res.data[i].referenceId], res.data[i]);
+                                    }
                                 } else {
                                     // from server
                                     $scope.msglist.push(res.data[i]);
@@ -371,8 +380,8 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 $scope.msglist.push(msg);
                 $scope.msgHash[msg.referenceId] = msg;
                 $scope.formData.messageStr = '';
-
                 ProposalService.sendMessage(_.omit(msg, 'user'))
+
                     .then(function (resp) {
                         //$scope.msglist.push(resp.data);
                         $scope.formData = {

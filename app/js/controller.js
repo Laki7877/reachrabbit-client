@@ -605,7 +605,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
 /////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'])
-    .controller('WalletController', ['$rootScope', '$scope', '$state', 'UserProfile', 'InfluencerAccountService', 'AccountService', 'DataService', 'BusinessConfig', 'NcAlert', function ($rootScope, $scope, $state, UserProfile, InfluencerAccountService, AccountService, DataService, BusinessConfig, NcAlert) {
+    .controller('WalletController', ['$rootScope', '$scope', '$state', 'UserProfile', 'InfluencerAccountService', 'AccountService', 'DataService', 'BusinessConfig', 'NcAlert', 'validator', function ($rootScope, $scope, $state, UserProfile, InfluencerAccountService, AccountService, DataService, BusinessConfig, NcAlert, validator) {
         $scope.wallet = {};
         $scope.alert = new NcAlert();
         $scope.formData = {};
@@ -631,6 +631,10 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
         $scope.requestPayout = function () {
             //if user chekced the chekbx
             //we save bank detail first
+            var o = validator.formValidate($scope.form);
+            if (o) {
+                return $scope.alert.danger(o.message);
+            }
 
             InfluencerAccountService.requestPayout($scope.formData)
                 .then(function (ias) {

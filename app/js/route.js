@@ -16,6 +16,7 @@ angular.module('reachRabbitApp.routes', ['ui.router'])
                 templateUrl: 'view/404.html',
                 controller: 'EmptyController'
             });
+
         $urlRouterProvider.otherwise("404");
 
     }]);
@@ -137,7 +138,6 @@ angular.module('reachRabbitApp.brand.routes', ['ui.router'])
 
 angular.module('reachRabbitApp.influencer.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-
         /* Influencer */
         $stateProvider
             .state('influencer-campaign-list', {

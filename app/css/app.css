@@ -71,7 +71,8 @@ mark {
 }
 small,
 .workroom .card-proposal-detail .card-info-label,
-.proposal-modal .hint-block {
+.proposal-modal .hint-block,
+.social-linker-modal .hint-block {
   font-size: 80%;
 }
 sub,
@@ -233,7 +234,8 @@ th {
   .proposal-modal .modal-title,
   .facebook-profile .card-overview .card-info strong,
   .instagram-profile .card-overview .card-info strong,
-  .youtube-profile .card-overview .card-info strong {
+  .youtube-profile .card-overview .card-info strong,
+  .social-linker-modal .modal-title {
     orphans: 3;
     widows: 3;
   }
@@ -245,7 +247,8 @@ th {
   .proposal-modal .modal-title,
   .facebook-profile .card-overview .card-info strong,
   .instagram-profile .card-overview .card-info strong,
-  .youtube-profile .card-overview .card-info strong {
+  .youtube-profile .card-overview .card-info strong,
+  .social-linker-modal .modal-title {
     page-break-after: avoid;
   }
   .navbar {
@@ -1232,7 +1235,8 @@ h6,
 .instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
 .youtube-profile .card-overview .card-info strong,
 .youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
-.workroom .card-campaign-thumbnail .card-body {
+.workroom .card-campaign-thumbnail .card-body,
+.social-linker-modal .modal-title {
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
@@ -1278,7 +1282,8 @@ h3,
 .proposal-modal .modal-title,
 .facebook-profile .card-overview .card-info strong,
 .instagram-profile .card-overview .card-info strong,
-.youtube-profile .card-overview .card-info strong {
+.youtube-profile .card-overview .card-info strong,
+.social-linker-modal .modal-title {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -1350,7 +1355,8 @@ h3,
 .proposal-modal .modal-title,
 .facebook-profile .card-overview .card-info strong,
 .instagram-profile .card-overview .card-info strong,
-.youtube-profile .card-overview .card-info strong {
+.youtube-profile .card-overview .card-info strong,
+.social-linker-modal .modal-title {
   font-size: 24px;
 }
 h4,
@@ -1399,7 +1405,8 @@ small,
 .info-text,
 .workroom .card-proposal-detail .card-info-label,
 .chatbox-card .message-area .message .message-body .message-heading .message-time,
-.proposal-modal .hint-block {
+.proposal-modal .hint-block,
+.social-linker-modal .hint-block {
   font-size: 85%;
 }
 mark,
@@ -3007,7 +3014,8 @@ select[multiple].input-lg {
   top: 0;
 }
 .help-block,
-.proposal-modal .hint-block {
+.proposal-modal .hint-block,
+.social-linker-modal .hint-block {
   display: block;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -7692,7 +7700,8 @@ h3,
 .proposal-modal .modal-title,
 .facebook-profile .card-overview .card-info strong,
 .instagram-profile .card-overview .card-info strong,
-.youtube-profile .card-overview .card-info strong {
+.youtube-profile .card-overview .card-info strong,
+.social-linker-modal .modal-title {
   font-family: 'Kanit', sans-serif;
   font-size: 18px;
   font-weight: normal;
@@ -8001,7 +8010,7 @@ input:-moz-placeholder {
 }
 .scrollable-radio {
   overflow-y: scroll;
-  padding: 0px 10px;
+  padding: 10px 10px 0px 10px;
   margin: 0px -10px;
   max-height: 400px;
 }
@@ -8299,7 +8308,6 @@ input:-moz-placeholder {
 .card-portal button {
   margin-top: 15px;
   margin-bottom: 5px;
-  width: 100%;
 }
 .card-campaign-list-item {
   margin-bottom: 20px;
@@ -9696,7 +9704,8 @@ fieldset[disabled] .btn-clear.active {
 .btn-width-md {
   width: 127px;
 }
-.btn-width-lg {
+.btn-width-lg,
+.layout-portal .view-influencer-signup-select-page button {
   width: 206px;
 }
 .btn-width-max {
@@ -10266,50 +10275,66 @@ div:focus {
   padding: 15px 0px 10px 0px;
   margin: 0px 15px;
 }
-.proposal-modal {
+.proposal-modal,
+.social-linker-modal {
   padding-left: 10px;
   padding-right: 10px;
 }
-.proposal-modal .modal-title {
+.proposal-modal .modal-title,
+.social-linker-modal .modal-title {
   color: #16bbac;
 }
-.proposal-modal textarea {
+.proposal-modal textarea,
+.social-linker-modal textarea {
   resize: vertical;
 }
-.proposal-modal h4 {
+.proposal-modal h4,
+.social-linker-modal h4 {
   color: #16bbac;
 }
-.proposal-modal .card-row-basic {
+.proposal-modal .card-row-basic,
+.social-linker-modal .card-row-basic {
   margin-top: 5px;
 }
-.proposal-modal .card-row-basic-label {
+.proposal-modal .card-row-basic-label,
+.social-linker-modal .card-row-basic-label {
   margin-top: 15px;
 }
-.proposal-modal .help-block {
+.proposal-modal .help-block,
+.social-linker-modal .help-block {
   text-align: right;
 }
-.proposal-modal .hint-block {
+.proposal-modal .hint-block,
+.social-linker-modal .hint-block {
   text-align: right;
   color: #8692a8;
 }
-.proposal-modal .promotion-medium .profile-social-media-icon {
+.proposal-modal .promotion-medium .profile-social-media-icon,
+.social-linker-modal .promotion-medium .profile-social-media-icon {
   width: 30px;
   padding-right: 5px;
   padding-left: 5px;
 }
-.proposal-modal .button-bar {
+.proposal-modal .button-bar,
+.social-linker-modal .button-bar {
   padding-top: 15px;
 }
-.proposal-modal .button-bar .hint-block {
+.proposal-modal .button-bar .hint-block,
+.social-linker-modal .button-bar .hint-block {
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: center;
 }
-.proposal-modal .disabled {
+.proposal-modal .disabled,
+.social-linker-modal .disabled {
   color: #8692a8;
 }
-.proposal-modal .disabled img {
+.proposal-modal .disabled img,
+.social-linker-modal .disabled img {
   opacity: 0.4;
+}
+.social-linker-modal .card-body {
+  padding: 0px 15px;
 }
 .select-proposal-modal .card-body {
   padding: 25px 30px 20px 30px;
@@ -10459,11 +10484,15 @@ ul.payment-methods {
 .layout-portal .view-influencer-portal {
   margin-top: 140px;
 }
-.layout-portal .view-signup-select-page {
+.layout-portal .view-influencer-signup-select-page {
   margin-top: 90px;
 }
-.layout-portal .view-signup-select-page h3 {
+.layout-portal .view-influencer-signup-select-page h3 {
   font-style: normal;
+  margin-bottom: 10px;
+}
+.layout-portal .view-influencer-signup-select-page .card-body {
+  padding-bottom: 0px;
 }
 .layout-portal .view-influencer-signup-confirmation {
   margin-top: 90px;

@@ -1,7 +1,7 @@
 {
   "name": "reachrabbit-client",
   "private": true,
-  "version": "0.9",
+  "version": "0.9.0",
   "description": "Moderately Engineered ReachRabbit Client",
   "license": "MIT",
   "devDependencies": {

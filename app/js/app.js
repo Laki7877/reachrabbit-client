@@ -246,7 +246,7 @@ angular.module('reachRabbitApp', [
       };
 
       //Only init polling if User is logged in
-      if (!$location.absUrl().includes("portal.html")) {
+      if (!$location.absUrl().includes("-portal") && !$location.absUrl().includes("-login") && !$location.absUrl().includes("-signup")) {
         $rootScope.pollPending = false;
         $rootScope.pollInbox = function (immediately) {
           var profile = $rootScope.getProfile();

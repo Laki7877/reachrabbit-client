@@ -9,28 +9,28 @@
 'use strict';
 
 angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
-    .filter('newlinify', [function(){
+    .filter('newlinify', [function () {
         return function (input) {
             return input.replace(/\n/g, '</br>');
         };
     }])
-    .directive('urlMask', [function() {
+    .directive('urlMask', [function () {
         return {
             restrict: 'A',
             require: 'ngModel',
-            link: function(scope, elem, attrs, ctrl) {
+            link: function (scope, elem, attrs, ctrl) {
                 function formatter(value) {
-                    if(ctrl.$isEmpty(value)) {
+                    if (ctrl.$isEmpty(value)) {
                         return value;
                     }
-                    if(value.startsWith('http://')) {
+                    if (value.startsWith('http://')) {
                         return value.substr(7);
                     }
                     return value;
                 }
 
                 function parser(value) {
-                    if(ctrl.$isEmpty(value)) {
+                    if (ctrl.$isEmpty(value)) {
                         return null;
                     }
                     return 'http://' + value;
@@ -41,7 +41,16 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             }
         };
     }])
-    .directive('instagramProfile', ['$window', function($window) {
+    .filter('maskUrl', [function () {
+        return function (value) {
+            if (value.startsWith('http')) {
+                return value;
+            }
+            return 'http://' + value;
+        };
+
+    }])
+    .directive('instagramProfile', ['$window', function ($window) {
         return {
             restrict: 'E',
             scope: {
@@ -49,14 +58,14 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             },
             replace: true,
             templateUrl: 'components/templates/social-instagram-profile.html',
-            link: function(scope) {
-                scope.gotoPage = function() {
+            link: function (scope) {
+                scope.gotoPage = function () {
                     $window.open('https://www.instagram.com/' + scope.data.username);
                 };
             }
         };
     }])
-    .directive('facebookProfile', ['$window', function($window) {
+    .directive('facebookProfile', ['$window', function ($window) {
         return {
             restrict: 'E',
             scope: {
@@ -64,28 +73,28 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             },
             replace: true,
             templateUrl: 'components/templates/social-facebook-profile.html',
-            link: function(scope) {
-                scope.gotoPage = function() {
+            link: function (scope) {
+                scope.gotoPage = function () {
                     $window.open(scope.data.link);
                 };
-                scope.isYoutubeVideo = function(url) {
-                  if(url && url.indexOf('youtube') >= 0) {
-                    return true;
-                  }
-                  return false;
+                scope.isYoutubeVideo = function (url) {
+                    if (url && url.indexOf('youtube') >= 0) {
+                        return true;
+                    }
+                    return false;
                 };
             }
         };
     }])
-    .directive('youtubeProfile', ['$window', function($window){
+    .directive('youtubeProfile', ['$window', function ($window) {
         return {
             restrict: 'E',
             scope: {
-                data : '=ngModel'
+                data: '=ngModel'
             },
             templateUrl: "components/templates/social-youtube-profile.html",
-            link: function(scope){
-                scope.gotoPage = function(link) {
+            link: function (scope) {
+                scope.gotoPage = function (link) {
                     $window.open(link);
                 };
             }
@@ -93,7 +102,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
     }])
     .filter('truncate', [function () {
         return function (input, maxlen) {
-            if(!input){
+            if (!input) {
                 return input;
             }
             if (input.length > maxlen) {
@@ -327,12 +336,12 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             }
         };
     }])
-    .provider('$pagination', [function() {
+    .provider('$pagination', [function () {
         this.defaultSizeOptions = [10, 20, 40];
-        this.setDefaultSizeOptions = this.setDefaultSizes = function(array) {
+        this.setDefaultSizeOptions = this.setDefaultSizes = function (array) {
             this.defaultSizeOptions = array;
         };
-        this.$get = function() {
+        this.$get = function () {
             return this;
         };
     }])
@@ -376,7 +385,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                 //Get int as array
                 scope.counter = function () {
                     scope.array.length = 0;
-                    for(var i = 0; i < _.get(scope, 'model.totalPages', 0); i++) {
+                    for (var i = 0; i < _.get(scope, 'model.totalPages', 0); i++) {
                         scope.array.push(null);
                     }
                     return scope.array;
@@ -395,49 +404,49 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             }
         };
     }])
-    .directive('cuteBunny', ['$http', function($http){
+    .directive('cuteBunny', ['$http', function ($http) {
         return {
-          restrict: 'AE',
-          templateUrl: 'components/templates/cute-bunny.html',
-          transclude: true,
-          link: function(scope, element, attrs){
-            scope.$watch(function(){
-              return $http.pendingRequests.reduce(function(p, c){
-                if(_.isFunction(c.ignoreLoadingBar)) {
-                  return p + (c.ignoreLoadingBar(c) ? 0 : 1);
-                }
-                return p + (c.ignoreLoadingBar ? 0 : 1);
-              }, 0);
-            }, function(r){
-              if(r === 0){
-                element.hide();
-              }else{
-                element.show();
-              }
-            });
-          }
+            restrict: 'AE',
+            templateUrl: 'components/templates/cute-bunny.html',
+            transclude: true,
+            link: function (scope, element, attrs) {
+                scope.$watch(function () {
+                    return $http.pendingRequests.reduce(function (p, c) {
+                        if (_.isFunction(c.ignoreLoadingBar)) {
+                            return p + (c.ignoreLoadingBar(c) ? 0 : 1);
+                        }
+                        return p + (c.ignoreLoadingBar ? 0 : 1);
+                    }, 0);
+                }, function (r) {
+                    if (r === 0) {
+                        element.hide();
+                    } else {
+                        element.show();
+                    }
+                });
+            }
         };
     }])
-    .directive('cuteBunnyHide', ['$http', function($http){
-      return {
-        restrict: 'AE',
-        link: function(scope, element, attrs){
-            scope.$watch(function(){
-              return $http.pendingRequests.reduce(function(p, c){
-                if(_.isFunction(c.ignoreLoadingBar)) {
-                  return p + (c.ignoreLoadingBar(c) ? 0 : 1);
-                }
-                return p + (c.ignoreLoadingBar ? 0 : 1);
-              }, 0);
-            }, function(r){
-              if(r === 0){
-                element.show();
-              }else{
-                element.hide();
-              }
-            });
-        }
-      };
+    .directive('cuteBunnyHide', ['$http', function ($http) {
+        return {
+            restrict: 'AE',
+            link: function (scope, element, attrs) {
+                scope.$watch(function () {
+                    return $http.pendingRequests.reduce(function (p, c) {
+                        if (_.isFunction(c.ignoreLoadingBar)) {
+                            return p + (c.ignoreLoadingBar(c) ? 0 : 1);
+                        }
+                        return p + (c.ignoreLoadingBar ? 0 : 1);
+                    }, 0);
+                }, function (r) {
+                    if (r === 0) {
+                        element.show();
+                    } else {
+                        element.hide();
+                    }
+                });
+            }
+        };
     }])
     .directive('socialLinker', ['DataService', 'BusinessConfig', '$auth', '$state', '$uibModal', function (DataService, BusinessConfig, $auth, $state, $uibModal) {
         return {
@@ -470,9 +479,9 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                     scope.mediaList = mediumResponse.data;
                 });
 
-                scope.unlink = function(mediaId) {
-                    _.pullAllBy(scope.model, [{media: {mediaId: mediaId}}], 'media.mediaId');
-                    if(scope.onDone) {
+                scope.unlink = function (mediaId) {
+                    _.pullAllBy(scope.model, [{ media: { mediaId: mediaId } }], 'media.mediaId');
+                    if (scope.onDone) {
                         scope.onDone();
                     }
                 };
@@ -484,7 +493,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                         .then(function (response) {
                             var linkedProfile = response.data;
 
-                            if(!_.isNil(response.data.token)) {
+                            if (!_.isNil(response.data.token)) {
                                 throw 'Media นี้ได้ทำการสมัครไปแล้ว';
                             }
 
@@ -537,7 +546,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                             }
                         })
                         .catch(function (err) {
-                            if(scope.onDone) scope.onDone({data: {message: err }});
+                            if (scope.onDone) scope.onDone({ data: { message: err } });
                         });
 
                 };
@@ -595,7 +604,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                 }
 
                 scope.isInfluencer = false;
-                if(UserProfile.get().influencer){
+                if (UserProfile.get().influencer) {
                     scope.isInfluencer = true;
                 }
 
@@ -839,7 +848,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                 return 'components/templates/uploader-thumb.html';
             },
             link: function (scope, elem, attr, ngModel) {
-                if(!scope.aspectRatio){
+                if (!scope.aspectRatio) {
                     scope.aspectRatio = 1;
                 }
                 scope.file = null;
@@ -857,11 +866,11 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                 };
 
                 scope.upload = function (ifile) {
-                    if(!ifile){
-                      return;
+                    if (!ifile) {
+                        return;
                     }
 
-                    var processFile = function(file){
+                    var processFile = function (file) {
                         if (file === null) {
                             //TODO: maybe do dismiss will fixthat bug?
                             return;
@@ -878,7 +887,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                                 scope.progressPercentage = progressPercentage;
                             };
 
-                            $uploader.upload('/resources', { file: file}, evtHandler)
+                            $uploader.upload('/resources', { file: file }, evtHandler)
                                 .then(function (data) {
                                     scope.loadingImage = false;
                                     scope.model = data;
@@ -886,7 +895,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                         });
                     };
 
-                    if(!scope.noCrop){
+                    if (!scope.noCrop) {
                         var modalInstance = $uibModal.open({
                             animation: false,
                             backdrop: 'static',
@@ -905,7 +914,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                                 file: function () {
                                     return ifile;
                                 },
-                                cropOption: function(){
+                                cropOption: function () {
                                     return {
                                         aspectRatio: Number(scope.aspectRatio)
                                     };
@@ -920,7 +929,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                             processFile(file);
                         });
 
-                    }else{
+                    } else {
                         processFile(ifile);
                     }
 

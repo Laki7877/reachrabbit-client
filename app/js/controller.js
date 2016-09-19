@@ -172,7 +172,6 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             $scope.msgHash = {};
             $scope.msgLimit = 30;
             $scope.totalElements = 0;
-            util.warnOnExit($scope);
 
             $scope.alert = new NcAlert();
 

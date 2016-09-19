@@ -27,7 +27,7 @@
 
   <div class="zone-body">
     <div class="container">
-      <div class="btn-floating-action" ui-sref="brand-campaign-detail-draft">
+      <div class="btn-floating-action" ui-sref="brand-campaign-detail-draft" uib-tooltip="สร้าง Campaign ใหม่" tooltip-placement="top">
       </div>
       <div class="page-header">
         <h1>My Campaign</h1>
@@ -47,7 +47,9 @@
       </nav>
 
       <div class="example-campaign" cute-bunny-hide>
-        <!-- <h2>ตัวอย่าง Campaign</h2> -->
+        <div class="page-header">
+          <h1>ตัวอย่าง Campaign</h1>
+        </div>
         <div ng-repeat="x in exampleCampaign">
           <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-example({ exampleId: $index })"></card-campaign-list-item>
         </div>

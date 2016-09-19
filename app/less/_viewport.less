@@ -65,12 +65,18 @@
     }
     .zone-body{
       margin-top: 0px;
+      .page-header{
+        margin: 35px 0px 15px 0px;
+        .form-group{
+          transform: translateY(-5px);
+        }
+        h1{
+          &:extend(h2);
+        }
+      }
     }
     .example-campaign{
-      display: block;
-      margin-top: 30px;
-      padding-top: 30px;
-      border-top: 1px dashed @color-grey;
+      margin-top: 45px;
     }
   }
   .view-brand-campaign-detail-example{

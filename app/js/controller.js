@@ -713,6 +713,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                 .then(function (campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;
                     $scope.isApply = $scope.campaignNee.isApply;
+                    $scope.proposal = $scope.campaignNee.proposal;
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);

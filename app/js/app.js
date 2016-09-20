@@ -2,12 +2,10 @@
  * App
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
- * @since      S04E02
+ * @since      S09E01
  */
 /* jshint node: true */
 'use strict';
-
-
 
 // Declare app level module which depends on views, and components
 angular.module('reachRabbitApp', [

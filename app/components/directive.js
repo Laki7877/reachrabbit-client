@@ -101,6 +101,15 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             }
         };
     }])
+    .directive('version', ['$window', function ($window) {
+        return {
+            restrict: 'EA',
+            templateUrl: "components/templates/version.html",
+            link: function (scope) {
+
+            }
+        };
+    }])
     .filter('truncate', [function () {
         return function (input, maxlen) {
             if (!input) {

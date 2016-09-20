@@ -7,8 +7,6 @@
 /* jshint node: true */
 'use strict';
 
-
-
 // Declare app level module which depends on views, and components
 angular.module('reachRabbitApp', [
   'angular-loading-bar',

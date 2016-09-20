@@ -106,7 +106,7 @@ angular.module('reachRabbitApp', [
       Date.prototype.toJSON = function(){
         return moment(this).format();
       };
-      Date.prototype.toString = function() {
+      Date.prototype.toISOString = function() {
         return moment(this).format();
       };
 

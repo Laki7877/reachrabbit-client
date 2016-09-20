@@ -7,6 +7,8 @@
 /* jshint node: true */
 'use strict';
 
+
+
 // Declare app level module which depends on views, and components
 angular.module('reachRabbitApp', [
   'angular-loading-bar',
@@ -99,6 +101,11 @@ angular.module('reachRabbitApp', [
   })
   .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce',
     function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce) {
+
+      //Date override
+      Date.prototype.toJSON = function(){
+          return moment(this).format();
+      };
 
       function removeParam(key, sourceURL) {
         var rtn = sourceURL.split("?")[0],

@@ -20,32 +20,32 @@ angular.module('reachRabbitApp.service', ['satellizer'])
         }
 
     }])
-    .factory('validator', [function() {
-      return {
-        formValidate: function(form) {
-          if(form.$invalid && form.$error.required && form.$error.required.length > 0) {
-            return {
-              message: 'กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน'
-            };
-          } else if(form.$invalid) {
-            return {
-              message: 'กรุณากรอกข้อมูลให้ถูกต้อง'
-            };
-          }
-          return; //nothing
-        }
-      };
+    .factory('validator', [function () {
+        return {
+            formValidate: function (form) {
+                if (form.$invalid && form.$error.required && form.$error.required.length > 0) {
+                    return {
+                        message: 'กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน'
+                    };
+                } else if (form.$invalid) {
+                    return {
+                        message: 'กรุณากรอกข้อมูลให้ถูกต้อง'
+                    };
+                }
+                return; //nothing
+            }
+        };
     }])
     .factory('util', ['$window', function ($window) {
         return {
             warnOnExit: function (scope, fn) {
-                fn = fn || function() {
+                fn = fn || function () {
                     return (scope.form || {}).$dirty;
                 };
 
-                scope.$on('$stateChangeStart', function(e) {
-                    if(fn()) {
-                        if(!$window.confirm('Changes you made may not be saved.')) {
+                scope.$on('$stateChangeStart', function (e) {
+                    if (fn()) {
+                        if (!$window.confirm('Changes you made may not be saved.')) {
                             e.preventDefault();
                         }
                     }
@@ -69,7 +69,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('baseUrlInjector', ['Config', '$window', '$q', '$rootScope', function (Config, $window, $q, $rootScope) {
+    .factory('customInjector', ['Config', '$window', '$q', '$rootScope', '$location', 'UserProfile', function (Config, $window, $q, $rootScope, $location, UserProfile) {
         var inj = {
             request: function (cc) {
                 if (cc.url[0] === "/") {
@@ -78,56 +78,55 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     //Prevent satellizer's evil hack
                     cc.skipAuthorization = true;
                 }
+                
                 return cc;
             },
-            response: function(cx){
-                if(cx.config.url.endsWith('.html')){
+            response: function (cx) {
+                if (cx.config.url.endsWith('.html')) {
                     return cx;
                 }
 
-                if(cx.config.url.endsWith('poll')){
+                if (cx.config.url.endsWith('poll')) {
                     return cx;
                 }
 
-                if(!$rootScope.debuggah){
+                if (!$rootScope.debuggah) {
                     $rootScope.debuggah = {};
                 }
 
-                $rootScope.debuggah[cx.config.method + " " + cx.config.url] =  cx.data;
+                $rootScope.debuggah[cx.config.method + " " + cx.config.url] = cx.data;
                 return cx;
+            },
+            responseError: function (response) {
+                if (response.status == 401) {
+                    //TODO: change this later
+                    if ($location.absUrl().includes("brand.html")) {
+                        $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
+                    } else if ($location.absUrl().includes("influencer.html")) {
+                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+                    } else if ($location.absUrl().includes("admin.html")) {
+                        $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
+                    }
+
+                    var bounce_url = $location.path();
+                    if ($location.absUrl().includes($location.path())) {
+                        $rootScope.signOut();
+                    } else {
+                        $rootScope.signOut(bounce_url);
+                    }
+
+                } else if (response.status == 405) {
+                    return $rootScope.go('405');
+                }
+
+                if (!response.data) {
+                    response.data = { message: "External error" };
+                }
+
+                return $q.reject(response);
             }
         };
         return inj;
-    }])
-    .factory('authStatusCheckInjector', ['$q', '$rootScope', '$location', function ($q, $rootScope, $location) {
-        var service = this;
-        service.responseError = function (response) {
-            if (response.status == 401) {
-                //TODO: change this later
-                if($location.absUrl().includes("brand.html")){
-                  $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
-                }else if($location.absUrl().includes("influencer.html")){
-                  $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
-                }else if($location.absUrl().includes("admin.html")){
-                  $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
-                }
-
-                var bounce_url = $location.path();
-                if($location.absUrl().includes($location.path())){
-                    $rootScope.signOut();
-                }else{
-                    $rootScope.signOut(bounce_url);
-                }
-               
-            }
-
-            if (!response.data) {
-                response.data = { message: "External error" };
-            }
-
-            return $q.reject(response);
-        };
-        return service;
     }])
     .config(['$authProvider', 'Config', '$httpProvider', function ($authProvider, Config, $httpProvider) {
         $authProvider.baseUrl = Config.API_BASE_URI;
@@ -157,11 +156,10 @@ angular.module('reachRabbitApp.service', ['satellizer'])
         $authProvider.tokenType = 'Ignore';
 
         //Intercept all $http request and add appropriate stuff
-        $httpProvider.interceptors.push('baseUrlInjector');
-        $httpProvider.interceptors.push('authStatusCheckInjector');
+        $httpProvider.interceptors.push('customInjector');
         $httpProvider.defaults.headers.post = { 'Content-Type': 'application/json', 'Accept-Language': 'th' };
-        $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json','Accept-Language': 'th' };
-		    $httpProvider.defaults.headers.get = { 'Accept-Language': 'th' };
+        $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json', 'Accept-Language': 'th' };
+        $httpProvider.defaults.headers.get = { 'Accept-Language': 'th' };
 
     }])
     .factory('AccountService', ['$http', '$q', function ($http, $q) {
@@ -184,28 +182,28 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                         }
                         resolve(response);
                     })
-                    .catch(function (err) {
-                      reject(err);
-                    });
+                        .catch(function (err) {
+                            reject(err);
+                        });
                 });
             },
-            getYouTubeProfile: function(id){
+            getYouTubeProfile: function (id) {
                 var url = '/profile/google';
-                if(!_.isNil(id)) {
+                if (!_.isNil(id)) {
                     url = '/profile/' + id + '/google';
                 }
                 return $http.get(url);
             },
-            getFacebookProfile: function(id) {
+            getFacebookProfile: function (id) {
                 var url = '/profile/facebook';
-                if(!_.isNil(id)) {
+                if (!_.isNil(id)) {
                     url = '/profile/' + id + '/facebook';
                 }
                 return $http.get(url);
             },
-            getInstagramProfile: function(id) {
+            getInstagramProfile: function (id) {
                 var url = '/profile/instagram';
-                if(!_.isNil(id)) {
+                if (!_.isNil(id)) {
                     url = '/profile/' + id + '/instagram';
                 }
                 return $http.get(url);
@@ -213,7 +211,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             saveProfile: function (profile) {
                 return $http.put("/profile", profile);
             },
-            saveBank: function(bank){
+            saveBank: function (bank) {
                 return $http.put("/profile/bank", bank);
             },
             /*
@@ -240,10 +238,10 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('WalletService', ['$http', function($http){
+    .factory('WalletService', ['$http', function ($http) {
         return {
-            getWalletTransaction: function(id) {
-              return $http.get('/wallets/' + id + '/transaction');
+            getWalletTransaction: function (id) {
+                return $http.get('/wallets/' + id + '/transaction');
             }
         };
     }])
@@ -255,16 +253,16 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             signup: function (influencer) {
                 return $http.post("/signup/influencer", influencer);
             },
-            getWalletTransaction: function(id) {
-              return $http.get('/wallets/' + id + '/transaction');
+            getWalletTransaction: function (id) {
+                return $http.get('/wallets/' + id + '/transaction');
             },
-            getWallet: function(){
+            getWallet: function () {
                 return $http.get("/wallets");
             },
-            getWalletBalance: function(){
+            getWalletBalance: function () {
                 return $http.get("/wallets/balance");
             },
-            requestPayout: function(doc){
+            requestPayout: function (doc) {
                 return $http.post('/wallets/payout', doc);
             }
         };
@@ -277,7 +275,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             signup: function (brand) {
                 return $http.post("/signup/brand", brand);
             },
-            getCart: function(){
+            getCart: function () {
                 return $http.get('/carts');
             }
         };
@@ -337,7 +335,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                         });
                 });
             },
-            delete: function(id) {
+            delete: function (id) {
                 return $http({
                     url: '/campaigns/' + id,
                     method: 'DELETE'
@@ -403,10 +401,10 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                         });
                 });
             },
-            getAppliedProposal: function(campaignId){
+            getAppliedProposal: function (campaignId) {
                 return $http.get('/campaigns/' + campaignId + '/applied');
             },
-            dismissNotification: function(campaignId){
+            dismissNotification: function (campaignId) {
                 return $http.put('/campaigns/' + campaignId + '/dismiss');
             }
         };
@@ -433,8 +431,8 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     data: proposal
                 });
             },
-            updateStatus:  function(proposalId, newStatus){
-                 return $http({
+            updateStatus: function (proposalId, newStatus) {
+                return $http({
                     url: "/proposals/" + proposalId + "/status/" + newStatus,
                     method: "PUT"
                 });
@@ -457,8 +455,8 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     url: '/proposals/' + proposalId + '/proposalmessages',
                     method: 'get',
                     params: params,
-                    ignoreLoadingBar: function(c) {
-                      return c.params.timestamp ? true : false;
+                    ignoreLoadingBar: function (c) {
+                        return c.params.timestamp ? true : false;
                     }
                 });
             },
@@ -485,14 +483,14 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     ignoreLoadingBar: true
                 });
             },
-            addToCart: function(proposal){
-                return $http.post("/proposals/"+proposal.proposalId+ "/cart");
+            addToCart: function (proposal) {
+                return $http.post("/proposals/" + proposal.proposalId + "/cart");
             },
-            removeFromCart: function(proposal){
-                return $http.delete("/proposals/"+proposal.proposalId+ "/cart");
+            removeFromCart: function (proposal) {
+                return $http.delete("/proposals/" + proposal.proposalId + "/cart");
             },
-            dismissNotification: function(proposalId){
-                return $http.put("/proposals/"+proposalId+ "/dismiss");
+            dismissNotification: function (proposalId) {
+                return $http.put("/proposals/" + proposalId + "/dismiss");
             }
         };
     }])
@@ -511,54 +509,54 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             getCompletionTime: function () {
                 return $http.get("/data/completiontime");
             },
-            getBudgets: function(){
+            getBudgets: function () {
                 return $http.get("/data/budgets");
             }
         };
     }])
-    .factory('TransactionService', ['$http', '$q', function($http, $q){
-        var deserialize = function(transaction){
+    .factory('TransactionService', ['$http', '$q', function ($http, $q) {
+        var deserialize = function (transaction) {
             transaction.expiredAt = moment(transaction.expiredAt, 'YYYY-MM-DD HH:mm').toDate();
             return transaction;
         };
 
         return {
-            create: function(){
+            create: function () {
                 return $http.post('/transactions');
             },
-            getAll: function(params){
-                return $q(function(resolve, reject){
+            getAll: function (params) {
+                return $q(function (resolve, reject) {
                     $http({
                         url: '/transactions',
                         method: 'get',
                         params: params
                     })
-                    .then(function(transactionResponse){
-                        transactionResponse.data.content = transactionResponse.data.content.map(function(M){
-                            return deserialize(M);
+                        .then(function (transactionResponse) {
+                            transactionResponse.data.content = transactionResponse.data.content.map(function (M) {
+                                return deserialize(M);
+                            });
+                            resolve(transactionResponse);
+                        })
+                        .catch(function (err) {
+                            reject(err);
                         });
-                        resolve(transactionResponse);
-                    })
-                    .catch(function(err){
-                        reject(err);
-                    });
                 });
 
             },
-            getByCart: function(cartId){
-                return $q(function(resolve, reject){
+            getByCart: function (cartId) {
+                return $q(function (resolve, reject) {
                     $http.get('/carts/' + cartId + '/transaction/')
-                    .then(function(transactionResponse){
-                        transactionResponse.data = deserialize(transactionResponse.data);
-                        resolve(transactionResponse);
-                    })
-                    .catch(function(err){
-                        reject(err);
-                    });
+                        .then(function (transactionResponse) {
+                            transactionResponse.data = deserialize(transactionResponse.data);
+                            resolve(transactionResponse);
+                        })
+                        .catch(function (err) {
+                            reject(err);
+                        });
                 });
             },
-            getByTransactionId: function(transactionId){
-               return $http.get("/transactions/" + transactionId);
+            getByTransactionId: function (transactionId) {
+                return $http.get("/transactions/" + transactionId);
             }
         };
     }])
@@ -578,26 +576,26 @@ angular.module('reachRabbitApp.service', ['satellizer'])
     .factory('$uploader', ['Upload', 'UploadValidate', '$q', 'Config', '$window', '$timeout', function (Upload, UploadValidate, $q, Config, $window, $timeout) {
         var service = {};
 
-        service.validate = function(file, length, ngModel, attr, scope) {
-          var deferred = $q.defer();
-          ngModel.$setPristine();
-          UploadValidate.validate(file, length, ngModel, attr, scope)
-              .then(function(data) {
-                  var ok = true;
-                  _.forEach(ngModel.$ngfValidations, function(v) {
-                   // console.log(ngModel.$ngfValidations);
-                      if(_.has(attr, 'ngf' + _.upperFirst(v.name))) {
-                          ngModel.$setValidity(v.name, v.valid);
-                      }
-                      ok = ok && v.valid;
-                  });
-                  ngModel.$setDirty();
-                  deferred.resolve(ok);
-                  return ok;
-              });
+        service.validate = function (file, length, ngModel, attr, scope) {
+            var deferred = $q.defer();
+            ngModel.$setPristine();
+            UploadValidate.validate(file, length, ngModel, attr, scope)
+                .then(function (data) {
+                    var ok = true;
+                    _.forEach(ngModel.$ngfValidations, function (v) {
+                        // console.log(ngModel.$ngfValidations);
+                        if (_.has(attr, 'ngf' + _.upperFirst(v.name))) {
+                            ngModel.$setValidity(v.name, v.valid);
+                        }
+                        ok = ok && v.valid;
+                    });
+                    ngModel.$setDirty();
+                    deferred.resolve(ok);
+                    return ok;
+                });
 
 
-          return deferred.promise;
+            return deferred.promise;
         };
 
         service.upload = function (url, data, evtHandler, opts) {
@@ -631,7 +629,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
     .factory('UserProfile', ['$rootScope', '$window', function ($rootScope, $window) {
         return {
             get: function () {
-                if(!$window.localStorage.profile) {
+                if (!$window.localStorage.profile) {
                     return null;
                 }
                 return JSON.parse($window.localStorage.profile);
@@ -641,21 +639,21 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('AdminService', ['$http', function($http){
+    .factory('AdminService', ['$http', function ($http) {
         return {
             //Confirm Payin (TODO: Rename)
-            confirmTransaction: function(Transaction){
+            confirmTransaction: function (Transaction) {
                 return $http.put('/transactions/' + Transaction.transactionId + '/confirm');
             },
-            confirmPayout: function(TransactionId, Slip){
+            confirmPayout: function (TransactionId, Slip) {
                 return $http.put('/transactions/' + TransactionId + '/paid', Slip);
             }
         };
     }])
-    .factory('LongPollingService', ['$http','$q', 'BusinessConfig', '$location', function($http, $q, BusinessConfig, $location){
-       return {
-           countInbox: function (params) {
-                if($location.port() == BusinessConfig.PROTRACTOR_PORT){
+    .factory('LongPollingService', ['$http', '$q', 'BusinessConfig', '$location', function ($http, $q, BusinessConfig, $location) {
+        return {
+            countInbox: function (params) {
+                if ($location.port() == BusinessConfig.PROTRACTOR_PORT) {
                     return $q(function (resolve, reject) {
                         resolve();
                     });
@@ -669,7 +667,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                 });
             },
             getMessagesPoll: function (proposalId, params) {
-                if($location.port() == BusinessConfig.PROTRACTOR_PORT){
+                if ($location.port() == BusinessConfig.PROTRACTOR_PORT) {
                     return $q(function (resolve, reject) {
                         resolve();
                     });
@@ -682,5 +680,5 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     ignoreLoadingBar: true
                 });
             }
-       };
+        };
     }]);

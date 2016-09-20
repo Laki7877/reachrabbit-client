@@ -517,7 +517,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             sort: 'updatedAt,desc'
         });
     }])
-    .controller('PayoutDetailController', ['$scope', 'WalletService', 'AdminService', 'AccountService', 'NcAlert', '$state', '$stateParams', function ($scope, WalletService, AdminService, AccountService, NcAlert, $state, $stateParams) {
+    .controller('PayoutDetailController', ['$scope', 'WalletService', 'AdminService', 'AccountService', 'NcAlert', '$state', '$stateParams', 'UserProfile', function ($scope, WalletService, AdminService, AccountService, NcAlert, $state, $stateParams, UserProfile) {
         $scope.alert = new NcAlert();
         var loadTdoc = function () {
             $scope.tDoc = [];
@@ -544,6 +544,11 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                                 $scope.transferFeeDoc = sortedDoc;
                             }
                         });
+
+                    if(UserProfile.get().influencer){
+                        return UserProfile.get();
+                    }
+                    
                     return AccountService.getUser($scope.payout.userId);
                 })
                 .then(function (res) {

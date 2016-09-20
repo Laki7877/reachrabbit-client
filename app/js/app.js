@@ -99,12 +99,16 @@ angular.module('reachRabbitApp', [
     DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"],
     PROTRACTOR_PORT: 9900
   })
-  .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce',
-    function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce) {
+  .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce', '$state',
+    function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
 
       //Date override
       Date.prototype.toJSON = function(){
           return moment(this).format();
+      };
+
+      $rootScope.go = function(url){
+        $state.go(url);
       };
 
       function removeParam(key, sourceURL) {

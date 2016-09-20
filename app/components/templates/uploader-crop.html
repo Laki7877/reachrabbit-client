@@ -1,6 +1,7 @@
 <div class="cropTool">
       <div ngf-pattern="image/*" class="cropArea">
-            <img-crop area-type="rectangle" result-image-quality="1.0" result-image-size="'max'" aspect-ratio="cropOption.aspectRatio" image="thumbFile | ngfDataUrl" result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
+      <!--thumbFile | ngfDataUrl-->
+            <img-crop area-type="rectangle" result-image-quality="1.0" result-image-size="'max'" aspect-ratio="cropOption.aspectRatio" image="resizedBlobUrl"  result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
             </img-crop>
       </div>
       <div class="toolbar text-center">

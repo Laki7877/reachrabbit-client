@@ -737,7 +737,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             };
             //Init
             $scope.load({
-                size: 1000,
+                size: 15,
                 sort: 'campaignId,desc'
             });
 

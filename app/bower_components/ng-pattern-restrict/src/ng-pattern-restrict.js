@@ -146,7 +146,7 @@ angular.module('ngPatternRestrict', [])
             // empty string, we don't have the chance of validating it against a regex. All we can do is assume it's wrong,
             // since the browser is rejecting it either way.
             var newValue = iElement.val(),
-              inputValidity = iElement.prop("validity")
+              inputValidity = iElement.prop("validity"),
               test = false;
 
             if(newValue === oldValue) {

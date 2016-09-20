@@ -313,7 +313,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                     timestamp: timestamp
                 })
                     .then(function (res) {
-                        if (!res.data) {
+                        if (!res.data || stop) {
                             return null;
                         }
                         timestamp = new Date();

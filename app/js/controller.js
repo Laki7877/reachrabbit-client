@@ -663,7 +663,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
     .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService', '$uibModal', 'DataService',
         function ($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService) {
             $scope.campaignNee = null;
-            $scope.isApplied = false;
+            $scope.isApply = false;
             $scope.alert = new NcAlert();
             $scope.appliedAlert = new NcAlert();
 
@@ -702,7 +702,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                 });
             };
 
-            $scope.$watch('isApplied', function (applied) {
+            $scope.$watch('isApply', function (applied) {
                 if (applied) {
                     $scope.appliedAlert.info("คุณได้ส่งข้อเสนอให้ Campaign นี้แล้ว");
                 }
@@ -712,6 +712,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             CampaignService.getOne($stateParams.campaignId)
                 .then(function (campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;
+                    $scope.isApply = $scope.campaignNee.isApply;
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);

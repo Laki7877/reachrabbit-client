@@ -316,8 +316,8 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                     if (!res.data || stop) {
                         return null;
                     }
-                    timestamp = res.data[0];
-                    oldTimestamp = res.data[1];
+                    timestamp = res.data[1];
+                    oldTimestamp = res.data[0];
                     return ProposalService.getNewMessages($scope.proposalId, {
                         timestamp: oldTimestamp
                     });

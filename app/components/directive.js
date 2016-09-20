@@ -946,6 +946,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                                             $scope.cropOption = cropOption;
 
                                             $scope.dismiss = function () {
+                                                $scope.loadingImage = false;
                                                 $uibModalInstance.dismiss();
                                             };
 

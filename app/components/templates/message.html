@@ -6,6 +6,7 @@
     <div class="message-heading">
       <h4 ng-if="message.user.role == 'Influencer'">{{  message.user.name}}</h4>
       <h4 ng-if="message.user.role == 'Brand'">{{message.proposal.campaign.brand.brandName}}</h4>
+      <h4 ng-if="message.user.role == 'Bot'">{{message.user.name}}</h4>
       <div class="message-time">
         <span ng-if="message.messageId">{{message.createdAt | amDateFormat: 'LT - D MMM YY'}}
         </span>

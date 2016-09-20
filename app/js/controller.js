@@ -371,6 +371,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                     proposal: {
                         proposalId: $scope.proposalId
                     },
+                    createdAt: new Date(),
                     user: $rootScope.getProfile(),
                     resources: attachments,
                     referenceId: sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(new Date().getTime())).substr(0, 7)

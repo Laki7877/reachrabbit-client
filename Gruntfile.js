@@ -122,13 +122,18 @@ module.exports = function (grunt) {
         var md5 = crypto.createHash('md5');
         var glob = require("glob");
         var buffer = "";
-        glob("app/**/*", function (er, files) {
-          files.forEach(function(filename){
-            var file = grunt.template.process(filename);
-            buffer += fs.readFileSync(file);
-          });
+
+        var files = glob.sync("app/**/(*.js|*.html)");
+
+        var buffer = "";
+        files.forEach(function (filename) {
+            if(filename.indexOf("bower_components") == -1){
+              var file = grunt.template.process(filename);
+              buffer += fs.readFileSync(file);
+            }
+            
         });
-        
+
         md5.update(buffer);
         var md5Hash = md5.digest('hex');
 

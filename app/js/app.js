@@ -103,12 +103,16 @@ angular.module('reachRabbitApp', [
     function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
 
       //Date override
-      Date.prototype.toJSON = function () {
-        return moment(this).format();
-      };
 
       $rootScope.go = function (url) {
         $state.go(url);
+      };
+
+      Date.prototype.toJSON = function(){
+        return moment(this).format();
+      };
+      Date.prototype.toISOString = function() {
+        return moment(this).format();
       };
 
       function removeParam(key, sourceURL) {

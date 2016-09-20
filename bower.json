@@ -27,7 +27,7 @@
     "angular-moment": "^0.10.3",
     "angular-scroll-glue": "^2.0.7",
     "ng-img-crop-full-extended": "ngImgCropFullExtended#^0.5.6",
-    "ng-pattern-restrict": "https://github.com/poonwu/ng-pattern-restrict.git#694c85bd9792d1ea68a48b60e3f179d1ef1c387f",
+    "ng-pattern-restrict": "https://github.com/poonwu/ng-pattern-restrict.git#9767b4d996a44da3e6449d214753de55c0fcf6cf",
     "json-formatter": "^0.6.0",
     "sjcl": "^1.0.4",
     "angular-masonry": "^0.16.0",

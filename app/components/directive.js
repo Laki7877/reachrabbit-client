@@ -873,7 +873,6 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                     }
                     scope.loadingImage = true;
 
-
                     var processFile = function (file) {
                         if (file === null) {
                             //TODO: maybe do dismiss will fixthat bug?
@@ -900,6 +899,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                     };
 
                     if (!scope.noCrop) {
+                        
                         //#region resize
                         var url = window.URL.createObjectURL(file);
                         var canvas = document.createElement('canvas');
@@ -933,6 +933,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                                 alpha: 1
                             }, function (err) {
                                 if (err) console.log("Unable to resize");
+                                scope.loadingImage = false;
                                 resizeCanvas.toBlob(function (blob) {
                                     var resizedBlobUrl = window.URL.createObjectURL(blob);
 
@@ -946,7 +947,6 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                                             $scope.cropOption = cropOption;
 
                                             $scope.dismiss = function () {
-                                                $scope.loadingImage = false;
                                                 $uibModalInstance.dismiss();
                                             };
 

@@ -258,7 +258,7 @@ angular.module('reachRabbitApp', [
               .then(function (cart) {
                 $rootScope.cartCount = (cart.data.proposals || []).length;
               });
-          } else if (UserProfile.get() === "Influencer") {
+          } else if (UserProfile.get().role === "Influencer") {
             $rootScope.walletBalance = 0;
             InfluencerAccountService.getWallet()
               .then(function (walletResponse) {

@@ -368,9 +368,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 }
                 var msg = {
                     message: messageStr,
-                    proposal: {
-                        proposalId: $scope.proposalId
-                    },
+                    proposal: $scope.proposal,
                     createdAt: new Date(),
                     user: $rootScope.getProfile(),
                     resources: attachments,
@@ -380,9 +378,10 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 $scope.msglist.push(msg);
                 $scope.msgHash[msg.referenceId] = msg;
                 $scope.formData.messageStr = '';
-                ProposalService.sendMessage(_.omit(msg, 'user'))
+                ProposalService.sendMessage(_.extend(_.omit(msg, 'user'), { proposal: { proposalId: $scope.proposalId } }))
 
                     .then(function (resp) {
+                        _.extend(msg, resp.data);
                         //$scope.msglist.push(resp.data);
                         $scope.formData = {
                             resources: []

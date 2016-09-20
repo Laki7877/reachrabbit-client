@@ -122,12 +122,11 @@ module.exports = function (grunt) {
         var md5 = crypto.createHash('md5');
         var glob = require("glob");
         var buffer = "";
-        glob("app/**/*.js", function (er, files) {
+        glob("app/**/*", function (er, files) {
           files.forEach(function(filename){
             var file = grunt.template.process(filename);
             buffer += fs.readFileSync(file);
           });
-          
         });
         
         md5.update(buffer);

@@ -80,7 +80,7 @@ angular.module('reachRabbitApp', [
         fromBudget: 10000,
         toBudget: 50000
       },
-      brand:{brandName:'Rabbit Lipstick'},
+      brand: { brandName: 'Rabbit Lipstick' },
       proposalDeadline: moment(new Date()).add(30, 'days').toDate(),
       category: { categoryName: 'ความงาม' },
       linkTo: 'brand-campaign-detail-example'
@@ -99,10 +99,15 @@ angular.module('reachRabbitApp', [
     DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"],
     PROTRACTOR_PORT: 9900
   })
-  .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce',
-    function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce) {
+  .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce', '$state',
+    function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
 
       //Date override
+
+      $rootScope.go = function (url) {
+        $state.go(url);
+      };
+
       Date.prototype.toJSON = function(){
         return moment(this).format();
       };
@@ -217,16 +222,43 @@ angular.module('reachRabbitApp', [
       $rootScope.rootError = new NcAlert();
       $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams, options) {
+
           //in case of brand
           if (!UserProfile.get()) {
             return;
           }
-          if (UserProfile.get().brand) {
+
+          //405 handling
+          if (!$location.absUrl().endsWith('/405')) {
+            var role = UserProfile.get().role;
+            var reject = false;
+            //Permission thingy
+            if ($location.absUrl().includes('brand.html') && role !== "Brand") {
+              reject = true;
+            }
+
+            if ($location.absUrl().includes('influencer.html') && role !== "Influencer") {
+              reject = true;
+            }
+
+            if ($location.absUrl().includes('admin.html') && role != "Admin") {
+              reject = true;
+            }
+
+            if (reject) {
+              $state.go('405');
+              return;
+            }
+          }
+
+
+          //Other role specific functions
+          if (UserProfile.get().role === "Brand") {
             BrandAccountService.getCart()
               .then(function (cart) {
                 $rootScope.cartCount = (cart.data.proposals || []).length;
               });
-          } else if (UserProfile.get().influencer) {
+          } else if (UserProfile.get() === "Influencer") {
             $rootScope.walletBalance = 0;
             InfluencerAccountService.getWallet()
               .then(function (walletResponse) {

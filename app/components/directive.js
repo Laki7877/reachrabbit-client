@@ -43,6 +43,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
     }])
     .filter('maskUrl', [function () {
         return function (value) {
+            if(!value) return '';
             if (value.startsWith('http')) {
                 return value;
             }
@@ -865,10 +866,13 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                     ngModel.$setPristine();
                 };
 
-                scope.upload = function (ifile) {
+                scope.upload = function (file) {
+                    var ifile = file;
                     if (!ifile) {
                         return;
                     }
+                    scope.loadingImage = true;
+
 
                     var processFile = function (file) {
                         if (file === null) {
@@ -896,38 +900,81 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                     };
 
                     if (!scope.noCrop) {
-                        var modalInstance = $uibModal.open({
-                            animation: false,
-                            backdrop: 'static',
-                            templateUrl: 'components/templates/uploader-crop.html',
-                            controller: ['$scope', 'file', 'cropOption', '$uibModalInstance', function ($scope, file, cropOption, $uibModalInstance) {
-                                $scope.thumbFile = file;
-                                $scope.cropOption = cropOption;
+                        //#region resize
+                        var url = window.URL.createObjectURL(file);
+                        var canvas = document.createElement('canvas');
 
-                                $scope.dismiss = function () {
-                                    $uibModalInstance.dismiss();
-                                };
+                        var resizeCanvas = document.createElement('canvas');
 
-                            }],
-                            size: 'lg',
-                            resolve: {
-                                file: function () {
-                                    return ifile;
-                                },
-                                cropOption: function () {
-                                    return {
-                                        aspectRatio: Number(scope.aspectRatio)
-                                    };
-                                }
+                        var ctx = canvas.getContext('2d');
+                        var img = new window.Image();
+                        img.onload = function () {
+
+                            var effectiveH = img.height;
+                            var effectiveW = img.width;
+
+                            var HWratio = img.height/img.width;
+                            if(img.width > 1500){
+                                effectiveW = 1500;
+                                effectiveH = 1500*HWratio; //H = W*H/W
+                            }else if(img.height > 1500){
+                                effectiveH = 1500;
+                                effectiveW = 1500/HWratio; //W = H/(H/W) = W
                             }
-                        });
 
-                        //on user close
-                        modalInstance.result.then(function (dataUrl) {
-                            // console.log(dataUrl);
-                            var file = Upload.dataUrltoBlob(dataUrl, 'cropped_content.png');
-                            processFile(file);
-                        });
+                            canvas.width = effectiveW;
+                            canvas.height = effectiveH;
+                            resizeCanvas.width = effectiveW;
+                            resizeCanvas.height = effectiveH;
+
+                            ctx.drawImage(img, 0, 0, effectiveW, effectiveH);
+                            
+                            window.pica.resizeCanvas(canvas, resizeCanvas, {
+                                alpha: 1
+                            }, function (err) {
+                                if (err) console.log("Unable to resize");
+                                resizeCanvas.toBlob(function (blob) {
+                                    var resizedBlobUrl = window.URL.createObjectURL(blob);
+
+                                    var modalInstance = $uibModal.open({
+                                        animation: false,
+                                        backdrop: 'static',
+                                        templateUrl: 'components/templates/uploader-crop.html',
+                                        controller: ['$scope', 'file', 'cropOption', '$uibModalInstance', function ($scope, file, cropOption, $uibModalInstance) {
+                                            $scope.thumbFile = file;
+                                            $scope.resizedBlobUrl = resizedBlobUrl;
+                                            $scope.cropOption = cropOption;
+
+                                            $scope.dismiss = function () {
+                                                $scope.loadingImage = false;
+                                                $uibModalInstance.dismiss();
+                                            };
+
+                                        }],
+                                        size: 'lg',
+                                        resolve: {
+                                            file: function () {
+                                                return ifile;
+                                            },
+                                            cropOption: function () {
+                                                return {
+                                                    aspectRatio: Number(scope.aspectRatio)
+                                                };
+                                            }
+                                        }
+                                    });
+
+                                    //on user close
+                                    modalInstance.result.then(function (dataUrl) {
+                                        // console.log(dataUrl);
+                                        var file = Upload.dataUrltoBlob(dataUrl, 'cropped_content.png');
+                                        processFile(file);
+                                    });
+                                });
+                            });
+                        };
+                        img.src = url;
+                        //#endregion
 
                     } else {
                         processFile(ifile);

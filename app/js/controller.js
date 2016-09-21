@@ -969,11 +969,11 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
             },
             {
                 status: 'Open',
-                name: 'เฉพาะ ดำเนินการ'
+                name: 'เฉพาะ เปิดรับข้อเสนอ'
             },
             {
-                status: 'Complete',
-                name: 'เฉพาะ เสร็จสิ้น'
+                status: 'Close',
+                name: 'เฉพาะ ปิดรับข้อเสนอ'
             }];
 
         $scope.$watch('filter', function () {

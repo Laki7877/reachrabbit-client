@@ -681,6 +681,7 @@ input:-moz-placeholder {
 
 .card-campaign-header{
   &:extend(.card);
+  position: relative;
   .card-body{
     padding: 0px;
   }
@@ -693,18 +694,25 @@ input:-moz-placeholder {
       width: 100%;
     }
   }
+  .card-campaign-header-content{
+    .make-xs-column(8);
+  }
   .card-info{
-    .make-xs-column(2);
-    .price{
-      font-size: 14px;
-      margin-top: 14px;
-    }
+    .make-xs-column(4);
   }
   .card-info-1, .card-info-2, .card-info-3, {
     margin-top: 50px;
   }
   .card-info-4, .card-info-5, .card-info-6, {
     margin-top: 20px;
+  }
+  .card-close {
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display:block;
+    padding: 12px 13px 0 0;
   }
 }
 
@@ -1421,7 +1429,7 @@ div:focus{
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    max-width: 250px;
+    max-width: 240px;
     .profile-picture{
       &:extend(.img-circle);
       width: 40px;
@@ -1429,7 +1437,7 @@ div:focus{
     }
   }
   .col-campaign-name{
-    max-width: 250px;
+    max-width: 240px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1866,12 +1874,7 @@ ul.payment-methods {
   display: inline-block;
   cursor:pointer;
 }
-.card-close {
-  cursor: pointer;
-  display:block;
-  float: right;
-  padding: 12px 13px 0 0;
-}
+
 .proposal-alert {
     margin-left: 6px;
     & > div {

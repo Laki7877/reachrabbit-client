@@ -8408,6 +8408,9 @@ input:-moz-placeholder {
 .card-profile .social-info .social-icon {
   margin-right: 0px;
 }
+.card-campaign-header {
+  position: relative;
+}
 .card-campaign-header .card-body {
   padding: 0px;
 }
@@ -8424,17 +8427,21 @@ input:-moz-placeholder {
 .card-campaign-header .card-image img {
   width: 100%;
 }
-.card-campaign-header .card-info {
+.card-campaign-header .card-campaign-header-content {
   position: relative;
   float: left;
-  width: 16.66666667%;
+  width: 66.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
-.card-campaign-header .card-info .price {
-  font-size: 14px;
-  margin-top: 14px;
+.card-campaign-header .card-info {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .card-campaign-header .card-info-1,
 .card-campaign-header .card-info-2,
@@ -8445,6 +8452,14 @@ input:-moz-placeholder {
 .card-campaign-header .card-info-5,
 .card-campaign-header .card-info-6 {
   margin-top: 20px;
+}
+.card-campaign-header .card-close {
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: block;
+  padding: 12px 13px 0 0;
 }
 .card-campaign-description {
   padding-top: 15px;
@@ -10063,14 +10078,14 @@ div:focus {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  max-width: 250px;
+  max-width: 240px;
 }
 .table .col-name .profile-picture {
   width: 40px;
   margin-right: 5px;
 }
 .table .col-campaign-name {
-  max-width: 250px;
+  max-width: 240px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -10446,12 +10461,6 @@ ul.payment-methods {
   margin-left: 15px;
   display: inline-block;
   cursor: pointer;
-}
-.card-close {
-  cursor: pointer;
-  display: block;
-  float: right;
-  padding: 12px 13px 0 0;
 }
 .proposal-alert {
   margin-left: 6px;

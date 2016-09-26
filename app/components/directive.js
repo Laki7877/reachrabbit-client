@@ -8,9 +8,113 @@
 /* jshint node: true */
 'use strict';
 
-angular.module('myApp.directives', ['myApp.service'])
+angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
+    .filter('newlinify', [function () {
+        return function (input) {
+            return input.replace(/\n/g, '</br>');
+        };
+    }])
+    .directive('urlMask', [function () {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, elem, attrs, ctrl) {
+                function formatter(value) {
+                    if (ctrl.$isEmpty(value)) {
+                        return value;
+                    }
+                    if (value.startsWith('http://')) {
+                        return value.substr(7);
+                    }
+                    return value;
+                }
+
+                function parser(value) {
+                    if (ctrl.$isEmpty(value)) {
+                        return null;
+                    }
+                    return 'http://' + value;
+                }
+
+                ctrl.$formatters.push(formatter);
+                ctrl.$parsers.push(parser);
+            }
+        };
+    }])
+    .filter('maskUrl', [function () {
+        return function (value) {
+            if(!value) return '';
+            if (value.startsWith('http')) {
+                return value;
+            }
+            return 'http://' + value;
+        };
+
+    }])
+    .directive('instagramProfile', ['$window', function ($window) {
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=ngModel'
+            },
+            replace: true,
+            templateUrl: 'components/templates/social-instagram-profile.html',
+            link: function (scope) {
+                scope.gotoPage = function () {
+                    $window.open('https://www.instagram.com/' + scope.data.username);
+                };
+            }
+        };
+    }])
+    .directive('facebookProfile', ['$window', function ($window) {
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=ngModel'
+            },
+            replace: true,
+            templateUrl: 'components/templates/social-facebook-profile.html',
+            link: function (scope) {
+                scope.gotoPage = function () {
+                    $window.open(scope.data.link);
+                };
+                scope.isYoutubeVideo = function (url) {
+                    if (url && url.indexOf('youtube') >= 0) {
+                        return true;
+                    }
+                    return false;
+                };
+            }
+        };
+    }])
+    .directive('youtubeProfile', ['$window', function ($window) {
+        return {
+            restrict: 'E',
+            scope: {
+                data: '=ngModel'
+            },
+            templateUrl: "components/templates/social-youtube-profile.html",
+            link: function (scope) {
+                scope.gotoPage = function (link) {
+                    $window.open(link);
+                };
+            }
+        };
+    }])
+    .directive('version', ['$window', function ($window) {
+        return {
+            restrict: 'EA',
+            templateUrl: "components/templates/version.html",
+            link: function (scope) {
+
+            }
+        };
+    }])
     .filter('truncate', [function () {
         return function (input, maxlen) {
+            if (!input) {
+                return input;
+            }
             if (input.length > maxlen) {
                 return input.substring(0, maxlen) + "...";
             }
@@ -18,16 +122,26 @@ angular.module('myApp.directives', ['myApp.service'])
         };
 
     }])
-    .directive('ngModel', [function() {
+    .directive('ngModel', [function () {
         return {
             restrict: 'A',
             require: 'ngModel',
-            link: function(scope, elem, attrs, ctrl) {
+            link: function (scope, elem, attrs, ctrl) {
                 ctrl.$attributes = attrs;
             }
         };
     }])
-    .directive('formError', [function() {
+    .directive('onClick', ['$interpolate', function ($interpolate) {
+        return {
+            restrict: 'A',
+            link: function (scope, elem, attrs) {
+                elem.bind('click touchstart touchend', function (e) {
+                    scope.$eval(attrs.onClick);
+                });
+            }
+        };
+    }])
+    .directive('formError', [function () {
         return {
             restrict: 'A',
             templateUrl: 'components/templates/form-error.html',
@@ -36,53 +150,100 @@ angular.module('myApp.directives', ['myApp.service'])
                 isValidate: '&?'
             },
             transclude: true,
-            controller: ['$scope', function($scope) {
-                $scope.isValidate = $scope.isValidate || function() { return false; };
-                $scope.isInvalid = function() {
-                    if(!$scope.formError) {
+            controller: ['$scope', function ($scope) {
+                $scope.isValidate = $scope.isValidate || function () { return true; };
+                $scope.isInvalid = function (errorKey) {
+                    if (!$scope.formError) {
                         return false;
                     }
                     return $scope.formError.$invalid &&
-                        ($scope.formError.$dirty || $scope.formError.$$parentForm.$submitted ) &&
-                        !$scope.isValidate();
+                        ($scope.formError.$dirty || $scope.formError.$$parentForm.$submitted) &&
+                        $scope.isValidate({ $model: $scope.formError, $error: errorKey });
                 };
-                this.isInvalid = function() {
-                    return $scope.isInvalid();
+                this.isInvalid = function (errorKey) {
+                    return $scope.isInvalid(errorKey);
                 };
-                this.getModel = function() {
-                    if(!$scope.formError) {
+                this.getModel = function () {
+                    if (!$scope.formError) {
                         return {};
                     }
                     return $scope.formError;
                 };
+                this.watch = function (cb) {
+                    //shallow watch, so it's ok
+                    $scope.$watch('formError', cb);
+                };
             }]
         };
     }])
-    .directive('inputError', [function() {
+    .directive('inputError', [function () {
         return {
             restrict: 'A',
             require: '^^formError',
             templateUrl: 'components/templates/error.html',
             scope: {
-                error: '&?inputError',
+                inputError: '&?inputError',
             },
-            link: function(scope, elem, attrs, ctrl) {
-                var defaultErrors = {
-                    required: 'กรุณากรอกข้อมูลให้ครบถ้วน',
-                    email: 'กรุณากรอกอีเมลให้ถูกต้อง',
-                    minlength: 'รหัสผ่านควรมีความยาวอย่างน้อย ' + ctrl.getModel().$attributes.ngMinlength +' ตัวอักษร'
+            link: function (scope, elem, attrs, ctrl) {
+                //Default form error
+                var getAttr = function (attr, def) {
+                    return _.get(ctrl.getModel(), '$attributes.' + attr, def);
                 };
-                scope.getError = function() {
+                var extractFileSize = function (str) {
+                    var pat = /([0-9\.]+)/;
+                    var pat2 = /([a-zA-Z]+)/;
+                    var m = str.match(pat);
+                    var m2 = str.match(pat2);
+
+                    if (m === null || m2 === null) {
+                        return;
+                    }
+
+                    return m[0] + ' ' + m2[0];
+                };
+                var extractPattern = function (str) {
+                    if (_.isNil(str)) {
+                        return;
+                    }
+                    var tokens = str.replace(/'/g, '').split(',');
+                    var subtoken = tokens.slice(0, tokens.length - 1);
+                    return subtoken.join(' ').concat(' หรือ ' + tokens[tokens.length - 1]);
+                };
+
+                var extractDimension = function (str) {
+                    if (_.isNil(str)) {
+                        return;
+                    }
+                    var pat = /([0-9]+)/g;
+
+                    var m = str.match(pat);
+                    return m.join('x');
+                };
+                scope.error = {};
+                scope.getError = function () {
                     return ctrl.getModel().$error;
                 };
-                scope.isInvalid = function() {
-                    return ctrl.isInvalid();
+                scope.isInvalid = function (key) {
+                    return ctrl.isInvalid(key);
                 };
-                scope.error = _.extend({}, defaultErrors, scope.error());
+
+                //Change default error on modelchange
+                ctrl.watch(function (e) {
+                    var defaultErrors = {
+                        required: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                        email: 'กรุณากรอกอีเมลให้ถูกต้อง',
+                        minlength: 'รหัสผ่านควรมีความยาวอย่างน้อย ' + getAttr('ngMinlength', '-') + ' ตัวอักษร',
+                        maxSize: 'กรุณาเลือกรูปที่มีขนาดไม่เกิน ' + extractFileSize(getAttr('ngfMaxSize', '')),
+                        pattern: 'กรุณาเลือกรูป ' + extractPattern(getAttr('ngfPattern', null)) + ' เท่านั้น',
+                        maxFiles: 'ใส่รูปประกอบได้มากสุดเพียง ' + getAttr('ngfMaxFiles', undefined) + ' รูป',
+                        dimensions: 'กรุณาเลือกรูปที่มีขนาดใหญ่กว่า ' + extractDimension(getAttr('ngfDimensions', undefined)) + ' pixel'
+                    };
+                    scope.error = _.extend({}, defaultErrors, scope.inputError());
+                });
             }
         };
     }])
-    .directive('elastic', ['$timeout',  function($timeout) {
+    .directive('elastic', ['$timeout', function ($timeout) {
         return {
             restrict: 'A',
             link: function ($scope, element) {
@@ -109,13 +270,13 @@ angular.module('myApp.directives', ['myApp.service'])
             link: function (scope, elem, attrs) {
                 elem.bind('keydown', function (event) {
                     var code = event.keyCode || event.which;
-
+                    /*
                     if (code === 13) {
                         if (!event.shiftKey) {
                             event.preventDefault();
                             scope.$apply(attrs.chatarea);
                         }
-                    }
+                    }*/
                 });
             }
         };
@@ -185,18 +346,27 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .directive('pagination', [function () {
+    .provider('$pagination', [function () {
+        this.defaultSizeOptions = [10, 20, 40];
+        this.setDefaultSizeOptions = this.setDefaultSizes = function (array) {
+            this.defaultSizeOptions = array;
+        };
+        this.$get = function () {
+            return this;
+        };
+    }])
+    .directive('pagination', ['$pagination', function ($pagination) {
         return {
             restrict: 'EA',
-            replace: true,
             templateUrl: 'components/templates/pagination.html',
             scope: {
                 model: '=ngModel',
                 callback: '=callback'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
-                scope.sizeOptions = [10, 20, 40];
-                var update = function (extend) {
+                scope.sizeOptions = $pagination.defaultSizeOptions;
+                scope.array = [];
+                scope.update = function (extend) {
                     var newPageable = _.pick(scope.model, ['size', 'sort']);
                     newPageable.sort = newPageable.sort ? _.map(newPageable.sort, function (e) {
                         return e.property + ',' + _.lowerCase(e.direction);
@@ -210,27 +380,26 @@ angular.module('myApp.directives', ['myApp.service'])
                     if (scope.model.last) {
                         return false;
                     }
-                    update({ page: scope.model.number + 1 });
+                    scope.update({ page: scope.model.number + 1 });
                 };
                 scope.prev = function () {
                     //Stop if no previous
                     if (scope.model.first) {
                         return false;
                     }
-                    update({ page: scope.model.number - 1 });
+                    scope.update({ page: scope.model.number - 1 });
                 };
                 scope.goto = function (i) {
-                    update({ page: i });
+                    scope.update({ page: i });
                 };
                 //Get int as array
                 scope.counter = function () {
-                    return new Array(_.get(scope, 'model.totalPages', 0));
-                };
-                scope.$watch('model.size', function (size) {
-                    if (!_.isNil(size)) {
-                        update({ size: size });
+                    scope.array.length = 0;
+                    for (var i = 0; i < _.get(scope, 'model.totalPages', 0); i++) {
+                        scope.array.push(null);
                     }
-                });
+                    return scope.array;
+                };
             }
         };
     }])
@@ -245,7 +414,50 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-
+    .directive('cuteBunny', ['$http', function ($http) {
+        return {
+            restrict: 'AE',
+            templateUrl: 'components/templates/cute-bunny.html',
+            transclude: true,
+            link: function (scope, element, attrs) {
+                scope.$watch(function () {
+                    return $http.pendingRequests.reduce(function (p, c) {
+                        if (_.isFunction(c.ignoreLoadingBar)) {
+                            return p + (c.ignoreLoadingBar(c) ? 0 : 1);
+                        }
+                        return p + (c.ignoreLoadingBar ? 0 : 1);
+                    }, 0);
+                }, function (r) {
+                    if (r === 0) {
+                        element.hide();
+                    } else {
+                        element.show();
+                    }
+                });
+            }
+        };
+    }])
+    .directive('cuteBunnyHide', ['$http', function ($http) {
+        return {
+            restrict: 'AE',
+            link: function (scope, element, attrs) {
+                scope.$watch(function () {
+                    return $http.pendingRequests.reduce(function (p, c) {
+                        if (_.isFunction(c.ignoreLoadingBar)) {
+                            return p + (c.ignoreLoadingBar(c) ? 0 : 1);
+                        }
+                        return p + (c.ignoreLoadingBar ? 0 : 1);
+                    }, 0);
+                }, function (r) {
+                    if (r === 0) {
+                        element.show();
+                    } else {
+                        element.hide();
+                    }
+                });
+            }
+        };
+    }])
     .directive('socialLinker', ['DataService', 'BusinessConfig', '$auth', '$state', '$uibModal', function (DataService, BusinessConfig, $auth, $state, $uibModal) {
         return {
             restrict: 'AE',
@@ -277,7 +489,12 @@ angular.module('myApp.directives', ['myApp.service'])
                     scope.mediaList = mediumResponse.data;
                 });
 
-
+                scope.unlink = function (mediaId) {
+                    _.pullAllBy(scope.model, [{ media: { mediaId: mediaId } }], 'media.mediaId');
+                    if (scope.onDone) {
+                        scope.onDone();
+                    }
+                };
                 scope.startAuthFlow = function (mediaId) {
                     if (mediaId == 'youtube') {
                         mediaId = 'google';
@@ -285,6 +502,11 @@ angular.module('myApp.directives', ['myApp.service'])
                     $auth.authenticate(mediaId)
                         .then(function (response) {
                             var linkedProfile = response.data;
+
+                            if (!_.isNil(response.data.token)) {
+                                throw 'Media นี้ได้ทำการสมัครไปแล้ว';
+                            }
+
                             if (mediaId == 'facebook') {
                                 $uibModal.open({
                                     templateUrl: 'components/templates/social-linker-modal.html',
@@ -304,7 +526,7 @@ angular.module('myApp.directives', ['myApp.service'])
                                                 name: page.name,
                                                 id: authData.id
                                             };
-                                            $uibModalInstance.close(authData);
+                                            $uibModalInstance.close(authobject);
                                         };
                                     }],
                                     resolve: {
@@ -334,7 +556,7 @@ angular.module('myApp.directives', ['myApp.service'])
                             }
                         })
                         .catch(function (err) {
-                            console.log("Linking failed", err);
+                            if (scope.onDone) scope.onDone({ data: { message: err } });
                         });
 
                 };
@@ -365,36 +587,39 @@ angular.module('myApp.directives', ['myApp.service'])
             transclude: true,
             templateUrl: 'components/templates/card-brand-profile.html',
             scope: {
-                brand: '=ngModel'
+                profile: '=ngModel'
             },
-            link: function(scope, element, attrs, ctrl, transclude) {
+            link: function (scope, element, attrs, ctrl, transclude) {
 
             }
         };
     }])
-    .directive('cardInfluencerProfile', [function () {
+    .directive('cardInfluencerProfile', ['UserProfile', function (UserProfile) {
         return {
             restrict: 'AE',
             transclude: true,
             templateUrl: 'components/templates/card-influencer-profile.html',
             scope: {
-                influencer: '=ngModel',
+                profile: '=ngModel',
                 _showSocialData: '=?showSocialData'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
 
-                    if(scope._showSocialData === false){
-                        scope.showSocialData = false;
-                    }else if(scope._showSocialData === true){
-                        scope.showSocialData = true;
-                    }else{
-                        scope.showSocialData = true;
-                    }
+                if (scope._showSocialData === false) {
+                    scope.showSocialData = false;
+                } else if (scope._showSocialData === true) {
+                    scope.showSocialData = true;
+                } else {
+                    scope.showSocialData = true;
+                }
 
-                
+                scope.isInfluencer = false;
+                if (UserProfile.get().influencer) {
+                    scope.isInfluencer = true;
+                }
 
                 scope.joinCat = function (A) {
-                    return A.map(function(o){
+                    return A.map(function (o) {
                         return o.categoryName;
                     }).join(", ");
                 };
@@ -540,26 +765,37 @@ angular.module('myApp.directives', ['myApp.service'])
     .directive('cardCampaignHeader', [function () {
         return {
             restrict: 'EA',
-            scope: { campaign: '=' },
+            scope: {
+                campaign: '=',
+                remove: "&?",
+                removeable: "&?"
+            },
             templateUrl: 'components/templates/card-campaign-header.html',
             link: function (scope, element, attrs, ctrl, transclude) {
-
+                scope.remove = scope.remove || _.noop;
+                scope.removable = scope.removeable || _.noop;
             }
         };
     }])
-    .directive('zoneHeader', [function () {
+    .directive('zoneHeader', ['$state', function ($state) {
         //To Do: make historyback to True/False
         return {
             restrict: 'EA',
             transclude: true,
             scope: {
-                historyback: '=?'
+                historyback: '=?',
+                historybackOverride: '@?'
             },
             templateUrl: 'components/templates/zone-header.html',
             link: function (scope, element, attrs, ctrl, transclude) {
                 scope.history = {
                     back: function () {
-                        history.back();
+                        if (scope.historybackOverride) {
+                            $state.go(scope.historybackOverride);
+                        } else {
+                            history.back();
+                        }
+
                     }
                 };
                 /*element.on('click', function() {
@@ -599,42 +835,162 @@ angular.module('myApp.directives', ['myApp.service'])
             }
         };
     }])
-    .directive('uploaderThumb', ['$uploader', function ($uploader) {
+    .directive('uploaderThumb', ['$uploader', '$uibModal', 'Upload', function ($uploader, $uibModal, Upload) {
         return {
             restrict: 'AE',
+            require: 'ngModel',
             transclude: true,
             scope: {
                 width: '=',
                 height: '=',
                 model: '=ngModel',
+                accept: '@?',
+                loadingImage: '=?isLoading',
+                aspectRatio: '=?',
+                onError: '&?',
+                noCrop: '=?',
                 accessor: '&?' //function that defines how to access the url of the model
             },
-            templateUrl: 'components/templates/uploader-thumb.html',
-            link: function(scope, elem, attrs, form) {
+            templateUrl: function (elem, attr) {
+                if (attr.template) {
+                    return attr.template;
+                }
+                return 'components/templates/uploader-thumb.html';
+            },
+            link: function (scope, elem, attr, ngModel) {
+                if (!scope.aspectRatio) {
+                    scope.aspectRatio = 1;
+                }
+                scope.file = null;
                 if (!scope.accessor) {
                     scope.accessor = function (data) {
                         if (!scope.model) return false;
                         return data.url;
                     };
                 }
-
                 scope.remove = function (index) {
                     scope.model = null;
                 };
+                scope.pristine = function () {
+                    ngModel.$setPristine();
+                };
 
-                scope.loadingImage = false;
                 scope.upload = function (file) {
+                    var ifile = file;
+                    if (!ifile) {
+                        return;
+                    }
                     scope.loadingImage = true;
-                    var evtHandler = function (evt) {
-                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                        scope.progressPercentage = progressPercentage;
+
+                    var processFile = function (file) {
+                        if (file === null) {
+                            //TODO: maybe do dismiss will fixthat bug?
+                            return;
+                        }
+                        scope.loadingImage = false;
+                        $uploader.validate(file, 0, ngModel, attr, scope).then(function (valid) {
+                            if (!valid) {
+                                (scope.onError || _.noop)({ $file: file, $error: ngModel.$error });
+                                return;
+                            }
+                            scope.loadingImage = true;
+                            var evtHandler = function (evt) {
+                                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                                scope.progressPercentage = progressPercentage;
+                            };
+
+                            $uploader.upload('/resources', { file: file }, evtHandler)
+                                .then(function (data) {
+                                    scope.loadingImage = false;
+                                    scope.model = data;
+                                });
+                        });
                     };
 
-                    $uploader.upload('/resources', { file: file }, evtHandler)
-                        .then(function (data) {
-                            scope.loadingImage = false;
-                            scope.model = data;
-                        });
+                    if (!scope.noCrop) {
+                        
+                        //#region resize
+                        var url = window.URL.createObjectURL(file);
+                        var canvas = document.createElement('canvas');
+
+                        var resizeCanvas = document.createElement('canvas');
+
+                        var ctx = canvas.getContext('2d');
+                        var img = new window.Image();
+                        img.onload = function () {
+
+                            var effectiveH = img.height;
+                            var effectiveW = img.width;
+
+                            var HWratio = img.height/img.width;
+                            if(img.width > 1500){
+                                effectiveW = 1500;
+                                effectiveH = 1500*HWratio; //H = W*H/W
+                            }else if(img.height > 1500){
+                                effectiveH = 1500;
+                                effectiveW = 1500/HWratio; //W = H/(H/W) = W
+                            }
+
+                            canvas.width = effectiveW;
+                            canvas.height = effectiveH;
+                            resizeCanvas.width = effectiveW;
+                            resizeCanvas.height = effectiveH;
+
+                            ctx.drawImage(img, 0, 0, effectiveW, effectiveH);
+                            
+                            window.pica.resizeCanvas(canvas, resizeCanvas, {
+                                alpha: 1
+                            }, function (err) {
+                                if (err) console.log("Unable to resize");
+                                scope.loadingImage = false;
+                                resizeCanvas.toBlob(function (blob) {
+                                    var resizedBlobUrl = window.URL.createObjectURL(blob);
+
+                                    var modalInstance = $uibModal.open({
+                                        animation: false,
+                                        backdrop: 'static',
+                                        templateUrl: 'components/templates/uploader-crop.html',
+                                        controller: ['$scope', 'file', 'cropOption', '$uibModalInstance', function ($scope, file, cropOption, $uibModalInstance) {
+                                            $scope.thumbFile = file;
+                                            $scope.resizedBlobUrl = resizedBlobUrl;
+                                            $scope.cropOption = cropOption;
+
+                                            $scope.dismiss = function () {
+                                                $uibModalInstance.dismiss();
+                                            };
+
+                                        }],
+                                        size: 'lg',
+                                        resolve: {
+                                            file: function () {
+                                                return ifile;
+                                            },
+                                            cropOption: function () {
+                                                return {
+                                                    aspectRatio: Number(scope.aspectRatio)
+                                                };
+                                            }
+                                        }
+                                    });
+
+                                    //on user close
+                                    modalInstance.result.then(function (dataUrl) {
+                                        // console.log(dataUrl);
+                                        var file = Upload.dataUrltoBlob(dataUrl, 'cropped_content.png');
+                                        processFile(file);
+                                    });
+                                });
+                            });
+                        };
+                        img.src = url;
+                        //#endregion
+
+                    } else {
+                        processFile(ifile);
+                    }
+
+
+
                 };
 
             }
@@ -710,9 +1066,13 @@ angular.module('myApp.directives', ['myApp.service'])
     .directive('uploaderMulti', ['$uploader', function ($uploader) {
         return {
             restrict: 'AE',
+            require: 'ngModel',
             transclude: true,
             scope: {
                 model: '=ngModel',
+                loadingImage: '=?isLoading',
+                accept: '@?',
+                onError: '&?',
                 accessor: '&?' //function that defines how to access the url of the model
             },
             templateUrl: function (elem, attr) {
@@ -722,7 +1082,7 @@ angular.module('myApp.directives', ['myApp.service'])
 
                 return 'components/templates/uploader-multi.html';
             },
-            link: function (scope, elem, attrs, form) {
+            link: function (scope, elem, attr, ngModel) {
                 if (!(scope.model instanceof Array)) {
                     console.error("Model is not array.");
                 }
@@ -737,21 +1097,33 @@ angular.module('myApp.directives', ['myApp.service'])
                 scope.remove = function (index) {
                     scope.model.splice(index, 1);
                 };
-
-                scope.loadingImage = false;
+                scope.pristine = function () {
+                    ngModel.$setPristine();
+                };
                 scope.upload = function (file) {
-                    scope.loadingImage = true;
-                    scope.progressPercentage = 0;
-                    var evtHandler = function (evt) {
-                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                        scope.progressPercentage = progressPercentage;
-                    };
+                    if (file === null) {
+                        return;
+                    }
+                    scope.loadingImage = false;
+                    $uploader.validate(file, scope.model.length, ngModel, attr, scope)
+                        .then(function (valid) {
+                            if (!valid) {
+                                (scope.onError || _.noop)({ $file: file, $error: ngModel.$error });
+                                return;
+                            }
+                            scope.loadingImage = true;
+                            scope.progressPercentage = 0;
+                            var evtHandler = function (evt) {
+                                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                                scope.progressPercentage = progressPercentage;
+                            };
 
-                    $uploader.upload('/resources', { file: file }, evtHandler)
-                        .then(function (data) {
-                            scope.loadingImage = false;
-                            data._name = file.name;
-                            scope.model.push(data);
+                            $uploader.upload('/resources', { file: file }, evtHandler)
+                                .then(function (data) {
+                                    scope.loadingImage = false;
+                                    data._name = file.name;
+                                    scope.model.push(data);
+                                });
                         });
                 };
 

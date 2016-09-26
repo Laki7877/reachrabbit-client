@@ -1,0 +1,72 @@
+<!-- youtube-tab -->
+<div class="youtube-profile">
+    <div class="card-body">
+        <div class="card-row">
+            <div class="card-title col-xs-12">
+                <div class="card-title-content">
+                    {{data.channel.snippet.title}}
+                </div>
+            </div>
+        </div>
+        <div class="card-overview card-row">
+            <div class="card-info">
+                <div class="card-info-label">จำนวน Subscriber</div>
+                <div class="card-content">
+                    <strong>{{ data.channel.statistics.subscriberCount | number: 0 }}</strong>
+                    <small>คน</small>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-info-label" uib-tooltip="ยอด View ทั้งหมด รวมจากทุกวิดีโอใน YouTube ใน Channel นี้" tooltip-placement="top">ยอด View ทั้งหมด <i class="fa fa-question-circle"></i></div>
+                <div class="card-content">
+                    <strong>{{ data.channel.statistics.viewCount | number: 0 }}</strong>
+                    <i class="fa fa-eye"></i>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-info-label" uib-tooltip="ค่าเฉลี่ย View ถูกคำนวณจาก 20 วิดีโอล่าสุด" tooltip-placement="top">ค่าเฉลี่ย View <i class="fa fa-question-circle"></i></div>
+                <div class="card-content">
+                    <strong>{{ data.channel.statistics.viewCount/data.videos.length | number: 0 }}</strong>
+                    <i class="fa fa-eye"></i>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-info-label" uib-tooltip="ค่าเฉลี่ย Like ถูกคำนวณจาก 20 วิดีโอล่าสุด" tooltip-placement="top">ค่าเฉลี่ย Like <i class="fa fa-question-circle"></i></div>
+                <div class="card-content">
+                    <strong>{{ $root.sumReduce(data.videos, 'statistics.likeCount')/data.videos.length  | number: 0 }}</strong>
+                    <i class="fa fa-thumb-up"></i>
+                </div>
+            </div>
+            <div class="card-button">
+                <a target="_blank" ng-href="https://www.youtube.com/channel/{{ data.channel.id }}" class="btn-secondary pull-right btn-width-md">ดูบน YouTube</a>
+            </div>
+        </div>
+        <div class="card-gallery card-row">
+
+            <div class="col-xs-6" ng-repeat="item in data.videos">
+                <div class="card-gallery-item">
+                    <iframe class="card-gallery-video" ng-src="{{$root.trustSrc('https://www.youtube.com/embed/' + item.id)}}" frameborder="0" autoplay="0" allowfullscreen></iframe>
+                    <div class="card-gallery-info">
+                        <div class="card-gallery-message col-xs-12">
+                            {{item.snippet.title | truncate: 50}}
+                        </div>
+                        <div class="card-info col-xs-3 col-xs-offset-3">
+                            <div class="card-info-label">Views</div>
+                            <div class="card-content">{{item.statistics.viewCount | number: 0}}</div>
+                        </div>
+                        <div class="card-info col-xs-3">
+                            <div class="card-info-label">Like</div>
+                            <div class="card-content" ng-if="item.statistics.likeCount == 0 || item.statistics.likeCount">{{item.statistics.likeCount | number: 0}}</div>
+                            <div class="card-content" ng-if="item.statistics.likeCount !== 0 && !item.statistics.likeCount"><small>N/A</small></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+<!-- End youtube-tab -->

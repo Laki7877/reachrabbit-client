@@ -71,7 +71,8 @@ mark {
 }
 small,
 .workroom .card-proposal-detail .card-info-label,
-.proposal-modal .help-block {
+.proposal-modal .hint-block,
+.social-linker-modal .hint-block {
   font-size: 80%;
 }
 sub,
@@ -227,15 +228,29 @@ th {
   p,
   h2,
   h3,
+  .zone-header .with-history-back h1,
   .card-title .card-title-content,
-  .proposal-modal .modal-title {
+  .social-media-profile .card-overview .card-info strong,
+  .proposal-modal .modal-title,
+  .layout-brand .view-brand-campaign-list .zone-body .page-header h1,
+  .facebook-profile .card-overview .card-info strong,
+  .instagram-profile .card-overview .card-info strong,
+  .youtube-profile .card-overview .card-info strong,
+  .social-linker-modal .modal-title {
     orphans: 3;
     widows: 3;
   }
   h2,
   h3,
+  .zone-header .with-history-back h1,
   .card-title .card-title-content,
-  .proposal-modal .modal-title {
+  .social-media-profile .card-overview .card-info strong,
+  .proposal-modal .modal-title,
+  .layout-brand .view-brand-campaign-list .zone-body .page-header h1,
+  .facebook-profile .card-overview .card-info strong,
+  .instagram-profile .card-overview .card-info strong,
+  .youtube-profile .card-overview .card-info strong,
+  .social-linker-modal .modal-title {
     page-break-after: avoid;
   }
   .navbar {
@@ -251,6 +266,8 @@ th {
   .dropup > .btn-secondary-highlight > .caret,
   .btn-secondary-active > .caret,
   .dropup > .btn-secondary-active > .caret,
+  .btn-trace > .caret,
+  .dropup > .btn-trace > .caret,
   .btn-social > .caret,
   .dropup > .btn-social > .caret {
     border-top-color: #000 !important;
@@ -1130,9 +1147,7 @@ img {
 .card-portal .logo img,
 .card-portal .profile-picture .profile-picture-image,
 .card-campaign-description .card-body .description-image,
-.card-thumbnail .card-thumbnail-image img,
-.chatbox-card .message-area .message .message-body .message-content img,
-.workroom .card-campaign-thumbnail .card-thumbnail-image img {
+.chatbox-card .message-area .message .message-body .message-content img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -1202,18 +1217,29 @@ h6,
 .h5,
 .h6,
 .social-link-title,
+.zone-header .with-history-back h1,
 .radio-card .radio-label,
 .input-upload-image-sm i,
 .card-title .card-title-content,
-.card-status,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-overview .card-info strong,
+.social-media-profile .card-gallery .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
 .proposal-modal .modal-title,
-.workroom .card-campaign-thumbnail .card-body {
+.layout-brand .view-brand-campaign-list .zone-body .page-header h1,
+.facebook-profile .card-overview .card-info strong,
+.facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
+.instagram-profile .card-overview .card-info strong,
+.instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
+.youtube-profile .card-overview .card-info strong,
+.youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
+.workroom .card-campaign-thumbnail .card-body,
+.social-linker-modal .modal-title {
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
@@ -1253,8 +1279,15 @@ h2,
 .h2,
 h3,
 .h3,
+.zone-header .with-history-back h1,
 .card-title .card-title-content,
-.proposal-modal .modal-title {
+.social-media-profile .card-overview .card-info strong,
+.proposal-modal .modal-title,
+.layout-brand .view-brand-campaign-list .zone-body .page-header h1,
+.facebook-profile .card-overview .card-info strong,
+.instagram-profile .card-overview .card-info strong,
+.youtube-profile .card-overview .card-info strong,
+.social-linker-modal .modal-title {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -1281,13 +1314,17 @@ h6,
 .social-link-title,
 .radio-card .radio-label,
 .input-upload-image-sm i,
-.card-status,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-gallery .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
+.facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
+.instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
+.youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -1311,13 +1348,20 @@ h1,
   font-size: 36px;
 }
 h2,
-.h2 {
+.h2,
+.zone-header .with-history-back h1,
+.layout-brand .view-brand-campaign-list .zone-body .page-header h1 {
   font-size: 30px;
 }
 h3,
 .h3,
 .card-title .card-title-content,
-.proposal-modal .modal-title {
+.social-media-profile .card-overview .card-info strong,
+.proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong,
+.instagram-profile .card-overview .card-info strong,
+.youtube-profile .card-overview .card-info strong,
+.social-linker-modal .modal-title {
   font-size: 24px;
 }
 h4,
@@ -1327,15 +1371,19 @@ h4,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-gallery .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
+.facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
+.instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
+.youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 18px;
 }
 h5,
 .h5,
 .social-link-title,
-.card-status,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 14px;
 }
@@ -1362,7 +1410,8 @@ small,
 .info-text,
 .workroom .card-proposal-detail .card-info-label,
 .chatbox-card .message-area .message .message-body .message-heading .message-time,
-.proposal-modal .help-block {
+.proposal-modal .hint-block,
+.social-linker-modal .hint-block {
   font-size: 85%;
 }
 mark,
@@ -1669,6 +1718,7 @@ pre code {
 }
 .row,
 .card-body .card-row,
+.card-body .card-row-2-column,
 .thumbnails {
   margin-left: -15px;
   margin-right: -15px;
@@ -2968,7 +3018,9 @@ select[multiple].input-lg {
 .has-feedback label.sr-only ~ .form-control-feedback {
   top: 0;
 }
-.help-block {
+.help-block,
+.proposal-modal .hint-block,
+.social-linker-modal .hint-block {
   display: block;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -3067,6 +3119,7 @@ select[multiple].input-lg {
 .btn-secondary,
 .btn-secondary-highlight,
 .btn-secondary-active,
+.btn-trace,
 .btn-social {
   display: inline-block;
   margin-bottom: 0;
@@ -3117,6 +3170,12 @@ select[multiple].input-lg {
 .btn-secondary-active.focus,
 .btn-secondary-active:active.focus,
 .btn-secondary-active.active.focus,
+.btn-trace:focus,
+.btn-trace:active:focus,
+.btn-trace.active:focus,
+.btn-trace.focus,
+.btn-trace:active.focus,
+.btn-trace.active.focus,
 .btn-social:focus,
 .btn-social:active:focus,
 .btn-social.active:focus,
@@ -3141,6 +3200,9 @@ select[multiple].input-lg {
 .btn-secondary-active:hover,
 .btn-secondary-active:focus,
 .btn-secondary-active.focus,
+.btn-trace:hover,
+.btn-trace:focus,
+.btn-trace.focus,
 .btn-social:hover,
 .btn-social:focus,
 .btn-social.focus {
@@ -3157,6 +3219,8 @@ select[multiple].input-lg {
 .btn-secondary-highlight.active,
 .btn-secondary-active:active,
 .btn-secondary-active.active,
+.btn-trace:active,
+.btn-trace.active,
 .btn-social:active,
 .btn-social.active {
   outline: 0;
@@ -3179,6 +3243,9 @@ fieldset[disabled] .btn-secondary-highlight,
 .btn-secondary-active.disabled,
 .btn-secondary-active[disabled],
 fieldset[disabled] .btn-secondary-active,
+.btn-trace.disabled,
+.btn-trace[disabled],
+fieldset[disabled] .btn-trace,
 .btn-social.disabled,
 .btn-social[disabled],
 fieldset[disabled] .btn-social {
@@ -3198,6 +3265,8 @@ a.btn-secondary-highlight.disabled,
 fieldset[disabled] a.btn-secondary-highlight,
 a.btn-secondary-active.disabled,
 fieldset[disabled] a.btn-secondary-active,
+a.btn-trace.disabled,
+fieldset[disabled] a.btn-trace,
 a.btn-social.disabled,
 fieldset[disabled] a.btn-social {
   pointer-events: none;
@@ -3829,6 +3898,7 @@ fieldset[disabled] .btn-link:focus {
 .btn-group-lg > .btn-secondary,
 .btn-group-lg > .btn-secondary-highlight,
 .btn-group-lg > .btn-secondary-active,
+.btn-group-lg > .btn-trace,
 .btn-group-lg > .btn-social {
   padding: 10px 16px;
   font-size: 18px;
@@ -3841,6 +3911,7 @@ fieldset[disabled] .btn-link:focus {
 .btn-group-sm > .btn-secondary,
 .btn-group-sm > .btn-secondary-highlight,
 .btn-group-sm > .btn-secondary-active,
+.btn-group-sm > .btn-trace,
 .btn-group-sm > .btn-social {
   padding: 5px 10px;
   font-size: 12px;
@@ -3853,6 +3924,7 @@ fieldset[disabled] .btn-link:focus {
 .btn-group-xs > .btn-secondary,
 .btn-group-xs > .btn-secondary-highlight,
 .btn-group-xs > .btn-secondary-active,
+.btn-group-xs > .btn-trace,
 .btn-group-xs > .btn-social {
   padding: 1px 5px;
   font-size: 12px;
@@ -4061,6 +4133,8 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-secondary-highlight,
 .btn-group > .btn-secondary-active,
 .btn-group-vertical > .btn-secondary-active,
+.btn-group > .btn-trace,
+.btn-group-vertical > .btn-trace,
 .btn-group > .btn-social,
 .btn-group-vertical > .btn-social {
   position: relative;
@@ -4106,6 +4180,14 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-secondary-active:active,
 .btn-group > .btn-secondary-active.active,
 .btn-group-vertical > .btn-secondary-active.active,
+.btn-group > .btn-trace:hover,
+.btn-group-vertical > .btn-trace:hover,
+.btn-group > .btn-trace:focus,
+.btn-group-vertical > .btn-trace:focus,
+.btn-group > .btn-trace:active,
+.btn-group-vertical > .btn-trace:active,
+.btn-group > .btn-trace.active,
+.btn-group-vertical > .btn-trace.active,
 .btn-group > .btn-social:hover,
 .btn-group-vertical > .btn-social:hover,
 .btn-group > .btn-social:focus,
@@ -4132,6 +4214,9 @@ tbody.collapse.in {
 .btn-group .btn-secondary-active + .btn-secondary-active,
 .btn-group .btn-secondary-active + .btn-group,
 .btn-group .btn-group + .btn-secondary-active,
+.btn-group .btn-trace + .btn-trace,
+.btn-group .btn-trace + .btn-group,
+.btn-group .btn-group + .btn-trace,
 .btn-group .btn-social + .btn-social,
 .btn-group .btn-social + .btn-group,
 .btn-group .btn-group + .btn-social {
@@ -4147,6 +4232,7 @@ tbody.collapse.in {
 .btn-toolbar .btn-secondary,
 .btn-toolbar .btn-secondary-highlight,
 .btn-toolbar .btn-secondary-active,
+.btn-toolbar .btn-trace,
 .btn-toolbar .btn-social {
   float: left;
 }
@@ -4157,6 +4243,7 @@ tbody.collapse.in {
 .btn-toolbar > .btn-secondary,
 .btn-toolbar > .btn-secondary-highlight,
 .btn-toolbar > .btn-secondary-active,
+.btn-toolbar > .btn-trace,
 .btn-toolbar > .btn-social {
   margin-left: 5px;
 }
@@ -4165,6 +4252,7 @@ tbody.collapse.in {
 .btn-group > .btn-secondary:not(:first-child):not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-secondary-highlight:not(:first-child):not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-secondary-active:not(:first-child):not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-trace:not(:first-child):not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-social:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0;
 }
@@ -4173,6 +4261,7 @@ tbody.collapse.in {
 .btn-group > .btn-secondary:first-child,
 .btn-group > .btn-secondary-highlight:first-child,
 .btn-group > .btn-secondary-active:first-child,
+.btn-group > .btn-trace:first-child,
 .btn-group > .btn-social:first-child {
   margin-left: 0;
 }
@@ -4181,6 +4270,7 @@ tbody.collapse.in {
 .btn-group > .btn-secondary:first-child:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-secondary-highlight:first-child:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-secondary-active:first-child:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-trace:first-child:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-social:first-child:not(:last-child):not(.dropdown-toggle) {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
@@ -4191,6 +4281,7 @@ tbody.collapse.in {
 .btn-group > .btn-secondary:last-child:not(:first-child),
 .btn-group > .btn-secondary-highlight:last-child:not(:first-child),
 .btn-group > .btn-secondary-active:last-child:not(:first-child),
+.btn-group > .btn-trace:last-child:not(:first-child),
 .btn-group > .btn-social:last-child:not(:first-child) {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -4203,6 +4294,7 @@ tbody.collapse.in {
 .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn-secondary,
 .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn-secondary-highlight,
 .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn-secondary-active,
+.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn-trace,
 .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn-social {
   border-radius: 0;
 }
@@ -4212,6 +4304,7 @@ tbody.collapse.in {
 .btn-group > .btn-group:first-child:not(:last-child) > .btn-secondary:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .btn-secondary-highlight:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .btn-secondary-active:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > .btn-trace:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .btn-social:last-child {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
@@ -4221,6 +4314,7 @@ tbody.collapse.in {
 .btn-group > .btn-group:last-child:not(:first-child) > .btn-secondary:first-child,
 .btn-group > .btn-group:last-child:not(:first-child) > .btn-secondary-highlight:first-child,
 .btn-group > .btn-group:last-child:not(:first-child) > .btn-secondary-active:first-child,
+.btn-group > .btn-group:last-child:not(:first-child) > .btn-trace:first-child,
 .btn-group > .btn-group:last-child:not(:first-child) > .btn-social:first-child {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -4234,6 +4328,7 @@ tbody.collapse.in {
 .btn-group > .btn-secondary + .dropdown-toggle,
 .btn-group > .btn-secondary-highlight + .dropdown-toggle,
 .btn-group > .btn-secondary-active + .dropdown-toggle,
+.btn-group > .btn-trace + .dropdown-toggle,
 .btn-group > .btn-social + .dropdown-toggle {
   padding-left: 8px;
   padding-right: 8px;
@@ -4255,6 +4350,7 @@ tbody.collapse.in {
 .btn-secondary .caret,
 .btn-secondary-highlight .caret,
 .btn-secondary-active .caret,
+.btn-trace .caret,
 .btn-social .caret {
   margin-left: 0;
 }
@@ -4276,6 +4372,8 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-group > .btn-secondary-highlight,
 .btn-group-vertical > .btn-secondary-active,
 .btn-group-vertical > .btn-group > .btn-secondary-active,
+.btn-group-vertical > .btn-trace,
+.btn-group-vertical > .btn-group > .btn-trace,
 .btn-group-vertical > .btn-social,
 .btn-group-vertical > .btn-group > .btn-social {
   display: block;
@@ -4288,6 +4386,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-group > .btn-secondary,
 .btn-group-vertical > .btn-group > .btn-secondary-highlight,
 .btn-group-vertical > .btn-group > .btn-secondary-active,
+.btn-group-vertical > .btn-group > .btn-trace,
 .btn-group-vertical > .btn-group > .btn-social {
   float: none;
 }
@@ -4307,6 +4406,9 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-secondary-active + .btn-secondary-active,
 .btn-group-vertical > .btn-secondary-active + .btn-group,
 .btn-group-vertical > .btn-group + .btn-secondary-active,
+.btn-group-vertical > .btn-trace + .btn-trace,
+.btn-group-vertical > .btn-trace + .btn-group,
+.btn-group-vertical > .btn-group + .btn-trace,
 .btn-group-vertical > .btn-social + .btn-social,
 .btn-group-vertical > .btn-social + .btn-group,
 .btn-group-vertical > .btn-group + .btn-social {
@@ -4318,6 +4420,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-secondary:not(:first-child):not(:last-child),
 .btn-group-vertical > .btn-secondary-highlight:not(:first-child):not(:last-child),
 .btn-group-vertical > .btn-secondary-active:not(:first-child):not(:last-child),
+.btn-group-vertical > .btn-trace:not(:first-child):not(:last-child),
 .btn-group-vertical > .btn-social:not(:first-child):not(:last-child) {
   border-radius: 0;
 }
@@ -4326,6 +4429,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-secondary:first-child:not(:last-child),
 .btn-group-vertical > .btn-secondary-highlight:first-child:not(:last-child),
 .btn-group-vertical > .btn-secondary-active:first-child:not(:last-child),
+.btn-group-vertical > .btn-trace:first-child:not(:last-child),
 .btn-group-vertical > .btn-social:first-child:not(:last-child) {
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
@@ -4337,6 +4441,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-secondary:last-child:not(:first-child),
 .btn-group-vertical > .btn-secondary-highlight:last-child:not(:first-child),
 .btn-group-vertical > .btn-secondary-active:last-child:not(:first-child),
+.btn-group-vertical > .btn-trace:last-child:not(:first-child),
 .btn-group-vertical > .btn-social:last-child:not(:first-child) {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
@@ -4348,6 +4453,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn-secondary,
 .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn-secondary-highlight,
 .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn-secondary-active,
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn-trace,
 .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn-social {
   border-radius: 0;
 }
@@ -4357,6 +4463,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn-secondary:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn-secondary-highlight:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn-secondary-active:last-child,
+.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn-trace:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn-social:last-child {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -4366,6 +4473,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn-secondary:first-child,
 .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn-secondary-highlight:first-child,
 .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn-secondary-active:first-child,
+.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn-trace:first-child,
 .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn-social:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
@@ -4382,6 +4490,7 @@ tbody.collapse.in {
 .btn-group-justified > .btn-secondary,
 .btn-group-justified > .btn-secondary-highlight,
 .btn-group-justified > .btn-secondary-active,
+.btn-group-justified > .btn-trace,
 .btn-group-justified > .btn-social {
   float: none;
   display: table-cell;
@@ -4392,6 +4501,7 @@ tbody.collapse.in {
 .btn-group-justified > .btn-group .btn-secondary,
 .btn-group-justified > .btn-group .btn-secondary-highlight,
 .btn-group-justified > .btn-group .btn-secondary-active,
+.btn-group-justified > .btn-group .btn-trace,
 .btn-group-justified > .btn-group .btn-social {
   width: 100%;
 }
@@ -4418,6 +4528,10 @@ tbody.collapse.in {
 [data-toggle="buttons"] > .btn-group > .btn-secondary-active input[type="radio"],
 [data-toggle="buttons"] > .btn-secondary-active input[type="checkbox"],
 [data-toggle="buttons"] > .btn-group > .btn-secondary-active input[type="checkbox"],
+[data-toggle="buttons"] > .btn-trace input[type="radio"],
+[data-toggle="buttons"] > .btn-group > .btn-trace input[type="radio"],
+[data-toggle="buttons"] > .btn-trace input[type="checkbox"],
+[data-toggle="buttons"] > .btn-group > .btn-trace input[type="checkbox"],
 [data-toggle="buttons"] > .btn-social input[type="radio"],
 [data-toggle="buttons"] > .btn-group > .btn-social input[type="radio"],
 [data-toggle="buttons"] > .btn-social input[type="checkbox"],
@@ -4453,6 +4567,7 @@ tbody.collapse.in {
 .input-group-lg > .input-group-btn > .btn-secondary,
 .input-group-lg > .input-group-btn > .btn-secondary-highlight,
 .input-group-lg > .input-group-btn > .btn-secondary-active,
+.input-group-lg > .input-group-btn > .btn-trace,
 .input-group-lg > .input-group-btn > .btn-social {
   height: 46px;
   padding: 10px 16px;
@@ -4467,6 +4582,7 @@ select.input-group-lg > .input-group-btn > .btn-primary,
 select.input-group-lg > .input-group-btn > .btn-secondary,
 select.input-group-lg > .input-group-btn > .btn-secondary-highlight,
 select.input-group-lg > .input-group-btn > .btn-secondary-active,
+select.input-group-lg > .input-group-btn > .btn-trace,
 select.input-group-lg > .input-group-btn > .btn-social {
   height: 46px;
   line-height: 46px;
@@ -4485,6 +4601,8 @@ textarea.input-group-lg > .input-group-btn > .btn-secondary-highlight,
 select[multiple].input-group-lg > .input-group-btn > .btn-secondary-highlight,
 textarea.input-group-lg > .input-group-btn > .btn-secondary-active,
 select[multiple].input-group-lg > .input-group-btn > .btn-secondary-active,
+textarea.input-group-lg > .input-group-btn > .btn-trace,
+select[multiple].input-group-lg > .input-group-btn > .btn-trace,
 textarea.input-group-lg > .input-group-btn > .btn-social,
 select[multiple].input-group-lg > .input-group-btn > .btn-social {
   height: auto;
@@ -4496,6 +4614,7 @@ select[multiple].input-group-lg > .input-group-btn > .btn-social {
 .input-group-sm > .input-group-btn > .btn-secondary,
 .input-group-sm > .input-group-btn > .btn-secondary-highlight,
 .input-group-sm > .input-group-btn > .btn-secondary-active,
+.input-group-sm > .input-group-btn > .btn-trace,
 .input-group-sm > .input-group-btn > .btn-social {
   height: 30px;
   padding: 5px 10px;
@@ -4510,6 +4629,7 @@ select.input-group-sm > .input-group-btn > .btn-primary,
 select.input-group-sm > .input-group-btn > .btn-secondary,
 select.input-group-sm > .input-group-btn > .btn-secondary-highlight,
 select.input-group-sm > .input-group-btn > .btn-secondary-active,
+select.input-group-sm > .input-group-btn > .btn-trace,
 select.input-group-sm > .input-group-btn > .btn-social {
   height: 30px;
   line-height: 30px;
@@ -4528,6 +4648,8 @@ textarea.input-group-sm > .input-group-btn > .btn-secondary-highlight,
 select[multiple].input-group-sm > .input-group-btn > .btn-secondary-highlight,
 textarea.input-group-sm > .input-group-btn > .btn-secondary-active,
 select[multiple].input-group-sm > .input-group-btn > .btn-secondary-active,
+textarea.input-group-sm > .input-group-btn > .btn-trace,
+select[multiple].input-group-sm > .input-group-btn > .btn-trace,
 textarea.input-group-sm > .input-group-btn > .btn-social,
 select[multiple].input-group-sm > .input-group-btn > .btn-social {
   height: auto;
@@ -4596,6 +4718,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn:first-child > .btn-group > .btn-secondary-active,
 .input-group-btn:last-child > .btn-secondary-active:not(:last-child):not(.dropdown-toggle),
 .input-group-btn:last-child > .btn-group:not(:last-child) > .btn-secondary-active,
+.input-group-btn:first-child > .btn-trace,
+.input-group-btn:first-child > .btn-group > .btn-trace,
+.input-group-btn:last-child > .btn-trace:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:last-child > .btn-group:not(:last-child) > .btn-trace,
 .input-group-btn:first-child > .btn-social,
 .input-group-btn:first-child > .btn-group > .btn-social,
 .input-group-btn:last-child > .btn-social:not(:last-child):not(.dropdown-toggle),
@@ -4629,6 +4755,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn:last-child > .btn-group > .btn-secondary-active,
 .input-group-btn:first-child > .btn-secondary-active:not(:first-child),
 .input-group-btn:first-child > .btn-group:not(:first-child) > .btn-secondary-active,
+.input-group-btn:last-child > .btn-trace,
+.input-group-btn:last-child > .btn-group > .btn-trace,
+.input-group-btn:first-child > .btn-trace:not(:first-child),
+.input-group-btn:first-child > .btn-group:not(:first-child) > .btn-trace,
 .input-group-btn:last-child > .btn-social,
 .input-group-btn:last-child > .btn-group > .btn-social,
 .input-group-btn:first-child > .btn-social:not(:first-child),
@@ -4649,6 +4779,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn > .btn-secondary,
 .input-group-btn > .btn-secondary-highlight,
 .input-group-btn > .btn-secondary-active,
+.input-group-btn > .btn-trace,
 .input-group-btn > .btn-social {
   position: relative;
 }
@@ -4657,6 +4788,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn > .btn-secondary + .btn-secondary,
 .input-group-btn > .btn-secondary-highlight + .btn-secondary-highlight,
 .input-group-btn > .btn-secondary-active + .btn-secondary-active,
+.input-group-btn > .btn-trace + .btn-trace,
 .input-group-btn > .btn-social + .btn-social {
   margin-left: -1px;
 }
@@ -4675,6 +4807,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn > .btn-secondary-active:hover,
 .input-group-btn > .btn-secondary-active:focus,
 .input-group-btn > .btn-secondary-active:active,
+.input-group-btn > .btn-trace:hover,
+.input-group-btn > .btn-trace:focus,
+.input-group-btn > .btn-trace:active,
 .input-group-btn > .btn-social:hover,
 .input-group-btn > .btn-social:focus,
 .input-group-btn > .btn-social:active {
@@ -4686,6 +4821,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn:first-child > .btn-secondary,
 .input-group-btn:first-child > .btn-secondary-highlight,
 .input-group-btn:first-child > .btn-secondary-active,
+.input-group-btn:first-child > .btn-trace,
 .input-group-btn:first-child > .btn-social {
   margin-right: -1px;
 }
@@ -4695,6 +4831,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn:last-child > .btn-secondary,
 .input-group-btn:last-child > .btn-secondary-highlight,
 .input-group-btn:last-child > .btn-secondary-active,
+.input-group-btn:last-child > .btn-trace,
 .input-group-btn:last-child > .btn-social {
   z-index: 2;
   margin-left: -1px;
@@ -5593,6 +5730,7 @@ a.label:focus {
 .btn-secondary .label,
 .btn-secondary-highlight .label,
 .btn-secondary-active .label,
+.btn-trace .label,
 .btn-social .label {
   position: relative;
   top: -1px;
@@ -5661,6 +5799,7 @@ a.label:focus {
 .btn-secondary .badge,
 .btn-secondary-highlight .badge,
 .btn-secondary-active .badge,
+.btn-trace .badge,
 .btn-social .badge {
   position: relative;
   top: -1px;
@@ -5671,6 +5810,7 @@ a.label:focus {
 .btn-group-xs > .btn-secondary .badge,
 .btn-group-xs > .btn-secondary-highlight .badge,
 .btn-group-xs > .btn-secondary-active .badge,
+.btn-group-xs > .btn-trace .badge,
 .btn-group-xs > .btn-social .badge {
   top: 0;
   padding: 1px 5px;
@@ -6198,6 +6338,9 @@ button.list-group-item-danger.active:focus {
 .card-campaign-description,
 .card-thumbnail,
 .card-inbox,
+.card-transaction-header,
+.card-loader,
+.social-media-profile-wrapper,
 .workroom .card-proposal-detail,
 .chatbox-card,
 .workroom .card-campaign-thumbnail {
@@ -6711,6 +6854,7 @@ button.close {
 .modal-footer .btn-secondary + .btn-secondary,
 .modal-footer .btn-secondary-highlight + .btn-secondary-highlight,
 .modal-footer .btn-secondary-active + .btn-secondary-active,
+.modal-footer .btn-trace + .btn-trace,
 .modal-footer .btn-social + .btn-social {
   margin-left: 5px;
   margin-bottom: 0;
@@ -6720,6 +6864,7 @@ button.close {
 .modal-footer .btn-group .btn-secondary + .btn-secondary,
 .modal-footer .btn-group .btn-secondary-highlight + .btn-secondary-highlight,
 .modal-footer .btn-group .btn-secondary-active + .btn-secondary-active,
+.modal-footer .btn-group .btn-trace + .btn-trace,
 .modal-footer .btn-group .btn-social + .btn-social {
   margin-left: -1px;
 }
@@ -7195,6 +7340,7 @@ button.close {
 .carousel-caption .btn-secondary,
 .carousel-caption .btn-secondary-highlight,
 .carousel-caption .btn-secondary-active,
+.carousel-caption .btn-trace,
 .carousel-caption .btn-social {
   text-shadow: none;
 }
@@ -7261,6 +7407,8 @@ button.close {
 .card-body:after,
 .card-body .card-row:before,
 .card-body .card-row:after,
+.card-body .card-row-2-column:before,
+.card-body .card-row-2-column:after,
 .thumbnails:before,
 .thumbnails:after {
   content: " ";
@@ -7284,6 +7432,7 @@ button.close {
 .modal-footer:after,
 .card-body:after,
 .card-body .card-row:after,
+.card-body .card-row-2-column:after,
 .thumbnails:after {
   clear: both;
 }
@@ -7545,13 +7694,20 @@ h1 {
   font-family: 'Kanit', sans-serif;
   font-size: 32px;
 }
-h2 {
+h2,
+.zone-header .with-history-back h1,
+.layout-brand .view-brand-campaign-list .zone-body .page-header h1 {
   font-family: 'Kanit', sans-serif;
   font-size: 24px;
 }
 h3,
 .card-title .card-title-content,
-.proposal-modal .modal-title {
+.social-media-profile .card-overview .card-info strong,
+.proposal-modal .modal-title,
+.facebook-profile .card-overview .card-info strong,
+.instagram-profile .card-overview .card-info strong,
+.youtube-profile .card-overview .card-info strong,
+.social-linker-modal .modal-title {
   font-family: 'Kanit', sans-serif;
   font-size: 18px;
   font-weight: normal;
@@ -7563,8 +7719,13 @@ h4,
 .card-info .card-info-content,
 .card-portal .profile-picture .profile-picture-title,
 .card-thumbnail .card-body,
+.social-media-profile .card-gallery .card-gallery-info .card-info .card-content,
+.nav-tabs li a,
 .navbar li > a,
 .workroom .card-proposal-detail .card-price,
+.facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
+.instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
+.youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 16px;
   font-weight: normal;
@@ -7573,7 +7734,6 @@ h4,
 }
 h5,
 .social-link-title,
-.card-status,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 14px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -7608,9 +7768,47 @@ a.secondary {
 .clear {
   clear: both;
 }
+.with-no-margin {
+  margin: 0px;
+}
+.has-error .help-block,
+.has-error .control-label,
+.has-error .radio,
+.has-error .checkbox,
+.has-error .radio-inline,
+.has-error .checkbox-inline,
+.has-error.radio label,
+.has-error.checkbox label,
+.has-error.radio-inline label,
+.has-error.checkbox-inline label {
+  color: #e62117;
+}
+.color-red {
+  color: #e62117;
+}
+.color-blue {
+  color: #648acb;
+}
+.color-green {
+  color: #16bbac;
+}
+.color-yellow {
+  color: #f5a623;
+}
+.color-grey {
+  color: #8692a8;
+}
 .social-link-title {
   color: #16bbac;
   display: inline;
+}
+.number-circle {
+  display: inline-block;
+  padding: 0px 6px;
+  background: #16bbac;
+  color: #ffffff;
+  border-radius: 50%;
+  margin-right: 5px;
 }
 #loading-bar .bar {
   background: #ff773e !important;
@@ -7646,6 +7844,16 @@ a.secondary {
   width: 230px;
   float: right;
 }
+.empty-state {
+  text-align: center;
+  height: 120px;
+  border: 1px solid #d8dfe7;
+  padding-top: 50px;
+}
+.empty-state img {
+  transform: translateY(-4px);
+  margin-right: 10px;
+}
 /*---Zone---*/
 .zone-header {
   color: #ffffff;
@@ -7657,6 +7865,9 @@ a.secondary {
 }
 .zone-header h1 {
   margin-top: 30px;
+}
+.zone-header .with-history-back h1 {
+  margin-top: 5px;
 }
 .zone-header h2 {
   margin-top: 5px;
@@ -7707,6 +7918,9 @@ a.secondary {
 .form-control[disabled] {
   background-color: #f9f9fb;
 }
+.form-control[readonly] {
+  background-color: inherit;
+}
 .input-group-addon {
   border-radius: 0px;
   background-color: #f9f9fb;
@@ -7719,6 +7933,18 @@ a.secondary {
 }
 .input-group-btn button i {
   margin: 0px 5px;
+}
+.form-control::-webkit-input-placeholder {
+  color: #8692a8;
+}
+.form-control::-moz-placeholder {
+  color: #8692a8;
+}
+.form-control:-ms-input-placeholder {
+  color: #8692a8;
+}
+input:-moz-placeholder {
+  color: #8692a8;
 }
 .input-dropdown {
   position: relative;
@@ -7788,6 +8014,12 @@ a.secondary {
 .radio-card.disabled .radio-image {
   opacity: 0.5;
 }
+.scrollable-radio {
+  overflow-y: scroll;
+  padding: 10px 10px 0px 10px;
+  margin: 0px -10px;
+  max-height: 400px;
+}
 /*---Image Upload---*/
 .input-upload-image {
   cursor: pointer;
@@ -7807,6 +8039,7 @@ a.secondary {
 }
 .input-upload-image img {
   width: 100%;
+  max-width: 596px;
 }
 .input-upload-image .btn-delete-image {
   color: #8692a8;
@@ -7893,6 +8126,9 @@ a.secondary {
 .card-campaign-description,
 .card-thumbnail,
 .card-inbox,
+.card-transaction-header,
+.card-loader,
+.social-media-profile-wrapper,
 .workroom .card-proposal-detail,
 .chatbox-card,
 .workroom .card-campaign-thumbnail {
@@ -7929,6 +8165,21 @@ a.secondary {
 .card-body .card-row {
   margin-bottom: 20px;
 }
+.card-body .card-row-2-column {
+  margin: 15px -7.5px;
+}
+.card-body .card-row-2-column .col {
+  position: relative;
+  float: left;
+  width: 50%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 0px 7.5px;
+}
+.card-body .card-row-2-column .col .checkbox {
+  margin-top: 32px;
+}
 .card-body .card-body-content-label {
   position: relative;
   float: left;
@@ -7937,6 +8188,9 @@ a.secondary {
   padding-left: 15px;
   padding-right: 15px;
   text-align: right;
+}
+.card-body .card-body-content-label .fa-question-circle {
+  color: #8692a8;
 }
 .card-body .card-body-content {
   position: relative;
@@ -7963,6 +8217,9 @@ a.secondary {
 }
 .card-body .card-button-primary {
   margin-left: 16.66666667%;
+}
+.card-body.with-extra-padding {
+  padding: 30px 15px;
 }
 .card-body .with-input {
   margin-top: 7px;
@@ -7998,24 +8255,6 @@ a.secondary {
 }
 .card-title .card-title-content a {
   color: #16bbac;
-}
-.card-status {
-  float: right;
-  color: #8692a8;
-}
-.card-info,
-.card-info-1,
-.card-info-2,
-.card-info-3,
-.card-info-4,
-.card-info-5,
-.card-info-6 {
-  position: relative;
-  float: left;
-  width: 16.66666667%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 .card-info .card-info-label {
   font-size: 12px;
@@ -8075,7 +8314,6 @@ a.secondary {
 .card-portal button {
   margin-top: 15px;
   margin-bottom: 5px;
-  width: 100%;
 }
 .card-campaign-list-item {
   margin-bottom: 20px;
@@ -8084,7 +8322,16 @@ a.secondary {
   padding: 15px 0px;
 }
 .card-campaign-list-item .card-info {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
   margin-top: 38px;
+}
+.card-campaign-list-item .card-info-1 .card-info-content {
+  margin-top: 3px;
 }
 .card-campaign-list-item .card-info-3 {
   position: relative;
@@ -8095,7 +8342,14 @@ a.secondary {
   padding-right: 15px;
 }
 .card-campaign-list-item .card-button {
-  margin-top: 40px;
+  margin-top: 20px;
+}
+.card-campaign-list-item .card-button button[disabled] {
+  margin-top: 10px;
+  color: #3e4a5e;
+}
+.card-campaign-list-item .card-button.status-draft {
+  margin-top: 35px;
 }
 .card-campaign-list-item .card-title {
   position: relative;
@@ -8107,6 +8361,13 @@ a.secondary {
 }
 .card-campaign-list-item .card-image {
   height: 136px;
+}
+.card-campaign-list-item .card-image img {
+  width: 100%;
+}
+.card-campaign-list-item .card-image.expired {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 .card-profile .card-body {
   padding: 15px 0px;
@@ -8134,7 +8395,7 @@ a.secondary {
 .card-profile h4 {
   color: #16bbac;
 }
-.card-profile a.link-edit-profile {
+.card-profile a.link-to-profile {
   display: inline-block;
   float: right;
   margin-top: -20px;
@@ -8146,6 +8407,9 @@ a.secondary {
 }
 .card-profile .social-info .social-icon {
   margin-right: 0px;
+}
+.card-campaign-header {
+  position: relative;
 }
 .card-campaign-header .card-body {
   padding: 0px;
@@ -8160,6 +8424,25 @@ a.secondary {
   padding: 0px;
   padding-right: 15px;
 }
+.card-campaign-header .card-image img {
+  width: 100%;
+}
+.card-campaign-header .card-campaign-header-content {
+  position: relative;
+  float: left;
+  width: 66.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.card-campaign-header .card-info {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
 .card-campaign-header .card-info-1,
 .card-campaign-header .card-info-2,
 .card-campaign-header .card-info-3 {
@@ -8169,6 +8452,14 @@ a.secondary {
 .card-campaign-header .card-info-5,
 .card-campaign-header .card-info-6 {
   margin-top: 20px;
+}
+.card-campaign-header .card-close {
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: block;
+  padding: 12px 13px 0 0;
 }
 .card-campaign-description {
   padding-top: 15px;
@@ -8181,9 +8472,20 @@ a.secondary {
 }
 .card-thumbnail .card-thumbnail-image,
 .workroom .card-campaign-thumbnail .card-thumbnail-image {
-  background-color: #d8dfe7;
+  background-color: #3e4a5e;
   height: 194px;
   overflow: hidden;
+}
+.card-thumbnail .card-thumbnail-image .campaign-image,
+.workroom .card-campaign-thumbnail .card-thumbnail-image .campaign-image {
+  width: 100%;
+}
+.card-thumbnail .card-thumbnail-image.expired .campaign-image,
+.workroom .card-campaign-thumbnail .card-thumbnail-image.expired .campaign-image {
+  z-index: 1;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 0.5;
 }
 .card-thumbnail .card-price,
 .workroom .card-campaign-thumbnail .card-price {
@@ -8206,6 +8508,285 @@ a.secondary {
   min-height: 250px;
   margin-bottom: 20px;
 }
+.card-inbox .card-loader {
+  box-shadow: none !important;
+  border: 0 !important;
+  text-align: center;
+  margin-top: 40px !important;
+}
+.card-transaction-header .card-info {
+  position: relative;
+  float: left;
+  width: 25%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.card-transaction-header .card-info .card-info-content {
+  color: #3e4a5e;
+}
+.card-loader h3 {
+  display: inline-block;
+  margin-left: 5px;
+  transform: translateY(1px);
+}
+.card-loader img {
+  width: 60px;
+  border-radius: 50%;
+  margin: 10px;
+}
+/*---Social Media Profile---*/
+.social-media-profile-wrapper {
+  box-shadow: none;
+}
+.social-media-profile .card-overview .card-info,
+.facebook-profile .card-overview .card-info,
+.instagram-profile .card-overview .card-info,
+.youtube-profile .card-overview .card-info {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.social-media-profile .card-overview .card-info strong,
+.facebook-profile .card-overview .card-info strong,
+.instagram-profile .card-overview .card-info strong,
+.youtube-profile .card-overview .card-info strong {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.social-media-profile .card-overview .card-info small,
+.facebook-profile .card-overview .card-info small,
+.instagram-profile .card-overview .card-info small,
+.youtube-profile .card-overview .card-info small {
+  color: #8692a8;
+}
+.social-media-profile .card-overview .card-info i,
+.facebook-profile .card-overview .card-info i,
+.instagram-profile .card-overview .card-info i,
+.youtube-profile .card-overview .card-info i {
+  margin-left: 5px;
+  color: #8692a8;
+}
+.social-media-profile .card-overview .card-button,
+.facebook-profile .card-overview .card-button,
+.instagram-profile .card-overview .card-button,
+.youtube-profile .card-overview .card-button {
+  position: relative;
+  float: left;
+  width: 33.33333333%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.social-media-profile .card-gallery .card-gallery-item,
+.facebook-profile .card-gallery .card-gallery-item,
+.instagram-profile .card-gallery .card-gallery-item,
+.youtube-profile .card-gallery .card-gallery-item {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: #d8dfe7;
+  display: inline-block;
+}
+.social-media-profile .card-gallery .card-gallery-item .card-gallery-video,
+.facebook-profile .card-gallery .card-gallery-item .card-gallery-video,
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video,
+.youtube-profile .card-gallery .card-gallery-item .card-gallery-video {
+  width: 100%;
+  min-height: 300px;
+}
+.social-media-profile .card-gallery .card-gallery-item .card-gallery-video video,
+.facebook-profile .card-gallery .card-gallery-item .card-gallery-video video,
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video video,
+.youtube-profile .card-gallery .card-gallery-item .card-gallery-video video {
+  width: 100%;
+}
+.social-media-profile .card-gallery .card-gallery-item img,
+.facebook-profile .card-gallery .card-gallery-item img,
+.instagram-profile .card-gallery .card-gallery-item img,
+.youtube-profile .card-gallery .card-gallery-item img {
+  width: 100%;
+  height: auto;
+}
+.social-media-profile .card-gallery .card-gallery-info .card-info > *,
+.facebook-profile .card-gallery .card-gallery-info .card-info > *,
+.instagram-profile .card-gallery .card-gallery-info .card-info > *,
+.youtube-profile .card-gallery .card-gallery-info .card-info > * {
+  text-align: center;
+}
+.social-media-profile .card-gallery .card-gallery-info .card-info,
+.facebook-profile .card-gallery .card-gallery-info .card-info,
+.instagram-profile .card-gallery .card-gallery-info .card-info,
+.youtube-profile .card-gallery .card-gallery-info .card-info {
+  margin-bottom: 15px;
+}
+.social-media-profile .card-gallery .card-gallery-message,
+.facebook-profile .card-gallery .card-gallery-message,
+.instagram-profile .card-gallery .card-gallery-message,
+.youtube-profile .card-gallery .card-gallery-message {
+  padding: 15px;
+  white-space: pre-wrap;
+}
+.facebook-profile .card-gallery {
+  -webkit-column-count: 2;
+  -webkit-column-gap: 10px;
+  -webkit-column-fill: auto;
+  -moz-column-count: 2;
+  -moz-column-gap: 10px;
+  -moz-column-fill: auto;
+  column-count: 2;
+  column-gap: 15px;
+  column-fill: auto;
+}
+.facebook-profile .card-gallery .card-gallery-item {
+  margin: 7.5px 0px;
+  width: 100%;
+}
+.instagram-profile .card-gallery {
+  margin-top: -7.5px;
+}
+.instagram-profile .card-gallery .card-gallery-item {
+  width: 100%;
+  margin: 15px 0px;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-image {
+  width: 205px;
+  height: 205px;
+  overflow: hidden;
+  position: relative;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-image img {
+  position: absolute;
+  left: -100%;
+  right: -100%;
+  top: -100%;
+  bottom: -100%;
+  margin: auto;
+  width: auto;
+  height: auto;
+  max-height: 100%;
+  min-width: 100%;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video {
+  width: 205px;
+  height: 205px;
+  min-height: 205px;
+  overflow: hidden;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video iframe,
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-video video {
+  width: 205px;
+  height: 205px;
+}
+.instagram-profile .card-gallery .card-gallery-item .card-gallery-info .card-info {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.youtube-profile .card-gallery {
+  margin-top: -7.5px;
+}
+.youtube-profile .card-gallery .card-gallery-item {
+  width: 100%;
+  margin: 15px 0px;
+}
+.youtube-profile .card-gallery .card-gallery-item .card-gallery-info .card-gallery-message {
+  white-space: normal;
+}
+.youtube-profile .card-gallery .card-gallery-item .card-gallery-info .card-info {
+  margin-bottom: 15px;
+}
+/*---Tabs---*/
+.nav-tabs {
+  margin-top: 30px;
+  border-bottom: 0px;
+}
+.nav-tabs li {
+  min-width: 150px;
+  text-align: center;
+  margin-right: 5px;
+}
+.nav-tabs li a {
+  color: #3e4a5e;
+  margin-bottom: 5px;
+  border: 0px;
+  background: #d8dfe7;
+  border-radius: 0px;
+}
+.nav-tabs li a:hover {
+  color: #ffffff;
+  background: #8692a8;
+}
+.nav-tabs li.plain-link {
+  border-top: 0px !important;
+}
+.nav-tabs li.plain-link a {
+  color: #ff773e;
+  background: none !important;
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: #ffffff;
+  border: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 15px;
+  border-bottom: 0px;
+  cursor: pointer;
+}
+.nav-tabs > li.active {
+  border-top: 4px solid;
+  margin-top: -4px;
+}
+.nav-tabs > li.active.facebook-tab {
+  border-top-color: #3b5998;
+}
+.nav-tabs > li.active.instagram-tab {
+  border-top-color: #df3d79;
+}
+.nav-tabs > li.active.youtube-tab {
+  border-top-color: #e62117;
+}
+/*---flag---*/
+.flag .status {
+  width: 120px;
+  display: block;
+  position: absolute;
+  padding: 4px 20px 3px 16px;
+  font-family: 'Kanit', sans-serif;
+  color: #ffffff;
+  background: #e62117;
+  left: 0px;
+  top: 10px;
+  -webkit-clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
+  z-index: 99;
+}
+.flag img.flag-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  bottom: -10px;
+  left: 0px;
+}
+.flag .status-open {
+  background: #16bbac;
+}
+.flag .status-applied {
+  background: #16bbac;
+}
+.flag .status-closed {
+  background: #8692a8;
+}
+.flag .status-draft {
+  display: none;
+}
+.flag .status-example {
+  padding-left: 15px;
+  width: 150px;
+  background: #648acb;
+}
 /*---Thumbnail---*/
 .thumbnail-column {
   position: relative;
@@ -8221,6 +8802,7 @@ a.secondary {
 .btn-secondary,
 .btn-secondary-highlight,
 .btn-secondary-active,
+.btn-trace,
 .btn-social {
   padding: 6px;
   border-radius: 2px;
@@ -8230,6 +8812,7 @@ a.secondary {
 .btn-secondary i,
 .btn-secondary-highlight i,
 .btn-secondary-active i,
+.btn-trace i,
 .btn-social i {
   margin-right: 5px;
 }
@@ -8238,6 +8821,7 @@ a.secondary {
 .btn-secondary:disabled,
 .btn-secondary-highlight:disabled,
 .btn-secondary-active:disabled,
+.btn-trace:disabled,
 .btn-social:disabled {
   opacity: 0.5;
 }
@@ -8635,6 +9219,105 @@ fieldset[disabled] .btn-secondary-active.active {
 .btn-secondary-active .badge {
   color: #16bbac;
   background-color: #ffffff;
+}
+.btn-trace {
+  color: #3e4a5e;
+  background-color: #d8dfe7;
+  border-color: #d8dfe7;
+  border-color: #8692a8;
+}
+.btn-trace:focus,
+.btn-trace.focus {
+  color: #3e4a5e;
+  background-color: #b8c5d4;
+  border-color: #899eb6;
+}
+.btn-trace:hover {
+  color: #3e4a5e;
+  background-color: #b8c5d4;
+  border-color: #b2c0d0;
+}
+.btn-trace:active,
+.btn-trace.active,
+.open > .dropdown-toggle.btn-trace {
+  color: #3e4a5e;
+  background-color: #b8c5d4;
+  border-color: #b2c0d0;
+}
+.btn-trace:active:hover,
+.btn-trace.active:hover,
+.open > .dropdown-toggle.btn-trace:hover,
+.btn-trace:active:focus,
+.btn-trace.active:focus,
+.open > .dropdown-toggle.btn-trace:focus,
+.btn-trace:active.focus,
+.btn-trace.active.focus,
+.open > .dropdown-toggle.btn-trace.focus {
+  color: #3e4a5e;
+  background-color: #a2b3c6;
+  border-color: #899eb6;
+}
+.btn-trace:active,
+.btn-trace.active,
+.open > .dropdown-toggle.btn-trace {
+  background-image: none;
+}
+.btn-trace.disabled:hover,
+.btn-trace[disabled]:hover,
+fieldset[disabled] .btn-trace:hover,
+.btn-trace.disabled:focus,
+.btn-trace[disabled]:focus,
+fieldset[disabled] .btn-trace:focus,
+.btn-trace.disabled.focus,
+.btn-trace[disabled].focus,
+fieldset[disabled] .btn-trace.focus {
+  background-color: #d8dfe7;
+  border-color: #d8dfe7;
+}
+.btn-trace .badge {
+  color: #d8dfe7;
+  background-color: #3e4a5e;
+}
+.btn-trace:hover,
+.btn-trace:focus,
+.btn-trace:active,
+.btn-trace:active:focus,
+.btn-trace.active,
+.open .dropdown-toggle.btn-trace {
+  color: #3e4a5e;
+  background-color: #b8c5d4;
+  border-color: #b2c0d0;
+}
+.btn-trace:active,
+.btn-trace.active,
+.btn-trace:active:focus,
+.open .dropdown-toggle.btn-trace {
+  background-image: none;
+}
+.btn-trace.disabled,
+.btn-trace[disabled],
+fieldset[disabled] .btn-trace,
+.btn-trace.disabled:hover,
+.btn-trace[disabled]:hover,
+fieldset[disabled] .btn-trace:hover,
+.btn-trace.disabled:focus,
+.btn-trace[disabled]:focus,
+fieldset[disabled] .btn-trace:focus,
+.btn-trace.disabled:active:focus,
+.btn-trace[disabled]:active:focus,
+fieldset[disabled] .btn-trace:active:focus,
+.btn-trace.disabled:active,
+.btn-trace[disabled]:active,
+fieldset[disabled] .btn-trace:active,
+.btn-trace.disabled.active,
+.btn-trace[disabled].active,
+fieldset[disabled] .btn-trace.active {
+  background-color: #d8dfe7;
+  border-color: #d8dfe7;
+}
+.btn-trace .badge {
+  color: #d8dfe7;
+  background-color: #3e4a5e;
 }
 .btn-social {
   padding-left: 32px;
@@ -9041,7 +9724,7 @@ fieldset[disabled] .btn-clear.active {
   height: 48px;
   border-radius: 24px;
   float: right;
-  margin-top: 25px;
+  margin-top: -25px;
   margin-right: -68px;
   background: url("../images/icon-plus-sign.png") 0 0 no-repeat #ff773e;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -9053,7 +9736,8 @@ fieldset[disabled] .btn-clear.active {
 .btn-width-md {
   width: 127px;
 }
-.btn-width-lg {
+.btn-width-lg,
+.layout-portal .view-influencer-signup-select-page button {
   width: 206px;
 }
 .btn-width-max {
@@ -9091,7 +9775,7 @@ fieldset[disabled] .btn-clear.active {
   background: #d8f0dd;
 }
 .alert-success .alert-icon {
-  background: url("../images/icon-rabbit-happy.png") 0 0 no-repeat #019386;
+  background: url("../images/icon-rabbit-happy.png") 0 0 no-repeat #16bbac;
 }
 .alert-danger {
   background: #ffcccb;
@@ -9109,7 +9793,7 @@ fieldset[disabled] .btn-clear.active {
   background: #ffebce;
 }
 .alert-warning .alert-icon {
-  background: url("../images/icon-rabbit-happy.png") 0 0 no-repeat #f5a623;
+  background: url("../images/icon-rabbit-confuse.png") 0 0 no-repeat #f5a623;
 }
 /*---Media Icon---*/
 .icon-media,
@@ -9172,16 +9856,43 @@ fieldset[disabled] .btn-clear.active {
   padding-bottom: 12px;
   border-bottom: #ff773e 3px solid;
 }
-.navbar .navbar-right li > a {
+.navbar .navbar-right .cart {
+  padding-bottom: 0px;
+}
+.navbar .navbar-right .cart .cart-counter {
+  display: inline-block;
+  transform: translateY(-5px);
+  width: 32px;
+  height: 30px;
+  background: url("../images/icon-cart.png") 0 0 no-repeat;
+  text-align: center;
+  margin-right: 5px;
+  font-size: 14px;
+  padding-left: 3px;
+  color: #ff773e;
+}
+.navbar .navbar-right .wallet .wallet-icon {
+  display: inline-block;
+  float: left;
+  transform: translateY(-4px);
+  width: 30px;
+  height: 30px;
+  background: url("../images/icon-wallet.png") 0 0 no-repeat;
+  margin-right: 10px;
+}
+.navbar .navbar-right .dropdown-menu li > a {
   margin: 0px;
 }
-.navbar .navbar-right li > a .caret {
+.navbar .navbar-right .profile-dropdown {
+  margin: 0px;
+}
+.navbar .navbar-right .profile-dropdown .caret {
   margin-left: 5px;
 }
 .navbar .navbar-right .profile-picture {
   float: left;
   display: inline-block;
-  margin-top: 10px;
+  transform: translateY(-5px);
   margin-right: 10px;
   width: 30px;
   height: 30px;
@@ -9193,6 +9904,7 @@ fieldset[disabled] .btn-clear.active {
 }
 .navbar .dropdown-menu li > a {
   padding-left: 15px;
+  padding-right: 15px;
 }
 .navbar .open > a,
 .navbar .open > a:hover,
@@ -9200,21 +9912,95 @@ fieldset[disabled] .btn-clear.active {
   background: #3e4a5e;
   border: 0px;
 }
+/*---Floating Bar---*/
+.floating-bar {
+  z-index: 9;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.2);
+  padding: 7.5px 0px;
+}
 /*---Date Picker---*/
-.uib-daypicker .btn,
-.uib-monthpicker .btn,
-.uib-daypicker .btn-primary,
-.uib-monthpicker .btn-primary,
-.uib-daypicker .btn-secondary,
-.uib-monthpicker .btn-secondary,
-.uib-daypicker .btn-secondary-highlight,
-.uib-monthpicker .btn-secondary-highlight,
-.uib-daypicker .btn-secondary-active,
-.uib-monthpicker .btn-secondary-active,
-.uib-daypicker .btn-social,
-.uib-monthpicker .btn-social {
+.nc-dt-button .btn,
+.btn.active,
+.uib-title,
+.uib-right,
+.uib-left,
+.nc-dt-button .btn-primary,
+.btn-primary.active,
+.nc-dt-button .btn-secondary,
+.btn-secondary.active,
+.nc-dt-button .btn-secondary-highlight,
+.btn-secondary-highlight.active,
+.nc-dt-button .btn-secondary-active,
+.btn-secondary-active.active,
+.nc-dt-button .btn-trace,
+.btn-trace.active,
+.nc-dt-button .btn-social,
+.btn-social.active {
   border: none;
   padding: 8px;
+  border-radius: 0px;
+}
+.nc-dt-button .text-info {
+  color: #16bbac;
+}
+.nc-dt-button .btn.selected,
+.nc-dt-button .btn.active,
+.nc-dt-button .btn:focus,
+.nc-dt-button .btn-primary.selected,
+.nc-dt-button .btn-primary.active,
+.nc-dt-button .btn-primary:focus,
+.nc-dt-button .btn-secondary.selected,
+.nc-dt-button .btn-secondary.active,
+.nc-dt-button .btn-secondary:focus,
+.nc-dt-button .btn-secondary-highlight.selected,
+.nc-dt-button .btn-secondary-highlight.active,
+.nc-dt-button .btn-secondary-highlight:focus,
+.nc-dt-button .btn-secondary-active.selected,
+.nc-dt-button .btn-secondary-active.active,
+.nc-dt-button .btn-secondary-active:focus,
+.nc-dt-button .btn-trace.selected,
+.nc-dt-button .btn-trace.active,
+.nc-dt-button .btn-trace:focus,
+.nc-dt-button .btn-social.selected,
+.nc-dt-button .btn-social.active,
+.nc-dt-button .btn-social:focus {
+  background-color: #16bbac;
+  box-shadow: none;
+  color: white;
+}
+.nc-dt-button .btn.selected .text-info,
+.nc-dt-button .btn.active .text-info,
+.nc-dt-button .btn:focus .text-info,
+.nc-dt-button .btn-primary.selected .text-info,
+.nc-dt-button .btn-primary.active .text-info,
+.nc-dt-button .btn-primary:focus .text-info,
+.nc-dt-button .btn-secondary.selected .text-info,
+.nc-dt-button .btn-secondary.active .text-info,
+.nc-dt-button .btn-secondary:focus .text-info,
+.nc-dt-button .btn-secondary-highlight.selected .text-info,
+.nc-dt-button .btn-secondary-highlight.active .text-info,
+.nc-dt-button .btn-secondary-highlight:focus .text-info,
+.nc-dt-button .btn-secondary-active.selected .text-info,
+.nc-dt-button .btn-secondary-active.active .text-info,
+.nc-dt-button .btn-secondary-active:focus .text-info,
+.nc-dt-button .btn-trace.selected .text-info,
+.nc-dt-button .btn-trace.active .text-info,
+.nc-dt-button .btn-trace:focus .text-info,
+.nc-dt-button .btn-social.selected .text-info,
+.nc-dt-button .btn-social.active .text-info,
+.nc-dt-button .btn-social:focus .text-info {
+  color: white;
+}
+div:focus {
+  outline: none;
+}
+.nc-dt-disable {
+  background-color: #8995aa;
 }
 /*---Mutli Selector---*/
 .multi-tag-selector {
@@ -9268,16 +10054,38 @@ fieldset[disabled] .btn-clear.active {
 .table tbody tr td {
   vertical-align: middle;
 }
+.table tbody tr td.no-top-border {
+  border-top: 0px;
+}
+.table .total-price td {
+  text-align: right;
+}
+.table .total-price td strong {
+  display: block;
+  margin-top: 5px;
+}
+.table .total-price td a {
+  display: block;
+  margin-top: 5px;
+}
+.table .col-date {
+  width: 100px;
+}
+.table .col-status {
+  width: 120px;
+}
 .table .col-name {
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 240px;
 }
 .table .col-name .profile-picture {
   width: 40px;
   margin-right: 5px;
 }
 .table .col-campaign-name {
-  max-width: 250px;
+  max-width: 240px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -9309,6 +10117,10 @@ fieldset[disabled] .btn-clear.active {
   padding: 3px 7px 1px 7px;
   border-radius: 15px;
 }
+.table .bank-logo {
+  width: 40px;
+  margin-right: 5px;
+}
 /*---Workroom---*/
 .workroom {
   background: #16bbac;
@@ -9331,6 +10143,9 @@ fieldset[disabled] .btn-clear.active {
 }
 .workroom .card-proposal-detail .social-info {
   margin: 5px 0px;
+}
+.workroom .card-proposal-detail .info-text {
+  margin-bottom: 5px;
 }
 .workroom .card-campaign-thumbnail .card-thumbnail-image {
   height: 140px;
@@ -9358,6 +10173,7 @@ fieldset[disabled] .btn-clear.active {
 }
 .chatbox-card .chatbox-header .chatbox-status {
   float: right;
+  cursor: pointer;
 }
 .chatbox-card .chatbox-header .chatbox-status .status.active {
   color: #ff773e;
@@ -9370,12 +10186,18 @@ fieldset[disabled] .btn-clear.active {
   overflow-y: scroll;
   height: 400px;
 }
+.chatbox-card .message-area .card-loader {
+  margin: 15px;
+}
 .chatbox-card .message-area .message-past {
   text-align: center;
   padding: 23px 10px 20px;
 }
 .chatbox-card .message-area .message {
   padding: 10px 15px;
+}
+.chatbox-card .message-area .message.message-offline {
+  opacity: 0.5;
 }
 .chatbox-card .message-area .message .message-left {
   padding-right: 15px;
@@ -9440,7 +10262,8 @@ fieldset[disabled] .btn-clear.active {
 .chatbox-card .message-input textarea {
   resize: none;
 }
-.chatbox-card .message-input .pull-right {
+.chatbox-card .message-input .pull-right,
+.chatbox-card .message-input > .pull-left {
   margin-top: 15px;
 }
 .chatbox-card .message-input button {
@@ -9484,41 +10307,66 @@ fieldset[disabled] .btn-clear.active {
   padding: 15px 0px 10px 0px;
   margin: 0px 15px;
 }
-.proposal-modal {
+.proposal-modal,
+.social-linker-modal {
   padding-left: 10px;
   padding-right: 10px;
 }
-.proposal-modal .modal-title {
+.proposal-modal .modal-title,
+.social-linker-modal .modal-title {
   color: #16bbac;
 }
-.proposal-modal textarea {
+.proposal-modal textarea,
+.social-linker-modal textarea {
   resize: vertical;
 }
-.proposal-modal .card-row-basic {
+.proposal-modal h4,
+.social-linker-modal h4 {
+  color: #16bbac;
+}
+.proposal-modal .card-row-basic,
+.social-linker-modal .card-row-basic {
   margin-top: 5px;
 }
-.proposal-modal .help-block {
+.proposal-modal .card-row-basic-label,
+.social-linker-modal .card-row-basic-label {
+  margin-top: 15px;
+}
+.proposal-modal .help-block,
+.social-linker-modal .help-block {
+  text-align: right;
+}
+.proposal-modal .hint-block,
+.social-linker-modal .hint-block {
   text-align: right;
   color: #8692a8;
 }
-.proposal-modal .promotion-medium .profile-social-media-icon {
+.proposal-modal .promotion-medium .profile-social-media-icon,
+.social-linker-modal .promotion-medium .profile-social-media-icon {
   width: 30px;
   padding-right: 5px;
   padding-left: 5px;
 }
-.proposal-modal .button-bar {
+.proposal-modal .button-bar,
+.social-linker-modal .button-bar {
   padding-top: 15px;
 }
-.proposal-modal .button-bar .help-block {
+.proposal-modal .button-bar .hint-block,
+.social-linker-modal .button-bar .hint-block {
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: center;
 }
-.proposal-modal .disabled {
+.proposal-modal .disabled,
+.social-linker-modal .disabled {
   color: #8692a8;
 }
-.proposal-modal .disabled img {
+.proposal-modal .disabled img,
+.social-linker-modal .disabled img {
   opacity: 0.4;
+}
+.social-linker-modal .card-body {
+  padding: 0px 15px;
 }
 .select-proposal-modal .card-body {
   padding: 25px 30px 20px 30px;
@@ -9528,6 +10376,27 @@ fieldset[disabled] .btn-clear.active {
 }
 .select-proposal-modal .modal-title {
   color: #16bbac;
+}
+.message-modal {
+  text-align: center;
+}
+.message-modal .modal-dialog {
+  margin-top: 140px;
+}
+.message-modal .modal-dialog .modal-content {
+  border: 0px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.message-modal .hello-rabbit {
+  margin-top: -100px;
+}
+.message-modal h3 {
+  color: #16bbac;
+  margin-bottom: 10px;
+}
+.message-modal p {
+  margin-bottom: 20px;
 }
 /*---Other debugging stuff---*/
 .api_override_box {
@@ -9539,12 +10408,81 @@ fieldset[disabled] .btn-clear.active {
 .api_override_box span {
   background-color: red;
 }
+/*---Tooltip---*/
+.tooltip {
+  font-size: 16px;
+}
+.tooltip .tooltip-inner {
+  padding: 10px;
+  max-width: 240px;
+}
 /*---Eartamoto Special Code---*/
-textarea.static-textarea {
+.cropArea {
+  overflow: hidden;
   width: 100%;
-  resize: none;
-  border: none;
-  outline: none;
+  height: 400px;
+}
+.cropTool {
+  background: #8692a8;
+  padding: 30px 0px 20px 0px;
+}
+.cropTool .toolbar {
+  padding-top: 10px;
+}
+ul.payment-methods {
+  list-style-image: url(../images/icon-facebook.png);
+}
+.text-align-right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.sticky-toolbar {
+  background-color: #495366;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  padding: 25px;
+  left: 0px;
+}
+.sticky-toolbar .info {
+  margin-bottom: 10px;
+  color: white;
+  font-size: small;
+}
+.view-admin-campaign-list .col-campaign-name {
+  max-width: 150px;
+}
+.view-admin-campaign-list .col-name {
+  max-width: 150px;
+}
+.media-close {
+  margin-left: 15px;
+  display: inline-block;
+  cursor: pointer;
+}
+.proposal-alert {
+  margin-left: 6px;
+}
+.proposal-alert > div {
+  background: #e62117;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 15px;
+  vertical-align: top;
+}
+.pre {
+  white-space: pre-wrap;
+}
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
 }
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
@@ -9565,25 +10503,61 @@ textarea.static-textarea {
 .layout-portal .view-brand-signup {
   margin-top: 50px;
 }
+.layout-portal .view-brand-signup .info-text a {
+  color: #8692a8;
+  text-decoration: underline;
+}
 .layout-portal .view-influencer-portal {
   margin-top: 140px;
 }
-.layout-portal .view-signup-select-page {
-  margin-top: 140px;
+.layout-portal .view-influencer-signup-select-page {
+  margin-top: 90px;
 }
-.layout-portal .view-signup-select-page h3 {
+.layout-portal .view-influencer-signup-select-page h3 {
   font-style: normal;
+  margin-bottom: 10px;
+}
+.layout-portal .view-influencer-signup-select-page .card-body {
+  padding-bottom: 0px;
 }
 .layout-portal .view-influencer-signup-confirmation {
   margin-top: 90px;
 }
+.layout-portal .view-influencer-signup-confirmation .info-text a {
+  color: #8692a8;
+  text-decoration: underline;
+}
+.layout-portal .view-admin-login {
+  margin-top: 140px;
+}
 /*---Layout Brand---*/
 .layout-brand {
   background-color: #f9f9fb;
-  /* Specific View in Layout Portal */
+  /* Specific View in Layout Brand */
 }
 .layout-brand .container {
   width: 970px;
+}
+.layout-brand .view-brand-campaign-list .zone-header {
+  height: 200px;
+}
+.layout-brand .view-brand-campaign-list .zone-body {
+  margin-top: 0px;
+}
+.layout-brand .view-brand-campaign-list .zone-body .page-header {
+  margin: 35px 0px 15px 0px;
+}
+.layout-brand .view-brand-campaign-list .zone-body .page-header .form-group {
+  transform: translateY(-5px);
+}
+.layout-brand .view-brand-campaign-list .example-campaign {
+  margin-top: 45px;
+}
+.layout-brand .view-brand-campaign-detail-example .btn-floating-action {
+  margin-top: 25px;
+}
+.layout-brand .view-brand-campaign-detail-published .card-profile a.link-to-profile {
+  margin-top: -60px;
 }
 .layout-brand .view-brand-profile .input-upload-image {
   width: 127px;
@@ -9591,12 +10565,6 @@ textarea.static-textarea {
 }
 .layout-brand .view-brand-profile .input-upload-image .fa-camera {
   margin-top: 38px;
-}
-.layout-brand .view-brand-campaign-list .example-campaign {
-  margin-top: 30px;
-}
-.layout-brand .view-brand-campaign-list .example-campaign h2 {
-  margin-bottom: 20px;
 }
 /*---Layout Influencer---*/
 .layout-influencer {
@@ -9635,9 +10603,19 @@ textarea.static-textarea {
 .layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail {
   margin-bottom: 30px;
 }
+.layout-influencer .view-influencer-campaign-list .card-thumbnail .flag .status,
+.layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail .flag .status {
+  left: 5px;
+  top: 15px;
+  padding-left: 12px;
+  width: 110px;
+}
 .layout-influencer .view-influencer-campaign-list .card-thumbnail .card-body,
 .layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail .card-body {
   height: 93px;
+}
+.layout-influencer .view-influencer-profile {
+  padding-bottom: 80px;
 }
 .layout-influencer .view-influencer-profile .input-upload-image {
   width: 127px;
@@ -9648,6 +10626,14 @@ textarea.static-textarea {
 }
 .layout-influencer .view-influencer-profile .btn-secondary-active[disabled] {
   opacity: 1;
+}
+/*---Layout Admin---*/
+.layout-admin {
+  background-color: #f9f9fb;
+  /* Specific View in Layout Portal */
+}
+.layout-admin .container {
+  width: 970px;
 }
 tags-input {
   display: block;

@@ -7,21 +7,49 @@
 /* jshint node: true */
 'use strict';
 
-angular.module('myApp.service', ['satellizer'])
+angular.module('reachRabbitApp.service', ['satellizer'])
     .constant('Config', {
         API_BASE_URI: 'http://bella.reachrabbit.co:8080',
         FACEBOOK_APP_ID: "1648733485452450",
         INSTAGRAM_APP_ID: "c428876109c44daa9a54cf568e96e483",
         YOUTUBE_APP_ID: "486841241364-75hb5e24afp7msiitf8t36skfo3mr0h7.apps.googleusercontent.com"
     })
-    .run(['Config', '$window', function (Config, $window) {
+    .run(['Config', '$window', '$location', function (Config, $window, $location) {
         if ($window.sessionStorage.API_OVERRIDE) {
             Config.API_BASE_URI = $window.sessionStorage.API_OVERRIDE;
         }
+
+    }])
+    .factory('validator', [function () {
+        return {
+            formValidate: function (form) {
+                if (form.$invalid && form.$error.required && form.$error.required.length > 0) {
+                    return {
+                        message: 'กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน'
+                    };
+                } else if (form.$invalid) {
+                    return {
+                        message: 'กรุณากรอกข้อมูลให้ถูกต้อง'
+                    };
+                }
+                return; //nothing
+            }
+        };
     }])
     .factory('util', ['$window', function ($window) {
         return {
-            warnOnExit: function (fn) {
+            warnOnExit: function (scope, fn) {
+                fn = fn || function () {
+                    return (scope.form || {}).$dirty;
+                };
+
+                scope.$on('$stateChangeStart', function (e) {
+                    if (fn()) {
+                        if (!$window.confirm('Changes you made may not be saved.')) {
+                            e.preventDefault();
+                        }
+                    }
+                });
                 $window.onbeforeunload = function () {
                     //Make it prompt on fn return true
                     if (!fn()) {
@@ -41,7 +69,7 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('baseUrlInjector', ['Config', '$window', function (Config, $window) {
+    .factory('customInjector', ['Config', '$window', '$q', '$rootScope', '$location', 'UserProfile', function (Config, $window, $q, $rootScope, $location, UserProfile) {
         var inj = {
             request: function (cc) {
                 if (cc.url[0] === "/") {
@@ -50,43 +78,76 @@ angular.module('myApp.service', ['satellizer'])
                     //Prevent satellizer's evil hack
                     cc.skipAuthorization = true;
                 }
+                
                 return cc;
+            },
+            response: function (cx) {
+                if (cx.config.url.endsWith('.html')) {
+                    return cx;
+                }
+
+                if (cx.config.url.endsWith('poll')) {
+                    return cx;
+                }
+
+                if (!$rootScope.debuggah) {
+                    $rootScope.debuggah = {};
+                }
+
+                $rootScope.debuggah[cx.config.method + " " + cx.config.url] = cx.data;
+                return cx;
+            },
+            responseError: function (response) {
+                if (response.status == 401) {
+                    //TODO: change this later
+                    if ($location.absUrl().includes("brand.html")) {
+                        $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
+                    } else if ($location.absUrl().includes("influencer.html")) {
+                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+                    } else if ($location.absUrl().includes("admin.html")) {
+                        $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
+                    }
+
+                    var bounce_url = $location.path();
+                    if ($location.absUrl().includes($location.path())) {
+                        $rootScope.signOut();
+                    } else {
+                        $rootScope.signOut(bounce_url);
+                    }
+
+                } else if (response.status == 405) {
+                    return $rootScope.go('405');
+                }
+
+                if (!response.data) {
+                    response.data = { message: "External error" };
+                }
+
+                return $q.reject(response);
             }
         };
         return inj;
     }])
-    .factory('authStatusCheckInjector', ['$q', '$rootScope', function ($q, $rootScope) {
-        var service = this;
-        service.responseError = function (response) {
-            if (response.status == 401) {
-                $rootScope.signOut('401');
-            }
-
-            if (!response.data) {
-                response.data = { message: "External error" };
-            }
-
-            return $q.reject(response);
-        };
-        return service;
-    }])
     .config(['$authProvider', 'Config', '$httpProvider', function ($authProvider, Config, $httpProvider) {
         $authProvider.baseUrl = Config.API_BASE_URI;
+        if (window.sessionStorage.API_OVERRIDE) {
+            $authProvider.baseUrl = window.sessionStorage.API_OVERRIDE;
+        }
         //Google account
         $authProvider.google({
             clientId: Config.YOUTUBE_APP_ID,
-            scope: ['https://www.googleapis.com/auth/youtube', 'https://www.googleapis.com/auth/userinfo.email']
+            scope: ['https://www.googleapis.com/auth/youtube.readonly', 'https://www.googleapis.com/auth/userinfo.email']
         });
 
         //Facebook account
         $authProvider.facebook({
             clientId: Config.FACEBOOK_APP_ID,
-            scope: ['pages_show_list', 'manage_pages']
+            scope: ['pages_show_list', 'email']
         });
 
         $authProvider.instagram({
             clientId: Config.INSTAGRAM_APP_ID,
-            scope: ['likes', 'public_content', 'basic']
+            scope: ['public_content', 'basic']
         });
         //Due to wrongness in satellizer hijacking our options request
         //We are forced to deceive it into believing that our header is acceptable
@@ -95,10 +156,10 @@ angular.module('myApp.service', ['satellizer'])
         $authProvider.tokenType = 'Ignore';
 
         //Intercept all $http request and add appropriate stuff
-        $httpProvider.interceptors.push('baseUrlInjector');
-        $httpProvider.interceptors.push('authStatusCheckInjector');
-        $httpProvider.defaults.headers.post = { 'Content-Type': 'application/json' };
-        $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json' };
+        $httpProvider.interceptors.push('customInjector');
+        $httpProvider.defaults.headers.post = { 'Content-Type': 'application/json', 'Accept-Language': 'th' };
+        $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json', 'Accept-Language': 'th' };
+        $httpProvider.defaults.headers.get = { 'Accept-Language': 'th' };
 
     }])
     .factory('AccountService', ['$http', '$q', function ($http, $q) {
@@ -117,31 +178,8 @@ angular.module('myApp.service', ['satellizer'])
                 return $q(function (resolve, reject) {
                     $http.get(path).then(function (response) {
                         if (_.has(response.data, 'influencer.birthday')) {
-                            response.data.influencer.birthday = new Date(response.data.influencer.birthday);
+                            response.data.influencer.birthday = moment(response.data.influencer.birthday, 'YYYY-MM-DD HH:mm:ss').toDate();
                         }
-
-                        //TOOD: QUick fix until DB team go one way
-                        var x = Object.keys(response.data);
-                        response.data.user = {};
-                        x.forEach(function (key) {
-                            //out in
-                            response.data.user[key] = response.data[key];
-                            if (response.data.influencer) {
-                                //in to out
-                                var infl = Object.keys(response.data.influencer);
-                                infl.forEach(function (infKey) {
-                                    response.data[infKey] = response.data.influencer[infKey];
-                                });
-                            }
-                            if (response.data.brand) {
-                                //in to out
-                                var brad = Object.keys(response.data.brand);
-                                brad.forEach(function (infKey) {
-                                    response.data[infKey] = response.data.brand[infKey];
-                                });
-                            }
-                        });
-
                         resolve(response);
                     })
                         .catch(function (err) {
@@ -149,8 +187,32 @@ angular.module('myApp.service', ['satellizer'])
                         });
                 });
             },
+            getYouTubeProfile: function (id) {
+                var url = '/profile/google';
+                if (!_.isNil(id)) {
+                    url = '/profile/' + id + '/google';
+                }
+                return $http.get(url);
+            },
+            getFacebookProfile: function (id) {
+                var url = '/profile/facebook';
+                if (!_.isNil(id)) {
+                    url = '/profile/' + id + '/facebook';
+                }
+                return $http.get(url);
+            },
+            getInstagramProfile: function (id) {
+                var url = '/profile/instagram';
+                if (!_.isNil(id)) {
+                    url = '/profile/' + id + '/instagram';
+                }
+                return $http.get(url);
+            },
             saveProfile: function (profile) {
                 return $http.put("/profile", profile);
+            },
+            saveBank: function (bank) {
+                return $http.put("/profile/bank", bank);
             },
             /*
              * get token
@@ -158,6 +220,12 @@ angular.module('myApp.service', ['satellizer'])
              */
             getToken: function (username, password) {
                 return $http.post("/auth/login", {
+                    email: username,
+                    password: password
+                });
+            },
+            getAdminToken: function (username, password) {
+                return $http.post("/auth/admin", {
                     email: username,
                     password: password
                 });
@@ -170,6 +238,13 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
+    .factory('WalletService', ['$http', function ($http) {
+        return {
+            getWalletTransaction: function (id) {
+                return $http.get('/wallets/' + id + '/transaction');
+            }
+        };
+    }])
     .factory('InfluencerAccountService', ['$http', function ($http) {
         return {
             /*
@@ -178,6 +253,18 @@ angular.module('myApp.service', ['satellizer'])
             signup: function (influencer) {
                 return $http.post("/signup/influencer", influencer);
             },
+            getWalletTransaction: function (id) {
+                return $http.get('/wallets/' + id + '/transaction');
+            },
+            getWallet: function () {
+                return $http.get("/wallets");
+            },
+            getWalletBalance: function () {
+                return $http.get("/wallets/balance");
+            },
+            requestPayout: function (doc) {
+                return $http.post('/wallets/payout', doc);
+            }
         };
     }])
     .factory('BrandAccountService', ['$http', function ($http) {
@@ -188,30 +275,30 @@ angular.module('myApp.service', ['satellizer'])
             signup: function (brand) {
                 return $http.post("/signup/brand", brand);
             },
-
+            getCart: function () {
+                return $http.get('/carts');
+            }
         };
     }])
     .factory('CampaignService', ['$http', '$q', function ($http, $q) {
         var deserializeCampaign = function (campaign) {
-            campaign.resources = campaign.campaignResources.map(function (campaignResource) {
+            campaign.campaignResources = campaign.campaignResources.map(function (campaignResource) {
                 return campaignResource.resource;
             });
             if (campaign.proposalDeadline) {
-                campaign.proposalDeadline = new Date(campaign.proposalDeadline);
+                campaign.proposalDeadline = moment(campaign.proposalDeadline, 'YYYY-MM-DD HH:mm').toDate();
             }
-            delete campaign.campaignResources;
             return campaign;
         };
 
         var serializeCampaign = function (campaign) {
-            campaign.campaignResources = campaign.resources.map(function (resource, index) {
+            campaign.campaignResources = campaign.campaignResources.map(function (resource, index) {
                 return {
                     position: index,
                     resource: resource
                 };
             });
 
-            delete campaign.resources;
             return campaign;
         };
 
@@ -246,6 +333,12 @@ angular.module('myApp.service', ['satellizer'])
                         .catch(function (err) {
                             reject(err);
                         });
+                });
+            },
+            delete: function (id) {
+                return $http({
+                    url: '/campaigns/' + id,
+                    method: 'DELETE'
                 });
             },
             getAll: function (params) {
@@ -307,6 +400,12 @@ angular.module('myApp.service', ['satellizer'])
                             reject(err);
                         });
                 });
+            },
+            getAppliedProposal: function (campaignId) {
+                return $http.get('/campaigns/' + campaignId + '/applied');
+            },
+            dismissNotification: function (campaignId) {
+                return $http.put('/campaigns/' + campaignId + '/dismiss');
             }
         };
     }])
@@ -332,12 +431,12 @@ angular.module('myApp.service', ['satellizer'])
                     data: proposal
                 });
             },
-            updateStatus:  function(proposalId, newStatus){
-                 return $http({
+            updateStatus: function (proposalId, newStatus) {
+                return $http({
                     url: "/proposals/" + proposalId + "/status/" + newStatus,
                     method: "PUT"
                 });
-            }, 
+            },
             count: function (params) {
                 return $http({
                     url: '/proposals/count',
@@ -355,12 +454,15 @@ angular.module('myApp.service', ['satellizer'])
                 return $http({
                     url: '/proposals/' + proposalId + '/proposalmessages',
                     method: 'get',
-                    params: params
+                    params: params,
+                    ignoreLoadingBar: function (c) {
+                        return c.params.timestamp ? true : false;
+                    }
                 });
             },
-            countInbox: function (params) {
+            getNewMessages: function (proposalId, params) {
                 return $http({
-                    url: '/proposals/count/poll',
+                    url: '/proposals/' + proposalId + '/proposalmessages/new',
                     method: 'get',
                     params: params,
                     ignoreLoadingBar: true
@@ -373,20 +475,22 @@ angular.module('myApp.service', ['satellizer'])
                     params: params
                 });
             },
-            getMessagesPoll: function (proposalId, params) {
-                return $http({
-                    url: '/proposals/' + proposalId + '/proposalmessages/poll',
-                    method: 'get',
-                    params: params,
-                    ignoreLoadingBar: true
-                });
-            },
             sendMessage: function (proposalMessage) {
                 return $http({
                     url: '/proposals/' + proposalMessage.proposal.proposalId + '/proposalmessages',
                     method: 'post',
-                    data: proposalMessage
+                    data: proposalMessage,
+                    ignoreLoadingBar: true
                 });
+            },
+            addToCart: function (proposal) {
+                return $http.post("/proposals/" + proposal.proposalId + "/cart");
+            },
+            removeFromCart: function (proposal) {
+                return $http.delete("/proposals/" + proposal.proposalId + "/cart");
+            },
+            dismissNotification: function (proposalId) {
+                return $http.put("/proposals/" + proposalId + "/dismiss");
             }
         };
     }])
@@ -404,6 +508,55 @@ angular.module('myApp.service', ['satellizer'])
             },
             getCompletionTime: function () {
                 return $http.get("/data/completiontime");
+            },
+            getBudgets: function () {
+                return $http.get("/data/budgets");
+            }
+        };
+    }])
+    .factory('TransactionService', ['$http', '$q', function ($http, $q) {
+        var deserialize = function (transaction) {
+            transaction.expiredAt = moment(transaction.expiredAt, 'YYYY-MM-DD HH:mm').toDate();
+            return transaction;
+        };
+
+        return {
+            create: function () {
+                return $http.post('/transactions');
+            },
+            getAll: function (params) {
+                return $q(function (resolve, reject) {
+                    $http({
+                        url: '/transactions',
+                        method: 'get',
+                        params: params
+                    })
+                        .then(function (transactionResponse) {
+                            transactionResponse.data.content = transactionResponse.data.content.map(function (M) {
+                                return deserialize(M);
+                            });
+                            resolve(transactionResponse);
+                        })
+                        .catch(function (err) {
+                            reject(err);
+                        });
+                });
+
+            },
+            getByCart: function (cartId) {
+                return $q(function (resolve, reject) {
+                    $http.get('/carts/' + cartId + '/transaction/')
+                        .then(function (transactionResponse) {
+                            transactionResponse.data = deserialize(transactionResponse.data);
+                            resolve(transactionResponse);
+                        })
+                        .catch(function (err) {
+                            reject(err);
+                        });
+                });
+            },
+            getByTransactionId: function (transactionId) {
+                return $http.get("/transactions/" + transactionId);
             }
         };
     }])
@@ -420,14 +573,37 @@ angular.module('myApp.service', ['satellizer'])
             }
         };
     }])
-    .factory('$uploader', ['Upload', '$q', 'Config', '$window', function (Upload, $q, Config, $window) {
+    .factory('$uploader', ['Upload', 'UploadValidate', '$q', 'Config', '$window', '$timeout', function (Upload, UploadValidate, $q, Config, $window, $timeout) {
         var service = {};
+
+        service.validate = function (file, length, ngModel, attr, scope) {
+            var deferred = $q.defer();
+            ngModel.$setPristine();
+            UploadValidate.validate(file, length, ngModel, attr, scope)
+                .then(function (data) {
+                    var ok = true;
+                    _.forEach(ngModel.$ngfValidations, function (v) {
+                        // console.log(ngModel.$ngfValidations);
+                        if (_.has(attr, 'ngf' + _.upperFirst(v.name))) {
+                            ngModel.$setValidity(v.name, v.valid);
+                        }
+                        ok = ok && v.valid;
+                    });
+                    ngModel.$setDirty();
+                    deferred.resolve(ok);
+                    return ok;
+                });
+
+
+            return deferred.promise;
+        };
 
         service.upload = function (url, data, evtHandler, opts) {
             var deferred = $q.defer();
             var options = _.extend({
                 url: Config.API_BASE_URI + url,
                 data: data,
+                ignoreLoadingBar: true,
                 headers: { 'X-Auth-Token': $window.localStorage.token },
             }, opts);
 
@@ -460,6 +636,49 @@ angular.module('myApp.service', ['satellizer'])
             },
             set: function (profile) {
                 $window.localStorage.profile = JSON.stringify(profile);
+            }
+        };
+    }])
+    .factory('AdminService', ['$http', function ($http) {
+        return {
+            //Confirm Payin (TODO: Rename)
+            confirmTransaction: function (Transaction) {
+                return $http.put('/transactions/' + Transaction.transactionId + '/confirm');
+            },
+            confirmPayout: function (TransactionId, Slip) {
+                return $http.put('/transactions/' + TransactionId + '/paid', Slip);
+            }
+        };
+    }])
+    .factory('LongPollingService', ['$http', '$q', 'BusinessConfig', '$location', function ($http, $q, BusinessConfig, $location) {
+        return {
+            countInbox: function (params) {
+                if ($location.port() == BusinessConfig.PROTRACTOR_PORT) {
+                    return $q(function (resolve, reject) {
+                        resolve();
+                    });
+                }
+
+                return $http({
+                    url: '/proposals/count/poll',
+                    method: 'get',
+                    params: params,
+                    ignoreLoadingBar: true
+                });
+            },
+            getMessagesPoll: function (proposalId, params) {
+                if ($location.port() == BusinessConfig.PROTRACTOR_PORT) {
+                    return $q(function (resolve, reject) {
+                        resolve();
+                    });
+                }
+
+                return $http({
+                    url: '/proposals/' + proposalId + '/proposalmessages/poll',
+                    method: 'get',
+                    params: params,
+                    ignoreLoadingBar: true
+                });
             }
         };
     }]);

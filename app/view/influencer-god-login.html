@@ -1,9 +1,9 @@
-<div class="view-brand-login">
+<div class="viewport view-brand-login">
   <div class="container">
 
     <div nc-alert='alert'></div>
 
-    <form no-validate>
+    <form no-validate  ng-model-options="{ updatedOn: 'change blur'}">
       <div class="card-portal">
         <div class="card-body">
           <div class="logo">
@@ -14,17 +14,18 @@
             <label>อีเมล</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-              <input type="email" class="form-control" placeholder="Username" ng-model="username" name="username">
+              <input type="email" class="form-control" ng-init="username = 'influencer@reachrabbit.com'" placeholder="Username" ng-model="username" name="username">
             </div>
           </div>
           <div class="form-group">
             <label>รหัสผ่าน</label>
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-              <input type="password" class="form-control" placeholder="Password" ng-model="password" name="password">
+              <input type="password" class="form-control" ng-init="password = 'test1234'" placeholder="Password" ng-model="password" name="password">
             </div>
           </div>
-          <button class="btn-primary" ng-click="login(username, password)">เข้าสู่ระบบ</button>
+          <button class="btn-primary btn-width-max" ng-click="login(username, password)">เข้าสู่ระบบ</button>
+          <button class="btn-secondary btn-width-max" ng-click="setLocalhost()">Set API to localhost:3000</button>
         </div>
       </div>
     </form>

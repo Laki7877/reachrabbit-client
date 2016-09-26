@@ -1,16 +1,21 @@
-<div class="message" ng-class="{'bot-message': message.user.role === 'Bot' }">
+<div class="message" ng-class="{'bot-message': message.user.role === 'Bot', 'message-offline' : !(message.messageId !== undefined) }">
   <div class="message-left">
     <img class="media-object" ng-src="{{message.user.profilePicture.url || 'images/placeholder-profile-picture.png'}}">
   </div>
   <div class="message-body">
     <div class="message-heading">
-      <h4>{{message.user.name}}</h4>
-      <div class="message-time">{{message.createdAt | amDateFormat: $root.formats[4]}}</div>
+      <h4 ng-if="message.user.role == 'Influencer'">{{message.user.name}}</h4>
+      <h4 ng-if="message.user.role == 'Brand'">{{message.user.brand.brandName}}</h4>
+      <h4 ng-if="message.user.role == 'Bot'">{{message.user.name}}</h4>
+      <div class="message-time">
+        <span ng-if="message.messageId">{{message.createdAt | amDateFormat: 'LT - D MMM YY'}}
+        </span>
+      </div>
       <div class="clear"></div>
     </div>
     <div class="message-content">
-      <div ng-transclude></div>
-      <div ng-bind="message.message"></div>
+      <div class="pre" ng-transclude></div>
+      <span ng-bind="message.message"></span>
       <img ng-repeat="resource in message.resources" ng-src="{{resource.url}}">
     </div>
   </div>

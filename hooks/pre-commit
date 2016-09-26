@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 grunt jshint;
+grunt checksum;
 if [ ! $? -ne 0 ]; then
     echo $(tput setaf 2)[OK]$(tput sgr 0) D Team. Git Commit. Delivered
     

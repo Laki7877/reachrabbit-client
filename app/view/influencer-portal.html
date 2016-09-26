@@ -1,26 +1,31 @@
-<div class="view-influencer-portal">
+<div class="viewport view-influencer-portal">
   <div class="container">
     <div nc-alert="alert"></div>
 
     <form no-validate>
-    <div class="card-portal">
-      <div class="card-body">
-        <div class="logo">
-          <img src="images/logo-reachrabbit.png" alt="ReachRabbit logo" />
-          <h3>มารวมงานกับ Brand ชั้นนำกัน</h3>
-        </div>
-        <button class="btn-social btn-facebook" ng-click="startAuthFlow('facebook')">
-          <!-- <img src="images/icon-facebook-lg.png"/>เข้าสู่ระบบด้วย Facebook -->
-          เข้าสู่ระบบด้วย Facebook
-        </button>
-        <button class="btn-social btn-instagram" ng-click="startAuthFlow('instagram')">เข้าสู่ระบบด้วย Instagram</button>
-        <button class="btn-social btn-google" ng-click="startAuthFlow('google')">เข้าสู่ระบบด้วย YouTube</button>
-        <div class="info-text">
-          คุณต้องมีคนติดตามอย่างน้อย {{ minFollower}}  คนในการสมัคร
+      <div class="card-portal">
+        <div class="card-body">
+          <div class="logo">
+            <img src="images/logo-reachrabbit.png" alt="ReachRabbit logo" />
+            <h3>มาร่วมงานกับ Brand ชั้นนำกัน!</h3>
+          </div>
+          <button class="btn-social btn-facebook btn-width-max" ng-click="startAuthFlow('facebook')">
+            เข้าสู่ระบบด้วย Facebook
+          </button>
+          <button class="btn-social btn-instagram btn-width-max" ng-click="startAuthFlow('instagram')">
+            เข้าสู่ระบบด้วย Instagram
+          </button>
+          <button class="btn-social btn-google btn-width-max" ng-click="startAuthFlow('google')">
+            เข้าสู่ระบบด้วย YouTube
+          </button>
+          <div class="info-text">
+            คุณต้องมีคนติดตามอย่างน้อย {{ minFollower}} คนในการสมัคร
+          </div>
+          <div ng-if="minFollowerError" class="has-error">
+            <div class="help-block">ขอโทษค่ะ คุณต้องมีผู้ติดตามอย่างน้อย {{ minFollower }} คนเพื่อสมัครสมาชิก</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="signup-pill">Are you God? <a ui-sref="influencer-god-login">Yes, I am</a></div>
     </form>
   </div>
 </div>

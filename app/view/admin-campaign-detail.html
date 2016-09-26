@@ -1,0 +1,54 @@
+<div class="viewport view-admin-campaign-detail">
+  <zone-header historyback="true">
+    <h1>{{campaignNee.title | truncate: 60}} ({{campaignNee.status}})</h1>
+  </zone-header>
+  <div class="zone-body">
+    <div class="container">
+      <div nc-alert="alert"></div>
+      <card-campaign-header campaign="campaignNee">
+      </card-campaign-header>
+      <div class="card-campaign-description">
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-body-content-label">
+              รายละเอียด
+            </div>
+            <div class="card-body-content pre" ng-if="campaignNee.description.length > 0">{{ campaignNee.description }}</div>
+          </div>
+          <div class="card-row" ng-if="campaignNee.keyword.length > 0">
+            <div class="card-body-content-label">
+              Keyword สำคัญ
+            </div>
+            <div class="card-body-content">
+              {{ campaignNee.keyword }}
+            </div>
+          </div>
+          <div class="card-row" ng-if="campaignNee.website.length > 0">
+            <div class="card-body-content-label">
+              เว็บไซต์ของสินค้า
+            </div>
+            <div class="card-body-content">
+              <a ng-href="{{campaignNee.website}}" target="_blank">{{ campaignNee.website }}</a>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label">
+              รูปประกอบ
+            </div>
+            <div class="card-body-content">
+              <img ng-repeat="campaignImage in campaignNee.campaignResources" ng-src="{{ campaignImage.url }}" class="description-image"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-campaign-description" ng-if="campaignNee.status !== 'Draft'">
+        <div class="card-body">
+          <div class="card-row text-center">
+            <button class="btn-secondary" ng-click="changeToDraft()">เปลี่ยนสถานะเป็น "ฉบับร่าง"</button>
+          </div>
+        </div>
+      </div>
+      <card-brand-profile ng-model="campaignNee.brand"></card-brand-profile>
+    </div>
+  </div>
+</div>

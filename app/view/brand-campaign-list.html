@@ -1,27 +1,55 @@
-<div class="view-brand-campaign-list">
-
-  <zone-header>
-    <h1>My Campaign</h1>
-  </zone-header>
+<div class="viewport view-brand-campaign-list">
+  <div class="zone-header">
+    <div class="container">
+      <div class="row">
+        <div class="step">
+          <img src="images/brand-onboarding-1.png"/>
+          <h3>1. สร้าง Campaign</h3>
+          <img src="images/icon-next-step.png" class="next-step" />
+        </div>
+        <div class="step">
+          <img src="images/brand-onboarding-2.png" />
+          <h3>2. รอรับข้อเสนอ</h3>
+          <img src="images/icon-next-step.png" class="next-step" />
+        </div>
+        <div class="step">
+          <img src="images/brand-onboarding-3.png"/>
+          <h3>3. คัดเลือกข้อเสนอ</h3>
+          <img src="images/icon-next-step.png" class="next-step" />
+        </div>
+        <div class="step">
+          <img src="images/brand-onboarding-4.png"/>
+          <h3>4. ชำระเงิน และ เริ่มงาน</h3>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="zone-body">
     <div class="container">
-      <div class="btn-floating-action" ui-sref="brand-campaign-detail-draft">
+      <div class="btn-floating-action" ui-sref="brand-campaign-detail-draft" uib-tooltip="สร้าง Campaign ใหม่" tooltip-placement="top">
       </div>
-
-      <div nc-alert type="info" closable="true">
-        เราได้สร้าง Campaign แรกให้คุณแล้ว เข้าไปแก้ไขข้อมูลได้เลย
+      <div class="page-header">
+        <h1>My Campaign</h1>
+        <div class="form-group">
+          <div class="input-dropdown">
+              <select class="form-control filter" ng-model="filter" ng-options="x.status as x.name for x in filters"></select>
+            <i class="fa fa-caret-down"></i>
+          </div>
+        </div>
       </div>
-
-      <div ng-repeat="x in myCampaign.content">
+      <cute-bunny></cute-bunny>
+      <div cute-bunny-hide ng-repeat="x in myCampaign.content">
         <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-draft({campaignId: x.campaignId})"></card-campaign-list-item>
       </div>
       <nav class="text-center" aria-label="Page navigation">
         <pagination ng-model="myCampaign" callback="load"></pagination>
       </nav>
 
-      <div class="example-campaign">
-        <h2>ตัวอย่าง Campaign</h2>
+      <div class="example-campaign" cute-bunny-hide>
+        <div class="page-header">
+          <h1>ตัวอย่าง Campaign</h1>
+        </div>
         <div ng-repeat="x in exampleCampaign">
           <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-example({ exampleId: $index })"></card-campaign-list-item>
         </div>

@@ -8,20 +8,66 @@
 'use strict';
 
 
-angular.module('myApp.routes', ['ui.router'])
+angular.module('reachRabbitApp.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('404', {
                 url: '/404',
                 templateUrl: 'view/404.html',
                 controller: 'EmptyController'
+            })
+            .state('405', {
+                url: '/405',
+                templateUrl: 'view/405.html',
+                controller: 'EmptyController'
             });
+
         $urlRouterProvider.otherwise("404");
 
     }]);
 
+angular.module('reachRabbitApp.admin.routes', ['ui.router'])
+    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-angular.module('myApp.brand.routes', ['ui.router'])
+        $stateProvider
+            .state('admin-transaction-history', {
+                url: '/admin-transaction-history',
+                templateUrl: 'view/admin-transaction-history.html',
+                controller: 'AdminTransactionHistoryController'
+            })
+            .state('admin-transaction-detail', {
+                url: '/admin-transaction-detail/:cartId',
+                templateUrl: 'view/admin-transaction-detail.html',
+                controller: 'TransactionDetailController'
+            })
+            .state('admin-payout-history', {
+                url: '/admin-payout-history',
+                templateUrl: 'view/admin-payout-history.html',
+                controller: 'PayoutHistoryController'
+            })
+            .state('admin-payout-detail',{
+                url: '/admin-payout-detail/:walletId',
+                templateUrl: 'view/admin-payout-detail.html',
+                controller: 'PayoutDetailController'
+            })
+            .state('admin-campaign-list',{
+                url: '/admin-campaign-list',
+                templateUrl: 'view/admin-campaign-list.html',
+                controller: 'AdminCampaignListController'
+            })
+            .state('admin-campaign-detail',{
+                url: '/admin-campaign-detail/:campaignId',
+                templateUrl: 'view/admin-campaign-detail.html',
+                controller: 'AdminCampaignDetailController'
+            })
+            .state('admin-ig-reloader', {
+                url: '/admin-ig-reloader',
+                templateUrl: 'view/admin-ig-reloader.html',
+                controller: 'EmptyController'
+            });
+    }]);
+
+angular.module('reachRabbitApp.brand.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
         /* Brands */
@@ -36,10 +82,26 @@ angular.module('myApp.brand.routes', ['ui.router'])
                 templateUrl: 'view/brand-campaign-detail-draft.html',
                 controller: 'CampaignDetailController'
             })
+            .state('brand-campaign-detail-edit', {
+                url: '/brand-campaign-detail-edit/:campaignId',
+                templateUrl: 'view/brand-campaign-detail-draft.html',
+                controller: 'CampaignDetailController',
+                params: {
+                    editOpenState: true
+                }
+            })
             .state('brand-campaign-detail-example', {
                 url: '/brand-campaign-detail-example/:exampleId',
                 templateUrl: 'view/brand-campaign-detail-example.html',
                 controller: 'CampaignExampleController'
+            })
+            .state('brand-campaign-detail-published', {
+                url: '/brand-campaign-detail-published/:campaignId',
+                templateUrl: 'view/brand-campaign-detail-published.html',
+                controller: 'CampaignDetailController',
+                params: {
+                    alert: null,
+                }
             })
             .state('brand-profile', {
                 url: '/brand-profile',
@@ -47,7 +109,7 @@ angular.module('myApp.brand.routes', ['ui.router'])
                 controller: 'BrandProfileController'
             })
             .state('brand-inbox', {
-                url: '/brand-inbox',
+                url: '/brand-inbox/:status?',
                 templateUrl: 'view/brand-inbox.html',
                 controller: 'BrandInboxController'
             })
@@ -59,14 +121,28 @@ angular.module('myApp.brand.routes', ['ui.router'])
             .state('brand-influencer-profile', {
                 url: '/brand-influencer-profile/:influencerId',
                 templateUrl: 'view/brand-influencer-profile.html',
-                controller: 'BrandInfluencerProfile'
+                controller: 'InfluencerProfilePortfolioController'
+            })
+            .state('brand-cart', {
+                url: '/brand-cart',
+                templateUrl: 'view/brand-cart.html',
+                controller: 'CartController'
+            })
+            .state('brand-transaction-history', {
+                url: '/brand-transaction-history',
+                templateUrl: 'view/brand-transaction-history.html',
+                controller: 'TransactionHistoryController'
+            })
+            .state('brand-transaction-detail', {
+                url: '/brand-transaction-detail/:cartId',
+                templateUrl: 'view/brand-transaction-detail.html',
+                controller: 'TransactionDetailController'
             });
 
     }]);
 
-angular.module('myApp.influencer.routes', ['ui.router'])
+angular.module('reachRabbitApp.influencer.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-
         /* Influencer */
         $stateProvider
             .state('influencer-campaign-list', {
@@ -74,9 +150,9 @@ angular.module('myApp.influencer.routes', ['ui.router'])
                 templateUrl: 'view/influencer-campaign-list.html',
                 controller: 'InfluencerCampaignListController'
             })
-            .state('influencer-campaign-detail-open', {
-                url: '/influencer-campaign-detail-open/:campaignId',
-                templateUrl: 'view/influencer-campaign-detail-open.html',
+            .state('influencer-campaign-detail', {
+                url: '/influencer-campaign-detail/:campaignId',
+                templateUrl: 'view/influencer-campaign-detail.html',
                 controller: 'InfluencerCampaignDetailController'
             })
             .state('influencer-profile', {
@@ -84,8 +160,13 @@ angular.module('myApp.influencer.routes', ['ui.router'])
                 templateUrl: 'view/influencer-profile.html',
                 controller: 'InfluencerProfileController'
             })
+            .state('influencer-profile-published', {
+                url: '/influencer-profile-published?showToolbar',
+                templateUrl: 'view/influencer-profile-published.html',
+                controller: 'InfluencerProfileController'
+            })
             .state('influencer-inbox', {
-                url: '/influencer-inbox',
+                url: '/influencer-inbox/:status?',
                 templateUrl: 'view/influencer-inbox.html',
                 controller: 'InfluencerInboxController'
             })
@@ -97,18 +178,37 @@ angular.module('myApp.influencer.routes', ['ui.router'])
             .state('influencer-brand-profile', {
                 url: '/influencer-brand-profile/:brandId',
                 templateUrl: 'view/influencer-brand-profile.html',
-                controller: 'InfluencerBrandProfile'
+                controller: 'BrandProfilePortfolioController'
+            })
+            .state('influencer-payout-detail', {
+                url: '/influencer-payout-detail/:walletId',
+                templateUrl: 'view/influencer-payout-detail.html',
+                controller: 'PayoutDetailController'
+            })
+            .state('influencer-payout-history', {
+                url: '/influencer-payout-history',
+                templateUrl: 'view/influencer-payout-history.html',
+                controller: 'PayoutHistoryController'
+            })
+            .state('influencer-wallet', {
+                url: '/influencer-wallet',
+                templateUrl: 'view/influencer-wallet.html',
+                controller: 'WalletController'
             });
 
         //TODO: Campaign-detail
 
     }]);
 
-
-angular.module('myApp.portal.routes', ['ui.router'])
+angular.module('reachRabbitApp.portal.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
         $stateProvider
+            .state('admin-login', {
+                url: "/admin-login",
+                templateUrl: "view/admin-login.html",
+                controller: 'AdminSigninController'
+            })
             .state('brand-login', {
                 url: "/brand-login",
                 templateUrl: "view/brand-login.html",

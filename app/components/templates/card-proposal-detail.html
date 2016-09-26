@@ -9,10 +9,10 @@
             ราคาที่เสนอ
         </div>
         <div class="card-info-content card-price">
-            {{ proposal.price | number: 2 }} บาท
+            {{ proposal.price | number: 0 }} บาท
         </div>
         <div class="card-info-label">
-            จำนวนผู้ติดตาม
+            ช่องทางที่จะโปรโมทให้
         </div>
         <div class="card-info-content" ng-repeat="imedia in intersectMedia(proposal.media, proposal.influencer.influencerMedias)">
             <div class="social-info">
@@ -26,10 +26,16 @@
             {{ proposal.completionTime.completionTime }}
         </div>
         <div class="card-info-label" ng-if="proposal.status == 'Working'">
-            กำหนดวันส่งงาน
+          วันกำหนดส่งงาน
         </div>
         <div class="card-info-content" ng-if="proposal.status == 'Working'">
-            {{ proposal.dueDate }}
+            {{ proposal.dueDate | date }}
+        </div>
+        <div class="card-info-label" ng-if="proposal.status == 'Complete'">
+            วันที่เสร็จงาน
+        </div>
+        <div class="card-info-content" ng-if="proposal.status == 'Complete'">
+            {{ proposal.completeDate | date }}
         </div>
     </div>
 </div>

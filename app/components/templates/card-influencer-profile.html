@@ -1,32 +1,37 @@
 <div class="card-profile">
   <div class="card-body">
     <div class="card-image">
-      <img ng-src="{{ influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-responsive img-circle"
+      <img ng-src="{{ profile.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-responsive img-circle"
       />
     </div>
     <div class="col-xs-10">
-        <small>เกี่ยวกับ {{ influencer.user.name }}</small>
-      <p ng-if="influencer.about.length > 0">
-        {{influencer.about}}
+      <small>เกี่ยวกับ {{ profile.user.name }}</small>
+      <p ng-if="profile.about.length > 0" ng-bind-html="profile.about | newlinify">
       </p>
-      <p ng-if="!influencer.about || influencer.about.length == 0">
+      <p ng-if="profile.web">
+        <a ng-href="{{profile.web | maskUrl }}" target="_blank"> {{ profile.web }}</a>
+      </p>
+      <p ng-if="!isInfluencer && (!profile.about || profile.about.length == 0)">
         -
+      </p>
+      <p ng-if="isInfluencer && (!profile.about || profile.about.length == 0)">
+        "ยังไม่มีข้อมูล" คุณสามารถเพิ่มข้อมูลเกี่ยวกับตัวคุณเพื่อช่วยในการตัดสินใจของ Brand</span>
       </p>
 
       <div ng-show="showSocialData">
         <small>จำนวนผู้ติดตาม</small>
       <h4>
-         <span ng-repeat="imedia in influencer.influencerMedias" class="social-info">
+         <span ng-repeat="imedia in profile.influencerMedias" class="social-info">
            <span class="icon-{{imedia.media.mediaId}} social-icon"></span> {{ imedia.followerCount | number }} คน
          </span>
       </h4>
       </div>
 
       <small>ความสนใจ</small>
-      <h4 ng-if="influencer.categories.length > 0 ">
-        {{ joinCat(influencer.categories) }}
+      <h4 ng-if="profile.categories.length > 0 ">
+        {{ joinCat(profile.categories) }}
       </h4>
-      <h4 ng-if="!influencer.categories || influencer.categories.length == 0">
+      <h4 ng-if="!profile.categories || profile.categories.length == 0">
         -
       </h4>
       <ng-transclude></ng-transclude>

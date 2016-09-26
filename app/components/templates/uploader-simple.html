@@ -1,0 +1,20 @@
+<div class="fileinput fileinput-new btn-width-max" data-provides="fileinput">
+    <button ngf-select="upload($file)"
+      ngf-accept="accept"
+      on-click="pristine()"
+        ng-if="!loadingImage && !accessor(model)" class="btn-secondary btn-width-max">
+        <i class="fa fa-camera"></i> เลือกไฟล์ภาพ
+     </button>
+    <div ng-if="loadingImage" class="input-upload-image">
+      <i class="fa fa-spinner fa-spin image-uploading"></i>
+      <!-- <div class="" ng-if="loadingImage">{{progressPercentage}} %</div> -->
+      <!-- <img src="images/Jumping.gif" style="width: 100%;" /> -->
+    </div>
+    <div class="fileinput-new " ngf-select="upload($file)" ng-if="accessor(model) && !loadingImage">
+        <div class="input-upload-image ">
+        <i class="fa fa-times-circle btn-delete-image" ng-click="remove()"></i>
+        <img ng-show="!loadingImage" ng-src="{{ accessor(model) }}">
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+{
+  "name": "ng-pattern-restrict",
+  "homepage": "https://github.com/poonwu/ng-pattern-restrict",
+  "authors": [
+    "Alpha <alphagma@gmail.com>"
+  ],
+  "description": "Allowing only certain inputs based on a regex pattern, for AngularJS",
+  "main": "src/ng-pattern-restrict.js",
+  "keywords": [
+    "angularjs",
+    "input",
+    "regex",
+    "regular expressions",
+    "pattern"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "lib",
+    "Gruntfile.js",
+    ".travis.yml",
+    "package.json",
+    "protractor-conf-builder.js",
+    "protractor-conf.js",
+    "protractor-travis-conf.js",
+    "protractor-travis-min-conf.js"
+  ],
+  "dependencies": {
+    "angular": "^1.2.27 ^1.3.0"
+  },
+  "_release": "9767b4d996",
+  "_resolution": {
+    "type": "commit",
+    "commit": "9767b4d996a44da3e6449d214753de55c0fcf6cf"
+  },
+  "_source": "https://github.com/poonwu/ng-pattern-restrict.git",
+  "_target": "9767b4d996a44da3e6449d214753de55c0fcf6cf",
+  "_originalSource": "https://github.com/poonwu/ng-pattern-restrict.git"
+}

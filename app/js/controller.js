@@ -303,7 +303,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
 
             var stop = false;
             var timestamp = new Date();
-
+            var oldTimestamp = new Date();
             var interval = $interval(function () {
                 if ($scope.pollActive || stop) {
                     return;
@@ -316,9 +316,10 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                     if (!res.data || stop) {
                         return null;
                     }
-                    timestamp = new Date();
+                    timestamp = res.data[1];
+                    oldTimestamp = res.data[0];
                     return ProposalService.getNewMessages($scope.proposalId, {
-                        timestamp: res.data
+                        timestamp: oldTimestamp
                     });
                 })
                 .then(function (res) {
@@ -328,18 +329,8 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                             if ($scope.msglist.length >= $scope.msgLimit) {
                                 $scope.msglist.shift();
                             }
-                            if (_.has($scope.msgHash, res.data[i].referenceId)) {
-                                if(_.has($scope.msgHash[res.data[i].referenceId], 'messageId')) {
-                                    if(_.get($scope.msgHash[res.data[i].referenceId], 'messageId') ===
-                                        res.data[i].messageId) {
-                                        // resolved
-                                    } else {
-                                        // new one
-                                        $scope.msglist.push(res.data[i]);
-                                    }
-                                } else {
-                                    _.extend($scope.msgHash[res.data[i].referenceId], res.data[i]);
-                                }
+                            if (!_.isNil($scope.msgHash[res.data[i].referenceId])) {
+                                _.extend($scope.msgHash[res.data[i].referenceId], res.data[i]);
                             } else {
                                 // from server
                                 $scope.msglist.push(res.data[i]);
@@ -369,10 +360,9 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 var msg = {
                     message: messageStr,
                     proposal: $scope.proposal,
-                    createdAt: new Date(),
                     user: $rootScope.getProfile(),
                     resources: attachments,
-                    referenceId: sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(new Date().getTime())).substr(0, 7)
+                    referenceId: sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(new Date().getTime()))
                 };
 
                 $scope.msglist.push(msg);
@@ -979,11 +969,11 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
             },
             {
                 status: 'Open',
-                name: 'เฉพาะ ดำเนินการ'
+                name: 'เฉพาะ เปิดรับข้อเสนอ'
             },
             {
-                status: 'Complete',
-                name: 'เฉพาะ เสร็จสิ้น'
+                status: 'Close',
+                name: 'เฉพาะ ปิดรับข้อเสนอ'
             }];
 
         $scope.$watch('filter', function () {

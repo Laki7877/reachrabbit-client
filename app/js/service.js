@@ -147,7 +147,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
 
         $authProvider.instagram({
             clientId: Config.INSTAGRAM_APP_ID,
-            scope: ['public_content', 'basic']
+            scope: ['basic']
         });
         //Due to wrongness in satellizer hijacking our options request
         //We are forced to deceive it into believing that our header is acceptable

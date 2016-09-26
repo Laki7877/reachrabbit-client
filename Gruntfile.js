@@ -17,6 +17,26 @@ module.exports = function (grunt) {
         }
       }
     },
+    browserify: {
+      vendor: {
+        files: {
+          'dist/vendor.js': ['app/vendor.js'],
+        },
+        options: {
+          transform: []
+        }
+      },
+      src: {
+        files: {
+          'dist/bundle.admin.js': ['app/js/app.admin.js'],
+          'dist/bundle.influencer.js': ['app/js/app.influencer.js'],
+          'dist/bundle.brand.js': ['app/js/app.brand.js']
+        },
+        options: {
+          transform: []
+        }
+      }
+    },
     concurrent: {
       dev: {
         tasks: ['shell:autoless', 'connect:server'],
@@ -106,14 +126,10 @@ module.exports = function (grunt) {
 
 
   // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-githooks');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-shell');
+  require('jit-grunt')(grunt, {
+    useminPrepare: 'grunt-usemin',
+    ngtemplates: 'grunt-angular-templates'
+  });
 
   grunt.registerTask('checksum', 'Create .md5 checksum file *', function() {
         // Calculate md5 hash
@@ -131,7 +147,6 @@ module.exports = function (grunt) {
               var file = grunt.template.process(filename);
               buffer += fs.readFileSync(file);
             }
-            
         });
 
         md5.update(buffer);
@@ -149,5 +164,6 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['jshint', 'checksum', 'concurrent:dev']);
   grunt.registerTask('test', ['concurrent:test']);
   grunt.registerTask('testff', ['concurrent:testff']);
+  grunt.registerTask('build', ['browserify'])
 
 };

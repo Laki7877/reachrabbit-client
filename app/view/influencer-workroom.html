@@ -49,7 +49,7 @@
                                 <div class="pull-right" form-error="form.resource">
                                     <div input-error class="pull-left"></div>
 
-                                    <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png" ngf-max-files="1" ngf-pattern="'.jpg,.png'" ngf-max-size="5MB" is-loading="formData.isLoading"></uploader-multi>
+                                    <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png" ngf-max-files="1" ngf-pattern="'.jpg,.png'" ngf-max-size="10MB" is-loading="formData.isLoading"></uploader-multi>
 
                                     <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
                                         <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ

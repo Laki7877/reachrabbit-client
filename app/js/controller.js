@@ -1668,8 +1668,6 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
             $scope.alert = new NcAlert();
             $scope.form = {};
 
-            util.warnOnExit($scope);
-
             //TODO : get value from provider somewhere or smth
             $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
 
@@ -1738,7 +1736,6 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
             $scope.formData = {};
             $scope.form = {};
             $scope.alert = new NcAlert();
-            util.warnOnExit($scope);
 
             $scope.submit = function (brand) {
                 if (!$scope.form.$valid) {

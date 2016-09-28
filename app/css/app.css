@@ -10254,6 +10254,8 @@ div:focus {
   margin-bottom: 30px;
 }
 .chatbox-card .chatbox-header {
+  position: relative;
+  overflow: auto;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.3);
 }
 .chatbox-card .chatbox-header h3 {
@@ -10514,6 +10516,7 @@ div:focus {
 }
 /*---Contact Us---*/
 .contact-us {
+  z-index: 10;
   cursor: pointer;
   transition: 1s;
   background: #019386;
@@ -10562,6 +10565,7 @@ ul.payment-methods {
   text-align: center;
 }
 .sticky-toolbar {
+  z-index: 11;
   background-color: #495366;
   width: 100%;
   position: fixed;

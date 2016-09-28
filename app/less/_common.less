@@ -7,16 +7,18 @@ body{
 
 h1{
   font-family: @font-primary;
+  font-weight: normal;
   font-size: 32px;
 }
 h2{
   font-family: @font-primary;
+  font-weight: normal;
   font-size: 24px;
 }
 h3{
   font-family: @font-primary;
-  font-size: 18px;
   font-weight: normal;
+  font-size: 18px;
   margin: 0px;
 }
 h4{
@@ -1214,6 +1216,7 @@ input:-moz-placeholder {
 /*---Navigation Bar---*/
 .navbar {
   background: @color-black;
+  box-shadow: @global-shadow-depth-1;
   border-radius: 0px;
   border: 0px;
   margin-bottom: 0px;
@@ -1321,7 +1324,6 @@ input:-moz-placeholder {
 /*---Main Navigation---*/
 .main-nav{
   background: @color-black;
-  box-shadow: @global-shadow-depth-1;
   .steps{
     width: @max-container-width;
     text-align: center;

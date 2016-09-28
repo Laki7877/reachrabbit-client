@@ -1,14 +1,16 @@
 <form ng-model-options="{ updateOn: 'change blur' }" name="form">
   <div class="viewport view-brand-profile">
+    <div class="zone-alert">
+      <div nc-alert="alert"></div>
+      <div nc-alert type="info" closable="false">
+        ยิ่งใส่ข้อมูลเยอะ คนยิ่งสนใจ Campaign ของ Brand คุณมากขึ้น
+      </div>
+    </div>
     <zone-header>
-    <h1>Profile ของฉัน</h1>
+      <h1>Profile ของฉัน</h1>
     </zone-header>
     <div class="zone-body">
       <div class="container">
-        <div nc-alert="alert"></div>
-        <div nc-alert type="info" closable="false">
-          ยิ่งใส่ข้อมูลเยอะ คนยิ่งสนใจ Campaign ของ Brand คุณมากขึ้น
-        </div>
         <form name="form" novalidate>
           <div class="card">
             <div class="card-body">
@@ -99,7 +101,7 @@
               </div>
               <div class="card-row" ng-if="!showPassword" form-error="form.email">
                  <div class="card-body-content-label with-input">
-                  
+
                 </div>
                 <div class="card-body-content">
                   <a ng-click="setShowPassword()"><i class="fa fa-lock"></i> ตั้งรหัสผ่านใหม่</a>

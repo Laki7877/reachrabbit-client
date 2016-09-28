@@ -20,11 +20,8 @@
                                 <div class="chatbox-status">
                                     <span class="color-grey">สถานะ: </span>
                                     <span class="color-green" ng-if="proposal.status == 'Selection'" tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ เลือกข้อเสนอ เพื่อชำระเงิน" >รอคุณคัดเลือก</span>
-                                    <!-- <span class="status" tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ เลือกข้อเสนอ เพื่อชำระเงิน" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
-                                    <i class="fa fa-angle-right"></i>
-                                    <span class="status" tooltip-placement="bottom" uib-tooltip="รอตรวจสอบงานจาก Influencer และ อนุมัติงานเมื่อคุณพอใจ" ng-class="{'active': proposal.status == 'Working'}">ดำเนินการ</span>
-                                    <i class="fa fa-angle-right"></i>
-                                    <span class="status" tooltip-placement="bottom" uib-tooltip="งานของคุณเสร็จสิ้นแล้ว" ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span> -->
+                                    <span class="color-green" ng-if="proposal.status == 'Working'" tooltip-placement="bottom" uib-tooltip="รอตรวจสอบงานจาก Influencer และ อนุมัติงานเมื่อคุณพอใจ" >รอคุณอนุมัติงาน</span>
+                                    <span class="color-green" ng-if="proposal.status == 'Complete'" tooltip-placement="bottom" uib-tooltip="งานของคุณเสร็จสิ้นแล้ว" >เสร็จสิ้น</span>
                                 </div>
                             </div>
                             <div class="message-area" scroll-glue="scroll">

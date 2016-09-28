@@ -10,9 +10,9 @@
 angular.module('reachRabbitApp.service', ['satellizer'])
     .constant('Config', {
         API_BASE_URI: 'http://bella.reachrabbit.com:8080',
-        FACEBOOK_APP_ID: "1648733485452450",
-        INSTAGRAM_APP_ID: "c428876109c44daa9a54cf568e96e483",
-        YOUTUBE_APP_ID: "486841241364-75hb5e24afp7msiitf8t36skfo3mr0h7.apps.googleusercontent.com"
+        FACEBOOK_APP_ID: "295474977484568",
+        INSTAGRAM_APP_ID: "a6f7209e17af45259b61ba189bf9502e",
+        YOUTUBE_APP_ID: "857823447529-5c419ec75nq2q3tf1ouq07bdu49g89ks.apps.googleusercontent.com"
     })
     .run(['Config', '$window', '$location', function (Config, $window, $location) {
         if ($window.sessionStorage.API_OVERRIDE) {

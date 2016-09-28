@@ -108,7 +108,7 @@
                 อนุมัติงาน <!--(10)-->
               </span>
             </div>
-            <div class="step" ng-if="proposal.status == 'Complete'" ui-sref="brand-inbox({status:'Complete'})" ui-sref-active="active">
+            <div class="step" ui-sref="brand-inbox({status:'Complete'})" ui-sref-active="active">
               <img src="images/brand-onboarding-5.png"/>
               <span class="step-text">
                 เสร็จสิ้น <!--(10)-->
@@ -127,6 +127,13 @@
 
     <div ui-view ng-cloak></div>
 
+    <div class="contact-us">
+      <h3><i class="fa fa-comment-o"></i> ติดต่อ ReachRabbit</h3>
+      <img src="images/line-qr-code.png"/>
+      <h3>LINE: @reachrabbit</h3>
+      <h3>hello@reachrabbit.com</h3>
+      <h3><i class="fa fa-phone"></i> 089-999-9999</h3>
+    </div>
     <div ng-include="'components/templates/debugga.html'"></div>
     <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>

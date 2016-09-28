@@ -1149,7 +1149,8 @@ img {
 .card-portal .logo img,
 .card-portal .profile-picture .profile-picture-image,
 .card-campaign-description .card-body .description-image,
-.chatbox-card .message-area .message .message-body .message-content img {
+.chatbox-card .message-area .message .message-body .message-content img,
+.contact-us img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -10508,6 +10509,33 @@ div:focus {
 .tooltip .tooltip-inner {
   padding: 10px;
   max-width: 240px;
+}
+/*---Contact Us---*/
+.contact-us {
+  cursor: pointer;
+  transition: 1s;
+  background: #019386;
+  color: #ffffff;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  padding: 0px 15px;
+  width: 200px;
+  position: fixed;
+  bottom: -265px;
+  right: 15px;
+}
+.contact-us h3 {
+  font-size: 16px;
+  margin: 10px 0px;
+}
+.contact-us img {
+  margin: 5px 0px 10px 0px;
+}
+.contact-us:hover {
+  bottom: 0px;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 /*---Eartamoto Special Code---*/
 .cropArea {

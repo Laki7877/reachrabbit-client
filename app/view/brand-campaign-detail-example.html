@@ -1,17 +1,22 @@
 <div class="viewport view-brand-campaign-detail-example">
 
+  <div class="zone-alert">
+      <nc-alert type="info">
+        นี้คือตัวอย่างของ Campaign ถ้าอยากสร้าง Campaign ของคุณเอง กดปุ่มสีส้มเลย
+      </nc-alert >
+  </div>
+
   <zone-header historyback="true">
     <h1>Rabbit Lipstick 7 Days 7 Looks</h1>
+    <div class="action-btn-for-header with-back-btn">
+        <button class="btn-primary btn-width-lg" ui-sref="brand-campaign-detail-draft">
+            <i class="fa fa-plus"></i> สร้าง Campaign ใหม่
+        </button>
+    </div>
   </zone-header>
 
   <div class="zone-body">
     <div class="container">
-      <div class="btn-floating-action" ui-sref="brand-campaign-detail-draft" class="btn-floating-action" ui-sref="brand-campaign-detail-draft" uib-tooltip="สร้าง Campaign ใหม่" tooltip-placement="top">
-      </div>
-
-      <nc-alert type="info">
-        หน้านี้คือตัวอย่างของ Campaign อยากสร้างใหม่กดปุ่มข้างๆ เลย
-      </nc-alert >
 
       <card-campaign-header campaign="exampleCampaign">
       </card-campaign-header>

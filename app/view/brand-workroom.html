@@ -3,7 +3,7 @@
         <div class="zone-header">
             <div class="container">
                 <div class="back-btn-for-header">
-                    <span ui-sref="brand-inbox"><i class="fa fa-arrow-left"></i> กลับไป Inbox</span>
+                    <span ng-click="history.back()"><i class="fa fa-arrow-left"></i> กลับไปหน้าก่อน</span>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                                 <div class="pull-right" form-error="form.resource">
                                     <div input-error class="pull-left"></div>
                                     <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png"
-                                        ngf-pattern="'.jpg,.png'" ngf-max-size="5MB" ngf-max-files="1" is-loading="formData.isLoading"></uploader-multi>
+                                        ngf-pattern="'.jpg,.png'" ngf-max-size="10MB" ngf-max-files="1" is-loading="formData.isLoading"></uploader-multi>
 
                                     <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
                                     <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ

@@ -1,44 +1,28 @@
 <div class="viewport view-brand-campaign-list">
-  <div class="zone-header">
-    <div class="container">
-      <div class="row">
-        <div class="step">
-          <img src="images/brand-onboarding-1.png"/>
-          <h3>1. สร้าง Campaign</h3>
-          <img src="images/icon-next-step.png" class="next-step" />
-        </div>
-        <div class="step">
-          <img src="images/brand-onboarding-2.png" />
-          <h3>2. รอรับข้อเสนอ</h3>
-          <img src="images/icon-next-step.png" class="next-step" />
-        </div>
-        <div class="step">
-          <img src="images/brand-onboarding-3.png"/>
-          <h3>3. คัดเลือกข้อเสนอ</h3>
-          <img src="images/icon-next-step.png" class="next-step" />
-        </div>
-        <div class="step">
-          <img src="images/brand-onboarding-4.png"/>
-          <h3>4. ชำระเงิน และ เริ่มงาน</h3>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="zone-body">
-    <div class="container">
-      <div class="btn-floating-action" ui-sref="brand-campaign-detail-draft" uib-tooltip="สร้าง Campaign ใหม่" tooltip-placement="top">
-      </div>
-      <div class="page-header">
-        <h1>My Campaign</h1>
-        <div class="form-group">
+  <zone-header historyback="false">
+    <h1>Campaign ของฉัน</h1>
+    <div class="action-btn-for-header">
+        <!-- <div class="form-group">
           <div class="input-dropdown">
               <select class="form-control filter" ng-model="filter" ng-options="x.status as x.name for x in filters"></select>
             <i class="fa fa-caret-down"></i>
           </div>
-        </div>
-      </div>
+        </div> -->
+        <button class="btn-primary btn-width-lg" ui-sref="brand-campaign-detail-draft">
+            <i class="fa fa-plus"></i> สร้าง Campaign ใหม่
+        </button>
+    </div>
+  </zone-header>
+
+  <div class="zone-body">
+    <div class="container">
       <cute-bunny></cute-bunny>
+
+      <div cute-bunny-hide class="empty-state" ng-if="myCampaign.totalElements == 0">
+        สร้าง Campaign ใหม่ เพื่อเปิดรับข้อเสนอจาก Influencer
+      </div>
+
       <div cute-bunny-hide ng-repeat="x in myCampaign.content">
         <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-draft({campaignId: x.campaignId})"></card-campaign-list-item>
       </div>

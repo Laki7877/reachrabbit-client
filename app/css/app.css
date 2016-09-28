@@ -232,7 +232,8 @@ th {
   .card-title .card-title-content,
   .social-media-profile .card-overview .card-info strong,
   .proposal-modal .modal-title,
-  .layout-brand .view-brand-campaign-list .zone-body .page-header h1,
+  .layout-brand .view-brand-campaign-list .page-header h1,
+  .layout-brand .view-brand-campaign-list .empty-state,
   .facebook-profile .card-overview .card-info strong,
   .instagram-profile .card-overview .card-info strong,
   .youtube-profile .card-overview .card-info strong,
@@ -246,7 +247,8 @@ th {
   .card-title .card-title-content,
   .social-media-profile .card-overview .card-info strong,
   .proposal-modal .modal-title,
-  .layout-brand .view-brand-campaign-list .zone-body .page-header h1,
+  .layout-brand .view-brand-campaign-list .page-header h1,
+  .layout-brand .view-brand-campaign-list .empty-state,
   .facebook-profile .card-overview .card-info strong,
   .instagram-profile .card-overview .card-info strong,
   .youtube-profile .card-overview .card-info strong,
@@ -1231,7 +1233,8 @@ h6,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
 .proposal-modal .modal-title,
-.layout-brand .view-brand-campaign-list .zone-body .page-header h1,
+.layout-brand .view-brand-campaign-list .page-header h1,
+.layout-brand .view-brand-campaign-list .empty-state,
 .facebook-profile .card-overview .card-info strong,
 .facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
 .instagram-profile .card-overview .card-info strong,
@@ -1283,7 +1286,8 @@ h3,
 .card-title .card-title-content,
 .social-media-profile .card-overview .card-info strong,
 .proposal-modal .modal-title,
-.layout-brand .view-brand-campaign-list .zone-body .page-header h1,
+.layout-brand .view-brand-campaign-list .page-header h1,
+.layout-brand .view-brand-campaign-list .empty-state,
 .facebook-profile .card-overview .card-info strong,
 .instagram-profile .card-overview .card-info strong,
 .youtube-profile .card-overview .card-info strong,
@@ -1350,7 +1354,7 @@ h1,
 h2,
 .h2,
 .zone-header .with-history-back h1,
-.layout-brand .view-brand-campaign-list .zone-body .page-header h1 {
+.layout-brand .view-brand-campaign-list .page-header h1 {
   font-size: 30px;
 }
 h3,
@@ -1358,6 +1362,7 @@ h3,
 .card-title .card-title-content,
 .social-media-profile .card-overview .card-info strong,
 .proposal-modal .modal-title,
+.layout-brand .view-brand-campaign-list .empty-state,
 .facebook-profile .card-overview .card-info strong,
 .instagram-profile .card-overview .card-info strong,
 .youtube-profile .card-overview .card-info strong,
@@ -1689,24 +1694,28 @@ pre code {
   max-height: 340px;
   overflow-y: scroll;
 }
-.container {
+.container,
+.zone-alert {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
 }
 @media (min-width: 768px) {
-  .container {
+  .container,
+  .zone-alert {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
-  .container {
+  .container,
+  .zone-alert {
     width: 970px;
   }
 }
 @media (min-width: 1200px) {
-  .container {
+  .container,
+  .zone-alert {
     width: 1170px;
   }
 }
@@ -7403,6 +7412,8 @@ button.close {
 .modal-header:after,
 .modal-footer:before,
 .modal-footer:after,
+.zone-alert:before,
+.zone-alert:after,
 .card-body:before,
 .card-body:after,
 .card-body .card-row:before,
@@ -7430,6 +7441,7 @@ button.close {
 .panel-body:after,
 .modal-header:after,
 .modal-footer:after,
+.zone-alert:after,
 .card-body:after,
 .card-body .card-row:after,
 .card-body .card-row-2-column:after,
@@ -7696,7 +7708,7 @@ h1 {
 }
 h2,
 .zone-header .with-history-back h1,
-.layout-brand .view-brand-campaign-list .zone-body .page-header h1 {
+.layout-brand .view-brand-campaign-list .page-header h1 {
   font-family: 'Kanit', sans-serif;
   font-size: 24px;
 }
@@ -7704,6 +7716,7 @@ h3,
 .card-title .card-title-content,
 .social-media-profile .card-overview .card-info strong,
 .proposal-modal .modal-title,
+.layout-brand .view-brand-campaign-list .empty-state,
 .facebook-profile .card-overview .card-info strong,
 .instagram-profile .card-overview .card-info strong,
 .youtube-profile .card-overview .card-info strong,
@@ -7781,10 +7794,10 @@ a.secondary {
 .has-error.checkbox label,
 .has-error.radio-inline label,
 .has-error.checkbox-inline label {
-  color: #e62117;
+  color: #ff0000;
 }
 .color-red {
-  color: #e62117;
+  color: #ff0000;
 }
 .color-blue {
   color: #648acb;
@@ -7855,16 +7868,14 @@ a.secondary {
   margin-right: 10px;
 }
 /*---Zone---*/
-.zone-header {
-  color: #ffffff;
-  height: 150px;
-  background-image: url("../images/bg-header.png");
-  background-position: top center;
-  background-size: auto;
-  background-color: #16bbac;
+.zone-alert {
+  width: 970px;
 }
-.zone-header h1 {
-  margin-top: 30px;
+.zone-alert .alert {
+  transform: translateY(30px);
+}
+.zone-header .page-header {
+  margin: 40px 0px 15px 0px;
 }
 .zone-header .with-history-back h1 {
   margin-top: 5px;
@@ -7879,7 +7890,7 @@ a.secondary {
   cursor: pointer;
 }
 .zone-header .back-btn-for-header span:hover {
-  color: #d8dfe7;
+  color: #ff773e;
 }
 .zone-header .action-btn-for-header {
   float: right;
@@ -7905,9 +7916,6 @@ a.secondary {
   display: block;
   top: 30px;
   right: -15px;
-}
-.zone-body {
-  margin-top: -50px;
 }
 /*---Input---*/
 .form-control {
@@ -8456,6 +8464,7 @@ input:-moz-placeholder {
 .card-campaign-header .card-close {
   cursor: pointer;
   position: absolute;
+  z-index: 10;
   top: 0px;
   right: 0px;
   display: block;
@@ -8505,7 +8514,7 @@ input:-moz-placeholder {
   margin-right: 0px;
 }
 .card-inbox {
-  min-height: 250px;
+  min-height: 150px;
   margin-bottom: 20px;
 }
 .card-inbox .card-loader {
@@ -8756,7 +8765,7 @@ input:-moz-placeholder {
   padding: 4px 20px 3px 16px;
   font-family: 'Kanit', sans-serif;
   color: #ffffff;
-  background: #e62117;
+  background: #ff0000;
   left: 0px;
   top: 10px;
   -webkit-clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
@@ -9781,7 +9790,7 @@ fieldset[disabled] .btn-clear.active {
   background: #ffcccb;
 }
 .alert-danger .alert-icon {
-  background: url("../images/icon-rabbit-confuse.png") 0 0 no-repeat #e62117;
+  background: url("../images/icon-rabbit-confuse.png") 0 0 no-repeat #ff0000;
 }
 .alert-info {
   background: #bfd5fa;
@@ -9834,7 +9843,7 @@ fieldset[disabled] .btn-clear.active {
   position: absolute;
   top: 14px;
   right: 8px;
-  background: #e62117;
+  background: #ff0000;
   display: block;
   width: 6px;
   height: 6px;
@@ -9906,11 +9915,89 @@ fieldset[disabled] .btn-clear.active {
   padding-left: 15px;
   padding-right: 15px;
 }
+.navbar .dropdown-menu:after {
+  position: absolute;
+  bottom: 100%;
+  right: 15px;
+  border: 8px solid transparent;
+  border-bottom-color: #8692a8;
+  content: '';
+}
 .navbar .open > a,
 .navbar .open > a:hover,
 .navbar .open > a:focus {
   background: #3e4a5e;
   border: 0px;
+}
+/*---Main Navigation---*/
+.main-nav {
+  background: #3e4a5e;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.main-nav .steps {
+  width: 970px;
+  text-align: center;
+  margin: auto;
+}
+.main-nav .steps .step {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  margin: 0px 30px 0px 30px;
+  padding-bottom: 15px;
+  text-align: center;
+}
+.main-nav .steps .step img {
+  opacity: 0.6;
+  height: 40px;
+}
+.main-nav .steps .step .step-text {
+  opacity: 0.6;
+  font-size: 16px;
+  font-family: 'Kanit', sans-serif;
+  display: block;
+  color: #ffffff;
+  margin-top: 2px;
+}
+.main-nav .steps .step .step-mushroom {
+  top: 37px;
+  right: -10px;
+  position: absolute;
+  display: block;
+  background: #ff0000;
+  height: 6px;
+  width: 6px;
+  border-radius: 3px;
+}
+.main-nav .steps .step:hover img {
+  opacity: 1;
+}
+.main-nav .steps .step:hover .step-text {
+  opacity: 1;
+}
+.main-nav .steps .step.active {
+  padding-bottom: 10px;
+  border-bottom: 5px solid #ff773e;
+}
+.main-nav .steps .step.active img {
+  opacity: 1;
+}
+.main-nav .steps .step.active .step-text {
+  opacity: 1;
+}
+.main-nav .steps .step:after {
+  position: absolute;
+  opacity: 0.6;
+  content: '';
+  background: url("../images/icon-next-step-sm.png") 0 0 no-repeat;
+  display: block;
+  height: 20px;
+  width: 10px;
+  top: 20px;
+  right: -40px;
+}
+.main-nav .steps .step:last-child:after {
+  display: none;
 }
 /*---Floating Bar---*/
 .floating-bar {
@@ -10111,7 +10198,7 @@ div:focus {
   position: absolute;
   top: 4px;
   right: 4px;
-  background: #e62117;
+  background: #ff0000;
   font-size: 12px;
   color: #ffffff;
   padding: 3px 7px 1px 7px;
@@ -10123,13 +10210,14 @@ div:focus {
 }
 /*---Workroom---*/
 .workroom {
-  background: #16bbac;
+  background: url("../images/bg-layout-login.png") #019386;
 }
 .workroom .zone-header .back-btn-for-header {
-  margin-top: 20px;
+  color: #ffffff;
+  margin-top: 30px;
 }
 .workroom .zone-body {
-  margin-top: -100px;
+  margin-top: 10px;
 }
 .workroom .card-proposal-detail .card-header {
   text-align: center;
@@ -10466,7 +10554,7 @@ ul.payment-methods {
   margin-left: 6px;
 }
 .proposal-alert > div {
-  background: #e62117;
+  background: #ff0000;
   display: inline-block;
   width: 6px;
   height: 6px;
@@ -10538,20 +10626,25 @@ ul.payment-methods {
 .layout-brand .container {
   width: 970px;
 }
-.layout-brand .view-brand-campaign-list .zone-header {
-  height: 200px;
-}
-.layout-brand .view-brand-campaign-list .zone-body {
-  margin-top: 0px;
-}
-.layout-brand .view-brand-campaign-list .zone-body .page-header {
-  margin: 35px 0px 15px 0px;
-}
-.layout-brand .view-brand-campaign-list .zone-body .page-header .form-group {
+.layout-brand .view-brand-campaign-list .page-header .form-group,
+.layout-brand .view-brand-campaign-list .page-header .btn,
+.layout-brand .view-brand-campaign-list .page-header .btn-primary,
+.layout-brand .view-brand-campaign-list .page-header .btn-secondary,
+.layout-brand .view-brand-campaign-list .page-header .btn-secondary-highlight,
+.layout-brand .view-brand-campaign-list .page-header .btn-secondary-active,
+.layout-brand .view-brand-campaign-list .page-header .btn-trace,
+.layout-brand .view-brand-campaign-list .page-header .btn-social {
   transform: translateY(-5px);
+}
+.layout-brand .view-brand-campaign-list .empty-state {
+  border: 1px dashed #d8dfe7;
+  color: #8692a8;
 }
 .layout-brand .view-brand-campaign-list .example-campaign {
   margin-top: 45px;
+}
+.layout-brand .view-brand-campaign-list .example-campaign .page-header {
+  margin-bottom: 10px;
 }
 .layout-brand .view-brand-campaign-detail-example .btn-floating-action {
   margin-top: 25px;
@@ -10573,31 +10666,6 @@ ul.payment-methods {
 }
 .layout-influencer .container {
   width: 970px;
-}
-.layout-influencer .navbar {
-  background: #f9f9fb;
-}
-.layout-influencer .navbar li > a {
-  color: #3e4a5e;
-}
-.layout-influencer .navbar li > a:hover,
-.layout-influencer .navbar li > a:focus {
-  background-color: #f9f9fb;
-  color: #ff773e;
-}
-.layout-influencer .navbar .dropdown-menu {
-  background-color: #d8dfe7;
-}
-.layout-influencer .navbar .open > a,
-.layout-influencer .navbar .open > a:hover,
-.layout-influencer .navbar .open > a:focus {
-  background: #f9f9fb;
-}
-.layout-influencer .view-influencer-campaign-list .zone-header {
-  height: 200px;
-}
-.layout-influencer .view-influencer-campaign-list .zone-body {
-  margin-top: 0px;
 }
 .layout-influencer .view-influencer-campaign-list .card-thumbnail,
 .layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail {

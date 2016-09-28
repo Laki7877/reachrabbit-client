@@ -78,7 +78,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     //Prevent satellizer's evil hack
                     cc.skipAuthorization = true;
                 }
-                
+
                 return cc;
             },
             response: function (cx) {

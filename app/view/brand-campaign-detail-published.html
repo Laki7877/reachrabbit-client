@@ -1,4 +1,7 @@
 <div ng-cloak class="viewport view-brand-campaign-detail-published">
+  <div class="zone-alert">
+    <div nc-alert="alert"></div>
+  </div>
   <zone-header historyback="true" historyback-override="brand-campaign-list">
     <div class="action-btn-for-header with-back-btn">
         <button class="btn-primary btn-width-md" ui-sref="brand-campaign-detail-edit({ campaignId: campaignNee.campaignId })">
@@ -10,8 +13,7 @@
 
   <div class="zone-body">
     <div class="container">
-      <div nc-alert="alert"></div>
-
+      
       <cute-bunny></cute-bunny>
 
       <div cute-bunny-hide>

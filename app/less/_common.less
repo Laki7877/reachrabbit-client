@@ -142,6 +142,13 @@ a.secondary{
 }
 
 /*---Zone---*/
+.zone-alert{
+  &:extend(.container);
+  width: @max-container-width;
+  .alert{
+    transform: translateY(30px);
+  }
+}
 .zone-header{
   // color: @color-white;
   // height: 150px;
@@ -712,6 +719,7 @@ input:-moz-placeholder {
   .card-close {
     cursor: pointer;
     position: absolute;
+    z-index: 10;
     top: 0px;
     right: 0px;
     display:block;
@@ -1296,6 +1304,14 @@ input:-moz-placeholder {
       padding-right: 15px;
     }
   }
+  .dropdown-menu:after {
+    position: absolute;
+    bottom: 100%;
+    right: 15px;
+    border: 8px solid transparent;
+    border-bottom-color: @color-grey-darker;
+    content: '';
+  }
   .open > a, .open > a:hover, .open > a:focus{
     background: @color-black;
     border: 0px;
@@ -1558,14 +1574,15 @@ div:focus{
 
 /*---Workroom---*/
 .workroom{
-  background: @color-theme-secondary;
+  background: url("../images/bg-layout-login.png") @color-theme-secondary-darker;
   .zone-header{
     .back-btn-for-header {
-      margin-top: 20px;
+      color: @color-white;
+      margin-top: 30px;
     }
   }
   .zone-body{
-    margin-top: -100px;
+    margin-top: 10px;
   }
   .card-proposal-detail{
     &:extend(.card all);

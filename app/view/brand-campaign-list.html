@@ -18,6 +18,11 @@
   <div class="zone-body">
     <div class="container">
       <cute-bunny></cute-bunny>
+
+      <div cute-bunny-hide class="empty-state" ng-if="myCampaign.totalElements == 0">
+        สร้าง Campaign ใหม่ เพื่อเปิดรับข้อเสนอจาก Influencer
+      </div>
+
       <div cute-bunny-hide ng-repeat="x in myCampaign.content">
         <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-draft({campaignId: x.campaignId})"></card-campaign-list-item>
       </div>

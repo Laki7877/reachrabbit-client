@@ -113,7 +113,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
     .directive('contactUs', ['$window', function ($window) {
         return {
             restrict: 'EA',
-            templateUrl: "components/templates/contactus.html",
+            templateUrl: "components/templates/contact-us.html",
             link: function (scope) {
 
             }

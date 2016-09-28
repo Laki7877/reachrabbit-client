@@ -168,10 +168,12 @@ a.secondary{
     h1{
       &:extend(h2);
       margin-top: 5px;
+      margin-bottom: 0px;
     }
   }
   h2{
     margin-top: 5px;
+    margin-bottom: 0px;
   }
   .back-btn-for-header{
     margin-top: 25px;
@@ -1249,8 +1251,9 @@ input:-moz-placeholder {
     color: @color-theme-primary;
   }
   li.active > a{
-    padding-bottom: 12px;
-    border-bottom: @color-theme-primary 3px solid;
+    color: @color-theme-primary;
+    // padding-bottom: 12px;
+    // border-bottom: @color-theme-primary 3px solid;
   }
   .navbar-right{
     .cart{

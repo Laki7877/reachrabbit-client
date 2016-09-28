@@ -417,19 +417,20 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                     }
                 });
 
-            /* JS for Chat Area */
-
+            /* JS for Chat Area Height */
+            setChatArea();
             $(window).resize(function () {
                 $scope.scroll = true;
+                setChatArea();
             });
 
             function setChatArea() {
-                var magicNumber = 352;
+                var magicNumber = 457;
                 var chatArea = $(".message-area");
                 var chatAreaHeight = $(window).height() - magicNumber;
 
-                if (chatAreaHeight < magicNumber) {
-                    chatAreaHeight = magicNumber;
+                if (chatAreaHeight < 400) {
+                    chatAreaHeight = 400;
                 }
                 chatArea.height(chatAreaHeight);
                 chatArea.scrollTop(9999);
@@ -536,7 +537,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                     if(UserProfile.get().influencer){
                         return UserProfile.get();
                     }
-                    
+
                     return AccountService.getUser($scope.payout.userId);
                 })
                 .then(function (res) {

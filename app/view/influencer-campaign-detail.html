@@ -1,4 +1,12 @@
-<div class="viewport view-brand-detail-example">
+<div class="viewport view-influencer-campaign-detail">
+
+  <div class="zone-alert">
+    <div nc-alert="appliedAlert"></div>
+    <div nc-alert="alert"></div>
+    <div nc-alert type="success" closable="true" ng-if="isApply">
+      คุณได้สมัครและส่งข้อเสนอให้ Campaign นี้แล้ว
+    </div>
+  </div>
 
   <zone-header historyback="true">
     <div class="action-btn-for-header with-back-btn" cute-bunny-hide>
@@ -15,12 +23,6 @@
 
     <div class="container">
       <cute-bunny></cute-bunny>
-      <div nc-alert="appliedAlert"></div>
-      <div nc-alert="alert"></div>
-
-      <div nc-alert type="info" closable="true" ng-if="isApply">
-        คุณได้ส่งข้อเสนอให้ Campaign นี้แล้ว
-      </div>
 
       <card-campaign-header cute-bunny-hide campaign="campaignNee">
       </card-campaign-header>

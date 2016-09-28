@@ -1,13 +1,15 @@
 <div class="viewport view-brand-transaction-detail">
+  <div class="zone-alert">
+    <div nc-alert="alert"></div>
+  </div>
   <zone-header historyback="false">
     <div class="back-btn-for-header">
-      <span ui-sref="brand-transaction-history"><i class="fa fa-arrow-left"></i> กลับที่รายการสั่งซื้อ<span>
+      <span ui-sref="brand-transaction-history"><i class="fa fa-arrow-left"></i> กลับสู่รายการสั่งซื้อ<span>
     </div>
     <h2>รายละเอียดการสั่งซื้อ</h2>
   </zone-header>
   <div class="zone-body">
     <div class="container">
-      <div nc-alert="alert"></div>
       <div class="card-transaction-header">
         <div class="card-body">
           <div class="row">
@@ -24,8 +26,8 @@
               </div>
               <div class="card-info-content">
                 <span class="color-yellow" ng-if="!isExpired() && transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
-                <span class="color-green" ng-if="!isExpired() && transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span> 
-                 <span class="color-grey" ng-if="isExpired()"><i class="fa fa-ban"></i> หมดอายุ</span> 
+                <span class="color-green" ng-if="!isExpired() && transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span>
+                 <span class="color-grey" ng-if="isExpired()"><i class="fa fa-ban"></i> หมดอายุ</span>
               </div>
             </div>
             <div class="card-info"  ng-if="!isExpired() && transaction.status == 'Pending'">
@@ -41,7 +43,7 @@
                 หมดอายุวันที่
               </div>
               <div class="card-info-content">
-                {{ transaction.expiredAt | date }} 
+                {{ transaction.expiredAt | date }}
               </div>
             </div>
             <div class="card-info" ng-if="!isExpired() && transaction.status == 'Complete'">
@@ -49,7 +51,7 @@
                 ชำระเงินวันที่
               </div>
               <div class="card-info-content">
-                {{ transaction.completedAt | date }} 
+                {{ transaction.completedAt | date }}
               </div>
             </div>
             <div class="card-info">

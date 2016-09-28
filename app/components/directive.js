@@ -110,6 +110,15 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             }
         };
     }])
+    .directive('contactUs', ['$window', function ($window) {
+        return {
+            restrict: 'EA',
+            templateUrl: "components/templates/contactus.html",
+            link: function (scope) {
+
+            }
+        };
+    }])
     .filter('truncate', [function () {
         return function (input, maxlen) {
             if (!input) {
@@ -908,7 +917,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                     };
 
                     if (!scope.noCrop) {
-                        
+
                         //#region resize
                         var url = window.URL.createObjectURL(file);
                         var canvas = document.createElement('canvas');
@@ -937,7 +946,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                             resizeCanvas.height = effectiveH;
 
                             ctx.drawImage(img, 0, 0, effectiveW, effectiveH);
-                            
+
                             window.pica.resizeCanvas(canvas, resizeCanvas, {
                                 alpha: 1
                             }, function (err) {

@@ -1,12 +1,7 @@
 <form name="form" novalidate>
     <div class="viewport view-influencer-workroom workroom">
-        <div class="zone-header">
-            <div class="container">
-                <div class="back-btn-for-header">
-                    <span ng-click="history.back()"><i class="fa fa-arrow-left"></i> กลับไปหน้าก่อน</span>
-                </div>
-            </div>
-        </div>
+        <zone-header historyback="true">
+        </zone-header>
         <div class="zone-body">
             <div class="container">
                 <div class="row">
@@ -18,14 +13,10 @@
                                   <i class="fa fa-info-circle"></i>ดูโปรไฟล์
                                 </a>
                                 <div class="chatbox-status">
-                                    <span tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ รอการคัดเลือกจาก Brand"
-                                        class="status" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
-                                    <i class="fa fa-angle-right"></i>
-                                    <span class="status" tooltip-placement="bottom" uib-tooltip="ทำงานตามที่ได้ตกลงกัน และส่งงานให้ Brand อนุมัติ"
-                                        ng-class="{'active': proposal.status == 'Working'}">ดำเนินการ</span>
-                                    <i class="fa fa-angle-right"></i>
-                                    <span class="status" tooltip-placement="bottom" uib-tooltip="งานเสร็จแล้ว คุณสามารถถอนเงินจากระบบได้เมื่อต้องการ"
-                                        ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span>
+                                  <span class="color-grey">สถานะ: </span>
+                                  <span class="color-green" ng-if="proposal.status == 'Selection'" tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ รอการคัดเลือกจาก Brand" >รอการคัดเลือก</span>
+                                  <span class="color-green" ng-if="proposal.status == 'Working'" tooltip-placement="bottom" uib-tooltip="ทำงานตามที่ได้ตกลงกัน และส่งงานให้ Brand อนุมัติ" >รอคุณส่งงาน</span>
+                                  <span class="color-green" ng-if="proposal.status == 'Complete'" tooltip-placement="bottom" uib-tooltip="งานเสร็จแล้ว คุณสามารถถอนเงินจากระบบได้เมื่อต้องการ" >ได้รับเงิน</span>
                                 </div>
                             </div>
                             <div class="message-area" scroll-glue="scroll">
@@ -74,13 +65,13 @@
                             <button ng-if="proposal.status == 'Selection' && !hasCart(proposal)" class="btn-secondary btn-width-max" ng-click="editProposal()">แก้ไขข้อเสนอ</button>
                         </card-proposal-detail>
 
-                        <div class="card-campaign-thumbnail" cute-bunny-hide>
+                        <div class="card-campaign-thumbnail" ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })" cute-bunny-hide>
                             <div class="card-thumbnail-image">
                                 <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
                             </div>
                             <div class="card-body">
                                 {{ proposal.campaign.title | truncate: 60 }}
-                                <button class="btn-secondary btn-width-max" ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
+                                <button class="btn-secondary btn-width-max">ดูรายละเอียด</button>
                             </div>
                         </div>
 

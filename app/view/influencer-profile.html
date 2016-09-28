@@ -1,17 +1,18 @@
 <form novalidate name="form" ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}">
 <div class="viewport view-influencer-profile">
 
+  <div class="zone-alert">
+    <div nc-alert="alert"></div>
+  </div>
+
   <zone-header>
     <h1>แก้ไข Profile ของฉัน</h1>
   </zone-header>
 
   <div class="zone-body" ng-cloak>
     <div class="container">
-      <div nc-alert="alert"></div>
 
-      <!-- <div nc-alert type="info" closable="false">
-        ยิ่งใส่ข้อมูลเยอะคุณยิ่งมีโอกาศที่จะได้รับเลือกเพื่อร่วมงานกับแบรนด์มากขึ้น
-      </div> -->
+
       <div class="card">
         <div class="card-body">
 
@@ -107,7 +108,7 @@
             <div class="card-body-content">
               <input type="text" ng-model="formData.influencer.web" class="form-control" maxlength="200">
             </div>
-          </div> 
+          </div>
 
           <div class="card-row">
             <div class="card-body-content-label with-input">

@@ -10215,9 +10215,12 @@ div:focus {
 .workroom {
   background: url("../images/bg-layout-login.png") #019386;
 }
+.workroom .zone-header .page-header {
+  padding-bottom: 5px;
+  margin-bottom: 0px;
+}
 .workroom .zone-header .back-btn-for-header {
   color: #ffffff;
-  margin-top: 30px;
 }
 .workroom .zone-body {
   margin-top: 10px;

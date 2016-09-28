@@ -108,7 +108,7 @@
                 อนุมัติงาน <!--(10)-->
               </span>
             </div>
-            <div class="step" ui-sref="brand-inbox({status:'Complete'})" ui-sref-active="active">
+            <div class="step" ng-if="proposal.status == 'Complete'" ui-sref="brand-inbox({status:'Complete'})" ui-sref-active="active">
               <img src="images/brand-onboarding-5.png"/>
               <span class="step-text">
                 เสร็จสิ้น <!--(10)-->

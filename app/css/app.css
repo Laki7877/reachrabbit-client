@@ -10647,8 +10647,8 @@ ul.payment-methods {
 .layout-brand .view-brand-campaign-list .example-campaign .page-header {
   margin-bottom: 10px;
 }
-.layout-brand .view-brand-campaign-detail-example .btn-floating-action {
-  margin-top: 25px;
+.layout-brand .view-brand-campaign-detail-example .card-close {
+  display: none;
 }
 .layout-brand .view-brand-campaign-detail-published .card-profile a.link-to-profile {
   margin-top: -60px;

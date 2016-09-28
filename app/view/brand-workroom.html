@@ -68,13 +68,13 @@
                             <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && proposal.cartId && proposal.cart.status != 'Checkout'" ui-sref="brand-cart">ดูตะกร้า</button>
                             <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Working'" ng-click="approveProposal(proposal)">อนุมัติงาน</button>
                         </card-proposal-detail>
-                        <div class="card-campaign-thumbnail" cute-bunny-hide>
+                        <div class="card-campaign-thumbnail" ui-sref="brand-campaign-detail-published({campaignId: proposal.campaign.campaignId })" cute-bunny-hide>
                             <div class="card-thumbnail-image">
                                 <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
                             </div>
                             <div class="card-body">
                                 {{ proposal.campaign.title | truncate: 60 }}
-                                <button class="btn-secondary btn-width-max" ui-sref="brand-campaign-detail-published({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
+                                <button class="btn-secondary btn-width-max">ดูรายละเอียด</button>
                             </div>
                         </div>
                     </div>

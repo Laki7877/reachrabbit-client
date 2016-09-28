@@ -70,13 +70,13 @@
                             <button ng-if="proposal.status == 'Selection' && !hasCart(proposal)" class="btn-secondary btn-width-max" ng-click="editProposal()">แก้ไขข้อเสนอ</button>
                         </card-proposal-detail>
 
-                        <div class="card-campaign-thumbnail" cute-bunny-hide>
+                        <div class="card-campaign-thumbnail" ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })" cute-bunny-hide>
                             <div class="card-thumbnail-image">
                                 <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
                             </div>
                             <div class="card-body">
                                 {{ proposal.campaign.title | truncate: 60 }}
-                                <button class="btn-secondary btn-width-max" ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })">ดูรายละเอียด</button>
+                                <button class="btn-secondary btn-width-max">ดูรายละเอียด</button>
                             </div>
                         </div>
 

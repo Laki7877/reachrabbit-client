@@ -72,6 +72,11 @@ angular.module('reachRabbitApp.brand.routes', ['ui.router'])
 
         /* Brands */
         $stateProvider
+            .state('seed-page', {
+                url: '/seed-page',
+                templateUrl: 'view/_seed-page.html',
+                controller: 'EmptyController'
+            })
             .state('brand-campaign-list', {
                 url: '/brand-campaign-list',
                 templateUrl: 'view/brand-campaign-list.html',

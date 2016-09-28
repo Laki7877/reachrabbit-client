@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Influencer</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=970, initial-scale=1">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="bower_components/json-formatter/dist/json-formatter.min.css">
@@ -46,16 +46,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-                <a class="navbar-brand" ui-sref="influencer-campaign-list"><img src="images/logo-nav.png" alt="ReachRabbit" /></a>
+                <a class="navbar-brand" ui-sref="influencer-campaign-list"><img src="images/logo-influencer.png" alt="ReachRabbit" /></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav" >
+                <!-- <ul class="nav navbar-nav" >
                     <li ui-sref-active="active"><a ui-sref="influencer-campaign-list">Campaign</a></li>
                     <li ui-sref-active="active">
                       <a ui-sref="influencer-inbox">Inbox</a>
                       <div class="inbox-alert" ng-if="$root.inboxCount > 0"></div>
                     </li>
-                </ul>
+                </ul> -->
                 <ul class="nav navbar-nav navbar-right">
                   <li ui-sref-active="active">
                     <a class="wallet" ui-sref="influencer-wallet">
@@ -79,7 +79,39 @@
             <!--/.nav-collapse -->
         </div>
         <!--/.container-fluid -->
+        <div class="main-nav" ng-cloak>
+          <div class="steps">
+            <div class="step" ui-sref="influencer-campaign-list" ui-sref-active="active">
+              <img src="images/influencer-onboarding-1.png"/>
+              <span class="step-text">
+                ส่งข้อเสนอ
+              </span>
+            </div>
+            <div class="step" ui-sref="influencer-inbox({status:'Selection'})" ui-sref-active="active">
+              <img src="images/influencer-onboarding-2.png" />
+              <span class="step-text">
+                รอการคัดเลือก (10)
+              </span>
+              <div class="step-mushroom">
+              </div>
+            </div>
+            <div class="step" ui-sref="influencer-inbox({status:'Working'})" ui-sref-active="active">
+              <img src="images/influencer-onboarding-3.png"/>
+              <span class="step-text">
+                ส่งงาน (25)
+              </span>
+            </div>
+            <div class="step" ui-sref="influencer-inbox({status:'Complete'})" ui-sref-active="active">
+              <img src="images/influencer-onboarding-4.png"/>
+              <span class="step-text">
+                ได้รับเงิน (0)
+              </span>
+            </div>
+          </div>
+        </div>
     </nav>
+
+
 
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

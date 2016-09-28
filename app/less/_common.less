@@ -143,14 +143,17 @@ a.secondary{
 
 /*---Zone---*/
 .zone-header{
-  color: @color-white;
-  height: 150px;
-  background-image: url("../images/bg-header.png");
-  background-position: top center;
-  background-size: auto;
-  background-color: @color-theme-secondary;
-  h1{
-    margin-top: 30px;
+  // color: @color-white;
+  // height: 150px;
+  // background-image: url("../images/bg-header.png");
+  // background-position: top center;
+  // background-size: auto;
+  // background-color: @color-theme-secondary;
+  // h1{
+  //   margin-top: 30px;
+  // }
+  .page-header{
+    margin: 40px 0px 15px 0px;
   }
   .with-history-back{
     h1{
@@ -166,7 +169,7 @@ a.secondary{
     span{
       cursor: pointer;
       &:hover{
-        color:@color-grey;
+        color: @color-theme-primary;
       }
     }
   }
@@ -193,7 +196,7 @@ a.secondary{
   }
 }
 .zone-body{
-  margin-top: -50px;
+  // margin-top: -50px;
 }
 
 /*---Input---*/
@@ -767,7 +770,7 @@ input:-moz-placeholder {
 
 .card-inbox{
   &:extend(.card);
-  min-height: 250px;
+  min-height: 150px;
   margin-bottom: 20px;
   .card-loader {
     box-shadow: none !important;
@@ -1298,6 +1301,80 @@ input:-moz-placeholder {
     border: 0px;
   }
 }
+
+/*---Main Navigation---*/
+.main-nav{
+  background: @color-black;
+  box-shadow: @global-shadow-depth-1;
+  .steps{
+    width: @max-container-width;
+    text-align: center;
+    margin: auto;
+    .step{
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      margin: 0px 30px 0px 30px;
+      padding-bottom: 15px;
+      text-align: center;
+      img{
+        opacity: 0.6;
+        height: 40px;
+      }
+      .step-text{
+        opacity: 0.6;
+        font-size: 16px;
+        font-family: @font-primary;
+        display: block;
+        color: @color-white;
+        margin-top: 2px;
+      }
+      .step-mushroom{
+        top: 37px;
+        right: -10px;
+        position: absolute;
+        display: block;
+        background: @color-red;
+        height: 6px;
+        width: 6px;
+        border-radius: 3px;
+      }
+      &:hover{
+        img{
+          opacity: 1;
+        }
+        .step-text{
+          opacity: 1;
+        }
+      }
+      &.active{
+        padding-bottom: 10px;
+        border-bottom: 5px solid @color-theme-primary;
+        img{
+          opacity: 1;
+        }
+        .step-text{
+          opacity: 1;
+        }
+      }
+    }
+    .step:after{
+        position: absolute;
+        opacity: 0.6;
+        content: '';
+        background: url("../images/icon-next-step-sm.png") 0 0 no-repeat;
+        display: block;
+        height: 20px;
+        width: 10px;
+        top: 20px;
+        right:-40px;
+      }
+      .step:last-child:after{
+        display: none;
+      }
+  }
+}
+
 
 /*---Floating Bar---*/
 .floating-bar{

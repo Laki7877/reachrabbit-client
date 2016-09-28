@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Brand</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=970, initial-scale=1">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="bower_components/json-formatter/dist/json-formatter.min.css">
@@ -50,19 +50,19 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li ui-sref-active="active"><a ui-sref="brand-campaign-list">My Campaign</a></li>
+                    <!-- <li ui-sref-active="active"><a ui-sref="brand-campaign-list">My Campaign</a></li>
                     <li ui-sref-active="active">
                       <a ui-sref="brand-inbox">Inbox</a>
                       <div class="inbox-alert" ng-if="$root.inboxCount > 0"></div>
-                    </li>
+                    </li> -->
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li ui-sref-active="active">
+                    <!-- <li ui-sref-active="active">
                       <a class="cart" ui-sref="brand-cart">
                         <span class="cart-counter" ng-bind="$root.cartCount || 0">0</span>
                         Cart
                       </a>
-                    </li>
+                    </li> -->
                     <li class="dropdown">
                       <a class="profile-dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                           <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
@@ -79,7 +79,47 @@
             <!--/.nav-collapse -->
         </div>
         <!--/.container-fluid -->
+
+        <div class="main-nav">
+          <div class="steps">
+            <div class="step" ui-sref="brand-campaign-list" ui-sref-active="active">
+              <img src="images/brand-onboarding-1.png"/>
+              <span class="step-text">
+                สร้าง Campaign
+              </span>
+            </div>
+            <div class="step" ui-sref="brand-inbox({status:'Selection'})" ui-sref-active="active">
+              <img src="images/brand-onboarding-2.png" />
+              <span class="step-text">
+                คัดเลือก (10)
+              </span>
+              <div class="step-mushroom">
+              </div>
+            </div>
+            <div class="step" ui-sref="brand-cart" ui-sref-active="active">
+              <img src="images/brand-onboarding-3.png"/>
+              <span class="step-text">
+                ชำระเงิน (25)
+              </span>
+            </div>
+            <div class="step" ui-sref="brand-inbox({status:'Working'})" ui-sref-active="active">
+              <img src="images/brand-onboarding-4.png"/>
+              <span class="step-text">
+                อนุมัติงาน (0)
+              </span>
+            </div>
+            <div class="step" ui-sref="brand-inbox({status:'Complete'})" ui-sref-active="active">
+              <img src="images/brand-onboarding-5.png"/>
+              <span class="step-text">
+                เสร็จสิ้น (0)
+              </span>
+            </div>
+          </div>
+        </div>
+
     </nav>
+
+
 
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>

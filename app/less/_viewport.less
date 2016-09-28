@@ -55,28 +55,24 @@
 .layout-brand{
   background-color: @color-grey-lighter;
   .container{
-    width: 970px;
+    width: @max-container-width;
   }
   /* Specific View in Layout Brand */
 
   .view-brand-campaign-list{
-    .zone-header{
-      height: 200px;
-    }
-    .zone-body{
-      margin-top: 0px;
-      .page-header{
-        margin: 35px 0px 15px 0px;
-        .form-group{
-          transform: translateY(-5px);
-        }
-        h1{
-          &:extend(h2);
-        }
+    .page-header{
+      h1{
+        &:extend(h2);
+      }
+      .form-group, .btn{
+        transform: translateY(-5px);
       }
     }
     .example-campaign{
       margin-top: 45px;
+      .page-header{
+        margin-bottom: 10px;
+      }
     }
   }
   .view-brand-campaign-detail-example{
@@ -107,33 +103,33 @@
 .layout-influencer{
   background-color: @color-grey-lighter;
   .container{
-    width: 970px;
+    width: @max-container-width;
   }
 
-  .navbar {
-    background: @color-grey-lighter;
-    li > a{
-      color: @color-black;
-    }
-    li > a:hover, li > a:focus{
-      background-color: @color-grey-lighter;
-      color: @color-theme-primary;
-    }
-    .dropdown-menu{
-      background-color: @color-grey;
-    }
-    .open > a, .open > a:hover, .open > a:focus{
-      background: @color-grey-lighter;
-    }
-  }
+  // .navbar {
+  //   background: @color-grey-lighter;
+  //   li > a{
+  //     color: @color-black;
+  //   }
+  //   li > a:hover, li > a:focus{
+  //     background-color: @color-grey-lighter;
+  //     color: @color-theme-primary;
+  //   }
+  //   .dropdown-menu{
+  //     background-color: @color-grey;
+  //   }
+  //   .open > a, .open > a:hover, .open > a:focus{
+  //     background: @color-grey-lighter;
+  //   }
+  // }
   /* Specific View in Layout Influencer */
   .view-influencer-campaign-list{
-    .zone-header{
-      height: 200px;
-    }
-    .zone-body{
-      margin-top: 0px;
-    }
+    // .zone-header{
+    //   height: 200px;
+    // }
+    // .zone-body{
+    //   margin-top: 0px;
+    // }
     .card-thumbnail{
       margin-bottom: 30px;
       .flag .status{
@@ -166,7 +162,7 @@
 .layout-admin{
   background-color: @color-grey-lighter;
   .container{
-    width: 970px;
+    width: @max-container-width;
   }
   /* Specific View in Layout Portal */
 

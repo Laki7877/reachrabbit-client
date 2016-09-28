@@ -13,14 +13,18 @@
                     <div class="col-xs-9">
                         <div class="chatbox-card">
                             <div class="chatbox-header">
-                                <h3>{{ proposal.influencer.user.name | truncate: 30 }}</h3>
-                                <a class="link-view-profile" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId })"><i class="fa fa-info-circle"></i>ดูโปรไฟล์</a>
+                                <a class="link-view-profile" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId })">
+                                  <h3>{{ proposal.influencer.user.name | truncate: 30 }} </h3>
+                                  <i class="fa fa-info-circle"></i>ดูโปรไฟล์
+                                </a>
                                 <div class="chatbox-status">
-                                    <span class="status" tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ เลือกข้อเสนอ เพื่อชำระเงิน" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
+                                    <span class="color-grey">สถานะ: </span>
+                                    <span class="color-green" ng-if="proposal.status == 'Selection'" tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ เลือกข้อเสนอ เพื่อชำระเงิน" >รอคุณคัดเลือก</span>
+                                    <!-- <span class="status" tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ เลือกข้อเสนอ เพื่อชำระเงิน" ng-class="{'active': proposal.status == 'Selection'}">คัดเลือก</span>
                                     <i class="fa fa-angle-right"></i>
                                     <span class="status" tooltip-placement="bottom" uib-tooltip="รอตรวจสอบงานจาก Influencer และ อนุมัติงานเมื่อคุณพอใจ" ng-class="{'active': proposal.status == 'Working'}">ดำเนินการ</span>
                                     <i class="fa fa-angle-right"></i>
-                                    <span class="status" tooltip-placement="bottom" uib-tooltip="งานของคุณเสร็จสิ้นแล้ว" ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span>
+                                    <span class="status" tooltip-placement="bottom" uib-tooltip="งานของคุณเสร็จสิ้นแล้ว" ng-class="{'active': proposal.status == 'Complete'}">เสร็จสิ้น</span> -->
                                 </div>
                             </div>
                             <div class="message-area" scroll-glue="scroll">

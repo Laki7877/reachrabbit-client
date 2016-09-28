@@ -10253,11 +10253,10 @@ div:focus {
 }
 .chatbox-card .chatbox-header .link-view-profile {
   float: left;
-  margin-left: 10px;
   color: #16bbac;
 }
 .chatbox-card .chatbox-header .link-view-profile i {
-  margin-right: 5px;
+  margin: 0px 5px 0px 10px;
 }
 .chatbox-card .chatbox-header .chatbox-status {
   float: right;

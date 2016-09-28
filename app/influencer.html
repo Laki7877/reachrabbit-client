@@ -87,7 +87,7 @@
                 ส่งข้อเสนอ
               </span>
             </div>
-            <div class="step" ui-sref="influencer-inbox({status:'Selection'})" ui-sref-active="active">
+            <div class="step" ui-sref="influencer-inbox({status:'Selection'})" ui-sref-active="active" ng-class="{ 'active': ('influencer-workroom' | isState) &&  proposal.status === 'Selection'}">
               <img src="images/influencer-onboarding-2.png" />
               <span class="step-text">
                 รอการคัดเลือก <!--(10)-->
@@ -95,13 +95,13 @@
               <!-- <div class="step-mushroom">
               </div> -->
             </div>
-            <div class="step" ui-sref="influencer-inbox({status:'Working'})" ui-sref-active="active">
+            <div class="step" ui-sref="influencer-inbox({status:'Working'})" ui-sref-active="active" ng-class="{ 'active': ('influencer-workroom' | isState) &&  proposal.status === 'Working'}">
               <img src="images/influencer-onboarding-3.png"/>
               <span class="step-text">
                 ส่งงาน <!--(10)-->
               </span>
             </div>
-            <div class="step" ui-sref="influencer-inbox({status:'Complete'})" ui-sref-active="active">
+            <div class="step" ui-sref="influencer-inbox({status:'Complete'})" ui-sref-active="active" ng-class="{ 'active': ('influencer-workroom' | isState) &&  proposal.status === 'Complete'}">
               <img src="images/influencer-onboarding-4.png"/>
               <span class="step-text">
                 ได้รับเงิน <!--(10)-->

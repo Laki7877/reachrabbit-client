@@ -387,6 +387,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             ProposalService.getOne($scope.proposalId)
                 .then(function (proposalResponse) {
                     $scope.proposal = proposalResponse.data;
+                    $rootScope.proposal = proposalResponse.data;
                     //load transactionid if this is influencer
                     if (UserProfile.get().influencer &&
                         $scope.proposal.status === 'Complete' &&

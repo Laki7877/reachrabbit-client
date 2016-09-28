@@ -134,7 +134,6 @@ angular.module('reachRabbitApp', [
         return $sce.trustAsResourceUrl(removeParam('autoplay', src));
       };
 
-
       $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
       $rootScope.SHOW_DEBUGGA = false;
 
@@ -144,6 +143,7 @@ angular.module('reachRabbitApp', [
       if (BusinessConfig.DEV_ENV_HOST.indexOf($location.host()) !== -1) {
         $rootScope.SHOW_DEBUGGA = true;
       }
+      $rootScope.proposal = {};
 
       //Configure angular moment
       amMoment.changeLocale('th', {

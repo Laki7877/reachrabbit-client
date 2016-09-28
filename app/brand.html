@@ -88,7 +88,7 @@
                 สร้าง Campaign
               </span>
             </div>
-            <div class="step" ui-sref="brand-inbox({status:'Selection'})" ui-sref-active="active">
+            <div class="step" ui-sref="brand-inbox({status:'Selection'})" ui-sref-active="active" ng-class="{ 'active': ('brand-workroom' | isState) &&  proposal.status === 'Selection'}">
               <img src="images/brand-onboarding-2.png" />
               <span class="step-text">
                 คัดเลือก <!--(10)-->
@@ -102,13 +102,13 @@
                 ชำระเงิน <!--(10)-->
               </span>
             </div>
-            <div class="step" ui-sref="brand-inbox({status:'Working'})" ui-sref-active="active">
+            <div class="step" ui-sref="brand-inbox({status:'Working'})" ui-sref-active="active" ng-class="{ 'active': ('brand-workroom' | isState) &&  proposal.status === 'Working'}">
               <img src="images/brand-onboarding-4.png"/>
               <span class="step-text">
                 อนุมัติงาน <!--(10)-->
               </span>
             </div>
-            <div class="step" ui-sref="brand-inbox({status:'Complete'})" ui-sref-active="active">
+            <div class="step" ui-sref="brand-inbox({status:'Complete'})" ui-sref-active="active" ng-class="{ 'active': ('brand-workroom' | isState) &&  proposal.status === 'Complete'}">
               <img src="images/brand-onboarding-5.png"/>
               <span class="step-text">
                 เสร็จสิ้น <!--(10)-->

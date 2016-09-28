@@ -1016,7 +1016,8 @@ input:-moz-placeholder {
     width: 120px;
     display: block;
     position: absolute;
-    padding: 4px 20px 3px 16px;
+    padding: 4px 20px 0px 16px;
+    height: 26px;
     font-family: @font-primary;
     color: @color-white;
     background: @color-red;
@@ -1025,13 +1026,14 @@ input:-moz-placeholder {
     -webkit-clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
     clip-path: polygon(0 0, 100% 0%, 90% 100%, 0% 100%);
     z-index: 99;
+    overflow: visible;
   }
   img.flag-corner{
     position: absolute;
     width: 10px;
     height: 10px;
-    bottom: -10px;
-    left: 0px;
+    top: 41px;
+    left: 5px;
   }
   .status-open{
     background: @color-theme-secondary;

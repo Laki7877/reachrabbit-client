@@ -10671,9 +10671,6 @@ ul.payment-methods {
 }
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
-.view-public-campaign-detail .card-close {
-  display: none;
-}
 .layout-portal {
   background: url("../images/bg-layout-login.png") #019386;
   /* Specific View in Layout Portal */
@@ -10795,12 +10792,20 @@ ul.payment-methods {
 .layout-influencer .view-influencer-profile .btn-secondary-active[disabled] {
   opacity: 1;
 }
+.layout-influencer .view-public-campaign-detail .card-close {
+  display: none;
+}
 /*---Layout Admin---*/
 .layout-admin {
   background-color: #f9f9fb;
   /* Specific View in Layout Portal */
 }
 .layout-admin .container {
+  width: 100%;
+  padding: 0px 60px;
+  min-width: 970px;
+}
+.layout-admin .view-admin-campaign-detail .container {
   width: 970px;
 }
 tags-input {

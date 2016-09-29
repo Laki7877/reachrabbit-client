@@ -1,9 +1,4 @@
 /*---Layout Portal---*/
-.view-public-campaign-detail{
-  .card-close{
-    display: none;
-  }
-}
 
 .layout-portal{
   background: url("../images/bg-layout-login.png") @color-theme-secondary-darker;
@@ -118,30 +113,8 @@
     width: @max-container-width;
   }
 
-  // .navbar {
-  //   background: @color-grey-lighter;
-  //   li > a{
-  //     color: @color-black;
-  //   }
-  //   li > a:hover, li > a:focus{
-  //     background-color: @color-grey-lighter;
-  //     color: @color-theme-primary;
-  //   }
-  //   .dropdown-menu{
-  //     background-color: @color-grey;
-  //   }
-  //   .open > a, .open > a:hover, .open > a:focus{
-  //     background: @color-grey-lighter;
-  //   }
-  // }
   /* Specific View in Layout Influencer */
   .view-influencer-campaign-list{
-    // .zone-header{
-    //   height: 200px;
-    // }
-    // .zone-body{
-    //   margin-top: 0px;
-    // }
     .card-thumbnail{
       margin-bottom: 30px;
       .flag .status{
@@ -168,14 +141,25 @@
       opacity: 1;
     }
   }
+  .view-public-campaign-detail{
+    .card-close{
+      display: none;
+    }
+  }
 }
 
 /*---Layout Admin---*/
 .layout-admin{
   background-color: @color-grey-lighter;
   .container{
-    width: @max-container-width;
+    width: 100%;
+    padding: 0px 60px;
+    min-width: @max-container-width;
   }
   /* Specific View in Layout Portal */
-
+  .view-admin-campaign-detail{
+    .container{
+      width: @max-container-width;
+    }
+  }
 }

@@ -935,8 +935,11 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
         $scope.loadProposalCounts();
 
     }])
-    .controller('PublicCampaignController', function ($scope) {
-
+    .controller('PublicCampaignController', function ($scope,$stateParams, PublicService) {
+        $scope.campaignNee = null;
+        PublicService.getCampaign($stateParams.campaignId).then(function(x){
+            $scope.campaignNee = x.data;
+        });
     });
 
 angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])

@@ -87,17 +87,16 @@
             (('brand-workroom' | isState) && proposal.status === 'Selection')}">
               <img src="images/brand-onboarding-2.png" />
               <span class="step-text">
-                คัดเลือก <!--(10)-->
+                คัดเลือก ({{inbox.selection.proposalCount || '0'}})
               </span>
-              <!-- <div class="step-mushroom">
-              </div> -->
+              <div ng-if="inbox.selection.unreadMessageCount > 0" class="step-mushroom"></div>
             </div>
             <div class="step" ui-sref="brand-cart" ng-class="{ 'active':
             ('brand-cart' | isState) ||
             ('brand-transaction-detail' | isState) }">
               <img src="images/brand-onboarding-3.png"/>
               <span class="step-text">
-                ชำระเงิน <!--(10)-->
+                ชำระเงิน ({{inbox.cart || '0'}})
               </span>
             </div>
             <div class="step" ui-sref="brand-inbox({status:'Working'})" ng-class="{ 'active': 
@@ -105,16 +104,18 @@
             (('brand-workroom' | isState) &&  proposal.status === 'Working')}">
               <img src="images/brand-onboarding-4.png"/>
               <span class="step-text">
-                อนุมัติงาน <!--(10)-->
+                อนุมัติงาน ({{inbox.working.proposalCount || '0'}})
               </span>
+              <div ng-if="inbox.working.unreadMessageCount > 0" class="step-mushroom"></div>
             </div>
             <div class="step" ui-sref="brand-inbox({status:'Complete'})" ng-class="{ 'active': 
             ('brand-inbox' | isState: {status:'Complete'}) ||
             (('brand-workroom' | isState) &&  proposal.status === 'Complete')}">
               <img src="images/brand-onboarding-5.png"/>
               <span class="step-text">
-                เสร็จสิ้น <!--(10)-->
+                เสร็จสิ้น ({{inbox.complete.proposalCount || '0'}})
               </span>
+              <div ng-if="inbox.complete.unreadMessageCount > 0" class="step-mushroom"></div>
             </div>
           </div>
         </div>

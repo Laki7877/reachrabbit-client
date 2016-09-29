@@ -58,7 +58,14 @@
             <tbody>
               <tr ng-repeat="proposal in proposals.content">
                 <td class="col-name">
-                  <img ng-src="{{proposal.influencer.user.profilePicture.url  || 'images/placeholder-profile-picture.png'}}" class="profile-picture" /> {{proposal.influencer.user.name}}
+                  <div class="media">
+                    <div class="media-left">
+                      <img ng-src="{{proposal.influencer.user.profilePicture.url  || 'images/placeholder-profile-picture.png'}}" class="profile-picture" />
+                    </div>
+                    <div class="media-body media-middle">
+                      {{proposal.influencer.user.name}}
+                    </div>
+                  </div>
                 </td>
                 <td class="col-campaign-name">{{proposal.campaign.title}}</td>
                 <td class="col-price">{{proposal.price | currency:'':0 }}</td>

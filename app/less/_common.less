@@ -784,12 +784,33 @@ input:-moz-placeholder {
   &:extend(.card);
   min-height: 150px;
   margin-bottom: 20px;
-  .card-loader {
-    box-shadow: none !important;
-    border: 0 !important;
-    text-align: center;
-    margin-top: 40px !important;
+  table{
+    margin-bottom: 0px;
+    .col-name{
+      white-space:normal;
+      overflow: hidden;
+      text-overflow:inherit;
+      .profile-picture{
+        width: 70px;
+        margin-right: 10px;
+      }
+    }
+    .col-campaign-name{
+      white-space:normal;
+      overflow: hidden;
+      text-overflow:inherit;
+    }
+    .col-button{
+      padding-left: 16px;
+      .btn{
+        margin-bottom: 5px;
+        &:last-child{
+          margin-bottom: 0px;
+        }
+      }
+    }
   }
+
 }
 
 .card-transaction-header{
@@ -1426,6 +1447,8 @@ input:-moz-placeholder {
   border:none;
   padding:8px;
   border-radius: 0px;
+  font-family: @font-secondary !important;
+  font-size: 14px !important;
 }
 .nc-dt-button{
   .text-info{

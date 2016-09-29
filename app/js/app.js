@@ -304,7 +304,7 @@ angular.module('reachRabbitApp', [
               }).then(function (res) {
                 imm = false;
                 if (!_.isNil(res.data)) {
-                  $rootScope.inboxCount = res.data;
+                  $rootScope.inbox = res.data;
                 }
                 $rootScope.pollPending = false;
                 // $rootScope.pollInbox(false);

@@ -65,7 +65,7 @@
                 <td ng-if="params.status == 'Selection'" class="col-rabbit-score">{{ calculateReach(proposal) | number: 0}} คน</td>
                 <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
                 <td class="col-button">
-                  <button class="btn-secondary" ui-sref="brand-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
+                  <button class="btn-secondary btn-minimal" ui-sref="brand-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
                   <!-- For next sprint -->
                   <span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span>
                 </td>

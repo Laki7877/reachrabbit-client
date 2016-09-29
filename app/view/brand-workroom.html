@@ -14,9 +14,12 @@
                                 </a>
                                 <div class="chatbox-status">
                                     <span class="color-grey">สถานะ: </span>
-                                    <span class="color-green" ng-if="proposal.status == 'Selection'" tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ เลือกข้อเสนอ เพื่อชำระเงิน" >รอคุณคัดเลือก</span>
-                                    <span class="color-green" ng-if="proposal.status == 'Working'" tooltip-placement="bottom" uib-tooltip="รอตรวจสอบงานจาก Influencer และ อนุมัติงานเมื่อคุณพอใจ" >รอคุณอนุมัติงาน</span>
-                                    <span class="color-green" ng-if="proposal.status == 'Complete'" tooltip-placement="bottom" uib-tooltip="งานของคุณเสร็จสิ้นแล้ว" >เสร็จสิ้น</span>
+                                    <span class="color-green" ng-if="proposal.status == 'Selection'">รอคุณคัดเลือก</span>
+                                    <!-- tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ เลือกข้อเสนอ เพื่อชำระเงิน" -->
+                                    <span class="color-green" ng-if="proposal.status == 'Working'">รอคุณอนุมัติงาน</span>
+                                    <!-- tooltip-placement="bottom" uib-tooltip="รอตรวจสอบงานจาก Influencer และ อนุมัติงานเมื่อคุณพอใจ" -->
+                                    <span class="color-green" ng-if="proposal.status == 'Complete'">เสร็จสิ้น</span>
+                                    <!-- tooltip-placement="bottom" uib-tooltip="งานของคุณเสร็จสิ้นแล้ว" -->
                                 </div>
                             </div>
                             <div class="message-area" scroll-glue="scroll">
@@ -44,7 +47,7 @@
                                     <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png"
                                         ngf-pattern="'.jpg,.png'" ngf-max-size="10MB" ngf-max-files="1" is-loading="formData.isLoading"></uploader-multi>
 
-                                    <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
+                                    <button class="btn-secondary-highlight btn-width-md btn-minimal" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
                                     <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
                                   </button>
                                 </div>
@@ -58,10 +61,10 @@
                                 <span ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Incart'">คุณได้เลือกข้อเสนอนี้แล้ว</span>
                                 <span ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Checkout'">รอคุณชำระเงินก่อนเริ่มดำเนินการ</span>
                             </div>
-                            <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && !proposal.cartId" ng-click="selectProposal(proposal)">เลือกข้อเสนอ</button>
+                            <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && !proposal.cartId" ng-click="selectProposal(proposal)">&nbsp เลือกข้อเสนอ <i class="fa fa-arrow-right"></i></button>
                             <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Checkout'" ui-sref="brand-transaction-detail({cartId: proposal.cartId})">ดูรายละเอียดการสั่งซื้อ</button>
                             <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && proposal.cartId && proposal.cart.status != 'Checkout'" ui-sref="brand-cart">ดูตะกร้า</button>
-                            <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Working'" ng-click="approveProposal(proposal)">อนุมัติงาน</button>
+                            <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Working'" ng-click="approveProposal(proposal)">&nbsp อนุมัติงาน <i class="fa fa-arrow-right"></i></button>
                         </card-proposal-detail>
                         <div class="card-campaign-thumbnail" ui-sref="brand-campaign-detail-published({campaignId: proposal.campaign.campaignId })" cute-bunny-hide>
                             <div class="card-thumbnail-image">

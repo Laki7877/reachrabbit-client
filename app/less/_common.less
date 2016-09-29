@@ -1066,8 +1066,18 @@ input:-moz-placeholder {
 .btn{
   padding: 6px;
   border-radius: 2px;
+  font-family: @font-primary;
+  font-size: 16px;
+  font-weight: normal;
+  &.btn-minimal{
+    font-family: @font-secondary;
+    font-size: 14px;
+  }
   i{
-    margin-right: 5px;
+    margin-right: 2px;
+  }
+  .fa-arrow-right{
+    margin: 0px;
   }
 }
 .btn:disabled{
@@ -1649,7 +1659,6 @@ div:focus{
     }
     .chatbox-status{
       float: right;
-      cursor: pointer;
       .status{
         &.active{
           color:@color-theme-primary;

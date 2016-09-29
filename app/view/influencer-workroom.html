@@ -14,9 +14,12 @@
                                 </a>
                                 <div class="chatbox-status">
                                   <span class="color-grey">สถานะ: </span>
-                                  <span class="color-green" ng-if="proposal.status == 'Selection'" tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ รอการคัดเลือกจาก Brand" >รอการคัดเลือก</span>
-                                  <span class="color-green" ng-if="proposal.status == 'Working'" tooltip-placement="bottom" uib-tooltip="ทำงานตามที่ได้ตกลงกัน และส่งงานให้ Brand อนุมัติ" >รอคุณส่งงาน</span>
-                                  <span class="color-green" ng-if="proposal.status == 'Complete'" tooltip-placement="bottom" uib-tooltip="งานเสร็จแล้ว คุณสามารถถอนเงินจากระบบได้เมื่อต้องการ" >ได้รับเงิน</span>
+                                  <span class="color-green" ng-if="proposal.status == 'Selection'">รอการคัดเลือก</span>
+                                  <!-- tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ รอการคัดเลือกจาก Brand" -->
+                                  <span class="color-green" ng-if="proposal.status == 'Working'">รอคุณส่งงาน</span>
+                                  <!-- tooltip-placement="bottom" uib-tooltip="ทำงานตามที่ได้ตกลงกัน และส่งงานให้ Brand อนุมัติ"  -->
+                                  <span class="color-green" ng-if="proposal.status == 'Complete'">ได้รับเงิน</span>
+                                  <!-- tooltip-placement="bottom" uib-tooltip="งานเสร็จแล้ว คุณสามารถถอนเงินจากระบบได้เมื่อต้องการ" -->
                                 </div>
                             </div>
                             <div class="message-area" scroll-glue="scroll">
@@ -44,7 +47,7 @@
 
                                     <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png" ngf-max-files="1" ngf-pattern="'.jpg,.png'" ngf-max-size="10MB" is-loading="formData.isLoading"></uploader-multi>
 
-                                    <button class="btn-secondary-highlight btn-width-md" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
+                                    <button class="btn-secondary-highlight btn-width-md btn-minimal" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
                                         <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
                                     </button>
                                 </div>

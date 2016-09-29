@@ -8822,6 +8822,19 @@ input:-moz-placeholder {
 .btn-social {
   padding: 6px;
   border-radius: 2px;
+  font-family: 'Kanit', sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+}
+.btn.btn-minimal,
+.btn-primary.btn-minimal,
+.btn-secondary.btn-minimal,
+.btn-secondary-highlight.btn-minimal,
+.btn-secondary-active.btn-minimal,
+.btn-trace.btn-minimal,
+.btn-social.btn-minimal {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 .btn i,
 .btn-primary i,
@@ -8830,7 +8843,16 @@ input:-moz-placeholder {
 .btn-secondary-active i,
 .btn-trace i,
 .btn-social i {
-  margin-right: 5px;
+  margin-right: 2px;
+}
+.btn .fa-arrow-right,
+.btn-primary .fa-arrow-right,
+.btn-secondary .fa-arrow-right,
+.btn-secondary-highlight .fa-arrow-right,
+.btn-secondary-active .fa-arrow-right,
+.btn-trace .fa-arrow-right,
+.btn-social .fa-arrow-right {
+  margin: 0px;
 }
 .btn:disabled,
 .btn-primary:disabled,
@@ -10271,7 +10293,6 @@ div:focus {
 }
 .chatbox-card .chatbox-header .chatbox-status {
   float: right;
-  cursor: pointer;
 }
 .chatbox-card .chatbox-header .chatbox-status .status.active {
   color: #ff773e;

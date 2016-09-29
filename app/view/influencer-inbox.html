@@ -60,7 +60,7 @@
                 <td ng-if="params.status == 'Complete'">{{ proposal.completeDate | date }}</td>
                 <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
                 <td class="col-button">
-                  <button class="btn-secondary" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
+                  <button class="btn-secondary btn-minimal" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
                   <!-- For next sprint -->
                   <span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span>
                 </td>

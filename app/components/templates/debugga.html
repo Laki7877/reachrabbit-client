@@ -1,7 +1,7 @@
 <div ng-if="$root.SHOW_DEBUGGA">
     <hr/>
     <div class="container">
-        <button class="btn btn-trace btn-xs" ng-click="$root._showNetTrace = !$root._showNetTrace"><strong><i class="fa fa-code"></i> {{ !$root._showNetTrace ? 'Show' : 'Hide' }} Network Trace</strong></button>
+        <button class="btn btn-trace btn-xs btn-minimal" ng-click="$root._showNetTrace = !$root._showNetTrace"><strong><i class="fa fa-code"></i> {{ !$root._showNetTrace ? 'Show' : 'Hide' }} Network Trace</strong></button>
         <div class="card-body" ng-if="$root._showNetTrace">
             <json-formatter json="$root.debuggah" open="1"></json-formatter>
         </div>

@@ -101,7 +101,7 @@ angular.module('reachRabbitApp', [
     function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
 
       //Date override
-
+      $rootScope.$state = $state;
       $rootScope.go = function (url) {
         $state.go(url);
       };
@@ -216,11 +216,10 @@ angular.module('reachRabbitApp', [
       $rootScope.getPath = function () {
         return $location.path();
       };
-
       $rootScope.rootError = new NcAlert();
       $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams, options) {
-
+          
           //in case of brand
           if (!UserProfile.get()) {
             return;

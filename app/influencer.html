@@ -59,7 +59,7 @@
                   ('influencer-profile-published' | isState) ||
                   ('influencer-profile' | isState) ||
                   ('influencer-payout-history' | isState) ||
-                  ('influencer-payout-detail' | includedByState) }">
+                  ('influencer-payout-detail' | isState) }">
                       <a class="profile-dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
                         <span ng-bind="$root.getProfile().name | truncate: 15"></span><span class="caret"></span>
@@ -78,14 +78,17 @@
         <!--/.container-fluid -->
         <div class="main-nav" ng-cloak>
           <div class="steps">
-            <div class="step" ui-sref="influencer-campaign-list" ui-sref-active="active" ng-class="{ 'active':
+            <div class="step" ui-sref="influencer-campaign-list" ng-class="{ 'active':
+            ('influencer-campaign-list' | isState) ||
             ('influencer-campaign-detail' | isState) }">
               <img src="images/influencer-onboarding-1.png"/>
               <span class="step-text">
                 ส่งข้อเสนอ
               </span>
             </div>
-            <div class="step" ui-sref="influencer-inbox({status:'Selection'})" ui-sref-active="active" ng-class="{ 'active': ('influencer-workroom' | isState) &&  proposal.status === 'Selection'}">
+            <div class="step" ui-sref="influencer-inbox({status:'Selection'})" ng-class="{ 'active': 
+            ('influencer-inbox' | isState:{status:'Selection'}) ||
+            (('influencer-workroom' | isState) &&  proposal.status === 'Selection') }">
               <img src="images/influencer-onboarding-2.png" />
               <span class="step-text">
                 รอการคัดเลือก <!--(10)-->
@@ -93,13 +96,17 @@
               <!-- <div class="step-mushroom">
               </div> -->
             </div>
-            <div class="step" ui-sref="influencer-inbox({status:'Working'})" ui-sref-active="active" ng-class="{ 'active': ('influencer-workroom' | isState) &&  proposal.status === 'Working'}">
+            <div class="step" ui-sref="influencer-inbox({status:'Working'})" ng-class="{ 'active': 
+            ('influencer-inbox' | isState: {status:'Working'}) ||
+            (('influencer-workroom' | isState) &&  proposal.status === 'Working')}">
               <img src="images/influencer-onboarding-3.png"/>
               <span class="step-text">
                 ส่งงาน <!--(10)-->
               </span>
             </div>
-            <div class="step" ui-sref="influencer-inbox({status:'Complete'})" ui-sref-active="active" ng-class="{ 'active': ('influencer-workroom' | isState) &&  proposal.status === 'Complete'}">
+            <div class="step" ui-sref="influencer-inbox({status:'Complete'})" ng-class="{ 'active': 
+            ('influencer-inbox' | isState: {status:'Complete'}) ||
+            (('influencer-workroom' | isState) &&  proposal.status === 'Complete')}">
               <img src="images/influencer-onboarding-4.png"/>
               <span class="step-text">
                 ได้รับเงิน <!--(10)-->

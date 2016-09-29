@@ -124,9 +124,12 @@ angular.module('reachRabbitApp.brand.routes', ['ui.router'])
                 controller: 'WorkroomController'
             })
             .state('brand-influencer-profile', {
-                url: '/brand-influencer-profile/:influencerId',
+                url: '/brand-influencer-profile/:influencerId?proposalId',
                 templateUrl: 'view/brand-influencer-profile.html',
-                controller: 'InfluencerProfilePortfolioController'
+                controller: 'InfluencerProfilePortfolioController',
+                params: {
+                    proposalId: null
+                }
             })
             .state('brand-cart', {
                 url: '/brand-cart',
@@ -181,9 +184,12 @@ angular.module('reachRabbitApp.influencer.routes', ['ui.router'])
                 controller: 'WorkroomController'
             })
             .state('influencer-brand-profile', {
-                url: '/influencer-brand-profile/:brandId',
+                url: '/influencer-brand-profile/:brandId?proposalId',
                 templateUrl: 'view/influencer-brand-profile.html',
-                controller: 'BrandProfilePortfolioController'
+                controller: 'BrandProfilePortfolioController',
+                params: {
+                    proposalId: null
+                }
             })
             .state('influencer-payout-detail', {
                 url: '/influencer-payout-detail/:walletId',

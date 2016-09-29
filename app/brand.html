@@ -82,7 +82,10 @@
 
         <div class="main-nav">
           <div class="steps">
-            <div class="step" ui-sref="brand-campaign-list" ui-sref-active="active">
+            <div class="step" ui-sref="brand-campaign-list" ui-sref-active="active" ng-class="{ 'active': 
+            ('brand-campaign-detail-draft' | isState) || 
+            ('brand-campaign-detail-edit' | isState) || 
+            ('brand-campaign-detail-published' | isState) }">
               <img src="images/brand-onboarding-1.png"/>
               <span class="step-text">
                 สร้าง Campaign

@@ -81,7 +81,8 @@
         <!--/.container-fluid -->
         <div class="main-nav" ng-cloak>
           <div class="steps">
-            <div class="step" ui-sref="influencer-campaign-list" ui-sref-active="active">
+            <div class="step" ui-sref="influencer-campaign-list" ui-sref-active="active" ng-class="{ 'active': 
+            ('influencer-campaign-detail' | isState) }">
               <img src="images/influencer-onboarding-1.png"/>
               <span class="step-text">
                 ส่งข้อเสนอ

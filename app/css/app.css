@@ -10670,6 +10670,9 @@ ul.payment-methods {
 }
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
+.view-public-campaign-detail .card-close {
+  display: none;
+}
 .layout-portal {
   background: url("../images/bg-layout-login.png") #019386;
   /* Specific View in Layout Portal */

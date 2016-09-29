@@ -650,6 +650,13 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             }
         };
     }])
+    .factory('PublicService', ['$http', function($http){
+        return {
+            getCampaign : function(id){
+                return $http.get('/campaigns/public/' + id);
+            }
+        }
+    }])
     .factory('LongPollingService', ['$http', '$q', 'BusinessConfig', '$location', function ($http, $q, BusinessConfig, $location) {
         return {
             countInbox: function (params) {

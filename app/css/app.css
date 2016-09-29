@@ -8549,7 +8549,9 @@ input:-moz-placeholder {
 .card-inbox table .col-button .btn-secondary-active,
 .card-inbox table .col-button .btn-trace,
 .card-inbox table .col-button .btn-social {
-  margin-bottom: 5px;
+  border-radius: 2px;
+  padding: 3px 0px;
+  margin-bottom: 8px;
 }
 .card-inbox table .col-button .btn:last-child,
 .card-inbox table .col-button .btn-primary:last-child,
@@ -10259,7 +10261,7 @@ div:focus {
 .table .col-button .message-count {
   position: absolute;
   top: 4px;
-  right: 4px;
+  right: 1px;
   background: #ff0000;
   font-size: 12px;
   color: #ffffff;

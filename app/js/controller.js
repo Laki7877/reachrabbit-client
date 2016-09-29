@@ -431,7 +431,10 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
     ])
     .controller('InfluencerProfilePortfolioController', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function ($scope, NcAlert, AccountService, $stateParams) {
         $scope.formData = {};
-        $scope.alert = new NcAlert();
+        $scope.alert = new NcAlert();        
+        if($stateParams.proposalId) {
+            $scope.proposalId = $stateParams.proposalId;
+        }
         $scope.hasMedia = function (mediaId) {
             for (var i = 0; i < _.get($scope.formData, 'influencer.influencerMedias', []).length; i++) {
                 if ($scope.formData.influencer.influencerMedias[i].media.mediaId == mediaId) {
@@ -478,6 +481,9 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             });
     }])
     .controller('BrandProfilePortfolioController', ['$scope', 'AccountService', '$stateParams', function ($scope, AccountService, $stateParams) {
+        if($stateParams.proposalId) {
+            $scope.proposalId = $stateParams.proposalId;
+        }
         AccountService.getProfile($stateParams.brandId)
             .then(function (response) {
                 $scope.brand = response.data;

@@ -71,7 +71,7 @@
                 <td class="col-button">
                   <span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span>
                   <button class="btn-secondary btn-minimal" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
-                  <button class="btn-secondary btn-minimal" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId })">ดูโปรไฟล์</button>
+                  <button class="btn-secondary btn-minimal" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId, proposalId: proposal.proposalId })">ดูโปรไฟล์</button>
                 </td>
               </tr>
             </tbody>

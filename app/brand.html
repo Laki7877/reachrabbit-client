@@ -71,16 +71,20 @@
 
         <div class="main-nav">
           <div class="steps">
-            <div class="step" ui-sref="brand-campaign-list" ui-sref-active="active" ng-class="{ 'active':
+            <div class="step" ui-sref="brand-campaign-list" ng-class="{ 'active':
+            ('brand-campaign-list' | isState) ||
             ('brand-campaign-detail-draft' | isState) ||
-            ('brand-campaign-detail-edit' | includedByState) ||
-            ('brand-campaign-detail-published' | includedByState) }">
+            ('brand-campaign-detail-edit' | isState) ||
+            ('brand-campaign-detail-published' | isState) }">
               <img src="images/brand-onboarding-1.png"/>
               <span class="step-text">
                 สร้าง Campaign
               </span>
             </div>
-            <div class="step" ui-sref="brand-inbox({status:'Selection'})" ui-sref-active="active" ng-class="{ 'active': ('brand-workroom' | isState) &&  proposal.status === 'Selection'}">
+            <div class="step" ui-sref="brand-inbox({status:'Selection'})" ng-class="{ 
+            'active': 
+            ('brand-inbox' | isState: {status: 'Selection'}) ||
+            (('brand-workroom' | isState) && proposal.status === 'Selection')}">
               <img src="images/brand-onboarding-2.png" />
               <span class="step-text">
                 คัดเลือก <!--(10)-->
@@ -88,20 +92,25 @@
               <!-- <div class="step-mushroom">
               </div> -->
             </div>
-            <div class="step" ui-sref="brand-cart" ui-sref-active="active"  ng-class="{ 'active':
-            ('brand-transaction-detail' | includedByState) }">
+            <div class="step" ui-sref="brand-cart" ng-class="{ 'active':
+            ('brand-cart' | isState) ||
+            ('brand-transaction-detail' | isState) }">
               <img src="images/brand-onboarding-3.png"/>
               <span class="step-text">
                 ชำระเงิน <!--(10)-->
               </span>
             </div>
-            <div class="step" ui-sref="brand-inbox({status:'Working'})" ui-sref-active="active" ng-class="{ 'active': ('brand-workroom' | isState) &&  proposal.status === 'Working'}">
+            <div class="step" ui-sref="brand-inbox({status:'Working'})" ng-class="{ 'active': 
+            ('brand-inbox' | isState : {status: 'Working'}) || 
+            (('brand-workroom' | isState) &&  proposal.status === 'Working')}">
               <img src="images/brand-onboarding-4.png"/>
               <span class="step-text">
                 อนุมัติงาน <!--(10)-->
               </span>
             </div>
-            <div class="step" ui-sref="brand-inbox({status:'Complete'})" ui-sref-active="active" ng-class="{ 'active': ('brand-workroom' | isState) &&  proposal.status === 'Complete'}">
+            <div class="step" ui-sref="brand-inbox({status:'Complete'})" ng-class="{ 'active': 
+            ('brand-inbox' | isState: {status:'Complete'}) ||
+            (('brand-workroom' | isState) &&  proposal.status === 'Complete')}">
               <img src="images/brand-onboarding-5.png"/>
               <span class="step-text">
                 เสร็จสิ้น <!--(10)-->

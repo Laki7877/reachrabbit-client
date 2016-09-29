@@ -95,7 +95,8 @@ angular.module('reachRabbitApp', [
     INFLUENCER_FEE: 0.18,
     INFLUENCER_BANK_TF_FEE: 30,
     DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"],
-    PROTRACTOR_PORT: 9900
+    PROTRACTOR_PORT: 9900,
+    NO_POLL_WHITELIST: ["-portal", "-login", "-signup", "public-campaign-detail"]
   })
   .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce', '$state',
     function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
@@ -285,7 +286,9 @@ angular.module('reachRabbitApp', [
       };
 
       //Only init polling if User is logged in
-      if (!$location.absUrl().includes("-portal") && !$location.absUrl().includes("-login") && !$location.absUrl().includes("-signup")) {
+      if (BusinessConfig.NO_POLL_WHITELIST.reduce(function(p,c) {
+         return p && !$location.absUrl().includes(c);
+      },true)) {
         $rootScope.pollPending = false;
         $rootScope.pollInbox = function (immediately) {
           var profile = $rootScope.getProfile();

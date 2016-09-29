@@ -417,12 +417,12 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             });
 
             function setChatArea() {
-                var magicNumber = 457;
+                var magicNumber = 447;
                 var chatArea = $(".message-area");
                 var chatAreaHeight = $(window).height() - magicNumber;
 
-                if (chatAreaHeight < 400) {
-                    chatAreaHeight = 400;
+                if (chatAreaHeight < 300) {
+                    chatAreaHeight = 300;
                 }
                 chatArea.height(chatAreaHeight);
                 chatArea.scrollTop(9999);
@@ -431,7 +431,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
     ])
     .controller('InfluencerProfilePortfolioController', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function ($scope, NcAlert, AccountService, $stateParams) {
         $scope.formData = {};
-        $scope.alert = new NcAlert();        
+        $scope.alert = new NcAlert();
         if($stateParams.proposalId) {
             $scope.proposalId = $stateParams.proposalId;
         }
@@ -936,7 +936,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
 
     }])
     .controller('PublicCampaignController', function ($scope) {
-        
+
     });
 
 angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])

@@ -10278,6 +10278,7 @@ div:focus {
 }
 .workroom .zone-header .page-header {
   padding-bottom: 5px;
+  margin-top: 30px;
   margin-bottom: 0px;
 }
 .workroom .zone-header .back-btn-for-header {
@@ -10339,7 +10340,7 @@ div:focus {
 }
 .chatbox-card .message-area {
   overflow-y: scroll;
-  height: 400px;
+  min-height: 300px;
 }
 .chatbox-card .message-area .card-loader {
   margin: 15px;

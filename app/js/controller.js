@@ -421,8 +421,8 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 var chatArea = $(".message-area");
                 var chatAreaHeight = $(window).height() - magicNumber;
 
-                if (chatAreaHeight < 300) {
-                    chatAreaHeight = 300;
+                if (chatAreaHeight < 250) {
+                    chatAreaHeight = 250;
                 }
                 chatArea.height(chatAreaHeight);
                 chatArea.scrollTop(9999);

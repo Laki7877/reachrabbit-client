@@ -10340,7 +10340,7 @@ div:focus {
 }
 .chatbox-card .message-area {
   overflow-y: scroll;
-  min-height: 300px;
+  min-height: 250px;
 }
 .chatbox-card .message-area .card-loader {
   margin: 15px;

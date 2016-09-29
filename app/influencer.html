@@ -62,7 +62,11 @@
                       <span class="wallet-icon"></span><span ng-bind="($root.walletBalance || 0) | number: 0"></span> บาท
                     </a>
                   </li>
-                  <li class="dropdown">
+                  <li class="dropdown" ng-class="{ 'active':
+                  ('influencer-profile-published' | isState) ||
+                  ('influencer-profile' | isState) ||
+                  ('influencer-payout-history' | isState) ||
+                  ('influencer-payout-detail' | includedByState) }">
                       <a class="profile-dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
                         <span ng-bind="$root.getProfile().name | truncate: 15"></span><span class="caret"></span>
@@ -81,7 +85,7 @@
         <!--/.container-fluid -->
         <div class="main-nav" ng-cloak>
           <div class="steps">
-            <div class="step" ui-sref="influencer-campaign-list" ui-sref-active="active" ng-class="{ 'active': 
+            <div class="step" ui-sref="influencer-campaign-list" ui-sref-active="active" ng-class="{ 'active':
             ('influencer-campaign-detail' | isState) }">
               <img src="images/influencer-onboarding-1.png"/>
               <span class="step-text">

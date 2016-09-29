@@ -63,7 +63,9 @@
                         Cart
                       </a>
                     </li> -->
-                    <li class="dropdown">
+                    <li class="dropdown" ng-class="{ 'active':
+                    ('brand-profile' | isState) ||
+                    ('brand-transaction-history' | isState) }">
                       <a class="profile-dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                           <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
                           <span ng-bind="$root.getProfile().brand.brandName | truncate: 15"></span><span class="caret"></span>
@@ -82,10 +84,10 @@
 
         <div class="main-nav">
           <div class="steps">
-            <div class="step" ui-sref="brand-campaign-list" ui-sref-active="active" ng-class="{ 'active': 
-            ('brand-campaign-detail-draft' | isState) || 
-            ('brand-campaign-detail-edit' | isState) || 
-            ('brand-campaign-detail-published' | isState) }">
+            <div class="step" ui-sref="brand-campaign-list" ui-sref-active="active" ng-class="{ 'active':
+            ('brand-campaign-detail-draft' | isState) ||
+            ('brand-campaign-detail-edit' | includedByState) ||
+            ('brand-campaign-detail-published' | includedByState) }">
               <img src="images/brand-onboarding-1.png"/>
               <span class="step-text">
                 สร้าง Campaign
@@ -99,7 +101,8 @@
               <!-- <div class="step-mushroom">
               </div> -->
             </div>
-            <div class="step" ui-sref="brand-cart" ui-sref-active="active">
+            <div class="step" ui-sref="brand-cart" ui-sref-active="active"  ng-class="{ 'active':
+            ('brand-transaction-detail' | includedByState) }">
               <img src="images/brand-onboarding-3.png"/>
               <span class="step-text">
                 ชำระเงิน <!--(10)-->

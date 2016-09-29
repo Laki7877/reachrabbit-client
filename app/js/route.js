@@ -199,7 +199,13 @@ angular.module('reachRabbitApp.influencer.routes', ['ui.router'])
                 url: '/influencer-wallet',
                 templateUrl: 'view/influencer-wallet.html',
                 controller: 'WalletController'
+            })
+            .state('public-campaign-detail', {
+                url: "/public-campaign-detail/:campaignId",
+                templateUrl: "view/public-campaign-detail.html",
+                controller: 'PublicCampaignController'
             });
+
 
         //TODO: Campaign-detail
 

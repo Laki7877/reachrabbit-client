@@ -10,15 +10,6 @@
 'use strict';
 
 
-/////////////// /////////////// /////////////// /////////////// ///////////////
-/*
-  _____  __  __  ____  _____ __   __
- | ____||  \/  ||  _ \|_   _|\ \ / /
- |  _|  | |\/| || |_) | | |   \ V /
- | |___ | |  | ||  __/  | |    | |
- |_____||_|  |_||_|     |_|    |_|
-*/
-/////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
     .controller('EmptyController', ['$scope', '$uibModal', function ($scope, $uibModal) {
@@ -312,35 +303,35 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 LongPollingService.getMessagesPoll($scope.proposalId, {
                     timestamp: timestamp
                 })
-                .then(function (res) {
-                    if (!res.data || stop) {
-                        return null;
-                    }
-                    timestamp = res.data[1];
-                    oldTimestamp = res.data[0];
-                    return ProposalService.getNewMessages($scope.proposalId, {
-                        timestamp: oldTimestamp
-                    });
-                })
-                .then(function (res) {
-                    if (res && res.data) {
-                        $scope.totalElements += res.data.length;
-                        for (var i = res.data.length - 1; i >= 0; i--) {
-                            if ($scope.msglist.length >= $scope.msgLimit) {
-                                $scope.msglist.shift();
-                            }
-                            if (!_.isNil($scope.msgHash[res.data[i].referenceId])) {
-                                _.extend($scope.msgHash[res.data[i].referenceId], res.data[i]);
-                            } else {
-                                // from server
-                                $scope.msglist.push(res.data[i]);
+                    .then(function (res) {
+                        if (!res.data || stop) {
+                            return null;
+                        }
+                        timestamp = res.data[1];
+                        oldTimestamp = res.data[0];
+                        return ProposalService.getNewMessages($scope.proposalId, {
+                            timestamp: oldTimestamp
+                        });
+                    })
+                    .then(function (res) {
+                        if (res && res.data) {
+                            $scope.totalElements += res.data.length;
+                            for (var i = res.data.length - 1; i >= 0; i--) {
+                                if ($scope.msglist.length >= $scope.msgLimit) {
+                                    $scope.msglist.shift();
+                                }
+                                if (!_.isNil($scope.msgHash[res.data[i].referenceId])) {
+                                    _.extend($scope.msgHash[res.data[i].referenceId], res.data[i]);
+                                } else {
+                                    // from server
+                                    $scope.msglist.push(res.data[i]);
+                                }
                             }
                         }
-                    }
-                })
-                .finally(function () {
-                    $scope.pollActive = false;
-                });
+                    })
+                    .finally(function () {
+                        $scope.pollActive = false;
+                    });
             }, 1000);
 
 
@@ -535,7 +526,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                             }
                         });
 
-                    if(UserProfile.get().influencer){
+                    if (UserProfile.get().influencer) {
                         return UserProfile.get();
                     }
 
@@ -594,10 +585,6 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             };
         }]);
 /////////////// /////////////// /////////////// /////////////// ///////////////
-/*
-    INFLUENCER
-*/
-/////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'])
     .controller('WalletController', ['$rootScope', '$scope', '$state', 'UserProfile', 'InfluencerAccountService', 'AccountService', 'DataService', 'BusinessConfig', 'NcAlert', 'validator', function ($rootScope, $scope, $state, UserProfile, InfluencerAccountService, AccountService, DataService, BusinessConfig, NcAlert, validator) {
@@ -652,66 +639,64 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
         };
 
     }])
-    .controller('InfluencerCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService', '$uibModal', 'DataService',
-        function ($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService) {
-            $scope.campaignNee = null;
-            $scope.isApply = false;
-            $scope.alert = new NcAlert();
-            $scope.appliedAlert = new NcAlert();
+    .controller('InfluencerCampaignDetailController', function ($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService) {
+        $scope.campaignNee = null;
+        $scope.isApply = false;
+        $scope.alert = new NcAlert();
+        $scope.appliedAlert = new NcAlert();
 
-            $scope.proposal = null;
+        $scope.proposal = null;
 
-            $scope.keywordMap = function (arr) {
-                if (!arr) return [];
-                return arr.map(function (k) {
-                    return k.keyword;
-                });
-            };
+        $scope.keywordMap = function (arr) {
+            if (!arr) return [];
+            return arr.map(function (k) {
+                return k.keyword;
+            });
+        };
 
-            $scope.sendProposal = function () {
-                //popup a modal
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'components/templates/influencer-proposal-modal.html',
-                    controller: 'ProposalModalController',
-                    size: 'md',
-                    resolve: {
-                        campaign: function () {
-                            return $scope.campaignNee;
-                        },
-                        proposal: function () {
-                            return false;
-                        }
+        $scope.sendProposal = function () {
+            //popup a modal
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'components/templates/influencer-proposal-modal.html',
+                controller: 'ProposalModalController',
+                size: 'md',
+                resolve: {
+                    campaign: function () {
+                        return $scope.campaignNee;
+                    },
+                    proposal: function () {
+                        return false;
                     }
-                });
-
-                //on user close
-                modalInstance.result.then(function (proposal) {
-                    if (!proposal || !proposal.proposalId) {
-                        return;
-                    }
-                    $state.go('influencer-workroom', { proposalId: proposal.proposalId });
-                });
-            };
-
-            $scope.$watch('isApply', function (applied) {
-                if (applied) {
-                    $scope.appliedAlert.info("คุณได้ส่งข้อเสนอให้ Campaign นี้แล้ว");
                 }
-                $scope.appliedAlert.close();
             });
 
-            CampaignService.getOne($stateParams.campaignId)
-                .then(function (campaignResponse) {
-                    $scope.campaignNee = campaignResponse.data;
-                    $scope.isApply = $scope.campaignNee.isApply;
-                    $scope.proposal = $scope.campaignNee.proposal;
-                })
-                .catch(function (err) {
-                    $scope.alert.danger(err.data.message);
-                });
-        }
-    ])
+            //on user close
+            modalInstance.result.then(function (proposal) {
+                if (!proposal || !proposal.proposalId) {
+                    return;
+                }
+                $state.go('influencer-workroom', { proposalId: proposal.proposalId });
+            });
+        };
+
+        $scope.$watch('isApply', function (applied) {
+            if (applied) {
+                $scope.appliedAlert.info("คุณได้ส่งข้อเสนอให้ Campaign นี้แล้ว");
+            }
+            $scope.appliedAlert.close();
+        });
+
+        CampaignService.getOne($stateParams.campaignId)
+            .then(function (campaignResponse) {
+                $scope.campaignNee = campaignResponse.data;
+                $scope.isApply = $scope.campaignNee.isApply;
+                $scope.proposal = $scope.campaignNee.proposal;
+            })
+            .catch(function (err) {
+                $scope.alert.danger(err.data.message);
+            });
+    })
     .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'DataService', 'ExampleCampaigns', '$rootScope',
         function ($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope) {
             $scope.params = {};
@@ -943,21 +928,12 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
 
         $scope.loadProposalCounts();
 
-    }]);
-/////////////// /////////////// /////////////// /////////////// ///////////////
-/*
-d8888b. d8888b.  .d8b.  d8b   db d8888b.
-88  `8D 88  `8D d8' `8b 888o  88 88  `8D
-88oooY' 88oobY' 88ooo88 88V8o 88 88   88
-88~~~b. 88`8b   88~~~88 88 V8o88 88   88
-88   8D 88 `88. 88   88 88  V888 88  .8D
-Y8888P' 88   YD YP   YP VP   V8P Y8888D'
-*/
-/////////////// /////////////// /////////////// /////////////// ///////////////
+    }])
+    .controller('PublicCampaignController', function ($scope) {
+        
+    });
+
 angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
-    /*
-     * Campaign List controller - thank god it's work.
-     */
     .controller('CampaignListController', ['$scope', 'CampaignService', 'DataService', 'ExampleCampaigns', function ($scope, CampaignService, DataService, ExampleCampaigns) {
         $scope.myCampaign = [];
         $scope.filters = [
@@ -1434,19 +1410,6 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
     ;
 
 
-/////////////// /////////////// /////////////// /////////////// ///////////////
-/*
-8888888b.   .d88888b.  8888888b. 88888888888     d8888 888
-888   Y88b d88P" "Y88b 888   Y88b    888        d88888 888
-888    888 888     888 888    888    888       d88P888 888
-888   d88P 888     888 888   d88P    888      d88P 888 888
-8888888P"  888     888 8888888P"     888     d88P  888 888
-888        888     888 888 T88b      888    d88P   888 888
-888        Y88b. .d88P 888  T88b     888   d8888888888 888
-888         "Y88888P"  888   T88b    888  d88P     888 88888888
-*/
-/////////////// /////////////// /////////////// /////////////// ///////////////
-
 angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
     .controller('BrandSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
         var u = UserProfile.get();
@@ -1769,17 +1732,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
         }
     ]);
 
-/*/////////////// /////////////// /////////////// /////////////// ///////////////
-
-      _        ______     ____    ____   _____   ____  _____
-     / \      |_   _ `.  |_   \  /   _| |_   _| |_   \|_   _|
-    / _ \       | | `. \   |   \/   |     | |     |   \ | |
-   / ___ \      | |  | |   | |\  /| |     | |     | |\ \| |
- _/ /   \ \_   _| |_.' /  _| |_\/_| |_   _| |_   _| |_\   |_
-|____| |____| |______.'  |_____||_____| |_____| |_____|\____|
-
-
-/////////////// /////////////// /////////////// /////////////// ///////////////*/
+/*/////////////// /////////////// /////////////// /////////////// //////////////*/
 angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
     .controller('AdminTransactionHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
         //Load campaign data

@@ -8522,11 +8522,43 @@ input:-moz-placeholder {
   min-height: 150px;
   margin-bottom: 20px;
 }
-.card-inbox .card-loader {
-  box-shadow: none !important;
-  border: 0 !important;
-  text-align: center;
-  margin-top: 40px !important;
+.card-inbox table {
+  margin-bottom: 0px;
+}
+.card-inbox table .col-name {
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: inherit;
+}
+.card-inbox table .col-name .profile-picture {
+  width: 70px;
+  margin-right: 10px;
+}
+.card-inbox table .col-campaign-name {
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: inherit;
+}
+.card-inbox table .col-button {
+  padding-left: 16px;
+}
+.card-inbox table .col-button .btn,
+.card-inbox table .col-button .btn-primary,
+.card-inbox table .col-button .btn-secondary,
+.card-inbox table .col-button .btn-secondary-highlight,
+.card-inbox table .col-button .btn-secondary-active,
+.card-inbox table .col-button .btn-trace,
+.card-inbox table .col-button .btn-social {
+  margin-bottom: 5px;
+}
+.card-inbox table .col-button .btn:last-child,
+.card-inbox table .col-button .btn-primary:last-child,
+.card-inbox table .col-button .btn-secondary:last-child,
+.card-inbox table .col-button .btn-secondary-highlight:last-child,
+.card-inbox table .col-button .btn-secondary-active:last-child,
+.card-inbox table .col-button .btn-trace:last-child,
+.card-inbox table .col-button .btn-social:last-child {
+  margin-bottom: 0px;
 }
 .card-transaction-header .card-info {
   position: relative;
@@ -10059,6 +10091,8 @@ fieldset[disabled] .btn-clear.active {
   border: none;
   padding: 8px;
   border-radius: 0px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 14px !important;
 }
 .nc-dt-button .text-info {
   color: #16bbac;

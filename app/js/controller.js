@@ -1759,10 +1759,11 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
             sort: 'updatedAt,desc'
         });
     }])
-    .controller('AdminCampaignDetailController', ['$scope', '$state', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService',
-        function ($scope, $state, $stateParams, CampaignService, NcAlert, AccountService) {
+    .controller('AdminCampaignDetailController', ['$scope', '$state', '$location', '$stateParams', 'CampaignService', 'NcAlert', 'AccountService',
+        function ($scope, $state, $location, $stateParams, CampaignService, NcAlert, AccountService) {
             $scope.campaignNee = null;
             $scope.alert = new NcAlert();
+            $scope.url = null;
 
             $scope.keywordMap = function (arr) {
                 if (!arr) return [];
@@ -1780,6 +1781,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
             CampaignService.getOne($stateParams.campaignId)
                 .then(function (campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;
+                    $scope.url = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/public.html#/public-campaign-detail/' + $scope.campaignNee.publicCode;
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);

@@ -86,7 +86,7 @@
                 ส่งข้อเสนอ
               </span>
             </div>
-            <div class="step" ui-sref="influencer-inbox({status:'Selection'})" ng-class="{ 'active': 
+            <div class="step" ui-sref="influencer-inbox({status:'Selection'})" ng-class="{ 'active':
             ('influencer-inbox' | isState:{status:'Selection'}) ||
             (('influencer-workroom' | isState) &&  proposal.status === 'Selection') }">
               <img src="images/influencer-onboarding-2.png" />
@@ -95,7 +95,7 @@
               </span>
               <div ng-if="inbox.selection.unreadMessageCount > 0" class="step-mushroom"></div>
             </div>
-            <div class="step" ui-sref="influencer-inbox({status:'Working'})" ng-class="{ 'active': 
+            <div class="step" ui-sref="influencer-inbox({status:'Working'})" ng-class="{ 'active':
             ('influencer-inbox' | isState: {status:'Working'}) ||
             (('influencer-workroom' | isState) &&  proposal.status === 'Working')}">
               <img src="images/influencer-onboarding-3.png"/>
@@ -104,7 +104,7 @@
               </span>
               <div ng-if="inbox.working.unreadMessageCount > 0" class="step-mushroom"></div>
             </div>
-            <div class="step" ui-sref="influencer-inbox({status:'Complete'})" ng-class="{ 'active': 
+            <div class="step" ui-sref="influencer-inbox({status:'Complete'})" ng-class="{ 'active':
             ('influencer-inbox' | isState: {status:'Complete'}) ||
             (('influencer-workroom' | isState) &&  proposal.status === 'Complete')}">
               <img src="images/influencer-onboarding-4.png"/>

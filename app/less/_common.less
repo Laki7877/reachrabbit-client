@@ -1362,6 +1362,9 @@ input:-moz-placeholder {
 /*---Main Navigation---*/
 .main-nav{
   background: @color-black;
+  @media only screen and (min-width: 1201px) {
+    margin-top: -15px;
+  }
   .steps{
     width: @max-container-width;
     text-align: center;
@@ -1667,6 +1670,10 @@ div:focus{
 .chatbox-card{
   &:extend(.card);
   margin-bottom: 30px;
+  @media only screen and (min-width: 1201px) {
+    //Response to main-nav
+    margin-bottom: 45px;
+  }
   .chatbox-header{
     &:extend(.card-header);
     position: relative;

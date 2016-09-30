@@ -9996,6 +9996,11 @@ fieldset[disabled] .btn-clear.active {
 .main-nav {
   background: #3e4a5e;
 }
+@media only screen and (min-width: 1201px) {
+  .main-nav {
+    margin-top: -15px;
+  }
+}
 .main-nav .steps {
   width: 970px;
   text-align: center;
@@ -10311,6 +10316,11 @@ div:focus {
 }
 .chatbox-card {
   margin-bottom: 30px;
+}
+@media only screen and (min-width: 1201px) {
+  .chatbox-card {
+    margin-bottom: 45px;
+  }
 }
 .chatbox-card .chatbox-header {
   position: relative;

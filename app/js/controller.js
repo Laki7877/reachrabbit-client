@@ -409,7 +409,12 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                     }
                 });
 
-            /* JS for Chat Area Height */
+
+
+            /* Set Background Color of Workroom */
+            $("body").css("background","#019386");
+            
+            /* Set Chat Area Height */
             setChatArea();
             $(window).resize(function () {
                 $scope.scroll = true;

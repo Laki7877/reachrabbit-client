@@ -5,7 +5,7 @@ var Chance = require('chance');
 var chance = new Chance();
 var EC = protractor.ExpectedConditions;
 
-browser.driver.manage().window().maximize();
+browser.driver.manage().window().setSize(1200, 800);
 
 describe('Brand', function () {
 
@@ -76,6 +76,7 @@ describe('Brand', function () {
             state.email.sendKeys(browser.params.brand_login.user);
             state.password.sendKeys(browser.params.brand_login.password);
             state.password.sendKeys(protractor.Key.TAB);
+            state.password.sendKeys(protractor.Key.ENTER);
             state.submit_btn.click();
 
             // browser.pause();
@@ -83,7 +84,7 @@ describe('Brand', function () {
             //redirection wait
             // browser.ignoreSynchronization = true;
 
-            browser.sleep(5000);
+            browser.sleep(3000);
 
         });
 
@@ -129,12 +130,16 @@ describe('Brand', function () {
     describe('Campaign', function () {
         var state = {};
 
-        it('can find sample draft campaign', function () {
+        it('can find create campaign button', function () {
             // browser.waitForAngular();
-            var cards = element.all(by.repeater("x in myCampaign.content"));
+            // var cards = element.all(by.repeater("x in exampleCampaign"));
 
-            expect(cards.count()).toEqual(1);
-            cards.first().click();
+            // expect(cards.count()).toEqual(2);
+            // cards.first().click();
+
+            var createBtn = element(by.css('.btn-primary'));
+            expect(createBtn.isPresent()).toBe(true);
+            createBtn.click();
 
         });
 
@@ -175,8 +180,8 @@ describe('Brand', function () {
             browser.params.campaignName = campaignName;
 
             state.uploaders.get(0).sendKeys(absolutePath);
+            browser.sleep(2000);
             element(by.css('.done-crop-btn')).click();
-            browser.sleep(1000);
             // state.uploaders.get(1).sendKeys(absolutePath);
 
             state.title.clear();
@@ -189,7 +194,9 @@ describe('Brand', function () {
             state.proposalDeadline.click();
 
             //sslect date 12 of this month
-            element.all(by.css(".uib-daypicker button")).get(12 + 2).click();
+            element(by.css('.uib-right')).click()
+            browser.sleep(500)
+            element.all(by.css(".uib-daypicker button")).get(28 + 2).click();
 
             state.title.sendKeys(protractor.Key.TAB);
 
@@ -199,8 +206,8 @@ describe('Brand', function () {
             expect($('.alert.alert-success').isPresent()).toBe(true);
         });
 
-        it('reloads and everything comes back', function () {
-            browser.driver.navigate().refresh();
+        it('everything echo back', function () {
+            // browser.driver.navigate().refresh();
             var new_state = {};
             new_state.thumbImage = element(by.css(".card-image img"));
 
@@ -248,10 +255,10 @@ describe('Brand', function () {
             state.publish_btn.click();
 
             //click on fat ass rabbit - "No i'm that that fat" Hello Rabbit
-            var doNotShowBtn = element(by.css('.message-modal .checkbox input'));
-            var continueBtn = element(by.css('.message-modal .btn-secondary-highlight'));
-            doNotShowBtn.click();
-            continueBtn.click();
+            // var doNotShowBtn = element(by.css('.message-modal .checkbox input'));
+            // var continueBtn = element(by.css('.message-modal .btn-secondary-highlight'));
+            // doNotShowBtn.click();
+            // continueBtn.click();
 
             expect($('.alert.alert-success').isPresent()).toBe(true);
         });

@@ -1,8 +1,0 @@
-<div class="alert alert-{{alert.type}}" role="alert" ng-show="alert.show">
-    <span class="alert-icon"></span>
-    <button type="button" class="close color opacity-1" ng-class="'color-' + (alert.type || 'info')" aria-hidden="true" ng-show="closable()"
-        ng-click="alert.close({$event: $event})">&times;</button>
-    <div class="alert-text">
-        <span ng-bind-html="alert.message"></span>
-    </div>
-</div>

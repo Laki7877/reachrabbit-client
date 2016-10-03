@@ -1,15 +1,22 @@
 box: nodesource/trusty
 build:
   steps:
+    -script:
+      name: Add Source
+      code: |
+        echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee -a /etc/apt/sources.list
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+        apt-get update
+
     - install-packages:
-        packages:  xvfb default-jre fluxbox x11vnc dbus unzip libasound2 libqt4-dbus libqt4-network libqtcore4 libqtgui4 libxss1 libpython2.7 libqt4-xml libaudio2 libmng1 fontconfig liblcms1 lib32stdc++6 lib32asound2 curl google-chrome-stable
+        packages: python python-pip xvfb default-jre fluxbox x11vnc dbus unzip libasound2 libqt4-dbus libqt4-network libqtcore4 libqtgui4 libxss1 libpython2.7 libqt4-xml libaudio2 libmng1 fontconfig liblcms1 lib32stdc++6 lib32asound2 curl google-chrome-stable
     - script:
         name: Chrome driver
         code: |
           wget -c http://chromedriver.googlecode.com/files/chromedriver_linux64_2.1.zip
           unzip chromedriver_linux64_2.1.zip
-          sudo cp ./chromedriver /usr/bin/
-          sudo chmod ugo+rx /usr/bin/chromedriver
+          cp ./chromedriver /usr/bin/
+          chmod ugo+rx /usr/bin/chromedriver
 
     - script:
         name: Enable virtual display

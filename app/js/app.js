@@ -303,7 +303,7 @@ angular.module('reachRabbitApp', [
                 immediate: imm
               }).then(function (res) {
                 imm = false;
-                if (!_.isNil(res.data) && !_.isEmpty(res.data)) {
+                if (res && !_.isNil(res.data) && !_.isEmpty(res.data)) {
                   $rootScope.inbox = res.data;
                 }
                 $rootScope.pollPending = false;

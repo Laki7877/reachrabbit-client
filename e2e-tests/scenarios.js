@@ -462,7 +462,7 @@ describe('Influencer', function () {
 
     });
 
-    describe('Can see campaigns detail', function () {
+    xdescribe('Can see campaigns detail', function () {
         beforeAll(function () {
             browser.get('influencer.html#/influencer-campaign-list');
         });

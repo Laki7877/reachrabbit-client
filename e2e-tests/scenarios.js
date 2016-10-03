@@ -10,7 +10,7 @@ browser.driver.manage().window().setSize(1200, 800);
 describe('Brand', function () {
 
     beforeAll(function () {
-        browser.params.brand_login.user = chance.email({ domain: "reachrabbit.com" });
+        browser.params.brand_login.user = chance.word({syllables: 4}) + chance.email({ domain: "reachrabbit.com",  });
     });
 
     describe('Signup', function () {
@@ -184,12 +184,14 @@ describe('Brand', function () {
             element(by.css('.done-crop-btn')).click();
             // state.uploaders.get(1).sendKeys(absolutePath);
 
+            element(by.css('input[type=checkbox]')).click();
+
             state.title.clear();
             state.title.sendKeys(campaignName);
             state.description.sendKeys(chance.paragraph({ sentences: 5 }));
             state.keyword.sendKeys(chance.city() + ", " + chance.city() + ", " + chance.city());
             state.website.sendKeys(chance.url());
-            state.category.sendKeys("DIY");
+            state.category.sendKeys("แ");
             state.budget.sendKeys("1");
             state.proposalDeadline.click();
 
@@ -225,8 +227,8 @@ describe('Brand', function () {
 
             expect(new_state.thumbImage.getAttribute('src') == 'images/placeholder-campaign.png').toBe(false);
             //TODO: check against value we entered
-            expect(new_state.category.$('option:checked').getText("DIY"));
-            expect(new_state.budget.$('option:checked').getText("5,000 - 10,000 บาท ต่อคน"));
+            // expect(new_state.category.$('option:checked').getText("แ"));
+            // expect(new_state.budget.$('option:checked').getText("5,000 - 10,000 บาท ต่อคน"));
             expect(new_state.title.getAttribute("value")).toEqual(browser.params.campaignName);
         });
 
@@ -239,14 +241,12 @@ describe('Brand', function () {
         });
 
         it('can find saved campaign', function () {
-            browser.waitForAngular();
             var cards = element.all(by.repeater("x in myCampaign.content"));
             expect(cards.count()).toEqual(1);
             cards.first().click();
         });
 
         it('can publish drafted campaign', function () {
-            browser.waitForAngular();
 
             state.publish_btn = element(by.css('.btn-primary'));
 
@@ -255,10 +255,11 @@ describe('Brand', function () {
             state.publish_btn.click();
 
             //click on fat ass rabbit - "No i'm that that fat" Hello Rabbit
-            // var doNotShowBtn = element(by.css('.message-modal .checkbox input'));
-            // var continueBtn = element(by.css('.message-modal .btn-secondary-highlight'));
-            // doNotShowBtn.click();
-            // continueBtn.click();
+            var doNotShowBtn = element(by.css('.message-modal .checkbox input'));
+            var continueBtn = element(by.css('.message-modal .btn-secondary-highlight'));
+            doNotShowBtn.click();
+            continueBtn.click();
+            // browser.pause()
 
             expect($('.alert.alert-success').isPresent()).toBe(true);
         });
@@ -298,8 +299,8 @@ describe('Brand', function () {
             };
 
             state.uploader.sendKeys(absolutePath);
+            browser.sleep(2000);
             element(by.css('.done-crop-btn')).click();
-            browser.sleep(1000);
 
             state.about.clear();
             state.name.clear();
@@ -408,8 +409,8 @@ describe('Influencer', function () {
             };
 
             state.uploader.sendKeys(absolutePath);
+            browser.sleep(2000);
             element(by.css('.done-crop-btn')).click();
-            browser.sleep(1000);
 
             state.about.clear();
             state.name.clear();

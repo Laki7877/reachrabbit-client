@@ -1,0 +1,164 @@
+<form novalidate name="form" ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}">
+<div class="viewport view-influencer-profile">
+
+  <div class="zone-alert">
+    <div nc-alert="alert"></div>
+  </div>
+
+  <zone-header>
+    <h1>แก้ไข Profile ของฉัน</h1>
+  </zone-header>
+
+  <div class="zone-body" ng-cloak>
+    <div class="container">
+
+
+      <div class="card">
+        <div class="card-body">
+
+          <div class="card-row">
+            <div class="card-title col-xs-12">
+              <div class="card-title-content">
+                เชื่อมต่อ Social Media
+              </div>
+            </div>
+          </div>
+
+          <social-linker on-done="linkDone"
+          from-state="influencer-profile"
+          ng-model="formData.influencer.influencerMedias"></social-linker>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-title">
+              <div class="card-title-content">
+                เกี่ยวกับผู้สมัคร
+              </div>
+            </div>
+          </div>
+          <div class="card-row" form-error="form.profilePicture" is-validate="isValidate($model, $error)">
+            <div class="card-body-content-label with-input">
+                รูปโปรไฟล์
+                </div>
+                <div class="card-body-content">
+                  <uploader-thumb name="profilePicture"
+                  ng-model="formData.profilePicture"
+                  accept=".jpg,.png"
+                  ngf-pattern="'.jpg,.png'"
+                  ngf-max-size="10MB"
+                  required>
+                  <i class="fa fa-camera"></i><br>เลือกรูป
+                  </uploader-thumb>
+                  <div input-error></div>
+            </div>
+          </div>
+
+          <multi-category-selector
+            max-columns="4"
+            max-selected="3"
+            ng-model="formData.influencer.categories">
+          </multi-category-selector>
+
+          <div class="card-row" form-error="form.name">
+            <div class="card-body-content-label with-input">
+              ชื่อบน Social Media
+            </div>
+            <div class="card-body-content">
+              <input type="text" name="name" ng-model="formData.name" class="form-control" maxlength="100" required>
+              <div input-error></div>
+            </div>
+          </div>
+
+          <div class="card-row" form-error="form.email">
+            <div class="card-body-content-label with-input">
+              อีเมล
+            </div>
+            <div class="card-body-content">
+              <input type="email" name="email" ng-model="formData.email" class="form-control" required maxlength="100">
+              <div input-error></div>
+            </div>
+          </div>
+
+          <div class="card-row" form-error="form.phoneNumber">
+            <div class="card-body-content-label with-input">
+              เบอร์ติดต่อ
+            </div>
+            <div class="card-body-content">
+              <input type="text" name="phoneNumber" ng-model="formData.phoneNumber" class="form-control" maxlength="20" ng-pattern-restrict="^[0-9]*$" required>
+              <div input-error></div>
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              เกี่ยวกับฉัน
+            </div>
+            <div class="card-body-content">
+              <textarea rows="3" class="form-control" ng-model="formData.influencer.about" placeholder="อธิบายเกี่ยวกับคุณ" maxlength="2500"></textarea>
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              Web / Blog ของคุณ
+            </div>
+            <div class="card-body-content">
+              <input type="text" ng-model="formData.influencer.web" class="form-control" maxlength="200">
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              เพศ
+            </div>
+            <div class="card-body-content">
+              <div class="input-dropdown">
+                <select class="form-control" name="gender" ng-model="formData.influencer.gender" ng-options="x.value as x.name for x in genderOptions" ng-default="-- เลือกเพศ --"></select>
+                <i class="fa fa-caret-down"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="card-row">
+            <div class="card-body-content-label with-input">
+              วันเกิด
+            </div>
+            <div class="card-body-content">
+              <p class="input-group">
+                  <input placeholder="-- เลือกวันที่ --" type="text" class="form-control" ng-focus="popup1_open = true" uib-datepicker-popup="{{$root.format}}" readonly
+                    ng-model="formData.influencer.birthday" is-open="popup1_open" required datepicker-options="$root.dateOptions"
+                    show-button-bar="false" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="popup1_open = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+                </p>
+
+            </div>
+          </div> -->
+
+          <!-- <div class="card-row">
+            <div class="card-body-content-label with-input">
+            </div>
+            <div class="card-body-content">
+              <button class="btn-width-lg btn-primary" ng-click="saveProfile(formData)" >บันทึกข้อมูล</button>
+              <button class="btn-width-lg btn-secondary" ui-sref="influencer-profile-published" >ดู Profile ของฉัน</button>
+            </div>
+          </div> -->
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="floating-bar">
+  <button class="btn-width-lg btn-secondary-highlight btn-with-margin" ui-sref="influencer-profile-published" >ดู Profile ของฉัน</button>
+  <button class="btn-width-lg btn-primary btn-with-margin" ng-click="saveProfile(formData)" >บันทึกข้อมูล</button>
+</div>
+
+</form>

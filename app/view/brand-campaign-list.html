@@ -1,0 +1,43 @@
+<div class="viewport view-brand-campaign-list">
+
+  <zone-header historyback="false">
+    <h1>Campaign ของฉัน</h1>
+    <div class="action-btn-for-header">
+        <!-- <div class="form-group">
+          <div class="input-dropdown">
+              <select class="form-control filter" ng-model="filter" ng-options="x.status as x.name for x in filters"></select>
+            <i class="fa fa-caret-down"></i>
+          </div>
+        </div> -->
+        <button class="btn-primary btn-width-lg" ui-sref="brand-campaign-detail-draft">
+            <i class="fa fa-plus"></i> สร้าง Campaign ใหม่
+        </button>
+    </div>
+  </zone-header>
+
+  <div class="zone-body">
+    <div class="container">
+      <cute-bunny></cute-bunny>
+
+      <div cute-bunny-hide class="empty-state" ng-if="myCampaign.totalElements == 0">
+        สร้าง Campaign ใหม่ เพื่อเปิดรับข้อเสนอจาก Influencer
+      </div>
+
+      <div cute-bunny-hide ng-repeat="x in myCampaign.content">
+        <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-draft({campaignId: x.campaignId})"></card-campaign-list-item>
+      </div>
+      <nav class="text-center" aria-label="Page navigation">
+        <pagination ng-model="myCampaign" callback="load"></pagination>
+      </nav>
+
+      <div class="example-campaign" cute-bunny-hide>
+        <div class="page-header">
+          <h1>ตัวอย่าง Campaign</h1>
+        </div>
+        <div ng-repeat="x in exampleCampaign">
+          <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-example({ exampleId: $index })"></card-campaign-list-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div ng-if="$root.SHOW_DEBUGGA">
+    <hr/>
+    <div class="container">
+        <button class="btn btn-trace btn-xs btn-minimal" ng-click="$root._showNetTrace = !$root._showNetTrace"><strong><i class="fa fa-code"></i> {{ !$root._showNetTrace ? 'Show' : 'Hide' }} Network Trace</strong></button>
+        <div class="card-body" ng-if="$root._showNetTrace">
+            <json-formatter json="$root.debuggah" open="1"></json-formatter>
+        </div>
+    </div>
+    <br/>
+    <div class="container">
+        <small>Made with <i class="fa fa-heart"></i> by <strong>D Team</strong>, your Partner of Tomorrow.</small>
+        <p>
+            <small>&copy; ReachRabbit Internet Corporation.</small>
+        </p>
+    </div>
+    <div>
+        <div class="container">
+            <strong>BETA</strong> <small> Version: <span ng-include="'components/templates/app-checksum.html'"></span></small>
+        </div>
+    </div>
+</div>

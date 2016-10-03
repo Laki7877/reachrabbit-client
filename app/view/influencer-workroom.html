@@ -1,0 +1,86 @@
+<form name="form" novalidate>
+    <div class="viewport view-influencer-workroom workroom">
+        <zone-header historyback="true">
+        </zone-header>
+        <div class="zone-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-9">
+                        <div class="chatbox-card">
+                            <div class="chatbox-header">
+                                <a class="link-view-profile" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId, proposalId: proposal.proposalId })">
+                                  <h3>{{ proposal.campaign.brand.brandName | truncate: 30 }}</h3>
+                                  <i class="fa fa-info-circle"></i>ดูโปรไฟล์
+                                </a>
+                                <div class="chatbox-status">
+                                  <span class="color-grey">สถานะ: </span>
+                                  <span class="color-green" ng-if="proposal.status == 'Selection'">รอการคัดเลือก</span>
+                                  <!-- tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ รอการคัดเลือกจาก Brand" -->
+                                  <span class="color-green" ng-if="proposal.status == 'Working'">รอคุณส่งงาน</span>
+                                  <!-- tooltip-placement="bottom" uib-tooltip="ทำงานตามที่ได้ตกลงกัน และส่งงานให้ Brand อนุมัติ"  -->
+                                  <span class="color-green" ng-if="proposal.status == 'Complete'">ได้รับเงิน</span>
+                                  <!-- tooltip-placement="bottom" uib-tooltip="งานเสร็จแล้ว คุณสามารถถอนเงินจากระบบได้เมื่อต้องการ" -->
+                                </div>
+                            </div>
+                            <div class="message-area" scroll-glue="scroll">
+                                <cute-bunny></cute-bunny>
+                                <div cute-bunny-hide>
+                                    <card-influencer-profile ng-model="proposal.influencer" show-social-data="false">
+                                        <a ui-sref="influencer-profile" class="link-to-profile">แก้ไขข้อมูล</a>
+                                    </card-influencer-profile>
+
+                                    <div class="message-past" ng-if="hasPastMessage()">
+                                        <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
+                                    </div>
+                                    <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
+                                    <div nc-alert="alert"></div>
+                                </div>
+                            </div>
+                            <div class="message-input">
+                                <textarea chatarea="sendMessage(formData.messageStr, formData.resources)" class="form-control" rows="4" ng-model="formData.messageStr"
+                                    placeholder="พิมพ์ข้อความ..." autofocus maxlength="1000"></textarea>
+                                <!-- <div class="pull-left">
+                                    <div>{{formData.messageStr.length || '0'}}/1000</div>
+                                </div> -->
+                                <div class="pull-right" form-error="form.resource">
+                                    <div input-error class="pull-left"></div>
+
+                                    <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png" ngf-max-files="1" ngf-pattern="'.jpg,.png'" ngf-max-size="10MB" is-loading="formData.isLoading"></uploader-multi>
+
+                                    <button class="btn-secondary-highlight btn-width-md btn-minimal" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
+                                        <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
+                                    </button>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <card-proposal-detail ng-model="proposal" cute-bunny-hide>
+                            <button ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'WaitForPayout'" class="btn-primary btn-width-max" ui-sref="influencer-wallet">ถอนเงิน</button>
+                            <div ng-if="proposal.status == 'Complete' && proposal.wallet.status !== 'WaitForPayout'" class="text-center" >
+                              <small ng-if="proposal.wallet.status === 'Paid'" class="color-grey">คุณได้รับเงินแล้ว</small>
+                              <button class="btn-secondary btn-width-max" ui-sref="influencer-payout-detail({walletId: proposal.wallet.walletId})">
+                                  <span ng-if="proposal.wallet.status === 'Paid'"> ดูหลักฐานการโอน </span>
+                                  <span ng-if="proposal.wallet.status === 'Pending'"> ดูรายการถอนเงิน </span>
+                              </button>
+                            </div>
+                            <button ng-if="proposal.status == 'Selection' && !hasCart(proposal)" class="btn-secondary btn-width-max" ng-click="editProposal()">แก้ไขข้อเสนอ</button>
+                        </card-proposal-detail>
+
+                        <div class="card-campaign-thumbnail" ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })" cute-bunny-hide>
+                            <div class="card-thumbnail-image">
+                                <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
+                            </div>
+                            <div class="card-body">
+                                {{ proposal.campaign.title | truncate: 60 }}
+                                <button class="btn-secondary btn-width-max">ดูรายละเอียด</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,30 @@
+<div class="viewport view-influencer-campaign-list">
+
+  <zone-header historyback="false">
+    <h1>Campaign</h1>
+    <div class="action-btn-for-header">
+        <div class="form-group">
+          <div class="input-dropdown">
+              <select class="form-control filter" ng-model="filter" ng-options="x.mediaId as x.mediaName for x in filters"></select>
+            <i class="fa fa-caret-down"></i>
+          </div>
+        </div>
+    </div>
+  </zone-header>
+
+  <div class="zone-body">
+    <div class="container">
+
+      <cute-bunny></cute-bunny>
+
+      <div class="thumbnails" cute-bunny-hide>
+        <card-campaign-thumbnail ng-repeat="cam in campaigns.content"
+        on-click="handleUserClickThumbnail"
+        campaign="cam"></card-campaign-thumbnail>
+      </div>
+      <nav class="text-center" aria-label="Page navigation">
+        <pagination ng-model="campaigns" callback="load"></pagination>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div ng-cloak class="viewport view-brand-campaign-detail-published">
+  <div class="zone-alert">
+    <div nc-alert="alert"></div>
+  </div>
+  <zone-header historyback="true" historyback-override="brand-campaign-list">
+    <div class="action-btn-for-header with-back-btn">
+        <button class="btn-primary btn-width-md" ui-sref="brand-campaign-detail-edit({ campaignId: campaignNee.campaignId })">
+            <i class="fa fa-pencil"></i> แก้ไขข้อมูล
+        </button>
+    </div>
+    <h1 ng-bind="campaignNee.title | truncate: 60"></h1>
+  </zone-header>
+
+  <div class="zone-body">
+    <div class="container">
+      
+      <cute-bunny></cute-bunny>
+
+      <div cute-bunny-hide>
+        <card-campaign-header campaign="campaignNee" remove="remove()" removeable="true">
+        </card-campaign-header>
+
+        <div class="card-campaign-description">
+          <div class="card-body">
+            <div class="card-row">
+              <div class="card-body-content-label">
+                รายละเอียด
+              </div>
+              <div class="card-body-content pre" ng-if="campaignNee.description.length > 0">{{ campaignNee.description }}</div>
+            </div>
+            <div class="card-row" ng-if="campaignNee.keyword.length > 0">
+              <div class="card-body-content-label">
+                Keyword สำคัญ
+              </div>
+              <div class="card-body-content">
+                {{ campaignNee.keyword }}
+              </div>
+            </div>
+            <div class="card-row" ng-if="campaignNee.website.length > 0">
+              <div class="card-body-content-label">
+                เว็บไซต์ของสินค้า
+              </div>
+              <div class="card-body-content">
+                <a ng-href="{{campaignNee.website}}" target="_blank">{{ campaignNee.website }}</a>
+              </div>
+            </div>
+            <div class="card-row" ng-if="campaignNee.campaignResources.length > 0">
+              <div class="card-body-content-label">
+                รูปประกอบ
+              </div>
+              <div class="card-body-content">
+                <img ng-repeat="campaignImage in campaignNee.campaignResources" ng-src="{{ campaignImage.url }}" class="description-image"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <card-brand-profile ng-model="campaignNee.brand">
+          <a ui-sref="brand-profile" class="link-to-profile">แก้ไขโปรไฟล์</a>
+        </card-brand-profile>
+
+        <div class="card">
+          <div class="card-body text-center">
+            <button class="btn-secondary btn-width-lg btn-with-margin" ui-sref="brand-campaign-list">
+              ดู Campaign อื่นๆ
+            </button>
+            <button class="btn-primary btn-width-lg btn-with-margin" ui-sref="brand-campaign-detail-edit({ campaignId: campaignNee.campaignId })">
+              <i class="fa fa-pencil"></i> แก้ไขข้อมูล
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

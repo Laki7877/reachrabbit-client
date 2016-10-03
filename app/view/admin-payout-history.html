@@ -1,0 +1,47 @@
+<div class="viewport view-admin-payout-history">
+  <zone-header historyback="false">
+    <h1>Payout Requests</h1>
+  </zone-header>
+  <div class="zone-body">
+    <div class="container">
+      <div class="card">
+        <cute-bunny></cute-bunny>
+        <div class="card-body" cute-bunny-hide>
+          <table ng-if="transactions.numberOfElements > 0" class="table" sorter ng-model="transactions" callback="load">
+            <thead>
+              <tr>
+                <th class="col-date" sort="updatedAt">แก้ไขล่าสุด</th>
+                <th class="col-campaign-name" sort="user.userId">Influencer</th>
+                <th class="col-status" sort="status">สถานะ</th>
+                <th sort="transactionId">รหัสการถอนเงิน</th>
+                <th class="col-rabbit-score" sort="proposals">จำนวนรายการ</th>
+                <th class="col-time" sort="amount">ยอดถอน(บาท)</th>
+                <th class="col-button"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="transaction in transactions.content">
+                <td class="col-date">{{ transaction.updatedAt | amDateFormat : 'll' }}</td>
+                <td class="col-campaign-name">{{ transaction.influencerTransactionDocument[0].wallet.proposals[0].influencer.user.name }}</td>
+                <td class="col-status">
+                  <span class="color-yellow" ng-if="transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอรับเงิน</span>
+                  <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ได้รับเงินแล้ว</span>
+                </td>
+                <td>{{ transaction.transactionNumber }}</td>
+                <td class="col-rabbit-score">{{ transaction.influencerTransactionDocument[0].wallet.proposals.length || '0' }}</td>
+                <td class="col-time">{{ transaction.amount | number: 0 }}</td>
+                <td class="col-button">
+                  <button class="btn-secondary btn-minimal" ui-sref="admin-payout-detail({walletId: transaction.influencerTransactionDocument[0].wallet.walletId })">ดูรายละเอียด</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table-static ng-if="transactions.totalElements == 0">ไม่มี Transaction</table-static>
+        </div>
+      </div>
+      <nav class="text-center" aria-label="Page navigation">
+        <pagination ng-model="transactions" callback="load"></pagination>
+      </nav>
+    </div>
+  </div>
+</div>

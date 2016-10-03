@@ -1,0 +1,15 @@
+<div class="viewport view-influencer-brand-profile">
+  <zone-header historyback="true">
+    <div class="action-btn-for-header with-back-btn">
+        <button ng-if="proposalId" class="btn-primary btn-width-md" ui-sref="influencer-workroom({ proposalId: proposalId })">
+            <i class="fa fa-paper-plane"></i> คุยงาน
+        </button>
+    </div>
+    <h1>Brand Profile</h1>
+  </zone-header>
+  <div class="zone-body">
+    <div class="container">
+      <card-brand-profile ng-model="brand.brand"></card-brand-profile>
+    </div>
+  </div>
+</div>

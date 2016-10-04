@@ -6,9 +6,9 @@
         <input class="form-control filter" ng-model="filter" placeholder="Filter ตาม ชื่อ Campaign"/>
       </div>
     </div>
-    <h1 ng-if="statusFilter == 'Selection'">รอการคัดเลือก ({{statusCounts.selection.proposalCount || '0'}})</h1>
-    <h1 ng-if="statusFilter == 'Working'">รอคุณส่งงาน ({{statusCounts.working.proposalCount || '0'}})</h1>
-    <h1 ng-if="statusFilter == 'Complete'">ได้รับเงิน ({{statusCounts.complete.proposalCount || '0'}})</h1>
+    <h1 ng-if="statusFilter == 'Selection'">รอการคัดเลือก <span ng-if="statusCounts.selection.proposalCount >= 0">({{statusCounts.selection.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Working'">รอคุณส่งงาน <span ng-if="statusCounts.working.proposalCount >= 0">({{statusCounts.working.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Complete'">ได้รับเงิน <span ng-if="statusCounts.complete.proposalCount >= 0">({{statusCounts.complete.proposalCount || '0'}})</span></h1>
   </zone-header>
 
   <div class="zone-body">

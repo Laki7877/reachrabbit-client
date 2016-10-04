@@ -261,7 +261,9 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             }).then(function (res) {
                 $scope.totalElements = res.data.totalElements;
                 $scope.msglist = res.data.content.reverse();
-
+                _.forEach($scope.msglist, function(e) {
+                    $scope.msgHash[e.referenceId] = e;
+                });
 
                 //hackish scroll down on load
                 $timeout(function () {
@@ -293,7 +295,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             };
 
             var stop = false;
-            var timestamp = new Date();
+            var timestamp = moment().add(1, 's').toDate();
             var oldTimestamp = new Date();
             var interval = $interval(function () {
                 if ($scope.pollActive || stop) {

@@ -10580,6 +10580,36 @@ div:focus {
 .message-modal p {
   margin-bottom: 20px;
 }
+.modal-instagram {
+  background: #f9f9fb;
+  text-align: center;
+}
+.modal-instagram .modal-header {
+  border-bottom: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+.modal-instagram .modal-body {
+  padding: 10px 40px 40px 40px;
+}
+.modal-instagram .modal-body .logos img {
+  margin: 10px;
+}
+.modal-instagram .modal-body h3 {
+  color: #16bbac;
+  margin-bottom: 20px;
+}
+.modal-instagram .modal-body .note {
+  padding: 10px;
+  background: #ffebce;
+  margin-bottom: 20px;
+}
+.modal-instagram .modal-body .form-group {
+  text-align: left;
+}
+.modal-instagram .modal-body .btn-primary {
+  margin-top: 20px;
+}
 /*---Other debugging stuff---*/
 .api_override_box {
   position: absolute;

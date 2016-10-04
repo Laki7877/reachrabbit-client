@@ -64,6 +64,11 @@ angular.module('reachRabbitApp.admin.routes', ['ui.router'])
                 url: '/admin-ig-reloader',
                 templateUrl: 'view/admin-ig-reloader.html',
                 controller: 'EmptyController'
+            })
+            .state('admin-inbox', {
+                url: '/admin-inbox/:status?',
+                templateUrl: 'view/admin-inbox.html',
+                controller: 'AdminInboxController'
             });
     }]);
 

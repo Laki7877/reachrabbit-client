@@ -868,33 +868,19 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
         if ($stateParams.status) {
             $scope.statusFilter = $stateParams.status;
         }
-
-        $scope.load = function (params) {
-            $scope.params = params;
+        $scope.load = function (params, ext) {
+            $scope.httpPending = true;
+            $scope.params = _.extend(params, ext);
             $scope.params.status = $scope.statusFilter;
 
-            ProposalService.getAll(params)
+            return ProposalService.getAll(params)
                 .then(function (response) {
                     $scope.proposals = response.data;
-
                     _.forEach($scope.proposals.content, function (proposal) {
                         ProposalService.countUnreadMessages(proposal.proposalId)
                             .then(function (res) {
                                 proposal.unread = res.data;
                             });
-                    });
-                });
-            ProposalService.getActive()
-                .then(function (response) {
-                    $scope.filters = _.map(response.data, function (e) {
-                        return {
-                            name: 'แสดงเฉพาะ Campaign ' + e.campaign.title,
-                            campaignId: e.campaign.campaignId
-                        };
-                    });
-                    $scope.filters.unshift({
-                        name: 'แสดง Campaign ทั้งหมด',
-                        campaignId: undefined
                     });
                 });
         };
@@ -924,13 +910,6 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             }
             return $filter('amCalendar')(proposal.messageUpdatedAt);
         };
-        $scope.$watch('filter', function () {
-            _.extend($scope.params, {
-                campaignId: $scope.filter
-            });
-            $scope.load($scope.params);
-        });
-
         $scope.load({
             sort: ['messageUpdatedAt,desc']
         });
@@ -1261,12 +1240,12 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
 
         //TODO: Make this generic
 
-        $scope.load = function (params) {
+        $scope.load = function (params, ext) {
             $scope.httpPending = true;
-            $scope.params = params;
+            $scope.params = _.extend(params, ext);
             $scope.params.status = $scope.statusFilter;
 
-            ProposalService.getAll(params)
+            return ProposalService.getAll(params)
                 .then(function (response) {
                     $scope.proposals = response.data;
                     _.forEach($scope.proposals.content, function (proposal) {
@@ -1274,19 +1253,6 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                             .then(function (res) {
                                 proposal.unread = res.data;
                             });
-                    });
-                });
-            return CampaignService.getActiveCampaigns()
-                .then(function (response) {
-                    $scope.filters = _.map(response.data, function (e) {
-                        return {
-                            name: 'แสดงเฉพาะ Campaign ' + e.title,
-                            campaignId: e.campaignId
-                        };
-                    });
-                    $scope.filters.unshift({
-                        name: 'แสดง Campaign ทั้งหมด',
-                        campaignId: undefined
                     });
                 });
         };
@@ -1329,15 +1295,6 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
             })
             .then(function () {
                 $scope.httpPending = false;
-                $scope.$watch('filter', function () {
-                    _.extend($scope.params, {
-                        campaignId: $scope.filter
-                    });
-                    $scope.load($scope.params)
-                        .then(function () {
-                            $scope.httpPending = false;
-                        });
-                });
             });
 
     }])
@@ -1801,6 +1758,77 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
         };
         //Init
         $scope.load();
+    }])
+    .controller('AdminInboxController', ['$scope', '$filter', '$rootScope', 'ProposalService', 'CampaignService', 'moment', '$stateParams', function ($scope, $filter, $rootScope, ProposalService, CampaignService, moment, $stateParams) {
+        $scope.statusCounts = {};
+        $scope.statusFilter = 'Selection';
+
+        if ($stateParams.status) {
+            $scope.statusFilter = $stateParams.status;
+        }
+
+        $scope.calculateReach = function (proposal) {
+            var mediaList = _.intersectionBy((proposal.influencer.influencerMedias || []).map(function (mi) {
+                mi.mediaId = mi.media.mediaId;
+                return mi;
+            }), proposal.media, 'mediaId');
+            return $rootScope.sumReduce(mediaList, 'followerCount');
+        };
+
+        //TODO: Make this generic
+
+        $scope.load = function (params) {
+            $scope.httpPending = true;
+            $scope.params = params;
+            $scope.params.status = $scope.statusFilter;
+            $scope.params.search = $scope.filter;
+
+            return ProposalService.getAll(params)
+                .then(function (response) {
+                    $scope.proposals = response.data;
+                });
+        };
+        $scope.loadProposalCounts = function () {
+            $scope.httpPending = true;
+            //Selection status
+            return ProposalService.count({
+                status: 'Selection'
+            })
+                .then(function (res) {
+                    $scope.statusCounts.selection = res.data;
+                    //Working status
+                    return ProposalService.count({
+                        status: 'Working'
+                    });
+                })
+                .then(function (res) {
+                    $scope.statusCounts.working = res.data;
+                    //Complete status
+                    return ProposalService.count({
+                        status: 'Complete'
+                    });
+                })
+                .then(function (res) {
+                    $scope.statusCounts.complete = res.data;
+                });
+        };
+        $scope.lastMessageUpdated = function (proposal) {
+            if (moment(proposal.messageUpdatedAt).isBefore(moment().endOf('day').subtract(1, 'days'))) {
+                return $filter('amDateFormat')(proposal.messageUpdatedAt, 'll');
+            }
+            return $filter('amCalendar')(proposal.messageUpdatedAt);
+        };
+
+        $scope.load({
+            sort: ['messageUpdatedAt,desc']
+        })
+            .then(function () {
+                return $scope.loadProposalCounts();
+            })
+            .then(function () {
+                $scope.httpPending = false;
+            });
+
     }])
     .controller('AdminPayoutHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
         //Load campaign data

@@ -254,6 +254,16 @@ angular.module('reachRabbitApp.portal.routes', ['ui.router'])
                 controller: 'InfluencerSignUpController',
                 params: { authData: null }
             })
+            .state('influencer-signup-email', {
+                url: '/influencer-signup-email',
+                templateUrl: 'view/influencer-signup-email.html',
+                controller: 'EmptyController'
+            })
+            .state('influencer-login', {
+                url: '/influencer-login',
+                templateUrl: 'view/influencer-login.html',
+                controller: 'InfluencerJesusController'
+            })
             .state('influencer-god-login', {
                 url: '/influencer-god-login',
                 templateUrl: 'view/influencer-god-login.html',

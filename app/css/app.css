@@ -8328,6 +8328,16 @@ input:-moz-placeholder {
   margin-top: 15px;
   margin-bottom: 5px;
 }
+.card-portal .separator hr {
+  border-color: #d8dfe7;
+  margin-bottom: 10px;
+}
+.card-portal .separator .separator-text {
+  background-color: #f9f9fb;
+  padding: 0px 15px;
+  margin: -20px 0 0 112px;
+  float: left;
+}
 .card-campaign-list-item {
   margin-bottom: 20px;
 }
@@ -10698,18 +10708,24 @@ ul.payment-methods {
   text-align: center;
   margin-top: 5px;
 }
+.layout-portal .info-text a {
+  color: #8692a8;
+  text-decoration: underline;
+}
 .layout-portal .view-brand-login {
   margin-top: 140px;
 }
 .layout-portal .view-brand-signup {
   margin-top: 60px;
 }
-.layout-portal .view-brand-signup .info-text a {
-  color: #8692a8;
-  text-decoration: underline;
-}
 .layout-portal .view-influencer-portal {
   margin-top: 140px;
+}
+.layout-portal .view-influencer-portal .info-text {
+  margin-top: 10px;
+}
+.layout-portal .view-influencer-login {
+  margin-top: 90px;
 }
 .layout-portal .view-influencer-signup-select-page {
   margin-top: 90px;
@@ -10721,12 +10737,9 @@ ul.payment-methods {
 .layout-portal .view-influencer-signup-select-page .card-body {
   padding-bottom: 0px;
 }
-.layout-portal .view-influencer-signup-confirmation {
+.layout-portal .view-influencer-signup-confirmation,
+.layout-portal .view-influencer-signup-email {
   margin-top: 90px;
-}
-.layout-portal .view-influencer-signup-confirmation .info-text a {
-  color: #8692a8;
-  text-decoration: underline;
 }
 .layout-portal .view-admin-login {
   margin-top: 140px;

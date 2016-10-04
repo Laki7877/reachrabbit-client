@@ -13,6 +13,14 @@
 
       <card-influencer-profile ng-model="formData.influencer"></card-influencer-profile>
       <cute-bunny></cute-bunny>
+      <div class="card">
+        <div class="card-body">
+          <div class="empty-state">
+            กรุณา <a ui-sref="influencer-profile">เชื่อมต่อ Social Media</a> เพื่อให้ Brand เห็นผลงานของคุณ
+          </div>
+        </div>
+      </div>
+      </empty-state>
       <uib-tabset cute-bunny-hide active="activePill" type="tabs">
         <uib-tab ng-if="hasMedia('facebook')" index="0" heading="Facebook" class="facebook-tab">
           <uib-tab-heading>

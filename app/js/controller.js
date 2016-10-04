@@ -1486,6 +1486,47 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     $scope.alert.danger(err.data.message);
                 });
         };
+
+
+            $scope.startAuthFlow = function (mediaId) {
+                $scope.minFollowerError = false;
+                $window.localStorage.clear();
+                $auth.authenticate(mediaId)
+                    .then(function (response) {
+                        // console.log('Response', response.data);
+                        if (response.data.token) {
+                            $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+
+                            $window.localStorage.token = response.data.token;
+                            AccountService.getProfile()
+                                .then(function (profileResp) {
+                                    UserProfile.set(profileResp.data);
+                                    //Tell raven about the user
+                                    Raven.setUserContext(UserProfile.get());
+                                    //Redirect change app
+                                    var bounce = '/influencer.html#/influencer-campaign-list';
+                                    if ($location.search().bounce_route) {
+                                        bounce = '/influencer.html#' + $location.search().bounce_route;
+                                    }
+                                    $window.location.href = bounce;
+                                });
+                        } else {
+                            if (mediaId == 'facebook') {
+                                $state.go('influencer-signup-select-page', { authData: response.data });
+                            } else {
+                                if (response.data.pages[0].count < $scope.minFollower) {
+                                    $scope.minFollowerError = true;
+                                    return;
+                                }
+
+                                $state.go('influencer-signup-confirmation', { authData: response.data });
+                            }
+                        }
+
+
+
+                    });
+            };
     }])
     .controller('InfluencerJesusController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
         //For influencer gods
@@ -1559,7 +1600,6 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
 
                     });
             };
-
         }
     ])
     .controller('InfluencerFacebookPageSelectionController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'BusinessConfig', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, BusinessConfig) {
@@ -1594,6 +1634,10 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                 authData: authobject
             });
         };
+    }])
+    .controller('InfluencerSignUpNoMediaController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig', 'validator', 'util',
+        function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
+
     }])
     .controller('InfluencerSignUpController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig', 'validator', 'util',
         function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
@@ -1844,4 +1888,206 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
         $scope.load({
             sort: 'updatedAt,desc'
         });
-    }]);
+    }])
+    .controller('AdminWorkroomController', ['$scope', 'UserProfile', '$uibModal', '$interval', '$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util', 'LongPollingService', '$timeout', 'InfluencerAccountService',
+        function ($scope, UserProfile, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util, LongPollingService, $timeout, InfluencerAccountService) {
+            $scope.msglist = [];
+            $scope.msgHash = {};
+            $scope.msgLimit = 30;
+            $scope.totalElements = 0;
+
+            $scope.alert = new NcAlert();
+
+            $scope.hasInWallet = function (proposal) {
+                if (proposal.wallet) return false;
+                return proposal.wallet !== 'Paid';
+            };
+
+            $scope.hasCart = function (proposal) {
+                if (!proposal.cartId) return false;
+                return true;
+            };
+
+            //Approve Proposal
+            $scope.approveProposal = function (proposal) {
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'components/templates/brand-approve-proposal-modal.html',
+                    controller: 'YesNoConfirmationModalController',
+                    size: 'sm',
+                    resolve: {
+                        campaign: function () {
+                            return $scope.proposal.campaign;
+                        },
+                        proposal: function () {
+                            return $scope.proposal;
+                        }
+                    }
+                });
+
+                //on user close
+                modalInstance.result.then(function (yesno) {
+                    if (yesno == 'yes') {
+                        var proposalId = proposal.proposalId;
+                        ProposalService.updateStatus(proposalId, "Complete")
+                            .then(function (response) {
+                                if (response.data.status == 'Complete') {
+                                    $window.location.reload();
+                                } else {
+                                    throw new Error("Status integrity check failed");
+                                }
+                            })
+                            .catch(function (err) {
+                                $scope.alert.danger(err.data.message);
+                            });
+                    }
+                });
+            };
+
+            //Select Proposal
+            $scope.selectProposal = function () {
+                ProposalService.addToCart($scope.proposal)
+                    .then(function (od) {
+                        $state.go('brand-cart');
+                    });
+            };
+
+            //Edit Proposal
+            $scope.editProposal = function () {
+                //popup a modal
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'components/templates/influencer-proposal-modal.html',
+                    controller: 'ProposalModalController',
+                    size: 'md',
+                    resolve: {
+                        campaign: function () {
+                            return $scope.proposal.campaign;
+                        },
+                        proposal: function () {
+                            return $scope.proposal;
+                        }
+                    }
+                });
+
+                //on user close
+                modalInstance.result.then(function (proposal) {
+                    if (!proposal || !proposal.proposalId) {
+                        return;
+                    }
+                    // $location.reload();
+                    window.location.reload();
+                    // $state.go('influencer-workroom', { proposalId: proposal.proposalId });
+                });
+            };
+
+            function scrollBottom() {
+                $(".message-area").delay(10).animate({ scrollTop: 500 }, '1000', function () { });
+            }
+
+            //get messages
+            $scope.proposalId = $stateParams.proposalId;
+            ProposalService.getMessages($scope.proposalId, {
+                sort: ['createdAt,desc'],
+                size: $scope.msgLimit
+            }).then(function (res) {
+                $scope.totalElements = res.data.totalElements;
+                $scope.msglist = res.data.content.reverse();
+                _.forEach($scope.msglist, function(e) {
+                    $scope.msgHash[e.referenceId] = e;
+                });
+
+                //hackish scroll down on load
+                $timeout(function () {
+                    $scope.scroll = true;
+                }, 1000);
+                // $scope.poll();
+                //scrollBottom();
+            });
+
+            $scope.hasPastMessage = function () {
+                return $scope.totalElements > $scope.msglist.length;
+            };
+
+            $scope.loadPastMessage = function () {
+                ProposalService.getMessages($scope.proposalId, {
+                    sort: ['createdAt,desc'],
+                    size: $scope.msgLimit,
+                    timestamp: $scope.msglist[0].createdAt
+                })
+                    .then(function (res) {
+                        var btn = $('.message-past button');
+                        var pastScroll = btn[0].scrollHeight - btn[0].scrollTop;
+                        for (var i = 0; i < res.data.content.length; ++i) {
+                            $scope.msglist.unshift(res.data.content[i]);
+                        }
+                        var area = $('.message-area');
+                        area.scrollTop(area[0].scrollHeight - pastScroll);
+                    });
+            };
+
+            var stop = false;
+            var timestamp = moment().add(1, 's').toDate();
+            var oldTimestamp = new Date();
+
+            $scope.formData = {
+                resources: []
+            };
+            $scope.alert = new NcAlert();
+            $scope.proposal = null;
+
+            ProposalService.getOne($scope.proposalId)
+                .then(function (proposalResponse) {
+                    $scope.proposal = proposalResponse.data;
+                    $rootScope.proposal = proposalResponse.data;
+                    //load transactionid if this is influencer
+                    if (UserProfile.get().influencer &&
+                        $scope.proposal.status === 'Complete' &&
+                        $scope.proposal.wallet &&
+                        $scope.proposal.wallet.status === 'Paid') {
+                        InfluencerAccountService.getWalletTransaction($scope.proposal.wallet.walletId)
+                            .then(function (res) {
+                                $scope.transactionId = res.data.transactionId;
+                            });
+                    }
+                    if (UserProfile.get().influencer && !$scope.proposal.rabbitFlag && $scope.proposal.status == 'Selection') {
+                        var modalInstance = $uibModal.open({
+                            animation: true,
+                            templateUrl: 'components/templates/influencer-proposal-message.modal.html',
+                            controller: 'ProposalMessageModalController',
+                            size: 'sm',
+                            windowClass: 'message-modal',
+                            backdrop: 'static',
+                            resolve: {
+                                email: function () {
+                                    return UserProfile.get().email;
+                                },
+                                proposalId: function () {
+                                    return $scope.proposal.proposalId;
+                                }
+                            }
+                        });
+                    }
+                });
+
+
+            /* Set Chat Area Height */
+            setChatArea();
+            $(window).resize(function () {
+                $scope.scroll = true;
+                setChatArea();
+            });
+
+            function setChatArea() {
+                var magicNumber = 447;
+                var chatArea = $(".message-area");
+                var chatAreaHeight = $(window).height() - magicNumber;
+
+                if (chatAreaHeight < 250) {
+                    chatAreaHeight = 250;
+                }
+                chatArea.height(chatAreaHeight);
+                chatArea.scrollTop(9999);
+            }
+        }
+    ]);

@@ -1,0 +1,60 @@
+<div class="viewport view-influencer-signup-email">
+  <div class="container">
+    <div nc-alert="alert"></div>
+    <form name="form" ng-model-options="{ updateOn: 'change blur' }" no-validate>
+      <div class="card-portal">
+        <div class="card-body">
+
+          <div class="logo">
+            <img src="images/logo-reachrabbit.png" alt="ReachRabbit logo" />
+            <h3>มาร่วมงานกับ Brand ชั้นนำกัน!</h3>
+          </div>
+
+          <div class="form-group" form-error="form.name">
+            <label>ชื่อบน Social Media</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+              <input type="text" name="name" class="form-control" required ng-model="formData.name" maxlength="100">
+            </div>
+            <div input-error></div>
+          </div>
+
+          <div class="form-group" form-error="form.email">
+            <label>อีเมล</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+              <input type="email" name="email" class="form-control" required ng-model="formData.email" maxlength="100">
+            </div>
+            <div input-error></div>
+          </div>
+
+          <div class="form-group" form-error="form.phoneNumber">
+            <label>เบอร์ติดต่อ</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
+              <input type="text" name="phoneNumber" class="form-control" required ng-model="formData.phoneNumber" ng-pattern-restrict="^[0-9]*$" maxlength="20">
+            </div>
+            <div input-error></div>
+          </div>
+          <div class="form-group" form-error="form.password">
+            <label>ตั้งรหัสผ่าน</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+              <input name="password" type="password" class="form-control" required ng-model="formData.password" maxlength="100" ng-minlength="8" placeholder="ความยาวอย่างน้อย 8 ตัวอักษร">
+            </div>
+            <div input-error></div>
+          </div>
+          <div class="info-text">
+            คุณเห็นด้วยกับ <a href="http://www.reachrabbit.com/terms.html" target="_blank">เงื่อนไขการใช้งาน</a><br>
+            และ <a href="http://www.reachrabbit.com/privacy.html" target="_blank">นโยบายความเป็นส่วนตัว</a> โดยการสมัครสมาชิก
+          </div>
+          <button ng-click="register()" class="btn-primary btn-width-max">สมัครสมาชิก</button>
+
+        </div>
+      </div>
+    </form>
+    <div class="signup-pill">
+      ต้องการสมัครด้วยวิธีอื่น <a  ui-sref="influencer-portal">กดที่นี่</a>
+    </div>
+  </div>
+</div>

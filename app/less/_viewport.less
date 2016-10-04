@@ -8,6 +8,10 @@
   .info-text{
     text-align: center;
     margin-top: 5px;
+    a{
+      color: @color-grey-darker;
+      text-decoration: underline;
+    }
   }
   /* Specific View in Layout Portal */
   .view-brand-login{
@@ -15,15 +19,15 @@
   }
   .view-brand-signup{
     margin-top: 60px;
-    .info-text{
-      a{
-        color: @color-grey-darker;
-        text-decoration: underline;
-      }
-    }
   }
   .view-influencer-portal{
     margin-top: 140px;
+    .info-text{
+      margin-top: 10px;
+    }
+  }
+  .view-influencer-login{
+    margin-top: 90px;
   }
   .view-influencer-signup-select-page{
     margin-top: 90px;
@@ -38,14 +42,8 @@
       &:extend(.btn-width-lg);
     }
   }
-  .view-influencer-signup-confirmation{
+  .view-influencer-signup-confirmation, .view-influencer-signup-email{
     margin-top: 90px;
-    .info-text{
-      a{
-        color: @color-grey-darker;
-        text-decoration: underline;
-      }
-    }
   }
   .view-admin-login{
     margin-top: 140px;

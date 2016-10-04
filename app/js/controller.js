@@ -1456,7 +1456,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                 });
         };
     }])
-    .controller('InfluencerSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
+    .controller('InfluencerSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', '$auth', '$state', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert, $auth, $state) {
         var u = UserProfile.get();
         $scope.formData = {};
         $window.localStorage.removeItem('token');

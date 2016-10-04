@@ -3,7 +3,11 @@
   <zone-header>
     <div class="action-btn-for-header">
       <div class="input-dropdown">
-        <input class="form-control filter" ng-model="filter" placeholder="Filter ตาม ชื่อ Campaign"/>
+        <form ng-submit="load(params, { search: filter })" novalidate>
+          <div class="input-dropdown">
+            <input class="form-control filter" ng-model="filter" placeholder="Filter ตาม ชื่อ Campaign"/>
+          </div>
+        </form>
       </div>
     </div>
     <h1 ng-if="statusFilter == 'Selection'">รอการคัดเลือก <span ng-if="statusCounts.selection.proposalCount >= 0">({{statusCounts.selection.proposalCount || '0'}})</span></h1>
@@ -76,9 +80,14 @@
               </tr>
             </tbody>
           </table>
-          <table-static ng-if="proposals.totalElements == 0">
+          <table-static ng-if="proposals.totalElements == 0 && !(params.search.length > 0)">
             <div class="empty-state">
               <img src="images/icon-empty-folder.png"/>ยังไม่มีห้องคุยงานในขั้นตอนนี้
+            </div>
+          </table-static>
+          <table-static ng-if="proposals.totalElements == 0 && params.search.length > 0">
+            <div class="empty-state">
+              <img src="images/icon-empty-folder.png"/>ไม่พบห้องคุยงานที่คุณค้นหา
             </div>
           </table-static>
         </div>

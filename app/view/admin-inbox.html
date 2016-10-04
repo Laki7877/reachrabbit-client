@@ -1,22 +1,20 @@
-<div class="viewport view-brand-inbox" ng-cloak>
-  <zone-header>
-  <div class="action-btn-for-header">
-    <form ng-submit="load(params, { search: filter })" novalidate>
-      <div class="input-dropdown">
-        <input class="form-control filter" ng-model="filter" placeholder="Filter ตาม ชื่อ Campaign"/>
-      </div>
-    </form>
-  </div>
-  <h1 ng-if="statusFilter == 'Selection'">รอคุณคัดเลือกข้อเสนอ <span ng-if="statusCounts.selection.proposalCount >= 0">({{statusCounts.selection.proposalCount || '0'}})</span></h1>
-  <h1 ng-if="statusFilter == 'Working'">รอคุณอนุมัติงาน <span ng-if="statusCounts.working.proposalCount >= 0">({{statusCounts.working.proposalCount || '0'}})</span></h1>
-  <h1 ng-if="statusFilter == 'Complete'">เสร็จสิ้น <span ng-if="statusCounts.complete.proposalCount >= 0">({{statusCounts.complete.proposalCount || '0'}})</span></h1>
+<div class="viewport view-admin-inbox" ng-cloak>
+  <zone-header historyback="false">
+    <h1>All Inbox</h1>
+    <div class="action-btn-for-header">
+      <form ng-submit="load(params)" novalidate>
+        <div class="input-dropdown">
+          <input class="form-control filter" ng-model="filter" placeholder="Filter ตาม ชื่อ Campaign"/>
+        </div>
+      </form>
+    </div>
   </zone-header>
   <div class="zone-body">
     <div class="container">
       <cute-bunny></cute-bunny>
       <div class="card-inbox" cute-bunny-hide>
-        <!-- <div class="tab-selector">
-          <div class="tab" ui-sref="brand-inbox({status: 'Selection'})" ng-class="{'active': params.status == 'Selection'}">
+        <div class="tab-selector">
+          <div class="tab" ui-sref="admin-inbox({status: 'Selection'})" ng-class="{'active': params.status == 'Selection'}">
             <h5 ng-class="{ 'proposal-alert' : statusCounts.selection.unreadMessageCount > 0 }">คัดเลือก<div></div>
             </h5>
             <h3 ng-bind="statusCounts.selection.proposalCount || '-'">-</h3>
@@ -24,7 +22,7 @@
           <div class="tab-next-step">
             <i class="fa fa-angle-right fa-2x"></i>
           </div>
-          <div class="tab" ui-sref="brand-inbox({status: 'Working'})" ng-class="{'active': params.status == 'Working'}">
+          <div class="tab" ui-sref="admin-inbox({status: 'Working'})" ng-class="{'active': params.status == 'Working'}">
             <h5 ng-class="{ 'proposal-alert' : statusCounts.working.unreadMessageCount > 0 }">ดำเนินการ<div></div>
             </h5>
             <h3 ng-bind="statusCounts.working.proposalCount || '-'">-</h3>
@@ -32,12 +30,12 @@
           <div class="tab-next-step">
             <i class="fa fa-angle-right fa-2x"></i>
           </div>
-          <div class="tab" ui-sref="brand-inbox({status: 'Complete'})" ng-class="{'active': params.status == 'Complete'}">
+          <div class="tab" ui-sref="admin-inbox({status: 'Complete'})" ng-class="{'active': params.status == 'Complete'}">
             <h5 ng-class="{ 'proposal-alert' : statusCounts.complete.unreadMessageCount > 0 }">เสร็จสิ้น<div></div>
             </h5>
             <h3 ng-bind="statusCounts.complete.proposalCount || '-'">-</h3>
           </div>
-        </div> -->
+        </div>
         <div class="card-body">
           <table ng-if="proposals.numberOfElements > 0" class="table" sorter ng-model="proposals" callback="load">
             <thead>
@@ -51,6 +49,7 @@
                   Reach <i uib-tooltip="Reach ถูกคำนวณโดยการเอา ผู้ติดตามทุกช่องทาง มาบวกรวมกัน" tooltip-placement="top" class="fa fa-question-circle"></i>
                 </th>
                 <th class="col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
+                <th class="col-price" ng-if="params.status == 'Complete'">Have Link?</th>
                 <th class="col-button"></th>
               </tr>
             </thead>
@@ -72,22 +71,22 @@
                 <td ng-if="params.status == 'Complete'">{{ proposal.completeDate | date }}</td>
                 <td ng-if="params.status == 'Selection'" class="col-rabbit-score">{{ calculateReach(proposal) | number: 0}} คน</td>
                 <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
+                <td class="col-price" ng-if="params.status == 'Complete'">No</td>
                 <td class="col-button">
                   <span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span>
                   <button class="btn-secondary btn-minimal" ui-sref="brand-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
-                  <button class="btn-secondary btn-minimal" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId, proposalId: proposal.proposalId })">ดูโปรไฟล์</button>
                 </td>
               </tr>
             </tbody>
           </table>
-          <table-static ng-if="proposals.totalElements == 0 && !(params.search.length > 0)">
+          <table-static ng-if="proposals.totalElements == 0 && !(filter.length > 0)">
             <div class="empty-state">
               <img src="images/icon-empty-folder.png"/>ยังไม่มีห้องคุยงานในขั้นตอนนี้
             </div>
           </table-static>
-          <table-static ng-if="proposals.totalElements == 0 && params.search.length > 0">
+          <table-static ng-if="proposals.totalElements == 0 && filter.length > 0">
             <div class="empty-state">
-              <img src="images/icon-empty-folder.png"/>ไม่พบห้องคุยงานที่คุณค้นหา
+              <img src="images/icon-empty-folder.png"/>หาห้องคุยไม่พบ
             </div>
           </table-static>
         </div>

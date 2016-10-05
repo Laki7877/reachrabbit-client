@@ -76,58 +76,67 @@
                         <card-proposal-detail ng-model="proposal" cute-bunny-hide>
 
                             <div ng-if="proposal.status == 'Selection' && !proposal.cartId">
-                              <ol>
-                                <li>ดูข้อเสนอจาก Influencer</li>
-                                <li>Influencer สามารถแก้ไขข้อเสนอให้คุณได้</li>
-                                <li>ตกลงขอบเขตงานให้ชัดเจน</li>
-                              </ol>
-                              <p>
-                                "เลือกข้อเสนอ" ใส่ตะกร้าเมื่อคุณพอใจ คุณสามารถแก้ไขตะกร้าได้ภายหลัง
-                              </p>
+                              <div class="how-to-text">
+                                <ol>
+                                  <li>ดูข้อเสนอจาก Influencer</li>
+                                  <li>Influencer สามารถแก้ไขข้อเสนอให้คุณได้</li>
+                                  <li>ตกลงขอบเขตงานให้ชัดเจน</li>
+                                </ol>
+                                <p>
+                                  "เลือกข้อเสนอ" ใส่ตะกร้าเมื่อคุณพอใจ คุณสามารถแก้ไขตะกร้าได้ภายหลัง
+                                </p>
+                              </div>
                               <button class="btn-primary btn-width-max" ng-click="selectProposal(proposal)">&nbsp เลือกข้อเสนอ <i class="fa fa-arrow-right"></i></button>
                             </div>
 
                             <div ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Incart'">
-                              <p>
-                                คุณได้เลือกข้อเสนอนี้เข้าตะกร้าแล้ว
-                              </p>
-                              <p>
-                                คุณสามารถชำระเงินได้ทันที หรือ เลือกข้อเสนออื่นเพื่อชำระทีเดียว
-                              </p>
+                              <div class="how-to-text">
+                                <p>
+                                  คุณได้เลือกข้อเสนอนี้เข้าตะกร้าแล้ว
+                                </p>
+                                <p>
+                                  คุณสามารถชำระเงินได้ทันที หรือ เลือกข้อเสนออื่นเพื่อชำระทีเดียว
+                                </p>
+                              </div>
                               <button class="btn-primary btn-width-max" ui-sref="brand-cart">&nbsp ดูตะกร้า <i class="fa fa-arrow-right"></i></button>
                             </div>
 
                             <div ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Checkout'">
-                              <ol>
-                                <li>ชำระเงินตามขั้นตอนที่กำหนด</li>
-                                <li>ระบบจะยืนยันการได้รับเงินภายใน 48 ชั่วโมง</li>
-                                <li>Influencer จะเริ่มงานให้คุณทันที เมื่อระบบยืนยันการชำระเงิน</li>
-                              </ol>
+                              <div class="how-to-text">
+                                <ol>
+                                  <li>ชำระเงินตามขั้นตอนที่กำหนด</li>
+                                  <li>ระบบจะยืนยันการได้รับเงินภายใน 48 ชั่วโมง</li>
+                                  <li>Influencer จะเริ่มงานให้คุณทันที เมื่อระบบยืนยันการชำระเงิน</li>
+                                </ol>
+                              </div>
                               <button class="btn-primary btn-width-max" ui-sref="brand-transaction-detail({cartId: proposal.cartId})">ดูรายละเอียดการสั่งซื้อ</button>
                             </div>
 
                             <div ng-if="proposal.status == 'Working'" >
-                              <ol>
-                                <li>รอรับงานจาก Influencer</li>
-                                <li>ตรวจสอบงานที่ได้รับ</li>
-                                <li>ขอรูปหลักฐานการโพสจาก Influencer</li>
-                              </ol>
-                              <p>
-                                กด "อนุมัติงาน" เมื่อคุณพอใจกับโพสของ Influencer แล้ว
-                              </p>
+                              <div class="how-to-text">
+                                <ol>
+                                  <li>รอรับงานจาก Influencer</li>
+                                  <li>ตรวจสอบงานที่ได้รับ</li>
+                                  <li>ขอรูปหลักฐานการโพสจาก Influencer</li>
+                                </ol>
+                                <p>
+                                  กด "อนุมัติงาน" เมื่อคุณพอใจกับโพสของ Influencer แล้ว
+                                </p>
+                              </div>
                               <button class="btn-primary btn-width-max" ng-click="approveProposal(proposal)">&nbsp อนุมัติงาน <i class="fa fa-arrow-right"></i></button>
                             </div>
 
                             <div ng-if="proposal.status == 'Complete'" >
-                              <p>
-                                ขอบคุณที่ใช้บริการค่ะ :)
-                              </p>
-                              <p>
-                                ติดตามความสำเร็จของงานได้ที่ Dashboard
-                              </p>
+                              <div class="how-to-text">
+                                <p>
+                                  ขอบคุณที่ใช้บริการค่ะ :)
+                                </p>
+                                <p>
+                                  ติดตามความสำเร็จของงานได้ที่ Dashboard
+                                </p>
+                              </div>
                               <button class="btn-primary btn-width-max">ดู Dashboard</button>
                             </div>
-
 
                         </card-proposal-detail>
 

@@ -10335,6 +10335,33 @@ div:focus {
   background: #f9f9fb;
   border-bottom: solid 4px #ff773e;
 }
+.workroom .card-proposal-detail .tab-how-to {
+  padding-top: 20px;
+}
+.workroom .card-proposal-detail .tab-how-to .how-to-text {
+  display: block;
+}
+.workroom .card-proposal-detail .tab-how-to .btn,
+.workroom .card-proposal-detail .tab-how-to .btn-primary,
+.workroom .card-proposal-detail .tab-how-to .btn-secondary,
+.workroom .card-proposal-detail .tab-how-to .btn-secondary-highlight,
+.workroom .card-proposal-detail .tab-how-to .btn-secondary-active,
+.workroom .card-proposal-detail .tab-how-to .btn-trace,
+.workroom .card-proposal-detail .tab-how-to .btn-social {
+  margin-top: 10px;
+}
+.workroom .card-proposal-detail .tab-proposal-detail .how-to-text {
+  display: none;
+}
+.workroom .card-proposal-detail .tab-proposal-detail .btn,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-primary,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-secondary,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-secondary-highlight,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-secondary-active,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-trace,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-social {
+  margin-top: 15px;
+}
 .workroom .card-proposal-detail .card-info-label {
   margin-top: 15px;
   color: #8692a8;
@@ -10357,15 +10384,6 @@ div:focus {
 }
 .workroom .card-proposal-detail .info-text {
   margin-bottom: 5px;
-}
-.workroom .card-proposal-detail .btn,
-.workroom .card-proposal-detail .btn-primary,
-.workroom .card-proposal-detail .btn-secondary,
-.workroom .card-proposal-detail .btn-secondary-highlight,
-.workroom .card-proposal-detail .btn-secondary-active,
-.workroom .card-proposal-detail .btn-trace,
-.workroom .card-proposal-detail .btn-social {
-  margin-top: 10px;
 }
 .workroom .card-campaign-thumbnail .card-thumbnail-image {
   height: 140px;
@@ -10913,6 +10931,19 @@ ul.payment-methods {
 }
 .layout-admin .view-admin-campaign-detail .container {
   width: 970px;
+  padding: 15px;
+}
+.layout-admin .view-admin-workroom .container {
+  width: 970px;
+  padding: 15px;
+}
+.layout-admin .view-admin-workroom .delete-link {
+  position: absolute;
+  top: 8px;
+  right: -80px;
+}
+.layout-admin .view-admin-workroom .delete-link a {
+  color: #8692a8;
 }
 tags-input {
   display: block;

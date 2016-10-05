@@ -1494,48 +1494,46 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);
                 });
-        };
+        };        
+        $scope.startAuthFlow = function (mediaId) {
+            $scope.minFollowerError = false;
+            $window.localStorage.clear();
+            $auth.authenticate(mediaId)
+                .then(function (response) {
+                    // console.log('Response', response.data);
+                    if (response.data.token) {
+                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
 
-
-            $scope.startAuthFlow = function (mediaId) {
-                $scope.minFollowerError = false;
-                $window.localStorage.clear();
-                $auth.authenticate(mediaId)
-                    .then(function (response) {
-                        // console.log('Response', response.data);
-                        if (response.data.token) {
-                            $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
-
-                            $window.localStorage.token = response.data.token;
-                            AccountService.getProfile()
-                                .then(function (profileResp) {
-                                    UserProfile.set(profileResp.data);
-                                    //Tell raven about the user
-                                    Raven.setUserContext(UserProfile.get());
-                                    //Redirect change app
-                                    var bounce = '/influencer.html#/influencer-campaign-list';
-                                    if ($location.search().bounce_route) {
-                                        bounce = '/influencer.html#' + $location.search().bounce_route;
-                                    }
-                                    $window.location.href = bounce;
-                                });
-                        } else {
-                            if (mediaId == 'facebook') {
-                                $state.go('influencer-signup-select-page', { authData: response.data });
-                            } else {
-                                if (response.data.pages[0].count < $scope.minFollower) {
-                                    $scope.minFollowerError = true;
-                                    return;
+                        $window.localStorage.token = response.data.token;
+                        AccountService.getProfile()
+                            .then(function (profileResp) {
+                                UserProfile.set(profileResp.data);
+                                //Tell raven about the user
+                                Raven.setUserContext(UserProfile.get());
+                                //Redirect change app
+                                var bounce = '/influencer.html#/influencer-campaign-list';
+                                if ($location.search().bounce_route) {
+                                    bounce = '/influencer.html#' + $location.search().bounce_route;
                                 }
-
-                                $state.go('influencer-signup-confirmation', { authData: response.data });
+                                $window.location.href = bounce;
+                            });
+                    } else {
+                        if (mediaId == 'facebook') {
+                            $state.go('influencer-signup-select-page', { authData: response.data });
+                        } else {
+                            if (response.data.pages[0].count < $scope.minFollower) {
+                                $scope.minFollowerError = true;
+                                return;
                             }
+
+                            $state.go('influencer-signup-confirmation', { authData: response.data });
                         }
+                    }
 
 
 
-                    });
-            };
+                });
+        };
     }])
     .controller('InfluencerJesusController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
         //For influencer gods

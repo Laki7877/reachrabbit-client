@@ -256,7 +256,7 @@ angular.module('reachRabbitApp.portal.routes', ['ui.router'])
                 url: "/influencer-signup-select-page",
                 templateUrl: 'view/influencer-signup-select-page.html',
                 controller: 'InfluencerFacebookPageSelectionController',
-                params: { authData: null, fromState: null }
+                parasm: { authData: null, fromState: null }
             })
             .state('influencer-signup-confirmation', {
                 url: '/influencer-signup-confirmation',
@@ -272,7 +272,7 @@ angular.module('reachRabbitApp.portal.routes', ['ui.router'])
             .state('influencer-login', {
                 url: '/influencer-login',
                 templateUrl: 'view/influencer-login.html',
-                controller: 'InfluencerJesusController'
+                controller: 'InfluencerSigninController'
             })
             .state('influencer-god-login', {
                 url: '/influencer-god-login',

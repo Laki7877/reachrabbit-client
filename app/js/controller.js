@@ -1645,10 +1645,42 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
     .controller('InfluencerSignUpEmailController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig', 'validator', 'util',
         function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
             $scope.alert = new NcAlert();
+            $scope.formData = {};
+            $scope.register = function () {
+                var o = validator.formValidate($scope.form);
+                $scope.form.$setSubmitted();
+                if (o) {
+                    $scope.alert.danger(o.message);
+                    return;
+                }
+
+                InfluencerAccountService.signup({
+                    name: $scope.formData.name,
+                    email: $scope.formData.email,
+                    password: $scope.formData.password,
+                    phoneNumber: $scope.formData.phoneNumber
+                })
+                .then(function (response) {
+                    var token = response.data.token;
+                    $window.localStorage.token = token;
+                    return AccountService.getProfile();
+                })
+                .then(function (profileResp) {
+                    $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
+                    UserProfile.set(profileResp.data);
+                    //Tell raven about the user
+                    Raven.setUserContext(UserProfile.get());
+                    $scope.form.$setPristine();
+                    //Redirect change app
+                    $window.location.href = '/influencer.html#/influencer-profile-published?showToolbar';
+                })
+                .catch(function (err) {
+                    $scope.alert.danger(err.data.message);
+                });
+            };
     }])
     .controller('InfluencerSignUpController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig', 'validator', 'util',
         function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
-
             var profile = $stateParams.authData;
             $scope.alert = new NcAlert();
             $scope.form = {};

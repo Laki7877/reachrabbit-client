@@ -1,7 +1,7 @@
 <div class="viewport view-influencer-signup-email">
   <div class="container">
     <div nc-alert="alert"></div>
-    <form name="form" ng-model-options="{ updateOn: 'change blur' }" no-validate>
+    <form name="form" ng-model-options="{ updateOn: 'change blur' }" ng-submit="register()" no-validate>
       <div class="card-portal">
         <div class="card-body">
 
@@ -48,8 +48,7 @@
             คุณเห็นด้วยกับ <a href="http://www.reachrabbit.com/terms.html" target="_blank">เงื่อนไขการใช้งาน</a><br>
             และ <a href="http://www.reachrabbit.com/privacy.html" target="_blank">นโยบายความเป็นส่วนตัว</a> โดยการสมัครสมาชิก
           </div>
-          <button ng-click="register()" class="btn-primary btn-width-max">สมัครสมาชิก</button>
-
+          <button class="btn-primary btn-width-max">สมัครสมาชิก</button>
         </div>
       </div>
     </form>

@@ -11,7 +11,7 @@
         <p class="note">
           ReachRabbit จะไม่เก็บรหัสผ่าน Instagram ของคุณ เราใช้เพื่อยื่นยันตัวตน ครั้งเดียวเท่านั้น
         </p>
-        <div nc-alert="alert"></div> 
+        <div nc-alert="alert"></div>
         <div class="form-group" form-error="form.username">
           <label uib-tooltip="เช่น ถ้าชื่อ Instagram ของคุณคือ @pimtima ให้ใส่ว่า pimtima ในช่องนี้" tooltip-placement="right">Instagram Username  <i class="fa fa-question-circle"></i></label>
           <input type="text" class="form-control" placeholder="" ng-model="formData.username" name="username" required>
@@ -22,6 +22,10 @@
           <input type="password" class="form-control" placeholder="" ng-model="formData.password" name="password" required>
           <div input-error></div>
         </div>
+        <div>
+          จำรหัสผ่าน Instagram ไม่ได้? <a ng-href="https://www.instagram.com/accounts/password/reset/" target="_blank">กดที่นี่</a>
+        </div>
+
         <button type="submit" class="btn-primary btn-width-lg" name="button" ng-disabled="save">เชื่อมต่อกับ Instagram</button>
       </form>
   </div>

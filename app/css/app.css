@@ -9888,6 +9888,12 @@ fieldset[disabled] .btn-clear.active {
 .alert-danger .alert-icon {
   background: url("../images/icon-rabbit-confuse.png") 0 0 no-repeat #ff0000;
 }
+.alert-danger-minimal {
+  background: #ffcccb;
+}
+.alert-danger-minimal .alert-icon {
+  display: none;
+}
 .alert-info {
   background: #bfd5fa;
 }

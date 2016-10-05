@@ -71,8 +71,8 @@
                 <td ng-if="params.status == 'Complete'">{{ proposal.completeDate | date }}</td>
                 <td ng-if="params.status == 'Selection'" class="col-rabbit-score">{{ calculateReach(proposal) | number: 0}} คน</td>
                 <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
-                <td class="color-red" ng-if="params.status == 'Complete' && !proposal.hasPost">No</td>
-                <td class="color-green" ng-if="params.status == 'Complete' && proposal.hasPost">Yes</td>
+                <td class="color-red text-center" ng-if="params.status == 'Complete' && !proposal.hasPost">No</td>
+                <td class="color-green text-center" ng-if="params.status == 'Complete' && proposal.hasPost">Yes</td>
                 <td class="col-button">
                   <span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span>
                   <button class="btn-secondary btn-minimal" ui-sref="admin-workroom({proposalId: proposal.proposalId})">คุยงาน</button>

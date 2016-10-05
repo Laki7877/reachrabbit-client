@@ -157,6 +157,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
 
         //Intercept all $http request and add appropriate stuff
         $httpProvider.interceptors.push('customInjector');
+        $httpProvider.defaults.headers.delete = { 'Content-Type': 'application/json', 'Accept-Language': 'th' };
         $httpProvider.defaults.headers.post = { 'Content-Type': 'application/json', 'Accept-Language': 'th' };
         $httpProvider.defaults.headers.put = { 'Content-Type': 'application/json', 'Accept-Language': 'th' };
         $httpProvider.defaults.headers.get = { 'Accept-Language': 'th' };
@@ -487,6 +488,22 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     method: 'post',
                     data: proposalMessage,
                     ignoreLoadingBar: true
+                });
+            },
+            getPosts: function(id) {
+                return $http({
+                    url: '/proposals/' + id + '/post',
+                    method: 'get'
+                });
+            },
+            savePosts: function(id, data) {
+              return $http.post('/proposals/' + id + '/post', data);  
+            },
+            deletePosts: function(id, data) {
+                return $http({
+                    url: '/proposals/' + id + '/post',
+                    method: 'delete',
+                    data: data
                 });
             },
             addToCart: function (proposal) {

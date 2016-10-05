@@ -1,9 +1,53 @@
 <form name="form" novalidate>
-    <div class="viewport view-brand-workroom workroom">
+    <div class="viewport view-admin-workroom workroom">
       <zone-header historyback="true">
       </zone-header>
         <div class="zone-body">
             <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="chatbox-card card">
+                            <div class="chatbox-header">
+                                <h3>Add Link</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-row">
+                                    <div class="card-body-content-label with-input">
+                                        Facebook Link
+                                    </div>
+                                    <div class="card-body-content">
+                                        <input name="title" type="text" required ng-model="formData.title" class="form-control" maxlength="60">
+                                        <a>+ Add Another Link</a>
+                                    </div>
+                                </div>
+                                <div class="card-row">
+                                    <div class="card-body-content-label with-input">
+                                        Instagram Link
+                                    </div>
+                                    <div class="card-body-content">
+                                        <input name="title" type="text" required ng-model="formData.title" class="form-control" maxlength="60">
+                                        <a>+ Add Another Link</a>
+                                    </div>
+                                </div>
+                                <div class="card-row">
+                                    <div class="card-body-content-label with-input">
+                                        Youtube Link
+                                    </div>
+                                    <div class="card-body-content">
+                                        <input name="title" type="text" required ng-model="formData.title" class="form-control" maxlength="60">
+                                        <a>+ Add Another Link</a>
+                                    </div>
+                                </div>
+                                <div class="card-row">
+                                    <div class="card-body-content-label with-input"></div>
+                                    <div class="card-body-content">
+                                        <button class="btn btn-primary">บันทึกข้อมูล</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-xs-9">
                         <div class="chatbox-card">
@@ -38,11 +82,11 @@
                             </div>
                             <div class="message-input">
                                 <textarea chatarea="sendMessage(formData.messageStr, formData.resources)" class="form-control" rows="4" ng-model="formData.messageStr"
-                                    placeholder="พิมพ์ข้อความ..." autofocus maxlength="1000"></textarea>
+                                    placeholder="พิมพ์ข้อความ..." autofocus maxlength="1000" disabled></textarea>
                                 <!-- <div class="pull-left">
                                     <div>{{formData.messageStr.length || '0'}}/1000</div>
                                 </div> -->
-                                <div class="pull-right" form-error="form.resource">
+                                <!--div class="pull-right" form-error="form.resource">
                                     <div input-error class="pull-left"></div>
                                     <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png"
                                         ngf-pattern="'.jpg,.png'" ngf-max-size="10MB" ngf-max-files="1" is-loading="formData.isLoading"></uploader-multi>
@@ -50,7 +94,7 @@
                                     <button class="btn-secondary-highlight btn-width-md btn-minimal" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
                                     <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
                                   </button>
-                                </div>
+                                </div-->
                                 <div class="clear"></div>
                             </div>
                         </div>

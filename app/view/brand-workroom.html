@@ -26,6 +26,10 @@
                                 <cute-bunny></cute-bunny>
                                 <div cute-bunny-hide>
                                     <card-influencer-profile ng-model="proposal.influencer" show-social-data="false">
+                                      <small>ระยะเวลาทำงาน</small>
+                                      <h4>{{proposal.completionTime.completionTime}}</h4>
+                                      <small>ราคาที่เสนอ</small>
+                                      <h4>{{proposal.price | number}} บาท</h4>
                                       <a ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId })" class="link-to-profile">ดูโปรไฟล์</a>
                                     </card-influencer-profile>
 

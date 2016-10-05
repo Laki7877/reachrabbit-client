@@ -74,7 +74,7 @@
                 <td class="col-price" ng-if="params.status == 'Complete'">No</td>
                 <td class="col-button">
                   <span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span>
-                  <button class="btn-secondary btn-minimal" ui-sref="brand-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
+                  <button class="btn-secondary btn-minimal" ui-sref="admin-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
                 </td>
               </tr>
             </tbody>

@@ -1,10 +1,19 @@
 <div class="card-proposal-detail">
-    <div class="card-header">
-        รายละเอียดข้อเสนอ
-    </div>
-    <div class="card-body">
-        <ng-transclude></ng-transclude>
 
+  <uib-tabset type="pills">
+    <uib-tab>
+      <uib-tab-heading>
+        สิ่งที่ต้องทำ
+      </uib-tab-heading>
+      <div class="card-body tab-how-to">
+        <ng-transclude></ng-transclude>
+      </div>
+    </uib-tab>
+    <uib-tab>
+      <uib-tab-heading>
+        ดูข้อเสนอ
+      </uib-tab-heading>
+      <div class="card-body tab-proposal-detail">
         <div class="card-info-label">
             ราคาที่เสนอ
         </div>
@@ -37,5 +46,9 @@
         <div class="card-info-content" ng-if="proposal.status == 'Complete'">
             {{ proposal.completeDate | date }}
         </div>
-    </div>
+        <ng-transclude></ng-transclude>
+      </div>
+    </uib-tab>
+  </uib-tabset>
+
 </div>

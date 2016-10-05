@@ -1653,13 +1653,59 @@ div:focus{
   }
   .card-proposal-detail{
     &:extend(.card all);
-    .card-header{
-      text-align: center;
+    .nav-pills{
+      box-shadow: @global-shadow-depth-1;
+      li{
+        margin-left: 0px;
+        text-align: center;
+        a{
+          &:extend(h4);
+          color: @color-black;
+          background: @color-grey-lighter;
+          border-radius: 0px;
+          font-family: @font-primary;
+          padding-top: 13px;
+          width: 105px;
+          height: 50px;
+        }
+        &:first-child{
+          border-right: 1px solid @color-grey;
+        }
+        &.active{
+          a{
+            background: @color-grey-lighter;
+            border-bottom: solid 4px @color-theme-primary;
+          }
+        }
+      }
     }
+
+    .tab-how-to{
+      padding-top: 20px;
+      .how-to-text{
+        display: block;
+      }
+      .btn{
+        margin-top: 10px;
+      }
+    }
+
+    .tab-proposal-detail{
+      .how-to-text{
+        display: none;
+      }
+      .btn{
+        margin-top: 15px;
+      }
+    }
+
     .card-info-label{
       &:extend(small);
       margin-top: 15px;
       color: @color-grey-darker;
+      &:first-child{
+        margin-top: 5px;
+      }
     }
     .card-price{
       &:extend(h4);
@@ -1667,6 +1713,13 @@ div:focus{
     }
     .social-info{
       margin: 5px 0px;
+    }
+    ol{
+      -webkit-padding-start: 16px;
+      margin-bottom: 0px;
+      li{
+        margin-bottom: 10px;
+      }
     }
     .info-text{
       margin-bottom: 5px;
@@ -1676,6 +1729,14 @@ div:focus{
     &:extend(.card-thumbnail all);
     .card-thumbnail-image{
       height: 140px;
+    }
+    .card-header{
+      position: relative;
+      overflow: auto;
+      text-align: center;
+      h3{
+        display: inline-block;
+      }
     }
     .card-body{
       &:extend(h5);
@@ -1698,15 +1759,11 @@ div:focus{
     overflow: auto;
     box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.30);
     h3{
-      color: @color-theme-secondary;
       float: left;
     }
     .link-view-profile{
+      margin-left: 5px;
       float: left;
-      color: @color-theme-secondary;
-      i{
-        margin: 0px 5px 0px 10px;
-      }
     }
     .chatbox-status{
       float: right;

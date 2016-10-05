@@ -1231,6 +1231,7 @@ h6,
 .social-media-profile .card-gallery .card-gallery-info .card-info .card-content,
 .nav-tabs li a,
 .navbar li > a,
+.workroom .card-proposal-detail .nav-pills li a,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
 .proposal-modal .modal-title,
@@ -1325,6 +1326,7 @@ h6,
 .social-media-profile .card-gallery .card-gallery-info .card-info .card-content,
 .nav-tabs li a,
 .navbar li > a,
+.workroom .card-proposal-detail .nav-pills li a,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
 .facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
@@ -1380,6 +1382,7 @@ h4,
 .social-media-profile .card-gallery .card-gallery-info .card-info .card-content,
 .nav-tabs li a,
 .navbar li > a,
+.workroom .card-proposal-detail .nav-pills li a,
 .workroom .card-proposal-detail .card-price,
 .facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
 .instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
@@ -7738,6 +7741,7 @@ h4,
 .social-media-profile .card-gallery .card-gallery-info .card-info .card-content,
 .nav-tabs li a,
 .navbar li > a,
+.workroom .card-proposal-detail .nav-pills li a,
 .workroom .card-proposal-detail .card-price,
 .facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
 .instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
@@ -10308,12 +10312,62 @@ div:focus {
 .workroom .zone-body {
   margin-top: 10px;
 }
-.workroom .card-proposal-detail .card-header {
+.workroom .card-proposal-detail .nav-pills {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.workroom .card-proposal-detail .nav-pills li {
+  margin-left: 0px;
   text-align: center;
+}
+.workroom .card-proposal-detail .nav-pills li a {
+  color: #3e4a5e;
+  background: #f9f9fb;
+  border-radius: 0px;
+  font-family: 'Kanit', sans-serif;
+  padding-top: 13px;
+  width: 105px;
+  height: 50px;
+}
+.workroom .card-proposal-detail .nav-pills li:first-child {
+  border-right: 1px solid #d8dfe7;
+}
+.workroom .card-proposal-detail .nav-pills li.active a {
+  background: #f9f9fb;
+  border-bottom: solid 4px #ff773e;
+}
+.workroom .card-proposal-detail .tab-how-to {
+  padding-top: 20px;
+}
+.workroom .card-proposal-detail .tab-how-to .how-to-text {
+  display: block;
+}
+.workroom .card-proposal-detail .tab-how-to .btn,
+.workroom .card-proposal-detail .tab-how-to .btn-primary,
+.workroom .card-proposal-detail .tab-how-to .btn-secondary,
+.workroom .card-proposal-detail .tab-how-to .btn-secondary-highlight,
+.workroom .card-proposal-detail .tab-how-to .btn-secondary-active,
+.workroom .card-proposal-detail .tab-how-to .btn-trace,
+.workroom .card-proposal-detail .tab-how-to .btn-social {
+  margin-top: 10px;
+}
+.workroom .card-proposal-detail .tab-proposal-detail .how-to-text {
+  display: none;
+}
+.workroom .card-proposal-detail .tab-proposal-detail .btn,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-primary,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-secondary,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-secondary-highlight,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-secondary-active,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-trace,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-social {
+  margin-top: 15px;
 }
 .workroom .card-proposal-detail .card-info-label {
   margin-top: 15px;
   color: #8692a8;
+}
+.workroom .card-proposal-detail .card-info-label:first-child {
+  margin-top: 5px;
 }
 .workroom .card-proposal-detail .card-price {
   color: #16bbac;
@@ -10321,11 +10375,26 @@ div:focus {
 .workroom .card-proposal-detail .social-info {
   margin: 5px 0px;
 }
+.workroom .card-proposal-detail ol {
+  -webkit-padding-start: 16px;
+  margin-bottom: 0px;
+}
+.workroom .card-proposal-detail ol li {
+  margin-bottom: 10px;
+}
 .workroom .card-proposal-detail .info-text {
   margin-bottom: 5px;
 }
 .workroom .card-campaign-thumbnail .card-thumbnail-image {
   height: 140px;
+}
+.workroom .card-campaign-thumbnail .card-header {
+  position: relative;
+  overflow: auto;
+  text-align: center;
+}
+.workroom .card-campaign-thumbnail .card-header h3 {
+  display: inline-block;
 }
 .workroom .card-campaign-thumbnail .card-body button {
   margin-top: 15px;
@@ -10344,15 +10413,11 @@ div:focus {
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.3);
 }
 .chatbox-card .chatbox-header h3 {
-  color: #16bbac;
   float: left;
 }
 .chatbox-card .chatbox-header .link-view-profile {
+  margin-left: 5px;
   float: left;
-  color: #16bbac;
-}
-.chatbox-card .chatbox-header .link-view-profile i {
-  margin: 0px 5px 0px 10px;
 }
 .chatbox-card .chatbox-header .chatbox-status {
   float: right;
@@ -10866,6 +10931,19 @@ ul.payment-methods {
 }
 .layout-admin .view-admin-campaign-detail .container {
   width: 970px;
+  padding: 15px;
+}
+.layout-admin .view-admin-workroom .container {
+  width: 970px;
+  padding: 15px;
+}
+.layout-admin .view-admin-workroom .delete-link {
+  position: absolute;
+  top: 8px;
+  right: -80px;
+}
+.layout-admin .view-admin-workroom .delete-link a {
+  color: #8692a8;
 }
 tags-input {
   display: block;

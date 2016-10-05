@@ -13,7 +13,7 @@
 
       <card-influencer-profile ng-model="formData.influencer"></card-influencer-profile>
       <cute-bunny></cute-bunny>
-      <div class="card">
+      <div class="card" cute-bunny-hide ng-if="formData.influencer.influencerMedias.length == 0">
         <div class="card-body">
           <div class="empty-state">
             กรุณา <a ui-sref="influencer-profile">เชื่อมต่อ Social Media</a> เพื่อให้ Brand เห็นผลงานของคุณ
@@ -46,7 +46,7 @@
             <youtube-profile ng-model="youtube"></youtube-profile>
           </div>
         </uib-tab>
-        <uib-tab ng-if="formData.influencer.influencerMedias.length < 3" index="3" heading="+ เชื่อมต่อช่องทางอื่น" class="plain-link" ui-sref="influencer-profile">
+        <uib-tab ng-if="formData.influencer.influencerMedias.length < 3 && formData.influencer.influencerMedias.length > 0" index="3" heading="+ เชื่อมต่อช่องทางอื่น" class="plain-link" ui-sref="influencer-profile">
           <uib-tab-heading>
             + เชื่อมต่อช่องทางอื่น
           </uib-tab-heading>

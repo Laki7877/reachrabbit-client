@@ -1,9 +1,9 @@
 <div class="viewport view-brand-inbox" ng-cloak>
   <zone-header>
   <div class="action-btn-for-header">
-    <form ng-submit="load(params, { search: filter })" ng-model-options="{ debounce : { default : 300, blur : 0 }, allowInvalid: true}" novalidate>
+    <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" novalidate>
       <div class="input-dropdown">
-        <input class="form-control filter" ng-model="filter" placeholder="Filter ตาม ชื่อ Campaign"/>
+        <input class="form-control filter" ng-model="search.value" placeholder="Filter ตาม ชื่อ Campaign"/>
       </div>
     </form>
   </div>

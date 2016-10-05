@@ -862,6 +862,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
         $scope.statusCounts = {};
         $scope.statusFilter = 'Selection';
         $scope.showStickyToolbar = false;
+        $scope.search = {};
 
 
 
@@ -910,8 +911,8 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             }
             return $filter('amCalendar')(proposal.messageUpdatedAt);
         };
-        $scope.$watch('filter', function() {
-            $scope.load($scope.params, { search: $scope.filter });
+        $scope.$watch('search.value', function(e) {
+            $scope.load($scope.params, { search: e });
         });
         $scope.load({
             sort: ['messageUpdatedAt,desc']
@@ -948,8 +949,8 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 name: 'เฉพาะ ปิดรับข้อเสนอ'
             }];
 
-        $scope.$watch('filter', function () {
-            $scope.load(_.extend($scope.params, { status: $scope.filter }));
+        $scope.$watch('params.search', function () {
+            $scope.load($scope.params);
         });
 
         //Load campaign data
@@ -1228,6 +1229,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
     .controller('BrandInboxController', ['$scope', '$filter', '$rootScope', 'ProposalService', 'CampaignService', 'moment', '$stateParams', function ($scope, $filter, $rootScope, ProposalService, CampaignService, moment, $stateParams) {
         $scope.statusCounts = {};
         $scope.statusFilter = 'Selection';
+        $scope.search = {};
 
         if ($stateParams.status) {
             $scope.statusFilter = $stateParams.status;
@@ -1290,8 +1292,8 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
             return $filter('amCalendar')(proposal.messageUpdatedAt);
         };
 
-        $scope.$watch('filter', function() {
-            $scope.load($scope.params, { search: $scope.filter });
+        $scope.$watch('search.value', function(e) {
+            $scope.load($scope.params, { search: e });
         });
 
         $scope.load({
@@ -1813,6 +1815,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
     .controller('AdminInboxController', ['$scope', '$filter', '$rootScope', 'ProposalService', 'CampaignService', 'moment', '$stateParams', function ($scope, $filter, $rootScope, ProposalService, CampaignService, moment, $stateParams) {
         $scope.statusCounts = {};
         $scope.statusFilter = 'Selection';
+        $scope.search = {};
 
         if ($stateParams.status) {
             $scope.statusFilter = $stateParams.status;
@@ -1828,11 +1831,10 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
 
         //TODO: Make this generic
 
-        $scope.load = function (params) {
+        $scope.load = function (params, ext) {
             $scope.httpPending = true;
-            $scope.params = params;
+            $scope.params = _.extend(params, ext);
             $scope.params.status = $scope.statusFilter;
-            $scope.params.search = $scope.filter;
 
             return ProposalService.getAll(params)
                 .then(function (response) {
@@ -1870,6 +1872,9 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
             return $filter('amCalendar')(proposal.messageUpdatedAt);
         };
 
+        $scope.$watch('search.value', function(e) {
+            $scope.load($scope.params, { search: e });
+        });
         $scope.load({
             sort: ['messageUpdatedAt,desc']
         })

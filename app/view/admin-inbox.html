@@ -2,9 +2,9 @@
   <zone-header historyback="false">
     <h1>All Inbox</h1>
     <div class="action-btn-for-header">
-      <form ng-submit="load(params)" novalidate>
+      <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" novalidate>
         <div class="input-dropdown">
-          <input class="form-control filter" ng-model="filter" placeholder="Filter ตาม ชื่อ Campaign"/>
+          <input class="form-control filter" ng-model="search.value" placeholder="Filter ตาม ชื่อ Campaign"/>
         </div>
       </form>
     </div>

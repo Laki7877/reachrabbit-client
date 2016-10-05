@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="chatbox-card card">
+                        <div class="chatbox-card card"  ng-if="proposal.status == 'Complete'">
                             <div class="chatbox-header">
                                 <h3>Add Link</h3>
                             </div>
@@ -55,10 +55,10 @@
                     <div class="col-xs-9">
                         <div class="chatbox-card">
                             <div class="chatbox-header">
-                                <a class="link-view-profile" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId, proposalId: proposal.proposalId })">
-                                  <h3>{{ proposal.influencer.user.name | truncate: 30 }} </h3>
-                                  <i class="fa fa-info-circle"></i>ดูโปรไฟล์
-                                </a>
+                                <h3>{{ proposal.influencer.user.name | truncate: 30 }} </h3>
+                                <!-- <a class="link-view-profile" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId, proposalId: proposal.proposalId })">
+                                  ดูโปรไฟล์
+                                </a> -->
                                 <div class="chatbox-status">
                                     <span class="color-grey">สถานะ: </span>
                                     <span class="color-green" ng-if="proposal.status == 'Selection'">รอคุณคัดเลือก</span>
@@ -89,39 +89,47 @@
                                 <!-- <div class="pull-left">
                                     <div>{{formData.messageStr.length || '0'}}/1000</div>
                                 </div> -->
-                                <!--div class="pull-right" form-error="form.resource">
+                                <div class="pull-right" form-error="form.resource">
                                     <div input-error class="pull-left"></div>
-                                    <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png"
-                                        ngf-pattern="'.jpg,.png'" ngf-max-size="10MB" ngf-max-files="1" is-loading="formData.isLoading"></uploader-multi>
+                                    <!-- <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png"
+                                        ngf-pattern="'.jpg,.png'" ngf-max-size="10MB" ngf-max-files="1" is-loading="formData.isLoading"></uploader-multi> -->
 
-                                    <button class="btn-secondary-highlight btn-width-md btn-minimal" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
+                                    <button disabled class="btn-secondary-highlight btn-width-md btn-minimal disabled" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
                                     <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
                                   </button>
-                                </div-->
+                                </div>
                                 <div class="clear"></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-3">
-                        <card-proposal-detail ng-model="proposal" cute-bunny-hide>
-                            <div class="info-text text-center">
-                                <span ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Incart'">คุณได้เลือกข้อเสนอนี้แล้ว</span>
-                                <span ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Checkout'">รอคุณชำระเงินก่อนเริ่มดำเนินการ</span>
-                            </div>
-                            <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && !proposal.cartId" ng-click="selectProposal(proposal)">&nbsp เลือกข้อเสนอ <i class="fa fa-arrow-right"></i></button>
-                            <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Checkout'" ui-sref="brand-transaction-detail({cartId: proposal.cartId})">ดูรายละเอียดการสั่งซื้อ</button>
-                            <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && proposal.cartId && proposal.cart.status != 'Checkout'" ui-sref="brand-cart">ดูตะกร้า</button>
-                            <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Working'" ng-click="approveProposal(proposal)">&nbsp อนุมัติงาน <i class="fa fa-arrow-right"></i></button>
-                        </card-proposal-detail>
-                        <div class="card-campaign-thumbnail" ui-sref="brand-campaign-detail-published({campaignId: proposal.campaign.campaignId })" cute-bunny-hide>
-                            <div class="card-thumbnail-image">
-                                <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
-                            </div>
-                            <div class="card-body">
-                                {{ proposal.campaign.title | truncate: 60 }}
-                                <button class="btn-secondary btn-width-max">ดูรายละเอียด</button>
-                            </div>
+
+                      <div class="card-campaign-thumbnail" ui-sref="brand-campaign-detail-published({campaignId: proposal.campaign.campaignId })" cute-bunny-hide>
+                          <div class="card-header">
+                              <h3>Campaign</h3> <a href="#">ดูรายละเอียด</a>
+                          </div>
+                          <div class="card-thumbnail-image">
+                              <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
+                          </div>
+                          <div class="card-body">
+                              {{ proposal.campaign.title | truncate: 60 }}
+                          </div>
+                      </div>
+
+                      <card-proposal-detail ng-model="proposal" cute-bunny-hide>
+                        <div class="how-to-text">
+                           ถ้าคิดไม่ออกถามเพื่อนข้างๆ<br> ได้เลยจ้ะ :-)
                         </div>
+                          <!-- <div class="info-text text-center">
+                              <span ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Incart'">คุณได้เลือกข้อเสนอนี้แล้ว</span>
+                              <span ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Checkout'">รอคุณชำระเงินก่อนเริ่มดำเนินการ</span>
+                          </div>
+                          <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && !proposal.cartId" ng-click="selectProposal(proposal)">&nbsp เลือกข้อเสนอ <i class="fa fa-arrow-right"></i></button>
+                          <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Checkout'" ui-sref="brand-transaction-detail({cartId: proposal.cartId})">ดูรายละเอียดการสั่งซื้อ</button>
+                          <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Selection' && proposal.cartId && proposal.cart.status != 'Checkout'" ui-sref="brand-cart">ดูตะกร้า</button>
+                          <button class="btn-primary btn-width-max" ng-if="proposal.status == 'Working'" ng-click="approveProposal(proposal)">&nbsp อนุมัติงาน <i class="fa fa-arrow-right"></i></button> -->
+                      </card-proposal-detail>
+
                     </div>
                 </div>
             </div>

@@ -235,6 +235,12 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     email: username,
                     password: password
                 });
+            },
+            validateInstagram: function(username, password) {
+                return $http.post("/profile/instagram/validate", {
+                    username: username,
+                    password: password
+                });
             }
         };
     }])

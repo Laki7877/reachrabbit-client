@@ -7,8 +7,6 @@
 
   <zone-header>
     <h1>แก้ไข Profile ของฉัน</h1>
-    <!-- DELETE ME AFTER INTEGRATE -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
   </zone-header>
 
   <div class="zone-body" ng-cloak>
@@ -164,40 +162,3 @@
 </div>
 
 </form>
-
-
-
-
-
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm">
-
-    <!-- Modal content-->
-    <div class="modal-content modal-instagram">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="logos">
-          <img src="images/logo-reachrabbit-app.png" alt="" /><img src="images/logo-instagram-app.png" alt="" />
-        </div>
-        <h3>เชื่อมต่อกับ Instagram ของคุณ</h3>
-        <p class="note">
-          ReachRabbit จะไม่เก็บรหัสผ่าน Instagram ของคุณ เราใช้เพื่อยื่นยันตัวตน ครั้งเดียวเท่านั้น
-        </p>
-        <div class="form-group">
-          <label uib-tooltip="เช่น ถ้าชื่อ Instagram ของคุณคือ @pimtima ให้ใส่ว่า pimtima ในช่องนี้" tooltip-placement="right">Instagram Username  <i class="fa fa-question-circle"></i></label>
-          <input type="text" class="form-control" placeholder="" ng-model="username" name="username">
-        </div>
-        <div class="form-group">
-          <label uib-tooltip="หากคุณจำ Instagram Password ไม่ได้ ให้กด Forgot Password ใน Instagram" tooltip-placement="right">Instagram Password  <i class="fa fa-question-circle"></i></label>
-          <input type="password" class="form-control" placeholder="" ng-model="password" name="password">
-        </div>
-
-        <button type="button" class="btn-primary btn-width-lg" name="button">เชื่อมต่อกับ Instagram</button>
-      </div>
-    </div>
-
-  </div>
-</div>

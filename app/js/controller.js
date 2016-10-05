@@ -1725,6 +1725,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                         followerCount: $scope.formData.pages[0].count,
                         pageId: $scope.formData.pageId || null
                     }],
+                    password: $scope.formData.password,
                     profilePicture: $scope.profilePictureResource
                 })
                     .then(function (response) {

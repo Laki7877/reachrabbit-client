@@ -508,66 +508,108 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                     if (mediaId == 'youtube') {
                         mediaId = 'google';
                     }
-                    $auth.authenticate(mediaId)
-                        .then(function (response) {
-                            var linkedProfile = response.data;
-
-                            if (!_.isNil(response.data.token)) {
-                                throw 'Media นี้ได้ทำการสมัครไปแล้ว';
-                            }
-
-                            if (mediaId == 'facebook') {
-                                $uibModal.open({
-                                    templateUrl: 'components/templates/social-linker-modal.html',
-                                    controller: ['$scope', 'authData', '$uibModalInstance', function ($scope, authData, $uibModalInstance) {
-                                        $scope.pages = authData.pages;
-                                        $scope.formData = {
-                                            selectedPage: null
-                                        };
-                                        $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
-                                        $scope.choosePage = function (page) {
-                                            var authobject = {
-                                                pages: [page],
-                                                pageId: page.id,
-                                                media: authData.media,
-                                                email: authData.email,
-                                                profilePicture: page.picture,
-                                                name: page.name,
-                                                id: authData.id
-                                            };
-                                            $uibModalInstance.close(authobject);
-                                        };
-                                    }],
-                                    resolve: {
-                                        authData: function () {
-                                            return linkedProfile;
-                                        }
+                    // new instagram auth without oauth
+                    if (mediaId == 'instagram') {
+                        $uibModal.open({
+                            templateUrl: 'components/templates/instagram-modal.html',
+                            controller: ['$scope', '$uibModalInstance','AccountService', 'NcAlert', 'validator', function($scope, $uibModalInstance, AccountService, NcAlert, validator) {
+                                $scope.formData = {};
+                                $scope.alert = new NcAlert();
+                                $scope.login = function() {
+                                    var o = validator.formValidate($scope.form);
+                                    if (o) {
+                                        $scope.form.$setSubmitted();
+                                        $scope.alert.danger(o.message);
+                                        return;
                                     }
-                                })
-                                    .result.then(function (authData) {
-                                        //Afterward,
-                                        scope.model.push({
-                                            media: linkedProfile.media || { mediaId: mediaId },
-                                            socialId: authData.id,
-                                            pageId: authData.pageId,
-                                            followerCount: authData.pages[0].count
-                                        });
-                                        if (scope.onDone) scope.onDone();
+                                    $scope.save = true;
+                                    AccountService.validateInstagram($scope.formData.username, $scope.formData.password)
+                                        .then(function(res) {
+                                            $uibModalInstance.close(res.data);
+                                        }, function(e) {
+                                            $scope.alert.danger(e.data.message);
+                                        })
+                                    .finally(function() {
+                                        $scope.save = false;
                                     });
-                            } else {
-                                scope.model.push({
-                                    media: linkedProfile.media || { mediaId: mediaId },
-                                    socialId: linkedProfile.id,
-                                    followerCount: linkedProfile.pages[0].count,
-                                    pageId: null
-                                });
-                                if (scope.onDone) scope.onDone();
-                            }
+                                };
+                            }],
+                            size: 'sm'
                         })
-                        .catch(function (err) {
-                            if (scope.onDone) scope.onDone({ data: { message: err } });
+                        .result.then(function(data) {
+                            scope.model.push({
+                                media:{ mediaId: mediaId },
+                                socialId: data.username,
+                                followerCount: data.followers,
+                                pageId: null
+                            });
+                            if (scope.onDone) scope.onDone();
+                        }, function(err) {
+                            if (!_.isString(err) && scope.onDone) scope.onDone(err);
                         });
+                    }
+                    else {
+                        // normal auth
+                        $auth.authenticate(mediaId)
+                            .then(function (response) {
+                                var linkedProfile = response.data;
 
+                                if (!_.isNil(response.data.token)) {
+                                    throw 'Media นี้ได้ทำการสมัครไปแล้ว';
+                                }
+
+                                if (mediaId == 'facebook') {
+                                    $uibModal.open({
+                                        templateUrl: 'components/templates/social-linker-modal.html',
+                                        controller: ['$scope', 'authData', '$uibModalInstance', function ($scope, authData, $uibModalInstance) {
+                                            $scope.pages = authData.pages;
+                                            $scope.formData = {
+                                                selectedPage: null
+                                            };
+                                            $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
+                                            $scope.choosePage = function (page) {
+                                                var authobject = {
+                                                    pages: [page],
+                                                    pageId: page.id,
+                                                    media: authData.media,
+                                                    email: authData.email,
+                                                    profilePicture: page.picture,
+                                                    name: page.name,
+                                                    id: authData.id
+                                                };
+                                                $uibModalInstance.close(authobject);
+                                            };
+                                        }],
+                                        resolve: {
+                                            authData: function () {
+                                                return linkedProfile;
+                                            }
+                                        }
+                                    })
+                                        .result.then(function (authData) {
+                                            //Afterward,
+                                            scope.model.push({
+                                                media: linkedProfile.media || { mediaId: mediaId },
+                                                socialId: authData.id,
+                                                pageId: authData.pageId,
+                                                followerCount: authData.pages[0].count
+                                            });
+                                            if (scope.onDone) scope.onDone();
+                                        });
+                                } else {
+                                    scope.model.push({
+                                        media: linkedProfile.media || { mediaId: mediaId },
+                                        socialId: linkedProfile.id,
+                                        followerCount: linkedProfile.pages[0].count,
+                                        pageId: null
+                                    });
+                                    if (scope.onDone) scope.onDone();
+                                }
+                            })
+                            .catch(function (err) {
+                                if (scope.onDone) scope.onDone({ data: { message: err } });
+                            });
+                    }
                 };
             }
         };

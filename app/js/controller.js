@@ -1649,9 +1649,9 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
             });
         };
     }])
-    .controller('InfluencerSignUpNoMediaController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig', 'validator', 'util',
+    .controller('InfluencerSignUpEmailController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig', 'validator', 'util',
         function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
-
+            $scope.alert = new NcAlert();
     }])
     .controller('InfluencerSignUpController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig', 'validator', 'util',
         function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
@@ -1700,6 +1700,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                         followerCount: $scope.formData.pages[0].count,
                         pageId: $scope.formData.pageId || null
                     }],
+                    password: $scope.formData.password,
                     profilePicture: $scope.profilePictureResource
                 })
                     .then(function (response) {

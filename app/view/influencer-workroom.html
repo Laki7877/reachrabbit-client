@@ -8,9 +8,9 @@
                     <div class="col-xs-9">
                         <div class="chatbox-card">
                             <div class="chatbox-header">
+                                <h3>{{ proposal.campaign.brand.brandName | truncate: 30 }}</h3>
                                 <a class="link-view-profile" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId, proposalId: proposal.proposalId })">
-                                  <h3>{{ proposal.campaign.brand.brandName | truncate: 30 }}</h3>
-                                  <i class="fa fa-info-circle"></i>ดูโปรไฟล์
+                                  ดูโปรไฟล์
                                 </a>
                                 <div class="chatbox-status">
                                   <span class="color-grey">สถานะ: </span>
@@ -59,28 +59,87 @@
                         </div>
                     </div>
                     <div class="col-xs-3">
-                        <card-proposal-detail ng-model="proposal" cute-bunny-hide>
-                            <button ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'WaitForPayout'" class="btn-primary btn-width-max" ui-sref="influencer-wallet">ถอนเงิน</button>
-                            <div ng-if="proposal.status == 'Complete' && proposal.wallet.status !== 'WaitForPayout'" class="text-center" >
-                              <small ng-if="proposal.wallet.status === 'Paid'" class="color-grey">คุณได้รับเงินแล้ว</small>
-                              <button class="btn-secondary btn-width-max" ui-sref="influencer-payout-detail({walletId: proposal.wallet.walletId})">
-                                  <span ng-if="proposal.wallet.status === 'Paid'"> ดูหลักฐานการโอน </span>
-                                  <span ng-if="proposal.wallet.status === 'Pending'"> ดูรายการถอนเงิน </span>
-                              </button>
+
+                      <div class="card-campaign-thumbnail" ui-sref="brand-campaign-detail-published({campaignId: proposal.campaign.campaignId })" cute-bunny-hide>
+                          <div class="card-header">
+                              <h3>Campaign</h3> <a href="#">ดูรายละเอียด</a>
+                          </div>
+                          <div class="card-thumbnail-image">
+                              <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
+                          </div>
+                          <div class="card-body">
+                              {{ proposal.campaign.title | truncate: 60 }}
+                          </div>
+                      </div>
+
+                      <card-proposal-detail ng-model="proposal" cute-bunny-hide>
+
+                          <div ng-if="proposal.status == 'Selection'" >
+                            <div class="how-to-text">
+                              <ol>
+                                <li>ตกลงขอบเขตงานให้ชัดเจน</li>
+                                <li>แก้ไขข้อเสนอตามความเหมาะสม</li>
+                                <li>รอ Brand ตัดสินใจว่าจะได้รับงานหรือไม่</li>
+                              </ol>
+                              <p>
+                                หากคุณผ่านการคัดเลือก เราจะแจ้งเตือนคุณด้วยอีเมล หรือ เช็คได้ที่ Inbox ของเรา
+                              </p>
                             </div>
                             <button ng-if="proposal.status == 'Selection' && !hasCart(proposal)" class="btn-secondary btn-width-max" ng-click="editProposal()">แก้ไขข้อเสนอ</button>
-                        </card-proposal-detail>
+                          </div>
 
-                        <div class="card-campaign-thumbnail" ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })" cute-bunny-hide>
-                            <div class="card-thumbnail-image">
-                                <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
+                          <div ng-if="proposal.status == 'Working'" >
+                            <div class="how-to-text">
+                              <ol>
+                                <li>ทำงานตามที่ตกลงกัน</li>
+                                <li>ส่งงานให้ Brand ตรวจสอบก่อนโพส</li>
+                                <li>โพสงานบนโซเชียลและส่งรูปหลักฐานการโพสให้ Brand</li>
+                                <li>ขอให้ Brand "อนุมัติงาน"</li>
+                              </ol>
+                              <p>
+                                คุณจะได้รับเงินในระบบ หลังจาก Brand กด "อนุมัติงาน" ซึ่งสามารถถอนเข้าบัญชีคุณได้เมื่อต้องการ
+                              </p>
                             </div>
-                            <div class="card-body">
-                                {{ proposal.campaign.title | truncate: 60 }}
-                                <button class="btn-secondary btn-width-max">ดูรายละเอียด</button>
-                            </div>
-                        </div>
+                          </div>
 
+                          <div ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'WaitForPayout'" >
+                            <div class="how-to-text">
+                              <p>
+                                ยินดีด้วย งานคุณเสร็จสิ้นแล้ว!
+                              </p>
+                              <p>
+                                คุณสามารถถอนเงินจากงานนี้ได้เลย หรือรอถอนรวมกับงานอื่นทีเดียว
+                              </p>
+                            </div>
+                            <button ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'WaitForPayout'" class="btn-primary btn-width-max" ui-sref="influencer-wallet">ถอนเงิน</button>
+                          </div>
+
+                          <div ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'Pending'">
+                            <div class="how-to-text">
+                              <p>
+                                ยินดีด้วย งานคุณเสร็จสิ้นแล้ว!
+                              </p>
+                              <p>
+                                ระบบกำลังดำเนินการโอนเงิน
+                              </p>
+                            </div>
+                            <button class="btn-secondary btn-width-max" ui-sref="influencer-payout-detail({walletId: proposal.wallet.walletId})">ดูรายการถอนเงิน</button>
+                          </div>
+
+                          <div ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'Paid'">
+                            <div class="how-to-text">
+                              <p>
+                                ยินดีด้วย งานคุณเสร็จสิ้นแล้ว!
+                              </p>
+                              <p>
+                                คุณได้รับเงินจากงานนี้แล้ว
+                              </p>
+                            </div>
+                            <button class="btn-secondary btn-width-max" ui-sref="influencer-payout-detail({walletId: proposal.wallet.walletId})">ดูหลักฐานการโอน</button>
+                          </div>
+
+                      </card-proposal-detail>
+                  
                     </div>
                 </div>
             </div>

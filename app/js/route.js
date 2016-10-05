@@ -118,6 +118,11 @@ angular.module('reachRabbitApp.brand.routes', ['ui.router'])
                     alert: null,
                 }
             })
+            .state('brand-dashboard', {
+                url: '/brand-dashboard/:campaignId',
+                templateUrl: 'view/brand-dashboard.html',
+                controller: 'DashboardController'
+            })
             .state('brand-profile', {
                 url: '/brand-profile',
                 templateUrl: 'view/brand-profile.html',

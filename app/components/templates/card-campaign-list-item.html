@@ -48,7 +48,7 @@
     </div>
     <div class="card-button" ng-if="!(campaign.status == 'Draft')">
       <button class="btn-secondary btn-width-max btn-minimal"><i class="fa fa-file-text fa-fw"></i> ดูรายละเอียด</button><br>
-      <button class="btn-secondary btn-width-max btn-minimal btn-open-dashboard" ui-sref="brand-dashboard"><i class="fa fa-line-chart fa-fw"></i> ดู Dashboard</button>
+      <button class="btn-secondary btn-width-max btn-minimal btn-open-dashboard" ui-sref="brand-dashboard({campaignId: campaign.campaignId})"><i class="fa fa-line-chart fa-fw"></i> ดู Dashboard</button>
     </div>
   </div>
 </div>

@@ -1,28 +1,22 @@
 <div class="viewport view-brand-dashboard">
   <div class="zone-alert">
-    <div nc-alert type="info" closable="true">
-      Hello World
-    </div>
+    <div nc-alert="alert"></div>
   </div>
-  <zone-header historyback="false">
+  <zone-header historyback="true">
     <h1>Dashboard</h1>
     <div class="action-btn-for-header">
-        <button class="btn-primary btn-width-md">
-            Button
-        </button>
     </div>
   </zone-header>
   <div class="zone-body">
     <div class="container">
       <div cute-bunny-hide>
-        <card-campaign-header campaign="campaignNee" remove="remove()" removeable="true">
+        <card-campaign-header campaign="campaignNee" viewable="true" view="openCampaign()">
         </card-campaign-header>
         <div class="card">
           <div class="card-body">
             <h2>Hello World</h2>
             <canvas id="line" class="chart chart-line" chart-data="data"
-            chart-labels="labels" chart-series="series" chart-options="options"
-            chart-dataset-override="datasetOverride" chart-click="onClick">
+            chart-labels="labels" chart-series="series">
             </canvas> 
           </div>
         </div>

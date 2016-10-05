@@ -3,9 +3,13 @@
     <div class="card-image">
       <img ng-src="{{campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
     </div>
-    <div ng-click="remove()" class="card-close color-grey">
+    <div ng-if="removeable()" ng-click="remove()" class="card-close color-grey">
       <!-- ng-if="removeable()"  -->
       <i class="fa fa-trash"></i> ลบ Campaign นี้
+    </div>
+    <div ng-if="viewable()" ng-click="view()" class="card-close color-orange">
+      <!-- ng-if="removeable()"  -->
+      <a>รายละเอียด Campaign นี้</a>
     </div>
     <div class="card-campaign-header-content">
 

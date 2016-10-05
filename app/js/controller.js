@@ -17,37 +17,6 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             var scope = $scope;
             // console.log("Test World");
         };
-
-        //EXAMPLE CHART.JS PLZ DELETE ME LATER
-        $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-        $scope.series = ['Series A', 'Series B'];
-        $scope.data = [
-         [65, 59, 80, 81, 56, 55, 40],
-         [28, 48, 40, 19, 86, 27, 90]
-        ];
-        $scope.onClick = function (points, evt) {
-         console.log(points, evt);
-        };
-        $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
-        $scope.options = {
-         scales: {
-           yAxes: [
-             {
-               id: 'y-axis-1',
-               type: 'linear',
-               display: true,
-               position: 'left'
-             },
-             {
-               id: 'y-axis-2',
-               type: 'linear',
-               display: true,
-               position: 'right'
-             }
-           ]
-         }
-        };
-
     }])
     .controller('TransactionDetailController', ['$scope', 'NcAlert', '$stateParams', 'TransactionService', 'AdminService', function ($scope, NcAlert, $stateParams, TransactionService, AdminService) {
         var cartId = $stateParams.cartId;
@@ -1218,9 +1187,6 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
             //initial form data
             $scope.alert = new NcAlert();
             $scope.editOpenState = $stateParams.editOpenState;
-            if ($stateParams.alert) {
-                $scope.alert.success($stateParams.alert);
-            }
             $scope.form = {};
             util.warnOnExit($scope);
 
@@ -1230,22 +1196,6 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 campaignResources: [],
                 budget: null
             };
-
-            $scope.remove = function () {
-                $uibModal.open({
-                    templateUrl: 'components/templates/campaign-delete-confirmation-modal.html',
-                    size: 'sm'
-                }).result.then(function () {
-                    CampaignService.delete($scope.campaignNee.campaignId)
-                        .then(function () {
-                            $state.go('brand-campaign-list');
-                        })
-                        .catch(function (err) {
-                            $scope.alert.danger(err.data.message);
-                        });
-                });
-            };
-
             $scope.campaignNee = $scope.formData;
 
             $scope.mediaBooleanDict = {};
@@ -1298,9 +1248,11 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 mediaBooleanDictProcess($scope.formData);
             }, true);
 
-            $scope.formData.brand = UserProfile.get().brand;
-
-
+            $scope.openCampaign = function() {
+                $state.go('brand-campaign-detail-draft',{
+                    campaignId: $scope.campaignNee.campaignId
+                });
+            };
             function getOne(cid) {
                 CampaignService.getOne(cid)
                     .then(function (response) {
@@ -1313,104 +1265,23 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                         });
 
                         $scope.campaignNee = $scope.formData;
-
-                        //if is published
-                        if ($scope.formData.status === "Open" && !$stateParams.editOpenState) {
-                            $state.go('brand-campaign-detail-published', { campaignId: $scope.campaignNee.campaignId });
-                        }
-
                         //ensure non null
                         $scope.formData.keywords = $scope.formData.keywords || [];
-
-                        if (!$scope.formData.brand) {
-                            $scope.formData.brand = UserProfile.get().brand;
-                        }
-
-                        if (!$scope.formData.rabbitFlag && $scope.formData.status === 'Open' && !$stateParams.editOpenState && !document.querySelector(".message-modal")) {
-
-                            var modalInstance = $uibModal.open({
-                                animation: false,
-                                templateUrl: 'components/templates/brand-publish-campaign-modal.html',
-                                controller: 'CampaignMessageModalController',
-                                size: 'sm',
-                                windowClass: 'message-modal',
-                                backdrop: 'static',
-                                resolve: {
-                                    email: function () {
-                                        return UserProfile.get().email;
-                                    },
-                                    campaignId: function () {
-                                        return $scope.formData.campaignId;
-                                    }
-                                }
-                            });
-                        }
-
-                        $scope.createMode = false;
                     });
             }
 
             //Setting up form
             var campaignId = $stateParams.campaignId;
             getOne(campaignId);
-            var today = moment();
 
-            $scope.isRecommendedDate = function () {
-                if ($scope.formData && $scope.formData.proposalDeadline && moment($scope.formData.proposalDeadline).subtract(13, 'day').isBefore(today)) {
-                    return true;
-                }
-            };
+            $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+            $scope.series = ['Series A', 'Series B'];
 
-            $scope.isInvalidMedia = function () {
-                return $scope.formData.media.length === 0 && $scope.form.$submitted && $scope.formData.status == 'Open';
-            };
-            $scope.isPublishing = function (model, key) {
-                //Only validate publish for resource
-                if (model && model.$name === 'resource' && key !== 'required') {
-                    return true;
-                }
-                return $scope.formData.status === 'Open';
-            };
-
-            $scope.save = function (formData, mediaBooleanDict, mediaObjectDict, status) {
-                formData.brand = UserProfile.get().brand;
-                formData.status = status;
-
-                if (formData.website && formData.website.length > 1 && !formData.website.startsWith("http")) {
-                    formData.website = "http://" + formData.website;
-                }
-
-                mediaBooleanDictProcess(formData);
-
-                // $scope.formData.resources = $scope.formData.resources.concat($scope.resources || []);
-
-                //check for publish case
-                if (status == 'Open') {
-                    var o = validator.formValidate($scope.form);
-                    if (o || formData.media.length === 0) {
-                        $scope.form.$setSubmitted();
-                        $scope.alert.danger(o.message);
-                        return;
-                    }
-                }
-
-                //saving
-                CampaignService.save(formData)
-                    .then(function (echoresponse) {
-                        $scope.form.$setPristine();
-                        if (formData.status === "Open") {
-                            $state.go('brand-campaign-detail-published', { campaignId: echoresponse.data.campaignId, alert: "บันทึกข้อมูล และ ลงประกาศเรียบร้อยแล้ว" });
-                        } else if (status == "Draft" && echoresponse.data.status == "Draft") {
-                            getOne(echoresponse.data.campaignId);
-                            $scope.alert.success('บันทึกข้อมูลเรียบร้อยแล้ว!');
-                        }
-                    })
-                    .catch(function (err) {
-                        $scope.alert.danger(err.data.message);
-                    });
-
-            };
-
+            //Line chart
+            $scope.data = [
+              [65, 59, 80, 81, 56, 55, 40],
+              [28, 48, 40, 19, 86, 27, 90]
+            ];
         }
     ])
     .controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util', function ($scope, $window, AccountService, NcAlert, UserProfile, validator, util) {
@@ -1722,7 +1593,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     //Tell raven about the user
                     Raven.setUserContext(UserProfile.get());
                     //Redirect
-                    $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
+                    $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
                     var bounce = '/influencer.html#/influencer-campaign-list';
                     if ($location.search().bounce_route) {
                         bounce = '/influencer.html#' + $location.search().bounce_route;
@@ -1740,7 +1611,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                 .then(function (response) {
                     // console.log('Response', response.data);
                     if (response.data.token) {
-                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
+                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
 
                         $window.localStorage.token = response.data.token;
                         AccountService.getProfile()
@@ -1813,7 +1684,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     .then(function (response) {
                         // console.log('Response', response.data);
                         if (response.data.token) {
-                            $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
+                            $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
 
                             $window.localStorage.token = response.data.token;
                             AccountService.getProfile()
@@ -1972,7 +1843,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                         return AccountService.getProfile();
                     })
                     .then(function (profileResp) {
-                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
+                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
                         UserProfile.set(profileResp.data);
                         //Tell raven about the user
                         Raven.setUserContext(UserProfile.get());

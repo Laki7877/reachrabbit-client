@@ -819,12 +819,16 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             scope: {
                 campaign: '=',
                 remove: "&?",
-                removeable: "&?"
+                removeable: "&?",
+                viewable: "&?",
+                view: "&?"
             },
             templateUrl: 'components/templates/card-campaign-header.html',
             link: function (scope, element, attrs, ctrl, transclude) {
                 scope.remove = scope.remove || _.noop;
                 scope.removable = scope.removeable || _.noop;
+                scope.viewable = scope.viewable || _.noop;
+                scope.view = scope.view || _.noop;
             }
         };
     }])

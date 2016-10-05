@@ -24,7 +24,7 @@
       </div>
 
       <div cute-bunny-hide ng-repeat="x in myCampaign.content">
-        <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-draft({campaignId: x.campaignId})"></card-campaign-list-item>
+        <card-campaign-list-item campaign='x'></card-campaign-list-item>
       </div>
       <nav class="text-center" aria-label="Page navigation">
         <pagination ng-model="myCampaign" callback="load"></pagination>

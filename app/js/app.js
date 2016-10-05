@@ -21,6 +21,7 @@ angular.module('reachRabbitApp', [
   'wu.masonry',
   'ngImgCrop',
   'jsonFormatter',
+  'chart.js',
   //Top level
   'reachRabbitApp.directives',
   'reachRabbitApp.routes',
@@ -220,7 +221,7 @@ angular.module('reachRabbitApp', [
       $rootScope.rootError = new NcAlert();
       $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams, options) {
-          
+
           //in case of brand
           if (!UserProfile.get()) {
             return;

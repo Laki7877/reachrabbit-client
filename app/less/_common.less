@@ -685,6 +685,7 @@ input:-moz-placeholder {
     margin-bottom: 15px;
   }
   small{
+    display: block;
     color: @color-grey-darker;
   }
   h4{
@@ -695,12 +696,28 @@ input:-moz-placeholder {
     float: right;
     margin-top: -20px;
   }
+  .profile-web{
+    display: block;
+    a{
+      color: @color-black;
+      text-decoration: underline;
+    }
+  }
   .social-info{
     display: inline-block;
     margin-right: 15px;
     margin-bottom: 10px;
     .social-icon{
       margin-right: 0px;
+    }
+  }
+  .for-proposal-detail{
+    display: none;
+    small{
+      margin-top: 10px;
+    }
+    .social-icon{
+      margin-top: 5px;
     }
   }
 }
@@ -1650,6 +1667,11 @@ div:focus{
   }
   .zone-body{
     margin-top: 10px;
+  }
+  .card-profile{
+    .for-proposal-detail{
+      display: block;
+    }
   }
   .card-proposal-detail{
     &:extend(.card all);

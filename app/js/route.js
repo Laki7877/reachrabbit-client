@@ -155,6 +155,11 @@ angular.module('reachRabbitApp.brand.routes', ['ui.router'])
                 url: '/brand-transaction-detail/:cartId',
                 templateUrl: 'view/brand-transaction-detail.html',
                 controller: 'TransactionDetailController'
+            })
+            .state('brand-dashboard', {
+                url: '/brand-dashboard',
+                templateUrl: 'view/brand-dashboard.html',
+                controller: 'EmptyController'
             });
 
     }]);

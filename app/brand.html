@@ -81,8 +81,8 @@
                 สร้าง Campaign
               </span>
             </div>
-            <div class="step" ui-sref="brand-inbox({status:'Selection'})" ng-class="{ 
-            'active': 
+            <div class="step" ui-sref="brand-inbox({status:'Selection'})" ng-class="{
+            'active':
             ('brand-inbox' | isState: {status: 'Selection'}) ||
             (('brand-workroom' | isState) && proposal.status === 'Selection')}">
               <img src="images/brand-onboarding-2.png" />
@@ -99,8 +99,8 @@
                 ชำระเงิน ({{inbox.cart || '0'}})
               </span>
             </div>
-            <div class="step" ui-sref="brand-inbox({status:'Working'})" ng-class="{ 'active': 
-            ('brand-inbox' | isState : {status: 'Working'}) || 
+            <div class="step" ui-sref="brand-inbox({status:'Working'})" ng-class="{ 'active':
+            ('brand-inbox' | isState : {status: 'Working'}) ||
             (('brand-workroom' | isState) &&  proposal.status === 'Working')}">
               <img src="images/brand-onboarding-4.png"/>
               <span class="step-text">
@@ -108,7 +108,7 @@
               </span>
               <div ng-if="inbox.working.unreadMessageCount > 0" class="step-mushroom"></div>
             </div>
-            <div class="step" ui-sref="brand-inbox({status:'Complete'})" ng-class="{ 'active': 
+            <div class="step" ui-sref="brand-inbox({status:'Complete'})" ng-class="{ 'active':
             ('brand-inbox' | isState: {status:'Complete'}) ||
             (('brand-workroom' | isState) &&  proposal.status === 'Complete')}">
               <img src="images/brand-onboarding-5.png"/>
@@ -167,6 +167,9 @@
 
     <script src="bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.js"></script>
     <script src="bower_components/json-formatter/dist/json-formatter.min.js"></script>
+
+    <script src="bower_components/chart.js/dist/Chart.min.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
     <script type="text/javascript" src="bower_components/ng-tags-input/ng-tags-input.js"></script>

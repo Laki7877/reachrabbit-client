@@ -652,16 +652,16 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             templateUrl: 'components/templates/card-influencer-profile.html',
             scope: {
                 profile: '=ngModel',
-                _showSocialData: '=?showSocialData'
+                _showAllData: '=?showAllData'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
 
-                if (scope._showSocialData === false) {
-                    scope.showSocialData = false;
-                } else if (scope._showSocialData === true) {
-                    scope.showSocialData = true;
+                if (scope._showAllData === false) {
+                    scope.showAllData = false;
+                } else if (scope._showAllData === true) {
+                    scope.showAllData = true;
                 } else {
-                    scope.showSocialData = true;
+                    scope.showAllData = true;
                 }
 
                 scope.isInfluencer = false;

@@ -910,6 +910,9 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             }
             return $filter('amCalendar')(proposal.messageUpdatedAt);
         };
+        $scope.$watch('filter', function() {
+            $scope.load($scope.params, { search: $scope.filter });
+        });
         $scope.load({
             sort: ['messageUpdatedAt,desc']
         });
@@ -1286,6 +1289,10 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
             }
             return $filter('amCalendar')(proposal.messageUpdatedAt);
         };
+
+        $scope.$watch('filter', function() {
+            $scope.load($scope.params, { search: $scope.filter });
+        });
 
         $scope.load({
             sort: ['messageUpdatedAt,desc']

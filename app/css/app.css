@@ -8372,8 +8372,10 @@ input:-moz-placeholder {
   margin-top: 20px;
 }
 .card-campaign-list-item .card-button button[disabled] {
-  margin-top: 10px;
   color: #3e4a5e;
+}
+.card-campaign-list-item .card-button .btn-open-dashboard {
+  margin-top: 10px;
 }
 .card-campaign-list-item .card-button.status-draft {
   margin-top: 35px;

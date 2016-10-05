@@ -28,6 +28,7 @@
       <div ng-show="showAllData">
         <small>จำนวนผู้ติดตาม</small>
         <h4>
+          <span ng-if="profile.influencerMedias.length == 0">-</span>
            <span ng-repeat="imedia in profile.influencerMedias" class="social-info">
              <span class="icon-{{imedia.media.mediaId}} social-icon"></span> {{ imedia.followerCount | number }} คน
            </span>

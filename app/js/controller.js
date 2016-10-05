@@ -176,6 +176,13 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 return true;
             };
 
+            $scope.intersectMedia = function (media, mediaInfluencer) {
+                return _.intersectionBy((mediaInfluencer || []).map(function (mi) {
+                    mi.mediaId = mi.media.mediaId;
+                    return mi;
+                }), media, 'mediaId');
+            };
+
             //Approve Proposal
             $scope.approveProposal = function (proposal) {
                 var modalInstance = $uibModal.open({
@@ -1494,7 +1501,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);
                 });
-        };        
+        };
         $scope.startAuthFlow = function (mediaId) {
             $scope.minFollowerError = false;
             $window.localStorage.clear();

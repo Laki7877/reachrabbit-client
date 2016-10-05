@@ -8417,6 +8417,7 @@ input:-moz-placeholder {
   margin-bottom: 15px;
 }
 .card-profile small {
+  display: block;
   color: #8692a8;
 }
 .card-profile h4 {
@@ -8427,6 +8428,13 @@ input:-moz-placeholder {
   float: right;
   margin-top: -20px;
 }
+.card-profile .profile-web {
+  display: block;
+}
+.card-profile .profile-web a {
+  color: #3e4a5e;
+  text-decoration: underline;
+}
 .card-profile .social-info {
   display: inline-block;
   margin-right: 15px;
@@ -8434,6 +8442,15 @@ input:-moz-placeholder {
 }
 .card-profile .social-info .social-icon {
   margin-right: 0px;
+}
+.card-profile .for-proposal-detail {
+  display: none;
+}
+.card-profile .for-proposal-detail small {
+  margin-top: 10px;
+}
+.card-profile .for-proposal-detail .social-icon {
+  margin-top: 5px;
 }
 .card-campaign-header {
   position: relative;
@@ -10311,6 +10328,9 @@ div:focus {
 }
 .workroom .zone-body {
   margin-top: 10px;
+}
+.workroom .card-profile .for-proposal-detail {
+  display: block;
 }
 .workroom .card-proposal-detail .nav-pills {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);

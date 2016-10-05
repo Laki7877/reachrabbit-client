@@ -72,8 +72,17 @@
                             <div class="message-area" scroll-glue="scroll">
                                 <cute-bunny></cute-bunny>
                                 <div cute-bunny-hide>
-                                    <card-influencer-profile ng-model="proposal.influencer" show-social-data="false">
-                                      <a ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId })" class="link-to-profile">ดูโปรไฟล์</a>
+                                    <card-influencer-profile ng-model="proposal.influencer" show-all-data="false">
+                                      <div class="for-proposal-detail">
+                                        <small>ช่องทางที่จะโปรโมทให้</small>
+                                        <div ng-repeat="imedia in intersectMedia(proposal.media, proposal.influencer.influencerMedias)">
+                                            <span class="icon-{{imedia.mediaId}} social-icon"></span> {{ imedia.followerCount | number }} คน
+                                        </div>
+                                        <small>จะส่งงานภายใน</small>
+                                        <span>{{proposal.completionTime.completionTime}}</span>
+                                        <small>ราคาที่เสนอ</small>
+                                        <h4>{{proposal.price | number}} บาท</h4>
+                                      </div>
                                     </card-influencer-profile>
 
                                     <div class="message-past" ng-if="hasPastMessage()">

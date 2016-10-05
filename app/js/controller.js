@@ -1936,6 +1936,11 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
         function ($scope, UserProfile, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util, LongPollingService, $timeout, InfluencerAccountService) {
             $scope.msglist = [];
             $scope.msgHash = {};
+            $scope.links = {
+                facebook: [],
+                instagram: [],
+                google: []
+            };
             $scope.msgLimit = 30;
             $scope.totalElements = 0;
 
@@ -1992,6 +1997,47 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
                 ProposalService.addToCart($scope.proposal)
                     .then(function (od) {
                         $state.go('brand-cart');
+                    });
+            };
+
+
+            // save post
+            $scope.save = function(post, mediaId) {
+                var p = _.extend({
+                    media: {
+                        mediaId: mediaId
+                    }
+                }, post);
+
+                ProposalService.savePosts($scope.proposalId, p)
+                    .then(function(res) {
+                        _.extend(post, res.data);
+                        $scope.alert.success('บันทึกข้อมูลสำเร็จเรียบร้อย');
+                    })
+                    .catch(function(e) {
+                        $scope.alert.danger(e.data.message);
+                    });
+            };
+
+            $scope.delete = function(post, mediaId) {
+                ProposalService.deletePosts($scope.proposalId, _.extend(post, {media: {mediaId: mediaId}}))
+                    .then(function() {
+                        _.remove($scope.links[mediaId], function(e) {
+                            return e.socialPostId === post.socialPostId;
+                        });
+                        $scope.alert.success('ลบข้อมูลสำเร็จเรียบร้อย');
+                    })
+                    .catch(function(e) {
+                        $scope.alert.danger(e.data.message);
+                    });
+            };
+
+            $scope.getPosts = function() {
+                ProposalService.getPosts($scope.proposalId)
+                    .then(function(res) {
+                        _.extend($scope.links, _.groupBy(res.data, function(e) {
+                            return e.mediaId;
+                        }));
                     });
             };
 
@@ -2083,6 +2129,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
                 .then(function (proposalResponse) {
                     $scope.proposal = proposalResponse.data;
                     $rootScope.proposal = proposalResponse.data;
+                    $scope.getPosts();
                     //load transactionid if this is influencer
                     if (UserProfile.get().influencer &&
                         $scope.proposal.status === 'Complete' &&
@@ -2100,7 +2147,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
                             controller: 'ProposalMessageModalController',
                             size: 'sm',
                             windowClass: 'message-modal',
-                            backdrop: 'static',
+                            backdrop: 'statusatic',
                             resolve: {
                                 email: function () {
                                     return UserProfile.get().email;

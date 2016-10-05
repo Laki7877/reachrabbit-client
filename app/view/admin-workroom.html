@@ -6,6 +6,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
+                        <div nc-alert="alert"></div>
                         <div class="chatbox-card card"  ng-if="proposal.status == 'Complete'">
                             <div class="chatbox-header">
                                 <h3>Add Link</h3>
@@ -16,11 +17,16 @@
                                         Facebook Link
                                     </div>
                                     <div class="card-body-content">
-                                        <input name="title" type="text" required ng-model="formData.title" class="form-control" maxlength="60">
-                                        <div class="delete-link">
-                                          <a href="#"><i class="fa fa-trash"></i> Delete Link</a>
+                                        <div class="container-link" ng-repeat="link in links.facebook track by $index">
+                                          <input type="text" required ng-model="link.url" class="form-control" maxlength="60" ng-disabled="link.socialPostId">
+                                          <div class="save-link" ng-if="!link.socialPostId">
+                                            <a ng-click="save(link, 'facebook')"><i class="fa fa-floppy-o"></i> Save</a>
+                                          </div>
+                                          <div class="delete-link" ng-if="link.socialPostId">
+                                            <a ng-click="delete(link, 'facebook')"><i class="fa fa-trash"></i> Delete</a>
+                                          </div>
                                         </div>
-                                        <a>+ Add Another Link</a>
+                                        <a ng-click="links.facebook.push({})">+ Add Another Link</a>
                                     </div>
                                 </div>
                                 <div class="card-row">
@@ -28,8 +34,16 @@
                                         Instagram Link
                                     </div>
                                     <div class="card-body-content">
-                                        <input name="title" type="text" required ng-model="formData.title" class="form-control" maxlength="60">
-                                        <a>+ Add Another Link</a>
+                                        <div class="container-link" ng-repeat="link in links.instagram track by $index">
+                                          <input type="text" required ng-model="link.url" class="form-control" maxlength="60" ng-disabled="link.socialPostId">
+                                          <div class="save-link" ng-if="!link.socialPostId">
+                                            <a ng-click="save(link, 'instagram')"><i class="fa fa-floppy-o"></i> Save</a>
+                                          </div>
+                                          <div class="delete-link" ng-if="link.socialPostId">
+                                            <a ng-click="delete(link, 'instagram')"><i class="fa fa-trash"></i> Delete</a>
+                                          </div>
+                                        </div>
+                                        <a ng-click="links.instagram.push({})">+ Add Another Link</a>
                                     </div>
                                 </div>
                                 <div class="card-row">
@@ -37,14 +51,16 @@
                                         Youtube Link
                                     </div>
                                     <div class="card-body-content">
-                                        <input name="title" type="text" required ng-model="formData.title" class="form-control" maxlength="60">
-                                        <a>+ Add Another Link</a>
-                                    </div>
-                                </div>
-                                <div class="card-row">
-                                    <div class="card-body-content-label with-input"></div>
-                                    <div class="card-body-content">
-                                        <button class="btn btn-primary btn-width-lg">บันทึกข้อมูล</button>
+                                        <div class="container-link" ng-repeat="link in links.google track by $index">
+                                          <input type="text" required ng-model="link.url" class="form-control" maxlength="60" ng-disabled="link.socialPostId">
+                                            <div class="save-link" ng-if="!link.socialPostId">
+                                              <a ng-click="save(link, 'google')"><i class="fa fa-floppy-o"></i> Save</a>
+                                            </div>
+                                            <div class="delete-link" ng-if="link.socialPostId">
+                                              <a ng-click="delete(link, 'google')"><i class="fa fa-trash"></i> Delete</a>
+                                            </div>
+                                        </div>
+                                        <a ng-click="links.google.push({})">+ Add Another Link</a>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +96,6 @@
                                         <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
                                     </div>
                                     <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
-                                    <div nc-alert="alert"></div>
                                 </div>
                             </div>
                             <div class="message-input">

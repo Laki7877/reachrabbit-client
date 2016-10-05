@@ -165,9 +165,25 @@
     .zone-body{
       margin-top: -20px;
     }
+    .container-link {
+      position: relative;
+      margin: 10px 0;
+    }
     .container{
       width: @max-container-width;
       padding: 15px;
+    }
+    .save-link{
+      position: absolute;
+      top: 8px;
+      right: -73px;
+      a{
+        color: @color-theme-primary;
+      }
+    }
+
+    .form-control[disabled] {
+      background-color: @color-grey;
     }
     .delete-link{
       position: absolute;

@@ -10936,9 +10936,24 @@ ul.payment-methods {
 .layout-admin .view-admin-workroom .zone-body {
   margin-top: -20px;
 }
+.layout-admin .view-admin-workroom .container-link {
+  position: relative;
+  margin: 10px 0;
+}
 .layout-admin .view-admin-workroom .container {
   width: 970px;
   padding: 15px;
+}
+.layout-admin .view-admin-workroom .save-link {
+  position: absolute;
+  top: 8px;
+  right: -73px;
+}
+.layout-admin .view-admin-workroom .save-link a {
+  color: #ff773e;
+}
+.layout-admin .view-admin-workroom .form-control[disabled] {
+  background-color: #d8dfe7;
 }
 .layout-admin .view-admin-workroom .delete-link {
   position: absolute;

@@ -1,5 +1,5 @@
 
-	<div class="facebook-dashboard">
+	<div class="youtube-dashboard">
 		<div class="card-body">
 	    <div class="card-overview row ">
 	    	<div class="card-info">
@@ -75,8 +75,12 @@
 	    </div>
 	    <div class="row">
 	      <div class="dashboard-graph">
-					<canvas id="line" height="100" class="chart chart-line" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series">
+					<canvas id="line" height="100" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-dataset-override="chartoptions">
 	        </canvas>
+					<!-- Empty State -->
+					<!-- <div class="empty-state">
+						<i class="fa fa-line-chart fa-2x"></i> ยังไม่มีข้อมูล
+					</div> -->
 	      </div>
 	    </div>
 	    <div class="row">

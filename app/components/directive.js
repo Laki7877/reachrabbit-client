@@ -32,9 +32,10 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                   lineTension: 0.1,
                   borderColor: "rgba(59,89,152,1.0)",
                   pointBackgroundColor: "rgba(59,89,152,1.0)",
+                  backgroundColor: "rgba(59,89,152,0.2)",
+
                   pointHoverBackgroundColor: "rgba(255,119,62,1.0)",
-                  pointHoverBorderColor: "rgba(255,119,62,1.0)",
-                  backgroundColor: "rgba(59,89,152,0.2)"
+                  pointHoverBorderColor: "rgba(255,119,62,1.0)"
                 }
               ];
           }
@@ -50,13 +51,27 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             link: function (scope, element, attrs, ctrl, transclude) {
 
             scope.labels = ['6/10/15', '7/10/15', '8/10/15', '9/10/15', '10/10/15', '11/10/15', '12/10/15'];
-            scope.series = ['Series A'];
+            scope.series = ['Like'];
 
             //Line chart
             scope.data = [
               [5, 9, 10, 21, 36, 55, 60]
             ];
-            }
+
+            //Chart options
+            scope.chartoptions = [
+              {
+                lineTension: 0.1,
+                borderColor: "rgba(233,61,121,1.0)",
+                pointBackgroundColor: "rgba(233,61,121,1.0)",
+                backgroundColor: "rgba(233,61,121,0.2)",
+
+                pointHoverBackgroundColor: "rgba(255,119,62,1.0)",
+                pointHoverBorderColor: "rgba(255,119,62,1.0)"
+              }
+            ];
+
+          }
         };
     }])
     .directive('dashboardYoutube', ['$state', function ($state) {
@@ -69,13 +84,27 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             link: function (scope, element, attrs, ctrl, transclude) {
 
             scope.labels = ['6/10/15', '7/10/15', '8/10/15', '9/10/15', '10/10/15', '11/10/15', '12/10/15'];
-            scope.series = ['Series A'];
+            scope.series = ['Like'];
 
             //Line chart
             scope.data = [
               [500, 530, 550, 555, 600, 660, 680]
             ];
-            }
+
+            //Chart options
+            scope.chartoptions = [
+              {
+                lineTension: 0.1,
+                borderColor: "rgba(230,33,23,1.0)",
+                pointBackgroundColor: "rgba(230,33,23,1.0)",
+                backgroundColor: "rgba(230,33,23,0.2)",
+
+                pointHoverBackgroundColor: "rgba(255,119,62,1.0)",
+                pointHoverBorderColor: "rgba(255,119,62,1.0)"
+              }
+            ];
+
+          }
         };
     }])
     .filter('newlinify', [function () {

@@ -19,7 +19,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
               link: function (scope, element, attrs, ctrl, transclude) {
 
               scope.labels = ['6/10/15', '7/10/15', '8/10/15', '9/10/15', '10/10/15', '11/10/15', '12/10/15'];
-              scope.series = ['Series A'];
+              scope.series = ['Like'];
 
               //Line chart
               scope.data = [
@@ -30,7 +30,11 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
               scope.chartoptions = [
                 {
                   lineTension: 0.1,
-                  backgroundColor: "rgba(75,192,192,0.4)"
+                  borderColor: "rgba(59,89,152,1.0)",
+                  pointBackgroundColor: "rgba(59,89,152,1.0)",
+                  pointHoverBackgroundColor: "rgba(255,119,62,1.0)",
+                  pointHoverBorderColor: "rgba(255,119,62,1.0)",
+                  backgroundColor: "rgba(59,89,152,0.2)"
                 }
               ];
           }

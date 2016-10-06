@@ -25,6 +25,18 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
               scope.data = [
                 [2, 30, 40, 50, 80, 85, 96]
               ];
+              scope.options = {
+                  scales: {
+                    yAxes: [
+                      {
+                        id: 'y-axis-1',
+                        type: 'linear',
+                        display: true,
+                        position: 'left'
+                      }
+                    ]
+                }
+              };
           }
         };
     }])
@@ -37,7 +49,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             templateUrl: 'components/templates/dashboard-instagram.html',
             link: function (scope, element, attrs, ctrl, transclude) {
 
-            scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+            scope.labels = ['6/10/15', '7/10/15', '8/10/15', '9/10/15', '10/10/15', '11/10/15', '12/10/15'];
             scope.series = ['Series A'];
 
             //Line chart
@@ -56,7 +68,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             templateUrl: 'components/templates/dashboard-youtube.html',
             link: function (scope, element, attrs, ctrl, transclude) {
 
-            scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+            scope.labels = ['6/10/15', '7/10/15', '8/10/15', '9/10/15', '10/10/15', '11/10/15', '12/10/15'];
             scope.series = ['Series A'];
 
             //Line chart

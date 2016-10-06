@@ -8895,6 +8895,14 @@ input:-moz-placeholder {
 .social-dashboard-wrapper .facebook-dashboard .table {
   border-top: 2px solid #d8dfe7;
 }
+.social-dashboard-wrapper .social-media-profile .table .col-name,
+.social-dashboard-wrapper .facebook-profile .table .col-name,
+.social-dashboard-wrapper .instagram-profile .table .col-name,
+.social-dashboard-wrapper .youtube-profile .table .col-name,
+.social-dashboard-wrapper .facebook-dashboard .table .col-name {
+  white-space: normal;
+  width: 250px;
+}
 /*---flag---*/
 .flag .status {
   width: 120px;

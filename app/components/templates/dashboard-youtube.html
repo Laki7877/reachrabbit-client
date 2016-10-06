@@ -21,12 +21,12 @@
 	    		</div>
 	    	</div>
 	    	<div class="card-info">
-	        <div class="card-info-label" uib-tooltip="Like + Comment + Share" tooltip-placement="top">
-	          ยอด Engagement <i class="fa fa-question-circle"></i>
+	        <div class="card-info-label">
+	          ยอด View
 	        </div>
 	    		<div class="card-content">
-	    			<strong>1,000</strong>
-	          <small>คน</small>
+	    			<strong>1,000,000</strong>
+	          <i class="fa fa-eye-open"></i>
 	    		</div>
 	    	</div>
 	      <div class="card-info">
@@ -47,15 +47,6 @@
 	          <i class="fa fa-commenting"></i>
 	        </div>
 	      </div>
-	    	<div class="card-info">
-	        <div class="card-info-label">
-	          ยอด Share
-	        </div>
-	    		<div class="card-content">
-	    			<strong>800</strong>
-	    			<i class="fa fa-share-alt"></i>
-	    		</div>
-	    	</div>
 	    </div>
 	    <div class="row">
 	      <div class="col-xs-12">
@@ -90,16 +81,15 @@
 	    </div>
 	    <div class="row">
 	      <div class="col-xs-12">
-	        <h3>Influencers ที่โพสบน Facebook</h3>
+	        <h3>Influencers ที่โพสบน YouTube</h3>
 	        <table class="table" sorter ng-model="data">
 	          <thead>
 	            <tr>
 	              <th class="col-name" sort="influencer.influencerId">Influencer</th>
 	              <th class="" sort="">ผู้ติดตาม</th>
+								<th class="" sort="">View</th>
 	              <th class="" sort="">Like</th>
 	              <th class="" sort="">Comment</th>
-	              <th class="" sort="">Share</th>
-	              <th class="text-align-right" sort="">Engagement Rate</th>
 	            </tr>
 	          </thead>
 	          <tbody>
@@ -110,7 +100,7 @@
 	                    <img ng-src="images/placeholder-profile-picture.png" class="profile-picture" />
 	                  </div>
 	                  <div class="media-body media-middle">
-	                    Jon Snow Jon Snow Jon Snow Jon Snow
+	                    Jon Snow
 	                  </div>
 	                </div>
 	              </td>
@@ -125,9 +115,6 @@
 	              </td>
 	              <td>
 	                50,000
-	              </td>
-	              <td class="text-align-right">
-	                50%
 	              </td>
 	            </tr>
 	            <tr>
@@ -152,9 +139,6 @@
 	              </td>
 	              <td>
 	                1,000
-	              </td>
-	              <td class="text-align-right">
-	                99%
 	              </td>
 	            </tr>
 	          </tbody>

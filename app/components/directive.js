@@ -11,20 +11,57 @@
 angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
     .directive('dashboardFacebook', ['$state', function ($state) {
         return {
+              restrict: 'EA',
+              transclude: true,
+              scope: {
+              },
+              templateUrl: 'components/templates/dashboard-facebook.html',
+              link: function (scope, element, attrs, ctrl, transclude) {
+
+              scope.labels = ['6/10/15', '7/10/15', '8/10/15', '9/10/15', '10/10/15', '11/10/15', '12/10/15'];
+              scope.series = ['Series A'];
+
+              //Line chart
+              scope.data = [
+                [2, 30, 40, 50, 80, 85, 96]
+              ];
+          }
+        };
+    }])
+    .directive('dashboardInstagram', ['$state', function ($state) {
+        return {
             restrict: 'EA',
             transclude: true,
             scope: {
             },
-            templateUrl: 'components/templates/dashboard-facebook.html',
+            templateUrl: 'components/templates/dashboard-instagram.html',
             link: function (scope, element, attrs, ctrl, transclude) {
 
             scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-            scope.series = ['Series A', 'Series B'];
+            scope.series = ['Series A'];
 
             //Line chart
             scope.data = [
-              [65, 59, 80, 81, 56, 55, 40],
-              [28, 48, 40, 19, 86, 27, 90]
+              [5, 9, 10, 21, 36, 55, 60]
+            ];
+            }
+        };
+    }])
+    .directive('dashboardYoutube', ['$state', function ($state) {
+        return {
+            restrict: 'EA',
+            transclude: true,
+            scope: {
+            },
+            templateUrl: 'components/templates/dashboard-youtube.html',
+            link: function (scope, element, attrs, ctrl, transclude) {
+
+            scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+            scope.series = ['Series A'];
+
+            //Line chart
+            scope.data = [
+              [500, 530, 550, 555, 600, 660, 680]
             ];
             }
         };

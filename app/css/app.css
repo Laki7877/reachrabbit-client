@@ -8506,24 +8506,30 @@ input:-moz-placeholder {
   padding-left: 15px;
   padding-right: 15px;
 }
+.card-campaign-header .card-title {
+  padding-right: 0px;
+}
+.card-campaign-header .card-title .card-title-content {
+  margin-top: 15px;
+}
 .card-campaign-header .card-info-1,
 .card-campaign-header .card-info-2,
 .card-campaign-header .card-info-3 {
-  margin-top: 50px;
+  margin-top: 25px;
 }
 .card-campaign-header .card-info-4,
 .card-campaign-header .card-info-5,
 .card-campaign-header .card-info-6 {
   margin-top: 20px;
 }
-.card-campaign-header .card-close {
+.card-campaign-header .card-corner {
   cursor: pointer;
   position: absolute;
   z-index: 10;
   top: 0px;
   right: 0px;
   display: block;
-  padding: 12px 13px 0 0;
+  padding: 15px 13px 0 0;
 }
 .card-campaign-description {
   padding-top: 15px;
@@ -8879,6 +8885,24 @@ input:-moz-placeholder {
   padding-left: 15px;
   padding-right: 15px;
   margin: 15px 0px 20px 0px;
+}
+.social-dashboard-wrapper .social-media-profile .dashboard-graph .empty-state,
+.social-dashboard-wrapper .facebook-profile .dashboard-graph .empty-state,
+.social-dashboard-wrapper .instagram-profile .dashboard-graph .empty-state,
+.social-dashboard-wrapper .youtube-profile .dashboard-graph .empty-state,
+.social-dashboard-wrapper .facebook-dashboard .dashboard-graph .empty-state {
+  height: 200px;
+  padding-top: 80px;
+  color: #8692a8;
+  background: #f9f9fb;
+}
+.social-dashboard-wrapper .social-media-profile .dashboard-graph .empty-state .fa,
+.social-dashboard-wrapper .facebook-profile .dashboard-graph .empty-state .fa,
+.social-dashboard-wrapper .instagram-profile .dashboard-graph .empty-state .fa,
+.social-dashboard-wrapper .youtube-profile .dashboard-graph .empty-state .fa,
+.social-dashboard-wrapper .facebook-dashboard .dashboard-graph .empty-state .fa {
+  transform: translateY(5px);
+  margin-right: 5px;
 }
 .social-dashboard-wrapper .social-media-profile h3,
 .social-dashboard-wrapper .facebook-profile h3,
@@ -10969,7 +10993,7 @@ ul.payment-methods {
 .layout-brand .view-brand-campaign-list .example-campaign .page-header {
   margin-bottom: 10px;
 }
-.layout-brand .view-brand-campaign-detail-example .card-close {
+.layout-brand .view-brand-campaign-detail-example .card-corner {
   display: none;
 }
 .layout-brand .view-brand-campaign-detail-published .card-profile a.link-to-profile {
@@ -11018,7 +11042,7 @@ ul.payment-methods {
 .layout-influencer .view-influencer-profile .btn-secondary-active[disabled] {
   opacity: 1;
 }
-.layout-influencer .view-public-campaign-detail .card-close {
+.layout-influencer .view-public-campaign-detail .card-corner {
   display: none;
 }
 /*---Layout Admin---*/

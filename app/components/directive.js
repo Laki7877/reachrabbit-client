@@ -304,7 +304,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
     .directive('select', ['$interpolate', function ($interpolate) {
         return {
             restrict: 'E',
-            require: 'ngModel',
+            require: '?ngModel',
             link: function (scope, elem, attrs, ctrl) {
                 var defaultOptionTemplate;
                 scope.defaultOptionText = attrs.ngDefault || '';

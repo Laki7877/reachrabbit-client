@@ -50,14 +50,34 @@
             </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-body">
-            <h2>Hello World</h2>
-            <canvas id="line" class="chart chart-line" chart-data="data"
-            chart-labels="labels" chart-series="series">
-            </canvas>
-          </div>
-        </div>
+
+        <uib-tabset active="activePill"  type="tabs">
+          <uib-tab  index="0" heading="Facebook" class="facebook-tab">
+            <uib-tab-heading>
+              <span class="icon-facebook"></span>Facebook
+            </uib-tab-heading>
+            <div class="social-dashboard-wrapper">
+              <dashboard-facebook></dashboard-facebook>
+            </div>
+          </uib-tab>
+          <uib-tab  index="1" heading="Instagram" class="instagram-tab">
+            <uib-tab-heading>
+              <span class="icon-instagram"></span> Instagram
+            </uib-tab-heading>
+            <div class="social-media-profile-wrapper">
+              Instagram Dashboard
+            </div>
+          </uib-tab>
+          <uib-tab index="2" heading="YouTube" class="youtube-tab">
+            <uib-tab-heading>
+              <span class="icon-youtube"></span> YouTube
+            </uib-tab-heading>
+            <div class="social-media-profile-wrapper">
+              Youtube Dashboard
+            </div>
+          </uib-tab>
+        </uib-tabset>
+
       </div>
 
     </div>

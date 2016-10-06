@@ -252,6 +252,14 @@ input:-moz-placeholder {
   color:@color-grey-darker;
 }
 
+.form-group{
+  small{
+    display: block;
+    color: @color-grey-darker;
+    margin-bottom: 5px;
+  }
+}
+
 .input-dropdown{
   position: relative;
   .form-control {
@@ -1061,6 +1069,30 @@ input:-moz-placeholder {
   &.youtube-tab{
     border-top-color: @color-youtube;
   }
+}
+
+/*---Dashboard---*/
+.social-dashboard-wrapper{
+  &:extend(.social-media-profile-wrapper all);
+  .social-media-profile{
+    .card-info{
+      margin-top: 10px;
+    }
+    .dashboard-graph{
+      .make-xs-column(12);
+      margin: 15px 0px 20px 0px;
+    }
+    h3{
+      color:@color-theme-secondary;
+      margin-bottom: 15px;
+    }
+    .table{
+      border-top: 2px solid @color-grey;
+    }
+  }
+}
+.facebook-dashboard{
+  &:extend(.social-media-profile all);
 }
 
 

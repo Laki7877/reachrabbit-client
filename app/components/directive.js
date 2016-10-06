@@ -9,6 +9,17 @@
 'use strict';
 
 angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
+    .directive('dashboardFacebook', ['$state', function ($state) {
+        return {
+            restrict: 'EA',
+            transclude: true,
+            scope: {
+            },
+            templateUrl: 'components/templates/dashboard-facebook.html',
+            link: function (scope, element, attrs, ctrl, transclude) {
+            }
+        };
+    }])
     .filter('newlinify', [function () {
         return function (input) {
             return input.replace(/\n/g, '</br>');

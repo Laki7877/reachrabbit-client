@@ -25,18 +25,14 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
               scope.data = [
                 [2, 30, 40, 50, 80, 85, 96]
               ];
-              scope.options = {
-                  scales: {
-                    yAxes: [
-                      {
-                        id: 'y-axis-1',
-                        type: 'linear',
-                        display: true,
-                        position: 'left'
-                      }
-                    ]
+
+              //Chart options
+              scope.chartoptions = [
+                {
+                  lineTension: 0.1,
+                  backgroundColor: "rgba(75,192,192,0.4)"
                 }
-              };
+              ];
           }
         };
     }])

@@ -466,7 +466,7 @@ describe('Influencer', function () {
 
     });
 
-    xdescribe('Can see campaigns detail', function () {
+    describe('Can see campaigns detail', function () {
         beforeAll(function () {
             browser.get('influencer.html#/influencer-campaign-list');
         });
@@ -479,7 +479,7 @@ describe('Influencer', function () {
             cards.first().click();
         });
 
-        it('can see campaign detail with correct data', function () {
+        xit('can see campaign detail with correct data', function () {
             //TODO:  need to refactor this test for a more "connected" testcase
             //eg. we check that campaign created by brand exist and can be seen by influencer
             element(by.css('.page-header h1')).getText(function (text) {

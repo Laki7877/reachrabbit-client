@@ -82,7 +82,15 @@
           </table>
           <table-static ng-if="proposals.totalElements == 0 && !(params.search.length > 0)">
             <div class="empty-state">
-              <img src="images/icon-empty-folder.png"/>ยังไม่มีห้องคุยงานในขั้นตอนนี้
+              <div ng-if="params.status == 'Selection'">
+                <img src="images/icon-empty-folder.png"/>ยังไม่มีข้อเสนอให้คุณคัดเลือก กรุณารอ Influencer ส่งข้อเสนอให้คุณก่อนค่ะ
+              </div>
+              <div ng-if="params.status == 'Working'">
+                <img src="images/icon-empty-folder.png"/>ยังไม่มีงานให้คุณอนุมัติ กรุณาคัดเลือก Influencer ที่ชอบและชำระเงินก่อนค่ะ
+              </div>
+              <div ng-if="params.status == 'Complete'">
+                <img src="images/icon-empty-folder.png"/>ยังไม่มีงานที่เสร็จสิ้น กรุณาอนุมัติงานของ Influencer เพื่อปิดงานค่ะ
+              </div>
             </div>
           </table-static>
           <table-static ng-if="proposals.totalElements == 0 && params.search.length > 0">

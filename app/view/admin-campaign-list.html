@@ -17,6 +17,7 @@
                 <th class="text-center">ดำเนินการ</th>
                 <th class="text-center">เสร็จสิ้น</th>
                 <th class="col-button"></th>
+                <th class="col-button"></th>
               </tr>
             </thead>
             <tbody>
@@ -38,6 +39,8 @@
                 <td class="text-center">{{campaign.countProposalComplete}}</td>
                 <td class="col-button">
                   <button class="btn-secondary btn-minimal" ui-sref="admin-campaign-detail({campaignId: campaign.campaignId})">ดูรายละเอียด</button>
+                </td>
+                <td class="col-button">
                   <button class="btn-secondary btn-minimal">ดู Dashboard</button>
                 </td>
               </tr>

@@ -38,10 +38,11 @@
         <h4 ng-if="profile.categories.length > 0 ">
           {{ joinCat(profile.categories) }}
         </h4>
+        <h4 ng-if="!profile.categories || profile.categories.length == 0">
+          -
+        </h4>
       </div>
-      <h4 ng-if="!profile.categories || profile.categories.length == 0">
-        -
-      </h4>
+
       <ng-transclude></ng-transclude>
     </div>
   </div>

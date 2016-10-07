@@ -238,6 +238,8 @@ th {
   .instagram-profile .card-overview .card-info strong,
   .youtube-profile .card-overview .card-info strong,
   .facebook-dashboard .card-overview .card-info strong,
+  .instagram-dashboard .card-overview .card-info strong,
+  .youtube-dashboard .card-overview .card-info strong,
   .social-linker-modal .modal-title {
     orphans: 3;
     widows: 3;
@@ -254,6 +256,8 @@ th {
   .instagram-profile .card-overview .card-info strong,
   .youtube-profile .card-overview .card-info strong,
   .facebook-dashboard .card-overview .card-info strong,
+  .instagram-dashboard .card-overview .card-info strong,
+  .youtube-dashboard .card-overview .card-info strong,
   .social-linker-modal .modal-title {
     page-break-after: avoid;
   }
@@ -1247,6 +1251,10 @@ h6,
 .youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
 .facebook-dashboard .card-overview .card-info strong,
 .facebook-dashboard .card-gallery .card-gallery-info .card-info .card-content,
+.instagram-dashboard .card-overview .card-info strong,
+.instagram-dashboard .card-gallery .card-gallery-info .card-info .card-content,
+.youtube-dashboard .card-overview .card-info strong,
+.youtube-dashboard .card-gallery .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body,
 .social-linker-modal .modal-title {
   font-family: inherit;
@@ -1298,6 +1306,8 @@ h3,
 .instagram-profile .card-overview .card-info strong,
 .youtube-profile .card-overview .card-info strong,
 .facebook-dashboard .card-overview .card-info strong,
+.instagram-dashboard .card-overview .card-info strong,
+.youtube-dashboard .card-overview .card-info strong,
 .social-linker-modal .modal-title {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -1338,6 +1348,8 @@ h6,
 .instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
 .youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
 .facebook-dashboard .card-gallery .card-gallery-info .card-info .card-content,
+.instagram-dashboard .card-gallery .card-gallery-info .card-info .card-content,
+.youtube-dashboard .card-gallery .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -1376,6 +1388,8 @@ h3,
 .instagram-profile .card-overview .card-info strong,
 .youtube-profile .card-overview .card-info strong,
 .facebook-dashboard .card-overview .card-info strong,
+.instagram-dashboard .card-overview .card-info strong,
+.youtube-dashboard .card-overview .card-info strong,
 .social-linker-modal .modal-title {
   font-size: 24px;
 }
@@ -1395,6 +1409,8 @@ h4,
 .instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
 .youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
 .facebook-dashboard .card-gallery .card-gallery-info .card-info .card-content,
+.instagram-dashboard .card-gallery .card-gallery-info .card-info .card-content,
+.youtube-dashboard .card-gallery .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 18px;
 }
@@ -7736,6 +7752,8 @@ h3,
 .instagram-profile .card-overview .card-info strong,
 .youtube-profile .card-overview .card-info strong,
 .facebook-dashboard .card-overview .card-info strong,
+.instagram-dashboard .card-overview .card-info strong,
+.youtube-dashboard .card-overview .card-info strong,
 .social-linker-modal .modal-title {
   font-family: 'Kanit', sans-serif;
   font-weight: normal;
@@ -7757,6 +7775,8 @@ h4,
 .instagram-profile .card-gallery .card-gallery-info .card-info .card-content,
 .youtube-profile .card-gallery .card-gallery-info .card-info .card-content,
 .facebook-dashboard .card-gallery .card-gallery-info .card-info .card-content,
+.instagram-dashboard .card-gallery .card-gallery-info .card-info .card-content,
+.youtube-dashboard .card-gallery .card-gallery-info .card-info .card-content,
 .workroom .card-campaign-thumbnail .card-body {
   font-size: 16px;
   font-weight: normal;
@@ -8506,24 +8526,30 @@ input:-moz-placeholder {
   padding-left: 15px;
   padding-right: 15px;
 }
+.card-campaign-header .card-title {
+  padding-right: 0px;
+}
+.card-campaign-header .card-title .card-title-content {
+  margin-top: 15px;
+}
 .card-campaign-header .card-info-1,
 .card-campaign-header .card-info-2,
 .card-campaign-header .card-info-3 {
-  margin-top: 50px;
+  margin-top: 25px;
 }
 .card-campaign-header .card-info-4,
 .card-campaign-header .card-info-5,
 .card-campaign-header .card-info-6 {
   margin-top: 20px;
 }
-.card-campaign-header .card-close {
+.card-campaign-header .card-corner {
   cursor: pointer;
   position: absolute;
   z-index: 10;
   top: 0px;
   right: 0px;
   display: block;
-  padding: 12px 13px 0 0;
+  padding: 15px 13px 0 0;
 }
 .card-campaign-description {
   padding-top: 15px;
@@ -8642,7 +8668,9 @@ input:-moz-placeholder {
 .facebook-profile .card-overview .card-info,
 .instagram-profile .card-overview .card-info,
 .youtube-profile .card-overview .card-info,
-.facebook-dashboard .card-overview .card-info {
+.facebook-dashboard .card-overview .card-info,
+.instagram-dashboard .card-overview .card-info,
+.youtube-dashboard .card-overview .card-info {
   position: relative;
   float: left;
   width: 16.66666667%;
@@ -8654,21 +8682,27 @@ input:-moz-placeholder {
 .facebook-profile .card-overview .card-info strong,
 .instagram-profile .card-overview .card-info strong,
 .youtube-profile .card-overview .card-info strong,
-.facebook-dashboard .card-overview .card-info strong {
+.facebook-dashboard .card-overview .card-info strong,
+.instagram-dashboard .card-overview .card-info strong,
+.youtube-dashboard .card-overview .card-info strong {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .social-media-profile .card-overview .card-info small,
 .facebook-profile .card-overview .card-info small,
 .instagram-profile .card-overview .card-info small,
 .youtube-profile .card-overview .card-info small,
-.facebook-dashboard .card-overview .card-info small {
+.facebook-dashboard .card-overview .card-info small,
+.instagram-dashboard .card-overview .card-info small,
+.youtube-dashboard .card-overview .card-info small {
   color: #8692a8;
 }
 .social-media-profile .card-overview .card-info i,
 .facebook-profile .card-overview .card-info i,
 .instagram-profile .card-overview .card-info i,
 .youtube-profile .card-overview .card-info i,
-.facebook-dashboard .card-overview .card-info i {
+.facebook-dashboard .card-overview .card-info i,
+.instagram-dashboard .card-overview .card-info i,
+.youtube-dashboard .card-overview .card-info i {
   margin-left: 5px;
   color: #8692a8;
 }
@@ -8676,7 +8710,9 @@ input:-moz-placeholder {
 .facebook-profile .card-overview .card-button,
 .instagram-profile .card-overview .card-button,
 .youtube-profile .card-overview .card-button,
-.facebook-dashboard .card-overview .card-button {
+.facebook-dashboard .card-overview .card-button,
+.instagram-dashboard .card-overview .card-button,
+.youtube-dashboard .card-overview .card-button {
   position: relative;
   float: left;
   width: 33.33333333%;
@@ -8688,7 +8724,9 @@ input:-moz-placeholder {
 .facebook-profile .card-gallery .card-gallery-item,
 .instagram-profile .card-gallery .card-gallery-item,
 .youtube-profile .card-gallery .card-gallery-item,
-.facebook-dashboard .card-gallery .card-gallery-item {
+.facebook-dashboard .card-gallery .card-gallery-item,
+.instagram-dashboard .card-gallery .card-gallery-item,
+.youtube-dashboard .card-gallery .card-gallery-item {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   background-color: #d8dfe7;
   display: inline-block;
@@ -8697,7 +8735,9 @@ input:-moz-placeholder {
 .facebook-profile .card-gallery .card-gallery-item .card-gallery-video,
 .instagram-profile .card-gallery .card-gallery-item .card-gallery-video,
 .youtube-profile .card-gallery .card-gallery-item .card-gallery-video,
-.facebook-dashboard .card-gallery .card-gallery-item .card-gallery-video {
+.facebook-dashboard .card-gallery .card-gallery-item .card-gallery-video,
+.instagram-dashboard .card-gallery .card-gallery-item .card-gallery-video,
+.youtube-dashboard .card-gallery .card-gallery-item .card-gallery-video {
   width: 100%;
   min-height: 300px;
 }
@@ -8705,14 +8745,18 @@ input:-moz-placeholder {
 .facebook-profile .card-gallery .card-gallery-item .card-gallery-video video,
 .instagram-profile .card-gallery .card-gallery-item .card-gallery-video video,
 .youtube-profile .card-gallery .card-gallery-item .card-gallery-video video,
-.facebook-dashboard .card-gallery .card-gallery-item .card-gallery-video video {
+.facebook-dashboard .card-gallery .card-gallery-item .card-gallery-video video,
+.instagram-dashboard .card-gallery .card-gallery-item .card-gallery-video video,
+.youtube-dashboard .card-gallery .card-gallery-item .card-gallery-video video {
   width: 100%;
 }
 .social-media-profile .card-gallery .card-gallery-item img,
 .facebook-profile .card-gallery .card-gallery-item img,
 .instagram-profile .card-gallery .card-gallery-item img,
 .youtube-profile .card-gallery .card-gallery-item img,
-.facebook-dashboard .card-gallery .card-gallery-item img {
+.facebook-dashboard .card-gallery .card-gallery-item img,
+.instagram-dashboard .card-gallery .card-gallery-item img,
+.youtube-dashboard .card-gallery .card-gallery-item img {
   width: 100%;
   height: auto;
 }
@@ -8720,21 +8764,27 @@ input:-moz-placeholder {
 .facebook-profile .card-gallery .card-gallery-info .card-info > *,
 .instagram-profile .card-gallery .card-gallery-info .card-info > *,
 .youtube-profile .card-gallery .card-gallery-info .card-info > *,
-.facebook-dashboard .card-gallery .card-gallery-info .card-info > * {
+.facebook-dashboard .card-gallery .card-gallery-info .card-info > *,
+.instagram-dashboard .card-gallery .card-gallery-info .card-info > *,
+.youtube-dashboard .card-gallery .card-gallery-info .card-info > * {
   text-align: center;
 }
 .social-media-profile .card-gallery .card-gallery-info .card-info,
 .facebook-profile .card-gallery .card-gallery-info .card-info,
 .instagram-profile .card-gallery .card-gallery-info .card-info,
 .youtube-profile .card-gallery .card-gallery-info .card-info,
-.facebook-dashboard .card-gallery .card-gallery-info .card-info {
+.facebook-dashboard .card-gallery .card-gallery-info .card-info,
+.instagram-dashboard .card-gallery .card-gallery-info .card-info,
+.youtube-dashboard .card-gallery .card-gallery-info .card-info {
   margin-bottom: 15px;
 }
 .social-media-profile .card-gallery .card-gallery-message,
 .facebook-profile .card-gallery .card-gallery-message,
 .instagram-profile .card-gallery .card-gallery-message,
 .youtube-profile .card-gallery .card-gallery-message,
-.facebook-dashboard .card-gallery .card-gallery-message {
+.facebook-dashboard .card-gallery .card-gallery-message,
+.instagram-dashboard .card-gallery .card-gallery-message,
+.youtube-dashboard .card-gallery .card-gallery-message {
   padding: 15px;
   white-space: pre-wrap;
 }
@@ -8864,14 +8914,18 @@ input:-moz-placeholder {
 .social-dashboard-wrapper .facebook-profile .card-info,
 .social-dashboard-wrapper .instagram-profile .card-info,
 .social-dashboard-wrapper .youtube-profile .card-info,
-.social-dashboard-wrapper .facebook-dashboard .card-info {
+.social-dashboard-wrapper .facebook-dashboard .card-info,
+.social-dashboard-wrapper .instagram-dashboard .card-info,
+.social-dashboard-wrapper .youtube-dashboard .card-info {
   margin-top: 10px;
 }
 .social-dashboard-wrapper .social-media-profile .dashboard-graph,
 .social-dashboard-wrapper .facebook-profile .dashboard-graph,
 .social-dashboard-wrapper .instagram-profile .dashboard-graph,
 .social-dashboard-wrapper .youtube-profile .dashboard-graph,
-.social-dashboard-wrapper .facebook-dashboard .dashboard-graph {
+.social-dashboard-wrapper .facebook-dashboard .dashboard-graph,
+.social-dashboard-wrapper .instagram-dashboard .dashboard-graph,
+.social-dashboard-wrapper .youtube-dashboard .dashboard-graph {
   position: relative;
   float: left;
   width: 100%;
@@ -8880,11 +8934,35 @@ input:-moz-placeholder {
   padding-right: 15px;
   margin: 15px 0px 20px 0px;
 }
+.social-dashboard-wrapper .social-media-profile .dashboard-graph .empty-state,
+.social-dashboard-wrapper .facebook-profile .dashboard-graph .empty-state,
+.social-dashboard-wrapper .instagram-profile .dashboard-graph .empty-state,
+.social-dashboard-wrapper .youtube-profile .dashboard-graph .empty-state,
+.social-dashboard-wrapper .facebook-dashboard .dashboard-graph .empty-state,
+.social-dashboard-wrapper .instagram-dashboard .dashboard-graph .empty-state,
+.social-dashboard-wrapper .youtube-dashboard .dashboard-graph .empty-state {
+  height: 200px;
+  padding-top: 80px;
+  color: #8692a8;
+  background: #f9f9fb;
+}
+.social-dashboard-wrapper .social-media-profile .dashboard-graph .empty-state .fa,
+.social-dashboard-wrapper .facebook-profile .dashboard-graph .empty-state .fa,
+.social-dashboard-wrapper .instagram-profile .dashboard-graph .empty-state .fa,
+.social-dashboard-wrapper .youtube-profile .dashboard-graph .empty-state .fa,
+.social-dashboard-wrapper .facebook-dashboard .dashboard-graph .empty-state .fa,
+.social-dashboard-wrapper .instagram-dashboard .dashboard-graph .empty-state .fa,
+.social-dashboard-wrapper .youtube-dashboard .dashboard-graph .empty-state .fa {
+  transform: translateY(5px);
+  margin-right: 5px;
+}
 .social-dashboard-wrapper .social-media-profile h3,
 .social-dashboard-wrapper .facebook-profile h3,
 .social-dashboard-wrapper .instagram-profile h3,
 .social-dashboard-wrapper .youtube-profile h3,
-.social-dashboard-wrapper .facebook-dashboard h3 {
+.social-dashboard-wrapper .facebook-dashboard h3,
+.social-dashboard-wrapper .instagram-dashboard h3,
+.social-dashboard-wrapper .youtube-dashboard h3 {
   color: #16bbac;
   margin-bottom: 15px;
 }
@@ -8892,8 +8970,20 @@ input:-moz-placeholder {
 .social-dashboard-wrapper .facebook-profile .table,
 .social-dashboard-wrapper .instagram-profile .table,
 .social-dashboard-wrapper .youtube-profile .table,
-.social-dashboard-wrapper .facebook-dashboard .table {
+.social-dashboard-wrapper .facebook-dashboard .table,
+.social-dashboard-wrapper .instagram-dashboard .table,
+.social-dashboard-wrapper .youtube-dashboard .table {
   border-top: 2px solid #d8dfe7;
+}
+.social-dashboard-wrapper .social-media-profile .table .col-name,
+.social-dashboard-wrapper .facebook-profile .table .col-name,
+.social-dashboard-wrapper .instagram-profile .table .col-name,
+.social-dashboard-wrapper .youtube-profile .table .col-name,
+.social-dashboard-wrapper .facebook-dashboard .table .col-name,
+.social-dashboard-wrapper .instagram-dashboard .table .col-name,
+.social-dashboard-wrapper .youtube-dashboard .table .col-name {
+  white-space: normal;
+  width: 250px;
 }
 /*---flag---*/
 .flag .status {
@@ -10961,7 +11051,7 @@ ul.payment-methods {
 .layout-brand .view-brand-campaign-list .example-campaign .page-header {
   margin-bottom: 10px;
 }
-.layout-brand .view-brand-campaign-detail-example .card-close {
+.layout-brand .view-brand-campaign-detail-example .card-corner {
   display: none;
 }
 .layout-brand .view-brand-campaign-detail-published .card-profile a.link-to-profile {
@@ -11010,7 +11100,7 @@ ul.payment-methods {
 .layout-influencer .view-influencer-profile .btn-secondary-active[disabled] {
   opacity: 1;
 }
-.layout-influencer .view-public-campaign-detail .card-close {
+.layout-influencer .view-public-campaign-detail .card-corner {
   display: none;
 }
 /*---Layout Admin---*/

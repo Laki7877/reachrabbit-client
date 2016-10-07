@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="card-button status-draft" ng-if="campaign.status == 'Draft'">
-      <button class="btn-secondary btn-width-max"><i class="fa fa-pencil"></i> ใส่รายละเอียด</button>
+      <button class="btn-secondary btn-width-max" ui-sref="brand-campaign-detail-draft({campaignId: campaign.campaignId})"><i class="fa fa-pencil"></i> ใส่รายละเอียด</button>
     </div>
     <div class="card-button" ng-if="!(campaign.status == 'Draft')">
       <button class="btn-secondary btn-width-max btn-minimal" ui-sref="brand-campaign-detail-draft({campaignId: campaign.campaignId})"><i class="fa fa-file-text fa-fw"></i> ดูรายละเอียด</button><br>

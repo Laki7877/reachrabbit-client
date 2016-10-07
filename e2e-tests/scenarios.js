@@ -243,7 +243,10 @@ describe('Brand', function () {
         it('can find saved campaign', function () {
             var cards = element.all(by.repeater("x in myCampaign.content"));
             expect(cards.count()).toEqual(1);
-            cards.first().click();
+
+            // Click button in the first campaign card
+            element(by.css('.card-campaign-list-item:first-child button')).click();
+
         });
 
         it('can publish drafted campaign', function () {

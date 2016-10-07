@@ -348,6 +348,9 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     method: 'DELETE'
                 });
             },
+            getProposals: function(id) {
+              return $http.get('/campaigns/' + id + '/proposals');
+            },
             getAll: function (params) {
                 //TODO: make universal getter
                 return $q(function (resolve, reject) {
@@ -497,7 +500,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                 });
             },
             savePosts: function(id, data) {
-              return $http.post('/proposals/' + id + '/post', data);  
+              return $http.post('/proposals/' + id + '/post', data);
             },
             deletePosts: function(id, data) {
                 return $http({

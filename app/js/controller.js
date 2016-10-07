@@ -1217,6 +1217,8 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                     return "nc-dt-button";
                 }
             });
+            //Setting up form
+            var campaignId = $stateParams.campaignId;
 
             $scope.budgetDisplayAs = function (budgetObject) {
                 return $filter('number')(budgetObject.fromBudget) + " - " + $filter('number')(budgetObject.toBudget) + " บาท ต่อคน";
@@ -1229,6 +1231,9 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                     $scope.medium.forEach(function (item) {
                         $scope.mediaObjectDict[item.mediaId] = item;
                     });
+                })
+                .then(function() {
+                  return getOne(campaignId);
                 });
             DataService.getCategories()
                 .then(function (response) {
@@ -1253,6 +1258,121 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                     campaignId: $scope.campaignNee.campaignId
                 });
             };
+            function getTotalFollower(data, mediaId) {
+            }
+            function getDataByMedia(data, mediaId) {
+              var obj = {};
+              obj.influencers = []; // by influencer
+              obj.dataset = [];
+
+              var posts = []; // all posts
+              var keys = null;
+              var otherField = function(sum, n) {
+
+                sum.sumEngagement = 0;
+                _.forEach(keys, function(k) {
+                  sum.sumEngagement += (sum[k] || 0);
+                });
+              };
+              var summator = function(sum, n) {
+                // ignore wrong media
+                if(n.mediaId !== mediaId) {
+                  return sum;
+                }
+                // get key list for sum
+
+                keys = keys || _.keys(_.pickBy(n, function(value, key) {
+                  return _.startsWith(key, "sum");
+                }));
+                // sum each keys
+                _.forEach(keys, function(k) {
+                  sum[k] = (sum[k] || 0) + n[k];
+                });
+
+                otherField(sum, n);
+                // accumulate
+                return sum;
+              };
+              var keyIter = function(datasetArray, datasetArrayNext) {
+                if(!datasetArrayNext) {
+                  return function(key) {
+                    var newKey = key.replace('sum', 'daily');
+                    datasetArray[newKey] = (datasetArray[key] || 0);
+                  };
+                }
+                return function(key) {
+                  var newKey = key.replace('sum', 'daily');
+                  datasetArrayNext[newKey] = (datasetArrayNext[key] || 0) - (datasetArray[key] || 0);
+                };
+              };
+
+              // get only post with mediaId
+              _.forEach(data, function(p) {
+                var has = false;
+
+                // get all posts data
+                _.forEach(p.posts, function(e) {
+                  if(e.mediaId === mediaId) {
+                    posts.push(e);
+                    has = true;
+                  }
+                });
+                if(!has) {
+                  return;
+                }
+                // build influencer data
+                var influencerDataset = {};
+
+                // get per-influencer data
+                _.extend(influencerDataset, p.influencer, influencerDataset, _.reduce(p.posts, summator , {}));
+                obj.influencers.push(influencerDataset);
+              });
+
+              // build per-media
+
+              // dataset by time
+              var dataset = _.groupBy(posts, 'date');
+              var datasetArray = [];
+              _.forOwn(dataset, function(v,k) {
+                //sum all data up for this timeframe
+                var d = _.reduce(dataset[k], summator, {});
+                d.date = k;
+                datasetArray.push(d);
+              });
+
+              datasetArray = _.sortBy(datasetArray, function(o) {
+                  return moment(o.date).toDate();
+              });
+
+              for(var i = 0; i < datasetArray.length - 1; i++) {
+
+                if(i === 0) {
+                  _.forEach(keys, keyIter(datasetArray[i]));
+                  continue;
+                }
+                  _.forEach(keys, keyIter(datasetArray[i], datasetArray[i+1]));
+              }
+
+              obj.dataset = datasetArray;
+
+              // totalsum
+              _.extend(obj, _.reduce(posts, summator, {}));
+
+              return obj;
+            }
+            function getData(data) {
+              var obj = {};
+              // global data
+              obj.sumInfluencer = data.length;
+
+              // per-media data
+              obj.media = {};
+              _.forOwn($scope.mediaObjectDict, function(v,k) {
+                obj.media[k] = getDataByMedia(data, k);
+              });
+
+              return obj;
+            }
             function getOne(cid) {
                 CampaignService.getOne(cid)
                     .then(function (response) {
@@ -1268,11 +1388,13 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                         //ensure non null
                         $scope.formData.keywords = $scope.formData.keywords || [];
                     });
-            }
+                CampaignService.getProposals(cid)
+                  .then(function(res) {
+                    $scope.dashboard = getData(res.data);
 
-            //Setting up form
-            var campaignId = $stateParams.campaignId;
-            getOne(campaignId);
+                    console.log($scope.dashboard);
+                  });
+            }
 
             $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
             $scope.series = ['Series A', 'Series B'];

@@ -14,6 +14,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             restrict: 'EA',
             transclude: true,
             scope: {
+              model: '=ngModel'
             },
             templateUrl: 'components/templates/dashboard-facebook.html',
             link: function (scope, element, attrs, ctrl, transclude) {

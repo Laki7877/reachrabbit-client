@@ -82,7 +82,15 @@
           </table>
           <table-static ng-if="proposals.totalElements == 0 && !(params.search.length > 0)">
             <div class="empty-state">
-              <img src="images/icon-empty-folder.png"/>ยังไม่มีห้องคุยงานในขั้นตอนนี้
+              <div ng-if="params.status == 'Selection'">
+                <img src="images/icon-empty-folder.png"/>ยังไม่มีข้อเสนอที่รอการคัดเลือก กรุณาส่งข้อเสนอให้ Campaign ที่คุณสนใจก่อนค่ะ
+              </div>
+              <div ng-if="params.status == 'Working'">
+                <img src="images/icon-empty-folder.png"/>ยังไม่มีงานที่ต้องทำในขณะนี้ กรุณารอ Brand คัดเลือกข้อเสนอของคุณก่อนค่ะ
+              </div>
+              <div ng-if="params.status == 'Complete'">
+                <img src="images/icon-empty-folder.png"/>ยังไม่มีงานที่เสร็จสิ้น กรุณารอ Brand อนุมัติงานของคุณก่อนได้รับเงินค่ะ
+              </div>
             </div>
           </table-static>
           <table-static ng-if="proposals.totalElements == 0 && params.search.length > 0">

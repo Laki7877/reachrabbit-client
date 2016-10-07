@@ -7,7 +7,7 @@
 	          จำนวน Influencer
 	        </div>
 	    		<div class="card-content">
-	    			<strong>95</strong>
+	    			<strong>{{model.sumInfluencer || 0 | number}}</strong>
 	    			<small>คน</small>
 	    		</div>
 	    	</div>
@@ -16,7 +16,7 @@
 	          จำนวนผู้ติดตาม
 	        </div>
 	    		<div class="card-content">
-	    			<strong>9,5000</strong>
+	    			<strong>{{model.sumFollowerCount || 0 | number}}</strong>
 	          <small>คน</small>
 	    		</div>
 	    	</div>
@@ -25,7 +25,7 @@
 	          ยอด Engagement <i class="fa fa-question-circle"></i>
 	        </div>
 	    		<div class="card-content">
-	    			<strong>1,000</strong>
+	    			<strong>{{model.sumEngagement || 0 | number}}</strong>
 	          <small>คน</small>
 	    		</div>
 	    	</div>
@@ -34,7 +34,7 @@
 	          ยอด Like
 	        </div>
 	        <div class="card-content">
-	          <strong>3,030</strong>
+	          <strong>{{model.sumLike || 0 | number}}</strong>
 	          <i class="fa fa-thumbs-up"></i>
 	        </div>
 	      </div>
@@ -43,7 +43,7 @@
 	          ยอด Comment
 	        </div>
 	        <div class="card-content">
-	          <strong>2,030</strong>
+	          <strong>{{model.sumComment || 0 | number}}</strong>
 	          <i class="fa fa-commenting"></i>
 	        </div>
 	      </div>
@@ -54,121 +54,86 @@
 	      </div>
 	    </div>
 	    <div class="row">
-	      <div class="col-xs-3">
-	        <div class="form-group">
-	          <small>เลือก Metric</small>
-	          <div class="input-dropdown">
-	              <select class="form-control"></select>
-	              <i class="fa fa-caret-down"></i>
-	          </div>
-	        </div>
-	      </div>
-	      <div class="col-xs-3">
-	        <div class="form-group">
-	          <small>วิธีแสดงผล</small>
-	          <div class="input-dropdown">
-	              <select class="form-control"></select>
-	              <i class="fa fa-caret-down"></i>
-	          </div>
-	        </div>
-	      </div>
+        <div class="col-xs-3">
+          <div class="form-group">
+            <small>เลือก Metric</small>
+            <div class="input-dropdown">
+                <select ng-model="metric" ng-options="x.value as x.name for x in metricOptions" class="form-control"></select>
+                <i class="fa fa-caret-down"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <div class="form-group">
+            <small>วิธีแสดงผล</small>
+            <div class="input-dropdown">
+                <select ng-model="timeframe" ng-options="x.value as x.name for x in timeframeOptions" class="form-control"></select>
+                <i class="fa fa-caret-down"></i>
+            </div>
+          </div>
+        </div>
 	    </div>
 	    <div class="row">
 	      <div class="dashboard-graph">
-					<canvas id="line" height="100" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-dataset-override="chartoptions">
-	        </canvas>
-					<!-- Empty State -->
-					<!-- <div class="empty-state">
-						<i class="fa fa-line-chart fa-2x"></i> ยังไม่มีข้อมูล
-					</div> -->
+          <canvas ng-if="data.length > 0" id="line" height="100" class="chart chart-line" chart-data="data" chart-options="chartOptions" chart-dataset-override="datasetOptions">
+          </canvas>
+          <!-- Empty State -->
+          <div ng-if="data.length == 0" class="empty-state">
+            <i class="fa fa-line-chart fa-2x"></i> ยังไม่มีข้อมูล
+          </div>
 	      </div>
 	    </div>
 	    <div class="row">
 	      <div class="col-xs-12">
 	        <h3>Influencers ที่โพสบน Instagram</h3>
-	        <table class="table" sorter ng-model="data">
-	          <thead>
-	            <tr>
-	              <th class="col-name" sort="influencer.influencerId">Influencer</th>
-	              <th class="" sort="">ผู้ติดตาม</th>
-	              <th class="" sort="">Like</th>
-	              <th class="" sort="">Comment</th>
-	              <th class="" sort="">Share</th>
-	              <th class="text-align-right" sort="">Engagement Rate</th>
-	            </tr>
-	          </thead>
-	          <tbody>
-	            <tr>
-	              <td class="col-name">
-	                <div class="media">
-	                  <div class="media-left">
-	                    <img ng-src="images/placeholder-profile-picture.png" class="profile-picture" />
-	                  </div>
-	                  <div class="media-body media-middle">
-	                    Jon Snow
-	                  </div>
-	                </div>
-	              </td>
-	              <td>
-	                50,000
-	              </td>
-	              <td>
-	                50,000
-	              </td>
-	              <td>
-	                50,000
-	              </td>
-	              <td>
-	                50,000
-	              </td>
-	              <td class="text-align-right">
-	                50%
-	              </td>
-	            </tr>
-	            <tr>
-	              <td class="col-name">
-	                <div class="media">
-	                  <div class="media-left">
-	                    <img ng-src="images/placeholder-profile-picture.png" class="profile-picture" />
-	                  </div>
-	                  <div class="media-body media-middle">
-	                    Jane Lava
-	                  </div>
-	                </div>
-	              </td>
-	              <td>
-	                1,000
-	              </td>
-	              <td>
-	                1,000
-	              </td>
-	              <td>
-	                1,000
-	              </td>
-	              <td>
-	                1,000
-	              </td>
-	              <td class="text-align-right">
-	                99%
-	              </td>
-	            </tr>
-							<tr>
-	              <td class="col-name">
-	                <div class="media">
-	                  <div class="media-left">
-	                    <img ng-src="images/placeholder-profile-picture.png" class="profile-picture" />
-	                  </div>
-	                  <div class="media-body media-middle">
-	                    June Absense
-	                  </div>
-	                </div>
-	              </td>
-	              <td colspan="5"  class="color-grey">
-	                [ระบบจะเริ่มเก็บข้อมูลภายใน 48 ชม. หลังคุณอนุมัติงาน]
-	              </td>
-	            </tr>
-	          </tbody>
-	        </table>
+          <table class="table" osorter="order">
+            <thead>
+              <tr>
+                <th class="col-name" osort="user.name">Influencer</th>
+                <th class="" osort="sumFollowerCount">ผู้ติดตาม</th>
+                <th class="" osort="sumLike">Like</th>
+                <th class="" osort="sumComment">Comment</th>
+                <th class="text-align-right" osort="sumEngagement">Engagement Rate</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="i in model.influencers | orderBy:order track by $index">
+              <tr ng-if="i.hasPosts">
+                <td class="col-name">
+                  <div class="media">
+                    <div class="media-left">
+                      <img ng-src="{{i.user.profilePicture.url}}" src="images/placeholder-profile-picture.png" class="profile-picture" />
+                    </div>
+                    <div class="media-body media-middle">{{i.user.name}}</div>
+                  </div>
+                </td>
+                <td>{{i.sumFollowerCount || 0 | number}}</td>
+                <td>{{i.sumLike || 0 | number}}</td>
+                <td>{{i.sumComment || 0 | number}}</td>
+                <td class="text-align-right">
+                  <span ng-if="i.sumEngagementRate">{{i.sumEngagementRate || 0 | number}}%</span>
+                  <span ng-if="!i.sumEngagementRate">-</span>
+                </td>
+              </tr>
+              <tr ng-if="!i.hasPosts">
+                <td class="col-name">
+                  <div class="media">
+                    <div class="media-left">
+                      <img ng-src="{{i.user.profilePicture.url}}" src="images/placeholder-profile-picture.png" class="profile-picture" />
+                    </div>
+                    <div class="media-body media-middle">{{i.user.name}}</div>
+                  </div>
+                </td>
+                <td colspan="4" class="color-grey">
+                  [ระบบจะเริ่มเก็บข้อมูลภายใน 48 ชม. หลังคุณอนุมัติงาน]
+                </td>
+              </tr>
+            </tbody>
+            <tbody ng-if="model.influencers.length === 0">
+              <td colspan="5" class="color-grey">
+                  <div class="empty-state">ไม่พบข้อมูลผู้ให้บริการ</div>
+              </td>
+            </tbody>
+          </table>
 	      </div>
 	    </div>
 	  </div>

@@ -8,37 +8,90 @@
 /* jshint node: true */
 'use strict';
 
+function dashboardLinkFn(metricOptions, datasetOptions) {
+  return function(scope) {
+      scope.data = [];
+      scope.order = '-user.name';
+      scope.chartOptions = {
+        scales: {
+          xAxes: [{
+            type: 'time',
+            time: {
+              unit: 'day',
+              unitStepSize: 3,
+              displayFormats: {
+                day: 'D MMM YY'
+              }
+            }
+          }]
+        }
+      };
+      //Chart options
+      scope.datasetOptions = datasetOptions;
+      // metric option
+      scope.metricOptions = metricOptions;
+      // timeframe option
+      scope.timeframeOptions = [{
+        name: 'ยอดรวม',
+        value: 'sum'
+      },{
+        name: 'รายวัน',
+        value: 'daily'
+      }];
+      scope.metric = scope.metricOptions[0].value;
+      scope.timeframe = scope.timeframeOptions[0].value;
+
+      function regenerateData() {
+        if(scope.model) {
+          scope.data.length = 0;
+          _.forEach(scope.model.dataset, function(e) {
+            scope.data.push({
+              x: e.date,
+              y: e[scope.timeframe + _.capitalize(scope.metric)]
+            });
+          });
+        }
+      }
+      scope.$watch('model', regenerateData);
+      scope.$watch('metric', regenerateData);
+      scope.$watch('timeframe', regenerateData);
+  };
+}
+
 angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
     .directive('dashboardFacebook', ['$state', function ($state) {
         return {
               restrict: 'EA',
               transclude: true,
               scope: {
+                model: '=ngModel'
               },
               templateUrl: 'components/templates/dashboard-facebook.html',
-              link: function (scope, element, attrs, ctrl, transclude) {
-
-              scope.labels = ['6/10/15', '7/10/15', '8/10/15', '9/10/15', '10/10/15', '11/10/15', '12/10/15'];
-              scope.series = ['Like'];
-
-              //Line chart
-              scope.data = [
-                [2, 30, 40, 50, 80, 85, 96]
-              ];
-
-              //Chart options
-              scope.chartoptions = [
+              link: dashboardLinkFn(
+              [
                 {
-                  lineTension: 0.1,
-                  borderColor: "rgba(59,89,152,1.0)",
-                  pointBackgroundColor: "rgba(59,89,152,1.0)",
-                  backgroundColor: "rgba(59,89,152,0.2)",
-
-                  pointHoverBackgroundColor: "rgba(255,119,62,1.0)",
-                  pointHoverBorderColor: "rgba(255,119,62,1.0)"
+                  name: 'Engagement',
+                  value: 'engagement'
+                },
+                {
+                  name: 'Like',
+                  value: 'like'
+                }, {
+                  name: 'Comment',
+                  value: 'comment'
+                }, {
+                  name: 'Share',
+                  value: 'share'
                 }
-              ];
-          }
+              ],
+              {
+                lineTension: 0.1,
+                borderColor: "rgba(59,89,152,1.0)",
+                pointBackgroundColor: "rgba(59,89,152,0.2)",
+                backgroundColor: "rgba(59,89,152,0.2)",
+                pointHoverBackgroundColor: "rgba(255,119,62,1.0)",
+                pointHoverBorderColor: "rgba(255,119,62,1.0)"
+              })
         };
     }])
     .directive('dashboardInstagram', ['$state', function ($state) {
@@ -49,18 +102,19 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
               model: '=ngModel'
             },
             templateUrl: 'components/templates/dashboard-instagram.html',
-            link: function (scope, element, attrs, ctrl, transclude) {
-
-            scope.labels = ['6/10/15', '7/10/15', '8/10/15', '9/10/15', '10/10/15', '11/10/15', '12/10/15'];
-            scope.series = ['Like'];
-
-            //Line chart
-            scope.data = [
-              [5, 9, 10, 21, 36, 55, 60]
-            ];
-
-            //Chart options
-            scope.chartoptions = [
+            link: dashboardLinkFn(
+              [{
+                  name: 'Engagement',
+                  value: 'engagement'
+                },
+                {
+                  name: 'Like',
+                  value: 'like'
+                }, {
+                  name: 'Comment',
+                  value: 'comment'
+                }
+              ],
               {
                 lineTension: 0.1,
                 borderColor: "rgba(233,61,121,1.0)",
@@ -69,32 +123,31 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
 
                 pointHoverBackgroundColor: "rgba(255,119,62,1.0)",
                 pointHoverBorderColor: "rgba(255,119,62,1.0)"
-              }
-            ];
-
-          }
-        };
+              })
+          };
     }])
     .directive('dashboardYoutube', ['$state', function ($state) {
         return {
             restrict: 'EA',
             transclude: true,
             scope: {
+              model: '=ngModel'
             },
             templateUrl: 'components/templates/dashboard-youtube.html',
-            link: function (scope, element, attrs, ctrl, transclude) {
-
-            scope.labels = ['6/10/15', '7/10/15', '8/10/15', '9/10/15', '10/10/15', '11/10/15', '12/10/15'];
-            scope.series = ['Like'];
-
-            //Line chart
-            scope.data = [
-              [500, 530, 550, 555, 600, 660, 680]
-            ];
-
-            //Chart options
-            scope.chartoptions = [
-              {
+            link: dashboardLinkFn(
+              [{
+                  name: 'View',
+                  value: 'view'
+                },
+                {
+                  name: 'Like',
+                  value: 'like'
+                }, {
+                  name: 'Comment',
+                  value: 'comment'
+                }
+              ] ,
+            {
                 lineTension: 0.1,
                 borderColor: "rgba(230,33,23,1.0)",
                 pointBackgroundColor: "rgba(230,33,23,1.0)",
@@ -102,10 +155,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
 
                 pointHoverBackgroundColor: "rgba(255,119,62,1.0)",
                 pointHoverBorderColor: "rgba(255,119,62,1.0)"
-              }
-            ];
-
-          }
+            })
         };
     }])
     .filter('newlinify', [function () {
@@ -417,6 +467,63 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                 };
             }]
         };
+    }])
+    .directive('osorter', [function() {
+      return {
+        restrict: 'A',
+        scope: {
+          model: '=osorter'
+        },
+        controller: ['$scope', function($scope) {
+          this.sortTo = function(sort) {
+            if($scope.model){
+              var dir = $scope.model[0];
+              var prevSort = $scope.model.substr(1);
+
+              if(prevSort === sort) {
+                dir = (dir === '+') ? '-' : '+';
+              } else {
+                dir = '+';
+              }
+              $scope.model = dir + sort;
+            }
+          };
+          this.active = function(sort) {
+            if(!$scope.model) {
+              return false;
+            }
+            return $scope.model.substr(1) === sort;
+          };
+          this.direction = function(sort) {
+            if(!$scope.model) {
+              return false;
+            }
+            return this.active(sort) ? ($scope.model[0] === '+' ? 'asc' : 'desc' ) : 'desc';
+          };
+        }]
+      };
+    }])
+    .directive('osort', [function() { //offline sorter
+      return {
+        restrict: 'EA',
+        require: '^osorter',
+        scope: {
+          sort: '@osort'
+        },
+        transclude: true,
+        templateUrl: 'components/templates/sort.html',
+        link: function(scope, elements, attrs, ctrl) {
+          scope.direction = function() {
+            return ctrl.direction(scope.sort);
+          };
+          scope.active = function() {
+            return ctrl.active(scope.sort);
+          };
+          scope.click = function() {
+            ctrl.sortTo(scope.sort);
+          };
+        }
+      };
     }])
     .directive('sort', [function () {
         return {

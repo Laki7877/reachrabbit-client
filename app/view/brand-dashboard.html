@@ -20,7 +20,7 @@
                   งบประมาณ Campaign
                 </div>
                 <div class="card-info-content">
-                  1,000 บาท
+                  {{dashboard.sumPrice | number}} บาท
                 </div>
               </div>
               <div class="card-info col-xs-3">
@@ -28,7 +28,7 @@
                   Influencer ทั้งหมด
                 </div>
                 <div class="card-info-content">
-                  495 คน
+                  {{dashboard.sumInfluencer | number}} คน
                 </div>
               </div>
               <div class="card-info col-xs-3">
@@ -36,7 +36,7 @@
                   ผู้ติดตามทั้งหมด
                 </div>
                 <div class="card-info-content">
-                  2,350,300 คน
+                  {{dashboard.sumFollowerCount | number}} คน
                 </div>
               </div>
               <div class="card-info col-xs-3">
@@ -44,7 +44,7 @@
                   CPE (ต้นทุนต่อ Engagement)
                 </div>
                 <div class="card-info-content">
-                  2,350,300 บาท
+                  {{dashboard.sumCPE | number}} บาท
                 </div>
               </div>
             </div>
@@ -57,7 +57,7 @@
               <span class="icon-facebook"></span>Facebook
             </uib-tab-heading>
             <div class="social-dashboard-wrapper">
-              <dashboard-facebook ng-model="dashboard"></dashboard-facebook>
+              <dashboard-facebook ng-model="dashboard.media.facebook"></dashboard-facebook>
             </div>
           </uib-tab>
           <uib-tab  index="1" heading="Instagram" class="instagram-tab">
@@ -65,7 +65,7 @@
               <span class="icon-instagram"></span> Instagram
             </uib-tab-heading>
             <div class="social-dashboard-wrapper">
-              <dashboard-instagram></dashboard-instagram>
+              <dashboard-instagram ng-model="dashboard.media.instagram"></dashboard-instagram>
             </div>
           </uib-tab>
           <uib-tab index="2" heading="YouTube" class="youtube-tab">
@@ -73,7 +73,7 @@
               <span class="icon-youtube"></span> YouTube
             </uib-tab-heading>
             <div class="social-dashboard-wrapper">
-              <dashboard-youtube></dashboard-youtube>
+              <dashboard-youtube ng-model="dashboard.media.google"></dashboard-youtube>
             </div>
           </uib-tab>
         </uib-tabset>

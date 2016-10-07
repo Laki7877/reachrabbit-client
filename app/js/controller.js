@@ -1258,7 +1258,15 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                     campaignId: $scope.campaignNee.campaignId
                 });
             };
-            function getTotalFollower(data, mediaId) {
+            // get follower for this influencer
+            function getFollower(data, mediaId) {
+              var counter = 0;
+              _.forEach(data.influencerMedias, function(e) {
+                if(!mediaId || e.media.mediaId === mediaId) {
+                  counter += e.followerCount;
+                }
+              });
+              return counter;
             }
             function getDataByMedia(data, mediaId) {
               var obj = {};
@@ -1314,18 +1322,27 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 _.forEach(p.posts, function(e) {
                   if(e.mediaId === mediaId) {
                     posts.push(e);
+                  }
+                });
+                _.forEach(p.media, function(e) {
+                  if(e.mediaId === mediaId) {
                     has = true;
                   }
                 });
+
                 if(!has) {
                   return;
                 }
+
                 // build influencer data
-                var influencerDataset = {};
+                var influencer = {};
 
                 // get per-influencer data
-                _.extend(influencerDataset, p.influencer, influencerDataset, _.reduce(p.posts, summator , {}));
-                obj.influencers.push(influencerDataset);
+                _.extend(influencer, p.influencer, influencer, _.reduce(p.posts, summator , {}));
+                influencer.sumFollowerCount = getFollower(p.influencer, mediaId);
+                influencer.sumEngagementRate = influencer.sumFollowerCount > 0 ? Math.round((influencer.sumEngagement / parseFloat(influencer.sumFollowerCount)) * 100) : null;
+                influencer.hasPosts = p.posts.length !== 0;
+                obj.influencers.push(influencer);
               });
 
               // build per-media
@@ -1344,16 +1361,21 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                   return moment(o.date).toDate();
               });
 
+              // create daily-fields
               for(var i = 0; i < datasetArray.length - 1; i++) {
-
                 if(i === 0) {
                   _.forEach(keys, keyIter(datasetArray[i]));
-                  continue;
                 }
-                  _.forEach(keys, keyIter(datasetArray[i], datasetArray[i+1]));
+                _.forEach(keys, keyIter(datasetArray[i], datasetArray[i+1]));
+
               }
 
+              // fill in per-media data
               obj.dataset = datasetArray;
+              obj.sumFollowerCount = _.reduce(obj.influencers, function(sum, n) {
+                return sum + n.sumFollowerCount;
+              }, 0);
+              obj.sumInfluencer = obj.influencers.length;
 
               // totalsum
               _.extend(obj, _.reduce(posts, summator, {}));
@@ -1364,6 +1386,13 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
               var obj = {};
               // global data
               obj.sumInfluencer = data.length;
+              obj.sumPrice = _.reduce(data, function(sum, n) {
+                return sum + (n.price || 0);
+              }, 0);
+              obj.sumFollowerCount = _.reduce(data, function(sum, n) {
+                return sum + getFollower(n.influencer);
+              }, 0);
+              obj.sumCPE = obj.sumPrice / parseFloat(obj.sumFollowerCount);
 
               // per-media data
               obj.media = {};
@@ -1391,19 +1420,9 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 CampaignService.getProposals(cid)
                   .then(function(res) {
                     $scope.dashboard = getData(res.data);
-
-                    console.log($scope.dashboard);
+                    console.log($scope.dashboard, res.data);
                   });
             }
-
-            $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-            $scope.series = ['Series A', 'Series B'];
-
-            //Line chart
-            $scope.data = [
-              [65, 59, 80, 81, 56, 55, 40],
-              [28, 48, 40, 19, 86, 27, 90]
-            ];
         }
     ])
     .controller('BrandProfileController', ['$scope', '$window', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util', function ($scope, $window, AccountService, NcAlert, UserProfile, validator, util) {

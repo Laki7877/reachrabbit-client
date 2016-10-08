@@ -74,6 +74,11 @@ angular.module('reachRabbitApp.admin.routes', ['ui.router'])
                 url: '/admin-workroom/:proposalId',
                 templateUrl: 'view/admin-workroom.html',
                 controller: 'AdminWorkroomController'
+            })
+            .state('admin-dashboard', {
+                url: '/admin-dashboard/:campaignId',
+                templateUrl: 'view/admin-dashboard.html',
+                controller: 'CampaignDashboardController'
             });
     }]);
 

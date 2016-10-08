@@ -18,10 +18,13 @@ function dashboardLinkFn(metricOptions, datasetOptions) {
             type: 'time',
             time: {
               unit: 'day',
-              unitStepSize: 3,
               displayFormats: {
                 day: 'D MMM YY'
               }
+            },
+            ticks: {
+                autoSkip:true,
+                maxTicksLimit:10
             }
           }]
         }

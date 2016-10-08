@@ -1,0 +1,85 @@
+<div class="viewport view-admin-dashboard">
+  <div class="zone-alert">
+    <div nc-alert="alert"></div>
+  </div>
+  <zone-header historyback="true">
+    <h1>Dashboard</h1>
+    <div class="action-btn-for-header">
+    </div>
+  </zone-header>
+  <div class="zone-body">
+    <div class="container">
+      <div cute-bunny-hide>
+        <card-campaign-header campaign="campaignNee" viewable="true" view="openCampaign()">
+        </card-campaign-header>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="card-info col-xs-3">
+                <div class="card-info-label">
+                  งบประมาณ Campaign
+                </div>
+                <div class="card-info-content">
+                  {{dashboard.sumPrice | number}} บาท
+                </div>
+              </div>
+              <div class="card-info col-xs-3">
+                <div class="card-info-label">
+                  Influencer ทั้งหมด
+                </div>
+                <div class="card-info-content">
+                  {{dashboard.sumInfluencer | number}} คน
+                </div>
+              </div>
+              <div class="card-info col-xs-3">
+                <div class="card-info-label">
+                  ผู้ติดตามทั้งหมด
+                </div>
+                <div class="card-info-content">
+                  {{dashboard.sumFollowerCount | number}} คน
+                </div>
+              </div>
+              <div class="card-info col-xs-3">
+                <div class="card-info-label">
+                  CPE (ต้นทุนต่อ Engagement)
+                </div>
+                <div class="card-info-content">
+                  {{dashboard.sumCPE | number}} บาท
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <uib-tabset active="activePill"  type="tabs">
+          <uib-tab  index="0" heading="Facebook" class="facebook-tab">
+            <uib-tab-heading>
+              <span class="icon-facebook"></span>Facebook
+            </uib-tab-heading>
+            <div class="social-dashboard-wrapper">
+              <dashboard-facebook ng-model="dashboard.media.facebook"></dashboard-facebook>
+            </div>
+          </uib-tab>
+          <uib-tab  index="1" heading="Instagram" class="instagram-tab">
+            <uib-tab-heading>
+              <span class="icon-instagram"></span> Instagram
+            </uib-tab-heading>
+            <div class="social-dashboard-wrapper">
+              <dashboard-instagram ng-model="dashboard.media.instagram"></dashboard-instagram>
+            </div>
+          </uib-tab>
+          <uib-tab index="2" heading="YouTube" class="youtube-tab">
+            <uib-tab-heading>
+              <span class="icon-youtube"></span> YouTube
+            </uib-tab-heading>
+            <div class="social-dashboard-wrapper">
+              <dashboard-youtube ng-model="dashboard.media.google"></dashboard-youtube>
+            </div>
+          </uib-tab>
+        </uib-tabset>
+
+      </div>
+
+    </div>
+  </div>
+</div>

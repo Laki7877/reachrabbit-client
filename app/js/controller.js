@@ -1275,6 +1275,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
 
               var posts = []; // all posts
               var keys = null;
+              var postKey = false;
               var otherField = function(sum, n) {
 
                 sum.sumEngagement = 0;
@@ -1289,7 +1290,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 }
                 // get key list for sum
 
-                keys = keys || _.keys(_.pickBy(n, function(value, key) {
+                keys = postKey ? keys : _.keys(_.pickBy(n, function(value, key) {
                   return _.startsWith(key, "sum");
                 }));
                 // sum each keys
@@ -1298,6 +1299,11 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 });
 
                 otherField(sum, n);
+
+                keys = postKey ? keys : _.keys(_.pickBy(sum, function(value, key) {
+                  return _.startsWith(key, "sum");
+                }));
+                postKey = true;
                 // accumulate
                 return sum;
               };

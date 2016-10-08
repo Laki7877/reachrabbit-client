@@ -1317,11 +1317,13 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
               // get only post with mediaId
               _.forEach(data, function(p) {
                 var has = false;
+                var count = false;
 
                 // get all posts data
                 _.forEach(p.posts, function(e) {
                   if(e.mediaId === mediaId) {
                     posts.push(e);
+                    count = true;
                   }
                 });
                 _.forEach(p.media, function(e) {
@@ -1338,10 +1340,13 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 var influencer = {};
 
                 // get per-influencer data
-                _.extend(influencer, p.influencer, influencer, _.reduce(p.posts, summator , {}));
-                influencer.sumFollowerCount = getFollower(p.influencer, mediaId);
-                influencer.sumEngagementRate = influencer.sumFollowerCount > 0 ? Math.round((influencer.sumEngagement / parseFloat(influencer.sumFollowerCount)) * 100) : null;
-                influencer.hasPosts = p.posts.length !== 0;
+                influencer.hasPosts = count;
+                _.extend(influencer, p.influencer);
+                if(influencer.hasPosts) {
+                    _.extend(influencer, _.reduce(p.posts, summator , {}));
+                    influencer.sumFollowerCount = getFollower(p.influencer, mediaId);
+                    influencer.sumEngagementRate = influencer.sumFollowerCount > 0 ? Math.round((influencer.sumEngagement / parseFloat(influencer.sumFollowerCount)) * 100) : null;
+                }
                 obj.influencers.push(influencer);
               });
 

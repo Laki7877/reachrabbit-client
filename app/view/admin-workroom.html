@@ -18,7 +18,7 @@
                                     </div>
                                     <div class="card-body-content">
                                         <div class="container-link" ng-repeat="link in links.facebook track by $index">
-                                          <input type="text" required ng-model="link.url" class="form-control" maxlength="60" ng-disabled="link.socialPostId">
+                                          <input type="text" required ng-model="link.url" class="form-control" maxlength="2000" ng-disabled="link.socialPostId">
                                           <div class="save-link" ng-if="!link.socialPostId">
                                             <a ng-click="save(link, 'facebook')"><i class="fa fa-floppy-o"></i> Save</a>
                                           </div>
@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="card-body-content">
                                         <div class="container-link" ng-repeat="link in links.instagram track by $index">
-                                          <input type="text" required ng-model="link.url" class="form-control" maxlength="60" ng-disabled="link.socialPostId">
+                                          <input type="text" required ng-model="link.url" class="form-control" maxlength="2000" ng-disabled="link.socialPostId">
                                           <div class="save-link" ng-if="!link.socialPostId">
                                             <a ng-click="save(link, 'instagram')"><i class="fa fa-floppy-o"></i> Save</a>
                                           </div>
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="card-body-content">
                                         <div class="container-link" ng-repeat="link in links.google track by $index">
-                                          <input type="text" required ng-model="link.url" class="form-control" maxlength="60" ng-disabled="link.socialPostId">
+                                          <input type="text" required ng-model="link.url" class="form-control" maxlength="2000" ng-disabled="link.socialPostId">
                                             <div class="save-link" ng-if="!link.socialPostId">
                                               <a ng-click="save(link, 'google')"><i class="fa fa-floppy-o"></i> Save</a>
                                             </div>

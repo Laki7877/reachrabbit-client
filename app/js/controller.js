@@ -2102,7 +2102,9 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
             });
         };
         //Init
-        $scope.load();
+        $scope.load({
+            sort: 'updatedAt,desc'
+        });
     }])
     .controller('AdminInboxController', ['$scope', '$filter', '$rootScope', 'ProposalService', 'CampaignService', 'moment', '$stateParams', function ($scope, $filter, $rootScope, ProposalService, CampaignService, moment, $stateParams) {
         $scope.statusCounts = {};

@@ -11107,6 +11107,9 @@ ul.payment-methods {
 .layout-influencer .view-influencer-profile .btn-secondary-active[disabled] {
   opacity: 1;
 }
+.layout-influencer .view-public-campaign-detail .zone-body {
+  margin-top: -25px;
+}
 .layout-influencer .view-public-campaign-detail .card-corner {
   display: none;
 }

@@ -10402,6 +10402,9 @@ div:focus {
   color: #8692a8;
 }
 /*---Table---*/
+.table thead tr th {
+  border-bottom: 2px solid #d8dfe7;
+}
 .table thead tr th a {
   color: #d8dfe7;
 }
@@ -10409,6 +10412,7 @@ div:focus {
   color: #ff773e;
 }
 .table tbody tr td {
+  border-top: 1px #d8dfe7 solid;
   vertical-align: middle;
 }
 .table tbody tr td.no-top-border {

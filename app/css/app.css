@@ -8611,6 +8611,7 @@ input:-moz-placeholder {
   margin-right: 10px;
 }
 .card-inbox table .col-campaign-name {
+  max-width: 240px;
   white-space: normal;
   overflow: hidden;
   text-overflow: inherit;

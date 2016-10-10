@@ -285,6 +285,12 @@ input:-moz-placeholder {
   }
 }
 
+.input-group-btn{
+  button{
+    padding: 5px 6px;
+  }
+}
+
 .radio-card{
   &:extend(.radio);
   &:extend(.card);
@@ -544,7 +550,7 @@ input:-moz-placeholder {
   }
   .card-info-content{
     &:extend(h4);
-    color: @color-theme-secondary;
+    color: @color-black;
   }
 }
 
@@ -637,11 +643,13 @@ input:-moz-placeholder {
 }
 
 .card-campaign-list-item{
-  &:extend(.card-clickable all);
   &:extend(.card);
   margin-bottom: 20px;
   .card-body{
     padding: 15px 0px;
+  }
+  .card-title-content{
+    cursor: pointer;
   }
   .card-info{
     .make-xs-column(2);
@@ -698,7 +706,7 @@ input:-moz-placeholder {
     display: block;
     color: @color-grey-darker;
   }
-  h4{
+  h4.highlight{
     color: @color-theme-secondary;
   }
   a.link-to-profile{
@@ -841,6 +849,7 @@ input:-moz-placeholder {
       }
     }
     .col-campaign-name{
+      max-width: 240px;
       white-space:normal;
       overflow: hidden;
       text-overflow:inherit;
@@ -1233,6 +1242,9 @@ input:-moz-placeholder {
 .btn-google {
   .button-variant(@color-white, @color-youtube, @color-btn-border);
   background: url("../images/icon-youtube-lg-clear.png") 0 0 no-repeat @color-youtube;
+}
+.btn-email {
+  background: url("../images/icon-email-lg-clear.png") 0 0 no-repeat @color-white;
 }
 .btn-clear {
   .button-variant(@color-theme-primary, @color-clear, @color-clear);

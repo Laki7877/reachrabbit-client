@@ -8023,6 +8023,9 @@ input:-moz-placeholder {
   right: 10px;
   top: 10px;
 }
+.input-group-btn button {
+  padding: 5px 6px;
+}
 .radio-card {
   transition: all 0.3s;
   position: relative;
@@ -8191,20 +8194,17 @@ input:-moz-placeholder {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 .card-clickable,
-.card-campaign-list-item,
 .card-thumbnail,
 .workroom .card-campaign-thumbnail {
   transition: all 0.3s;
   cursor: pointer;
 }
 .card-clickable:hover,
-.card-campaign-list-item:hover,
 .card-thumbnail:hover,
 .workroom .card-campaign-thumbnail:hover {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .card-clickable:active,
-.card-campaign-list-item:active,
 .card-thumbnail:active,
 .workroom .card-campaign-thumbnail:active {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -8315,7 +8315,7 @@ input:-moz-placeholder {
   color: #8692a8;
 }
 .card-info .card-info-content {
-  color: #16bbac;
+  color: #3e4a5e;
 }
 .card-button {
   position: relative;
@@ -8384,6 +8384,9 @@ input:-moz-placeholder {
 }
 .card-campaign-list-item .card-body {
   padding: 15px 0px;
+}
+.card-campaign-list-item .card-title-content {
+  cursor: pointer;
 }
 .card-campaign-list-item .card-info {
   position: relative;
@@ -8459,7 +8462,7 @@ input:-moz-placeholder {
   display: block;
   color: #8692a8;
 }
-.card-profile h4 {
+.card-profile h4.highlight {
   color: #16bbac;
 }
 .card-profile a.link-to-profile {
@@ -8611,6 +8614,7 @@ input:-moz-placeholder {
   margin-right: 10px;
 }
 .card-inbox table .col-campaign-name {
+  max-width: 240px;
   white-space: normal;
   overflow: hidden;
   text-overflow: inherit;
@@ -9880,6 +9884,9 @@ fieldset[disabled] .btn-google.active {
   color: #e62117;
   background-color: #ffffff;
 }
+.btn-email {
+  background: url("../images/icon-email-lg-clear.png") 0 0 no-repeat #ffffff;
+}
 .btn-clear {
   color: #ff773e;
   background-color: rgba(255, 255, 255, 0);
@@ -11103,6 +11110,9 @@ ul.payment-methods {
 }
 .layout-influencer .view-influencer-profile .btn-secondary-active[disabled] {
   opacity: 1;
+}
+.layout-influencer .view-public-campaign-detail .zone-body {
+  margin-top: -25px;
 }
 .layout-influencer .view-public-campaign-detail .card-corner {
   display: none;

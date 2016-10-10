@@ -188,7 +188,7 @@
                         <img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="profile-picture"/>
                          {{ proposal.influencer.user.name | truncate: 15 }}
                       </td>
-                      <td class="col-campaign-name">{{ proposal.campaign.title | truncate: 30}}</td>
+                      <td class="col-campaign-name">{{ proposal.campaign.title}}</td>
                       <td class="text-align-right">{{ proposal.price | number: 0 }} </td>
                     </tr>
                     <tr class="total-price">

@@ -7,7 +7,7 @@
         <div class="row" ng-repeat="chunk in categoriesChunk">
             <div class="col-xs-{{ 12/maxColumns }} col" ng-repeat="btn in chunk">
                 <button ng-disabled="!btn._selected && model.length >= maxSelected"
-                class="btn-width-max" ng-click="activate(btn)"
+                class="btn-width-max btn-minimal" ng-click="activate(btn)"
                 ng-class="{'btn-secondary-active': btn._selected, 'btn-secondary': !btn._selected}">
                      {{ getValue(btn) }}
                    </button>

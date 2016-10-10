@@ -1321,13 +1321,13 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
               // get only post with mediaId
               _.forEach(data, function(p) {
                 var has = false;
-                var count = false;
+                var hasPosts = false;
 
                 // get all posts data
                 _.forEach(p.posts, function(e) {
                   if(e.mediaId === mediaId) {
                     posts.push(e);
-                    count = true;
+                    hasPosts = true;
                   }
                 });
                 _.forEach(p.media, function(e) {
@@ -1336,18 +1336,27 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                   }
                 });
 
-                if(!has) {
+                if(!has && !hasPosts) {
                   return;
                 }
-
                 // build influencer data
                 var influencer = {};
 
                 // get per-influencer data
-                influencer.hasPosts = count;
+                influencer.hasPosts = hasPosts;
                 _.extend(influencer, p.influencer);
                 if(influencer.hasPosts) {
-                    _.extend(influencer, _.reduce(p.posts, summator , {}));
+                    var tmp = _.groupBy(p.posts, 'date');
+                    var keys = _.reverse(_.sortBy(_.keys(tmp), function(o) {
+                        return moment(o.date).toDate();
+                    }));
+                    var latest = [];
+                    if(keys.length > 0) {
+                      latest = tmp[keys[0]];
+                    } else {
+                      latest = [];
+                    }
+                    _.extend(influencer, _.reduce(latest, summator , {}));
                     influencer.sumFollowerCount = getFollower(p.influencer, mediaId);
                     influencer.sumEngagementRate = influencer.sumFollowerCount > 0 ? Math.round((influencer.sumEngagement / parseFloat(influencer.sumFollowerCount)) * 10000) / 100.0 : null;
                 }

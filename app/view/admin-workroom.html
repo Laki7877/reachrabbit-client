@@ -12,7 +12,7 @@
                                 <h3>Add Link</h3>
                             </div>
                             <div class="card-body">
-                                <div class="card-row">
+                                <div ng-if="mediaMap.facebook" class="card-row">
                                     <div class="card-body-content-label with-input">
                                         Facebook Link
                                     </div>
@@ -29,7 +29,7 @@
                                         <a ng-click="links.facebook.push({})">+ Add Another Link</a>
                                     </div>
                                 </div>
-                                <div class="card-row">
+                                <div ng-if="mediaMap.instagram" class="card-row">
                                     <div class="card-body-content-label with-input">
                                         Instagram Link
                                     </div>
@@ -46,7 +46,7 @@
                                         <a ng-click="links.instagram.push({})">+ Add Another Link</a>
                                     </div>
                                 </div>
-                                <div class="card-row">
+                                <div ng-if="mediaMap.google" class="card-row">
                                     <div class="card-body-content-label with-input">
                                         Youtube Link
                                     </div>

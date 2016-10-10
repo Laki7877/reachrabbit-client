@@ -1277,10 +1277,8 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
               var keys = null;
               var postKey = false;
               var otherField = function(sum, n) {
-
-                sum.sumEngagement = 0;
                 _.forEach(keys, function(k) {
-                  sum.sumEngagement += (sum[k] || 0);
+                  sum.sumEngagement = (sum.sumEngagement || 0) + (n[k] || 0);
                 });
               };
               var summator = function(sum, n) {
@@ -1351,7 +1349,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 if(influencer.hasPosts) {
                     _.extend(influencer, _.reduce(p.posts, summator , {}));
                     influencer.sumFollowerCount = getFollower(p.influencer, mediaId);
-                    influencer.sumEngagementRate = influencer.sumFollowerCount > 0 ? Math.round((influencer.sumEngagement / parseFloat(influencer.sumFollowerCount)) * 100) : null;
+                    influencer.sumEngagementRate = influencer.sumFollowerCount > 0 ? Math.round((influencer.sumEngagement / parseFloat(influencer.sumFollowerCount)) * 10000) / 100.0 : null;
                 }
                 obj.influencers.push(influencer);
               });
@@ -1403,13 +1401,16 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
               obj.sumFollowerCount = _.reduce(data, function(sum, n) {
                 return sum + getFollower(n.influencer);
               }, 0);
-              obj.sumCPE = obj.sumPrice / parseFloat(obj.sumFollowerCount);
 
               // per-media data
               obj.media = {};
+              var sumEngagement = 0;
               _.forOwn($scope.mediaObjectDict, function(v,k) {
                 obj.media[k] = getDataByMedia(data, k);
+                sumEngagement +=obj.media[k].sumEngagement;
               });
+
+              obj.sumCPE = (sumEngagement === 0) ? 0 : Math.round((obj.sumPrice / parseFloat(sumEngagement)) * 1000) / 1000.0;
 
               return obj;
             }
@@ -2385,11 +2386,15 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
             };
             $scope.alert = new NcAlert();
             $scope.proposal = null;
+            $scope.mediaMap = {};
 
             ProposalService.getOne($scope.proposalId)
                 .then(function (proposalResponse) {
                     $scope.proposal = proposalResponse.data;
                     $rootScope.proposal = proposalResponse.data;
+                    _.forEach($scope.proposal.media, function(m) {
+                      $scope.mediaMap[m.mediaId] = true;
+                    });
                     $scope.getPosts();
                     //load transactionid if this is influencer
                     if (UserProfile.get().influencer &&

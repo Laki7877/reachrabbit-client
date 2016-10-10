@@ -14,6 +14,17 @@ function dashboardLinkFn(metricOptions, datasetOptions) {
       scope.order = '-user.name';
       scope.chartOptions = {
         scales: {
+         yAxes: [{
+             ticks: {
+                 userCallback: function(label, index, labels) {
+                     // when the floored value is the same as the value we have a whole number
+                     if (Math.floor(label) === label) {
+                         return label;
+                     }
+
+                 },
+             }
+         }],
           xAxes: [{
             type: 'time',
             time: {
@@ -47,6 +58,9 @@ function dashboardLinkFn(metricOptions, datasetOptions) {
       function regenerateData() {
         if(scope.model) {
           scope.data.length = 0;
+          scope.datasetOptions.label = (_.find(scope.metricOptions, function(e) {
+            return e.value === scope.metric;
+          }) || {}).name;
           _.forEach(scope.model.dataset, function(e) {
             scope.data.push({
               x: e.date,

@@ -1275,7 +1275,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
 
               var posts = []; // all posts
               var keys = null;
-              var postKey = false;
+              var postKeys = null;
               var otherField = function(sum, n) {
                 _.forEach(keys, function(k) {
                   sum.sumEngagement = (sum.sumEngagement || 0) + (n[k] || 0);
@@ -1288,20 +1288,18 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 }
                 // get key list for sum
 
-                keys = postKey ? keys : _.keys(_.pickBy(n, function(value, key) {
+                keys = keys ? keys : _.keys(_.pickBy(n, function(value, key) {
                   return _.startsWith(key, "sum");
                 }));
                 // sum each keys
                 _.forEach(keys, function(k) {
                   sum[k] = (sum[k] || 0) + n[k];
+                  sum.sumEngagement = (sum.sumEngagement || 0) + n[k];
                 });
 
-                otherField(sum, n);
-
-                keys = postKey ? keys : _.keys(_.pickBy(sum, function(value, key) {
+                postKeys = postKeys ? postKeys : _.keys(_.pickBy(sum, function(value, key) {
                   return _.startsWith(key, "sum");
                 }));
-                postKey = true;
                 // accumulate
                 return sum;
               };
@@ -1382,9 +1380,9 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
               // create daily-fields
               for(var i = 0; i < datasetArray.length - 1; i++) {
                 if(i === 0) {
-                  _.forEach(keys, keyIter(datasetArray[i]));
+                  _.forEach(postKeys, keyIter(datasetArray[i]));
                 }
-                _.forEach(keys, keyIter(datasetArray[i], datasetArray[i+1]));
+                _.forEach(postKeys, keyIter(datasetArray[i], datasetArray[i+1]));
 
               }
 
@@ -1416,7 +1414,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
               var sumEngagement = 0;
               _.forOwn($scope.mediaObjectDict, function(v,k) {
                 obj.media[k] = getDataByMedia(data, k);
-                sumEngagement +=obj.media[k].sumEngagement;
+                sumEngagement += obj.media[k].sumEngagement;
               });
 
               obj.sumCPE = (sumEngagement === 0) ? 0 : Math.round((obj.sumPrice / parseFloat(sumEngagement)) * 1000) / 1000.0;

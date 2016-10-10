@@ -90,7 +90,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
               {
                 lineTension: 0.1,
                 borderColor: "rgba(59,89,152,1.0)",
-                pointBackgroundColor: "rgba(59,89,152,0.2)",
+                pointBackgroundColor: "rgba(59,89,152,1.0)",
                 backgroundColor: "rgba(59,89,152,0.2)",
                 pointHoverBackgroundColor: "rgba(255,119,62,1.0)",
                 pointHoverBorderColor: "rgba(255,119,62,1.0)"

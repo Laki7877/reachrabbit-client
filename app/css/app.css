@@ -8023,6 +8023,9 @@ input:-moz-placeholder {
   right: 10px;
   top: 10px;
 }
+.input-group-btn button {
+  padding: 5px 6px;
+}
 .radio-card {
   transition: all 0.3s;
   position: relative;
@@ -8191,20 +8194,17 @@ input:-moz-placeholder {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 .card-clickable,
-.card-campaign-list-item,
 .card-thumbnail,
 .workroom .card-campaign-thumbnail {
   transition: all 0.3s;
   cursor: pointer;
 }
 .card-clickable:hover,
-.card-campaign-list-item:hover,
 .card-thumbnail:hover,
 .workroom .card-campaign-thumbnail:hover {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .card-clickable:active,
-.card-campaign-list-item:active,
 .card-thumbnail:active,
 .workroom .card-campaign-thumbnail:active {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);

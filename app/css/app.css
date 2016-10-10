@@ -8315,7 +8315,7 @@ input:-moz-placeholder {
   color: #8692a8;
 }
 .card-info .card-info-content {
-  color: #16bbac;
+  color: #3e4a5e;
 }
 .card-button {
   position: relative;
@@ -8384,6 +8384,9 @@ input:-moz-placeholder {
 }
 .card-campaign-list-item .card-body {
   padding: 15px 0px;
+}
+.card-campaign-list-item .card-title-content {
+  cursor: pointer;
 }
 .card-campaign-list-item .card-info {
   position: relative;
@@ -8459,7 +8462,7 @@ input:-moz-placeholder {
   display: block;
   color: #8692a8;
 }
-.card-profile h4 {
+.card-profile h4.highlight {
   color: #16bbac;
 }
 .card-profile a.link-to-profile {

@@ -550,7 +550,7 @@ input:-moz-placeholder {
   }
   .card-info-content{
     &:extend(h4);
-    color: @color-theme-secondary;
+    color: @color-black;
   }
 }
 
@@ -648,6 +648,9 @@ input:-moz-placeholder {
   .card-body{
     padding: 15px 0px;
   }
+  .card-title-content{
+    cursor: pointer;
+  }
   .card-info{
     .make-xs-column(2);
     margin-top: 38px;
@@ -703,7 +706,7 @@ input:-moz-placeholder {
     display: block;
     color: @color-grey-darker;
   }
-  h4{
+  h4.highlight{
     color: @color-theme-secondary;
   }
   a.link-to-profile{

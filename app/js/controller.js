@@ -1294,7 +1294,12 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 // sum each keys
                 _.forEach(keys, function(k) {
                   sum[k] = (sum[k] || 0) + n[k];
-                  sum.sumEngagement = (sum.sumEngagement || 0) + n[k];
+                  console.log(k);
+                  if(mediaId === 'google' && k === 'sumView') {
+
+                  } else {
+                    sum.sumEngagement = (sum.sumEngagement || 0) + n[k];
+                  }
                 });
 
                 postKeys = postKeys ? postKeys : _.keys(_.pickBy(sum, function(value, key) {

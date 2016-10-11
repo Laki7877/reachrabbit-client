@@ -170,6 +170,12 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     url: '/users/' + id
                 });
             },
+            getAllBrand: function() {
+                return $http.get('/users/brand');
+            },
+            getAllInfluencer: function() {
+                return $http.get('/users/influencer');
+            },
             /*
              * Get Profile
              */

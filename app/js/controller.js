@@ -1734,11 +1734,12 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                 });
         };
     }])
-    .controller('InfluencerSigninController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', '$auth', '$state', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert, $auth, $state) {
+    .controller('InfluencerSigninController', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert, $auth, $state) {
         var u = UserProfile.get();
         $scope.formData = {};
         $window.localStorage.removeItem('token');
         $scope.alert = new NcAlert();
+        var ref = $location.search().ref;
 
         $scope.login = function (username, password) {
             $location.search('message', 'nop');
@@ -1764,7 +1765,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     $scope.alert.danger(err.data.message);
                 });
         };
-        $scope.startAuthFlow = function (mediaId) {
+        $scope.startAuthFlow = function (mediaId, ref) {
             $scope.minFollowerError = false;
             $window.localStorage.clear();
             $auth.authenticate(mediaId)
@@ -1788,14 +1789,13 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                             });
                     } else {
                         if (mediaId == 'facebook') {
-                            $state.go('influencer-signup-select-page', { authData: response.data });
+                            $state.go('influencer-signup-select-page', { authData: response.data, ref: ref });
                         } else {
                             if (response.data.pages[0].count < $scope.minFollower) {
                                 $scope.minFollowerError = true;
                                 return;
                             }
-
-                            $state.go('influencer-signup-confirmation', { authData: response.data });
+                            $state.go('influencer-signup-confirmation', { authData: response.data, ref: ref });
                         }
                     }
 
@@ -1803,7 +1803,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
 
                 });
         };
-    }])
+    })
     .controller('InfluencerJesusController', ['$scope', '$rootScope', '$location', 'AccountService', 'UserProfile', '$window', 'NcAlert', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
         //For influencer gods
         $scope.alert = new NcAlert();
@@ -1828,10 +1828,11 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                 });
         };
     }])
-    .controller('InfluencerPortalController', ['$scope', '$rootScope', 'NcAlert', '$location', '$auth', '$state', '$stateParams', 'AccountService', 'UserProfile', '$window', 'BusinessConfig',
-        function ($scope, $rootScope, NcAlert, $location, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {
+    .controller('InfluencerPortalController', function ($scope, $rootScope, NcAlert, $location, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {
             $scope.alert = new NcAlert();
             $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
+            
+            $scope.ref = $location.search().ref;
 
             if ($stateParams.alert) {
                 $scope.alert[$stateParams.alert.type]($stateParams.alert.message);
@@ -1861,14 +1862,14 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                                 });
                         } else {
                             if (mediaId == 'facebook') {
-                                $state.go('influencer-signup-select-page', { authData: response.data });
+                                $state.go('influencer-signup-select-page', { authData: response.data, ref: $scope.ref });
                             } else {
                                 if (response.data.pages[0].count < $scope.minFollower) {
                                     $scope.minFollowerError = true;
                                     return;
                                 }
 
-                                $state.go('influencer-signup-confirmation', { authData: response.data });
+                                $state.go('influencer-signup-confirmation', { authData: response.data, ref: $scope.ref });
                             }
                         }
 
@@ -1877,7 +1878,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     });
             };
         }
-    ])
+    )
     .controller('InfluencerFacebookPageSelectionController', ['$scope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'BusinessConfig', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, BusinessConfig) {
         var authData = $stateParams.authData;
         $scope.pages = authData.pages;
@@ -1911,8 +1912,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
             });
         };
     }])
-    .controller('InfluencerSignUpEmailController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig', 'validator', 'util',
-        function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
+    .controller('InfluencerSignUpEmailController', function ($scope, $location, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
             $scope.alert = new NcAlert();
             $scope.formData = {};
             $scope.register = function () {
@@ -1927,7 +1927,8 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     name: $scope.formData.name,
                     email: $scope.formData.email,
                     password: $scope.formData.password,
-                    phoneNumber: $scope.formData.phoneNumber
+                    phoneNumber: $scope.formData.phoneNumber,
+                    ref: $location.search().ref
                 })
                 .then(function (response) {
                     var token = response.data.token;
@@ -1947,14 +1948,17 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     $scope.alert.danger(err.data.message);
                 });
             };
-    }])
-    .controller('InfluencerSignUpController', ['$scope', '$rootScope', 'NcAlert', '$auth', '$state', '$stateParams', 'InfluencerAccountService', 'AccountService', 'UserProfile', '$window', 'ResourceService', 'BusinessConfig', 'validator', 'util',
-        function ($scope, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
+    })
+    .controller('InfluencerSignUpController', function ($scope, $location, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
             var profile = $stateParams.authData;
             $scope.alert = new NcAlert();
             $scope.form = {};
 
-            //TODO : get value from provider somewhere or smth
+            var ref = $location.search().ref;
+            if(ref){
+                $scope.ref = ref;
+            }
+
             $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
 
             $scope.formData = profile;
@@ -1987,6 +1991,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                 InfluencerAccountService.signup({
                     name: $scope.formData.name,
                     email: $scope.formData.email,
+                    ref: $scope.ref,
                     phoneNumber: $scope.formData.phoneNumber,
                     influencerMedia: [{
                         media: $scope.formData.media,
@@ -2016,7 +2021,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     });
             };
         }
-    ])
+    )
     .controller('BrandSignupController', ['$scope', '$state', '$rootScope', 'BrandAccountService', 'AccountService', 'UserProfile', '$location', '$window', 'NcAlert', 'util',
         function ($scope, $state, $rootScope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert, util) {
 
@@ -2056,6 +2061,85 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
 
 /*/////////////// /////////////// /////////////// /////////////// //////////////*/
 angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
+    .controller('AdminUserDetailController', ['$scope', 'AccountService', '$stateParams', 'NcAlert', function($scope, AccountService, $stateParams, NcAlert) {
+        $scope.alert = new NcAlert();
+        $scope.hasMedia = function (mediaId) {
+            for (var i = 0; i < _.get($scope.formData, 'influencer.influencerMedias', []).length; i++) {
+                if ($scope.formData.influencer.influencerMedias[i].media.mediaId == mediaId) {
+                    return true;
+                }
+            }
+            return false;
+        };
+        // fetch profile
+        AccountService.getProfile($stateParams.userId)
+            .then(function (response) {
+                $scope.formData = response.data;
+
+                if($scope.formData.influencer) {
+
+                    $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
+                    $scope.formData.influencer.user = $scope.formData;
+
+                    // fetch each media
+                    if ($scope.hasMedia('google')) {
+                        AccountService.getYouTubeProfile($stateParams.userId)
+                            .then(function (response) {
+                                $scope.youtube = response.data;
+                            });
+                    }
+                    if ($scope.hasMedia('facebook')) {
+                        AccountService.getFacebookProfile($stateParams.userId)
+                            .then(function (response) {
+                                $scope.facebook = response.data;
+                            });
+                    }
+                    if ($scope.hasMedia('instagram')) {
+                        AccountService.getInstagramProfile($stateParams.userId)
+                            .then(function (response) {
+                                $scope.instagram = response.data;
+                            });
+                    }
+
+                    // assign categories
+                    _.forEach($scope.formData.influencer.categories, function (r) {
+                        r._selected = true;
+                    });
+                }
+            })
+            .catch(function (err) {
+                $scope.alert.danger(err.data.message);
+            });
+    }])
+    .controller('AdminInfluencerListController', ['$scope', 'AccountService', function($scope, AccountService) {
+        //Load campaign data
+        $scope.load = function (data) {
+            $scope.params = data;
+            AccountService.getAllInfluencer(data)
+                .then(function (response) {
+                    $scope.users = response.data;
+                });
+        };
+        //Init
+        $scope.load({
+            sort: 'updatedAt,desc'
+        });
+    }])
+    .controller('AdminBrandListController', ['$scope', 'AccountService', function($scope, AccountService) {
+
+        //Load campaign data
+        $scope.load = function (data) {
+            $scope.params = data;
+            AccountService.getAllBrand(data)
+                .then(function (response) {
+                    $scope.users = response.data;
+                });
+        };
+        //Init
+        $scope.load({
+            sort: 'updatedAt,desc'
+        });
+    }])
     .controller('AdminTransactionHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
         //Load campaign data
         $scope.isExpired = function (T) {

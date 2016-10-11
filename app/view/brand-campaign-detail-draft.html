@@ -2,9 +2,9 @@
     <div class="viewport view-brand-detail-draft">
         <div class="zone-alert">
           <div nc-alert="alert"></div>
-          <div nc-alert type="info" closable="false" ng-if="formData.status != 'Open'">
+          <!-- <div nc-alert type="info" closable="false" ng-if="formData.status != 'Open'">
               Influencer จะยังไม่เห็น Campaign นี้จนกว่าคุณจะลงประกาศ
-          </div>
+          </div> -->
         </div>
         <zone-header historyback="true">
           <h1 id="campaign-title" ng-if="formData.title" ng-bind="formData.title | truncate: 60"></h1>
@@ -14,9 +14,114 @@
             <div class="container">
                 <card-campaign-header campaign="formData" remove="remove()" removeable="formData.campaignId >= 0">
                 </card-campaign-header>
-                <div class="card-campaign-description" >
+                <div class="card-campaign-description">
+                  <div class="card-body">
+                    <div class="card-row">
+                      <div class="card-title col-xs-12">
+                        <div class="card-title-content">
+                          1. เป้าหมาย
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card-row multi-tag-selector">
+                        <div class="card-body-content-label with-input" uib-tooltip="คุณจะอยากให้ Influencer ทำอะไรให้" tooltip-placement="bottom">
+                          เป้าหมายของงาน <i class="fa fa-question-circle"></i>
+                        </div>
+                        <div class="card-body-content">
+                            <div class="row">
+                                <div class="col-xs-3 col">
+                                    <button class="btn-secondary btn-width-max">
+                                        รีวิวสินค้า
+                                    </button>
+                                </div>
+                                <div class="col-xs-3 col">
+                                    <button class="btn-secondary btn-width-max">
+                                      สอนวิธีใช้
+                                    </button>
+                                </div>
+                                <div class="col-xs-3 col">
+                                    <button class="btn-secondary btn-width-max">
+                                      Tie-in
+                                    </button>
+                                </div>
+                                <div class="col-xs-3 col">
+                                    <button class="btn-secondary btn-width-max">
+                                      ฝากแชร์
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-row">
+                        <div class="card-body-content-label" uib-tooltip="เลือกช่องทางที่คุณอยากให้ Influencer นำเสนอ เพื่อโปรโมทสินค้าคุณ" tooltip-placement="bottom">
+                            รูปแบบงาน <i class="fa fa-question-circle"></i>
+                        </div>
+                        <div class="card-body-content">
+                            <h5>เลือกรูปแบบของงานที่ต้องการให้ Influencer สร้าง</h5>
+                            <div class="checkbox checkbox-inline work-type">
+                                <label>
+                                    <input type="checkbox">
+                                    <i class="fa fa-picture-o"></i><span>รูป</span>
+                                </label>
+                            </div>
+                            <div class="checkbox checkbox-inline work-type">
+                                <label>
+                                    <input type="checkbox">
+                                    <i class="fa fa-play-circle-o"></i><span>วีดีโอ</span>
+                                </label>
+                            </div>
+                            <div class="checkbox checkbox-inline work-type">
+                                <label>
+                                    <input type="checkbox">
+                                    <i class="fa fa-magic"></i><span>อื่นๆ</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-row">
+                        <div class="card-body-content-label" uib-tooltip="เลือกช่องทางที่คุณอยากให้ Influencer นำเสนอ เพื่อโปรโมทสินค้าคุณ" tooltip-placement="bottom">
+                            ช่องทางโปรโมท <i class="fa fa-question-circle"></i>
+                        </div>
+                        <div class="card-body-content">
+                            <h5>เลือกช่องทางที่คุณอยากให้ Influencer โพส</h5>
+                            <div class="checkbox checkbox-inline" ng-repeat="media in medium">
+                                <label>
+                                    <input type="checkbox" ng-model="mediaBooleanDict[media.mediaId]">
+                                    <span class="icon-{{media.mediaId}}"></span> {{media.mediaName}}
+                                </label>
+                            </div>
+                            <div class="has-error" ng-if="isInvalidMedia()">
+                                <div class="help-block">กรุณาเลือกอย่างน้อย 1 ช่องทาง</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-row" form-error="form.description" is-validate="isPublishing()">
+                        <div class="card-body-content-label with-input" uib-tooltip="อธิบายรายละเอียดของงาน แต่อย่าลืมให้โอกาส Influencer ได้ใช้ความคิดสร้างสรรค์ด้วยนะคะ!" tooltip-placement="bottom">
+                           <!-- Formly known as รายละเอียด -->
+                            สิ่งที่ต้องทำ <i class="fa fa-question-circle"></i>
+                        </div>
+                        <div class="card-body-content">
+                            <textarea name="description" class="form-control" ng-model="formData.description" rows="5" maxlength="5000" required placeholder="รายละเอียดเพิ่มเติม ของสิ่งที่คุณอยากให้ Influencer ทำให้"></textarea>
+                            <div input-error></div>
+                        </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="card-campaign-description">
                     <div class="card-body">
-                        <div class="card-row" form-error="form.title" is-validate="isPublishing()">
+                      <div class="card-row">
+                        <div class="card-title col-xs-12">
+                          <div class="card-title-content">
+                            2. รายละเอียด
+                          </div>
+                        </div>
+                      </div>
+                        <!-- <div class="card-row" form-error="form.title" is-validate="isPublishing()">
                             <div class="card-body-content-label with-input" uib-tooltip="ชื่อ Campaign ควรเขียนให้สั้น และได้ใจความ" tooltip-placement="bottom">
                                 ชื่อ Campaign <i class="fa fa-question-circle"></i>
                             </div>
@@ -24,12 +129,40 @@
                                 <input name="title" type="text" required ng-model="formData.title" class="form-control" maxlength="60">
                                 <div input-error></div>
                             </div>
-                        </div>
-                        <div class="card-row" form-error="form.mainResource" is-validate="isPublishing($model, $error)">
-                            <div class="card-body-content-label with-input" uib-tooltip="รูป Campaign เป็นรูปหลักที่ Influencer จะเห็น ควรเลือกให้เห็นสินค้าชัดเจน" tooltip-placement="bottom">
-                                รูป Campaign <i class="fa fa-question-circle"></i>
+                        </div> -->
+                        <div class="card-row" form-error="form.title" is-validate="isPublishing()">
+                            <div class="card-body-content-label with-input" uib-tooltip="ชื่อ Campaign ควรเขียนให้สั้น และได้ใจความ" tooltip-placement="bottom">
+                                ชื่อสินค้า / บริการ <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
+                                <input name="title" type="text" required ng-model="formData.title" class="form-control" maxlength="60" placeholder="ชื่อสินค้า หรือ บริการ">
+                                <div input-error></div>
+                            </div>
+                        </div>
+
+                        <div class="card-row" form-error="form.category" is-validate="isPublishing()">
+                            <div class="card-body-content-label with-input" uib-tooltip="เลือกหมวดหมู่ที่ใกล้เคียงกับสินค้าของคุณมากที่สุด" tooltip-placement="bottom">
+                                หมวดหมู่สินค้า <i class="fa fa-question-circle"></i>
+                            </div>
+                            <div class="card-body-content">
+                                <div class="input-dropdown">
+                                    <select name="category" class="form-control" ng-model="formData.category" ng-options="x as x.categoryName disable when x.categoryId == 0  for x in categories track by x.categoryId" ng-default="-- เลือกหมวดหมู่สินค้า --"
+                                        required>
+                                    </select>
+                                    <i class="fa fa-caret-down"></i>
+                                </div>
+                                <div input-error></div>
+                            </div>
+                        </div>
+
+
+                        <div class="card-row" form-error="form.mainResource" is-validate="isPublishing($model, $error)">
+                            <div class="card-body-content-label" uib-tooltip="รูป Campaign เป็นรูปหลักที่ Influencer จะเห็น ควรเลือกให้เห็นสินค้าชัดเจน" tooltip-placement="bottom">
+                                <!--Formerly Known as รูป Campaign-->
+                                รูปสินค้า <i class="fa fa-question-circle"></i>
+                            </div>
+                            <div class="card-body-content">
+                                <p>รูปหลักที่ Influencer จะเห็น</p>
                                 <uploader-thumb name="mainResource"
                                   ng-model="formData.mainResource"
                                   accept=".jpg,.png"
@@ -43,66 +176,22 @@
                                 <div input-error></div>
                             </div>
                         </div>
-                        <div class="card-row">
-                            <div class="card-body-content-label with-checkbox" uib-tooltip="เลือกช่องทางที่คุณอยากให้ Influencer นำเสนอ เพื่อโปรโมทสินค้าคุณ" tooltip-placement="bottom">
-                                ช่องทางโปรโมท <i class="fa fa-question-circle"></i>
-                            </div>
-                            <div class="card-body-content">
-                                <div class="checkbox" ng-repeat="media in medium">
-                                    <label>
-                                        <input type="checkbox" ng-model="mediaBooleanDict[media.mediaId]">
-                                        <span class="icon-{{media.mediaId}}"></span> {{media.mediaName}}
-                                    </label>
-                                </div>
-                                <div class="has-error" ng-if="isInvalidMedia()">
-                                    <div class="help-block">กรุณาเลือกอย่างน้อย 1 ช่องทาง</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-row" form-error="form.category" is-validate="isPublishing()">
-                            <div class="card-body-content-label with-input" uib-tooltip="เลือกหมวดหมู่ที่ใกล้เคียงกับสินค้าของคุณมากที่สุด" tooltip-placement="bottom">
-                                หมวดหมู่ <i class="fa fa-question-circle"></i>
-                            </div>
-                            <div class="card-body-content">
-                                <div class="input-dropdown">
-                                    <select name="category" class="form-control" ng-model="formData.category" ng-options="x as x.categoryName disable when x.categoryId == 0  for x in categories track by x.categoryId" ng-default="-- เลือกหมวดหมู่ --"
-                                        required>
-                                    </select>
-                                    <i class="fa fa-caret-down"></i>
-                                </div>
-                                <div input-error></div>
-                            </div>
-                        </div>
-                        <div class="card-row" form-error="form.description" is-validate="isPublishing()">
-                            <div class="card-body-content-label with-input" uib-tooltip="อธิบายรายละเอียดของงาน แต่อย่าลืมให้โอกาส Influencer ได้ใช้ความคิดสร้างสรรค์ด้วยนะคะ!" tooltip-placement="bottom">
-                                รายละเอียด <i class="fa fa-question-circle"></i>
-                            </div>
-                            <div class="card-body-content">
-                                <textarea name="description" class="form-control" ng-model="formData.description" rows="9" maxlength="5000" required></textarea>
-                                <div input-error></div>
-                            </div>
-                        </div>
-                        <div class="card-row">
+
+                        <!-- <div class="card-row">
                             <div class="card-body-content-label with-input" uib-tooltip="Keyword สำคัญที่คุณอยากให้ Influencer เน้นในงานที่ทำ อาจเป็นชื่อสินค้า หรือสโลแกนก็ได้" tooltip-placement="bottom">
                                 Keyword สำคัญ <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
                                 <input name="keyword" type="text" ng-model="formData.keyword" class="form-control" placeholder="Keyword สำคัญที่อยากให้ influencer พูดถึง" maxlength="100">
                             </div>
-                        </div>
-                        <div class="card-row">
-                            <div class="card-body-content-label with-input" uib-tooltip="ใส่เว็บไซต์ของสินค้า เพื่อให้ Influencer ศึกษาข้อมูลเพิ่มเติม มาใช้ประกอบการทำงานได้" tooltip-placement="bottom">
-                                เว็บไซต์/เฟสบุ๊คเพจ <i class="fa fa-question-circle"></i>
-                            </div>
-                            <div class="card-body-content">
-                                <input type="text" class="form-control" ng-model="formData.website" maxlength="200" placeholder="www.mybrand.com or www.facebook.com/mybrand">
-                            </div>
-                        </div>
+                        </div> -->
+
                         <div class="card-row" form-error="form.campaignResources">
                             <div class="card-body-content-label" uib-tooltip="รูปประกอบ เพื่อช่วยเพิ่มความเข้าใจเกี่ยวกับสินค้าหรือแคมเปญของคุณ" tooltip-placement="bottom">
-                                รูปประกอบ <i class="fa fa-question-circle"></i>
+                                รูปประกอบ (ถ้ามี) <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
+                                <label>หากคุณมีรูปเพิ่มเติมที่อยากให้ Influencer เห็น คุณสามารถใส่ได้ที่นี้</label><br>
                                 <uploader-multi name="resources"
                                   ng-model="formData.campaignResources"
                                   accept=".jpg,.png"
@@ -113,67 +202,95 @@
                                 <div input-error></div>
                             </div>
                         </div>
-                        <div class="card-row" form-error="form.budget" is-validate="isPublishing()">
-                            <div class="card-body-content-label with-input" uib-tooltip="เลือกช่วงราคาตามงบประมาณต่อคนของคุณ แต่ Influencer สามารถเสนอราคาต่างจากนี้เพื่อให้คุณพิจารณาได้" tooltip-placement="bottom">
-                                ค่าตอบแทน <i class="fa fa-question-circle"></i>
+
+                        <div class="card-row">
+                            <div class="card-body-content-label with-input" uib-tooltip="ใส่เว็บไซต์ของสินค้า เพื่อให้ Influencer ศึกษาข้อมูลเพิ่มเติม มาใช้ประกอบการทำงานได้" tooltip-placement="bottom">
+                                เว็บไซต์/เฟสบุ๊คเพจ <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
-                                <div class="input-dropdown">
-                                    <select name="budget" class="form-control" ng-model="formData.budget"
-                                    ng-options="x as budgetDisplayAs(x) disable when x.id == 0 for x in budgets track by x.budgetId" ng-default="-- เลือกค่าตอบแทน --" required>
-                                    </select>
-                                    <i class="fa fa-caret-down"></i>
-                                </div>
-                                <div input-error></div>
+                                <input type="text" class="form-control" ng-model="formData.website" maxlength="200" placeholder="www.mybrand.com or www.facebook.com/mybrand">
                             </div>
                         </div>
-                        <div class="card-row" form-error="form.proposalDeadline" is-validate="isPublishing()">
-                            <div class="card-body-content-label with-input" uib-tooltip="คุณจะเปิดให้ Influencer สามารถส่งข้อเสนอให้คุณจนถึงวันที่ระบุนี้ แนะนำให้เปิดไว้อย่างน้อย 2 อาทิตย์จากวันที่สร้าง Campaign" tooltip-placement="bottom">
-                                เปิดรับข้อเสนอถึง <i class="fa fa-question-circle"></i>
-                            </div>
-                            <div class="card-body-content">
-                                <p class="input-group">
-
-                                    <input name="proposalDeadline" placeholder="-- เลือกวันปิดรับข้อเสนอ --" type="text" class="form-control" ng-focus="popup1_open = true"
-                                          uib-datepicker-popup="{{$root.format}}" ng-model="formData.proposalDeadline" is-open="popup1_open" datepicker-options="dateOptions" show-button-bar="false" readonly
-                                          close-text="Close" required/>
-
-                                    <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default" ng-click="popup1_open = true"><i class="glyphicon glyphicon-calendar"></i></button>
-                                    </span>
-                                </p>
-                                <div input-error></div>
-                                <div class="info-text color-red" ng-if="isRecommendedDate()">
-                                  ควรเปิดรับข้อเสนออย่างน้อย 2 สัปดาห์ เพื่อให้ได้ผลดีที่สุด
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-row" ng-if="!editOpenState">
-                            <div class="card-button-primary">
-                                <button class="btn-primary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">ลงประกาศ</button>
-                                <br>
-                                <div class="info-text">
-                                    บันทึกและเปิดรับข้อเสนอ
-                                </div>
-                            </div>
-                            <div class="card-button-secondary">
-                                <button class="btn-secondary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Draft')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกข้อมูล</button>
-                                <br>
-                                <div class="info-text">
-                                    บันทึกเพื่อแก้ไขภายหลัง
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-row" ng-if="editOpenState">
-                            <div class="card-button-primary">
-                                <button class="btn-primary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกการแก้ไข</button>
-                            </div>
-                        </div>
-
                     </div>
+                </div>
+                <div class="card-campaign-description">
+                  <div class="card-body">
+                    <div class="card-row">
+                      <div class="card-title col-xs-12">
+                        <div class="card-title-content">
+                          3. การจ้างงาน
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card-row" form-error="form.budget" is-validate="isPublishing()">
+                        <div class="card-body-content-label with-input" uib-tooltip="เลือกช่วงราคาตามงบประมาณต่อคนของคุณ แต่ Influencer สามารถเสนอราคาต่างจากนี้เพื่อให้คุณพิจารณาได้" tooltip-placement="bottom">
+                            ค่าจ้าง <i class="fa fa-question-circle"></i>
+                        </div>
+                        <div class="card-body-content">
+                            <div class="input-dropdown">
+                                <select name="budget" class="form-control" ng-model="formData.budget"
+                                ng-options="x as budgetDisplayAs(x) disable when x.id == 0 for x in budgets track by x.budgetId" ng-default="-- เลือกค่าจ้างต่อ Influencer --" required>
+                                </select>
+                                <i class="fa fa-caret-down"></i>
+                            </div>
+                            <div input-error></div>
+                        </div>
+                    </div>
+                    <div class="card-row" form-error="form.proposalDeadline" is-validate="isPublishing()">
+                        <div class="card-body-content-label with-input" uib-tooltip="คุณจะเปิดให้ Influencer สามารถส่งข้อเสนอให้คุณจนถึงวันที่ระบุนี้ แนะนำให้เปิดไว้อย่างน้อย 2 อาทิตย์จากวันที่สร้าง Campaign" tooltip-placement="bottom">
+                            หมดเขตรับสมัคร <i class="fa fa-question-circle"></i>
+                        </div>
+                        <div class="card-body-content">
+                            <p class="input-group">
+
+                                <input name="proposalDeadline" placeholder="-- เลือกวันหมดเขตรับสมัคร --" type="text" class="form-control input-calendar" ng-focus="popup1_open = true"
+                                      uib-datepicker-popup="{{$root.format}}" ng-model="formData.proposalDeadline" is-open="popup1_open" datepicker-options="dateOptions" show-button-bar="false" readonly
+                                      close-text="Close" required/>
+
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="popup1_open = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                            <div input-error></div>
+                            <div class="info-text color-red" ng-if="isRecommendedDate()">
+                              ควรเปิดรับข้อเสนออย่างน้อย 2 สัปดาห์ เพื่อให้ได้ผลดีที่สุด
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="card-row" ng-if="!editOpenState">
+                        <div class="card-button-primary">
+                            <button class="btn-primary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">ลงประกาศ</button>
+                            <br>
+                            <div class="info-text">
+                                บันทึกและเปิดรับข้อเสนอ
+                            </div>
+                        </div>
+                        <div class="card-button-secondary">
+                            <button class="btn-secondary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Draft')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกข้อมูล</button>
+                            <br>
+                            <div class="info-text">
+                                บันทึกเพื่อแก้ไขภายหลัง
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-row" ng-if="editOpenState">
+                        <div class="card-button-primary">
+                            <button class="btn-primary btn-width-max" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกการแก้ไข</button>
+                        </div>
+                    </div> -->
+
+                  </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="floating-bar">
+      <button class="btn-secondary btn-width-lg  btn-with-margin" ng-if="!editOpenState" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Draft')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกข้อมูล</button>
+      <button class="btn-primary btn-width-lg btn-with-margin" ng-if="!editOpenState" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">ลงประกาศ</button>
+      <button class="btn-primary btn-width-lg  btn-with-margin" ng-if="editOpenState" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกการแก้ไข</button>
+    </div>
+
 </form>

@@ -8076,6 +8076,11 @@ input:-moz-placeholder {
   margin: 0px -10px;
   max-height: 400px;
 }
+.checkbox-inline {
+  display: inline-block;
+  padding-left: 0px;
+  margin-right: 20px;
+}
 /*---Image Upload---*/
 .input-upload-image {
   cursor: pointer;
@@ -8554,14 +8559,34 @@ input:-moz-placeholder {
   display: block;
   padding: 15px 13px 0 0;
 }
-.card-campaign-description {
-  padding-top: 15px;
+.card-campaign-description .card-body .card-body-content-label {
+  color: #16bbac;
 }
-.card-campaign-description .card-body {
-  padding-bottom: 0px;
+.card-campaign-description .card-body .card-body-content-label .fa {
+  color: #16bbac;
 }
 .card-campaign-description .card-body .description-image {
   margin-bottom: 20px;
+}
+.card-campaign-description .card-body .description-image:last-child {
+  margin-bottom: 0px;
+}
+.card-campaign-description .card-body .checkbox-inline {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.card-campaign-description .card-body .work-type .work-type-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.card-campaign-description .card-body .work-type .fa {
+  color: #16bbac;
+  font-size: 20px;
+  margin-right: 5px;
+}
+.card-campaign-description .card-body .work-type span {
+  display: inline-block;
+  transform: translateY(-2px);
 }
 .card-thumbnail .card-thumbnail-image,
 .workroom .card-campaign-thumbnail .card-thumbnail-image {
@@ -10286,6 +10311,18 @@ fieldset[disabled] .btn-clear.active {
   padding: 7.5px 0px;
 }
 /*---Date Picker---*/
+.input-calendar::-webkit-input-placeholder {
+  color: #3e4a5e;
+}
+.input-calendar::-moz-placeholder {
+  color: #3e4a5e;
+}
+.input-calendar:-ms-input-placeholder {
+  color: #3e4a5e;
+}
+.input-calendar:-moz-placeholder {
+  color: #3e4a5e;
+}
 .nc-dt-button .btn,
 .btn.active,
 .uib-title,
@@ -10376,6 +10413,9 @@ div:focus {
 }
 .multi-tag-selector .col {
   padding: 5px 7.5px;
+}
+.multi-tag-selector .with-input {
+  margin-top: 13px;
 }
 /*---Tab Selector---*/
 .tab-selector {

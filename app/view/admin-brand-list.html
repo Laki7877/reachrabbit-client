@@ -1,0 +1,38 @@
+<div class="viewport view-admin-brand-list">
+  <zone-header>
+    <h1>All Brands</h1>
+  </zone-header>
+  <div class="zone-body">
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <table ng-if="users.numberOfElements > 0" class="table" sorter ng-model="users" callback="load">
+            <thead>
+              <tr>
+                <th class="col-name" sort="brand.brandName">Brand Name</th>
+                <th sort="email">Email</th>
+                <th class="text-center" sort="brand.isCompany">เป็นนิติบุคคล</th>
+                <th class="col-button"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="user in users.content">
+                <td>{{user.brand.brandName}}</td>
+                <td>{{user.brand.user.email}}</td>
+                <td class="color-red text-center" ng-if="!user.brand.isCompany">No</td>
+                <td class="color-green text-center" ng-if="user.brand.isCompany">Yes</td>
+                <td>
+                  <button ui-sref="admin-brand-detail({userId: user.userId})" class="btn btn-secondary btn-width-md">ดูรายละเอียด</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table-static ng-if="users.totalElements == 0">ไม่มี Brand</table-static>
+        </div>
+      </div>
+      <nav class="text-center" aria-label="Page navigation">
+        <pagination ng-model="users" callback="load"></pagination>
+      </nav>
+    </div>
+  </div>
+</div>

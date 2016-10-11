@@ -79,6 +79,26 @@ angular.module('reachRabbitApp.admin.routes', ['ui.router'])
                 url: '/admin-dashboard/:campaignId',
                 templateUrl: 'view/admin-dashboard.html',
                 controller: 'CampaignDashboardController'
+            })
+            .state('admin-brand-detail', {
+                url: '/admin-brand-detail/:userId',
+                templateUrl: 'view/admin-brand-detail.html',
+                controller: 'AdminUserDetailController'
+            })
+            .state('admin-influencer-detail', {
+                url: '/admin-influencer-detail/:userId',
+                templateUrl: 'view/admin-influencer-detail.html',
+                controller: 'AdminUserDetailController'
+            })
+            .state('admin-brand-list', {
+                url: '/admin-brand-list',
+                templateUrl: 'view/admin-brand-list.html',
+                controller: 'AdminBrandListController'
+            })
+            .state('admin-influencer-list', {
+                url: '/admin-influencer-list',
+                templateUrl: 'view/admin-influencer-list.html',
+                controller: 'AdminInfluencerListController'
             });
     }]);
 

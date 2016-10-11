@@ -2061,6 +2061,85 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
 
 /*/////////////// /////////////// /////////////// /////////////// //////////////*/
 angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
+    .controller('AdminUserDetailController', ['$scope', 'AccountService', '$stateParams', 'NcAlert', function($scope, AccountService, $stateParams, NcAlert) {
+        $scope.alert = new NcAlert();
+        $scope.hasMedia = function (mediaId) {
+            for (var i = 0; i < _.get($scope.formData, 'influencer.influencerMedias', []).length; i++) {
+                if ($scope.formData.influencer.influencerMedias[i].media.mediaId == mediaId) {
+                    return true;
+                }
+            }
+            return false;
+        };
+        // fetch profile
+        AccountService.getProfile($stateParams.userId)
+            .then(function (response) {
+                $scope.formData = response.data;
+
+                if($scope.formData.influencer) {
+
+                    $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
+                    $scope.formData.influencer.user = $scope.formData;
+
+                    // fetch each media
+                    if ($scope.hasMedia('google')) {
+                        AccountService.getYouTubeProfile($stateParams.userId)
+                            .then(function (response) {
+                                $scope.youtube = response.data;
+                            });
+                    }
+                    if ($scope.hasMedia('facebook')) {
+                        AccountService.getFacebookProfile($stateParams.userId)
+                            .then(function (response) {
+                                $scope.facebook = response.data;
+                            });
+                    }
+                    if ($scope.hasMedia('instagram')) {
+                        AccountService.getInstagramProfile($stateParams.userId)
+                            .then(function (response) {
+                                $scope.instagram = response.data;
+                            });
+                    }
+
+                    // assign categories
+                    _.forEach($scope.formData.influencer.categories, function (r) {
+                        r._selected = true;
+                    });
+                }
+            })
+            .catch(function (err) {
+                $scope.alert.danger(err.data.message);
+            });
+    }])
+    .controller('AdminInfluencerListController', ['$scope', 'AccountService', function($scope, AccountService) {
+        //Load campaign data
+        $scope.load = function (data) {
+            $scope.params = data;
+            AccountService.getAllInfluencer(data)
+                .then(function (response) {
+                    $scope.users = response.data;
+                });
+        };
+        //Init
+        $scope.load({
+            sort: 'updatedAt,desc'
+        });
+    }])
+    .controller('AdminBrandListController', ['$scope', 'AccountService', function($scope, AccountService) {
+
+        //Load campaign data
+        $scope.load = function (data) {
+            $scope.params = data;
+            AccountService.getAllBrand(data)
+                .then(function (response) {
+                    $scope.users = response.data;
+                });
+        };
+        //Init
+        $scope.load({
+            sort: 'updatedAt,desc'
+        });
+    }])
     .controller('AdminTransactionHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
         //Load campaign data
         $scope.isExpired = function (T) {

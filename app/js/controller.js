@@ -1862,14 +1862,14 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                                 });
                         } else {
                             if (mediaId == 'facebook') {
-                                $state.go('influencer-signup-select-page', { authData: response.data, ref: ref });
+                                $state.go('influencer-signup-select-page', { authData: response.data, ref: $scope.ref });
                             } else {
                                 if (response.data.pages[0].count < $scope.minFollower) {
                                     $scope.minFollowerError = true;
                                     return;
                                 }
 
-                                $state.go('influencer-signup-confirmation', { authData: response.data, ref: ref });
+                                $state.go('influencer-signup-confirmation', { authData: response.data, ref: $scope.ref });
                             }
                         }
 

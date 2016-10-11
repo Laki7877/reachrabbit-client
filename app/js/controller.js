@@ -427,7 +427,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             });
 
             function setChatArea() {
-                var magicNumber = 447;
+                var magicNumber = 437;
                 var chatArea = $(".message-area");
                 var chatAreaHeight = $(window).height() - magicNumber;
 

@@ -98,8 +98,8 @@
                           <div ng-if="proposal.status == 'Working'" >
                             <div class="how-to-text">
                               <ol>
-                                <li>ทำงานตามที่ตกลงกัน</li>
-                                <li>ส่งงานให้ Brand ตรวจสอบก่อนโพส</li>
+                                <li>ส่งงานตามที่ตกลงกันภายใน {{ proposal.dueDate | date }}</li>
+                                <li>ให้ Brand ตรวจสอบก่อน<br>โพสลงโซเชียล</li>
                                 <li>โพสงานบนโซเชียลและส่งรูปหลักฐานการโพสให้ Brand</li>
                                 <li>ขอให้ Brand "อนุมัติงาน"</li>
                               </ol>

@@ -347,6 +347,12 @@ input:-moz-placeholder {
   max-height: 400px;
 }
 
+.checkbox-inline{
+  display: inline-block;
+  padding-left: 0px;
+  margin-right: 20px;
+}
+
 /*---Image Upload---*/
 
 .input-upload-image{
@@ -786,12 +792,38 @@ input:-moz-placeholder {
 
 .card-campaign-description{
   &:extend(.card);
-  padding-top: 15px;
   .card-body{
-    padding-bottom: 0px;
+    .card-body-content-label{
+      color: @color-theme-secondary;
+      .fa{
+        color: @color-theme-secondary;
+      }
+    }
     .description-image{
       &:extend(.img-responsive);
       margin-bottom: 20px;
+    }
+    .description-image:last-child{
+      margin-bottom: 0px;
+    }
+    .checkbox-inline{
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .work-type{
+      .work-type-item{
+        display: inline-block;
+        margin-right: 10px;
+      }
+      .fa{
+        color: @color-theme-secondary;
+        font-size: 20px;
+        margin-right: 5px;
+      }
+      span{
+        display: inline-block;
+        transform: translateY(-2px);
+      }
     }
   }
 }
@@ -1560,6 +1592,18 @@ input:-moz-placeholder {
 }
 
 /*---Date Picker---*/
+.input-calendar::-webkit-input-placeholder {
+  color: @color-black;
+}
+.input-calendar::-moz-placeholder {
+  color: @color-black;
+}
+.input-calendar:-ms-input-placeholder {
+  color: @color-black;
+}
+.input-calendar:-moz-placeholder {
+  color: @color-black;
+}
 .nc-dt-button .btn, .btn.active, .uib-title, .uib-right, .uib-left{
   border:none;
   padding:8px;
@@ -1597,6 +1641,9 @@ div:focus{
   }
   .col{
     padding: 5px 7.5px;
+  }
+  .with-input{
+    margin-top: 13px;
   }
 }
 

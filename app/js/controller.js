@@ -30,6 +30,14 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                     if ($scope.isExpired()) {
                         $scope.alert.warning("การสั่งซื้อนี้ได้หมดอายุลงแล้ว");
                     }
+                    _.forEach($scope.transaction.brandTransactionDocument,function(document){
+                        if(document.type == 'Base'){
+                            $scope.baseDocument = document;
+                        } else if (document.type == 'Tax') {
+                            $scope.taxDocument = document;
+                        }
+                    });
+                    console.log($scope.baseDocument,$scope.taxDocument);
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);

@@ -32,7 +32,7 @@
                 <td class="text-center">{{ transaction.brandTransactionDocument.cart.proposals.length || '0' }}</td>
                 <td class="col-price">{{ transaction.amount | currency: '': 0 }}</td>
                 <td class="col-button">
-                  <button class="btn-secondary btn-minimal" ui-sref="admin-transaction-detail({cartId: transaction.brandTransactionDocument.cart.cartId })">ดูรายละเอียด</button>
+                  <button class="btn-secondary btn-minimal" ui-sref="admin-transaction-detail({cartId: transaction.brandTransactionDocument[0].cart.cartId })">ดูรายละเอียด</button>
                 </td>
               </tr>
             </tbody>

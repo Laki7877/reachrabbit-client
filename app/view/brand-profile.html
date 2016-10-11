@@ -61,6 +61,37 @@
                     <input type="text" ng-model="formData.brand.website" class="form-control" maxlength="200" url-mask placeholder="www.mybrand.com or www.facebook.com/mybrand"/>
                 </div>
               </div>
+              <div class="card-row">
+                <div class="card-body-content-label with-input">
+                  
+                </div>
+                <div class="card-body-content">
+                  <div class="checkbox">
+                    <label><input type="checkbox" ng-model="formData.brand.isCompany">สมัครและออกใบเสร็จในนามนิติบุคคล</label>
+                  </div>
+                </div>
+              </div>
+              <div class="card-row" form-error="form.companyName" ng-if="formData.brand.isCompany">
+                <div class="card-body-content-label with-input">ชื่อบริษัท</div>
+                <div class="card-body-content">
+                  <input name="companyName" class="form-control" required ng-model="formData.brand.companyName">
+                  <div input-error></div>
+                </div>
+              </div>
+              <div class="card-row" form-error="form.companyTaxId" ng-if="formData.brand.isCompany">
+                <div class="card-body-content-label with-input no-padding">เลขประจำตัวผู้เสียภาษี</div>
+                <div class="card-body-content">
+                  <input name="companyTaxId" class="form-control" required ng-model="formData.brand.companyTaxId">
+                  <div input-error></div>
+                </div>
+              </div>
+              <div class="card-row" form-error="form.companyAddress" ng-if="formData.brand.isCompany">
+                <div class="card-body-content-label with-input">ที่อยู่บริษัท</div>
+                <div class="card-body-content">
+                  <textarea name="companyAddress" class="form-control" required ng-model="formData.brand.companyAddress"></textarea>
+                  <div input-error></div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="card">

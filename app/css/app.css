@@ -10986,6 +10986,9 @@ ul.payment-methods {
 .x-ng-cloak {
   display: none !important;
 }
+.no-padding {
+  padding: 0 !important;
+}
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
 .layout-portal {

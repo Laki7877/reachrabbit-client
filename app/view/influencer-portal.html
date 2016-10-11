@@ -9,16 +9,16 @@
             <img src="images/logo-reachrabbit.png" alt="ReachRabbit logo" />
             <h3>มาร่วมงานกับ Brand ชั้นนำกัน!</h3>
           </div>
-          <button class="btn-social btn-facebook btn-width-max" ng-click="startAuthFlow('facebook')">
+          <button class="btn-social btn-facebook btn-width-max" ng-click="startAuthFlow('facebook', ref)">
             สมัครสมาชิกด้วย Facebook
           </button>
           <!-- <button class="btn-social btn-instagram btn-width-max" ng-click="startAuthFlow('instagram')">
             เข้าสู่ระบบด้วย Instagram
           </button> -->
-          <button class="btn-social btn-google btn-width-max" ng-click="startAuthFlow('google')">
+          <button class="btn-social btn-google btn-width-max" ng-click="startAuthFlow('google', ref)">
             สมัครสมาชิกด้วย YouTube
           </button>
-          <button class="btn-secondary-highlight btn-email btn-width-max" ui-sref="influencer-signup-email">
+          <button class="btn-secondary-highlight btn-email btn-width-max" ui-sref="influencer-signup-email({ ref: ref })">
             สมัครสมาชิกด้วย Email
           </button>
           <div class="info-text">

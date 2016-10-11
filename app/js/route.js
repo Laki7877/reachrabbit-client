@@ -277,25 +277,25 @@ angular.module('reachRabbitApp.portal.routes', ['ui.router'])
                 controller: 'BrandSignupController'
             })
             .state('influencer-portal', {
-                url: "/influencer-portal",
+                url: "/influencer-portal?ref",
                 templateUrl: "view/influencer-portal.html",
                 controller: 'InfluencerPortalController',
                 params: { alert: null }
             })
             .state('influencer-signup-select-page', {
-                url: "/influencer-signup-select-page",
+                url: "/influencer-signup-select-page?ref",
                 templateUrl: 'view/influencer-signup-select-page.html',
                 controller: 'InfluencerFacebookPageSelectionController',
-                parasm: { authData: null, fromState: null }
+                params: { authData: null, fromState: null}
             })
             .state('influencer-signup-confirmation', {
-                url: '/influencer-signup-confirmation',
+                url: '/influencer-signup-confirmation?ref',
                 templateUrl: 'view/influencer-signup-confirmation.html',
                 controller: 'InfluencerSignUpController',
                 params: { authData: null }
             })
             .state('influencer-signup-email', {
-                url: '/influencer-signup-email',
+                url: '/influencer-signup-email?ref',
                 templateUrl: 'view/influencer-signup-email.html',
                 controller: 'InfluencerSignUpEmailController'
             })

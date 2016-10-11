@@ -2022,8 +2022,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
             };
         }
     )
-    .controller('BrandSignupController', ['$scope', '$state', '$rootScope', 'BrandAccountService', 'AccountService', 'UserProfile', '$location', '$window', 'NcAlert', 'util',
-        function ($scope, $state, $rootScope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert, util) {
+    .controller('BrandSignupController', function ($scope, $location, $state, $rootScope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert, util) {
 
             $scope.formData = {};
             $scope.form = {};
@@ -2034,6 +2033,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     $scope.alert.danger('กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน');
                     return;
                 }
+                brand.ref = $location.search().ref;
                 $window.localStorage.clear();
                 BrandAccountService.signup(brand)
                     .then(function (response) {
@@ -2057,7 +2057,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
             };
 
         }
-    ]);
+);
 
 /*/////////////// /////////////// /////////////// /////////////// //////////////*/
 angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])

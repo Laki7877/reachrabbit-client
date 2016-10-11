@@ -10,6 +10,7 @@
             <thead>
               <tr>
                 <th class="col-name" sort="name">Influencer Name</th>
+                <th sort="referralId">Referral Id</th>
                 <th sort="email">Email</th>
                 <th class="text-center" sort="influencer.isVerify">Verification</th>
                 <th class="col-button"></th>
@@ -18,6 +19,7 @@
             <tbody>
               <tr ng-repeat="user in users.content">
                 <td>{{user.name}}</td>
+                <td>{{user.influencer.user.referralId}}</td>
                 <td>{{user.influencer.user.email}}</td>
                 <td class="color-red text-center" ng-if="!user.influencer.isVerify">No</td>
                 <td class="color-green text-center" ng-if="user.influencer.isVerify">Yes</td>

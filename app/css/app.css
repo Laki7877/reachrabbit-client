@@ -10377,6 +10377,9 @@ div:focus {
 .multi-tag-selector .col {
   padding: 5px 7.5px;
 }
+.multi-tag-selector .with-input {
+  margin-top: 13px;
+}
 /*---Tab Selector---*/
 .tab-selector {
   background: #d8dfe7;

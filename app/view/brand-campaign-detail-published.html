@@ -13,7 +13,7 @@
 
   <div class="zone-body">
     <div class="container">
-      
+
       <cute-bunny></cute-bunny>
 
       <div cute-bunny-hide>
@@ -23,25 +23,61 @@
         <div class="card-campaign-description">
           <div class="card-body">
             <div class="card-row">
+              <div class="card-title col-xs-12">
+                <div class="card-title-content">
+                  เป้าหมาย
+                </div>
+              </div>
+            </div>
+
+            <div class="card-row">
               <div class="card-body-content-label">
-                รายละเอียด
+                เป้าหมายของงาน
+              </div>
+              <div class="card-body-content">
+                รีวิวสินค้า
+              </div>
+            </div>
+
+            <div class="card-row">
+              <div class="card-body-content-label">
+                รูปแบบงาน
+              </div>
+              <div class="card-body-content work-type">
+                <div class="work-type-item">
+                  <i class="fa fa-picture-o fa-fw"></i><span>รูป</span>
+                </div>
+                <div class="work-type-item">
+                  <i class="fa fa-video-camera fa-fw"></i><span>วีดีโอ</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-row">
+              <div class="card-body-content-label">
+                สิ่งที่ต้องทำ
               </div>
               <div class="card-body-content pre" ng-if="campaignNee.description.length > 0">{{ campaignNee.description }}</div>
             </div>
-            <div class="card-row" ng-if="campaignNee.keyword.length > 0">
-              <div class="card-body-content-label">
-                Keyword สำคัญ
-              </div>
-              <div class="card-body-content">
-                {{ campaignNee.keyword }}
+
+          </div>
+        </div>
+
+        <div class="card-campaign-description">
+          <div class="card-body">
+            <div class="card-row">
+              <div class="card-title col-xs-12">
+                <div class="card-title-content">
+                  รายละเอียด
+                </div>
               </div>
             </div>
-            <div class="card-row" ng-if="campaignNee.website.length > 0">
+            <div class="card-row">
               <div class="card-body-content-label">
-                เว็บไซต์ของสินค้า
+                ชื่อสินค้า / บริการ
               </div>
               <div class="card-body-content">
-                <a ng-href="{{campaignNee.website}}" target="_blank">{{ campaignNee.website }}</a>
+                อาหารปลา ตราเป็ด
               </div>
             </div>
             <div class="card-row" ng-if="campaignNee.campaignResources.length > 0">
@@ -52,14 +88,23 @@
                 <img ng-repeat="campaignImage in campaignNee.campaignResources" ng-src="{{ campaignImage.url }}" class="description-image"/>
               </div>
             </div>
+            <div class="card-row" ng-if="campaignNee.website.length > 0">
+              <div class="card-body-content-label">
+                เว็บไซต์ของสินค้า
+              </div>
+              <div class="card-body-content">
+                <a ng-href="{{campaignNee.website}}" target="_blank">{{ campaignNee.website }}</a>
+              </div>
+            </div>
           </div>
         </div>
+
 
         <card-brand-profile ng-model="campaignNee.brand">
           <a ui-sref="brand-profile" class="link-to-profile">แก้ไขโปรไฟล์</a>
         </card-brand-profile>
 
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-body text-center">
             <button class="btn-secondary btn-width-lg btn-with-margin" ui-sref="brand-campaign-list">
               ดู Campaign อื่นๆ
@@ -69,8 +114,14 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
   </div>
+</div>
+
+<div class="floating-bar">
+  <button class="btn-primary btn-width-lg btn-with-margin" ui-sref="brand-campaign-detail-edit({ campaignId: campaignNee.campaignId })">
+    <i class="fa fa-pencil"></i> แก้ไขข้อมูล
+  </button>
 </div>

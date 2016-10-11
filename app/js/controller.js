@@ -1454,6 +1454,9 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
         AccountService.getProfile()
             .then(function (response) {
                 $scope.formData = response.data;
+                if($scope.formData.brand.isCompany) {
+                  $scope.alreadyCompany = true;
+                }
             })
             .catch(function (err) {
                 $scope.alert.danger(err.data.message);
@@ -1477,6 +1480,9 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 .then(function (response) {
                     delete response.data.password;
                     $scope.formData = response.data;
+                    if($scope.formData.brand.isCompany) {
+                      $scope.alreadyCompany = true;
+                    }
                     //set back to localstorage
                     UserProfile.set(response.data);
 

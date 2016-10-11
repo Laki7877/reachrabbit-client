@@ -1276,11 +1276,6 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
               var posts = []; // all posts
               var keys = null;
               var postKeys = null;
-              var otherField = function(sum, n) {
-                _.forEach(keys, function(k) {
-                  sum.sumEngagement = (sum.sumEngagement || 0) + (n[k] || 0);
-                });
-              };
               var summator = function(sum, n) {
                 // ignore wrong media
                 if(n.mediaId !== mediaId) {
@@ -1294,9 +1289,8 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 // sum each keys
                 _.forEach(keys, function(k) {
                   sum[k] = (sum[k] || 0) + n[k];
-                  console.log(k);
                   if(mediaId === 'google' && k === 'sumView') {
-
+                    // no need to add
                   } else {
                     sum.sumEngagement = (sum.sumEngagement || 0) + n[k];
                   }
@@ -1308,7 +1302,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 // accumulate
                 return sum;
               };
-              var keyIter = function(datasetArray, datasetArrayNext) {
+              var createDailyFields = function(datasetArray, datasetArrayNext) {
                 if(!datasetArrayNext) {
                   return function(key) {
                     var newKey = key.replace('sum', 'daily');
@@ -1353,13 +1347,8 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                     var keys = _.reverse(_.sortBy(_.keys(tmp), function(o) {
                         return moment(o.date).toDate();
                     }));
-                    var latest = [];
-                    if(keys.length > 0) {
-                      latest = tmp[keys[0]];
-                    } else {
-                      latest = [];
-                    }
-                    _.extend(influencer, _.reduce(latest, summator , {}));
+                    var latestPosts = keys.length > 0 ? tmp[keys[0]] : [];
+                    _.extend(influencer, _.reduce(latestPosts, summator , {}));
                     influencer.sumFollowerCount = getFollower(p.influencer, mediaId);
                     influencer.sumEngagementRate = influencer.sumFollowerCount > 0 ? Math.round((influencer.sumEngagement / parseFloat(influencer.sumFollowerCount)) * 10000) / 100.0 : null;
                 }
@@ -1385,9 +1374,9 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
               // create daily-fields
               for(var i = 0; i < datasetArray.length - 1; i++) {
                 if(i === 0) {
-                  _.forEach(postKeys, keyIter(datasetArray[i]));
+                  _.forEach(postKeys, createDailyFields(datasetArray[i]));
                 }
-                _.forEach(postKeys, keyIter(datasetArray[i], datasetArray[i+1]));
+                _.forEach(postKeys, createDailyFields(datasetArray[i], datasetArray[i+1]));
 
               }
 
@@ -1399,7 +1388,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
               obj.sumInfluencer = obj.influencers.length;
 
               // totalsum
-              _.extend(obj, _.reduce(posts, summator, {}));
+              _.extend(obj, datasetArray[datasetArray.length - 1]);
 
               return obj;
             }

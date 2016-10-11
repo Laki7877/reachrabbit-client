@@ -2022,7 +2022,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
             };
         }
     )
-    .controller('BrandSignupController', function ($scope, $location, $state, $rootScope, BrandAccountService, AccountService, UserProfile, $location, $window, NcAlert, util) {
+    .controller('BrandSignupController', function ($scope, $location, $state, $rootScope, BrandAccountService, AccountService, UserProfile, $window, NcAlert, util) {
 
             $scope.formData = {};
             $scope.form = {};

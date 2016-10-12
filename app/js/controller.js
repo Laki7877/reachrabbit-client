@@ -1839,7 +1839,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
     .controller('InfluencerPortalController', function ($scope, $rootScope, NcAlert, $location, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {
             $scope.alert = new NcAlert();
             $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
-            
+
             $scope.ref = $location.search().ref;
 
             if ($stateParams.alert) {

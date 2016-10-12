@@ -1180,7 +1180,7 @@ img {
 .img-circle,
 .radio-card .radio-image,
 .card-portal .profile-picture .profile-picture-image,
-.navbar .navbar-right .profile-picture,
+.navbar .profile-picture,
 .table .col-name .profile-picture,
 .chatbox-card .message-area .message .message-left .media-object {
   border-radius: 50%;
@@ -10155,6 +10155,49 @@ fieldset[disabled] .btn-clear.active {
 .navbar li.active > a {
   color: #ff773e;
 }
+.navbar .dropdown-menu li > a {
+  margin: 0px;
+}
+.navbar .profile-dropdown {
+  margin: 0px;
+}
+.navbar .profile-dropdown .caret {
+  margin-left: 5px;
+}
+.navbar .profile-picture {
+  float: left;
+  display: inline-block;
+  transform: translateY(-5px);
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+.navbar .dropdown-menu {
+  background-color: #8692a8;
+  border: 0px;
+  border-radius: 0px;
+}
+.navbar .dropdown-menu li > a {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.navbar .dropdown-menu li.active > a {
+  background: #3e4a5e;
+}
+.navbar .open > a,
+.navbar .open > a:hover,
+.navbar .open > a:focus {
+  background: #3e4a5e;
+  border: 0px;
+}
+.navbar .navbar-right .dropdown-menu:after {
+  position: absolute;
+  bottom: 100%;
+  right: 15px;
+  border: 8px solid transparent;
+  border-bottom-color: #8692a8;
+  content: '';
+}
 .navbar .navbar-right .cart {
   padding-bottom: 0px;
 }
@@ -10178,46 +10221,6 @@ fieldset[disabled] .btn-clear.active {
   height: 30px;
   background: url("../images/icon-wallet.png") 0 0 no-repeat;
   margin-right: 10px;
-}
-.navbar .navbar-right .dropdown-menu li > a {
-  margin: 0px;
-}
-.navbar .navbar-right .profile-dropdown {
-  margin: 0px;
-}
-.navbar .navbar-right .profile-dropdown .caret {
-  margin-left: 5px;
-}
-.navbar .navbar-right .profile-picture {
-  float: left;
-  display: inline-block;
-  transform: translateY(-5px);
-  margin-right: 10px;
-  width: 30px;
-  height: 30px;
-}
-.navbar .dropdown-menu {
-  background-color: #8692a8;
-  border: 0px;
-  border-radius: 0px;
-}
-.navbar .dropdown-menu li > a {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-.navbar .dropdown-menu:after {
-  position: absolute;
-  bottom: 100%;
-  right: 15px;
-  border: 8px solid transparent;
-  border-bottom-color: #8692a8;
-  content: '';
-}
-.navbar .open > a,
-.navbar .open > a:hover,
-.navbar .open > a:focus {
-  background: #3e4a5e;
-  border: 0px;
 }
 /*---Main Navigation---*/
 .main-nav {
@@ -11051,6 +11054,9 @@ ul.payment-methods {
 }
 .layout-portal .view-brand-signup {
   margin-top: 60px;
+}
+.layout-portal .view-brand-signup .info-text {
+  margin-top: 10px;
 }
 .layout-portal .view-influencer-portal {
   margin-top: 140px;

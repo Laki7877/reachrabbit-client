@@ -1603,7 +1603,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
             }, 0);
         };
         $scope.totalTax = function(CartArray) {
-            if (!CartArray || !$scope.user.isCompany) return 0;
+            if (!CartArray || !$scope.user.brand.isCompany) return 0;
             var price = $scope.totalPrice(CartArray);
             return price * 0.03;
         };

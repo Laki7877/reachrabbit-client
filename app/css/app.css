@@ -7909,6 +7909,10 @@ a:visited {
 a.secondary {
   color: #16bbac;
 }
+ol {
+  -webkit-padding-start: 16px;
+  margin-bottom: 0px;
+}
 .clear {
   clear: both;
 }
@@ -7958,6 +7962,11 @@ a.secondary {
   background: #ff773e !important;
   box-shadow: 0px 2px 4px 0px rgba(255, 119, 62, 0.3);
   height: 3px !important;
+}
+.note {
+  padding: 10px;
+  background: #ffebce;
+  margin-bottom: 20px;
 }
 .signup-pill {
   text-align: center;
@@ -10851,10 +10860,6 @@ div:focus {
 .workroom .card-proposal-detail .social-info {
   margin: 5px 0px;
 }
-.workroom .card-proposal-detail ol {
-  -webkit-padding-start: 16px;
-  margin-bottom: 0px;
-}
 .workroom .card-proposal-detail ol li {
   margin-bottom: 10px;
 }
@@ -11138,11 +11143,6 @@ div:focus {
 }
 .modal-instagram .modal-body h3 {
   color: #16bbac;
-  margin-bottom: 20px;
-}
-.modal-instagram .modal-body .note {
-  padding: 10px;
-  background: #ffebce;
   margin-bottom: 20px;
 }
 .modal-instagram .modal-body .form-group {

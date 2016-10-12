@@ -147,6 +147,73 @@
             </div>
           </div> -->
 
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+
+          <div nc-alert type="info" closable="false">
+            การยืนยันตัวตนจะช่วยให้คุณดูน่าเชื่อถือขึ้น และ สามารถถอนเงินได้ถูกต้องตามกฎหมาย ทางบริษัทจะไม่แชร์ข้อมูลเหล่านี้ให้กับใคร
+          </div>
+      
+          <div class="card-row">
+            <div class="card-title col-xs-12">
+              <div class="card-title-content">
+                ข้อมูลยืนยันตัวตน
+              </div>
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              ชื่อจริง
+            </div>
+            <div class="card-body-content">
+              <input type="text" ng-model="" class="form-control">
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label with-input">
+              ที่อยู่
+            </div>
+            <div class="card-body-content">
+              <textarea type="text" ng-model="" class="form-control" rows="3"></textarea>
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label">
+              เลขประจำตัวประชาชน
+            </div>
+            <div class="card-body-content">
+              <input type="text" ng-model="" class="form-control">
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label">
+              สำเนาบัตรประชาชน
+            </div>
+            <div class="card-body-content">
+              <h5>ขั้นตอนการส่งสำเนาบัตรประชาชน</h5>
+              <ol>
+                <li>ถ่ายเอกสารสำเนาบัตรประชาชนของคุณ</li>
+                <li>เขียนว่า "ใช้สำหรับการรับจ้างงานผ่านเว็ป ReachRabbit เท่านั้น" พร้อมลายเซ็น</li>
+                <li>ถ่ายรูป หรือ สแกนแล้วอัพโหลดรูปได้ที่กล่องด้านล่างนี้</li>
+              </ol>
+              <br>
+              <uploader-thumb name="profilePicture"
+              ng-model=""
+              accept=".jpg,.png"
+              ngf-pattern="'.jpg,.png'"
+              ngf-max-size="10MB">
+              <i class="fa fa-camera"></i><br>เลือกรูป
+              </uploader-thumb>
+            </div>
+          </div>
+
 
         </div>
       </div>

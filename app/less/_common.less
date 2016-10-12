@@ -54,6 +54,10 @@ a:active, a:focus, a:visited{
 a.secondary{
   color: @color-theme-secondary;
 }
+ol{
+  -webkit-padding-start: 16px;
+  margin-bottom: 0px;
+}
 .clear{
   clear: both;
 }
@@ -101,6 +105,11 @@ a.secondary{
 }
 .info-text{
   &:extend(.small);
+}
+.note{
+  padding: 10px;
+  background: @color-yellow-lighter;
+  margin-bottom: 20px;
 }
 .signup-pill{
   text-align: center;
@@ -1906,8 +1915,6 @@ div:focus{
       margin: 5px 0px;
     }
     ol{
-      -webkit-padding-start: 16px;
-      margin-bottom: 0px;
       li{
         margin-bottom: 10px;
       }
@@ -2225,11 +2232,6 @@ div:focus{
     }
     h3{
       color: @color-theme-secondary;
-      margin-bottom: 20px;
-    }
-    .note{
-      padding: 10px;
-      background: @color-yellow-lighter;
       margin-bottom: 20px;
     }
     .form-group{

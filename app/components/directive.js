@@ -868,6 +868,19 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             }
         };
     }])
+    .directive('cardPaymentMethod', [function () {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: 'components/templates/card-payment-method.html',
+            scope: {
+              transaction: '=ngModel'
+            },
+            link: function (scope, element, attrs, ctrl, transclude) {
+
+            }
+        };
+    }])
     .directive('cardBrandProfile', [function () {
         return {
             restrict: 'AE',

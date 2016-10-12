@@ -54,93 +54,12 @@
               </div>
             </div>
           </div>
-          <div class="card" ng-if="transaction.status != 'Complete'">
-            <div class="card-body">
-              <div class="card-row">
-                <div class="card-title col-xs-12">
-                  <div class="card-title-content">
-                    ขั้นตอนการชำระเงิน
-                  </div>
-                </div>
-              </div>
-              <div class="card-row">
-                <div class="col-xs-12">
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">1</span>
-                    </div>
-                    <div class="media-body">
-                      โอนเงินผ่านช่องทางที่คุณสะดวก<br><br>
-                      <table class="table">
-                        <tr>
-                          <td>
-                            <img src="images/logo-kbank.png" class="bank-logo" /> ธนาคารกสิกรไทย
-                          </td>
-                          <td>
-                            นาย XXX
-                          </td>
-                          <td>
-                            เลขที่บัญชี 493-3-23432-6
-                          </td>
-                          <td>
-                            สาขา XXX
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="images/logo-scb.png" class="bank-logo" /> ธนาคารไทยพาณิชย์
-                          </td>
-                          <td>
-                            นาย XXX
-                          </td>
-                          <td>
-                            เลขที่บัญชี 493-3-23432-6
-                          </td>
-                          <td>
-                            สาขา XXX
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="images/logo-bbl.png" class="bank-logo" /> ธนาคารกรุงเทพ
-                          </td>
-                          <td>
-                            นาย XXX
-                          </td>
-                          <td>
-                            เลขที่บัญชี 493-3-23432-6
-                          </td>
-                          <td>
-                            สาขา XXX
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">2</span>
-                    </div>
-                    <div class="media-body">
-                      เมื่อชำระเงินแล้ว กรุณาส่งหลักฐานมาให้ทาง ReachRabbit ตรวจสอบ กรุณาส่งหลักฐานพร้อม<br> หมายเลขการสั่งซื้อ
-                      <b
-                      class="color-green">{{transaction.transactionNumber}}</b> มาได้ที่ &nbsp
-                      <b class="color-green"><img src="images/logo-line.png" width="30" />&nbsp @reachrabbit</b> &nbsp หรือ &nbsp
-                      <b class="color-green"><img src="images/icon-email.png"> hi@reachrabbit.com</b>
-                    </div>
-                  </div>
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">3</span>
-                    </div>
-                    <div class="media-body">
-                      ReachRabbit จะส่งใบเสร็จรับเงินให้ที่อีเมล์ของคุณภายใน 6 ชั่วโมง
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <card-payment-method
+            ng-if="transaction.status != 'Complete'"
+            ng-model="transaction">
+          </card-payment-method>
+
           <div class="card">
             <div class="card-body">
               <div class="card-row">

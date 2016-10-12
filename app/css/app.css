@@ -10757,6 +10757,9 @@ div:focus {
 .table .col-time {
   text-align: right;
 }
+.table .col-bank-name {
+  width: 415px;
+}
 .table .col-button {
   width: 130px;
   text-align: center;

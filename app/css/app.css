@@ -9048,11 +9048,13 @@ input:-moz-placeholder {
   background: #8692a8;
 }
 .flag .status-draft {
-  display: none;
+  padding-left: 15px;
+  width: 90px;
+  background: #8692a8;
 }
 .flag .status-example {
   padding-left: 15px;
-  width: 150px;
+  width: 90px;
   background: #648acb;
 }
 /*---Thumbnail---*/

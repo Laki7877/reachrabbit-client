@@ -3,9 +3,9 @@
     <div class="card-image" ng-class="{'expired':campaign.status !== 'Draft' && $root.isExpired(campaign.proposalDeadline)}">
       <div class="flag">
         <span ng-if="campaign.status === 'Open'" class="status status-open">เปิดรับข้อเสนอ</span>
-        <!-- <span ng-if="campaign.status === 'Draft'" class="status status-open">ฉบับร่าง</span> -->
+        <span ng-if="campaign.status === 'Draft'" class="status status-draft">ฉบับร่าง</span>
         <span ng-if="campaign.status !== 'Draft' && $root.isExpired(campaign.proposalDeadline)" class="status status-closed">ปิดรับข้อเสนอ</span>
-        <span ng-if="!campaign.status" class="status status-example">ตัวอย่าง Campaign</span>
+        <!-- <span ng-if="!campaign.status" class="status status-example">ตัวอย่าง</span> -->
       </div>
       <img ng-src="{{campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
     </div>
@@ -44,9 +44,12 @@
       </div>
     </div>
     <div class="card-button status-draft" ng-if="campaign.status == 'Draft'">
-      <button class="btn-secondary btn-width-max" ui-sref="brand-campaign-detail-draft({campaignId: campaign.campaignId})"><i class="fa fa-pencil"></i> ใส่รายละเอียด</button>
+      <button class="btn-secondary btn-width-max btn-minimal" ui-sref="brand-campaign-detail-draft({campaignId: campaign.campaignId})"><i class="fa fa-pencil"></i> ใส่รายละเอียด</button>
     </div>
-    <div class="card-button" ng-if="!(campaign.status == 'Draft')">
+    <div class="card-button status-draft" ng-if="!campaign.status">
+      <button class="btn-secondary btn-width-max btn-minimal" ui-sref="brand-campaign-detail-draft({campaignId: campaign.campaignId})"><i class="fa fa-file-text fa-fw"></i> ดูรายละเอียด</button><br>
+    </div>
+    <div class="card-button" ng-if="(campaign.status == 'Open')">
       <button class="btn-secondary btn-width-max btn-minimal" ui-sref="brand-campaign-detail-draft({campaignId: campaign.campaignId})"><i class="fa fa-file-text fa-fw"></i> ดูรายละเอียด</button><br>
       <button class="btn-secondary btn-width-max btn-minimal btn-open-dashboard" ui-sref="brand-dashboard({campaignId: campaign.campaignId})"><i class="fa fa-line-chart fa-fw"></i> ดู Dashboard</button>
     </div>

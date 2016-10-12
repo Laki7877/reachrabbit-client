@@ -167,22 +167,28 @@
                   </tr>
                   <tr class="total-price">
                     <td colspan="3">
-                      ราคารวม ({{transaction.brandTransactionDocument[0].cart.proposals.length || 0}} รายการ) : {{ baseDocument.amount  | number:0 }} บาท
+                      <span class="total-price-label">ราคารวม ({{transaction.brandTransactionDocument[0].cart.proposals.length || 0}} รายการ) :</span>
+                      <span class="total-price-number">{{ baseDocument.amount  | number:0 }}</span>
+                    </td>
+                  </tr>
+                  <tr class="total-price border-dashed" ng-if="taxDocument">
+                    <td colspan="3">
+                      <span class="total-price-label">หักภาษี ณ ที่จ่าย (3%) :</span>
+                      <span class="total-price-number">{{ -taxDocument.amount  | number:0 }}</span>
+                    </td>
+                  </tr>
+                  <tr class="total-price border-dashed">
+                    <td colspan="3">
+                      <span class="total-price-label">ค่าธรรมเนียม :</span>
+                      <span class="total-price-number">ฟรี</span>
                     </td>
                   </tr>
                   <tr class="total-price">
                     <td colspan="3">
-                      หักภาษี ณ ที่จ่าย (3%) : {{ -taxDocument.amount  | number:0 }} บาท
-                    </td>
-                  </tr>
-                  <tr class="total-price">
-                    <td colspan="3">
-                      ค่าธรรมเนียม : ฟรี
-                    </td>
-                  </tr>
-                  <tr class="total-price">
-                    <td colspan="3">
-                      <strong>ยอดสุทธิ : {{ transaction.amount  | number:0 }}</strong>
+                      <strong class="color-green">
+                        <span class="total-price-label">ยอดสุทธิ :</span>
+                        <span class="total-price-number">{{ transaction.amount  | number:0 }}</span>
+                      <strong>
                     </td>
                   </tr>
                 </tbody>

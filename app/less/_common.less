@@ -1708,11 +1708,17 @@ div:focus{
           border-top: 0px;
         }
       }
+      &.border-dashed{
+        td{
+          border-top: 1px @color-grey dashed;
+        }
+      }
     }
   }
   .total-price{
     td{
       text-align: right;
+      padding: 16px 8px;
       strong{
         display: block;
         margin-top: 5px;
@@ -1721,6 +1727,18 @@ div:focus{
         display: block;
         margin-top: 5px;
       }
+      .total-price-label{
+        display: inline-block;
+      }
+      .total-price-number{
+        display: inline-block;
+        width: 90px;
+      }
+    }
+  }
+  .total-price:last-child{
+    td{
+      padding-bottom: 0px;
     }
   }
   .col-date{

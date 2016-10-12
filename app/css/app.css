@@ -10468,8 +10468,12 @@ div:focus {
 .table tbody tr td.no-top-border {
   border-top: 0px;
 }
+.table tbody tr.border-dashed td {
+  border-top: 1px #d8dfe7 dashed;
+}
 .table .total-price td {
   text-align: right;
+  padding: 16px 8px;
 }
 .table .total-price td strong {
   display: block;
@@ -10478,6 +10482,16 @@ div:focus {
 .table .total-price td a {
   display: block;
   margin-top: 5px;
+}
+.table .total-price td .total-price-label {
+  display: inline-block;
+}
+.table .total-price td .total-price-number {
+  display: inline-block;
+  width: 90px;
+}
+.table .total-price:last-child td {
+  padding-bottom: 0px;
 }
 .table .col-date {
   width: 100px;

@@ -1584,8 +1584,10 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
             });
 
     }])
-    .controller('CartController', ['$scope', '$rootScope', '$state', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', function ($scope, $rootScope, $state, NcAlert, BrandAccountService, ProposalService, TransactionService, $stateParams) {
+    .controller('CartController', ['$scope', '$rootScope', '$state', 'NcAlert', 'BrandAccountService', 'ProposalService', 'TransactionService', '$stateParams', 'UserProfile'
+    , function ($scope, $rootScope, $state, NcAlert, BrandAccountService, ProposalService, TransactionService, $stateParams, UserProfile) {
         $scope.alert = new NcAlert();
+        $scope.user = UserProfile.get();
         var loadCart = function () {
             BrandAccountService.getCart().then(function (cart) {
                 $scope.cart = cart.data;
@@ -1600,6 +1602,15 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 return p + c.price;
             }, 0);
         };
+        $scope.totalTax = function(CartArray) {
+            if (!CartArray || !$scope.user.isCompany) return 0;
+            var price = $scope.totalPrice(CartArray);
+            return price * 0.03;
+        };
+        $scope.totalPriceWithTax = function(CartArray) {
+            if (!CartArray) return 0;
+            return $scope.totalPrice(CartArray) - $scope.totalTax(CartArray);
+        }
         $scope.removeFromCart = function (p) {
             ProposalService.removeFromCart(p)
                 .then(function () {

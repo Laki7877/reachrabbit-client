@@ -103,6 +103,14 @@
                       {{ totalPrice(cart.proposals)  | number:0 }} บาท
                     </td>
                   </tr>
+                  <tr ng-if="user.isCompany">
+                    <td>
+                      หักภาษี ณ ที่จ่าย (3%)
+                    </td>
+                    <td class="text-align-right" >
+                      {{ totalTax(cart.proposals)  | number:0 }} บาท
+                    </td>
+                  </tr>
                   <tr>
                     <td>
                       ค่าธรรมเนียม
@@ -116,7 +124,7 @@
                       <strong>ยอดสุทธิ</strong>
                     </td>
                     <td class="text-align-right">
-                      <strong>{{ totalPrice(cart.proposals)  | number:0 }} บาท</strong>
+                      <strong>{{ totalPriceWithTax(cart.proposals)  | number:0 }} บาท</strong>
                     </td>
                   </tr>
                 </table>

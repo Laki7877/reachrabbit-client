@@ -5,7 +5,7 @@
       <div class="input-dropdown">
         <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" novalidate>
           <div class="input-dropdown">
-            <input class="form-control filter" ng-model="search.value" placeholder="Filter ตาม ชื่อ Campaign"/>
+            <input class="form-control filter" ng-model="search.value" placeholder="ค้นหาด้วย ชื่องาน"/>
           </div>
         </form>
       </div>
@@ -47,7 +47,7 @@
             <thead>
               <tr>
                 <th class="col-name" sort="brand.brandId">Brand</th>
-                <th class="col-campaign-name" sort="campaign.campaignId">Campaign</th>
+                <th class="col-campaign-name" sort="campaign.campaignId">ชื่องาน</th>
                 <th class="col-price" sort="price">ราคา (บาท)</th>
                 <th ng-if="params.status == 'Working'">วันที่กำหนดส่ง</th>
                 <th ng-if="params.status == 'Complete'">วันที่เสร็จงาน</th>

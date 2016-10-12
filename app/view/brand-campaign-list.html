@@ -1,7 +1,7 @@
 <div class="viewport view-brand-campaign-list">
 
   <zone-header historyback="false">
-    <h1>Campaign ของฉัน</h1>
+    <h1>งานที่ลงประกาศ</h1>
     <div class="action-btn-for-header">
         <!-- <div class="form-group">
           <div class="input-dropdown">
@@ -10,7 +10,7 @@
           </div>
         </div> -->
         <button class="btn-primary btn-width-lg" ui-sref="brand-campaign-detail-draft">
-            <i class="fa fa-plus"></i> สร้าง Campaign ใหม่
+            <i class="fa fa-plus"></i> ลงประกาศงาน
         </button>
     </div>
   </zone-header>
@@ -20,7 +20,7 @@
       <cute-bunny></cute-bunny>
 
       <div cute-bunny-hide class="empty-state" ng-if="myCampaign.totalElements == 0">
-        สร้าง Campaign ใหม่ เพื่อเปิดรับข้อเสนอจาก Influencer
+        ลงประกาศงานใหม่ เพื่อเปิดรับข้อเสนอจาก Influencer
       </div>
 
       <div cute-bunny-hide ng-repeat="x in myCampaign.content">
@@ -32,7 +32,7 @@
 
       <div class="example-campaign" cute-bunny-hide>
         <div class="page-header">
-          <h1>ตัวอย่าง Campaign</h1>
+          <h1>ตัวอย่าง</h1>
         </div>
         <div ng-repeat="x in exampleCampaign">
           <card-campaign-list-item campaign='x' ui-sref="brand-campaign-detail-example({ exampleId: $index })"></card-campaign-list-item>

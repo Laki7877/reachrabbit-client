@@ -185,7 +185,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                         });
                 });
             },
-            getAllInfluencer: function() {
+            getAllInfluencer: function(params) {
                 return $q(function (resolve, reject) {
                     $http({
                         url: '/users/influencer',

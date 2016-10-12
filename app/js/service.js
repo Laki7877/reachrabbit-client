@@ -186,7 +186,19 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                 });
             },
             getAllInfluencer: function() {
-                return $http.get('/users/influencer');
+                return $q(function (resolve, reject) {
+                    $http({
+                        url: '/users/influencer',
+                        method: 'get',
+                        params: params
+                    })
+                        .then(function (brandResponse) {
+                            resolve(brandResponse);
+                        })
+                        .catch(function (err) {
+                            reject(err);
+                        });
+                });
             },
             /*
              * Get Profile

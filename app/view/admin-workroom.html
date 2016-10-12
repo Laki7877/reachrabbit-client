@@ -128,17 +128,11 @@
                     </div>
                     <div class="col-xs-3">
 
-                      <div class="card-campaign-thumbnail" ui-sref="brand-campaign-detail-published({campaignId: proposal.campaign.campaignId })" cute-bunny-hide>
-                          <div class="card-header">
-                              <h3>Campaign</h3> <a href="#">ดูรายละเอียด</a>
-                          </div>
-                          <div class="card-thumbnail-image">
-                              <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
-                          </div>
-                          <div class="card-body">
-                              {{ proposal.campaign.title | truncate: 60 }}
-                          </div>
-                      </div>
+                      <card-workroom-campaign-thumbnail
+                        ng-model="proposal"
+                        ui-sref="admin-campaign-detail({campaignId: proposal.campaign.campaignId })"
+                        cute-bunny-hide>
+                      </card-workroom-campaign-thumbnail>
 
                       <card-proposal-detail ng-model="proposal" cute-bunny-hide>
                         <div class="how-to-text">

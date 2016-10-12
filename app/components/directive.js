@@ -855,6 +855,19 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             }
         };
     }])
+    .directive('cardWorkroomCampaignThumbnail', [function () {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: 'components/templates/card-workroom-campaign-thumbnail.html',
+            scope: {
+              proposal: '=ngModel'
+            },
+            link: function (scope, element, attrs, ctrl, transclude) {
+
+            }
+        };
+    }])
     .directive('cardBrandProfile', [function () {
         return {
             restrict: 'AE',

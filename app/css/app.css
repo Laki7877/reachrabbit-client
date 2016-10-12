@@ -274,6 +274,8 @@ th {
   .dropup > .btn-secondary-highlight > .caret,
   .btn-secondary-active > .caret,
   .dropup > .btn-secondary-active > .caret,
+  .btn-clean > .caret,
+  .dropup > .btn-clean > .caret,
   .btn-trace > .caret,
   .dropup > .btn-trace > .caret,
   .btn-social > .caret,
@@ -3156,6 +3158,7 @@ select[multiple].input-lg {
 .btn-secondary,
 .btn-secondary-highlight,
 .btn-secondary-active,
+.btn-clean,
 .btn-trace,
 .btn-social {
   display: inline-block;
@@ -3207,6 +3210,12 @@ select[multiple].input-lg {
 .btn-secondary-active.focus,
 .btn-secondary-active:active.focus,
 .btn-secondary-active.active.focus,
+.btn-clean:focus,
+.btn-clean:active:focus,
+.btn-clean.active:focus,
+.btn-clean.focus,
+.btn-clean:active.focus,
+.btn-clean.active.focus,
 .btn-trace:focus,
 .btn-trace:active:focus,
 .btn-trace.active:focus,
@@ -3237,6 +3246,9 @@ select[multiple].input-lg {
 .btn-secondary-active:hover,
 .btn-secondary-active:focus,
 .btn-secondary-active.focus,
+.btn-clean:hover,
+.btn-clean:focus,
+.btn-clean.focus,
 .btn-trace:hover,
 .btn-trace:focus,
 .btn-trace.focus,
@@ -3256,6 +3268,8 @@ select[multiple].input-lg {
 .btn-secondary-highlight.active,
 .btn-secondary-active:active,
 .btn-secondary-active.active,
+.btn-clean:active,
+.btn-clean.active,
 .btn-trace:active,
 .btn-trace.active,
 .btn-social:active,
@@ -3280,6 +3294,9 @@ fieldset[disabled] .btn-secondary-highlight,
 .btn-secondary-active.disabled,
 .btn-secondary-active[disabled],
 fieldset[disabled] .btn-secondary-active,
+.btn-clean.disabled,
+.btn-clean[disabled],
+fieldset[disabled] .btn-clean,
 .btn-trace.disabled,
 .btn-trace[disabled],
 fieldset[disabled] .btn-trace,
@@ -3302,6 +3319,8 @@ a.btn-secondary-highlight.disabled,
 fieldset[disabled] a.btn-secondary-highlight,
 a.btn-secondary-active.disabled,
 fieldset[disabled] a.btn-secondary-active,
+a.btn-clean.disabled,
+fieldset[disabled] a.btn-clean,
 a.btn-trace.disabled,
 fieldset[disabled] a.btn-trace,
 a.btn-social.disabled,
@@ -3935,6 +3954,7 @@ fieldset[disabled] .btn-link:focus {
 .btn-group-lg > .btn-secondary,
 .btn-group-lg > .btn-secondary-highlight,
 .btn-group-lg > .btn-secondary-active,
+.btn-group-lg > .btn-clean,
 .btn-group-lg > .btn-trace,
 .btn-group-lg > .btn-social {
   padding: 10px 16px;
@@ -3948,6 +3968,7 @@ fieldset[disabled] .btn-link:focus {
 .btn-group-sm > .btn-secondary,
 .btn-group-sm > .btn-secondary-highlight,
 .btn-group-sm > .btn-secondary-active,
+.btn-group-sm > .btn-clean,
 .btn-group-sm > .btn-trace,
 .btn-group-sm > .btn-social {
   padding: 5px 10px;
@@ -3961,6 +3982,7 @@ fieldset[disabled] .btn-link:focus {
 .btn-group-xs > .btn-secondary,
 .btn-group-xs > .btn-secondary-highlight,
 .btn-group-xs > .btn-secondary-active,
+.btn-group-xs > .btn-clean,
 .btn-group-xs > .btn-trace,
 .btn-group-xs > .btn-social {
   padding: 1px 5px;
@@ -4170,6 +4192,8 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-secondary-highlight,
 .btn-group > .btn-secondary-active,
 .btn-group-vertical > .btn-secondary-active,
+.btn-group > .btn-clean,
+.btn-group-vertical > .btn-clean,
 .btn-group > .btn-trace,
 .btn-group-vertical > .btn-trace,
 .btn-group > .btn-social,
@@ -4217,6 +4241,14 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-secondary-active:active,
 .btn-group > .btn-secondary-active.active,
 .btn-group-vertical > .btn-secondary-active.active,
+.btn-group > .btn-clean:hover,
+.btn-group-vertical > .btn-clean:hover,
+.btn-group > .btn-clean:focus,
+.btn-group-vertical > .btn-clean:focus,
+.btn-group > .btn-clean:active,
+.btn-group-vertical > .btn-clean:active,
+.btn-group > .btn-clean.active,
+.btn-group-vertical > .btn-clean.active,
 .btn-group > .btn-trace:hover,
 .btn-group-vertical > .btn-trace:hover,
 .btn-group > .btn-trace:focus,
@@ -4251,6 +4283,9 @@ tbody.collapse.in {
 .btn-group .btn-secondary-active + .btn-secondary-active,
 .btn-group .btn-secondary-active + .btn-group,
 .btn-group .btn-group + .btn-secondary-active,
+.btn-group .btn-clean + .btn-clean,
+.btn-group .btn-clean + .btn-group,
+.btn-group .btn-group + .btn-clean,
 .btn-group .btn-trace + .btn-trace,
 .btn-group .btn-trace + .btn-group,
 .btn-group .btn-group + .btn-trace,
@@ -4269,6 +4304,7 @@ tbody.collapse.in {
 .btn-toolbar .btn-secondary,
 .btn-toolbar .btn-secondary-highlight,
 .btn-toolbar .btn-secondary-active,
+.btn-toolbar .btn-clean,
 .btn-toolbar .btn-trace,
 .btn-toolbar .btn-social {
   float: left;
@@ -4280,6 +4316,7 @@ tbody.collapse.in {
 .btn-toolbar > .btn-secondary,
 .btn-toolbar > .btn-secondary-highlight,
 .btn-toolbar > .btn-secondary-active,
+.btn-toolbar > .btn-clean,
 .btn-toolbar > .btn-trace,
 .btn-toolbar > .btn-social {
   margin-left: 5px;
@@ -4289,6 +4326,7 @@ tbody.collapse.in {
 .btn-group > .btn-secondary:not(:first-child):not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-secondary-highlight:not(:first-child):not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-secondary-active:not(:first-child):not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-clean:not(:first-child):not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-trace:not(:first-child):not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-social:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0;
@@ -4298,6 +4336,7 @@ tbody.collapse.in {
 .btn-group > .btn-secondary:first-child,
 .btn-group > .btn-secondary-highlight:first-child,
 .btn-group > .btn-secondary-active:first-child,
+.btn-group > .btn-clean:first-child,
 .btn-group > .btn-trace:first-child,
 .btn-group > .btn-social:first-child {
   margin-left: 0;
@@ -4307,6 +4346,7 @@ tbody.collapse.in {
 .btn-group > .btn-secondary:first-child:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-secondary-highlight:first-child:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-secondary-active:first-child:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-clean:first-child:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-trace:first-child:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn-social:first-child:not(:last-child):not(.dropdown-toggle) {
   border-bottom-right-radius: 0;
@@ -4318,6 +4358,7 @@ tbody.collapse.in {
 .btn-group > .btn-secondary:last-child:not(:first-child),
 .btn-group > .btn-secondary-highlight:last-child:not(:first-child),
 .btn-group > .btn-secondary-active:last-child:not(:first-child),
+.btn-group > .btn-clean:last-child:not(:first-child),
 .btn-group > .btn-trace:last-child:not(:first-child),
 .btn-group > .btn-social:last-child:not(:first-child) {
   border-bottom-left-radius: 0;
@@ -4331,6 +4372,7 @@ tbody.collapse.in {
 .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn-secondary,
 .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn-secondary-highlight,
 .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn-secondary-active,
+.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn-clean,
 .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn-trace,
 .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn-social {
   border-radius: 0;
@@ -4341,6 +4383,7 @@ tbody.collapse.in {
 .btn-group > .btn-group:first-child:not(:last-child) > .btn-secondary:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .btn-secondary-highlight:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .btn-secondary-active:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > .btn-clean:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .btn-trace:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .btn-social:last-child {
   border-bottom-right-radius: 0;
@@ -4351,6 +4394,7 @@ tbody.collapse.in {
 .btn-group > .btn-group:last-child:not(:first-child) > .btn-secondary:first-child,
 .btn-group > .btn-group:last-child:not(:first-child) > .btn-secondary-highlight:first-child,
 .btn-group > .btn-group:last-child:not(:first-child) > .btn-secondary-active:first-child,
+.btn-group > .btn-group:last-child:not(:first-child) > .btn-clean:first-child,
 .btn-group > .btn-group:last-child:not(:first-child) > .btn-trace:first-child,
 .btn-group > .btn-group:last-child:not(:first-child) > .btn-social:first-child {
   border-bottom-left-radius: 0;
@@ -4365,6 +4409,7 @@ tbody.collapse.in {
 .btn-group > .btn-secondary + .dropdown-toggle,
 .btn-group > .btn-secondary-highlight + .dropdown-toggle,
 .btn-group > .btn-secondary-active + .dropdown-toggle,
+.btn-group > .btn-clean + .dropdown-toggle,
 .btn-group > .btn-trace + .dropdown-toggle,
 .btn-group > .btn-social + .dropdown-toggle {
   padding-left: 8px;
@@ -4387,6 +4432,7 @@ tbody.collapse.in {
 .btn-secondary .caret,
 .btn-secondary-highlight .caret,
 .btn-secondary-active .caret,
+.btn-clean .caret,
 .btn-trace .caret,
 .btn-social .caret {
   margin-left: 0;
@@ -4409,6 +4455,8 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-group > .btn-secondary-highlight,
 .btn-group-vertical > .btn-secondary-active,
 .btn-group-vertical > .btn-group > .btn-secondary-active,
+.btn-group-vertical > .btn-clean,
+.btn-group-vertical > .btn-group > .btn-clean,
 .btn-group-vertical > .btn-trace,
 .btn-group-vertical > .btn-group > .btn-trace,
 .btn-group-vertical > .btn-social,
@@ -4423,6 +4471,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-group > .btn-secondary,
 .btn-group-vertical > .btn-group > .btn-secondary-highlight,
 .btn-group-vertical > .btn-group > .btn-secondary-active,
+.btn-group-vertical > .btn-group > .btn-clean,
 .btn-group-vertical > .btn-group > .btn-trace,
 .btn-group-vertical > .btn-group > .btn-social {
   float: none;
@@ -4443,6 +4492,9 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-secondary-active + .btn-secondary-active,
 .btn-group-vertical > .btn-secondary-active + .btn-group,
 .btn-group-vertical > .btn-group + .btn-secondary-active,
+.btn-group-vertical > .btn-clean + .btn-clean,
+.btn-group-vertical > .btn-clean + .btn-group,
+.btn-group-vertical > .btn-group + .btn-clean,
 .btn-group-vertical > .btn-trace + .btn-trace,
 .btn-group-vertical > .btn-trace + .btn-group,
 .btn-group-vertical > .btn-group + .btn-trace,
@@ -4457,6 +4509,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-secondary:not(:first-child):not(:last-child),
 .btn-group-vertical > .btn-secondary-highlight:not(:first-child):not(:last-child),
 .btn-group-vertical > .btn-secondary-active:not(:first-child):not(:last-child),
+.btn-group-vertical > .btn-clean:not(:first-child):not(:last-child),
 .btn-group-vertical > .btn-trace:not(:first-child):not(:last-child),
 .btn-group-vertical > .btn-social:not(:first-child):not(:last-child) {
   border-radius: 0;
@@ -4466,6 +4519,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-secondary:first-child:not(:last-child),
 .btn-group-vertical > .btn-secondary-highlight:first-child:not(:last-child),
 .btn-group-vertical > .btn-secondary-active:first-child:not(:last-child),
+.btn-group-vertical > .btn-clean:first-child:not(:last-child),
 .btn-group-vertical > .btn-trace:first-child:not(:last-child),
 .btn-group-vertical > .btn-social:first-child:not(:last-child) {
   border-top-right-radius: 4px;
@@ -4478,6 +4532,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-secondary:last-child:not(:first-child),
 .btn-group-vertical > .btn-secondary-highlight:last-child:not(:first-child),
 .btn-group-vertical > .btn-secondary-active:last-child:not(:first-child),
+.btn-group-vertical > .btn-clean:last-child:not(:first-child),
 .btn-group-vertical > .btn-trace:last-child:not(:first-child),
 .btn-group-vertical > .btn-social:last-child:not(:first-child) {
   border-top-right-radius: 0;
@@ -4490,6 +4545,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn-secondary,
 .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn-secondary-highlight,
 .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn-secondary-active,
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn-clean,
 .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn-trace,
 .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn-social {
   border-radius: 0;
@@ -4500,6 +4556,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn-secondary:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn-secondary-highlight:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn-secondary-active:last-child,
+.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn-clean:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn-trace:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn-social:last-child {
   border-bottom-right-radius: 0;
@@ -4510,6 +4567,7 @@ tbody.collapse.in {
 .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn-secondary:first-child,
 .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn-secondary-highlight:first-child,
 .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn-secondary-active:first-child,
+.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn-clean:first-child,
 .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn-trace:first-child,
 .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn-social:first-child {
   border-top-right-radius: 0;
@@ -4527,6 +4585,7 @@ tbody.collapse.in {
 .btn-group-justified > .btn-secondary,
 .btn-group-justified > .btn-secondary-highlight,
 .btn-group-justified > .btn-secondary-active,
+.btn-group-justified > .btn-clean,
 .btn-group-justified > .btn-trace,
 .btn-group-justified > .btn-social {
   float: none;
@@ -4538,6 +4597,7 @@ tbody.collapse.in {
 .btn-group-justified > .btn-group .btn-secondary,
 .btn-group-justified > .btn-group .btn-secondary-highlight,
 .btn-group-justified > .btn-group .btn-secondary-active,
+.btn-group-justified > .btn-group .btn-clean,
 .btn-group-justified > .btn-group .btn-trace,
 .btn-group-justified > .btn-group .btn-social {
   width: 100%;
@@ -4565,6 +4625,10 @@ tbody.collapse.in {
 [data-toggle="buttons"] > .btn-group > .btn-secondary-active input[type="radio"],
 [data-toggle="buttons"] > .btn-secondary-active input[type="checkbox"],
 [data-toggle="buttons"] > .btn-group > .btn-secondary-active input[type="checkbox"],
+[data-toggle="buttons"] > .btn-clean input[type="radio"],
+[data-toggle="buttons"] > .btn-group > .btn-clean input[type="radio"],
+[data-toggle="buttons"] > .btn-clean input[type="checkbox"],
+[data-toggle="buttons"] > .btn-group > .btn-clean input[type="checkbox"],
 [data-toggle="buttons"] > .btn-trace input[type="radio"],
 [data-toggle="buttons"] > .btn-group > .btn-trace input[type="radio"],
 [data-toggle="buttons"] > .btn-trace input[type="checkbox"],
@@ -4604,6 +4668,7 @@ tbody.collapse.in {
 .input-group-lg > .input-group-btn > .btn-secondary,
 .input-group-lg > .input-group-btn > .btn-secondary-highlight,
 .input-group-lg > .input-group-btn > .btn-secondary-active,
+.input-group-lg > .input-group-btn > .btn-clean,
 .input-group-lg > .input-group-btn > .btn-trace,
 .input-group-lg > .input-group-btn > .btn-social {
   height: 46px;
@@ -4619,6 +4684,7 @@ select.input-group-lg > .input-group-btn > .btn-primary,
 select.input-group-lg > .input-group-btn > .btn-secondary,
 select.input-group-lg > .input-group-btn > .btn-secondary-highlight,
 select.input-group-lg > .input-group-btn > .btn-secondary-active,
+select.input-group-lg > .input-group-btn > .btn-clean,
 select.input-group-lg > .input-group-btn > .btn-trace,
 select.input-group-lg > .input-group-btn > .btn-social {
   height: 46px;
@@ -4638,6 +4704,8 @@ textarea.input-group-lg > .input-group-btn > .btn-secondary-highlight,
 select[multiple].input-group-lg > .input-group-btn > .btn-secondary-highlight,
 textarea.input-group-lg > .input-group-btn > .btn-secondary-active,
 select[multiple].input-group-lg > .input-group-btn > .btn-secondary-active,
+textarea.input-group-lg > .input-group-btn > .btn-clean,
+select[multiple].input-group-lg > .input-group-btn > .btn-clean,
 textarea.input-group-lg > .input-group-btn > .btn-trace,
 select[multiple].input-group-lg > .input-group-btn > .btn-trace,
 textarea.input-group-lg > .input-group-btn > .btn-social,
@@ -4651,6 +4719,7 @@ select[multiple].input-group-lg > .input-group-btn > .btn-social {
 .input-group-sm > .input-group-btn > .btn-secondary,
 .input-group-sm > .input-group-btn > .btn-secondary-highlight,
 .input-group-sm > .input-group-btn > .btn-secondary-active,
+.input-group-sm > .input-group-btn > .btn-clean,
 .input-group-sm > .input-group-btn > .btn-trace,
 .input-group-sm > .input-group-btn > .btn-social {
   height: 30px;
@@ -4666,6 +4735,7 @@ select.input-group-sm > .input-group-btn > .btn-primary,
 select.input-group-sm > .input-group-btn > .btn-secondary,
 select.input-group-sm > .input-group-btn > .btn-secondary-highlight,
 select.input-group-sm > .input-group-btn > .btn-secondary-active,
+select.input-group-sm > .input-group-btn > .btn-clean,
 select.input-group-sm > .input-group-btn > .btn-trace,
 select.input-group-sm > .input-group-btn > .btn-social {
   height: 30px;
@@ -4685,6 +4755,8 @@ textarea.input-group-sm > .input-group-btn > .btn-secondary-highlight,
 select[multiple].input-group-sm > .input-group-btn > .btn-secondary-highlight,
 textarea.input-group-sm > .input-group-btn > .btn-secondary-active,
 select[multiple].input-group-sm > .input-group-btn > .btn-secondary-active,
+textarea.input-group-sm > .input-group-btn > .btn-clean,
+select[multiple].input-group-sm > .input-group-btn > .btn-clean,
 textarea.input-group-sm > .input-group-btn > .btn-trace,
 select[multiple].input-group-sm > .input-group-btn > .btn-trace,
 textarea.input-group-sm > .input-group-btn > .btn-social,
@@ -4755,6 +4827,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn:first-child > .btn-group > .btn-secondary-active,
 .input-group-btn:last-child > .btn-secondary-active:not(:last-child):not(.dropdown-toggle),
 .input-group-btn:last-child > .btn-group:not(:last-child) > .btn-secondary-active,
+.input-group-btn:first-child > .btn-clean,
+.input-group-btn:first-child > .btn-group > .btn-clean,
+.input-group-btn:last-child > .btn-clean:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:last-child > .btn-group:not(:last-child) > .btn-clean,
 .input-group-btn:first-child > .btn-trace,
 .input-group-btn:first-child > .btn-group > .btn-trace,
 .input-group-btn:last-child > .btn-trace:not(:last-child):not(.dropdown-toggle),
@@ -4792,6 +4868,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn:last-child > .btn-group > .btn-secondary-active,
 .input-group-btn:first-child > .btn-secondary-active:not(:first-child),
 .input-group-btn:first-child > .btn-group:not(:first-child) > .btn-secondary-active,
+.input-group-btn:last-child > .btn-clean,
+.input-group-btn:last-child > .btn-group > .btn-clean,
+.input-group-btn:first-child > .btn-clean:not(:first-child),
+.input-group-btn:first-child > .btn-group:not(:first-child) > .btn-clean,
 .input-group-btn:last-child > .btn-trace,
 .input-group-btn:last-child > .btn-group > .btn-trace,
 .input-group-btn:first-child > .btn-trace:not(:first-child),
@@ -4816,6 +4896,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn > .btn-secondary,
 .input-group-btn > .btn-secondary-highlight,
 .input-group-btn > .btn-secondary-active,
+.input-group-btn > .btn-clean,
 .input-group-btn > .btn-trace,
 .input-group-btn > .btn-social {
   position: relative;
@@ -4825,6 +4906,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn > .btn-secondary + .btn-secondary,
 .input-group-btn > .btn-secondary-highlight + .btn-secondary-highlight,
 .input-group-btn > .btn-secondary-active + .btn-secondary-active,
+.input-group-btn > .btn-clean + .btn-clean,
 .input-group-btn > .btn-trace + .btn-trace,
 .input-group-btn > .btn-social + .btn-social {
   margin-left: -1px;
@@ -4844,6 +4926,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn > .btn-secondary-active:hover,
 .input-group-btn > .btn-secondary-active:focus,
 .input-group-btn > .btn-secondary-active:active,
+.input-group-btn > .btn-clean:hover,
+.input-group-btn > .btn-clean:focus,
+.input-group-btn > .btn-clean:active,
 .input-group-btn > .btn-trace:hover,
 .input-group-btn > .btn-trace:focus,
 .input-group-btn > .btn-trace:active,
@@ -4858,6 +4943,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn:first-child > .btn-secondary,
 .input-group-btn:first-child > .btn-secondary-highlight,
 .input-group-btn:first-child > .btn-secondary-active,
+.input-group-btn:first-child > .btn-clean,
 .input-group-btn:first-child > .btn-trace,
 .input-group-btn:first-child > .btn-social {
   margin-right: -1px;
@@ -4868,6 +4954,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn-social {
 .input-group-btn:last-child > .btn-secondary,
 .input-group-btn:last-child > .btn-secondary-highlight,
 .input-group-btn:last-child > .btn-secondary-active,
+.input-group-btn:last-child > .btn-clean,
 .input-group-btn:last-child > .btn-trace,
 .input-group-btn:last-child > .btn-social {
   z-index: 2;
@@ -5767,6 +5854,7 @@ a.label:focus {
 .btn-secondary .label,
 .btn-secondary-highlight .label,
 .btn-secondary-active .label,
+.btn-clean .label,
 .btn-trace .label,
 .btn-social .label {
   position: relative;
@@ -5836,6 +5924,7 @@ a.label:focus {
 .btn-secondary .badge,
 .btn-secondary-highlight .badge,
 .btn-secondary-active .badge,
+.btn-clean .badge,
 .btn-trace .badge,
 .btn-social .badge {
   position: relative;
@@ -5847,6 +5936,7 @@ a.label:focus {
 .btn-group-xs > .btn-secondary .badge,
 .btn-group-xs > .btn-secondary-highlight .badge,
 .btn-group-xs > .btn-secondary-active .badge,
+.btn-group-xs > .btn-clean .badge,
 .btn-group-xs > .btn-trace .badge,
 .btn-group-xs > .btn-social .badge {
   top: 0;
@@ -6892,6 +6982,7 @@ button.close {
 .modal-footer .btn-secondary + .btn-secondary,
 .modal-footer .btn-secondary-highlight + .btn-secondary-highlight,
 .modal-footer .btn-secondary-active + .btn-secondary-active,
+.modal-footer .btn-clean + .btn-clean,
 .modal-footer .btn-trace + .btn-trace,
 .modal-footer .btn-social + .btn-social {
   margin-left: 5px;
@@ -6902,6 +6993,7 @@ button.close {
 .modal-footer .btn-group .btn-secondary + .btn-secondary,
 .modal-footer .btn-group .btn-secondary-highlight + .btn-secondary-highlight,
 .modal-footer .btn-group .btn-secondary-active + .btn-secondary-active,
+.modal-footer .btn-group .btn-clean + .btn-clean,
 .modal-footer .btn-group .btn-trace + .btn-trace,
 .modal-footer .btn-group .btn-social + .btn-social {
   margin-left: -1px;
@@ -7378,6 +7470,7 @@ button.close {
 .carousel-caption .btn-secondary,
 .carousel-caption .btn-secondary-highlight,
 .carousel-caption .btn-secondary-active,
+.carousel-caption .btn-clean,
 .carousel-caption .btn-trace,
 .carousel-caption .btn-social {
   text-shadow: none;
@@ -8658,6 +8751,7 @@ input:-moz-placeholder {
 .card-inbox table .col-button .btn-secondary,
 .card-inbox table .col-button .btn-secondary-highlight,
 .card-inbox table .col-button .btn-secondary-active,
+.card-inbox table .col-button .btn-clean,
 .card-inbox table .col-button .btn-trace,
 .card-inbox table .col-button .btn-social {
   border-radius: 2px;
@@ -8669,6 +8763,7 @@ input:-moz-placeholder {
 .card-inbox table .col-button .btn-secondary:last-child,
 .card-inbox table .col-button .btn-secondary-highlight:last-child,
 .card-inbox table .col-button .btn-secondary-active:last-child,
+.card-inbox table .col-button .btn-clean:last-child,
 .card-inbox table .col-button .btn-trace:last-child,
 .card-inbox table .col-button .btn-social:last-child {
   margin-bottom: 0px;
@@ -9077,6 +9172,7 @@ input:-moz-placeholder {
 .btn-secondary,
 .btn-secondary-highlight,
 .btn-secondary-active,
+.btn-clean,
 .btn-trace,
 .btn-social {
   padding: 6px;
@@ -9090,6 +9186,7 @@ input:-moz-placeholder {
 .btn-secondary.btn-minimal,
 .btn-secondary-highlight.btn-minimal,
 .btn-secondary-active.btn-minimal,
+.btn-clean.btn-minimal,
 .btn-trace.btn-minimal,
 .btn-social.btn-minimal {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -9100,6 +9197,7 @@ input:-moz-placeholder {
 .btn-secondary i,
 .btn-secondary-highlight i,
 .btn-secondary-active i,
+.btn-clean i,
 .btn-trace i,
 .btn-social i {
   margin-right: 2px;
@@ -9109,6 +9207,7 @@ input:-moz-placeholder {
 .btn-secondary .fa-arrow-right,
 .btn-secondary-highlight .fa-arrow-right,
 .btn-secondary-active .fa-arrow-right,
+.btn-clean .fa-arrow-right,
 .btn-trace .fa-arrow-right,
 .btn-social .fa-arrow-right {
   margin: 0px;
@@ -9118,6 +9217,7 @@ input:-moz-placeholder {
 .btn-secondary:disabled,
 .btn-secondary-highlight:disabled,
 .btn-secondary-active:disabled,
+.btn-clean:disabled,
 .btn-trace:disabled,
 .btn-social:disabled {
   opacity: 0.5;
@@ -9516,6 +9616,104 @@ fieldset[disabled] .btn-secondary-active.active {
 .btn-secondary-active .badge {
   color: #16bbac;
   background-color: #ffffff;
+}
+.btn-clean {
+  color: #16bbac;
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+.btn-clean:focus,
+.btn-clean.focus {
+  color: #16bbac;
+  background-color: #e6e6e6;
+  border-color: #bfbfbf;
+}
+.btn-clean:hover {
+  color: #16bbac;
+  background-color: #e6e6e6;
+  border-color: #e0e0e0;
+}
+.btn-clean:active,
+.btn-clean.active,
+.open > .dropdown-toggle.btn-clean {
+  color: #16bbac;
+  background-color: #e6e6e6;
+  border-color: #e0e0e0;
+}
+.btn-clean:active:hover,
+.btn-clean.active:hover,
+.open > .dropdown-toggle.btn-clean:hover,
+.btn-clean:active:focus,
+.btn-clean.active:focus,
+.open > .dropdown-toggle.btn-clean:focus,
+.btn-clean:active.focus,
+.btn-clean.active.focus,
+.open > .dropdown-toggle.btn-clean.focus {
+  color: #16bbac;
+  background-color: #d4d4d4;
+  border-color: #bfbfbf;
+}
+.btn-clean:active,
+.btn-clean.active,
+.open > .dropdown-toggle.btn-clean {
+  background-image: none;
+}
+.btn-clean.disabled:hover,
+.btn-clean[disabled]:hover,
+fieldset[disabled] .btn-clean:hover,
+.btn-clean.disabled:focus,
+.btn-clean[disabled]:focus,
+fieldset[disabled] .btn-clean:focus,
+.btn-clean.disabled.focus,
+.btn-clean[disabled].focus,
+fieldset[disabled] .btn-clean.focus {
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+.btn-clean .badge {
+  color: #ffffff;
+  background-color: #16bbac;
+}
+.btn-clean:hover,
+.btn-clean:focus,
+.btn-clean:active,
+.btn-clean:active:focus,
+.btn-clean.active,
+.open .dropdown-toggle.btn-clean {
+  color: #16bbac;
+  background-color: #e6e6e6;
+  border-color: #e0e0e0;
+}
+.btn-clean:active,
+.btn-clean.active,
+.btn-clean:active:focus,
+.open .dropdown-toggle.btn-clean {
+  background-image: none;
+}
+.btn-clean.disabled,
+.btn-clean[disabled],
+fieldset[disabled] .btn-clean,
+.btn-clean.disabled:hover,
+.btn-clean[disabled]:hover,
+fieldset[disabled] .btn-clean:hover,
+.btn-clean.disabled:focus,
+.btn-clean[disabled]:focus,
+fieldset[disabled] .btn-clean:focus,
+.btn-clean.disabled:active:focus,
+.btn-clean[disabled]:active:focus,
+fieldset[disabled] .btn-clean:active:focus,
+.btn-clean.disabled:active,
+.btn-clean[disabled]:active,
+fieldset[disabled] .btn-clean:active,
+.btn-clean.disabled.active,
+.btn-clean[disabled].active,
+fieldset[disabled] .btn-clean.active {
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+.btn-clean .badge {
+  color: #ffffff;
+  background-color: #16bbac;
 }
 .btn-trace {
   color: #3e4a5e;
@@ -10346,6 +10544,8 @@ fieldset[disabled] .btn-clear.active {
 .btn-secondary-highlight.active,
 .nc-dt-button .btn-secondary-active,
 .btn-secondary-active.active,
+.nc-dt-button .btn-clean,
+.btn-clean.active,
 .nc-dt-button .btn-trace,
 .btn-trace.active,
 .nc-dt-button .btn-social,
@@ -10374,6 +10574,9 @@ fieldset[disabled] .btn-clear.active {
 .nc-dt-button .btn-secondary-active.selected,
 .nc-dt-button .btn-secondary-active.active,
 .nc-dt-button .btn-secondary-active:focus,
+.nc-dt-button .btn-clean.selected,
+.nc-dt-button .btn-clean.active,
+.nc-dt-button .btn-clean:focus,
 .nc-dt-button .btn-trace.selected,
 .nc-dt-button .btn-trace.active,
 .nc-dt-button .btn-trace:focus,
@@ -10399,6 +10602,9 @@ fieldset[disabled] .btn-clear.active {
 .nc-dt-button .btn-secondary-active.selected .text-info,
 .nc-dt-button .btn-secondary-active.active .text-info,
 .nc-dt-button .btn-secondary-active:focus .text-info,
+.nc-dt-button .btn-clean.selected .text-info,
+.nc-dt-button .btn-clean.active .text-info,
+.nc-dt-button .btn-clean:focus .text-info,
 .nc-dt-button .btn-trace.selected .text-info,
 .nc-dt-button .btn-trace.active .text-info,
 .nc-dt-button .btn-trace:focus .text-info,
@@ -10606,6 +10812,7 @@ div:focus {
 .workroom .card-proposal-detail .tab-how-to .btn-secondary,
 .workroom .card-proposal-detail .tab-how-to .btn-secondary-highlight,
 .workroom .card-proposal-detail .tab-how-to .btn-secondary-active,
+.workroom .card-proposal-detail .tab-how-to .btn-clean,
 .workroom .card-proposal-detail .tab-how-to .btn-trace,
 .workroom .card-proposal-detail .tab-how-to .btn-social {
   margin-top: 10px;
@@ -10618,6 +10825,7 @@ div:focus {
 .workroom .card-proposal-detail .tab-proposal-detail .btn-secondary,
 .workroom .card-proposal-detail .tab-proposal-detail .btn-secondary-highlight,
 .workroom .card-proposal-detail .tab-proposal-detail .btn-secondary-active,
+.workroom .card-proposal-detail .tab-proposal-detail .btn-clean,
 .workroom .card-proposal-detail .tab-proposal-detail .btn-trace,
 .workroom .card-proposal-detail .tab-proposal-detail .btn-social {
   margin-top: 15px;
@@ -11119,6 +11327,7 @@ ul.payment-methods {
 .layout-brand .view-brand-campaign-list .page-header .btn-secondary,
 .layout-brand .view-brand-campaign-list .page-header .btn-secondary-highlight,
 .layout-brand .view-brand-campaign-list .page-header .btn-secondary-active,
+.layout-brand .view-brand-campaign-list .page-header .btn-clean,
 .layout-brand .view-brand-campaign-list .page-header .btn-trace,
 .layout-brand .view-brand-campaign-list .page-header .btn-social {
   transform: translateY(-5px);

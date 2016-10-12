@@ -1,0 +1,12 @@
+<div class="card-campaign-thumbnail">
+    <!-- <div class="card-header">
+        <h3>Campaign</h3> <a href="#">ดูรายละเอียด</a>
+    </div> -->
+    <div class="card-thumbnail-image">
+        <img ng-src="{{proposal.campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
+    </div>
+    <div class="card-body text-center">
+        {{ proposal.campaign.title | truncate: 50 }}
+        <button type="button" class="btn-secondary btn-width-max btn-minimal">ดูรายละเอียด</button>
+    </div>
+</div>

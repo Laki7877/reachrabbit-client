@@ -713,6 +713,20 @@ input:-moz-placeholder {
   .card-title{
     .make-xs-column(10);
     margin-bottom: 15px;
+    .card-title-vertified{
+      position: absolute;
+      top: 0px;
+      right: 15px;
+      img{
+        transform: translateY(-2px);
+        margin-right: 3px;
+      }
+      strong{
+        font-style: italic;
+        color: @color-yellow;
+        margin-right: 5px;
+      }
+    }
   }
   small{
     display: block;
@@ -742,7 +756,6 @@ input:-moz-placeholder {
     }
   }
   .for-proposal-detail{
-    display: none;
     small{
       margin-top: 10px;
     }
@@ -1828,11 +1841,6 @@ div:focus{
   }
   .zone-body{
     margin-top: 10px;
-  }
-  .card-profile{
-    .for-proposal-detail{
-      display: block;
-    }
   }
   .card-proposal-detail{
     &:extend(.card all);

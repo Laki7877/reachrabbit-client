@@ -4,9 +4,17 @@
       <img ng-src="{{ profile.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-responsive img-circle"
       />
     </div>
-    <div class="card-title for-proposal-detail">
+    <div class="card-title" ng-show="!showAllData">
       <div class="card-title-content">
         ข้อเสนอจาก {{ profile.user.name }}
+      </div>
+    </div>
+    <div class="card-title" ng-show="showAllData">
+      <div class="card-title-content">
+        {{ profile.user.name }}
+      </div>
+      <div class="card-title-vertified">
+        <img src="images/icon-vertified.png"/><strong>Vertified</strong> ได้ผ่านการตรวจบัตรประชาชนแล้ว
       </div>
     </div>
     <div class="col-xs-10">

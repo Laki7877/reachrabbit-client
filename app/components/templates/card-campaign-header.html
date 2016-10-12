@@ -5,18 +5,18 @@
     </div>
     <div ng-if="removeable()" ng-click="remove()" class="card-corner color-grey">
       <!-- ng-if="removeable()"  -->
-      <i class="fa fa-trash"></i> ลบ Campaign นี้
+      <i class="fa fa-trash"></i> ลบประกาศงานนี้
     </div>
     <div ng-if="viewable()" ng-click="view()" class="card-corner color-orange">
       <!-- ng-if="removeable()"  -->
-      <a>รายละเอียด Campaign นี้</a>
+      <a>ดูรายละเอียด</a>
     </div>
 
     <div class="card-campaign-header-content">
       <div class="card-title">
         <div class="card-title-content">
           <span ng-bind="campaign.title | truncate: 50"></span>
-          <span ng-if="!campaign.title">Campaign ใหม่</span>
+          <span ng-if="!campaign.title">ประกาศงาน</span>
         </div>
       </div>
       <div class="card-info card-info-1">

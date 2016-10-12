@@ -7,13 +7,11 @@
           </div> -->
         </div>
         <zone-header historyback="true">
-          <h1 id="campaign-title" ng-if="formData.title" ng-bind="formData.title | truncate: 60"></h1>
-          <h1 id="campaign-title" ng-if="!formData.title">Campaign ใหม่</h1>
+          <h1 id="campaign-title" ng-if="formData.campaignId >= 0" ng-bind="formData.title | truncate: 60"></h1>
+          <h1 id="campaign-title" ng-if="!formData.campaignId">ลงประกาศงาน</h1>
         </zone-header>
         <div class="zone-body">
             <div class="container">
-                <card-campaign-header campaign="formData" remove="remove()" removeable="formData.campaignId >= 0">
-                </card-campaign-header>
                 <div class="card-campaign-description">
                   <div class="card-body">
                     <div class="card-row">
@@ -283,9 +281,17 @@
 
                   </div>
                 </div>
+                <div class="page-summary">
+                  <h2>สรุปข้อมูล</h2>
+                </div>
+                <card-campaign-header campaign="formData" remove="remove()" removeable="formData.campaignId >= 0">
+                </card-campaign-header>
+
             </div>
         </div>
     </div>
+
+
 
     <div class="floating-bar">
       <button class="btn-secondary btn-width-lg  btn-with-margin" ng-if="!editOpenState" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Draft')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกข้อมูล</button>

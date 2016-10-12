@@ -11055,6 +11055,9 @@ ul.payment-methods {
 .layout-portal .view-brand-signup {
   margin-top: 60px;
 }
+.layout-portal .view-brand-signup .info-text {
+  margin-top: 10px;
+}
 .layout-portal .view-influencer-portal {
   margin-top: 140px;
 }

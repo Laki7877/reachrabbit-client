@@ -170,11 +170,35 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     url: '/users/' + id
                 });
             },
-            getAllBrand: function() {
-                return $http.get('/users/brand');
+            getAllBrand: function(params) {
+                return $q(function (resolve, reject) {
+                    $http({
+                        url: '/users/brand',
+                        method: 'get',
+                        params: params
+                    })
+                        .then(function (brandResponse) {
+                            resolve(brandResponse);
+                        })
+                        .catch(function (err) {
+                            reject(err);
+                        });
+                });
             },
-            getAllInfluencer: function() {
-                return $http.get('/users/influencer');
+            getAllInfluencer: function(params) {
+                return $q(function (resolve, reject) {
+                    $http({
+                        url: '/users/influencer',
+                        method: 'get',
+                        params: params
+                    })
+                        .then(function (brandResponse) {
+                            resolve(brandResponse);
+                        })
+                        .catch(function (err) {
+                            reject(err);
+                        });
+                });
             },
             /*
              * Get Profile

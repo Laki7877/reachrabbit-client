@@ -183,7 +183,7 @@
                     <th class="text-align-right">ราคา (บาท)</th>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="proposal in transaction.brandTransactionDocument.cart.proposals">
+                    <tr ng-repeat="proposal in transaction.brandTransactionDocument[0].cart.proposals">
                       <td class="col-name">
                         <img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="profile-picture"/>
                          {{ proposal.influencer.user.name | truncate: 15 }}
@@ -192,10 +192,25 @@
                       <td class="text-align-right">{{ proposal.price | number: 0 }} </td>
                     </tr>
                     <tr class="total-price">
-                      <td colspan="3">
-                        <strong>ราคารวม ({{transaction.brandTransactionDocument.cart.proposals.length || 0}} รายการ) : {{ transaction.amount  | number:0 }} บาท</strong>
-                      </td>
-                    </tr>
+                    <td colspan="3">
+                      ราคารวม ({{transaction.brandTransactionDocument[0].cart.proposals.length || 0}} รายการ) : {{ baseDocument.amount  | number:0 }} บาท
+                    </td>
+                  </tr>
+                  <tr class="total-price">
+                    <td colspan="3">
+                      หักภาษี ณ ที่จ่าย (3%) : {{ -taxDocument.amount  | number:0 }} บาท
+                    </td>
+                  </tr>
+                  <tr class="total-price">
+                    <td colspan="3">
+                      ค่าธรรมเนียม : ฟรี
+                    </td>
+                  </tr>
+                  <tr class="total-price">
+                    <td colspan="3">
+                      <strong>ยอดสุทธิ : {{ transaction.amount  | number:0 }}</strong>
+                    </td>
+                  </tr>
                   </tbody>
                 </table>
 

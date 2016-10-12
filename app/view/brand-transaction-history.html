@@ -28,10 +28,10 @@
                    <span class="color-grey" ng-if="transaction.status == 'Expired'"><i class="fa fa-ban"></i> หมดอายุ</span>
                 </td>
                 <td class="text-center">{{ transaction.transactionNumber }}</td>
-                <td class="col-rabbit-score">{{ transaction.brandTransactionDocument.cart.proposals.length || '0' }}</td>
+                <td class="col-rabbit-score">{{ transaction.brandTransactionDocument[0].cart.proposals.length || '0' }}</td>
                 <td class="col-time">{{ transaction.amount | currency: '': 0 }}</td>
                 <td class="col-button">
-                  <button class="btn-secondary btn-minimal" ui-sref="brand-transaction-detail({cartId: transaction.brandTransactionDocument.cart.cartId})">ดูรายละเอียด</button>
+                  <button class="btn-secondary btn-minimal" ui-sref="brand-transaction-detail({cartId: transaction.brandTransactionDocument[0].cart.cartId})">ดูรายละเอียด</button>
                 </td>
               </tr>
             </tbody>

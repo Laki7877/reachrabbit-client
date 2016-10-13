@@ -295,6 +295,14 @@ angular.module('reachRabbitApp.service', ['satellizer'])
     }])
     .factory('ReferralService', ['$http', function ($http) {
         return {
+            getAllPayments: function(params) {
+                return $http({
+                    url: '/proposals/referral',
+                    method: 'GET',
+                    params: params
+                });
+            
+            },
             getAll: function(params) {
                 return $http({
                     url: '/referral',

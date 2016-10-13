@@ -1402,7 +1402,6 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                 }
                 DataService['get' + scope.endpointName]().then(function (cats) {
                     scope.chunk = _.chunk(cats.data, Number(scope.maxColumns));
-                    console.log(scope.chunk)
                     update();
                 });
 

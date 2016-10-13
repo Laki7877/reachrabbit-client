@@ -2079,6 +2079,38 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
 
 /*/////////////// /////////////// /////////////// /////////////// //////////////*/
 angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
+    .controller('AdminReferralCodeListController', ['$scope', 'ReferralService', 'NcAlert', function($scope, ReferralService, NcAlert) {
+        $scope.alert = new NcAlert();
+        $scope.search = {};
+        $scope.$watch('search.value', function(e) {
+            $scope.load($scope.params, { search: e });
+        });
+        $scope.load = function (data) {
+            $scope.params = data;
+            ReferralService.getAll(data)
+                .then(function (response) {
+                    $scope.referrals = response.data;
+                });
+        };
+        $scope.save = function() {
+            ReferralService.create($scope.formData)
+                .then(function(res) {
+                    $scope.formData = {};
+                    $scope.load($scope.params);
+                    $scope.alert.success('บันทึกข้อมูลสำเร็จเรียบร้อย');
+                })
+                .catch(function(e) {
+                    $scope.alert.danger(e.data.message);
+                });
+        };
+        //Init
+        $scope.load({
+            sort: 'createdAt,desc'
+        });
+    }])
+    .controller('AdminReferralPaymentListController', ['$scope', function($scope) {
+
+    }])
     .controller('AdminUserDetailController', ['$scope', 'AccountService', '$stateParams', 'NcAlert', function($scope, AccountService, $stateParams, NcAlert) {
         $scope.alert = new NcAlert();
         $scope.hasMedia = function (mediaId) {

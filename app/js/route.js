@@ -99,6 +99,16 @@ angular.module('reachRabbitApp.admin.routes', ['ui.router'])
                 url: '/admin-influencer-list',
                 templateUrl: 'view/admin-influencer-list.html',
                 controller: 'AdminInfluencerListController'
+            })
+            .state('admin-referral-code-list', {
+                url: '/admin-referral-code-list',
+                templateUrl: 'view/admin-referral-code-list.html',
+                controller: 'AdminReferralCodeListController'
+            })
+            .state('admin-referral-payment-list', {
+                url: '/admin-referral-payment-list',
+                templateUrl: 'view/admin-referral-payment-list.html',
+                controller: 'AdminReferralPaymentListController'
             });
     }]);
 

@@ -170,35 +170,11 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     url: '/users/' + id
                 });
             },
-            getAllBrand: function(params) {
-                return $q(function (resolve, reject) {
-                    $http({
-                        url: '/users/brand',
-                        method: 'get',
-                        params: params
-                    })
-                        .then(function (brandResponse) {
-                            resolve(brandResponse);
-                        })
-                        .catch(function (err) {
-                            reject(err);
-                        });
-                });
-            },
-            getAllInfluencer: function(params) {
-                return $q(function (resolve, reject) {
-                    $http({
-                        url: '/users/influencer',
-                        method: 'get',
-                        params: params
-                    })
-                        .then(function (brandResponse) {
-                            resolve(brandResponse);
-                        })
-                        .catch(function (err) {
-                            reject(err);
-                        });
-                });
+            getAllBrand: function() {
+                return $http.get('/users/brand');
+            },  
+            getAllInfluencer: function() {
+                return $http.get('/users/influencer');
             },
             /*
              * Get Profile
@@ -314,6 +290,20 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             },
             getCart: function () {
                 return $http.get('/carts');
+            }
+        };
+    }])
+    .factory('ReferralService', ['$http', function ($http) {
+        return {
+            getAll: function(params) {
+                return $http({
+                    url: '/referral',
+                    method: 'GET',
+                    params: params
+                });
+            },
+            create: function(data) {
+                return $http.post('/referral', data);
             }
         };
     }])

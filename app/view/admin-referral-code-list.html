@@ -1,0 +1,85 @@
+<div class="viewport view-admin-referral-code-list">
+  <zone-header>
+    <h1>Referral Code</h1>
+  </zone-header>
+  <div class="zone-body">
+    <div class="container">
+      <div nc-alert="alert"></div>
+      <div class="card">
+        <div class="card-header">
+          <h3>Create New Referral Code</h3>
+        </div>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-body-content-label with-input">Email</div>
+            <div class="card-body-content">
+              <input name="email" class="form-control" ng-model="formData.email">
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label with-input">Code Description</div>
+            <div class="card-body-content">
+              <input name="description" class="form-control" ng-model="formData.description">
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label with-input">Commission</div>
+            <div class="card-body-content">
+              <div class="input-group">
+                <input name="commission" class="form-control" ng-model="formData.commission" ng-pattern-restrict="^[0-9.]*$">
+                <span class="input-group-addon" >%</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-row">
+            <div class="card-body-content-label with-input"></div>
+            <div class="card-body-content">
+              <button ng-click="save()" class="btn btn-primary btn-width-lg">Create New Code</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-header">
+        <h1>Referral Code List</h1>
+        <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" class="pull-right" novalidate>
+          <div class="input-dropdown">
+            <input style="width:300px" class="form-control filter" ng-model="search.value" placeholder="ค้นหา Email"/>
+          </div>
+        </form>
+      </div>
+      <div class="card">
+        <cute-bunny></cute-bunny>
+        <div class="card-body" cute-bunny-hide>
+          <table ng-if="referrals.numberOfElements > 0" class="table" sorter ng-model="referrals" callback="load">
+            <thead>
+              <tr>
+                <th class="col-name">Referral Code</th>
+                <th class="col-name" sort="email">Email</th>
+                <th class="col-description">Description</th>
+                <th class="" sort="commission">Commission</th>
+                <th class="">Sign up</th>
+                <th class="">Paid Workroom</th>
+                <th class="col-name" sort="createdAt">Created Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="ref in referrals.content">
+                <td class="color-green">{{ref.referralId}}</td>
+                <td>{{ref.email}}</td>
+                <td>{{ref.description}}</td>
+                <td >{{(ref.commission | number) || '-'}}%</td>
+                <td>{{ref.signUpCount}}</td>
+                <td>{{ref.paidWorkRoomCount}}</td>
+                <td class="col-date">{{ref.createdAt | amDateFormat : 'll' }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table-static ng-if="referrals.totalElements == 0">ไม่มี referral code</table-static>
+        </div>
+      </div>
+      <nav class="text-center" aria-label="Page navigation">
+        <pagination ng-model="referrals" callback="load"></pagination>
+      </nav>
+    </div>
+  </div>
+</div>

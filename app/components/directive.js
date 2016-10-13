@@ -1367,6 +1367,86 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             }
         };
     }])
+    .directive('choicePicker', ['DataService', function (DataService) {
+        return {
+            restrict: 'AE',
+            scope: {
+                singularEndpointName: '@singularEndpointName',
+                displayBy: "@displayBy", //key to display the Object by (ex. Category endpoint, show by 'categoryName')
+                endpointName: '@endpointName',
+                baseClass: '@baseClass',       // str base class for buttons (defaults to btn-width-max btn-minimal)
+                maxColumns: '=?maxColumns',    //Maximum column to show per row
+                maxSelected: '=?maxSelected',  //Maximum selectable
+                model: '=ngModel'              //data output
+            },
+            templateUrl: 'components/templates/choice-picker.html',
+            link: function (scope, elem, attrs, form) {
+                if (!scope.maxColumns) {
+                    scope.maxColumns = 4;
+                }
+
+                if(!scope.singularEndpointName){
+                    scope.singularEndpointName = scope.endpointName.toLowerCase().replace(/ies$/, 'y').replace(/s$/,'');
+                }
+                
+                if(!scope.baseClass){
+                    scope.baseClass = 'btn-width-max btn-minimal';
+                }
+
+                if (!scope.maxSelected) {
+                    scope.maxSelected = 3;
+                }
+
+                if (!scope.model) {
+                    scope.model = [];
+                }
+                DataService['get' + scope.endpointName]().then(function (cats) {
+                    scope.chunk = _.chunk(cats.data, Number(scope.maxColumns));
+                    console.log(scope.chunk)
+                    update();
+                });
+
+                var update = function () {
+                    if (_.isNil(scope.model) || _.isNil(scope.chunk)) {
+                        return;
+                    }
+                    console.log(scope.model, scope.chunk);
+                    _.forEach(scope.chunk, function (chunk) {
+                        _.forEach(chunk, function (so) {
+                            if (_.findIndex(scope.model, function (e) {
+                                return e[scope.singularEndpointName + "Id"] == so[scope.singularEndpointName + "Id"];
+                            }) >= 0) {
+                                so._selected = true;
+                            } else {
+                                so._selected = false;
+                            }
+                        });
+                    });
+                };
+
+                scope.$watch('model', update);
+
+                scope.activate = function (so) {
+                    if (so._selected) {
+                        so._selected = false;
+                        _.remove(scope.model, function (o) {
+                            return _.get(o, scope.singularEndpointName + "Id") == _.get(so, scope.singularEndpointName + "Id");
+                        });
+                    } else {
+                        if (scope.model.length < scope.maxSelected) {
+                            so._selected = true;
+                            scope.model.push(so);
+                        }
+                    }
+                };
+
+                scope.getValue = function (obj) {
+                    
+                    return _.get(obj, scope.displayBy);
+                };
+            }
+        };
+    }])
     .directive('uploaderMulti', ['$uploader', function ($uploader) {
         return {
             restrict: 'AE',

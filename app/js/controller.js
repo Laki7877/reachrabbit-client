@@ -944,7 +944,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
     });
 
 angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
-    .controller('CampaignListController', ['$scope', 'CampaignService', 'DataService', 'ExampleCampaigns', function ($scope, CampaignService, DataService, ExampleCampaigns) {
+    .controller('CampaignListController', function ($scope, CampaignService, DataService, ExampleCampaigns) {
         $scope.myCampaign = [];
         $scope.filters = [
             {
@@ -980,12 +980,11 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
 
         //Example campaign section
         $scope.exampleCampaign = ExampleCampaigns;
-    }])
-    .controller('CampaignExampleController', ['$scope', '$stateParams', 'ExampleCampaigns', function ($scope, $stateParams, ExampleCampaigns) {
+    })
+    .controller('CampaignExampleController', function ($scope, $stateParams, ExampleCampaigns) {
         $scope.exampleCampaign = ExampleCampaigns[$stateParams.exampleId];
-    }])
-    .controller('CampaignDetailController', ['$scope', '$rootScope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', '$uibModal', 'NcAlert', 'validator', '$state', 'util',
-        function ($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, $uibModal, NcAlert, validator, $state, util) {
+    })
+    .controller('CampaignDetailController', function ($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, $uibModal, NcAlert, validator, $state, util) {
             //initial form data
             $scope.alert = new NcAlert();
             $scope.editOpenState = $stateParams.editOpenState;
@@ -1093,6 +1092,12 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                         //ensure non null
                         $scope.formData.keywords = $scope.formData.keywords || [];
 
+                        
+                        $scope.formData.objectiveArray = [];
+                        if($scope.formData.objective){
+                             $scope.formData.objectiveArray.push($scope.formData.objective);
+                        }
+
                         if (!$scope.formData.brand) {
                             $scope.formData.brand = UserProfile.get().brand;
                         }
@@ -1148,10 +1153,26 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 }
                 return $scope.formData.status === 'Open';
             };
+            
+            $scope.$watch('formData.objectiveArray+formData.productName', function(t){
+                $scope.formData.title = $scope.formData.productName;
+                if($scope.formData.objectiveArray && $scope.formData.objectiveArray.length > 0){
+                    $scope.formData.title = $scope.formData.objectiveArray[0].objectiveName.replace("สินค้า", "") + ' ' + $scope.formData.productName;
+                }
+                
+            });
 
             $scope.save = function (formData, mediaBooleanDict, mediaObjectDict, status) {
                 formData.brand = UserProfile.get().brand;
                 formData.status = status;
+                
+
+                if(formData.objectiveArray.length > 0){
+                    formData.objective = formData.objectiveArray[0];
+                }else{
+                    formData.objective = null;
+                }
+                
 
                 if (formData.website && formData.website.length > 1 && !formData.website.startsWith("http")) {
                     formData.website = "http://" + formData.website;
@@ -1189,7 +1210,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
             };
 
         }
-    ])
+    )
     .controller('CampaignDashboardController', ['$scope', '$rootScope', '$stateParams', 'CampaignService', 'DataService', '$filter', 'UserProfile', '$uibModal', 'NcAlert', 'validator', '$state', 'util',
         function ($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, $uibModal, NcAlert, validator, $state, util) {
             //initial form data

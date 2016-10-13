@@ -557,6 +557,12 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             },
             getBudgets: function () {
                 return $http.get("/data/budgets");
+            },
+            getObjectives: function(){
+                return $http.get('/data/campaignobjectives');
+            },
+            getWorkTypes: function(){
+                return $http.get('/data/worktypes');
             }
         };
     }])

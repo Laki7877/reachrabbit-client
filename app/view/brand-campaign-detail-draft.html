@@ -27,28 +27,14 @@
                           เป้าหมายของงาน <i class="fa fa-question-circle"></i>
                         </div>
                         <div class="card-body-content">
-                            <div class="row">
-                                <div class="col-xs-3 col">
-                                    <button class="btn-secondary btn-width-max">
-                                        รีวิวสินค้า
-                                    </button>
-                                </div>
-                                <div class="col-xs-3 col">
-                                    <button class="btn-secondary btn-width-max">
-                                      สอนวิธีใช้
-                                    </button>
-                                </div>
-                                <div class="col-xs-3 col">
-                                    <button class="btn-secondary btn-width-max">
-                                      Tie-in
-                                    </button>
-                                </div>
-                                <div class="col-xs-3 col">
-                                    <button class="btn-secondary btn-width-max">
-                                      ฝากแชร์
-                                    </button>
-                                </div>
-                            </div>
+                           <choice-picker
+                            max-columns="4"
+                            display-by="objectiveName"
+                            max-selected="1"
+                            base-class="btn-width-max"
+                            endpoint-name="Objectives"
+                            ng-model="formData.objectiveArray">
+                            </choice-picker>
                         </div>
                     </div>
 
@@ -133,7 +119,7 @@
                                 ชื่อสินค้า / บริการ <i class="fa fa-question-circle"></i>
                             </div>
                             <div class="card-body-content">
-                                <input name="title" type="text" required ng-model="formData.title" class="form-control" maxlength="60" placeholder="ชื่อสินค้า หรือ บริการ">
+                                <input name="title" type="text" required ng-model="formData.productName" class="form-control" maxlength="60" placeholder="ชื่อสินค้า หรือ บริการ">
                                 <div input-error></div>
                             </div>
                         </div>

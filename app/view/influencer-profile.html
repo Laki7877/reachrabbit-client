@@ -55,11 +55,24 @@
             </div>
           </div>
 
-          <multi-category-selector
-            max-columns="4"
-            max-selected="3"
-            ng-model="formData.influencer.categories">
-          </multi-category-selector>
+
+          <div class="card-row multi-tag-selector">
+            <div class="card-body-content-label">
+                หมวดหมู่ที่สนใจ
+            </div>
+            <div class="card-body-content">
+                <label>คุณจะได้รับคำชวนตามสิ่งที่คุณเลือก (เลือกได้ 3 หัวข้อ)</label>
+                <choice-picker
+                  max-columns="4"
+                  display-by="categoryName"
+                  max-selected="3"
+                  endpoint-name="Categories"
+                  ng-model="formData.influencer.categories">
+                </choice-picker>
+            </div>
+        </div>
+
+          
 
           <div class="card-row" form-error="form.name">
             <div class="card-body-content-label with-input">

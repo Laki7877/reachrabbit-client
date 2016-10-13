@@ -9,20 +9,71 @@
     <div class="container">
       <card-campaign-header campaign="campaignNee">
       </card-campaign-header>
+
       <div class="card-campaign-description">
         <div class="card-body">
           <div class="card-row">
+            <div class="card-title col-xs-12">
+              <div class="card-title-content">
+                เป้าหมาย
+              </div>
+            </div>
+          </div>
+
+          <div class="card-row">
             <div class="card-body-content-label">
-              รายละเอียด
+              เป้าหมายของงาน
+            </div>
+            <div class="card-body-content">
+              {{ campaignNee.objective.objectiveName }}
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label">
+              รูปแบบงาน
+            </div>
+            <div class="card-body-content work-type">
+              <div class="work-type-item" ng-repeat="workType in campaignNee.workType">
+                                  <i class="fa" ng-class="{'fa-play-circle-o': workType.workTypeId == 2, 'fa-magic': workType.workTypeId == 3, 'fa-picture-o': workType.workTypeId == 1}"></i>
+                                      <span>{{workType.workTypeName}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-row">
+            <div class="card-body-content-label">
+              สิ่งที่ต้องทำ
             </div>
             <div class="card-body-content pre" ng-if="campaignNee.description.length > 0">{{ campaignNee.description }}</div>
           </div>
-          <div class="card-row" ng-if="campaignNee.keyword.length > 0">
+
+        </div>
+      </div>
+
+      <div class="card-campaign-description">
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-title col-xs-12">
+              <div class="card-title-content">
+                รายละเอียด
+              </div>
+            </div>
+          </div>
+          <div class="card-row">
             <div class="card-body-content-label">
-              Keyword สำคัญ
+              ชื่อสินค้า / บริการ
             </div>
             <div class="card-body-content">
-              {{ campaignNee.keyword }}
+              {{ campaignNee.productName }}
+            </div>
+          </div>
+          <div class="card-row" ng-if="campaignNee.campaignResources.length > 0">
+            <div class="card-body-content-label">
+              รูปประกอบ
+            </div>
+            <div class="card-body-content">
+              <img ng-repeat="campaignImage in campaignNee.campaignResources" ng-src="{{ campaignImage.url }}" class="description-image"/>
             </div>
           </div>
           <div class="card-row" ng-if="campaignNee.website.length > 0">
@@ -33,16 +84,10 @@
               <a ng-href="{{campaignNee.website}}" target="_blank">{{ campaignNee.website }}</a>
             </div>
           </div>
-          <div class="card-row">
-            <div class="card-body-content-label">
-              รูปประกอบ
-            </div>
-            <div class="card-body-content">
-              <img ng-repeat="campaignImage in campaignNee.campaignResources" ng-src="{{ campaignImage.url }}" class="description-image"/>
-            </div>
-          </div>
         </div>
       </div>
+
+
       <div class="card-campaign-description" ng-if="campaignNee.status !== 'Draft'">
         <div class="card-body">
           <div class="card-row text-center">

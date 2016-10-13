@@ -27,39 +27,87 @@
       <card-campaign-header cute-bunny-hide campaign="campaignNee">
       </card-campaign-header>
 
-      <div cute-bunny-hide class="card-campaign-description">
-        <div class="card-body">
-          <div class="card-row">
-            <div class="card-body-content-label">
-              รายละเอียด
+      <div cute-bunny-hide>
+
+        <div class="card-campaign-description">
+          <div class="card-body">
+            <div class="card-row">
+              <div class="card-title col-xs-12">
+                <div class="card-title-content">
+                  เป้าหมาย
+                </div>
+              </div>
             </div>
-            <div class="card-body-content pre" ng-if="campaignNee.description.length > 0">{{ campaignNee.description }}</div>
+
+            <div class="card-row">
+              <div class="card-body-content-label">
+                เป้าหมายของงาน
+              </div>
+              <div class="card-body-content">
+                {{ campaignNee.objective.objectiveName }}
+              </div>
+            </div>
+
+            <div class="card-row">
+              <div class="card-body-content-label">
+                รูปแบบงาน
+              </div>
+              <div class="card-body-content work-type">
+                <div class="work-type-item" ng-repeat="workType in campaignNee.workType">
+                                    <i class="fa" ng-class="{'fa-play-circle-o': workType.workTypeId == 2, 'fa-magic': workType.workTypeId == 3, 'fa-picture-o': workType.workTypeId == 1}"></i>
+                                        <span>{{workType.workTypeName}}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-row">
+              <div class="card-body-content-label">
+                สิ่งที่ต้องทำ
+              </div>
+              <div class="card-body-content pre" ng-if="campaignNee.description.length > 0">{{ campaignNee.description }}</div>
+            </div>
+
           </div>
-          <div class="card-row" ng-if="campaignNee.keyword.length > 0">
-            <div class="card-body-content-label">
-              Keyword สำคัญ
+        </div>
+
+        <div class="card-campaign-description">
+          <div class="card-body">
+            <div class="card-row">
+              <div class="card-title col-xs-12">
+                <div class="card-title-content">
+                  รายละเอียด
+                </div>
+              </div>
             </div>
-            <div class="card-body-content">
-              {{ campaignNee.keyword }}
+            <div class="card-row">
+              <div class="card-body-content-label">
+                ชื่อสินค้า / บริการ
+              </div>
+              <div class="card-body-content">
+                {{ campaignNee.productName }}
+              </div>
             </div>
-          </div>
-          <div class="card-row" ng-if="campaignNee.website.length > 0">
-            <div class="card-body-content-label">
-              เว็บไซต์ของสินค้า
+            <div class="card-row" ng-if="campaignNee.campaignResources.length > 0">
+              <div class="card-body-content-label">
+                รูปประกอบ
+              </div>
+              <div class="card-body-content">
+                <img ng-repeat="campaignImage in campaignNee.campaignResources" ng-src="{{ campaignImage.url }}" class="description-image"/>
+              </div>
             </div>
-            <div class="card-body-content">
-              <a ng-href="{{campaignNee.website}}" target="_blank">{{ campaignNee.website }}</a>
-            </div>
-          </div>
-          <div class="card-row" ng-if="campaignNee.campaignResources.length > 0">
-            <div class="card-body-content-label">
-              รูปประกอบ
-            </div>
-            <div class="card-body-content">
-              <img ng-repeat="campaignImage in campaignNee.campaignResources" ng-src="{{ campaignImage.url }}" class="description-image"/>
+            <div class="card-row" ng-if="campaignNee.website.length > 0">
+              <div class="card-body-content-label">
+                เว็บไซต์ของสินค้า
+              </div>
+              <div class="card-body-content">
+                <a ng-href="{{campaignNee.website}}" target="_blank">{{ campaignNee.website }}</a>
+              </div>
             </div>
           </div>
         </div>
+
+
+
       </div>
 
       <card-brand-profile cute-bunny-hide ng-model="campaignNee.brand"></card-brand-profile>
@@ -72,7 +120,7 @@
             <button class="btn-primary btn-width-lg btn-with-margin" ng-if="!isApply" ng-click="sendProposal()">
                 <i class="fa fa-paper-plane"></i> ยื่นข้อเสนอ
             </button>
-            <button class="btn-primary btn-width-md" ng-if="isApply" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">
+            <button class="btn-primary btn-width-lg" ng-if="isApply" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">
               <i class="fa fa-paper-plane"></i> ส่งข้อความ
           </button>
         </div>

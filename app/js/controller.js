@@ -1772,7 +1772,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     //Tell raven about the user
                     Raven.setUserContext(UserProfile.get());
                     //Redirect
-                    $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+                    $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
                     var bounce = '/influencer.html#/influencer-campaign-list';
                     if ($location.search().bounce_route) {
                         bounce = '/influencer.html#' + $location.search().bounce_route;
@@ -1790,7 +1790,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                 .then(function (response) {
                     // console.log('Response', response.data);
                     if (response.data.token) {
-                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
 
                         $window.localStorage.token = response.data.token;
                         AccountService.getProfile()
@@ -1863,7 +1863,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     .then(function (response) {
                         // console.log('Response', response.data);
                         if (response.data.token) {
-                            $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+                            $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
 
                             $window.localStorage.token = response.data.token;
                             AccountService.getProfile()

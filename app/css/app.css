@@ -11326,6 +11326,10 @@ ul.payment-methods {
 .layout-brand .container {
   width: 970px;
 }
+.layout-brand .view-brand-campaign-list .page-header {
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
 .layout-brand .view-brand-campaign-list .page-header .form-group,
 .layout-brand .view-brand-campaign-list .page-header .btn,
 .layout-brand .view-brand-campaign-list .page-header .btn-primary,
@@ -11335,7 +11339,7 @@ ul.payment-methods {
 .layout-brand .view-brand-campaign-list .page-header .btn-clean,
 .layout-brand .view-brand-campaign-list .page-header .btn-trace,
 .layout-brand .view-brand-campaign-list .page-header .btn-social {
-  transform: translateY(-5px);
+  transform: translateY(-7px);
 }
 .layout-brand .view-brand-campaign-list .empty-state {
   border: 1px dashed #d8dfe7;

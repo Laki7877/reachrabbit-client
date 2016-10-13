@@ -1371,6 +1371,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
         return {
             restrict: 'AE',
             scope: {
+                singularEndpointName: '@singularEndpointName',
                 displayBy: "@displayBy", //key to display the Object by (ex. Category endpoint, show by 'categoryName')
                 endpointName: '@endpointName',
                 baseClass: '@baseClass',       // str base class for buttons (defaults to btn-width-max btn-minimal)
@@ -1382,6 +1383,10 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
             link: function (scope, elem, attrs, form) {
                 if (!scope.maxColumns) {
                     scope.maxColumns = 4;
+                }
+
+                if(!scope.singularEndpointName){
+                    scope.singularEndpointName = scope.endpointName.toLowerCase().replace(/ies$/, 'y').replace(/s$/,'');
                 }
                 
                 if(!scope.baseClass){
@@ -1409,7 +1414,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                     _.forEach(scope.chunk, function (chunk) {
                         _.forEach(chunk, function (so) {
                             if (_.findIndex(scope.model, function (e) {
-                                return e.categoryId == so.categoryId;
+                                return e[scope.singularEndpointName + "Id"] == so[scope.singularEndpointName + "Id"];
                             }) >= 0) {
                                 so._selected = true;
                             } else {
@@ -1425,7 +1430,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                     if (so._selected) {
                         so._selected = false;
                         _.remove(scope.model, function (o) {
-                            return _.get(o, 'id') == _.get(so, 'id');
+                            return _.get(o, scope.singularEndpointName + "Id") == _.get(so, scope.singularEndpointName + "Id");
                         });
                     } else {
                         if (scope.model.length < scope.maxSelected) {

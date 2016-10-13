@@ -325,6 +325,12 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             if (campaign.proposalDeadline) {
                 campaign.proposalDeadline = moment(campaign.proposalDeadline, 'YYYY-MM-DD HH:mm').toDate();
             }
+
+            campaign.workTypeMap = {};
+            campaign.workType.forEach(function(workType){
+                campaign.workTypeMap[workType.workTypeId] = true;
+            });
+
             return campaign;
         };
 
@@ -334,6 +340,13 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     position: index,
                     resource: resource
                 };
+            });
+
+            campaign.workType = [];
+            Object.keys(campaign.workTypeMap).forEach(function(id){
+                if(!campaign.workTypeMap[id]) return;
+                var obj = { workTypeId: id };
+                campaign.workType.push(obj);
             });
 
             return campaign;

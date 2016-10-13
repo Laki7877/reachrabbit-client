@@ -1043,6 +1043,10 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
             };
 
             //Fetch initial datasets
+            DataService.getWorkTypes()
+            .then(function(g){
+                $scope.workTypes = g.data;
+            });
             DataService.getMedium()
                 .then(function (response) {
                     $scope.medium = response.data;

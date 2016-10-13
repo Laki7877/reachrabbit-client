@@ -44,11 +44,9 @@
                 รูปแบบงาน
               </div>
               <div class="card-body-content work-type">
-                <div class="work-type-item">
-                  <i class="fa fa-picture-o fa-fw"></i><span>รูป</span>
-                </div>
-                <div class="work-type-item">
-                  <i class="fa fa-play-circle-o fa-fw"></i><span>วีดีโอ</span>
+                <div class="work-type-item" ng-repeat="workType in campaignNee.workType">
+                                    <i class="fa" ng-class="{'fa-play-circle-o': workType.workTypeId == 2, 'fa-magic': workType.workTypeId == 3, 'fa-picture-o': workType.workTypeId == 1}"></i>
+                                        <span>{{workType.workTypeName}}</span>
                 </div>
               </div>
             </div>

@@ -2147,16 +2147,8 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
                     $scope.referrals = response.data;
                 });
         };
-        $scope.save = function() {
-            ReferralService.create($scope.formData)
-                .then(function(res) {
-                    $scope.formData = {};
-                    $scope.load($scope.params);
-                    $scope.alert.success('บันทึกข้อมูลสำเร็จเรียบร้อย');
-                })
-                .catch(function(e) {
-                    $scope.alert.danger(e.data.message);
-                });
+        $scope.save = function(row) {
+            //TODO
         };
         //Init
         $scope.load({

@@ -145,7 +145,7 @@
                   </tr>
                 </table>
                 <p>
-                  <button ng-disabled="!wallet.proposals" ng-click="requestPayout()" class="btn btn-primary btn-width-max">ถอนเงิน</button>
+                  <button ng-disabled="!wallet.proposals || !isVerify" ng-click="requestPayout()" class="btn btn-primary btn-width-max">ถอนเงิน</button>
                 </p>
                 <div class="text-center">
                   <a ui-sref="influencer-payout-history">ดูประวัติการถอนเงิน</a>

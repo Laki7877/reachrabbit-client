@@ -618,6 +618,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
 
         AccountService.getProfile().then(function (profile) {
             UserProfile.set(profile.data);
+            $scope.isVerify = profile.data.isVerify;
             $scope.formData.bank = profile.data.influencer.bank;
             $scope.formData.accountNumber = profile.data.influencer.accountNumber;
             $scope.formData.accountName = profile.data.influencer.accountName;

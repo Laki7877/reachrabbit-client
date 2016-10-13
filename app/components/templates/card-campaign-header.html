@@ -24,7 +24,7 @@
           ช่องทางโปรโมท
         </div>
         <div class="card-info-content">
-          <span ng-repeat="media in campaign.media track by $index" ng-class="'icon-' + media.mediaId"></span>
+          <span ng-repeat="media in campaign.media track by $index" class="{{'icon-' + media.mediaId}}"></span>
           <span ng-if="!campaign.media || campaign.media.length == 0">-</span>
         </div>
       </div>

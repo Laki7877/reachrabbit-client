@@ -232,7 +232,6 @@ th {
   .card-title .card-title-content,
   .social-media-profile .card-overview .card-info strong,
   .proposal-modal .modal-title,
-  .layout-brand .view-brand-campaign-list .page-header h1,
   .layout-brand .view-brand-campaign-list .empty-state,
   .facebook-profile .card-overview .card-info strong,
   .instagram-profile .card-overview .card-info strong,
@@ -250,7 +249,6 @@ th {
   .card-title .card-title-content,
   .social-media-profile .card-overview .card-info strong,
   .proposal-modal .modal-title,
-  .layout-brand .view-brand-campaign-list .page-header h1,
   .layout-brand .view-brand-campaign-list .empty-state,
   .facebook-profile .card-overview .card-info strong,
   .instagram-profile .card-overview .card-info strong,
@@ -1243,7 +1241,6 @@ h6,
 .workroom .card-proposal-detail .card-price,
 .workroom .card-campaign-thumbnail .card-body,
 .proposal-modal .modal-title,
-.layout-brand .view-brand-campaign-list .page-header h1,
 .layout-brand .view-brand-campaign-list .empty-state,
 .facebook-profile .card-overview .card-info strong,
 .facebook-profile .card-gallery .card-gallery-info .card-info .card-content,
@@ -1302,7 +1299,6 @@ h3,
 .card-title .card-title-content,
 .social-media-profile .card-overview .card-info strong,
 .proposal-modal .modal-title,
-.layout-brand .view-brand-campaign-list .page-header h1,
 .layout-brand .view-brand-campaign-list .empty-state,
 .facebook-profile .card-overview .card-info strong,
 .instagram-profile .card-overview .card-info strong,
@@ -1376,8 +1372,7 @@ h1,
 }
 h2,
 .h2,
-.zone-header .with-history-back h1,
-.layout-brand .view-brand-campaign-list .page-header h1 {
+.zone-header .with-history-back h1 {
   font-size: 30px;
 }
 h3,
@@ -7830,8 +7825,7 @@ h1 {
   font-size: 32px;
 }
 h2,
-.zone-header .with-history-back h1,
-.layout-brand .view-brand-campaign-list .page-header h1 {
+.zone-header .with-history-back h1 {
   font-family: 'Kanit', sans-serif;
   font-weight: normal;
   font-size: 24px;
@@ -11332,6 +11326,10 @@ ul.payment-methods {
 .layout-brand .container {
   width: 970px;
 }
+.layout-brand .view-brand-campaign-list .page-header {
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
 .layout-brand .view-brand-campaign-list .page-header .form-group,
 .layout-brand .view-brand-campaign-list .page-header .btn,
 .layout-brand .view-brand-campaign-list .page-header .btn-primary,
@@ -11341,14 +11339,14 @@ ul.payment-methods {
 .layout-brand .view-brand-campaign-list .page-header .btn-clean,
 .layout-brand .view-brand-campaign-list .page-header .btn-trace,
 .layout-brand .view-brand-campaign-list .page-header .btn-social {
-  transform: translateY(-5px);
+  transform: translateY(-7px);
 }
 .layout-brand .view-brand-campaign-list .empty-state {
   border: 1px dashed #d8dfe7;
   color: #8692a8;
 }
 .layout-brand .view-brand-campaign-list .example-campaign {
-  margin-top: 45px;
+  margin-top: 50px;
 }
 .layout-brand .view-brand-campaign-list .example-campaign .page-header {
   margin-bottom: 10px;

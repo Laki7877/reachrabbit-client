@@ -44,22 +44,11 @@
                         </div>
                         <div class="card-body-content">
                             <h5>เลือกรูปแบบของงานที่ต้องการให้ Influencer สร้าง</h5>
-                            <div class="checkbox checkbox-inline work-type">
+                            <div class="checkbox checkbox-inline work-type" ng-repeat="workType in workTypes">
                                 <label>
-                                    <input type="checkbox">
-                                    <i class="fa fa-picture-o"></i><span>รูป</span>
-                                </label>
-                            </div>
-                            <div class="checkbox checkbox-inline work-type">
-                                <label>
-                                    <input type="checkbox">
-                                    <i class="fa fa-play-circle-o"></i><span>วีดีโอ</span>
-                                </label>
-                            </div>
-                            <div class="checkbox checkbox-inline work-type">
-                                <label>
-                                    <input type="checkbox">
-                                    <i class="fa fa-magic"></i><span>อื่นๆ</span>
+                                    <input type="checkbox" ng-model="formData.workTypeMap[workType.workTypeId]"/>
+                                    <i class="fa" ng-class="{'fa-play-circle-o': workType.workTypeId == 2, 'fa-magic': workType.workTypeId == 3, 'fa-picture-o': workType.workTypeId == 1}"></i>
+                                        <span>{{workType.workTypeName}}</span>
                                 </label>
                             </div>
                         </div>

@@ -1374,7 +1374,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                 singularEndpointName: '@singularEndpointName',
                 displayBy: "@displayBy", //key to display the Object by (ex. Category endpoint, show by 'categoryName')
                 endpointName: '@endpointName',
-                baseClass: '@baseClass',       // str base class for buttons (defaults to btn-width-max btn-minimal)
+                baseClass: '@baseClass',       //str base class for buttons (defaults to btn-width-max btn-minimal)
                 maxColumns: '=?maxColumns',    //Maximum column to show per row
                 maxSelected: '=?maxSelected',  //Maximum selectable
                 model: '=ngModel'              //data output

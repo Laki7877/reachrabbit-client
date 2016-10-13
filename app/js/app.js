@@ -69,7 +69,7 @@ angular.module('reachRabbitApp', [
       mainResource: {
         url: 'images/example-campaign/main-picture.png'
       },
-      title: 'Rabbit Lipstick 7 Days 7 Looks',
+      title: 'รีวิว Rabbit Lipstick 7 Days 7 Looks',
       media: [
         { mediaId: 'facebook' },
         { mediaId: 'youtube' },

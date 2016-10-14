@@ -31,7 +31,7 @@
                             max-columns="4"
                             display-by="objectiveName"
                             max-selected="1"
-                            base-class="btn-width-max"
+                            base-class="btn-width-max btn-objective"
                             endpoint-name="Objectives"
                             ng-model="formData.objectiveArray">
                             </choice-picker>
@@ -46,7 +46,7 @@
                             <h5>เลือกรูปแบบของงานที่ต้องการให้ Influencer สร้าง</h5>
                             <div class="checkbox checkbox-inline work-type" ng-repeat="workType in workTypes">
                                 <label>
-                                    <input type="checkbox" ng-model="formData.workTypeMap[workType.workTypeId]"/>
+                                    <input class="input-worktype" type="checkbox" ng-model="formData.workTypeMap[workType.workTypeId]"/>
                                     <i class="fa" ng-class="{'fa-play-circle-o': workType.workTypeId == 2, 'fa-magic': workType.workTypeId == 3, 'fa-picture-o': workType.workTypeId == 1}"></i>
                                         <span>{{workType.workTypeName}}</span>
                                 </label>
@@ -62,7 +62,8 @@
                             <h5>เลือกช่องทางที่คุณอยากให้ Influencer โพส</h5>
                             <div class="checkbox checkbox-inline" ng-repeat="media in medium">
                                 <label>
-                                    <input type="checkbox" ng-model="mediaBooleanDict[media.mediaId]">
+                                    <input class="input-media
+                                    " type="checkbox" ng-model="mediaBooleanDict[media.mediaId]">
                                     <span class="icon-{{media.mediaId}}"></span> {{media.mediaName}}
                                 </label>
                             </div>

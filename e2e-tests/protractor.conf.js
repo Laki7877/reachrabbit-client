@@ -14,7 +14,7 @@ exports.config = {
     params: {
         brand_login: {
             user: 'uniqlo@brands.org',
-            password: 'test11121'
+            password: 'test1234'
         },
         god_influencer: {
             user: 'influencer@reachrabbit.com',

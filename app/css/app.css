@@ -8589,7 +8589,7 @@ input:-moz-placeholder {
 .card-profile a.link-to-profile {
   display: inline-block;
   float: right;
-  margin-top: -20px;
+  margin-top: 0px;
 }
 .card-profile .profile-web {
   display: block;
@@ -8611,6 +8611,15 @@ input:-moz-placeholder {
 }
 .card-profile .for-proposal-detail .social-icon {
   margin-top: 5px;
+}
+.card-profile .card-corner {
+  cursor: pointer;
+  position: absolute;
+  z-index: 10;
+  top: 0px;
+  right: 0px;
+  display: block;
+  padding: 0px 15px 0 0;
 }
 .card-campaign-header {
   position: relative;
@@ -11353,9 +11362,6 @@ ul.payment-methods {
 }
 .layout-brand .view-brand-campaign-detail-example .card-corner {
   display: none;
-}
-.layout-brand .view-brand-campaign-detail-published .card-profile a.link-to-profile {
-  margin-top: -60px;
 }
 .layout-brand .view-brand-profile .input-upload-image {
   width: 127px;

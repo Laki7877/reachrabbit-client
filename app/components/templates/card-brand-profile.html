@@ -4,6 +4,7 @@
       <img ng-src="{{ profile.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="img-responsive"/>
     </div>
     <div class="card-title">
+      <ng-transclude></ng-transclude>
       <div class="card-title-content">
         เกี่ยวกับ {{ profile.brandName }}
       </div>
@@ -11,7 +12,6 @@
     <div class="col-xs-10">
       <div class="static-textarea pre">{{ profile.about || "ยังไม่มีข้อมูล" }}</div>
       <a ng-href="{{profile.website | maskUrl }}" target="_blank"> {{ profile.website | maskUrl }}</a>
-      <ng-transclude></ng-transclude>
     </div>
   </div>
 </div>

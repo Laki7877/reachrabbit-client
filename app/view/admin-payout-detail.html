@@ -21,16 +21,18 @@
                       <thead>
                         <th>ชื่องาน</th>
                         <th class="text-align-right">ราคาที่เสนอ (บาท)</th>
+                        <th class="text-align-right">หักภาษี ณ ที่จ่าย</th>
                         <th class="text-align-right">รายได้ (บาท) <a><i class="fa fa-question-circle color-grey"></i></a></th>
                       </thead>
                       <tbody>
                         <tr ng-repeat="row in tDoc">
                           <td class="col-campaign-name">{{row.title}}</td>
                           <td class="text-align-right">{{row.price | number:0}}</td>
+                          <td class="text-align-right">9,999</td>
                           <td class="text-align-right" ng-init='row.total = row.price + row.fee'>{{ (row.total ) | number: 0}}</td>
                         </tr>
                         <tr class="total-price">
-                          <td colspan="3">
+                          <td colspan="4">
                             <strong>รายได้รวม (1 รายการ) : {{ $root.sumReduce(tDoc, 'total') | number }} บาท</strong>
                           </td>
                         </tr>
@@ -97,6 +99,52 @@
 
               </div>
             </div>
+
+            <div class="card">
+              <div class="card-header">
+                ข้อมูลยืนยันตัวตน
+              </div>
+              <div class="card-body with-extra-padding">
+
+                <div class="card-row">
+                  <div class="card-body-content-label">
+                    ชื่อจริง
+                  </div>
+                  <div class="card-body-content">
+                    REPLACE ME
+                  </div>
+                </div>
+
+                <div class="card-row">
+                  <div class="card-body-content-label">
+                    ที่อยู่
+                  </div>
+                  <div class="card-body-content">
+                    REPLACE ME
+                  </div>
+                </div>
+
+                <div class="card-row">
+                  <div class="card-body-content-label">
+                    เลขประจำตัวประชาชน
+                  </div>
+                  <div class="card-body-content">
+                    REPLACE ME
+                  </div>
+                </div>
+
+                <div class="card-row">
+                  <div class="card-body-content-label">
+                    สำเนาบัตรประชาชน
+                  </div>
+                  <div class="card-body-content">
+                    REPLACE ME WITH IMAGE
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
         </div>
 
         <div class="col-xs-4">

@@ -2,6 +2,9 @@
 <div class="viewport view-influencer-wallet">
   <div class="zone-alert">
     <div nc-alert="alert"></div>
+    <div nc-alert type="warning" closable="false">
+      กรุณากรอกข้อมูลยืนยันตัวตนในหน้า Profile ให้ครบ ก่อนถอนเงิน <a ui-sref="influencer-profile">กดที่นี้เพื่อใส่ข้อมูลเพิ่ม</a>
+    </div>
   </div>
   <zone-header historyback="false">
     <h1>My Wallet</h1>
@@ -19,18 +22,20 @@
                 <table class="table with-no-margin" ng-if="wallet.proposals">
                   <thead>
                     <th>ชื่องาน</th>
-                    <th class="text-align-right">ราคาที่เสนอ (บาท)</th>
-                    <th class="text-align-right">รายได้ (บาท) <a><i uib-tooltip="รายได้ของคุณได้ทำการหักค่าธรรมเนียมในการใช้ระบบ 18% เราจะใช้ค่าธรรมเนียม เพื่อพัฒนาระบบ และหางานให้คุณอย่างต่อเนื่องค่ะ"
+                    <th class="text-align-right">ราคาที่เสนอ</th>
+                    <th class="text-align-right">หักภาษี ณ ที่จ่าย</th>
+                    <th class="text-align-right">รายได้ <a><i uib-tooltip="รายได้ของคุณได้ทำการหักค่าธรรมเนียมในการใช้ระบบ 18% เราจะใช้ค่าธรรมเนียม เพื่อพัฒนาระบบ และหางานให้คุณอย่างต่อเนื่องค่ะ"
                       tooltip-placement="left" class="fa fa-question-circle color-grey"></i></a></th>
                   </thead>
                   <tbody>
                     <tr ng-repeat="proposal in wallet.proposals">
                       <td class="col-campaign-name">{{proposal.campaign.title}}</td>
-                      <td class="text-align-right">{{ proposal.price | number:0 }} </td>
+                      <td class="text-align-right">{{ proposal.price | number:0 }}</td>
+                      <td class="text-align-right">9,999</td>
                       <td class="text-align-right" ng-init='proposal.income = proposal.price * PostDeductionFeeMultiplier'>{{ proposal.income | number :0 }}</td>
                     </tr>
                     <tr class="total-price">
-                      <td colspan="3">
+                      <td colspan="4">
                         <strong>รายได้รวม ({{ wallet.proposals.length | number: 0 }} รายการ ) : {{ $root.sumReduce(wallet.proposals, 'income') | number:0 }} บาท</strong>
                       </td>
                     </tr>

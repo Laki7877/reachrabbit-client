@@ -18,17 +18,20 @@
                     <table class="table with-no-margin">
                       <thead>
                         <th>ชื่องาน</th>
-                        <th class="text-align-right">ราคาที่เสนอ (บาท)</th>
-                        <th class="text-align-right">รายได้ (บาท) <a><i class="fa fa-question-circle color-grey"></i></a></th>
+                        <th class="text-align-right">ราคาที่เสนอ</th>
+                        <th class="text-align-right">หักภาษี ณ ที่จ่าย</th>
+                        <th class="text-align-right">รายได้ <a><i class="fa fa-question-circle color-grey" uib-tooltip="รายได้ของคุณได้ทำการหักค่าธรรมเนียมในการใช้ระบบ 18% เราจะใช้ค่าธรรมเนียม เพื่อพัฒนาระบบ และหางานให้คุณอย่างต่อเนื่องค่ะ"
+                          tooltip-placement="left"></i></a></th>
                       </thead>
                       <tbody>
                         <tr ng-repeat="row in tDoc">
                           <td class="col-campaign-name">{{row.title}}</td>
                           <td class="text-align-right">{{row.price | number:0}}</td>
+                          <td class="text-align-right">9,999</td>
                           <td class="text-align-right" ng-init='row.total = row.price + row.fee'>{{ (row.total ) | number: 0}}</td>
                         </tr>
                         <tr class="total-price">
-                          <td colspan="3">
+                          <td colspan="4">
                             <strong>รายได้รวม (1 รายการ) : {{ $root.sumReduce(tDoc, 'total') | number }} บาท</strong>
                           </td>
                         </tr>

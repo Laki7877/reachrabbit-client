@@ -33,8 +33,10 @@
                     <tr ng-repeat="proposal in wallet.proposals">
                       <td class="col-campaign-name">{{proposal.campaign.title}}</td>
                       <td class="text-align-right">{{ proposal.price | number:0 }}</td>
-                      <td class="text-align-right">9,999</td>
-                      <td class="text-align-right" ng-init='proposal.income = proposal.price * PostDeductionFeeMultiplier'>{{ proposal.income | number :0 }}</td>
+                      <td ng-if="proposal.campaign.brand.isCompany" ng-init="proposal.tax = proposal.price * BrandTaxFee " class="text-align-right">{{ proposal.tax | number:0 }}</td>
+                      <td ng-if="!proposal.campaign.brand.isCompany" class="text-align-right">na</td>
+                      <td ng-if="proposal.campaign.brand.isCompany" class="text-align-right" ng-init='proposal.income = proposal.price - proposal.tax - (proposal.price * InfluencerFee)'>{{ proposal.income | number :0 }}</td>
+                      <td ng-if="!proposal.campaign.brand.isCompany" class="text-align-right" ng-init='proposal.income = proposal.price * PostDeductionFeeMultiplier'>{{ proposal.income | number :0 }}</td>
                     </tr>
                     <tr class="total-price">
                       <td colspan="4">

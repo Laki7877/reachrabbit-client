@@ -94,6 +94,7 @@ angular.module('reachRabbitApp', [
   .constant('BusinessConfig', {
     MIN_FOLLOWER_COUNT: 1,
     INFLUENCER_FEE: 0.18,
+    BRAND_TAX_FEE: 0.03,
     INFLUENCER_BANK_TF_FEE: 30,
     DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"],
     PROTRACTOR_PORT: 9900,

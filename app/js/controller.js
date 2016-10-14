@@ -616,9 +616,10 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
         $scope.alert = new NcAlert();
         $scope.formData = {};
 
+
         AccountService.getProfile().then(function (profile) {
             UserProfile.set(profile.data);
-            $scope.isVerify = profile.data.isVerify;
+            $scope.isVerify = profile.data.influencer.isVerify;
             $scope.formData.bank = profile.data.influencer.bank;
             $scope.formData.accountNumber = profile.data.influencer.accountNumber;
             $scope.formData.accountName = profile.data.influencer.accountName;
@@ -1097,7 +1098,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                         //ensure non null
                         $scope.formData.keywords = $scope.formData.keywords || [];
 
-                        
+
                         $scope.formData.objectiveArray = [];
                         if($scope.formData.objective){
                              $scope.formData.objectiveArray.push($scope.formData.objective);
@@ -1158,26 +1159,26 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 }
                 return $scope.formData.status === 'Open';
             };
-            
+
             $scope.$watch('formData.objectiveArray+formData.productName', function(t){
                 $scope.formData.title = $scope.formData.productName;
                 if($scope.formData.objectiveArray && $scope.formData.objectiveArray.length > 0){
                     $scope.formData.title = $scope.formData.objectiveArray[0].objectiveName.replace("สินค้า", "") + ' ' + $scope.formData.productName;
                 }
-                
+
             });
 
             $scope.save = function (formData, mediaBooleanDict, mediaObjectDict, status) {
                 formData.brand = UserProfile.get().brand;
                 formData.status = status;
-                
+
 
                 if(formData.objectiveArray.length > 0){
                     formData.objective = formData.objectiveArray[0];
                 }else{
                     formData.objective = null;
                 }
-                
+
 
                 if (formData.website && formData.website.length > 1 && !formData.website.startsWith("http")) {
                     formData.website = "http://" + formData.website;

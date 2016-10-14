@@ -1,17 +1,19 @@
 <form name="form" novalidate>
 <div class="viewport view-influencer-wallet">
-  <div class="zone-alert">
+  <div class="zone-alert" cute-bunny-hide>
     <div nc-alert="alert"></div>
-    <div nc-alert type="warning" closable="false">
+    <div nc-alert type="warning" closable="false" ng-show="!isVerify">
       กรุณากรอกข้อมูลยืนยันตัวตนในหน้า Profile ให้ครบ ก่อนถอนเงิน <a ui-sref="influencer-profile">กดที่นี้เพื่อใส่ข้อมูลเพิ่ม</a>
     </div>
   </div>
   <zone-header historyback="false">
     <h1>My Wallet</h1>
   </zone-header>
+
   <div class="zone-body">
       <div class="container">
-        <div class="row">
+        <cute-bunny></cute-bunny>
+        <div class="row" cute-bunny-hide>
           <div class="col-xs-8">
             <div class="card">
               <div class="card-header">

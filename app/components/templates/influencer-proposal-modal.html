@@ -16,7 +16,7 @@
                 <input type="checkbox" ng-model="selectedMedia[media.mediaId]" ng-disabled="!profileHasMedia(media.mediaId)"/>
                 <span ng-if="profileHasMedia(media.mediaId)"><img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" /> {{ media.mediaName }}</span>
                 <span ng-if="!profileHasMedia(media.mediaId)"><img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" />  {{media.mediaName}}
-                    คุณยังไม่ได้เชื่อมต่อ <a ng-click="$close()" ui-sref="influencer-profile">เชือมต่อช่องทางนี้</a></span>
+                    คุณยังไม่ได้เชื่อมต่อ <a ng-click="$close()" ui-sref="influencer-profile">เชื่อมต่อช่องทางนี้</a></span>
             </label>
         </div>
 

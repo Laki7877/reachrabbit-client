@@ -24,6 +24,7 @@
                 <th class="">Influencer</th>
                 <th class="">Campaign</th>
                 <th class="">Price (Baht)</th>
+                <th class="">Profit (Baht)</th>
                 <th class="">Commission (%)</th>
                 <th class="">Commission (Baht)</th>
                 <th class="">วันที่เสร็จงาน</th>
@@ -38,8 +39,9 @@
                 <td>{{ref.influencer.user.name}}</td>
                 <td>{{ref.campaign.title}}</td>
                 <td>{{ref.price | number}}</td>
+                <td>{{ref.fee | number}}</td>
                 <td>{{ ref.campaign.brand.user.referral.commission | number }}%</td>
-                <td>{{ref.price - (ref.price * ref.campaign.brand.user.referral.commission / 100) | number}}</td>
+                <td>{{ref.fee * ref.campaign.brand.user.referral.commission / 100  | number}}</td>
                 <td>{{ref.completeDate | amDateFormat: 'll'}}</td>
                 <td>
                   <button ng-if="ref.isReferralPay" class="btn-secondary-active btn-width-md">Paid</button>

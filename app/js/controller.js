@@ -530,6 +530,11 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 .then(function (response) {
                     $scope.payout = response.data;
                     var _base = null;
+                    $scope.detail = {};
+                    $scope.detail.fullname = $scope.payout.influencerTransactionDocument[0].fullname;
+                    $scope.detail.address = $scope.payout.influencerTransactionDocument[0].address;
+                    $scope.detail.idCardNumber = $scope.payout.influencerTransactionDocument[0].idCardNumber;
+                    $scope.detail.idCard = $scope.payout.influencerTransactionDocument[0].idCard;
                     $scope.payout.influencerTransactionDocument
                         .sort(function (i, x) {
                             return i.documentId - x.documentId;

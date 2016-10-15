@@ -112,7 +112,7 @@
                     ชื่อจริง
                   </div>
                   <div class="card-body-content">
-                    REPLACE ME
+                    {{detail.fullname}}
                   </div>
                 </div>
 
@@ -121,7 +121,7 @@
                     ที่อยู่
                   </div>
                   <div class="card-body-content">
-                    REPLACE ME
+                    {{detail.address}}
                   </div>
                 </div>
 
@@ -130,7 +130,7 @@
                     เลขประจำตัวประชาชน
                   </div>
                   <div class="card-body-content">
-                    REPLACE ME
+                    {{detail.idCardNumber}}
                   </div>
                 </div>
 
@@ -139,7 +139,7 @@
                     สำเนาบัตรประชาชน
                   </div>
                   <div class="card-body-content">
-                    REPLACE ME WITH IMAGE
+                    <img ng-src="{{detail.idCard.url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
                   </div>
                 </div>
 

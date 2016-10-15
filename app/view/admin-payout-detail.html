@@ -28,8 +28,9 @@
                         <tr ng-repeat="row in tDoc">
                           <td class="col-campaign-name">{{row.title}}</td>
                           <td class="text-align-right">{{row.price | number:0}}</td>
-                          <td class="text-align-right">9,999</td>
-                          <td class="text-align-right" ng-init='row.total = row.price + row.fee'>{{ (row.total ) | number: 0}}</td>
+                          <td ng-if="row.tax" class="text-align-right">{{-row.tax | number:0}}</td>
+                          <td ng-if="!row.tax" class="text-align-right">-</td>
+                          <td class="text-align-right" ng-init='row.total = row.price + row.fee + (row.tax ? row.tax : 0) '>{{ (row.total ) | number: 0}}</td>
                         </tr>
                         <tr class="total-price">
                           <td colspan="4">

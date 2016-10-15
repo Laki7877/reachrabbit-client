@@ -551,9 +551,6 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                                 _base.tax = sortedDoc.amount;
                             }
                         });
-                        console.log($scope.tDoc);
-
-
                     if (UserProfile.get().influencer) {
                         return UserProfile.get();
                     }

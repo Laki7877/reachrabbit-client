@@ -2143,7 +2143,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
             sort: 'createdAt,desc'
         });
     }])
-    .controller('AdminReferralPaymentListController', ['$scope', 'ReferralService', 'NcAlert', function($scope, ReferralService, NcAlert) {
+    .controller('AdminReferralPaymentListController', ['$scope', 'ReferralService', 'NcAlert', '$uibModal', function($scope, ReferralService, NcAlert, $uibModal) {
         $scope.alert = new NcAlert();
         $scope.search = {};
         $scope.$watch('search.value', function(e) {
@@ -2158,6 +2158,17 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
         };
         $scope.save = function(row) {
             //TODO
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'components/templates/referral-payment-confirmation-modal.html',
+                size: 'sm'
+            });
+            modalInstance.result.then(function() {
+                ReferralService.postReferral(row.proposalId)
+                    .then(function() {
+                        $scope.load($scope.params);
+                    });
+            });
         };
         //Init
         $scope.load({

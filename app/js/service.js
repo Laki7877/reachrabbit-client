@@ -184,7 +184,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                             reject(err);
                         });
                 });
-            },  
+            },
             getAllInfluencer: function(params) {
                 return $q(function (resolve, reject) {
                     $http({
@@ -325,7 +325,13 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                     method: 'GET',
                     params: params
                 });
-            
+
+            },
+            postReferral: function(id) {
+              return $http({
+                  url: '/proposals/' + id + '/referral',
+                  method: 'PUT'
+              });
             },
             getAll: function(params) {
                 return $http({

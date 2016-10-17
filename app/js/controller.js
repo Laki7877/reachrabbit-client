@@ -543,7 +543,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                         .forEach(function (sortedDoc) {
                             if (sortedDoc.type == "Base") {
                                 var item = {
-                                    title: sortedDoc.wallet.proposals[0].campaign.title,
+                                    title: sortedDoc.proposal.campaign.title,
                                     price: sortedDoc.amount
                                 };
 
@@ -557,6 +557,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                                 _base.tax = sortedDoc.amount;
                             }
                         });
+                        console.log($scope.tDoc);
                     if (UserProfile.get().influencer) {
                         return UserProfile.get();
                     }

@@ -22,13 +22,13 @@
             <tbody>
               <tr ng-repeat="transaction in transactions.content">
                 <td class="col-date">{{ transaction.updatedAt | amDateFormat : 'll' }}</td>
-                <td class="col-campaign-name">{{ transaction.influencerTransactionDocument[0].wallet.proposals[0].influencer.user.name }}</td>
+                <td class="col-campaign-name">{{ transaction.influencerTransactionDocument[0].proposal.influencer.user.name }}</td>
                 <td class="col-status">
                   <span class="color-yellow" ng-if="transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอรับเงิน</span>
                   <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ได้รับเงินแล้ว</span>
                 </td>
                 <td>{{ transaction.transactionNumber }}</td>
-                <td class="col-rabbit-score">{{ transaction.influencerTransactionDocument[0].wallet.proposals.length || '0' }}</td>
+                <td class="col-rabbit-score">{{ transaction.proposalCount || '0' }}</td>
                 <td class="col-time">{{ transaction.amount | number: 0 }}</td>
                 <td class="col-button">
                   <button class="btn-secondary btn-minimal" ui-sref="admin-payout-detail({walletId: transaction.influencerTransactionDocument[0].walletId })">ดูรายละเอียด</button>

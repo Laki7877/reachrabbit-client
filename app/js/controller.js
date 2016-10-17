@@ -517,6 +517,13 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             $scope.params = data;
             TransactionService.getAll(_.extend(data, { type: 'Payout' })).then(function (response) {
                 $scope.transactions = response.data;
+                _.forEach($scope.transactions.content, function(item) {
+                    item.proposalCount = _.filter(item.influencerTransactionDocument, function(filter) {
+                        if(filter.type == "Base"){
+                            return filter;
+                        }
+                    }).length;
+                });
             });
         };
         $scope.load({

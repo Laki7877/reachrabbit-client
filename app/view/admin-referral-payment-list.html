@@ -27,7 +27,7 @@
                 <th class="" sort="fee">Profit</th>
                 <th class="text-center">Commission (%)</th>
                 <th class="text-center">Commission (฿)</th>
-                <th class="col-date" sort="completeDate">Date</th>
+                <th class="col-date" sort="completeDate">Complete Date</th>
                 <th></th>
               </tr>
             </thead>
@@ -42,7 +42,7 @@
                 <td>{{ref.fee | number}}</td>
                 <td class="text-center">{{ ref.campaign.brand.user.referral.commission | number }}%</td>
                 <td class="text-center">{{ref.fee * ref.campaign.brand.user.referral.commission / 100  | number}}</td>
-                <td class="col-date">{{ref.completeDate | amDateFormat: 'll'}}</td>
+                <td class="col-date"><span ng-if="ref.completeDate">{{ref.completeDate | amDateFormat: 'll'}}</span><span ng-if="!ref.completeDate">n/a</span></td>
                 <td class="col-button">
                   <button ng-if="ref.isReferralPay" class="btn-secondary-active btn-minimal">Paid</button>
                   <button ng-if="!ref.isReferralPay" class="btn-secondary btn-minimal" ng-click="save(ref)">Not Paid</button>

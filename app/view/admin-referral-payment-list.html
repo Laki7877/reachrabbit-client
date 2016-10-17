@@ -23,17 +23,17 @@
                 <th class="">Brand</th>
                 <th class="">Influencer</th>
                 <th class="">Campaign</th>
-                <th class="">Price</th>
-                <th class="">Profit</th>
+                <th class="" sort="price">Price</th>
+                <th class="" sort="fee">Profit</th>
                 <th class="text-center">Commission (%)</th>
                 <th class="text-center">Commission (฿)</th>
-                <th class="col-date">Date</th>
+                <th class="col-date" sort="completeDate">Date</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="ref in referrals.content">
-                <td class="color-green">{{ref.campaign.brand.user.referral.referralId}}</td>
+                <td class="color-green"><a ui-sref="admin-workroom({proposalId: ref.proposalId})">{{ref.campaign.brand.user.referral.referralId}}</a></td>
                 <td>{{ref.campaign.brand.user.referral.partner.email}}</td>
                 <td>{{ref.campaign.brand.brandName}}</td>
                 <td>{{ref.influencer.user.name}}</td>

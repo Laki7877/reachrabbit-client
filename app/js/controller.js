@@ -1452,7 +1452,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
               var sumEngagement = 0;
               _.forOwn($scope.mediaObjectDict, function(v,k) {
                 obj.media[k] = getDataByMedia(data, k);
-                sumEngagement += obj.media[k].sumEngagement;
+                sumEngagement += obj.media[k].sumEngagement || 0;
               });
 
               obj.sumCPE = (sumEngagement === 0) ? 0 : Math.round((obj.sumPrice / parseFloat(sumEngagement)) * 1000) / 1000.0;

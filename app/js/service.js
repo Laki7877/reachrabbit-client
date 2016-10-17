@@ -297,7 +297,7 @@ angular.module('reachRabbitApp.service', ['satellizer'])
                 return $http.get("/wallets");
             },
             getWalletBalance: function () {
-                return $http.get("/wallets/balance");
+                return $http.get("/wallets/amount");
             },
             requestPayout: function (doc) {
                 return $http.post('/wallets/payout', doc);

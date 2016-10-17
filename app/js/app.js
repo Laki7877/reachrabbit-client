@@ -260,19 +260,14 @@ angular.module('reachRabbitApp', [
               });
           } else if (UserProfile.get().role === "Influencer") {
             $rootScope.walletBalance = 0;
-            InfluencerAccountService.getWallet()
+            InfluencerAccountService.getWalletBalance()
               .then(function (walletResponse) {
-                var k = walletResponse.data.proposals;
-                $rootScope.wallet = walletResponse.data;
+                var k = walletResponse.data.amount;
                 if (!k) {
                   $rootScope.walletBalance = 0;
                   return;
                 }
-
-                $rootScope.walletBalance = k.reduce(function (p, c) {
-                  return (p + c.price);
-                }, 0) * (1 - BusinessConfig.INFLUENCER_FEE);
-
+                $rootScope.walletBalance = k;
               });
           }
 

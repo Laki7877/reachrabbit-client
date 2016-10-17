@@ -342,6 +342,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                                 } else {
                                     // from server
                                     $scope.msglist.push(res.data[i]);
+                                    $scope.msgHash[res.data[i].referenceId] = res.data[i];
                                 }
                             }
                         }

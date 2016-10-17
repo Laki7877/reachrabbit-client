@@ -53,7 +53,7 @@
             <div input-error></div>
           </div>
           <div class="checkbox">
-            <label><input type="checkbox" ng-model="formData.isCompany">สมัครและออกใบเสร็จในนามนิติบุคคล</label>
+            <label><input type="checkbox" ng-model="formData.isCompany" ng-model-options="{ updateOn: 'default blur' }">สมัครและออกใบเสร็จในนามนิติบุคคล</label>
           </div>
           <div class="form-group" form-error="form.companyName" ng-if="formData.isCompany">
             <label>ชื่อบริษัท</label>

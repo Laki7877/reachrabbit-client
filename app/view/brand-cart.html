@@ -130,7 +130,7 @@
                   </tr>
                 </table>
                 <p>
-                  <button ng-click="createTransaction(cart.proposals)" class="btn btn-primary btn-width-max">&nbsp ชำระเงิน <i class="fa fa-arrow-right"></i></button>
+                  <button ng-disabled="!cart" ng-click="createTransaction(cart.proposals)" class="btn btn-primary btn-width-max">&nbsp ชำระเงิน <i class="fa fa-arrow-right"></i></button>
                 </p>
                 <div class="text-center">
                   <a ui-sref="brand-transaction-history">ดูประวัติการสั่งซื้อ</a>

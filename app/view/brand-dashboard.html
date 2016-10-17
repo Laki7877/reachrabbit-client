@@ -45,7 +45,8 @@
                   CPE (ต้นทุนต่อ Engagement) <i class="fa fa-question-circle"></i>
                 </div>
                 <div class="card-info-content">
-                  {{dashboard.sumCPE | number}} บาท / คน
+                  <span ng-if="dashboard.sumCPE">{{dashboard.sumCPE | number}} บาท / คน</span>
+                  <span ng-if="!dashboard.sumCPE">-</span>
                 </div>
               </div>
             </div>

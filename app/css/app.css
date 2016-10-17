@@ -11363,6 +11363,12 @@ ul.payment-methods {
 .layout-brand .view-brand-campaign-detail-example .card-corner {
   display: none;
 }
+.layout-brand .view-brand-detail-draft {
+  padding-bottom: 60px;
+}
+.layout-brand .view-brand-campaign-detail-published {
+  padding-bottom: 60px;
+}
 .layout-brand .view-brand-profile .input-upload-image {
   width: 127px;
   height: 127px;

@@ -12,7 +12,7 @@
 
   <div class="zone-body">
       <div class="container">
-        <cute-bunny></cute-bunny
+        <cute-bunny></cute-bunny>
         <div class="row" cute-bunny-hide>
           <div class="col-xs-8">
             <div class="card">
@@ -71,14 +71,14 @@
                       <div class="col" form-error="form.bank">
                         <label>ธนาคาร</label>
                         <div class="input-dropdown">
-                          <select class="form-control" name="bank" ng-model="formData.bank" ng-options="bank as bank.bankName for bank in bankOptions track by bank.bankId" required></select>
+                          <select class="form-control" ng-disabled="!wallet.proposals || !isVerify" name="bank" ng-model="formData.bank" ng-options="bank as bank.bankName for bank in bankOptions track by bank.bankId" required></select>
                           <i class="fa fa-caret-down"></i>
                           <div input-error></div>
                         </div>
                       </div>
                       <div class="col" form-error="form.accountNumber">
                         <label>เลขที่บัญชี</label>
-                        <input class="form-control" name="account" ng-model="formData.accountNumber" ng-pattern-restrict="^[0-9]*$" required/>
+                        <input class="form-control" ng-disabled="!wallet.proposals || !isVerify" name="account" ng-model="formData.accountNumber" ng-pattern-restrict="^[0-9]*$" required/>
                         <div input-error></div>
                       </div>
                     </div>
@@ -86,7 +86,7 @@
                       <div class="col" form-error="form.accountName">
                           <label>ชื่อบัญชี</label>
                           <div class="input-dropdown">
-                            <input class="form-control" name="accountName" ng-model="formData.accountName" required/>
+                            <input class="form-control" ng-disabled="!wallet.proposals || !isVerify" name="accountName" ng-model="formData.accountName" required/>
                           </div>
                         <div input-error></div>
                       </div>

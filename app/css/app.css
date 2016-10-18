@@ -11412,8 +11412,19 @@ ul.payment-methods {
 .layout-influencer .view-influencer-profile .btn-secondary-active[disabled] {
   opacity: 1;
 }
+.layout-influencer .view-public-campaign-detail .zone-header {
+  color: #ffffff;
+  height: 150px;
+  background-image: url("../images/bg-header.png");
+  background-position: top center;
+  background-size: auto;
+  background-color: #16bbac;
+}
+.layout-influencer .view-public-campaign-detail .zone-header h1 {
+  margin-top: 30px;
+}
 .layout-influencer .view-public-campaign-detail .zone-body {
-  margin-top: -25px;
+  margin-top: -80px;
 }
 .layout-influencer .view-public-campaign-detail .card-corner {
   display: none;

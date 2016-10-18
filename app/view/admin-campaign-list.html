@@ -29,7 +29,7 @@
                   'color-green': campaign.status === 'Open',
                   'color-black': campaign.status === 'Draft',
                   'color-grey': campaign.status !== 'Draft' && campaign.status !== 'Open'
-                }" class="text-center">
+                }">
                   <span ng-if="campaign.status === 'Draft'">ฉบับร่าง</span>
                   <span ng-if="campaign.status === 'Open'">เปิดรับข้อเสนอ</span>
                   <span ng-if="campaign.status !== 'Draft' && campaign.status !== 'Open'">ปิดรับข้อเสนอ</span>

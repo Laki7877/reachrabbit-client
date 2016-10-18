@@ -9,8 +9,15 @@
       </div>
       <img ng-src="{{campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive" />
     </div>
-    <div class="card-title">
+    <div class="card-title" ng-if="(campaign.status == 'Draft')">
       <div class="card-title-content" ui-sref="brand-campaign-detail-draft({campaignId: campaign.campaignId})">
+        <a ng-if="campaign.title">{{campaign.title | truncate: 60}}</a>
+        <a ng-if="!campaign.title">ประกาศงาน</a>
+        <span ng-repeat="media in campaign.media" class="icon-{{ media.mediaId }}"></span>
+      </div>
+    </div>
+    <div class="card-title" ng-if="(campaign.status == 'Open')">
+      <div class="card-title-content" ui-sref="brand-campaign-detail-published({campaignId: campaign.campaignId})">
         <a ng-if="campaign.title">{{campaign.title | truncate: 60}}</a>
         <a ng-if="!campaign.title">ประกาศงาน</a>
         <span ng-repeat="media in campaign.media" class="icon-{{ media.mediaId }}"></span>

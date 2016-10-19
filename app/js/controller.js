@@ -1062,6 +1062,16 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 return $filter('number')(budgetObject.fromBudget) + " - " + $filter('number')(budgetObject.toBudget) + " บาท ต่อคน";
             };
 
+            var mediaBooleanDictProcess = function (formData) {
+                formData.media = [];
+                //tell server which media are checked
+                _.forEach($scope.mediaBooleanDict, function (value, key) {
+                    if (value === true) {
+                        formData.media.push($scope.mediaObjectDict[key]);
+                    }
+                });
+            };
+            
             //Fetch initial datasets
             DataService.getWorkTypes()
             .then(function(g){
@@ -1072,28 +1082,21 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                     $scope.medium = response.data;
                     $scope.medium.forEach(function (item) {
                         $scope.mediaObjectDict[item.mediaId] = item;
+                        $scope.$watch('mediaBooleanDict', function () {
+                            mediaBooleanDictProcess($scope.formData);
+                        }, true);
                     });
                 });
+
             DataService.getCategories()
                 .then(function (response) {
                     $scope.categories = response.data;
                 });
 
-            var mediaBooleanDictProcess = function (formData) {
-                formData.media = [];
-                //tell server which media are checked
-                _.forEach($scope.mediaBooleanDict, function (value, key) {
-                    if (value === true) {
-                        formData.media.push($scope.mediaObjectDict[key]);
-                    }
-                });
-            };
-            $scope.$watch('mediaBooleanDict', function () {
-                mediaBooleanDictProcess($scope.formData);
-            }, true);
+            
+            
 
             $scope.formData.brand = UserProfile.get().brand;
-
 
             function getOne(cid) {
                 CampaignService.getOne(cid)

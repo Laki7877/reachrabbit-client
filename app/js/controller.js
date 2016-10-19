@@ -1856,6 +1856,10 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                             });
                     } else {
                         if (mediaId == 'facebook') {
+                            if(response.data.pages.length <= 0) {
+                                $scope.alert.danger('คุณต้องมี Facebook Page เพื่อทำการสมัครด้วย Facebook');
+                                return;
+                            }
                             $state.go('influencer-signup-select-page', { authData: response.data, ref: ref });
                         } else {
                             if (response.data.pages[0].count < $scope.minFollower) {

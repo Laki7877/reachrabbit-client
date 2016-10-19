@@ -1201,12 +1201,12 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 formData.brand = UserProfile.get().brand;
                 formData.status = status;
 
-
                 if(formData.objectiveArray.length > 0){
                     formData.objective = formData.objectiveArray[0];
                 }else{
                     formData.objective = null;
                 }
+                formData.workTypeMap = formData.workTypeMap || {};
 
 
                 if (formData.website && formData.website.length > 1 && !formData.website.startsWith("http")) {

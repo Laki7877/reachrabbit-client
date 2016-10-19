@@ -782,8 +782,8 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                 });
         }
     ])
-    .controller('InfluencerProfileController', ['$scope', '$window', '$stateParams', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util',
-        function ($scope, $window, $stateParams, AccountService, NcAlert, UserProfile, validator, util) {
+    .controller('InfluencerProfileController', ['$scope', '$window', '$stateParams', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util', 'smoothScroll',
+        function ($scope, $window, $stateParams, AccountService, NcAlert, UserProfile, validator, util, smoothScroll) {
             util.warnOnExit($scope);
             $scope.showStickyToolbar = !_.isNil($stateParams.showToolbar);
             $scope.form = {};
@@ -800,6 +800,10 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                     value: 'NotSpecified'
                 }];
 
+            if($stateParams.showVerify) {
+                var element = document.getElementById('verify');
+                smoothScroll(element);
+            }
             $scope.isValidate = function (model, error) {
                 if (error === 'required' && model.$name === 'profilePicture') {
                     return $scope.form.$submitted;

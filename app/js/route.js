@@ -219,7 +219,7 @@ angular.module('reachRabbitApp.influencer.routes', ['ui.router'])
                 controller: 'InfluencerProfileController'
             })
             .state('influencer-profile-published', {
-                url: '/influencer-profile-published?showToolbar',
+                url: '/influencer-profile-published?showToolbar&showVerify',
                 templateUrl: 'view/influencer-profile-published.html',
                 controller: 'InfluencerProfileController'
             })

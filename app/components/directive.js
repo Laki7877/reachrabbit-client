@@ -1070,7 +1070,7 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                 remove: "&?",
                 removeable: "&?",
                 viewable: "&?",
-                view: "&?"
+                view: "&?" 
             },
             templateUrl: 'components/templates/card-campaign-header.html',
             link: function (scope, element, attrs, ctrl, transclude) {

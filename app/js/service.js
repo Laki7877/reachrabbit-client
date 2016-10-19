@@ -347,6 +347,8 @@ angular.module('reachRabbitApp.service', ['satellizer'])
     }])
     .factory('CampaignService', ['$http', '$q', function ($http, $q) {
         var deserializeCampaign = function (campaign) {
+
+            console.log(campaign);
             campaign.campaignResources = campaign.campaignResources.map(function (campaignResource) {
                 return campaignResource.resource;
             });

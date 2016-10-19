@@ -684,7 +684,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
         };
 
     }])
-    .controller('InfluencerCampaignDetailController', function ($scope, $state, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService) {
+    .controller('InfluencerCampaignDetailController', function ($scope, $state, $location, $stateParams, CampaignService, NcAlert, AccountService, $uibModal, DataService) {
         $scope.campaignNee = null;
         $scope.isApply = false;
         $scope.alert = new NcAlert();
@@ -732,11 +732,18 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             $scope.appliedAlert.close();
         });
 
+        var showDialog = $location.search().showDialog;
+
         CampaignService.getOne($stateParams.campaignId)
             .then(function (campaignResponse) {
                 $scope.campaignNee = campaignResponse.data;
                 $scope.isApply = $scope.campaignNee.isApply;
                 $scope.proposal = $scope.campaignNee.proposal;
+
+                if(showDialog){
+                  $scope.sendProposal();
+                }
+
             })
             .catch(function (err) {
                 $scope.alert.danger(err.data.message);
@@ -888,7 +895,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
 
                     //save state
                     $scope.profile = _.merge({}, $scope.formData);
-               
+
                     if($stateParams.showVerify) {
                         var container = $('html, body');
                         var scrollTo = $('#showVerify');
@@ -1080,7 +1087,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                     }
                 });
             };
-            
+
             //Fetch initial datasets
             DataService.getWorkTypes()
             .then(function(g){
@@ -1102,8 +1109,8 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                     $scope.categories = response.data;
                 });
 
-            
-            
+
+
 
             $scope.formData.brand = UserProfile.get().brand;
 
@@ -1543,7 +1550,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 $scope.alert.danger(o.message);
                 return;
             }
-    
+
             if (profile.brand.website && profile.brand.website.length > 1 && !profile.brand.website.startsWith("http")) {
                 profile.brand.website = "http://" + profile.brand.website;
             }
@@ -1949,7 +1956,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                                     if ($scope.bounce_route) {
                                         bounce = '/influencer.html#/' + $scope.bounce_route;
                                     }
-                                    
+
                                     $window.location.href = bounce;
                                 });
                         } else {
@@ -2036,13 +2043,13 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     Raven.setUserContext(UserProfile.get());
                     $scope.form.$setPristine();
                     //Redirect change app
-                    
+
                     if($scope.bounce_route){
-                        $window.location.href = '/influencer.html#/' + $scope.bounce_route;
+                        $window.location.href = '/influencer.html#/' + $stateParams.bounce_route + '?showDialog';
                     }else{
                         $window.location.href = '/influencer.html#/influencer-profile-published?showToolbar';
                     }
-                    
+
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);
@@ -2113,15 +2120,15 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                         //Tell raven about the user
                         // Raven.setUserContext(UserProfile.get());
                         $scope.form.$setPristine();
-                        
+
                         //Redirect change app
                         if ($stateParams.bounce_route) {
-                            $window.location.href = '/influencer.html#/' + $stateParams.bounce_route;
+                            $window.location.href = '/influencer.html#/' + $stateParams.bounce_route + '?showDialog';
                         }else{
                             $window.location.href = '/influencer.html#/influencer-profile-published?showToolbar';
                         }
 
-                        
+
                     })
                     .catch(function (err) {
                         $scope.alert.danger(err.data.message);

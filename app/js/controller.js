@@ -165,8 +165,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             });
         }
     ])
-    .controller('WorkroomController', ['$scope', 'UserProfile', '$uibModal', '$interval', '$rootScope', '$stateParams', 'ProposalService', 'NcAlert', '$state', '$location', '$window', 'util', 'LongPollingService', '$timeout', 'InfluencerAccountService',
-        function ($scope, UserProfile, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util, LongPollingService, $timeout, InfluencerAccountService) {
+    .controller('WorkroomController', function ($scope, UserProfile, $uibModal, $interval, $rootScope, $stateParams, ProposalService, NcAlert, $state, $location, $window, util, LongPollingService, $timeout, InfluencerAccountService) {
             $scope.msglist = [];
             $scope.msgHash = {};
             $scope.msgLimit = 30;
@@ -289,6 +288,8 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             });
 
             $scope.hasPastMessage = function () {
+                if(!$scope.msglist) return false;
+                if($scope.msglist.length == 0) return false;
                 return $scope.totalElements > $scope.msglist.length;
             };
 
@@ -447,8 +448,8 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 chatArea.scrollTop(9999);
             }
         }
-    ])
-    .controller('InfluencerProfilePortfolioController', ['$scope', 'NcAlert', 'AccountService', '$stateParams', function ($scope, NcAlert, AccountService, $stateParams) {
+    )
+    .controller('InfluencerProfilePortfolioController', function ($scope, NcAlert, AccountService, $stateParams) {
         $scope.formData = {};
         $scope.alert = new NcAlert();
         if($stateParams.proposalId) {
@@ -498,8 +499,8 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             .catch(function (err) {
                 $scope.alert.danger(err.data.message);
             });
-    }])
-    .controller('BrandProfilePortfolioController', ['$scope', 'AccountService', '$stateParams', function ($scope, AccountService, $stateParams) {
+    })
+    .controller('BrandProfilePortfolioController', function ($scope, AccountService, $stateParams) {
         if($stateParams.proposalId) {
             $scope.proposalId = $stateParams.proposalId;
         }
@@ -507,7 +508,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             .then(function (response) {
                 $scope.brand = response.data;
             });
-    }])
+    })
     .controller('PayoutHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
         //Load campaign data
         $scope.isExpired = function (T) {

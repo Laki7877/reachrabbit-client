@@ -296,18 +296,19 @@ angular.module('reachRabbitApp.portal.routes', ['ui.router'])
                 url: "/influencer-signup-select-page?ref",
                 templateUrl: 'view/influencer-signup-select-page.html',
                 controller: 'InfluencerFacebookPageSelectionController',
-                params: { authData: null, fromState: null}
+                params: { authData: null, fromState: null, bounce_route: null}
             })
             .state('influencer-signup-confirmation', {
                 url: '/influencer-signup-confirmation?ref',
                 templateUrl: 'view/influencer-signup-confirmation.html',
                 controller: 'InfluencerSignUpController',
-                params: { authData: null }
+                params: { authData: null, bounce_route: null}
             })
             .state('influencer-signup-email', {
                 url: '/influencer-signup-email?ref',
                 templateUrl: 'view/influencer-signup-email.html',
-                controller: 'InfluencerSignUpEmailController'
+                controller: 'InfluencerSignUpEmailController',
+                params: { bounce_route: null}
             })
             .state('influencer-login', {
                 url: '/influencer-login',

@@ -337,7 +337,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                                 if ($scope.msglist.length >= $scope.msgLimit) {
                                     $scope.msglist.shift();
                                 }
-                                if (!_.isNil($scope.msgHash[res.data[i].referenceId])) {
+                                if (res.data[i].referenceId && !_.isNil($scope.msgHash[res.data[i].referenceId])) {
                                     _.extend($scope.msgHash[res.data[i].referenceId], res.data[i]);
                                 } else {
                                     // from server

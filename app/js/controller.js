@@ -890,6 +890,11 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                     $scope.profile = _.merge({}, $scope.formData);
                
                     if($stateParams.showVerify) {
+                        var container = $('html, body');
+                        var scrollTo = $('#showVerify');
+                        container.animate({
+                            scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+                        }, 700);
                     }
                 })
                 .catch(function (err) {

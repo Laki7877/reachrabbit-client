@@ -214,7 +214,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                         ProposalService.updateStatus(proposalId, "Complete")
                             .then(function (response) {
                                 if (response.data.status == 'Complete') {
-                                    $window.location.reload();
+                                    //$window.location.reload();
                                 } else {
                                     throw new Error("Status integrity check failed");
                                 }
@@ -258,7 +258,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                         return;
                     }
 
-                    window.location.reload();
+                    //window.location.reload();
                 });
             };
 
@@ -897,6 +897,11 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                     $scope.profile = _.merge({}, $scope.formData);
 
                     if($stateParams.showVerify) {
+                        var container = $('html, body');
+                        var scrollTo = $('#showVerify');
+                        container.animate({
+                            scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+                        }, 700);
                     }
                 })
                 .catch(function (err) {
@@ -2505,7 +2510,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
                         ProposalService.updateStatus(proposalId, "Complete")
                             .then(function (response) {
                                 if (response.data.status == 'Complete') {
-                                    $window.location.reload();
+                                    //$window.location.reload();
                                 } else {
                                     throw new Error("Status integrity check failed");
                                 }
@@ -2590,7 +2595,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
                         return;
                     }
                     // $location.reload();
-                    window.location.reload();
+                    //window.location.reload();
                     // $state.go('influencer-workroom', { proposalId: proposal.proposalId });
                 });
             };

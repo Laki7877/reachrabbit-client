@@ -288,7 +288,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
 
             $scope.hasPastMessage = function () {
                 if(!$scope.msglist) return false;
-                if($scope.msglist.length == 0) return false;
+                if($scope.msglist.length === 0) return false;
                 return $scope.totalElements > $scope.msglist.length;
             };
 
@@ -638,6 +638,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             $scope.formData.bank = profile.data.influencer.bank;
             $scope.formData.accountNumber = profile.data.influencer.accountNumber;
             $scope.formData.accountName = profile.data.influencer.accountName;
+            $scope.formData.rememberBankDetail = true;
         });
 
         InfluencerAccountService.getWallet().then(function (walletResponse) {
@@ -1861,6 +1862,10 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                             });
                     } else {
                         if (mediaId == 'facebook') {
+                            if(response.data.pages.length <= 0) {
+                                $scope.alert.danger('คุณต้องมี Facebook Page เพื่อทำการสมัครด้วย Facebook');
+                                return;
+                            }
                             $state.go('influencer-signup-select-page', { authData: response.data, ref: ref });
                         } else {
                             if (response.data.pages[0].count < $scope.minFollower) {

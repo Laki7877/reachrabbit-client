@@ -1433,7 +1433,15 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                         });
                     } else {
                         if (scope.model.length >= scope.maxSelected) {
-                            scope.model.shift()._selected = false;
+                            var r = scope.model[0];
+                            _.forEach(scope.chunk, function (chunk) {
+                                _.forEach(chunk, function (so) {
+                                    if(_.get(so, scope.singularEndpointName + "Id") === _.get(r, scope.singularEndpointName + "Id")) {
+                                        so._selected = false;
+                                    }
+                                });
+                            });
+                            scope.model.shift();
                         }
                         so._selected = true;
                         scope.model.push(so);

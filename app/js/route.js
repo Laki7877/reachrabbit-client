@@ -209,12 +209,12 @@ angular.module('reachRabbitApp.influencer.routes', ['ui.router'])
                 controller: 'InfluencerCampaignListController'
             })
             .state('influencer-campaign-detail', {
-                url: '/influencer-campaign-detail/:campaignId',
+                url: '/influencer-campaign-detail/:campaignId?showDialog',
                 templateUrl: 'view/influencer-campaign-detail.html',
                 controller: 'InfluencerCampaignDetailController'
             })
             .state('influencer-profile', {
-                url: '/influencer-profile',
+                url: '/influencer-profile?showVerify',
                 templateUrl: 'view/influencer-profile.html',
                 controller: 'InfluencerProfileController'
             })

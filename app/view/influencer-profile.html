@@ -172,7 +172,7 @@
 
           <div class="card-row">
             <div class="card-title col-xs-12">
-              <div class="card-title-content">
+              <div class="card-title-content" id="showVerify">
                 ข้อมูลยืนยันตัวตน
               </div>
             </div>
@@ -220,6 +220,7 @@
               <uploader-thumb
               ng-model="formData.influencer.idCard"
               accept=".jpg,.png"
+              aspect-ratio="2.41421"
               ngf-pattern="'.jpg,.png'"
               ngf-max-size="10MB">
               <i class="fa fa-camera"></i><br>เลือกรูป

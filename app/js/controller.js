@@ -623,7 +623,6 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 $uibModalInstance.close();
             };
         }]);
-/////////////// /////////////// /////////////// /////////////// ///////////////
 
 angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'])
     .controller('WalletController', ['$rootScope', '$scope', '$state', 'UserProfile', 'InfluencerAccountService', 'AccountService', 'DataService', 'BusinessConfig', 'NcAlert', 'validator', function ($rootScope, $scope, $state, UserProfile, InfluencerAccountService, AccountService, DataService, BusinessConfig, NcAlert, validator) {
@@ -1752,14 +1751,13 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     Raven.setUserContext(UserProfile.get());
 
                     //Redirect
-                    $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
-                    var bounce = '/brand.html#/brand-campaign-list';
+                    $rootScope.setUnauthorizedRoute("/portal#/brand-login");
+                    var bounce = '/brand#/brand-campaign-list';
                     if ($location.search().bounce_route) {
-                        bounce = ('/brand.html#' + $location.search().bounce_route);
+                        bounce = ('/brand#' + $location.search().bounce_route);
                     }
                     $window.location.href = bounce;
 
-                    // $location.path('/brand.html#/brand-campaign-list')
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);
@@ -1793,14 +1791,13 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     Raven.setUserContext(UserProfile.get());
 
                     //Redirect
-                    $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
+                    $rootScope.setUnauthorizedRoute("/portal#/admin-login");
 
-                    var bounce = '/admin.html#/admin-transaction-history';
+                    var bounce = '/admin#/admin-transaction-history';
                     if ($location.search().bounce_route) {
-                        bounce = ('/admin.html#' + $location.search().bounce_route);
+                        bounce = ('/admin#' + $location.search().bounce_route);
                     }
                     $window.location.href = bounce;
-                    // $location.path('/brand.html#/brand-campaign-list')
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);
@@ -1827,10 +1824,10 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     //Tell raven about the user
                     Raven.setUserContext(UserProfile.get());
                     //Redirect
-                    $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
-                    var bounce = '/influencer.html#/influencer-campaign-list';
+                    $rootScope.setUnauthorizedRoute("/portal#/influencer-login");
+                    var bounce = '/influencer#/influencer-campaign-list';
                     if ($location.search().bounce_route) {
-                        bounce = '/influencer.html#' + $location.search().bounce_route;
+                        bounce = '/influencer#' + $location.search().bounce_route;
                     }
                     $window.location.href = bounce;
                 })
@@ -1845,7 +1842,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                 .then(function (response) {
                     // console.log('Response', response.data);
                     if (response.data.token) {
-                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
+                        $rootScope.setUnauthorizedRoute("/portal#/influencer-login");
 
                         $window.localStorage.token = response.data.token;
                         AccountService.getProfile()
@@ -1854,9 +1851,9 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                                 //Tell raven about the user
                                 Raven.setUserContext(UserProfile.get());
                                 //Redirect change app
-                                var bounce = '/influencer.html#/influencer-campaign-list';
+                                var bounce = '/influencer#/influencer-campaign-list';
                                 if ($location.search().bounce_route) {
-                                    bounce = '/influencer.html#' + $location.search().bounce_route;
+                                    bounce = '/influencer#' + $location.search().bounce_route;
                                 }
                                 $window.location.href = bounce;
                             });
@@ -1897,8 +1894,8 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     //Tell raven about the user
                     Raven.setUserContext(UserProfile.get());
                     //Redirect
-                    $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
-                    $window.location.href = '/influencer.html#/influencer-campaign-list';
+                    $rootScope.setUnauthorizedRoute("/portal#/influencer-login");
+                    $window.location.href = '/influencer#/influencer-campaign-list';
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);
@@ -1924,7 +1921,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     .then(function (response) {
                         // console.log('Response', response.data);
                         if (response.data.token) {
-                            $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
+                            $rootScope.setUnauthorizedRoute("/portal#/influencer-login");
 
                             $window.localStorage.token = response.data.token;
                             AccountService.getProfile()
@@ -1934,9 +1931,9 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                                     // Raven.setUserContext(UserProfile.get());
 
                                     //Redirect change app
-                                    var bounce = '/influencer.html#/influencer-campaign-list';
+                                    var bounce = '/influencer#/influencer-campaign-list';
                                     if ($scope.bounce_route) {
-                                        bounce = '/influencer.html#/' + $scope.bounce_route;
+                                        bounce = '/influencer#/' + $scope.bounce_route;
                                     }
                                     
                                     $window.location.href = bounce;
@@ -2019,7 +2016,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     return AccountService.getProfile();
                 })
                 .then(function (profileResp) {
-                    $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
+                    $rootScope.setUnauthorizedRoute("/portal#/influencer-login");
                     UserProfile.set(profileResp.data);
                     //Tell raven about the user
                     Raven.setUserContext(UserProfile.get());
@@ -2027,9 +2024,9 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                     //Redirect change app
                     
                     if($scope.bounce_route){
-                        $window.location.href = '/influencer.html#/' + $scope.bounce_route;
+                        $window.location.href = '/influencer#/' + $scope.bounce_route;
                     }else{
-                        $window.location.href = '/influencer.html#/influencer-profile-published?showToolbar';
+                        $window.location.href = '/influencer#/influencer-profile-published?showToolbar';
                     }
                     
                 })
@@ -2097,7 +2094,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                         return AccountService.getProfile();
                     })
                     .then(function (profileResp) {
-                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+                        $rootScope.setUnauthorizedRoute("/portal#/influencer-portal");
                         UserProfile.set(profileResp.data);
                         //Tell raven about the user
                         // Raven.setUserContext(UserProfile.get());
@@ -2105,9 +2102,9 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                         
                         //Redirect change app
                         if ($stateParams.bounce_route) {
-                            $window.location.href = '/influencer.html#/' + $stateParams.bounce_route;
+                            $window.location.href = '/influencer#/' + $stateParams.bounce_route;
                         }else{
-                            $window.location.href = '/influencer.html#/influencer-profile-published?showToolbar';
+                            $window.location.href = '/influencer#/influencer-profile-published?showToolbar';
                         }
 
                         
@@ -2142,10 +2139,9 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
                         //Tell raven about the user
                         Raven.setUserContext(UserProfile.get());
                         //Redirect
-                        $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
+                        $rootScope.setUnauthorizedRoute("/portal#/brand-login");
                         $scope.form.$setPristine();
-                        // $location.update('/brand.html#/brand-campaign-list');
-                        $window.location.href = '/brand.html#/brand-campaign-list';
+                        $window.location.href = '/brand#/brand-campaign-list';
                     })
                     .catch(function (err) {
                         $scope.alert.danger(err.data.message);
@@ -2155,7 +2151,6 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.service'])
         }
 );
 
-/*/////////////// /////////////// /////////////// /////////////// //////////////*/
 angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
     .controller('AdminReferralCodeListController', ['$scope', 'ReferralService', 'NcAlert', function($scope, ReferralService, NcAlert) {
         $scope.alert = new NcAlert();
@@ -2334,7 +2329,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
             CampaignService.getOne($stateParams.campaignId)
                 .then(function (campaignResponse) {
                     $scope.campaignNee = campaignResponse.data;
-                    $scope.url = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/public.html#/public-campaign-detail/' + $scope.campaignNee.publicCode;
+                    $scope.url = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/public#/public-campaign-detail/' + $scope.campaignNee.publicCode;
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);

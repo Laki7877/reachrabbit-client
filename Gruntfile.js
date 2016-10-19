@@ -39,16 +39,13 @@ module.exports = function (grunt) {
     },
     concurrent: {
       dev: {
-        tasks: ['shell:autoless', 'connect:server'],
+        tasks: ['shell:autoless', 'shell:server'],
         options: {
           logConcurrentOutput: true
         }
       },
       test: {
-        tasks: ['connect:testserver', 'shell:protractor']
-      },
-      testff: {
-        tasks: ['connect:testserver', 'shell:protractorff']
+        tasks: ['shell:server', 'shell:protractor']
       }
     },
     shell: {
@@ -56,6 +53,13 @@ module.exports = function (grunt) {
         command: 'node node_modules/autoless/bin/autoless app/less app/css',
         options: {
           stderr: true
+        }
+      },
+      server: {
+        command: 'node server.js',
+        options: {
+          stderr: true,
+          stdout: true
         }
       },
       protractor: {
@@ -128,7 +132,8 @@ module.exports = function (grunt) {
   // Load the plugin that provides the "uglify" task.
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
-    ngtemplates: 'grunt-angular-templates'
+    ngtemplates: 'grunt-angular-templates',
+    express: 'grunt-express-server'
   });
 
   grunt.registerTask('checksum', 'Create .md5 checksum file *', function() {
@@ -163,7 +168,6 @@ module.exports = function (grunt) {
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'checksum', 'concurrent:dev']);
   grunt.registerTask('test', ['concurrent:test']);
-  grunt.registerTask('testff', ['concurrent:testff']);
   grunt.registerTask('build', ['browserify'])
 
 };

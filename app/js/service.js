@@ -99,12 +99,13 @@ angular.module('reachRabbitApp.service', ['satellizer'])
             },
             responseError: function (response) {
                 if (response.status == 401) {
+
                     //TODO: change this later
-                    if ($location.absUrl().includes("brand.html")) {
+                    if ($location.absUrl().includes("brand.html") || $location.absUrl().includes("brand#")) {
                         $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
-                    } else if ($location.absUrl().includes("influencer.html")) {
+                    } else if ($location.absUrl().includes("influencer.html") || $location.absUrl().includes("influencer#")) {
                         $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
-                    } else if ($location.absUrl().includes("admin.html")) {
+                    } else if ($location.absUrl().includes("admin.html") || $location.absUrl().includes("admin#")) {
                         $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
                     }
 

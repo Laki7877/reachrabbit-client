@@ -233,15 +233,15 @@ angular.module('reachRabbitApp', [
             var role = UserProfile.get().role;
             var reject = false;
             //Permission thingy
-            if ($location.absUrl().includes('brand.html') && role !== "Brand") {
+            if (($location.absUrl().includes("brand.html") || $location.absUrl().includes("brand#")) && role !== "Brand") {
               reject = true;
             }
 
-            if ($location.absUrl().includes('influencer.html') && role !== "Influencer") {
+            if (($location.absUrl().includes("influencer.html") || $location.absUrl().includes("influencer#")) && role !== "Influencer") {
               reject = true;
             }
 
-            if ($location.absUrl().includes('admin.html') && role != "Admin") {
+            if (($location.absUrl().includes("admin.html") || $location.absUrl().includes("admin#")) && role != "Admin") {
               reject = true;
             }
 

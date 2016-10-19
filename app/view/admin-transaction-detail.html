@@ -6,7 +6,7 @@
       <div class="action-btn-for-header with-back-btn">
         <button class="btn btn-primary" ng-if="transaction.status == 'Pending'" ng-click="approve()"><strong>Approve Brand Payment</strong></button>
       </div>
-      <h2>รายละเอียดการสั่งซื้อ / Brand: {{ transaction.brandTransactionDocument.cart.proposals[0].campaign.brand.brandName | truncate: 30}}</h2>
+      <h2>รายละเอียดการสั่งซื้อ / Brand: {{ transaction.brandTransactionDocument[0].cart.proposals[0].campaign.brand.brandName | truncate: 30}}</h2>
     </zone-header>
     <div class="zone-body">
       <div class="container">

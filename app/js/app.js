@@ -109,10 +109,10 @@ angular.module('reachRabbitApp', [
         $state.go(url);
       };
 
-      Date.prototype.toJSON = function(){
+      Date.prototype.toJSON = function () {
         return moment(this).format();
       };
-      Date.prototype.toISOString = function() {
+      Date.prototype.toISOString = function () {
         return moment(this).format();
       };
 
@@ -220,6 +220,28 @@ angular.module('reachRabbitApp', [
         return $location.path();
       };
       $rootScope.rootError = new NcAlert();
+
+      //Path based logout
+      $rootScope.bounceLogout = function () {
+        if ($location.absUrl().includes("brand.html") || $location.absUrl().includes("brand#")) {
+          $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
+        } else if ($location.absUrl().includes("influencer.html") || $location.absUrl().includes("influencer#")) {
+          $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+        } else if ($location.absUrl().includes("admin.html") || $location.absUrl().includes("admin#")) {
+          $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
+        }
+        var bounce_url = $location.path();
+        if ($location.absUrl().includes($location.path())) {
+          $rootScope.signOut();
+        } else {
+          $rootScope.signOut(bounce_url);
+        }
+      };
+      
+      $rootScope.$on("$stateChangeError", function () {
+        $rootScope.bounceLogout();
+      });
+
       $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams, options) {
 
@@ -228,30 +250,7 @@ angular.module('reachRabbitApp', [
             return;
           }
 
-          //405 handling
-          if (!$location.absUrl().endsWith('/405')) {
-            var role = UserProfile.get().role;
-            var reject = false;
-            //Permission thingy
-            if (($location.absUrl().includes("brand.html") || $location.absUrl().includes("brand#")) && role !== "Brand") {
-              reject = true;
-            }
-
-            if (($location.absUrl().includes("influencer.html") || $location.absUrl().includes("influencer#")) && role !== "Influencer") {
-              reject = true;
-            }
-
-            if (($location.absUrl().includes("admin.html") || $location.absUrl().includes("admin#")) && role != "Admin") {
-              reject = true;
-            }
-
-            if (reject) {
-              $state.go('405');
-              return;
-            }
-          }
-
-
+          //TODO: move to resolver
           //Other role specific functions
           if (UserProfile.get().role === "Brand") {
             BrandAccountService.getCart()
@@ -283,9 +282,9 @@ angular.module('reachRabbitApp', [
       };
 
       //Only init polling if User is logged in
-      if (BusinessConfig.NO_POLL_WHITELIST.reduce(function(p,c) {
-         return p && !$location.absUrl().includes(c);
-      },true)) {
+      if (BusinessConfig.NO_POLL_WHITELIST.reduce(function (p, c) {
+        return p && !$location.absUrl().includes(c);
+      }, true)) {
         $rootScope.pollPending = false;
         $rootScope.pollInbox = function (immediately) {
           var profile = $rootScope.getProfile();

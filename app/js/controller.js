@@ -2368,7 +2368,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
             sort: 'updatedAt,desc'
         });
     }])
-    .controller('AdminInboxController', ['$scope', '$filter', '$rootScope', 'ProposalService', 'CampaignService', 'moment', '$stateParams', function ($scope, $filter, $rootScope, ProposalService, CampaignService, moment, $stateParams) {
+    .controller('AdminInboxController', function ($scope, $filter, $rootScope, ProposalService, CampaignService, moment, $stateParams) {
         $scope.statusCounts = {};
         $scope.statusFilter = 'Selection';
         $scope.search = {};
@@ -2441,7 +2441,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
                 $scope.httpPending = false;
             });
 
-    }])
+    })
     .controller('AdminPayoutHistoryController', ['$scope', '$state', 'TransactionService', function ($scope, $state, TransactionService) {
         //Load campaign data
         $scope.isExpired = function (T) {

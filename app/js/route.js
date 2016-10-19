@@ -68,7 +68,18 @@ angular.module('reachRabbitApp.admin.routes', ['ui.router'])
             .state('admin-inbox', {
                 url: '/admin-inbox/:status?',
                 templateUrl: 'view/admin-inbox.html',
-                controller: 'AdminInboxController'
+                controller: 'AdminInboxController',
+                resolve: {
+                    authenticate: function($q, UserProfile){
+                        return $q(function(defer,reject){
+                            if(UserProfile.get().role !== "Admin"){
+                                reject();
+                            }else{
+                                defer();
+                            }
+                        });
+                    }
+                }
             })
             .state('admin-workroom', {
                 url: '/admin-workroom/:proposalId',

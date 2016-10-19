@@ -1172,6 +1172,9 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
             };
 
             $scope.isInvalidMedia = function () {
+                if(!$scope.formData.media) {
+                    return false;
+                }
                 return $scope.formData.media.length === 0 && $scope.form.$submitted && $scope.formData.status == 'Open';
             };
             $scope.isPublishing = function (model, key) {

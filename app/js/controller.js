@@ -1535,6 +1535,10 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                 $scope.alert.danger(o.message);
                 return;
             }
+    
+            if (profile.brand.website && profile.brand.website.length > 1 && !profile.brand.website.startsWith("http")) {
+                profile.brand.website = "http://" + profile.brand.website;
+            }
 
             AccountService.saveProfile(profile)
                 .then(function (response) {
@@ -1543,8 +1547,10 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.service'])
                     if($scope.formData.brand.isCompany) {
                       $scope.alreadyCompany = true;
                     }
+
                     //set back to localstorage
                     UserProfile.set(response.data);
+
 
                     $scope.form.$setPristine();
                     $scope.success = true;

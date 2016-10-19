@@ -19,16 +19,17 @@
                       <thead>
                         <th>ชื่องาน</th>
                         <th class="text-align-right">ราคาที่เสนอ</th>
-                        <th class="text-align-right">หักภาษี ณ ที่จ่าย</th>
-                        <th class="text-align-right">รายได้ <a><i class="fa fa-question-circle color-grey" uib-tooltip="รายได้ของคุณได้ทำการหักค่าธรรมเนียมในการใช้ระบบ 18% เราจะใช้ค่าธรรมเนียม เพื่อพัฒนาระบบ และหางานให้คุณอย่างต่อเนื่องค่ะ"
+                        <th class="text-align-right hide">หักภาษี ณ ที่จ่าย</th>
+                        <th class="text-align-right">รายได้ <a><i class="fa fa-question-circle color-grey" uib-tooltip="รายได้ของคุณได้ทำการหักค่าธรรมเนียมในการใช้ระบบ 18% และ หักภาษี ณ ที่จ่าย เราจะใช้ค่าธรรมเนียม เพื่อพัฒนาระบบ และหางานให้คุณอย่างต่อเนื่องค่ะ"
                           tooltip-placement="left"></i></a></th>
                       </thead>
                       <tbody>
                         <tr ng-repeat="row in tDoc">
                           <td class="col-campaign-name">{{row.title}}</td>
                           <td class="text-align-right">{{row.price | number:0}}</td>
-                          <td ng-if="row.tax" class="text-align-right">{{-row.tax | number:0}}</td>
-                          <td ng-if="!row.tax" class="text-align-right">-</td>
+                          <!-- Taxes Cannot be deleted - hidden is the solution for now -->
+                          <td ng-if="row.tax" class="text-align-right hide">{{-row.tax | number:0}}</td>
+                          <td ng-if="!row.tax" class="text-align-right hide">-</td>
                           <td class="text-align-right" ng-init='row.total = row.price + row.fee + (row.tax ? row.tax : 0) '>{{ (row.total ) | number: 0}}</td>
                         </tr>
                         <tr class="total-price">

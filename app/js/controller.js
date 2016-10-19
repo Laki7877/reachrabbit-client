@@ -346,6 +346,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                                 }
                             }
                         }
+                        console.log($scope.totalElements, $scope.msglist.length, res.data);
                     })
                     .finally(function () {
                         $scope.pollActive = false;
@@ -782,8 +783,8 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                 });
         }
     ])
-    .controller('InfluencerProfileController', ['$scope', '$window', '$stateParams', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util', 'smoothScroll',
-        function ($scope, $window, $stateParams, AccountService, NcAlert, UserProfile, validator, util, smoothScroll) {
+    .controller('InfluencerProfileController', ['$scope', '$window', '$stateParams', 'AccountService', 'NcAlert', 'UserProfile', 'validator', 'util', '$anchorScroll', '$timeout',
+        function ($scope, $window, $stateParams, AccountService, NcAlert, UserProfile, validator, util, $anchorScroll, $timeout) {
             util.warnOnExit($scope);
             $scope.showStickyToolbar = !_.isNil($stateParams.showToolbar);
             $scope.form = {};
@@ -799,11 +800,6 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                     name: 'อื่นๆ',
                     value: 'NotSpecified'
                 }];
-
-            if($stateParams.showVerify) {
-                var element = document.getElementById('verify');
-                smoothScroll(element);
-            }
             $scope.isValidate = function (model, error) {
                 if (error === 'required' && model.$name === 'profilePicture') {
                     return $scope.form.$submitted;
@@ -892,6 +888,9 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
 
                     //save state
                     $scope.profile = _.merge({}, $scope.formData);
+               
+                    if($stateParams.showVerify) {
+                    }
                 })
                 .catch(function (err) {
                     $scope.alert.danger(err.data.message);
@@ -2614,6 +2613,8 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
             });
 
             $scope.hasPastMessage = function () {
+                if(!$scope.msglist) return false;
+                if($scope.msglist.length === 0) return false;
                 return $scope.totalElements > $scope.msglist.length;
             };
 

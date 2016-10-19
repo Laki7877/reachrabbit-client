@@ -244,10 +244,10 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                     size: 'md',
                     resolve: {
                         campaign: function () {
-                            return $scope.proposal.campaign;
+                            return angular.copy($scope.proposal.campaign);
                         },
                         proposal: function () {
-                            return $scope.proposal;
+                            return angular.copy($scope.proposal);
                         }
                     }
                 });
@@ -257,9 +257,8 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                     if (!proposal || !proposal.proposalId) {
                         return;
                     }
-                    // $location.reload();
+
                     window.location.reload();
-                    // $state.go('influencer-workroom', { proposalId: proposal.proposalId });
                 });
             };
 

@@ -1432,11 +1432,16 @@ angular.module('reachRabbitApp.directives', ['reachRabbitApp.service'])
                             return _.get(o, scope.singularEndpointName + "Id") == _.get(so, scope.singularEndpointName + "Id");
                         });
                     } else {
-                        if (scope.model.length < scope.maxSelected) {
-                            so._selected = true;
-                            scope.model.push(so);
+                        if (scope.model.length >= scope.maxSelected) {
+                            scope.model.shift()._selected = false;
                         }
+                        so._selected = true;
+                        scope.model.push(so);
                     }
+                };
+
+                scope.isDisabled = function(btn) {
+                    return !btn._selected && scope.model.length >= scope.maxSelected;
                 };
 
                 scope.getValue = function (obj) {

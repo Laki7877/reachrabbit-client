@@ -9444,6 +9444,10 @@ fieldset[disabled] .btn-secondary.active {
 .btn-secondary:disabled {
   background: #f9f9fb !important;
 }
+.btn-secondary.disabled {
+  opacity: 0.5;
+  cursor: pointer !important;
+}
 .btn-secondary-highlight {
   color: #16bbac;
   background-color: #ffffff;

@@ -1284,6 +1284,10 @@ input:-moz-placeholder {
 .btn-secondary:disabled{
   background: @color-grey-lighter !important;
 }
+.btn-secondary.disabled {
+  opacity: 0.5;
+  cursor: pointer !important;
+}
 .btn-secondary-highlight {
   &:extend(.btn all);
   .button-variant(@color-theme-secondary, @color-white, @color-theme-secondary);

@@ -664,7 +664,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             }
             if(proposal.campaign.brand.isCompany){
                 var tax = proposal.price * $scope.BrandTaxFee;
-                return proposal.price - tax - (proposal.price * InfluencerFee);
+                return proposal.price - tax - (proposal.price * $scope.InfluencerFee);
             } else {
                 proposal.price * $scope.PostDeductionFeeMultiplier;
             }

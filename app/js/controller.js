@@ -652,10 +652,10 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             $scope.bankOptions = bankResponse.data;
         });
 
-        $scope.PostDeductionFeeMultiplier = (1 - BusinessConfig.INFLUENCER_FEE);
+        //$scope.PostDeductionFeeMultiplier = (1 - BusinessConfig.INFLUENCER_FEE);
         $scope.TransferFee = -1 * BusinessConfig.INFLUENCER_BANK_TF_FEE;
         $scope.BrandTaxFee = BusinessConfig.BRAND_TAX_FEE;
-        $scope.InfluencerFee = BusinessConfig.INFLUENCER_FEE;
+        //$scope.InfluencerFee = BusinessConfig.INFLUENCER_FEE;
 
 
         $scope.calculateIncome = function(proposal) {

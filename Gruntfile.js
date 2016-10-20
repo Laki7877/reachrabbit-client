@@ -13,7 +13,8 @@ module.exports = function (grunt) {
     copy: {
       hooks: {
         files: {
-          ".git/hooks/pre-commit": "hooks/pre-commit"
+          ".git/hooks/pre-commit": "hooks/pre-commit",
+          ".git/hooks/post-merge": "hooks/post-merge"
         }
       }
     },

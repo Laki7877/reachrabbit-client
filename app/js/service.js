@@ -5,7 +5,7 @@
  * @since      0.0.1
  */
 /* jshint node: true */
-'use strict'; 
+'use strict';
 
 angular.module('reachRabbitApp.service', ['satellizer'])
     .constant('Config', {

@@ -4,7 +4,7 @@
  * @author     Pat Sabpisal <ecegrid@gmail.com>
  * @since      0.0.1
  */
-'use strict';
+'use strict'; 
 
 module.exports = function (grunt) {
 

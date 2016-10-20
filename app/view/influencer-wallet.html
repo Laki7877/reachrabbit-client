@@ -25,7 +25,6 @@
                   <thead>
                     <th>ชื่องาน</th>
                     <th class="text-align-right">ราคาที่เสนอ</th>
-                    <!-- <th class="text-align-right hide">หักภาษี ณ ที่จ่าย</th> -->
                     <th class="text-align-right">รายได้ <a><i uib-tooltip="รายได้ของคุณได้ทำการหักค่าธรรมเนียมในการใช้ระบบ 18% หักภาษี ณ ที่จ่าย เราจะใช้ค่าธรรมเนียม เพื่อพัฒนาระบบ และหางานให้คุณอย่างต่อเนื่องค่ะ"
                       tooltip-placement="left" class="fa fa-question-circle color-grey"></i></a></th>
                   </thead>
@@ -33,11 +32,7 @@
                     <tr ng-repeat="proposal in wallet.proposals">
                       <td class="col-campaign-name">{{proposal.campaign.title}}</td>
                       <td class="text-align-right">{{ proposal.price | number:0 }}</td>
-                      <!-- <td ng-if="proposal.campaign.brand.isCompany" ng-init="proposal.tax = proposal.price * BrandTaxFee" class="text-align-right">{{ proposal.tax | number:0 }}</td> -->
-                      <!-- <td ng-if="!proposal.campaign.brand.isCompany" class="text-align-right">-</td> -->
-                      <!-- Taxes Cannot be deleted - hidden is the solution for now -->
-                      <td ng-if="proposal.campaign.brand.isCompany" class="text-align-right hide" ng-init='proposal.tax = proposal.price * BrandTaxFee; proposal.income = proposal.price - proposal.tax - (proposal.price * InfluencerFee)'>{{ proposal.income | number :0 }}</td>
-                      <td ng-if="!proposal.campaign.brand.isCompany" class="text-align-right" ng-init='proposal.income = proposal.price * PostDeductionFeeMultiplier'>{{ proposal.income | number :0 }}</td>
+                      <td class="text-align-right" ng-init='proposal.income = calculateIncome(proposal)'>{{ proposal.income | number :0 }}</td>
                     </tr>
                     <tr class="total-price">
                       <td colspan="4">

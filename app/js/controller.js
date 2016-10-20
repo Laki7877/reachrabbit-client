@@ -646,6 +646,8 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             $scope.wallet = walletResponse.data;
         });
 
+        
+
         DataService.getBanks().then(function (bankResponse) {
             $scope.bankOptions = bankResponse.data;
         });
@@ -654,6 +656,19 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
         $scope.TransferFee = -1 * BusinessConfig.INFLUENCER_BANK_TF_FEE;
         $scope.BrandTaxFee = BusinessConfig.BRAND_TAX_FEE;
         $scope.InfluencerFee = BusinessConfig.INFLUENCER_FEE;
+
+
+        $scope.calculateIncome = function(proposal) {
+            if(!proposal) {
+                return 0;
+            }
+            if(proposal.campaign.brand.isCompany){
+                var tax = proposal.price * $scope.BrandTaxFee;
+                return proposal.price - tax - (proposal.price * InfluencerFee);
+            } else {
+                proposal.price * $scope.PostDeductionFeeMultiplier;
+            }
+        };
 
         $scope.requestPayout = function () {
             //if user chekced the chekbx

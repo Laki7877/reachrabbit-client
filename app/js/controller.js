@@ -770,9 +770,12 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             $scope.filter = {};
 
             $scope.handleUserClickThumbnail = function (c) {
-                $state.go('influencer-campaign-detail', {
-                    campaignId: c.campaignId
-                });
+                //expire campaign cannot click
+                if(c.isApply || !$rootScope.isExpired(c.proposalDeadline)){
+                    $state.go('influencer-campaign-detail', {
+                        campaignId: c.campaignId
+                    });
+                }
             };
             $scope.$watch('filter.value', function () {
                 $scope.load(_.extend($scope.params, { mediaId: $scope.filter.value }));

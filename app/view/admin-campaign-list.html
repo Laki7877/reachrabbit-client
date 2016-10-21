@@ -28,11 +28,11 @@
                 <td ng-class="{
                   'color-green': campaign.status === 'Open',
                   'color-black': campaign.status === 'Draft',
-                  'color-grey': campaign.status !== 'Draft' && campaign.status !== 'Open'
+                  'color-grey': campaign.status !== 'Draft' && $root.isExpired(campaign.proposalDeadline)
                 }">
                   <span ng-if="campaign.status === 'Draft'">ฉบับร่าง</span>
-                  <span ng-if="campaign.status === 'Open'">เปิดรับข้อเสนอ</span>
-                  <span ng-if="campaign.status !== 'Draft' && campaign.status !== 'Open'">ปิดรับข้อเสนอ</span>
+                  <span ng-if="campaign.status === 'Open' && !$root.isExpired(campaign.proposalDeadline)">เปิดรับข้อเสนอ</span>
+                  <span ng-if="campaign.status !== 'Draft' && $root.isExpired(campaign.proposalDeadline)">ปิดรับข้อเสนอ</span>
                 </td>
                 <td class="text-center">{{campaign.countProposalSelection}}</td>
                 <td class="text-center">{{campaign.countProposalWorking}}</td>

@@ -764,10 +764,11 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                 $scope.alert.danger(err.data.message);
             });
     })
-    .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'DataService', 'ExampleCampaigns', '$rootScope',
-        function ($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope) {
+    .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'DataService', 'ExampleCampaigns', '$rootScope', 'UserProfile',
+        function ($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope, UserProfile) {
             $scope.params = {};
             $scope.filter = {};
+            $scope.hasMedia = UserProfile.get().influencer.influencerMedias.length == 0 ? false : true; 
 
             $scope.handleUserClickThumbnail = function (c) {
                 //expire campaign cannot click
@@ -786,6 +787,11 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                 $scope.params = data;
                 CampaignService.getOpenCampaigns(data).then(function (response) {
                     $scope.campaigns = response.data;
+                })
+                .catch(function (err) {
+                    if (err.data.statusCode == 400) {
+                        $scope.hasMedia = false;
+                    }
                 });
             };
             //Init

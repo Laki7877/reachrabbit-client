@@ -79,8 +79,8 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 });
         };
     }])
-    .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal', 'validator', 'util',
-        function ($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal, validator, util) {
+    .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal', 'validator', 'util', 'BusinessConfig',
+        function ($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal, validator, util, BusinessConfig) {
             $scope.completionTimes = [];
             $scope.medium = [];
             $scope.formData = {
@@ -153,7 +153,12 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             };
 
             $scope.$watch('formData.price', function (pp) {
-                $scope.proposalNetPrice = Number(pp) * 0.820;
+                if($scope.campaign.brand.isCompany) {
+                    $scope.proposalNetPrice = (Number(pp) * (1 - BusinessConfig.INFLUENCER_FEE)) - (Number(pp) * BusinessConfig.BRAND_TAX_FEE);
+                } else {
+                    $scope.proposalNetPrice = Number(pp) * (1 - BusinessConfig.INFLUENCER_FEE);
+                }
+                
             });
 
             DataService.getMedium().then(function (response) {

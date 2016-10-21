@@ -53,7 +53,7 @@
             <input type="text" class="form-control" value="{{ proposalNetPrice | number: 0}}" disabled/>
             <span class="input-group-addon" id="basic-addon1">บาท</span>
         </div>
-        <p class="hint-block">หลังหักค่าธรรมเนียม</p>
+        <p class="hint-block">หลังหักค่าธรรมเนียม <label ng-if="campaign.brand.isCompany"> และ ภาษี ณ​ ที่จ่าย 3%</label> </p>
 
         <div form-error="form.description" ng-if="!isEditMode">
           <div class="card-row-basic-label">

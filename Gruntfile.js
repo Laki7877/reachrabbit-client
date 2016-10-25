@@ -73,7 +73,7 @@ module.exports = function (grunt) {
           'app/dist/bundle.portal.js': ['app/js/portal.js']
         },
         options: {
-          transform: []
+          transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
         }
       }
     },

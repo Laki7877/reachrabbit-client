@@ -24,7 +24,7 @@ module.exports = function (grunt) {
           sourceMap: true
         },
         files: {
-          'app/js/vendor.js': [
+          'app/dist/vendor.js': [
             "app/bower_components/jquery/dist/jquery.min.js",
             "app/bower_components/bootstrap/dist/js/bootstrap.min.js",
             "app/bower_components/lodash/dist/lodash.js",
@@ -59,26 +59,18 @@ module.exports = function (grunt) {
             "app/bower_components/angular-chart.js/dist/angular-chart.min.js",
             "app/bower_components/ng-tags-input/ng-tags-input.js",
             "app/bower_components/sjcl/sjcl.js",
-            "app/bower_components/angular-loading-bar/build/loading-bar.min.js",
-            "app/bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.js"
+            "app/bower_components/angular-loading-bar/build/loading-bar.min.js"
           ]
         }
       }
     },
     browserify: {
-      vendor: {
-        files: {
-          'dist/vendor.js': ['app/vendor.js'],
-        },
-        options: {
-          transform: []
-        }
-      },
       src: {
         files: {
-          'dist/bundle.admin.js': ['app/js/app.admin.js'],
-          'dist/bundle.influencer.js': ['app/js/app.influencer.js'],
-          'dist/bundle.brand.js': ['app/js/app.brand.js']
+          'app/dist/bundle.admin.js': ['app/js/admin.js'],
+          'app/dist/bundle.influencer.js': ['app/js/influencer.js'],
+          'app/dist/bundle.brand.js': ['app/js/brand.js'],
+          'app/dist/bundle.portal.js': ['app/js/portal.js']
         },
         options: {
           transform: []

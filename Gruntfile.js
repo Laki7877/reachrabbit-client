@@ -17,6 +17,53 @@ module.exports = function (grunt) {
         }
       }
     },
+    uglify: {
+      vendor: {
+        options: {
+          sourceMap: true
+        },
+        files: {
+          'app/js/vendor.js': [
+            "app/bower_components/jquery/dist/jquery.min.js",
+            "app/bower_components/bootstrap/dist/js/bootstrap.min.js",
+            "app/bower_components/lodash/dist/lodash.js",
+            "app/bower_components/angular/angular.js",
+            "app/bower_components/angular-scroll-glue/src/scrollglue.js",
+            "app/bower_components/ngSmoothScroll/dist/angular-smooth-scroll.min.js",
+            "app/bower_components/angular-i18n/angular-locale_th-th.js",
+            "app/bower_components/angular-route/angular-route.js",
+            "app/bower_components/angular-bootstrap/ui-bootstrap.js",
+            "app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
+            "app/bower_components/ng-file-upload/ng-file-upload-all.min.js",
+            "app/bower_components/angular-sanitize/angular-sanitize.min.js",
+            "app/bower_components/satellizer/dist/satellizer.min.js",
+            "app/bower_components/jquery-bridget/jquery-bridget.js",
+            "app/bower_components/ev-emitter/ev-emitter.js",
+            "app/bower_components/desandro-matches-selector/matches-selector.js",
+            "app/bower_components/fizzy-ui-utils/utils.js",
+            "app/bower_components/get-size/get-size.js",
+            "app/bower_components/outlayer/item.js",
+            "app/bower_components/outlayer/outlayer.js",
+            "app/bower_components/masonry/masonry.js",
+            "app/bower_components/imagesloaded/imagesloaded.js",
+            "app/bower_components/angular-masonry/angular-masonry.js",
+            "app/bower_components/angular-ui-router/release/angular-ui-router.min.js",
+            "app/bower_components/moment/moment.js",
+            "app/bower_components/moment/locale/th.js",
+            "app/bower_components/pica/dist/pica.min.js",
+            "app/bower_components/angular-moment/angular-moment.js",
+            "app/bower_components/ng-pattern-restrict/src/ng-pattern-restrict.min.js",
+            "app/bower_components/json-formatter/dist/json-formatter.min.js",
+            "app/bower_components/chart.js/dist/Chart.min.js",
+            "app/bower_components/angular-chart.js/dist/angular-chart.min.js",
+            "app/bower_components/ng-tags-input/ng-tags-input.js",
+            "app/bower_components/sjcl/sjcl.js",
+            "app/bower_components/angular-loading-bar/build/loading-bar.min.js",
+            "app/bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.js"
+          ]
+        }
+      }
+    },
     browserify: {
       vendor: {
         files: {
@@ -111,7 +158,7 @@ module.exports = function (grunt) {
     jshint: {
       files: ['app/**/*.js'],
       options: {
-        ignores: ['app/bower_components/**/*.js'],
+        ignores: ['app/bower_components/**/*.js', 'app/js/vendor.js'],
         globals: {
           jQuery: true,
           angular: true,
@@ -127,7 +174,6 @@ module.exports = function (grunt) {
       }
     }
   });
-
 
   // Load the plugin that provides the "uglify" task.
   require('jit-grunt')(grunt, {
@@ -168,6 +214,7 @@ module.exports = function (grunt) {
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'checksum', 'concurrent:dev']);
   grunt.registerTask('test', ['concurrent:test']);
-  grunt.registerTask('build', ['browserify'])
+  grunt.registerTask('build', ['browserify']);
+  grunt.registerTask('vendor', ['uglify:vendor']);
 
 };

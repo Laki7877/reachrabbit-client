@@ -33,6 +33,9 @@
     "angular-masonry": "^0.16.0",
     "masonry": "^4.1.1",
     "imagesloaded": "^4.1.1",
-    "pica": "^2.0.6"
+    "pica": "^2.0.6",
+    "lodash": "^4.16.4",
+    "angular-loading-bar": "^0.9.0",
+    "color-thief": "^2.0.1"
   }
 }

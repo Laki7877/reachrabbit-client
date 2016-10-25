@@ -63,7 +63,7 @@ function dashboardLinkFn(metricOptions, datasetOptions) {
           }) || {}).name;
           _.forEach(scope.model.dataset, function(e) {
             scope.data.push({
-              x: e.date,
+              x: moment(e.date).toDate(),
               y: e[scope.timeframe + _.capitalize(scope.metric)]
             });
           });

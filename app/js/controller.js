@@ -773,7 +773,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
         function ($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope, UserProfile) {
             $scope.params = {};
             $scope.filter = {};
-            $scope.hasMedia = UserProfile.get().influencer.influencerMedias.length == 0 ? false : true; 
+            $scope.hasMedia = UserProfile.get().influencer.influencerMedias.length === 0 ? false : true; 
 
             $scope.handleUserClickThumbnail = function (c) {
                 //expire campaign cannot click

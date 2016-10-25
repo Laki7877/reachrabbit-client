@@ -67,7 +67,7 @@
                 </div>
                 <div class="card-body-content">
                   <div class="checkbox">
-                    <label><input type="checkbox" ng-model="formData.brand.isCompany" ng-disabled="alreadyCompany">สมัครและออกใบเสร็จในนามนิติบุคคล</label>
+                    <label><input type="checkbox" ng-model="formData.brand.isCompany" ng-model-options="{ updateOn: 'default blur' }" ng-disabled="alreadyCompany">สมัครและออกใบเสร็จในนามนิติบุคคล</label>
                   </div>
                 </div>
               </div>

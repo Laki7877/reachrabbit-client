@@ -79,8 +79,8 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                 });
         };
     }])
-    .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal', 'validator', 'util',
-        function ($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal, validator, util) {
+    .controller('ProposalModalController', ['$scope', 'DataService', 'CampaignService', 'ProposalService', 'campaign', '$state', 'NcAlert', '$uibModalInstance', '$rootScope', 'proposal', 'validator', 'util', 'BusinessConfig',
+        function ($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal, validator, util, BusinessConfig) {
             $scope.completionTimes = [];
             $scope.medium = [];
             $scope.formData = {
@@ -153,7 +153,12 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
             };
 
             $scope.$watch('formData.price', function (pp) {
-                $scope.proposalNetPrice = Number(pp) * 0.820;
+                if($scope.campaign.brand.isCompany) {
+                    $scope.proposalNetPrice = (Number(pp) * (1 - BusinessConfig.INFLUENCER_FEE)) - (Number(pp) * BusinessConfig.BRAND_TAX_FEE);
+                } else {
+                    $scope.proposalNetPrice = Number(pp) * (1 - BusinessConfig.INFLUENCER_FEE);
+                }
+                
             });
 
             DataService.getMedium().then(function (response) {
@@ -214,7 +219,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                         ProposalService.updateStatus(proposalId, "Complete")
                             .then(function (response) {
                                 if (response.data.status == 'Complete') {
-                                    //$window.location.reload();
+                                    $window.location.reload();
                                 } else {
                                     throw new Error("Status integrity check failed");
                                 }
@@ -258,7 +263,7 @@ angular.module('reachRabbitApp.controller', ['reachRabbitApp.service'])
                         return;
                     }
 
-                    //window.location.reload();
+                    window.location.reload();
                 });
             };
 
@@ -645,14 +650,29 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
             $scope.wallet = walletResponse.data;
         });
 
+        
+
         DataService.getBanks().then(function (bankResponse) {
             $scope.bankOptions = bankResponse.data;
         });
 
-        $scope.PostDeductionFeeMultiplier = (1 - BusinessConfig.INFLUENCER_FEE);
+        //$scope.PostDeductionFeeMultiplier = (1 - BusinessConfig.INFLUENCER_FEE);
         $scope.TransferFee = -1 * BusinessConfig.INFLUENCER_BANK_TF_FEE;
         $scope.BrandTaxFee = BusinessConfig.BRAND_TAX_FEE;
-        $scope.InfluencerFee = BusinessConfig.INFLUENCER_FEE;
+        //$scope.InfluencerFee = BusinessConfig.INFLUENCER_FEE;
+
+
+        $scope.calculateIncome = function(proposal) {
+            if(!proposal) {
+                return 0;
+            }
+            if(proposal.campaign.brand.isCompany){
+                var tax = proposal.price * $scope.BrandTaxFee;
+                return proposal.price - tax - proposal.fee;
+            } else {
+                return proposal.price - proposal.fee;
+            }
+        };
 
         $scope.requestPayout = function () {
             //if user chekced the chekbx
@@ -748,15 +768,19 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                 $scope.alert.danger(err.data.message);
             });
     })
-    .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'DataService', 'ExampleCampaigns', '$rootScope',
-        function ($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope) {
+    .controller('InfluencerCampaignListController', ['$scope', '$state', 'CampaignService', 'DataService', 'ExampleCampaigns', '$rootScope', 'UserProfile',
+        function ($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope, UserProfile) {
             $scope.params = {};
             $scope.filter = {};
+            $scope.hasMedia = UserProfile.get().influencer.influencerMedias.length === 0 ? false : true; 
 
             $scope.handleUserClickThumbnail = function (c) {
-                $state.go('influencer-campaign-detail', {
-                    campaignId: c.campaignId
-                });
+                //expire campaign cannot click
+                if(c.isApply || !$rootScope.isExpired(c.proposalDeadline)){
+                    $state.go('influencer-campaign-detail', {
+                        campaignId: c.campaignId
+                    });
+                }
             };
             $scope.$watch('filter.value', function () {
                 $scope.load(_.extend($scope.params, { mediaId: $scope.filter.value }));
@@ -767,6 +791,11 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.service'
                 $scope.params = data;
                 CampaignService.getOpenCampaigns(data).then(function (response) {
                     $scope.campaigns = response.data;
+                })
+                .catch(function (err) {
+                    if (err.data.statusCode == 400) {
+                        $scope.hasMedia = false;
+                    }
                 });
             };
             //Init
@@ -2505,7 +2534,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
                         ProposalService.updateStatus(proposalId, "Complete")
                             .then(function (response) {
                                 if (response.data.status == 'Complete') {
-                                    //$window.location.reload();
+                                    $window.location.reload();
                                 } else {
                                     throw new Error("Status integrity check failed");
                                 }
@@ -2590,7 +2619,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.service'])
                         return;
                     }
                     // $location.reload();
-                    //window.location.reload();
+                    window.location.reload();
                     // $state.go('influencer-workroom', { proposalId: proposal.proposalId });
                 });
             };

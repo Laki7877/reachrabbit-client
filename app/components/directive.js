@@ -13,6 +13,13 @@ function dashboardLinkFn(metricOptions, datasetOptions) {
       scope.data = [];
       scope.order = '-user.name';
       scope.chartOptions = {
+        tooltips: {
+            callbacks: {
+                title: function(item) {
+                    return moment(item[0].xLabel).format('D MMM YY');
+                }
+            }
+        },
         scales: {
          yAxes: [{
              ticks: {

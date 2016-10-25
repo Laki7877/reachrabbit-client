@@ -13,6 +13,13 @@ function dashboardLinkFn(metricOptions, datasetOptions) {
       scope.data = [];
       scope.order = '-user.name';
       scope.chartOptions = {
+        tooltips: {
+            callbacks: {
+                title: function(item) {
+                    return moment(item[0].xLabel).format('D MMM YY');
+                }
+            }
+        },
         scales: {
          yAxes: [{
              ticks: {
@@ -63,7 +70,7 @@ function dashboardLinkFn(metricOptions, datasetOptions) {
           }) || {}).name;
           _.forEach(scope.model.dataset, function(e) {
             scope.data.push({
-              x: e.date,
+              x: moment(e.date).toDate(),
               y: e[scope.timeframe + _.capitalize(scope.metric)]
             });
           });

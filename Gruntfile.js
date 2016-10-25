@@ -4,7 +4,7 @@
  * @author     Pat Sabpisal <ecegrid@gmail.com>
  * @since      0.0.1
  */
-'use strict';
+'use strict'; 
 
 module.exports = function (grunt) {
 
@@ -13,7 +13,8 @@ module.exports = function (grunt) {
     copy: {
       hooks: {
         files: {
-          ".git/hooks/pre-commit": "hooks/pre-commit"
+          ".git/hooks/pre-commit": "hooks/pre-commit",
+          ".git/hooks/post-merge": "hooks/post-merge"
         }
       }
     },

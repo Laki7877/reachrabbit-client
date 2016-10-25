@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+
+echo "Post merge"
+
+BRANCH="$(git branch | grep \* | cut -d ' ' -f2)"
+
+#echo "Banch >> ${BRANCH}"
+
+ENVIRONMENT="bella"
+
+if [ "${BRANCH}" = "ui-test" ]; then
+    ENVIRONMENT="edward"
+elif [ "${BRANCH}" = "ui-dev" ]; then
+    ENVIRONMENT="bella"
+elif [ "${BRANCH}" = "ui-prod" ]; then
+    ENVIRONMENT="app"
+fi
+
+VALUE=http://${ENVIRONMENT}.reachrabbit.com:8080
+ORIGINAL=http://bella.reachrabbit.com:8080
+
+sed -i '' "s#"${ORIGINAL}"#"${VALUE}"#g" ./app/js/service.js
+
+FINAL="$(grep -rnw './app/js/' -e ${VALUE})"
+
+if [ "${FINAL}" = "" ]; then
+    echo "Replace not found"
+    exit -1;
+fi 
+
+exit 0;

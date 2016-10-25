@@ -15,6 +15,14 @@
   <div class="zone-body">
     <div class="container">
 
+      <div class="card" cute-bunny-hide ng-if="!hasMedia">
+        <div class="card-body">
+          <div class="empty-state">
+            กรุณา <a ui-sref="influencer-profile">เชื่อมต่อ Social Media</a> เพื่อดูงานทั้งหมด
+          </div>
+        </div>
+      </div>
+
       <cute-bunny></cute-bunny>
 
       <div class="thumbnails" cute-bunny-hide>

@@ -20,7 +20,7 @@
               <tr ng-repeat="user in users.content">
                 <td>{{user.brand.brandName}}</td>
                 <td>{{user.brand.user.email}}</td>
-                <td>{{user.brand.user.referralId}}</td>
+                <td>{{user.referral.referralId}}</td>
                 <td class="color-red text-center" ng-if="!user.brand.isCompany">No</td>
                 <td class="color-green text-center" ng-if="user.brand.isCompany">Yes</td>
                 <td>

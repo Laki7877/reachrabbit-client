@@ -20,7 +20,7 @@
               <tr ng-repeat="user in users.content">
                 <td>{{user.name}}</td>
                 <td>{{user.influencer.user.email}}</td>
-                <td>{{user.influencer.user.referralId}}</td>
+                <td>{{user.referral.referralId}}</td>
                 <td class="color-red text-center" ng-if="!user.influencer.isVerify">No</td>
                 <td class="color-green text-center" ng-if="user.influencer.isVerify">Yes</td>
                 <td>

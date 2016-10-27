@@ -9,7 +9,7 @@
 /* jshint node: true */
 
 'use strict';
-require('./common.service')
+require('./common.service');
 
 angular.module('reachRabbitApp.common.controller', ['reachRabbitApp.common.service'])
     .controller('EmptyController', ['$scope', '$uibModal', function ($scope, $uibModal) {

@@ -1,4 +1,4 @@
-require('./service');
+require('./common.service');
 
 angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.common.service'])
     .controller('AdminReferralCodeListController', function($scope, ReferralService, NcAlert) {

@@ -6,6 +6,9 @@
  */
 /* jshint node: true */
 'use strict';
+require('./common');
+require('./admin.controller');
+require('./admin.route');
 
 // Declare app level module which depends on views, and components
 angular.module('reachRabbitApp', [
@@ -22,20 +25,11 @@ angular.module('reachRabbitApp', [
   'ngImgCrop',
   'jsonFormatter',
   'chart.js',
-  //Top level
   'reachRabbitApp.common.directives',
   'reachRabbitApp.common.routes',
   'reachRabbitApp.common.controller',
-  //Controllers
-  'reachRabbitApp.portal.controller',
-  'reachRabbitApp.brand.controller',
-  'reachRabbitApp.influencer.controller',
   'reachRabbitApp.admin.controller',
-  //Routes
-  'reachRabbitApp.portal.routes',
-  'reachRabbitApp.brand.routes',
-  'reachRabbitApp.influencer.routes',
-  'reachRabbitApp.admin.routes'
+  'reachRabbitApp.admin.routes',
 ])
   //Mock data for testing
   .constant('MockData', {

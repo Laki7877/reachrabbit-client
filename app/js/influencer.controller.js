@@ -1,4 +1,4 @@
-require('./service');
+require('./common.service');
 
 angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.common.service'])
     .controller('WalletController', function ($rootScope, $scope, $state, UserProfile, InfluencerAccountService, AccountService, DataService, BusinessConfig, NcAlert, validator) {

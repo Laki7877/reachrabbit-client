@@ -1,6 +1,17 @@
 angular.module('reachRabbitApp.brand.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-        $stateProvider
+        var stateProvider = {
+            state: function(state, config) {
+                config.resolve = _.extend({}, config.resolve, {
+                    User: ['AccountService', function(AccountService) {
+                        return AccountService.getProfile();
+                    }]
+                });
+                $stateProvider.state(state, config);
+                return stateProvider;
+            }
+        };
+        stateProvider
             .state('seed-page', {
                 url: '/seed-page',
                 templateUrl: 'view/_seed-page.html',

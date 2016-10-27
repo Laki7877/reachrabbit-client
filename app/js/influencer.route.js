@@ -1,7 +1,18 @@
 angular.module('reachRabbitApp.influencer.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+        var stateProvider = {
+            state: function(state, config) {
+                config.resolve = _.extend({}, config.resolve, {
+                    User: ['AccountService', function(AccountService) {
+                        return AccountService.getProfile();
+                    }]
+                });
+                $stateProvider.state(state, config);
+                return stateProvider;
+            }
+        };
         /* Influencer */
-        $stateProvider
+        stateProvider
             .state('influencer-campaign-list', {
                 url: '/influencer-campaign-list',
                 templateUrl: 'view/influencer-campaign-list.html',

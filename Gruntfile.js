@@ -151,7 +151,7 @@ module.exports = function (grunt) {
     jshint: {
       files: ['app/**/*.js'],
       options: {
-        ignores: ['app/bower_components/**/*.js', 'app/js/vendor.js'],
+        ignores: ['app/bower_components/**/*.js', 'app/dist/**/*.js'],
         globals: {
           jQuery: true,
           angular: true,

@@ -1,6 +1,16 @@
 angular.module('reachRabbitApp.admin.routes', ['ui.router'])
     .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-
+        var stateProvider = {
+            state: function(state, config) {
+                _.extend(config.resolve, {
+                    User: function(AccountService) {
+                        return AccountService.getProfile();
+                    }
+                });
+                $stateProvider.state(state, config);
+                return stateProvider;
+            }
+        };
         $stateProvider
             .state('admin-transaction-history', {
                 url: '/admin-transaction-history',

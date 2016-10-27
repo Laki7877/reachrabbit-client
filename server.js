@@ -1,15 +1,22 @@
 var express = require("express");
 var app     = express();
 var path    = require("path");
-var http = require('http');
+var https = require('https');
 
-var port = 8080;
+var fs = require('fs');
+
+var options = {
+  key: fs.readFileSync('keys/app_reachrabbit_com.key'),
+  cert: fs.readFileSync('keys/app.reachrabbit.com.crt')
+};
+
+
+var port = 443;
 app.use(express.static('app/'));
 app.get('/:name',function(req,res){
   res.sendFile(path.join(__dirname+'/app/' + req.params.name + '.html'));
 });
 
-http.createServer( app ).listen( port, function() {
+https.createServer(options, app ).listen( port, function() {
     console.log('Express server listening on port ' + port);
 } );
-

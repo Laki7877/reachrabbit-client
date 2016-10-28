@@ -53,14 +53,14 @@
                     <li class="dropdown" ng-class="{ 'active':
                     ('brand-profile' | isState) ||
                     ('brand-transaction-history' | isState) }">
-                      <a class="profile-dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <a class="id-brand-nav-profile-dropdown profile-dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                           <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
                           <span ng-bind="$root.getProfile().brand.brandName | truncate: 15"></span><span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu">
-                          <li><a ui-sref="brand-profile"><i class="fa fa-pencil fa-fw"></i> แก้ไข Profile ของฉัน</a></li>
-                          <li><a ui-sref="brand-transaction-history"><i class="fa fa-list fa-fw"></i> รายการสั่งซื้อ</a></li>
-                          <li><a ng-click="$root.signOut()"><i class="fa fa-sign-out fa-fw"></i> ออกจากระบบ</a></li>
+                          <li class="id-brand-nav-profile"><a ui-sref="brand-profile"><i class="fa fa-pencil fa-fw"></i> แก้ไข Profile ของฉัน</a></li>
+                          <li class="id-brand-nav-transaction-history"><a ui-sref="brand-transaction-history"><i class="fa fa-list fa-fw"></i> รายการสั่งซื้อ</a></li>
+                          <li class="id-brand-nav-signout"><a ng-click="$root.signOut()"><i class="fa fa-sign-out fa-fw"></i> ออกจากระบบ</a></li>
                       </ul>
                     </li>
                 </ul>

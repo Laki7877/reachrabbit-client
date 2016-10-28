@@ -4,7 +4,7 @@ exports.config = {
     allScriptsTimeout: 120000,
 
     specs: [
-        '*.js'
+        'e2e-tests/brandLoginTest.js'
     ],
 
     capabilities: {
@@ -35,7 +35,7 @@ exports.config = {
     },
 
     resultJsonOutputFile: 'test-report.json',
-    baseUrl: 'http://localhost:9900/',
+    baseUrl: 'https://localhost/',
     framework: 'jasmine',
     onPrepare: function() {
         var SpecReporter = require('jasmine-spec-reporter');

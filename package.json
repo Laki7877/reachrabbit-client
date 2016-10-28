@@ -34,6 +34,7 @@
     "karma-junit-reporter": "^0.4.1",
     "load-grunt-tasks": "^3.5.2",
     "protractor": "^4.0.4",
+    "protractor-browser-logs": "^1.0.316",
     "uglifyify": "^3.0.4",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.15.1"
@@ -48,7 +49,7 @@
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
     "protractor": "cat message.txt",
-    "protractor-test": "protractor e2e-tests/protractor.conf.js --verbose",
+    "protractor-test": "protractor E2E/protractor.conf.js --verbose",
     "protractor-test-ff": "protractor e2e-tests/protractor.conf.js --verbose --browser=firefox",
     "update-index-async": "node -e \"var fs=require('fs'),indexFile='app/index-async.html',loaderFile='app/bower_components/angular-loader/angular-loader.min.js',loaderText=fs.readFileSync(loaderFile,'utf-8').split(/sourceMappingURL=angular-loader.min.js.map/).join('sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map'),indexText=fs.readFileSync(indexFile,'utf-8').split(/\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/).join('//@@NG_LOADER_START@@\\n'+loaderText+'    //@@NG_LOADER_END@@');fs.writeFileSync(indexFile,indexText);\""
   },

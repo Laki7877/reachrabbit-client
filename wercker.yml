@@ -1,20 +1,22 @@
 box: nodesource/trusty
 build:
   steps:
-    -script:
+    - install-packages:
+        packages: wget
+
+    - script:
       name: Add Source
       code: |
         echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee -a /etc/apt/sources.list
         wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
         apt-get update
-
     - install-packages:
-        packages: python python-pip xvfb default-jre fluxbox x11vnc dbus unzip libasound2 libqt4-dbus libqt4-network libqtcore4 libqtgui4 libxss1 libpython2.7 libqt4-xml libaudio2 libmng1 fontconfig liblcms1 lib32stdc++6 lib32asound2 curl google-chrome-stable
+        packages: python python-pip xvfb default-jre fluxbox x11vnc dbus unzip libasound2 libqt4-dbus libqt4-network libqtcore4 libqtgui4 libxss1 libpython2.7 libqt4-xml libaudio2 fontconfig liblcms1 lib32stdc++6 curl google-chrome-stable
     - script:
         name: Chrome driver
         code: |
-          wget -c http://chromedriver.googlecode.com/files/chromedriver_linux64_2.1.zip
-          unzip chromedriver_linux64_2.1.zip
+          wget -c http://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
           cp ./chromedriver /usr/bin/
           chmod ugo+rx /usr/bin/chromedriver
 
@@ -27,7 +29,9 @@ build:
           start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x800x16 -ac +extension GLX +render -noreset
           # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
           sleep 3
-
+    - script:
+        name: grunt cli
+        code: npm install -g grunt-cli bower
     - npm-install
     - script:
         name: update webdriver
@@ -36,4 +40,4 @@ build:
     - script:
         name: run tests
         code: |
-          $(npm bin)/grunt testff 
+          $(npm bin)/grunt test 

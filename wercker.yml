@@ -23,7 +23,7 @@ build:
         name: Firefox install v53
         code: |
               wget http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt/pool/main/f/firefox-mozilla-build/firefox-mozilla-build_45.0.1-0ubuntu1_amd64.deb
-              dpkg -i *.deb
+              dpkg -i firefox-mozilla-build_45.0.1-0ubuntu1_amd64.deb
     - script:
         name: Enable virtual display
         code: |-

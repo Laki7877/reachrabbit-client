@@ -46,4 +46,4 @@ build:
         code: |
           $(npm bin)/grunt connect:testserver &
           $(npm bin)/grunt shell:protractorff
-          kill $(ps -A | grep grunt | cut -d' ' -f2) 
+#          kill $(ps -A | grep grunt | cut -d' ' -f2) 

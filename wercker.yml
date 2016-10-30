@@ -20,9 +20,9 @@ build:
         packages: wget xvfb default-jre 
 #chromium-browser  chromium-chromedriver
     - script:
-        name: Firefox install v46
+        name: Firefox install v53
         code: |
-              wget sourceforge.net/projects/ubuntuzilla/files/mozilla/apt/pool/main/f/firefox-mozilla-build/firefox-mozilla-build_39.0.3-0ubuntu1_amd64.deb
+              wget http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt/pool/main/f/firefox-mozilla-build/firefox-mozilla-build_45.0.1-0ubuntu1_amd64.deb
               dpkg -i *.deb
     - script:
         name: Enable virtual display
@@ -34,8 +34,8 @@ build:
           # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
           sleep 3
     - script:
-        name: grunt cli bower protractor install
-        code: npm install -g grunt-cli bower protractor && bower install
+        name: grunt cli bower protractor install globally
+        code: npm install -g grunt-cli bower protractor
     - npm-install
     - script:
         name: update webdriver

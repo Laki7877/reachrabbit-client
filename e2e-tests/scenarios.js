@@ -106,7 +106,7 @@ describe('Brand', function () {
 
     });
 
-    describe('Login', function () {
+/*    describe('Login', function () {
         var state = {};
         beforeAll(function () {
             browser.executeScript('window.sessionStorage.clear();');
@@ -896,4 +896,7 @@ xdescribe('Influencer', function () {
         expect(prollySlip.isPresent()).toBe(true);
 
     });
+
+*/
 });
+

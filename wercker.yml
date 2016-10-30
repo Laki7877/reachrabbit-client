@@ -44,4 +44,6 @@ build:
     - script:
         name: run tests
         code: |
-          $(npm bin)/grunt testff 
+          $(npm bin)/grunt connect:testserver &
+          $(npm bin)/grunt shell:protractorff
+          kill $(ps -A | grep grunt | cut -d' ' -f2) 

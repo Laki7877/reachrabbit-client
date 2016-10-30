@@ -143,7 +143,7 @@ describe('Brand', function () {
 
     });
 
-    describe('Campaign', function () {
+    xdescribe('Campaign', function () {
         var state = {};
 
         it('can find create campaign button', function () {
@@ -257,7 +257,7 @@ describe('Brand', function () {
 
     });
 
-    describe('Modify and publish draft campaign', function () {
+    xdescribe('Modify and publish draft campaign', function () {
         var state = {};
         beforeAll(function () {
             browser.get('brand.html#/brand-campaign-list');
@@ -292,7 +292,7 @@ describe('Brand', function () {
 
     });
 
-    describe('Profile', function () {
+    xdescribe('Profile', function () {
         var state = {};
         beforeAll(function () {
             browser.get('brand.html#/brand-profile');
@@ -361,7 +361,7 @@ describe('Brand', function () {
 
 });
 
-describe('Influencer', function () {
+xdescribe('Influencer', function () {
     var state = {};
 
     describe('God Login', function () {
@@ -525,7 +525,7 @@ describe('Influencer', function () {
 
 });
 
-describe('Influencer-Brand interaction', function () {
+xdescribe('Influencer-Brand interaction', function () {
     it('Influencer can apply to campaign (submit proposal)', function () {
         var applyBtn = element(by.css(".page-header button"));
         expect(applyBtn.isPresent()).toBe(true);
@@ -630,7 +630,7 @@ describe('Influencer-Brand interaction', function () {
 
 });
 
-describe('Brand can add influencer to cart', function () {
+xdescribe('Brand can add influencer to cart', function () {
     it('can can choose proposal', function () {
         var chooseProposalBtn = element(by.css('.btn-primary'));
         chooseProposalBtn.click();
@@ -662,7 +662,7 @@ describe('Brand can add influencer to cart', function () {
 
 });
 
-describe('Admin can approve payment', function () {
+xdescribe('Admin can approve payment', function () {
     beforeAll(function () {
         browser.executeScript('window.sessionStorage.clear();');
         browser.executeScript('window.localStorage.clear();');
@@ -701,7 +701,7 @@ describe('Admin can approve payment', function () {
 
 });
 
-describe('Brand can approve work', function () {
+xdescribe('Brand can approve work', function () {
     it('Brand approve work', function () {
 
         browser.executeScript('window.sessionStorage.clear();');
@@ -743,7 +743,7 @@ describe('Brand can approve work', function () {
 
 });
 
-describe('Influencer Payment', function () {
+xdescribe('Influencer Payment', function () {
 
     describe('God Login', function () {
         var state = {};
@@ -800,7 +800,7 @@ describe('Influencer Payment', function () {
     });
 });
 
-describe('Admin Payment', function () {
+xdescribe('Admin Payment', function () {
 
     beforeAll(function () {
         browser.executeScript('window.sessionStorage.clear();');
@@ -841,7 +841,7 @@ describe('Admin Payment', function () {
     });
 });
 
-describe('Influencer', function () {
+xdescribe('Influencer', function () {
     describe('God Login', function () {
         var state = {};
         beforeAll(function () {

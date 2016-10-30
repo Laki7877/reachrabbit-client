@@ -1,25 +1,29 @@
-box: nodesource/trusty
+box: nodesource/xenial
+#box: wercker/default 
+#box: ubuntu
+#box: ubuntu:16.04
+#box: selenium/node-firefox
+#box: testim/node-firefox
+#box: selenium/standalone-firefox
+#box: chrisdaish/firefox
+#box: openhs/firefox-ubuntu
 build:
   steps:
+#    - install-packages:
+#       packages: curl
+#    - script:
+#        code: |
+#          apt-get update 
+#          curl -sL https://deb.nodesource.com/setup_6.x | bash -
+#          sudo apt-get install -y nodejs
     - install-packages:
-        packages: wget
-
+        packages: wget xvfb default-jre 
+#chromium-browser  chromium-chromedriver
     - script:
-      name: Add Source
-      code: |
-        echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee -a /etc/apt/sources.list
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        apt-get update
-    - install-packages:
-        packages: python python-pip xvfb default-jre fluxbox x11vnc dbus unzip libasound2 libqt4-dbus libqt4-network libqtcore4 libqtgui4 libxss1 libpython2.7 libqt4-xml libaudio2 fontconfig liblcms1 lib32stdc++6 curl google-chrome-stable
-    - script:
-        name: Chrome driver
+        name: Firefox install v46
         code: |
-          wget -c http://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          cp ./chromedriver /usr/bin/
-          chmod ugo+rx /usr/bin/chromedriver
-
+              wget sourceforge.net/projects/ubuntuzilla/files/mozilla/apt/pool/main/f/firefox-mozilla-build/firefox-mozilla-build_39.0.3-0ubuntu1_amd64.deb
+              dpkg -i *.deb
     - script:
         name: Enable virtual display
         code: |-
@@ -30,8 +34,8 @@ build:
           # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
           sleep 3
     - script:
-        name: grunt cli
-        code: npm install -g grunt-cli bower
+        name: grunt cli bower protractor install
+        code: npm install -g grunt-cli bower protractor && bower install
     - npm-install
     - script:
         name: update webdriver
@@ -40,4 +44,4 @@ build:
     - script:
         name: run tests
         code: |
-          $(npm bin)/grunt test 
+          $(npm bin)/grunt testff 

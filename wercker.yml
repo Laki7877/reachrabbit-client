@@ -1,23 +1,29 @@
-box: nodesource/trusty
+box: nodesource/xenial
+#box: wercker/default 
+#box: ubuntu
+#box: ubuntu:16.04
+#box: selenium/node-firefox
+#box: testim/node-firefox
+#box: selenium/standalone-firefox
+#box: chrisdaish/firefox
+#box: openhs/firefox-ubuntu
 build:
   steps:
-    -script:
-      name: Add Source
-      code: |
-        echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee -a /etc/apt/sources.list
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        apt-get update
-
+#    - install-packages:
+#       packages: curl
+#    - script:
+#        code: |
+#          apt-get update 
+#          curl -sL https://deb.nodesource.com/setup_6.x | bash -
+#          sudo apt-get install -y nodejs
     - install-packages:
-        packages: python python-pip xvfb default-jre fluxbox x11vnc dbus unzip libasound2 libqt4-dbus libqt4-network libqtcore4 libqtgui4 libxss1 libpython2.7 libqt4-xml libaudio2 libmng1 fontconfig liblcms1 lib32stdc++6 lib32asound2 curl google-chrome-stable
+        packages: wget xvfb default-jre 
+#chromium-browser  chromium-chromedriver
     - script:
-        name: Chrome driver
+        name: Firefox install v53
         code: |
-          wget -c http://chromedriver.googlecode.com/files/chromedriver_linux64_2.1.zip
-          unzip chromedriver_linux64_2.1.zip
-          cp ./chromedriver /usr/bin/
-          chmod ugo+rx /usr/bin/chromedriver
-
+              wget http://downloads.sourceforge.net/project/ubuntuzilla/mozilla/apt/pool/main/f/firefox-mozilla-build/firefox-mozilla-build_45.0.1-0ubuntu1_amd64.deb
+              dpkg -i firefox-mozilla-build_45.0.1-0ubuntu1_amd64.deb
     - script:
         name: Enable virtual display
         code: |-
@@ -27,7 +33,9 @@ build:
           start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1920x800x16 -ac +extension GLX +render -noreset
           # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
           sleep 3
-
+    - script:
+        name: grunt cli bower protractor install globally
+        code: npm install -g grunt-cli bower protractor
     - npm-install
     - script:
         name: update webdriver
@@ -36,4 +44,6 @@ build:
     - script:
         name: run tests
         code: |
-          $(npm bin)/grunt testff 
+          $(npm bin)/grunt connect:testserver &
+          $(npm bin)/grunt shell:protractorff
+#          kill $(ps -A | grep grunt | cut -d' ' -f2) 

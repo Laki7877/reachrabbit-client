@@ -969,7 +969,8 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
             scope: {
                 closable: '&?',
                 alert: '=?ncAlert',
-                type: '@?type'
+                type: '@?type',
+                id: '@?'
             },
             link: function (scope, element, attrs, ctrl, transclude) {
 

@@ -11,6 +11,7 @@ var brandSignUpPage = function () {
     this.companyTaxId = element(by.model('formData.companyTaxId'));
     this.companyAddress = element(by.model('formData.companyAddress'));
     this.submit_btn = element(by.css('.btn-primary'));
+    this.login_link = element(by.id('brandLoginLink'));
     //******************** functions *******************//
     
     

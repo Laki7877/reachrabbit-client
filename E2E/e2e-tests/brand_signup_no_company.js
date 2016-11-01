@@ -9,4 +9,5 @@ describe('Brand Sign up with no company detail', function () {
     });
     loginLogout.gotoSignup();
     signUp.signUpSuccessNoCompany();
+    loginLogout.logout();
 });

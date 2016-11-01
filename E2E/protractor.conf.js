@@ -13,7 +13,7 @@ exports.config = {
 
     params: {
         brand_login: {
-            user: 'brand@reachrabbit.com',
+            user: 'brand7887@reachrabbit.com',
             password: 'test1234'
         },
         influencer_login: {

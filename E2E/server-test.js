@@ -6,6 +6,7 @@ var methodOverride = require('method-override');
 var fs = require('fs');
 var exec = require('child_process').exec;
 var _ = require('lodash');
+var path = require('path');
 
 app.use(express.static(__dirname + '/app'));
 
@@ -67,7 +68,7 @@ app.get('/test_result/*',function(req, res) {
 });
 
 app.get('*', function(req, res) {
-    res.sendfile('./app/index.html');
+    res.sendFile(path.resolve(__dirname, 'app/index.html'));
 });
 
 var port = 9000;

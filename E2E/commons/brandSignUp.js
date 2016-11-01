@@ -11,10 +11,13 @@ exports.signUpSuccessCompany = function() {
         expect(signUpPage.form.password.isPresent()).toBe(true);
         expect(signUpPage.form.isCompany.isPresent()).toBe(true);
         expect(signUpPage.form.submit_btn.isPresent()).toBe(true);
+        expect(signUpPage.form.login_link.isPresent()).toBe(true);
         signUpPage.form.isCompany.click();
         expect(signUpPage.form.companyName.isPresent()).toBe(true);
         expect(signUpPage.form.companyTaxId.isPresent()).toBe(true);
         expect(signUpPage.form.companyAddress.isPresent()).toBe(true);
+        signUpPage.form.submit_btn.click();
+        expect($('.alert.alert-danger').isPresent()).toBe(true);
     });
     it('Should be able to fill sign up form data',function(){
         signUpPage.form.name.sendKeys(chance.capitalize(chance.word({ length: 10 })));
@@ -27,6 +30,10 @@ exports.signUpSuccessCompany = function() {
         signUpPage.form.companyAddress.sendKeys("Somewhere in Space");
         signUpPage.form.companyAddress.sendKeys(protractor.Key.TAB);
         signUpPage.form.companyAddress.sendKeys(protractor.Key.ENTER);
+        signUpPage.form.submit_btn.click();
+        browser.getCurrentUrl().then(function(actualUrl){
+            expect(actualUrl).toContain('#/brand-campaign-list');
+        });
     });
 };
 
@@ -39,6 +46,9 @@ exports.signUpSuccessNoCompany = function() {
         expect(signUpPage.form.password.isPresent()).toBe(true);
         expect(signUpPage.form.isCompany.isPresent()).toBe(true);
         expect(signUpPage.form.submit_btn.isPresent()).toBe(true);
+        expect(signUpPage.form.login_link.isPresent()).toBe(true);
+        //signUpPage.form.submit_btn.click();
+        //expect($('.alert.alert-danger').isPresent()).toBe(true);
     });
     it('Should be able to fill sign up form data',function(){
         signUpPage.form.name.sendKeys(chance.capitalize(chance.word({ length: 10 })));
@@ -46,6 +56,10 @@ exports.signUpSuccessNoCompany = function() {
         signUpPage.form.phoneNumber.sendKeys(chance.phone({ formatted: false }));
         signUpPage.form.email.sendKeys(browser.params.brand_login.user);
         signUpPage.form.password.sendKeys(browser.params.brand_login.password);
+        signUpPage.form.submit_btn.click();
+        browser.getCurrentUrl().then(function(actualUrl){
+            expect(actualUrl).toContain('#/brand-campaign-list');
+        });
     });
 };
 

@@ -8,4 +8,5 @@ describe('Brand Sign up with company detail', function () {
     });
     loginLogout.gotoSignup();
     signUp.signUpSuccessCompany();
+    loginLogout.logout();
 });

@@ -1,4 +1,4 @@
-<div class="alert alert-{{alert.type}}" role="alert" ng-show="alert.show">
+<div class="alert alert-{{alert.type}}" role="alert" ng-show="alert.show" id="{{id}}">
     <span class="alert-icon"></span>
     <button type="button" class="close color opacity-1" ng-class="'color-' + (alert.type || 'info')" aria-hidden="true" ng-show="closable()"
         ng-click="alert.close({$event: $event})">&times;</button>

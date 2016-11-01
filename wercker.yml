@@ -45,7 +45,7 @@ build:
         name: run tests
         code: |
           $(npm bin)/bower install --allow-root
-          $(npm bin)/grunt bundle
+          $(npm bin)/grunt build
           $(npm bin)/grunt vendor
           $(npm bin)/grunt connect:testserver &
           $(npm bin)/grunt shell:protractorff

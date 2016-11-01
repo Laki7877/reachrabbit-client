@@ -2,6 +2,15 @@ var loginPage = require('../page_objects/brandLoginPage.js'),
     brandHeader = require('../page_objects/brandHeaderPage.js'),
     common = require('./common.js');
 
+
+exports.gotoSignup = function() {
+    it('Should exits',function(){
+        expect(loginPage.form.signUpBtn.isPresent()).toBe(true);
+        loginPage.form.clickSignup();
+    });
+    
+};
+
 exports.loginSuccess = function (email, password) {
     it('Should exits' , function() {
         expect(loginPage.form.email.isPresent()).toBe(true);

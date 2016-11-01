@@ -4,7 +4,7 @@ exports.config = {
     allScriptsTimeout: 120000,
 
     specs: [
-        'e2e-tests/brandLoginTest.js'
+        './e2e-tests/brand_login_test.js'
     ],
 
     capabilities: {
@@ -13,7 +13,11 @@ exports.config = {
 
     params: {
         brand_login: {
-            user: 'uniqlo@brands.org',
+            user: 'brand@reachrabbit.com',
+            password: 'test1234'
+        },
+        influencer_login: {
+            user: 'influencer@reachrabbit.com',
             password: 'test1234'
         },
         god_influencer: {
@@ -34,7 +38,7 @@ exports.config = {
         }
     },
 
-    resultJsonOutputFile: 'test-report.json',
+    resultJsonOutputFile: 'test_result/test-report.json',
     baseUrl: 'https://localhost/',
     framework: 'jasmine',
     onPrepare: function() {

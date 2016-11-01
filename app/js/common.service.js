@@ -741,6 +741,9 @@ angular.module('reachRabbitApp.common.service', ['satellizer'])
             },
             set: function (profile) {
                 $window.localStorage.profile = JSON.stringify(profile);
+            },
+            clear: function(){
+                $window.localStorage.removeItem('profile');
             }
         };
     })

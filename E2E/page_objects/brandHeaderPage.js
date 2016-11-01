@@ -19,6 +19,4 @@ var brandHeaderPage = function () {
         this.signoutBtn.click();
     };
 };
-module.exports = {
-    form: new brandHeaderPage()
-};
+module.exports = new brandHeaderPage();

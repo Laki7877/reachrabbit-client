@@ -50,32 +50,32 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li ui-sref-active="active"><a ui-sref="admin-transaction-history">Transaction History</a></li>
-                    <li ui-sref-active="active"><a ui-sref="admin-payout-history">Payout Requests</a></li>
-                    <li ui-sref-active="active"><a ui-sref="admin-campaign-list">All Campaigns</a></li>
-                    <li ui-sref-active="active"><a ui-sref="admin-inbox">All Inbox</a></li>
+                    <li ui-sref-active="active"><a id="admin-transaction-history-btn" ui-sref="admin-transaction-history">Transaction History</a></li>
+                    <li ui-sref-active="active"><a id="admin-payout-history-btn" ui-sref="admin-payout-history">Payout Requests</a></li>
+                    <li ui-sref-active="active"><a id="admin-campaign-list-btn" ui-sref="admin-campaign-list">All Campaigns</a></li>
+                    <li ui-sref-active="active"><a id="admin-inbox-btn" ui-sref="admin-inbox">All Inbox</a></li>
                     <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <a id="admin-user-dropdown-btn" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                           All Users </span><span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu">
-                        <li ui-sref-active="active"><a ui-sref="admin-brand-list">All Brands</a></li>
-                        <li ui-sref-active="active"><a ui-sref="admin-influencer-list">All Influencers</a></li>
+                        <li ui-sref-active="active"><a id="admin-brand-list-btn" ui-sref="admin-brand-list">All Brands</a></li>
+                        <li ui-sref-active="active"><a id="admin-influencer-list-btn" ui-sref="admin-influencer-list">All Influencers</a></li>
                       </ul>
                     </li>
                     <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <a id="admin-referral-dropdown-btn" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                           Referral </span><span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu">
-                        <li ui-sref-active="active"><a ui-sref="admin-referral-code-list">Referral Code</a></li>
-                        <li ui-sref-active="active"><a ui-sref="admin-referral-payment-list">Referral Payment</a></li>
+                        <li ui-sref-active="active"><a id="admin-referral-code-list-btn" ui-sref="admin-referral-code-list">Referral Code</a></li>
+                        <li ui-sref-active="active"><a id="admin-referral-payment-list-btn" ui-sref="admin-referral-payment-list">Referral Payment</a></li>
                       </ul>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                      <a class="profile-dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <a id="admin-profile-dropdown-btn" class="profile-dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                           <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
                           <span ng-bind="$root.getProfile().email | truncate: 15"></span><span class="caret"></span>
                       </a>

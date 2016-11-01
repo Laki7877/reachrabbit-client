@@ -1,4 +1,4 @@
-var brandHeaderPage = function () {
+var adminHeaderPage = function () {
     'use strict';
     this.transactionHistoryBtn = element(by.id('admin-transaction-history-btn'));
     this.payoutHistoryBtn = element(by.id('admin-payout-history-btn'));

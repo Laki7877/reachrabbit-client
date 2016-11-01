@@ -26,6 +26,8 @@ app.controller('mainController', function($scope, $http, $window) {
     $scope.formData.brandPassword = 'test1234';
     $scope.formData.influencerEmail = 'influencer@reachrabbit.com';
     $scope.formData.influencerPassword = 'test1234';
+    $scope.formData.adminEmail = 'admin@reachrabbit.com';
+    $scope.formData.adminPassword = 'test1234';
 
     $http.get('/api/descriptions').success(function(data) {
         //_.each()

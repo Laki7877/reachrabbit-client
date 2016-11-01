@@ -16,6 +16,10 @@ exports.config = {
             user: '<brandEmail>',
             password: '<brandPassword>'
         },
+        admin_login: {
+            user: '<adminEmail>',
+            password: '<adminPassword>'
+        },
         influencer_login: {
             user: '<influencerEmail>',
             password: '<influencerPassword>'

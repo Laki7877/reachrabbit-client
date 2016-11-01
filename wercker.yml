@@ -1,5 +1,5 @@
 box: nodesource/xenial
-#box: wercker/default 
+#box: wercker/default
 #box: ubuntu
 #box: ubuntu:16.04
 #box: selenium/node-firefox
@@ -13,11 +13,11 @@ build:
 #       packages: curl
 #    - script:
 #        code: |
-#          apt-get update 
+#          apt-get update
 #          curl -sL https://deb.nodesource.com/setup_6.x | bash -
 #          sudo apt-get install -y nodejs
     - install-packages:
-        packages: wget xvfb default-jre 
+        packages: wget xvfb default-jre
 #chromium-browser  chromium-chromedriver
     - script:
         name: Firefox install v53
@@ -44,6 +44,9 @@ build:
     - script:
         name: run tests
         code: |
+          $(npm bin)/bower install --allow-root
+          $(npm bin)/grunt bundle
+          $(npm bin)/grunt vendor
           $(npm bin)/grunt connect:testserver &
           $(npm bin)/grunt shell:protractorff
-#          kill $(ps -A | grep grunt | cut -d' ' -f2) 
+#          kill $(ps -A | grep grunt | cut -d' ' -f2)

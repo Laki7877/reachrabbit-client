@@ -4,7 +4,7 @@ exports.config = {
     allScriptsTimeout: 120000,
 
     specs: [
-        './e2e-tests/brand_login.js'
+        './e2e-tests/admin_login.js'
     ],
 
     capabilities: {

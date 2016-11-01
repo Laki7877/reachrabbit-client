@@ -20,13 +20,14 @@ exports.loginSuccess = function (email, password) {
             expect(value.length).toBeGreaterThan(0);
         });
         loginPage.clickLogin();
-        console.log('hilogin');
+        browser.getCurrentUrl().then(function(actualUrl){
+            expect(actualUrl).toContain('#/admin-transaction-history');
+        });
     });
 };
 
 exports.logout = function () {
     it('Logout button should exist' , function() {
-        console.log('hilogout');
         expect(adminHeader.signoutBtn.isPresent()).toBe(true);
     });
     it('Should be able to click sign out' , function() {

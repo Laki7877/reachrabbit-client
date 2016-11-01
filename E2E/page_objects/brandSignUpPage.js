@@ -15,6 +15,4 @@ var brandSignUpPage = function () {
     
     
 };
-module.exports = {
-    form: new brandSignUpPage()
-};
+module.exports = new brandSignUpPage();

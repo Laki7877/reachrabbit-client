@@ -1,11 +1,10 @@
-var brandLoginPage = function () {
+var adminLoginPage = function () {
     'use strict';
 
     this.email = element(by.model('formData.username'));
     this.password  = element(by.model('formData.password'));
-    this.submitBtn = element(by.css('.id-view-brand-login-login-btn'));
-    this.signUpBtn = element(by.css('.id-view-brand-login-signup'));
-    this.alert = element(by.css('div[nc-alert=alert] div[role=alert]'));
+    this.submitBtn = element(by.id('admin-login-login-btn'));
+    this.alert = element(by.id('admin-login-alert'));
     //******************** functions *******************//
     this.setEmail = function (email) {
         this.email.clear();
@@ -18,8 +17,5 @@ var brandLoginPage = function () {
     this.clickLogin = function () {
         this.submitBtn.click();
     };
-    this.clickSignup = function () {
-        this.signUpBtn.click();
-    };
 };
-module.exports = new brandLoginPage();
+module.exports = new adminLoginPage();

@@ -20,3 +20,10 @@ app.get('/:name',function(req,res){
 https.createServer(options, app ).listen( port, function() {
     console.log('Express server listening on port ' + port);
 } );
+
+// Redirect http to https
+var http = require('http');
+http.createServer(function (req, res) {
+    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+    res.end();
+}).listen(80);

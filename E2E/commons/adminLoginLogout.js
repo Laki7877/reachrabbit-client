@@ -1,7 +1,7 @@
 var loginPage = require('../page_objects/adminLoginPage.js'),
     adminHeader = require('../page_objects/adminHeaderPage.js'),
     common = require('./common.js');
-    
+
 exports.loginSuccess = function (email, password) {
     it('Sign in component should exist' , function() {
         expect(loginPage.email.isPresent()).toBe(true);
@@ -20,7 +20,8 @@ exports.loginSuccess = function (email, password) {
             expect(value.length).toBeGreaterThan(0);
         });
         loginPage.clickLogin();
-        browser.getCurrentUrl().then(function(actualUrl){
+        browser.sleep(3000);
+        common.waitForCurrentUrl().then(function(actualUrl){
             expect(actualUrl).toContain('#/admin-transaction-history');
         });
     });
@@ -28,11 +29,12 @@ exports.loginSuccess = function (email, password) {
 
 exports.logout = function () {
     it('Logout button should exist' , function() {
+      adminHeader.clickPayoutHistory();
         expect(adminHeader.signoutBtn.isPresent()).toBe(true);
     });
     it('Should be able to click sign out' , function() {
         adminHeader.clickSignout();
-        browser.getCurrentUrl().then(function(actualUrl){
+        common.waitForCurrentUrl().then(function(actualUrl){
             expect(actualUrl).toContain('#/admin-login');
         });
     });

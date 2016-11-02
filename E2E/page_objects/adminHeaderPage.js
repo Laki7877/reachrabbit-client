@@ -12,7 +12,7 @@ var adminHeaderPage = function () {
     this.referralPaymentListBtn = element(by.id('admin-referral-payment-list-btn'));
     this.profileDropdownBtn = element(by.id('admin-profile-dropdown-btn'));
     this.signoutBtn = element(by.id('admin-profile-signout-btn'));
-    
+
     //******************** functions *******************//
     this.clickTransactionHistory = function() {
         this.transactionHistoryBtn.click();

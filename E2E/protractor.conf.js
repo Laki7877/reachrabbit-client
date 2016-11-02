@@ -13,12 +13,12 @@ exports.config = {
 
     params: {
         brand_login: {
-            user: 'brand7887@reachrabbit.com',
+            user: 'brand@reachrabbit.com',
             password: 'test1234'
         },
         admin_login: {
-            user: 'undefined',
-            password: 'undefined'
+            user: 'admin@reachrabbit.com',
+            password: 'test1234'
         },
         influencer_login: {
             user: 'influencer@reachrabbit.com',
@@ -35,10 +35,6 @@ exports.config = {
         ig_login: {
             user: 'eastduckman',
             password: 'Ahancer123!'
-        },
-        admin_login: {
-            user: 'admin@reachrabbit.com',
-            password: 'test1234'
         }
     },
 

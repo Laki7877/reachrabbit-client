@@ -1,28 +1,25 @@
 //jshint strict: false
+
 exports.config = {
 
     allScriptsTimeout: 120000,
 
     specs: [
-        //<FILE>//
+        './e2e-tests/*.js'
     ],
 
     capabilities: {
-        'browserName': 'chrome'
+        'browserName': 'firefox'
     },
 
     params: {
         brand_login: {
-            user: '<brandEmail>',
-            password: '<brandPassword>'
-        },
-        admin_login: {
-            user: '<adminEmail>',
-            password: '<adminPassword>'
+            user: 'brand@reachrabbit.com',
+            password: 'test1234'
         },
         influencer_login: {
-            user: '<influencerEmail>',
-            password: '<influencerPassword>'
+            user: 'influencer@reachrabbit.com',
+            password: 'test1234'
         },
         god_influencer: {
             user: 'influencer@reachrabbit.com',

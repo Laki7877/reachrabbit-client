@@ -34,7 +34,9 @@ app.post('/api/start' , function(req,res) {
         .replace('<brandEmail>',req.body.brandEmail)
         .replace('<brandPassword>',req.body.brandPassword)
         .replace('<influencerEmail>',req.body.influencerEmail)
-        .replace('<influencerPassword>',req.body.influencerPassword);
+        .replace('<influencerPassword>',req.body.influencerPassword)
+        .replace('<adminEmail>',req.body.adminEmail)
+        .replace('<adminPassword>',req.body.adminPassword);
     fs.writeFile('protractor.conf.js', configFile , function(err) {
         if(err) {
             console.log(err);
@@ -64,7 +66,7 @@ app.get('/api/descriptions', function(req, res) {
 
 app.get('/test_result/*',function(req, res) {
     console.log(req.url);
-    res.sendfile(__dirname + req.url);
+    res.sendFile(__dirname + req.url);
 });
 
 app.get('*', function(req, res) {

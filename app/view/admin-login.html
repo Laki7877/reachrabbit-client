@@ -1,7 +1,7 @@
 <div class="viewport view-admin-login">
   <div class="container">
 
-    <div nc-alert='alert'></div>
+    <div id="admin-login-alert" nc-alert='alert'></div>
 
     <form name="form" novalidate ng-model-options="{ updatedOn: 'change blur'}">
       <div class="card-portal">
@@ -26,7 +26,7 @@
             </div>
             <div input-error></div>
           </div>
-          <button class="btn-primary btn-width-max" ng-click="login()">เข้าสู่ระบบ</button>
+          <button id="admin-login-login-btn" class="btn-primary btn-width-max" ng-click="login()">เข้าสู่ระบบ</button>
         </div>
       </div>
     </form>

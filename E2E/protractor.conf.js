@@ -4,7 +4,7 @@ exports.config = {
     allScriptsTimeout: 120000,
 
     specs: [
-        './e2e-tests/brand_signup_company.js'
+        './e2e-tests/admin_login.js'
     ],
 
     capabilities: {
@@ -15,6 +15,10 @@ exports.config = {
         brand_login: {
             user: 'brand7887@reachrabbit.com',
             password: 'test1234'
+        },
+        admin_login: {
+            user: 'undefined',
+            password: 'undefined'
         },
         influencer_login: {
             user: 'influencer@reachrabbit.com',

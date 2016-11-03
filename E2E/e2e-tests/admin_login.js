@@ -1,4 +1,6 @@
-var loginLogout = require('../commons/adminLoginLogout.js');
+var loginLogout = require('../commons/adminLoginLogout.js'),
+	adminHeader = require('../page_objects/adminHeader.js');
+
 describe('Admin Login', function () {
     beforeAll(function () {
         browser.get('portal.html#/admin-login');

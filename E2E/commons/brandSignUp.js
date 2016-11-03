@@ -1,4 +1,5 @@
 var signUpPage = require('../page_objects/brandSignUpPage.js');
+var common = require('./common.js');
 var Chance = require('chance');
 var chance = new Chance();
 
@@ -25,8 +26,9 @@ exports.signUpSuccessCompany = function() {
         signUpPage.companyName.sendKeys(chance.capitalize(chance.word({ length: 10 })) + " Co Ltd");
         signUpPage.companyTaxId.sendKeys("12341234");
         signUpPage.companyAddress.sendKeys("Somewhere in Space");
-        signUpPage.companyAddress.sendKeys(protractor.Key.TAB);
-        signUpPage.companyAddress.sendKeys(protractor.Key.ENTER);
+    });
+    it('Should be able to click sign up button', function() {
+        signUpPage.submit_btn.click();
     });
 };
 
@@ -46,6 +48,9 @@ exports.signUpSuccessNoCompany = function() {
         signUpPage.phoneNumber.sendKeys(chance.phone({ formatted: false }));
         signUpPage.email.sendKeys(browser.params.brand_login.user);
         signUpPage.password.sendKeys(browser.params.brand_login.password);
+    });
+    it('Should be able to click sign up button', function() {
+        signUpPage.submit_btn.click();
     });
 };
 

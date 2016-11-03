@@ -12,6 +12,7 @@ var brandSignUpPage = function () {
     this.companyAddress = element(by.model('formData.companyAddress'));
     this.submit_btn = element(by.css('.btn-primary'));
     this.login_link = element(by.id('brandLoginLink'));
+    this.alert = element(by.id('brand-signup-alert-box')).element(by.css('div[role=alert]'));
     //******************** functions *******************//
     
     

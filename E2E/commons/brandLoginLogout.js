@@ -36,6 +36,7 @@ exports.loginSuccess = function (email, password) {
 
 exports.logout = function () {
     it('Logout button should exist' , function() {
+        browser.ignoreSynchronization = true;
         expect(brandHeader.signoutBtn.isPresent()).toBe(true);
     });
     it('Should be able to click sign out' , function() {
@@ -43,5 +44,6 @@ exports.logout = function () {
         browser.getCurrentUrl().then(function(actualUrl){
             expect(actualUrl).toContain('#/brand-login');
         });
+        browser.ignoreSynchronization = false;
     });
 };

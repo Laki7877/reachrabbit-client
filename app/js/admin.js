@@ -92,7 +92,7 @@ angular.module('reachRabbitApp', [
     INFLUENCER_BANK_TF_FEE: 30,
     DEV_ENV_HOST: ["localhost", "bella.reachrabbit.co"],
     PROTRACTOR_PORT: 9900,
-    NO_POLL_WHITELIST: ["-portal", "-login", "-signup", "public-campaign-detail", "admin"]
+    NO_POLL_WHITELIST: ["-portal", "-login", "-signup", "public-campaign-detail"]
   })
   .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce', '$state',
     function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {

@@ -35,7 +35,7 @@
           <div class="card-row">
             <div class="card-body-content-label with-input"></div>
             <div class="card-body-content">
-              <button ng-click="save()" class="btn btn-primary btn-width-lg">Create New Code</button>
+              <button id="admin-referral-code-list-submit-btn" ng-click="save()" class="btn btn-primary btn-width-lg">Create New Code</button>
             </div>
           </div>
         </div>
@@ -65,8 +65,8 @@
             </thead>
             <tbody>
               <tr ng-repeat="ref in referrals.content">
-                <td class="color-green">{{ref.referralId}}</td>
-                <td>{{ref.email}}</td>
+                <td class="col-referral color-green">{{ref.referralId}}</td>
+                <td class="col-email">{{ref.email}}</td>
                 <td>{{ref.description}}</td>
                 <td >{{(ref.commission | number) || '-'}}%</td>
                 <td>{{ref.signUpCount}}</td>

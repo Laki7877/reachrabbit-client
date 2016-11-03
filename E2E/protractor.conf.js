@@ -1,10 +1,8 @@
 //jshint strict: false
 exports.config = {
-
     allScriptsTimeout: 120000,
-
     specs: [
-        './e2e-tests/admin_login.js'
+        './e2e-tests/admin_view_campaign.js'
     ],
 
     capabilities: {

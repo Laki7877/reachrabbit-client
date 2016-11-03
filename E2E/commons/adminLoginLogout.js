@@ -21,7 +21,7 @@ exports.loginSuccess = function (email, password) {
         });
         loginPage.clickLogin();
         browser.sleep(3000);
-        common.waitForCurrentUrl().then(function(actualUrl){
+        browser.getCurrentUrl().then(function(actualUrl){
             expect(actualUrl).toContain('#/admin-transaction-history');
         });
     });
@@ -29,12 +29,11 @@ exports.loginSuccess = function (email, password) {
 
 exports.logout = function () {
     it('Logout button should exist' , function() {
-      adminHeader.clickPayoutHistory();
         expect(adminHeader.signoutBtn.isPresent()).toBe(true);
     });
     it('Should be able to click sign out' , function() {
         adminHeader.clickSignout();
-        common.waitForCurrentUrl().then(function(actualUrl){
+        browser.getCurrentUrl().then(function(actualUrl){
             expect(actualUrl).toContain('#/admin-login');
         });
     });

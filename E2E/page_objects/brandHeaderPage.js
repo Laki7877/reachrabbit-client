@@ -4,6 +4,7 @@ var brandHeaderPage = function () {
     this.profileButton = element(by.css('.id-brand-nav-profile a'));
     this.brandTransactionHistoryBtn = element(by.css('.id-brand-nav-transaction-history a'));
     this.signoutBtn = element(by.css('.id-brand-nav-signout a'));
+    this.campaignListBtn = element(by.id('brand-header-brand-campaign-list'));
     
     //******************** functions *******************//
     this.clickEditProfile = function() {

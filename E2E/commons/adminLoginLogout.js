@@ -36,6 +36,5 @@ exports.logout = function () {
         browser.getCurrentUrl().then(function(actualUrl){
             expect(actualUrl).toContain('#/admin-login');
         });
-        browser.ignoreSynchronization = false;
     });
 };

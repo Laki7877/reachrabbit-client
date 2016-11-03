@@ -29,7 +29,8 @@ exports.loginSuccess = function (email, password) {
 
 exports.logout = function () {
     it('Logout button should exist' , function() {
-      adminHeader.clickPayoutHistory();
+        browser.ignoreSynchronization = true;
+        adminHeader.clickPayoutHistory();
         expect(adminHeader.signoutBtn.isPresent()).toBe(true);
     });
     it('Should be able to click sign out' , function() {
@@ -37,5 +38,6 @@ exports.logout = function () {
         common.waitForCurrentUrl().then(function(actualUrl){
             expect(actualUrl).toContain('#/admin-login');
         });
+        browser.ignoreSynchronization = false;
     });
 };

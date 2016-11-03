@@ -1,18 +1,22 @@
-var loginPage = require('../page_objects/brandLoginPage.js'),
-    brandHeader = require('../page_objects/brandHeaderPage.js'),
-    common = require('./common.js');
+var loginPage = require('../page_objects/brandLoginPage.js');
+var brandHeader = require('../page_objects/brandHeaderPage.js');
+var common = require('./common.js');
     
 exports.gotoSignup = function() {
+    
     it('Sign up link should exist',function(){
         expect(loginPage.signUpBtn.isPresent()).toBe(true);
         loginPage.clickSignup();
     });
 };
 
-exports.loginSuccess = function () {
+exports.gotoLogin = function() {
     browser.get('portal.html#/brand-login');
     browser.executeScript('window.sessionStorage.clear();');
     browser.executeScript('window.localStorage.clear();');
+};
+
+exports.loginSuccess = function () {
     it('Sign in component should exist' , function() {
         expect(loginPage.email.isPresent()).toBe(true);
         expect(loginPage.password.isPresent()).toBe(true);
@@ -45,6 +49,8 @@ exports.logout = function () {
     });
     it('Should be able to click sign out' , function() {
         brandHeader.clickSignout();
+    });
+    it('Should go login page',function(){
         browser.sleep(1000);
         browser.getCurrentUrl().then(function(actualUrl){
             expect(actualUrl).toContain('#/brand-login');

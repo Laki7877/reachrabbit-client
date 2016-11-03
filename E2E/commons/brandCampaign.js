@@ -33,7 +33,6 @@ exports.crateDraftCampaign = function() {
         browser.ignoreSynchronization = false;
     });
     it('Should be able to fill campaign form', function(){
-        browser.ignoreSynchronization = true;
         var fileToUpload = 'cyanthumb.jpg';
         var absolutePath = path.resolve(__dirname, fileToUpload);
         var campaignName = chance.name() + " " + chance.ssn({ dashes: false });;

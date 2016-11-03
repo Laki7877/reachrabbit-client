@@ -1,7 +1,9 @@
 var loginLogout = require('../commons/brandLoginLogout.js');
 var brandCampaign = require('../commons/brandCampaign.js');
+
 describe('Create new Campaign', function () {
     browser.ignoreSynchronization = true;
+    loginLogout.gotoLogin();
     loginLogout.loginSuccess();
     brandCampaign.gotoCreateCampaign();
     brandCampaign.crateDraftCampaign();

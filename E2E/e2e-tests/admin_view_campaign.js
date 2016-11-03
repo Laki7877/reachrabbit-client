@@ -1,8 +1,9 @@
-var loginLogout = require('../commons/adminLoginLogout.js'),
-	adminHeader = require('../page_objects/adminHeaderPage.js'),
-	moniker = require('moniker'),
-	rs = require('randomstring'),
-	rn = require('random-number');
+var loginLogout = require('../commons/adminLoginLogout.js');
+var adminHeader = require('../page_objects/adminHeaderPage.js');
+var moniker = require('moniker');
+var rs = require('randomstring');
+var rn = require('random-number');
+
 describe('Admin campaign list', function() {
     var email = browser.params.admin_login.user,
         password = browser.params.admin_login.password;

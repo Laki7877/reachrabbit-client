@@ -7,6 +7,10 @@
 /* jshint node: true */
 'use strict';
 
+require('./common');
+require('./public.controller');
+require('./public.route');
+
 // Declare app level module which depends on views, and components
 angular.module('reachRabbitApp', [
   'angular-loading-bar',
@@ -18,26 +22,14 @@ angular.module('reachRabbitApp', [
   'ngPatternRestrict',
   'angularMoment',
   'luegg.directives',
-  'wu.masonry',
   'ngImgCrop',
   'jsonFormatter',
   'chart.js',
-  //Top level
   'reachRabbitApp.common.directives',
   'reachRabbitApp.common.routes',
   'reachRabbitApp.common.controller',
-  //Controllers
-  'reachRabbitApp.portal.controller',
-  'reachRabbitApp.brand.controller',
-  'reachRabbitApp.influencer.controller',
-  'reachRabbitApp.admin.controller',
   'reachRabbitApp.public.controller',
-  //Routes
-  'reachRabbitApp.portal.routes',
-  'reachRabbitApp.brand.routes',
-  'reachRabbitApp.influencer.routes',
-  'reachRabbitApp.admin.routes',
-  'reachRabbitApp.public.routes',
+  'reachRabbitApp.public.routes'
 ])
   //Mock data for testing
   .constant('MockData', {

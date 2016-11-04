@@ -70,7 +70,8 @@ module.exports = function (grunt) {
           'app/dist/bundle.admin.js': ['app/js/admin.js'],
           'app/dist/bundle.influencer.js': ['app/js/influencer.js'],
           'app/dist/bundle.brand.js': ['app/js/brand.js'],
-          'app/dist/bundle.portal.js': ['app/js/portal.js']
+          'app/dist/bundle.portal.js': ['app/js/portal.js'],
+          'app/dist/bundle.public.js': ['app/js/public.js']
         },
         options: {
           transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]

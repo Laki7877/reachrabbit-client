@@ -1,8 +1,10 @@
 //jshint strict: false
 exports.config = {
+
     allScriptsTimeout: 120000,
+
     specs: [
-        './e2e-tests/brand_login.js'
+        './e2e-tests/brand_publish_campaign.js'
     ],
 
     capabilities: {
@@ -15,8 +17,8 @@ exports.config = {
             password: 'test1234'
         },
         admin_login: {
-            user: 'admin@reachrabbit.com',
-            password: 'test1234'
+            user: 'undefined',
+            password: 'undefined'
         },
         influencer_login: {
             user: 'influencer@reachrabbit.com',
@@ -33,6 +35,10 @@ exports.config = {
         ig_login: {
             user: 'eastduckman',
             password: 'Ahancer123!'
+        },
+        admin_login: {
+            user: 'admin@reachrabbit.com',
+            password: 'test1234'
         }
     },
 

@@ -29,10 +29,13 @@ exports.loginSuccess = function () {
             expect(value.length).toBeGreaterThan(0);
         });
         loginPage.clickLogin();
+    });
+    it('Should login successful' , function() {
+        browser.sleep(1000);
         browser.getCurrentUrl().then(function(actualUrl){
             expect(actualUrl).toContain('#/admin-transaction-history');
         });
-    });
+    })
 };
 
 exports.logout = function () {

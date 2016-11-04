@@ -1,9 +1,8 @@
 var loginPage = require('../page_objects/brandLoginPage.js');
 var brandHeader = require('../page_objects/brandHeaderPage.js');
 var common = require('./common.js');
-    
+
 exports.gotoSignup = function() {
-    
     it('Sign up link should exist',function(){
         expect(loginPage.signUpBtn.isPresent()).toBe(true);
         loginPage.clickSignup();
@@ -37,10 +36,13 @@ exports.loginSuccess = function () {
             expect(value.length).toBeGreaterThan(0);
         });
         loginPage.clickLogin();
+    });
+    it('Should login successful' , function() {
+        browser.sleep(1000);
         browser.getCurrentUrl().then(function(actualUrl){
             expect(actualUrl).toContain('#/brand-campaign-list');
         });
-    });
+    })
 };
 
 exports.logout = function () {
@@ -51,7 +53,6 @@ exports.logout = function () {
         brandHeader.clickSignout();
     });
     it('Should go login page',function(){
-        browser.sleep(1000);
         browser.getCurrentUrl().then(function(actualUrl){
             expect(actualUrl).toContain('#/brand-login');
         });

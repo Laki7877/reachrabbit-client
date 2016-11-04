@@ -14,6 +14,8 @@ describe('Starting test', function(){
         loginLogout.loginSuccess();
         brandCampaign.gotoCreateCampaign();
         brandCampaign.crateDraftCampaign();
+        brandCampaign.publishCampaign();
+        brandCampaign.hideRabbitModel();
         brandHeader.gotoCampaignList();
         loginLogout.logout();
     });

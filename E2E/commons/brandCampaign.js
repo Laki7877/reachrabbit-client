@@ -81,9 +81,6 @@ exports.crateDraftCampaign = function() {
     it('Should pick up date', function(){
         campaignDraft.dateCalendar.get(28 + 2).click();
     });
-    it('Should close date picker', function(){
-        campaignDraft.proposalDeadline.click();
-    });
     it('Should be able to click save draft', function(){
         campaignDraft.save_draft_btn.click();
     });

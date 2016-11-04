@@ -1,5 +1,5 @@
 var loginLogout = require('../commons/influencerLoginLogout.js');
-describe('Influencer Login', function () {
+describe('Influencer signup with email', function () {
 
     beforeEach(function () {
         browser.ignoreSynchronization = true;

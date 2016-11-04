@@ -2,7 +2,7 @@ var loginPage = require('../page_objects/brandLoginPage.js');
 var brandHeader = require('../page_objects/brandHeaderPage.js');
 var common = require('./common.js');
 
-exports.gotoSignup = function() {
+exports.gotoSignUp = function() {
     it('Sign up link should exist',function(){
         expect(loginPage.signUpBtn.isPresent()).toBe(true);
         loginPage.clickSignup();
@@ -10,9 +10,12 @@ exports.gotoSignup = function() {
 };
 
 exports.gotoLogin = function() {
-    browser.get('portal.html#/brand-login');
-    browser.executeScript('window.sessionStorage.clear();');
-    browser.executeScript('window.localStorage.clear();');
+    it('Should go to brand login page', function() {
+        browser.get('portal#/brand-login');
+        browser.executeScript('window.sessionStorage.clear();');
+        browser.executeScript('window.localStorage.clear();');
+    });
+    
 };
 
 exports.loginSuccess = function () {

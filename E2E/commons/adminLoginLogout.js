@@ -4,9 +4,11 @@ var common = require('./common.js');
 
 
 exports.gotoAdminLogin = function(){
-    browser.get('portal.html#/admin-login');
-    browser.executeScript('window.sessionStorage.clear();');
-    browser.executeScript('window.localStorage.clear();');
+     it('Should go to admin login page', function() {
+        browser.get('portal.html#/admin-login');
+        browser.executeScript('window.sessionStorage.clear();');
+        browser.executeScript('window.localStorage.clear();'); 
+    });
 };
 
 exports.loginSuccess = function () {

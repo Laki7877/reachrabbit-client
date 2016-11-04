@@ -24,7 +24,7 @@
               <input type="password" class="form-control" placeholder="Password" ng-model="password" name="password">
             </div>
           </div>
-          <button class="btn-primary btn-width-max" ng-click="login(username, password)">เข้าสู่ระบบ</button>
+          <button id="influencer-login-login-btn" class="btn-primary btn-width-max" ng-click="login(username, password)">เข้าสู่ระบบ</button>
 
           <div class="separator">
             <hr>
@@ -42,6 +42,6 @@
         </div>
       </div>
     </form>
-    <div class="signup-pill">ยังไม่ได้เป็นสมาชิก? <a ui-sref="influencer-portal">สมัครสมาชิก</a></div>
+    <div class="signup-pill">ยังไม่ได้เป็นสมาชิก? <a id="influencer-login-sign-up-btn" ui-sref="influencer-portal">สมัครสมาชิก</a></div>
   </div>
 </div>

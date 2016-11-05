@@ -8,6 +8,7 @@ describe('Influencer signup with email', function () {
         browser.sleep(1000);
     });
     loginLogout.gotoLogin();
-    loginLogout.loginSuccess();
+    loginLogout.gotoSignUp();
     //loginLogout.logout();
 });
+

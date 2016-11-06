@@ -54,6 +54,7 @@
     "browserify-ngannotate": "^2.0.0",
     "express": "^4.14.0",
     "moniker": "^0.1.2",
+    "randomstring": "^1.1.5",
     "redirect-https": "^1.1.0",
     "stripify": "^6.0.0"
   }

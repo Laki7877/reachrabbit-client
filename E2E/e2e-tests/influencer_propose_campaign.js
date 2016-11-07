@@ -16,14 +16,21 @@ describe('Influencer propose campaign', function () {
   brand.publishCampaign();
   brand.hideRabbitModel();
 
-  var id = 0;
-  browser.getCurrentUrl().then(function(url) {
-    var token = url.split('/');
-    id = token[token.length-1];
-  })
-  .then(function() {
-    brand.logout();
-    influencer.
+
+  it('Should get to the right campaign', function() {
+    var id;
+    browser.getCurrentUrl().then(function(url) {
+      var token = url.split('/');
+      id = token[token.length-1];
+      expect(id).toBeDefined();
+    });
   });
 
+  brand.logout();
+
+  // influencer propose campaign
+  influencer.gotoLogin();
+  influencer.loginSuccess();
+  influencer.gotoCampaign(id);
+  influencer.proposeCampaign();
 });

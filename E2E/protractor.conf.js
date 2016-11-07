@@ -4,7 +4,7 @@ exports.config = {
     allScriptsTimeout: 120000,
 
     specs: [
-        './e2e-tests/influencer_edit_profile.js'
+        './e2e-tests/brand_signup_company.js'
     ],
 
     capabilities: {
@@ -13,7 +13,7 @@ exports.config = {
 
     params: {
         brand_login: {
-            user: 'hello123@reachrabbit.com',
+            user: 'hello1234@reachrabbit.com',
             password: 'test1234'
         },
         admin_login: {

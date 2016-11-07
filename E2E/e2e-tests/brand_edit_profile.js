@@ -1,6 +1,4 @@
-var loginLogout = require('../commons/brandLoginLogout.js');
-var brandHeader = require('../commons/brandHeader.js');
-var brandProfile = require('../commons/brandProfile.js');
+var brand = require('../commons/brand.js');
 
 describe('Brand Edit Profile', function () {
 
@@ -10,9 +8,9 @@ describe('Brand Edit Profile', function () {
     afterEach(function() {
         browser.sleep(1000);
     });
-    loginLogout.gotoLogin();
-    loginLogout.loginSuccess();
-    brandHeader.gotoProfile();
-    brandProfile.editProfile();
-    loginLogout.logout();
+    brand.gotoLogin();
+    brand.loginSuccess();
+    brand.gotoProfile();
+    brand.editProfile();
+    brand.logout();
 });

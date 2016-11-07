@@ -1,6 +1,4 @@
-var loginLogout = require('../commons/brandLoginLogout.js');
-var brandCampaign = require('../commons/brandCampaign.js');
-var brandHeader = require('../commons/brandHeader');
+var brand = require('../commons/brand.js');
 
 describe('Create new Campaign', function () {
         beforeEach(function () {
@@ -9,11 +7,11 @@ describe('Create new Campaign', function () {
         afterEach(function() {
             browser.sleep(1000);
         });
-        loginLogout.gotoLogin();
-        loginLogout.loginSuccess();
-        brandCampaign.gotoCreateCampaign();
-        brandCampaign.crateDraftCampaign();
-        brandHeader.gotoCampaignList();
-        loginLogout.logout();
+        brand.gotoLogin();
+        brand.loginSuccess();
+        brand.gotoCreateCampaign();
+        brand.crateDraftCampaign();
+        brand.gotoCampaignList();
+        brand.logout();
 });
 

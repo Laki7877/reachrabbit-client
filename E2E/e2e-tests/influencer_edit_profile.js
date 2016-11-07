@@ -1,6 +1,7 @@
-var loginLogout = require('../commons/influencerLoginLogout.js');
-var influencerHeader = require('../commons/influencerHeader.js');
-var influencerProfile = require('../commons/influencerProfile.js');
+var influencer = require('../commons/influencer.js');
+//var loginLogout = require('../commons/influencer.js');
+//var influencerHeader = require('../commons/influencerHeader.js');
+//var influencerProfile = require('../commons/influencerProfile.js');
 
 describe('Influencer Edit Profile', function () {
 
@@ -10,9 +11,9 @@ describe('Influencer Edit Profile', function () {
     afterEach(function() {
         browser.sleep(1000);
     });
-    loginLogout.gotoLogin();
-    loginLogout.loginSuccess();
-    influencerHeader.gotoProfile();
-    influencerProfile.editProfile();
-    loginLogout.logout();
+    influencer.gotoLogin();
+    influencer.loginSuccess();
+    influencer.gotoProfile();
+    influencer.editProfile();
+    influencer.logout();
 });

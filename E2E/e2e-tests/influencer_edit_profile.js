@@ -1,5 +1,8 @@
 var loginLogout = require('../commons/influencerLoginLogout.js');
-describe('Influencer Login', function () {
+var influencerHeader = require('../commons/influencerHeader.js');
+var influencerProfile = require('../commons/influencerProfile.js');
+
+describe('Influencer Edit Profile', function () {
 
     beforeEach(function () {
         browser.ignoreSynchronization = true;
@@ -9,5 +12,7 @@ describe('Influencer Login', function () {
     });
     loginLogout.gotoLogin();
     loginLogout.loginSuccess();
+    influencerHeader.gotoProfile();
+    influencerProfile.editProfile();
     loginLogout.logout();
 });

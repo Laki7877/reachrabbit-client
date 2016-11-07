@@ -1,4 +1,5 @@
 var loginPage = require('../page_objects/influencerLoginPage.js');
+var influencerHeader = require('../page_objects/influencerHeaderPage.js');
 
 exports.gotoSignUp = function() {
     it('Sign up link should exist',function(){
@@ -42,4 +43,21 @@ exports.loginSuccess = function () {
             expect(actualUrl).toContain('#/influencer-campaign-list');
         });
     })
+};
+
+exports.logout = function(){
+    it('Should have dropdown header', function(){
+        expect(influencerHeader.profileDropdownBtn.isPresent()).toBe(true);
+        influencerHeader.profileDropdownBtn.click();
+    });
+    it('Should have sign out button', function(){
+        expect(influencerHeader.signoutBtn.isPresent()).toBe(true);
+        influencerHeader.signoutBtn.click();
+    });
+    it('Should logout success', function(){
+        browser.sleep(1000);
+        browser.getCurrentUrl().then(function(actualUrl){
+            expect(actualUrl).toContain('#/influencer-login');
+        });
+    });
 };

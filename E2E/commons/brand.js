@@ -41,7 +41,7 @@ exports.publishCampaign = function() {
     });
 };
 
-exports.crateDraftCampaign = function() {
+exports.createDraftCampaign = function() {
     it('Create new campaign component should exist',function() {
         browser.ignoreSynchronization = true;
         expect(campaignDraft.description.isPresent()).toBe(true);
@@ -152,7 +152,7 @@ exports.gotoLogin = function() {
         browser.executeScript('window.sessionStorage.clear();');
         browser.executeScript('window.localStorage.clear();');
     });
-    
+
 };
 
 exports.loginSuccess = function () {
@@ -230,7 +230,7 @@ exports.editProfile = function(){
         brandProfile.about.clear();
         brandProfile.name.clear();
         brandProfile.website.clear();
-       
+
         brandProfile.about.sendKeys(expectations.about);
         brandProfile.name.sendKeys(expectations.name);
         brandProfile.website.sendKeys(expectations.website);
@@ -253,7 +253,7 @@ exports.editProfile = function(){
 
 
 exports.signUpSuccessCompany = function() {
-    it('Sign up component should exist',function() { 
+    it('Sign up component should exist',function() {
         expect(signUpPage.brandName.isPresent()).toBe(true);
         expect(signUpPage.name.isPresent()).toBe(true);
         expect(signUpPage.phoneNumber.isPresent()).toBe(true);

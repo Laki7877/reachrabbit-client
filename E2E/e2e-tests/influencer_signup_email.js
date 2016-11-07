@@ -1,6 +1,5 @@
 var influencer = require('../commons/influencer.js');
 
-
 describe('Influencer signup with email', function () {
 
     beforeEach(function () {
@@ -11,6 +10,7 @@ describe('Influencer signup with email', function () {
     });
     influencer.gotoLogin();
     influencer.gotoSignUp();
+    influencer.signUpEmail();
     //loginLogout.logout();
 });
 

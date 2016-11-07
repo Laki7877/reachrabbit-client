@@ -2,10 +2,41 @@ var influencerHeaderPage = require('../page_objects/influencerHeaderPage.js');
 var loginPage = require('../page_objects/influencerLoginPage.js');
 var influencerSignup = require('../page_objects/influencerSignupPage.js');
 var influencerProfile = require('../page_objects/influencerProfilePage.js');
+var influencerCampaign = require('../page_objects/influencerCampaignPage');
 var Chance = require('chance');
 var chance = new Chance();
 var path = require('path');
 var common = require('./common.js');
+
+exports.gotoCampaign = function(id) {
+    it('Should open campaign', function() {
+        browser.get('portal.html#/influencer-campaign-detail/' + id);
+        browser.getCurrentUrl().then(function(url) {
+            expect(url).toContain('influencer-campaign-detail');
+        });
+    });
+};
+exports.proposeCampaign = function() {
+    it('Should open proposal modal', function() {
+        influencerCampaign.proposeBtn.click();
+        browser.sleep(2000);
+        expect(influencerCampaign.submitProposalBtn.isPresent()).toBe(true);
+    });
+
+    it('Should submit proposal', function() {
+        influencerCampaign.YtCheckbox.click().then(function () {
+            influencerCampaign.description.sendKeys(chance.paragraph({ sentences: 5 }));
+            influencerCampaign.price.sendKeys(proposedPrice);
+            influencerCampaign.completionTime.sendKeys("2");
+            influencerCampaign.submitProposalBtn.click();
+            browser.sleep(2000);
+
+            browser.getCurrentUrl().then(function(url) {
+                expect(url).toContain('influencer-workroom');
+            });
+        });
+    });
+};
 
 exports.gotoProfile = function () {
     it('Should have profile dropdown' , function() {
@@ -98,9 +129,6 @@ exports.logout = function(){
     });
 };
 
-
-
-
 exports.editProfile = function(){
      var expectations = {
         about: chance.paragraph({ sentences: 1 }),
@@ -157,15 +185,28 @@ exports.editProfile = function(){
 
 
 exports.signUpEmail = function() {
+   var user = {
+      email: chance.email(),
+      name: 'Godamoto ' + chance.word({ syllables: 4 }),
+      phoneNumber: "0811111211",
+      password: 'test1234'
+  };
   it('should have all components', function() {
-    expect(signup.name.isPresent()).toBe(true);
-    expect(signup.email.isPresent()).toBe(true);
-    expect(signup.phoneNumber.isPresent()).toBe(true);
-    expect(signup.password.isPresent()).toBe(true);
-    expect(signup.submitBtn.isPresent()).toBe(true);
+    expect(influencerSignup.name.isPresent()).toBe(true);
+    expect(influencerSignup.email.isPresent()).toBe(true);
+    expect(influencerSignup.phoneNumber.isPresent()).toBe(true);
+    expect(influencerSignup.password.isPresent()).toBe(true);
+    expect(influencerSignup.submitBtn.isPresent()).toBe(true);
   });
   it('should signup with email', function() {
-
+    influencerSignup.name.sendKeys(user.name);
+    influencerSignup.email.sendKeys(user.email);
+    influencerSignup.phoneNumber.sendKeys(user.phoneNumber);
+    influencerSignup.password.sendKeys(user.password);
+    influencerSignup.submitBtn.click();
+    browser.getCurrentUrl().then(function(url) {
+      expect(url).toContain('influencer-profile-published');
+    });
   });
 };
 

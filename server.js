@@ -2,6 +2,7 @@ var express = require("express");
 var app     = express();
 var path    = require("path");
 var https = require('https');
+var http = require('http');
 var fs = require('fs');
 
 var options = {
@@ -18,13 +19,13 @@ app.get('/:name',function(req,res){
 
 
 // Redirect http to https
+https.createServer(options, function (req, res) {
+    console.log('Express server listening on port ' + port);
+}).listen(443);
+
+// Redirect from http port 80 to https
 var http = require('http');
 http.createServer(function (req, res) {
-    res.writeHead(301, { "Location": "https://www" + req.host + ":" + (process.env.HTTPS_PORT || 80)  + req.originalUrl });
-    console.log('Express server listening on port ' + 80 );
+    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
     res.end();
 }).listen(80);
-
-https.createServer(options, app ).listen( 443, function() {
-    console.log('Express server listening on port ' + 443 );
-} );

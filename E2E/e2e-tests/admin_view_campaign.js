@@ -1,18 +1,18 @@
-var loginLogout = require('../commons/adminLoginLogout.js');
+var admin = require('../commons/admin.js');
 var adminHeader = require('../page_objects/adminHeaderPage.js');
 var moniker = require('moniker');
 var rs = require('randomstring');
 var rn = require('random-number');
 
 describe('Admin campaign list', function() {
-    var email = browser.params.admin_login.user,
-        password = browser.params.admin_login.password;
-	beforeAll(function() {
-        browser.get('portal.html#/admin-login');
-        browser.executeScript('window.sessionStorage.clear();');
-        browser.executeScript('window.localStorage.clear();');
-	});
-	loginLogout.loginSuccess(email,password);
+	beforeEach(function () {
+        browser.ignoreSynchronization = true;
+    });
+    afterEach(function() {
+        browser.sleep(1000);
+    });
+	admin.gotoAdminLogin();
+	admin.loginSuccess();
 	it('should view all campaigns', function() {
 		adminHeader.clickCampaignList();
 		browser.getCurrentUrl().then(function(url) {
@@ -33,4 +33,5 @@ describe('Admin campaign list', function() {
 			expect(url).toContain('admin-campaign-detail');
 		});
 	});
+	admin.logout();
 });

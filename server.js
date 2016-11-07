@@ -21,9 +21,10 @@ app.get('/:name',function(req,res){
 var http = require('http');
 http.createServer(function (req, res) {
     res.writeHead(301, { "Location": "https://www" + req.host + ":" + (process.env.HTTPS_PORT || 80)  + req.originalUrl });
+    console.log('Express server listening on port ' + 80 );
     res.end();
-}).listen(process.env.HTTP_PORT || 80);
+}).listen(80);
 
-https.createServer(options, app ).listen( port, function() {
-    console.log('Express server listening on port ' + port);
+https.createServer(options, app ).listen( 443, function() {
+    console.log('Express server listening on port ' + 443 );
 } );

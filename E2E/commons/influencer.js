@@ -10,10 +10,12 @@ var common = require('./common.js');
 
 exports.gotoCampaign = function(id) {
     it('Should open campaign', function() {
-        browser.get('portal.html#/influencer-campaign-detail/' + id);
-        browser.getCurrentUrl().then(function(url) {
-            expect(url).toContain('influencer-campaign-detail');
-        });
+        browser.get('portal.html#/influencer-campaign-detail/' + id)
+            .then(function() {
+                browser.getCurrentUrl().then(function(url) {
+                    expect(url).toContain('influencer-campaign-detail');
+                });
+            });
     });
 };
 exports.proposeCampaign = function() {

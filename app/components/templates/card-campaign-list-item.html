@@ -28,7 +28,7 @@
         ค่าตอบแทน (บาท)
       </div>
       <div class="card-info-content">
-        <span ng-if="campaign.budget"> {{campaign.budget.fromBudget | number}} - {{campaign.budget.toBudget | number}}</span>
+        <span ng-if="campaign.budget">สูงสุด {{campaign.budget.toBudget | number}}</span>
         <span ng-if="!campaign.budget">-</span>
       </div>
     </div>

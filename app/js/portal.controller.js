@@ -12,18 +12,28 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
 
         $scope.login = function () {
             $location.search('message', 'nop');
+            
             $scope.form.$setSubmitted();
             AccountService.getToken($scope.formData.username, $scope.formData.password)
                 .then(function (response) {
                     var token = response.data.token;
                     $window.localStorage.token = token;
+                    mixpanel.register({
+                        "user": $scope.formData.username,
+                        "type": "Brand"
+                    });
+                    mixpanel.identify($scope.formData.username);
+                    mixpanel.track("User Login", {
+                        user: $scope.formData.username,
+                        "type": "Brand"
+                    });
                     return AccountService.getProfile();
                 })
                 .then(function (profileResp) {
                     UserProfile.set(profileResp.data);
                     //Tell raven about the user
-                    Raven.setUserContext(UserProfile.get());
-
+                    // Raven.setUserContext(UserProfile.get());
+                    mixpanel.people.set(profileResp.data);
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal#/brand-login");
                     var bounce = '/brand#/brand-campaign-list';
@@ -57,6 +67,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 .then(function (response) {
                     var token = response.data.token;
                     $window.localStorage.token = token;
+
                     return AccountService.getProfile();
                 })
                 .then(function (profileResp) {
@@ -91,9 +102,23 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 .then(function (response) {
                     var token = response.data.token;
                     $window.localStorage.token = token;
+
+                    mixpanel.register({
+                        "user": $scope.formData.username,
+                        "type": "Influencer"
+                    });
+                    mixpanel.identify($scope.formData.username);
+
+                    mixpanel.track("User Login", {
+                        user: $scope.formData.username,
+                        "type": "Influencer"
+                    });
+
+
                     return AccountService.getProfile();
                 })
                 .then(function (profileResp) {
+                    mixpanel.people.set(profileResp.data);
                     $window.localStorage.profile = JSON.stringify(profileResp.data);
                     //Tell raven about the user
                     Raven.setUserContext(UserProfile.get());
@@ -209,6 +234,17 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                                     if ($scope.bounce_route) {
                                         bounce = '/influencer#/' + $scope.bounce_route;
                                     }
+
+                                    mixpanel.register({
+                                        "user": $scope.formData.username,
+                                        "type": "Influencer"
+                                    });
+                                    mixpanel.identify($scope.formData.username);
+                                    mixpanel.people.set(profileResp.data);
+                                    mixpanel.track("User Login", {
+                                        user: $scope.formData.username,
+                                        "type": "Influencer"
+                                    });
 
                                     $window.location.href = bounce;
                                 });

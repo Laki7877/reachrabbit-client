@@ -244,6 +244,7 @@ angular.module('reachRabbitApp', [
             return;
           }
 
+
           //TODO: move to resolver
           //Other role specific functions
           if (UserProfile.get().role === "Brand") {

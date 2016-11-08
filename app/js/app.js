@@ -1,4 +1,5 @@
 /**
+  WARNING: Deprecated
  * App
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
@@ -247,10 +248,12 @@ angular.module('reachRabbitApp', [
       $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams, options) {
 
-          //in case of brand
           if (!UserProfile.get()) {
             return;
           }
+
+          console.log("Mix Panelling");
+          mixpanel.track("Navigated to" + toState);
 
           //TODO: move to resolver
           //Other role specific functions

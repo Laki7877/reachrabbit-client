@@ -85,8 +85,8 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.common.servic
             });
 
             $scope.getObjectiveDescription = function(id){
-                return TextBroker.th["brand-campaign-detail-draft"]["objectives"][id];
-            }
+                return TextBroker.th["brand-campaign-detail-draft"].objectives[id];
+            };
 
             $scope.dateOptions = _.extend({}, $rootScope.dateOptions, {
                 minDate: new Date(),

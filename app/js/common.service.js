@@ -8,12 +8,7 @@
 'use strict';
 
 angular.module('reachRabbitApp.common.service', ['satellizer'])
-    .constant('Config', {
-        API_BASE_URI: 'https://bella.reachrabbit.com:8080',
-        FACEBOOK_APP_ID: "295474977484568",
-        INSTAGRAM_APP_ID: "a6f7209e17af45259b61ba189bf9502e",
-        YOUTUBE_APP_ID: "857823447529-5c419ec75nq2q3tf1ouq07bdu49g89ks.apps.googleusercontent.com"
-    })
+    .constant('Config', require('../config.json'))
     .run(function (Config, $window, $location) {
         if ($window.sessionStorage.API_OVERRIDE) {
             Config.API_BASE_URI = $window.sessionStorage.API_OVERRIDE;

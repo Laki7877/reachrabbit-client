@@ -16,22 +16,23 @@ describe('Influencer propose campaign', function () {
   brand.publishCampaign();
   brand.hideRabbitModel();
 
-  // campaign id
-  var id;
-
   it('Should get to the right campaign', function() {
+    browser.sleep(1000);
     browser.getCurrentUrl().then(function(url) {
       var token = url.split('/');
-      id = token[token.length-1];
-      expect(id).toBeDefined();
+      browser.params.campaign.campaignId = token[token.length-1];
+      expect(browser.params.campaign.campaignId).toBeDefined();
+      expect(browser.params.campaign.campaignId).toBeGreaterThan(0);
+      browser.sleep(3000);
+      brand.logout();
     });
   });
-  browser.sleep(3000);
-  brand.logout();
-
-  // influencer propose campaign
   influencer.gotoLogin();
   influencer.loginSuccess();
-  influencer.gotoCampaign(id);
+  it('Should open campaign', function() {
+       influencer.gotoCampaign(browser.params.campaign.campaignId);
+  });
   influencer.proposeCampaign();
+  influencer.logout();
+  
 });

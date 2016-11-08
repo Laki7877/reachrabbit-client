@@ -1,6 +1,6 @@
 var influencerCampaignPage = function () {
     'use strict';
-    this.YtCheckbox = element.all(by.css('.proposal-modal input[type=checkbox]:not([disabled])')).first();
+    this.socialCheckbox = element.all(by.css('.proposal-modal input[type=checkbox]:not([disabled])')).first();
     this.proposeBtn = element(by.id('influencer-campaign-detail-propose-btn'));
     this.submitProposalBtn = element(by.id('influencer-proposal-modal-submit-btn'));
     this.mediaCheckboxes = element(by.css('input[type=checkbox]'));

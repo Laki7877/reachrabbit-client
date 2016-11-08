@@ -35,8 +35,9 @@
                             endpoint-name="Objectives"
                             ng-model="formData.objectiveArray">
                             </choice-picker>
-                            <div class="multi-tag-selector-description">
-                              <i class="fa fa-info-circle"></i> แนะนำใช้ในกรณีที่คุณอยาก อธิบายคุณสมบัติของสินค้า หรือ ประสบการณ์ใช้งาน เพื่อง่ายต่อการตัดสินใจของลูกค้า
+                            <div class="multi-tag-selector-description" ng-if="formData.objectiveArray[0]['objectiveId']">
+                              <i class="fa fa-info-circle"></i> 
+                              {{getObjectiveDescription(formData.objectiveArray[0]['objectiveId'])}}
                             </div>
                         </div>
                     </div>

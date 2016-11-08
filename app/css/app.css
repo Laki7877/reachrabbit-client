@@ -10433,6 +10433,9 @@ fieldset[disabled] .btn-clear.active {
   border-bottom-color: #8692a8;
   content: '';
 }
+.navbar .navbar-right .link-to-landing {
+  margin-right: 0px;
+}
 .navbar .navbar-right .cart {
   padding-bottom: 0px;
 }

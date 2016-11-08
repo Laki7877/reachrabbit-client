@@ -70,6 +70,9 @@
               <textarea name="companyAddress" class="form-control" required ng-model="formData.companyAddress"></textarea>
             <div input-error></div>
           </div>
+          <div class="form-grop text-center" ng-if="formData.isCompany">
+            - คุณสามารถแก้ไขข้อมูลเหล่านี้ภายหลังได้ -
+          </div>
           <button class="btn-primary btn-width-max" ng-click="submit(formData)">สมัครสมาชิก</button>
           <div class="info-text">
             คุณเห็นด้วยกับ <a href="http://www.reachrabbit.com/terms.html" target="_blank">เงื่อนไขการใช้งาน</a><br>

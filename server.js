@@ -22,7 +22,7 @@ var http = require('http');
 http.createServer(function (req, res) {
     res.writeHead(301, { "Location": "https://" + req.headers.host + req.url });
     res.end();
-}).listen(process.env.HTTP_PORT || 8080);
+}).listen(process.env.HTTP_PORT || 80);
 
 https.createServer(options, app ).listen( port, function() {
     console.log('Express server listening on port ' + port);

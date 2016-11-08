@@ -10,7 +10,7 @@ describe('Influencer signup with email', function () {
         browser.sleep(1000);
     });
     influencer.gotoLogin();
-    influencer.gotoSignUp();
-    //loginLogout.logout();
+    influencer.gotoSignUpEmail();
+    influencer.signUpEmail();
 });
 

@@ -24,7 +24,17 @@ exports.gotoProfile = function () {
     });
 };
 
-exports.gotoSignUp = function() {
+exports.signUpEmail = function() {
+    it('Should have all input', function(){
+        expect(influencerSignup.name.isPresent()).toBe(true);
+        expect(influencerSignup.email.isPresent()).toBe(true);
+        expect(influencerSignup.phoneNumber.isPresent()).toBe(true);
+        expect(influencerSignup.password.isPresent()).toBe(true);
+        expect(influencerSignup.submitBtn.isPresent()).toBe(true);
+    });
+};
+
+exports.gotoSignUpEmail = function() {
     it('Sign up link should exist',function(){
         expect(loginPage.signUpBtn.isPresent()).toBe(true);
         loginPage.clickSignUp();
@@ -154,18 +164,4 @@ exports.editProfile = function(){
     });
 };
 
-
-
-exports.signUpEmail = function() {
-  it('should have all components', function() {
-    expect(signup.name.isPresent()).toBe(true);
-    expect(signup.email.isPresent()).toBe(true);
-    expect(signup.phoneNumber.isPresent()).toBe(true);
-    expect(signup.password.isPresent()).toBe(true);
-    expect(signup.submitBtn.isPresent()).toBe(true);
-  });
-  it('should signup with email', function() {
-
-  });
-};
 

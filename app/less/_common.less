@@ -1707,6 +1707,22 @@ div:focus{
     margin-top: 13px;
   }
 }
+.multi-tag-selector-description{
+  display: block;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 3px;
+  position: relative;
+  background: @color-green-lighter;
+}
+.multi-tag-selector-description:after {
+  position: absolute;
+  bottom: 100%;
+  left: 15px;
+  border: 6px solid transparent;
+  border-bottom-color: @color-green-lighter;
+  content: '';
+}
 
 /*---Tab Selector---*/
 .tab-selector{

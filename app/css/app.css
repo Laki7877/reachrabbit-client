@@ -10671,6 +10671,22 @@ div:focus {
 .multi-tag-selector .with-input {
   margin-top: 13px;
 }
+.multi-tag-selector-description {
+  display: block;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 3px;
+  position: relative;
+  background: #d8f0dd;
+}
+.multi-tag-selector-description:after {
+  position: absolute;
+  bottom: 100%;
+  left: 15px;
+  border: 6px solid transparent;
+  border-bottom-color: #d8f0dd;
+  content: '';
+}
 /*---Tab Selector---*/
 .tab-selector {
   background: #d8dfe7;

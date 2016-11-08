@@ -1,6 +1,6 @@
 <div class="thumbnail-column" ng-click="onClick(campaign)">
-  <div class="card-thumbnail">
-    <div class="card-thumbnail-image" ng-class="{'expired':$root.isExpired(campaign.proposalDeadline) && !campaign.isApply }">
+  <div class="card-thumbnail" ng-class="{'expired':$root.isExpired(campaign.proposalDeadline) && !campaign.isApply }">
+    <div class="card-thumbnail-image">
       <div class="flag">
 
         <span ng-if="campaign.isApply" class="status status-applied"><i class="fa fa-check-circle-o"></i> สมัครแล้ว</span>

@@ -39,6 +39,9 @@ exports.config = {
         admin_login: {
             user: 'admin@reachrabbit.com',
             password: 'test1234'
+        },
+        campaign: {
+            campaignId: 0
         }
     },
 

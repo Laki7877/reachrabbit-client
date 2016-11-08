@@ -96,7 +96,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.common.servic
             });
 
             $scope.budgetDisplayAs = function (budgetObject) {
-                return $filter('number')(budgetObject.fromBudget) + " - " + $filter('number')(budgetObject.toBudget) + " บาท ต่อคน";
+                return "สูงสุด " + $filter('number')(budgetObject.toBudget) + " บาท";
             };
 
             var mediaBooleanDictProcess = function (formData) {
@@ -316,7 +316,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.common.servic
             var campaignId = $stateParams.campaignId;
 
             $scope.budgetDisplayAs = function (budgetObject) {
-                return $filter('number')(budgetObject.fromBudget) + " - " + $filter('number')(budgetObject.toBudget) + " บาท ต่อคน";
+                return "สูงสุด " + $filter('number')(budgetObject.toBudget) + " บาท";
             };
 
             //Fetch initial datasets

@@ -178,6 +178,7 @@ module.exports = function (grunt) {
           angular: true,
           window: true,
           moment: true,
+          mixpanel: true,
           history: true,
           document: true,
           sjcl: true,

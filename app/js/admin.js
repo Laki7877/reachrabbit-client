@@ -244,8 +244,6 @@ angular.module('reachRabbitApp', [
             return;
           }
 
-          console.log("Mix Panelling", toState); 
-          mixpanel.track("Navigated to" + toState);
 
           //TODO: move to resolver
           //Other role specific functions

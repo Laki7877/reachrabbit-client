@@ -10,7 +10,7 @@ describe('Publish Campaign', function(){
     brand.gotoLogin();
     brand.loginSuccess();
     brand.gotoCreateCampaign();
-    brand.crateDraftCampaign();
+    brand.createDraftCampaign();
     brand.publishCampaign();
     brand.hideRabbitModel();
     brand.gotoCampaignList();

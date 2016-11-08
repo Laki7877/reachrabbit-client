@@ -1,4 +1,4 @@
-var loginLogout = require('../commons/adminLoginLogout.js');
+var admin = require('../commons/admin.js');
 
 describe('Admin Login', function () {
     beforeEach(function () {
@@ -7,7 +7,7 @@ describe('Admin Login', function () {
     afterEach(function() {
         browser.sleep(1000);
     });
-    loginLogout.gotoAdminLogin();
-    loginLogout.loginSuccess();
-    loginLogout.logout();
+    admin.gotoAdminLogin();
+    admin.loginSuccess();
+    admin.logout();
 });

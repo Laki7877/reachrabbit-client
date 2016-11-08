@@ -1,6 +1,7 @@
 var brand = require('../commons/brand.js');
 
-describe('Brand Sign up with company detail', function () {
+describe('Brand Edit Profile', function () {
+
     beforeEach(function () {
         browser.ignoreSynchronization = true;
     });
@@ -8,7 +9,8 @@ describe('Brand Sign up with company detail', function () {
         browser.sleep(1000);
     });
     brand.gotoLogin();
-    brand.gotoSignUp();
-    brand.signUpSuccessCompany();
+    brand.loginSuccess();
+    brand.gotoProfile();
+    brand.editProfile();
     brand.logout();
 });

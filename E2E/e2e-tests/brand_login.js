@@ -1,13 +1,13 @@
-var loginLogout = require('../commons/brandLoginLogout.js');
-describe('Brand Login', function () {
+var brand = require('../commons/brand.js');
 
+describe('Brand Login', function () {
     beforeEach(function () {
         browser.ignoreSynchronization = true;
     });
     afterEach(function() {
         browser.sleep(1000);
     });
-    loginLogout.gotoLogin();
-    loginLogout.loginSuccess();
-    loginLogout.logout();
+    brand.gotoLogin();
+    brand.loginSuccess();
+    brand.logout();
 });

@@ -1,4 +1,5 @@
-var loginLogout = require('../commons/influencerLoginLogout.js');
+var influencer = require('../commons/influencer.js');
+
 describe('Influencer signup with email', function () {
 
     beforeEach(function () {
@@ -7,8 +8,8 @@ describe('Influencer signup with email', function () {
     afterEach(function() {
         browser.sleep(1000);
     });
-    loginLogout.gotoLogin();
-    loginLogout.gotoSignUp();
-    //loginLogout.logout();
+    influencer.gotoLogin();
+    influencer.gotoSignUpEmail();
+    influencer.signUpEmail();
 });
 

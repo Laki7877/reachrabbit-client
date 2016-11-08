@@ -18,7 +18,7 @@ angular.module('reachRabbitApp.portal.routes', ['ui.router'])
                 controller: 'BrandSignupController'
             })
             .state('influencer-portal', {
-                url: "/influencer-portal?ref",
+                url: "/influencer-signup?ref",
                 templateUrl: "view/influencer-portal.html",
                 controller: 'InfluencerPortalController',
                 params: { alert: null }

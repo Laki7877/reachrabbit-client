@@ -47,6 +47,6 @@ build:
           $(npm bin)/bower install --allow-root
           $(npm bin)/grunt build
           $(npm bin)/grunt vendor
-          $(npm bin)/grunt connect:testserver &
+          node server.js &
           $(npm bin)/grunt shell:protractorff
 #          kill $(ps -A | grep grunt | cut -d' ' -f2)

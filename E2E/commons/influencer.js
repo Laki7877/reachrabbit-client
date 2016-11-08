@@ -3,40 +3,46 @@ var loginPage = require('../page_objects/influencerLoginPage.js');
 var influencerSignup = require('../page_objects/influencerSignupPage.js');
 var influencerProfile = require('../page_objects/influencerProfilePage.js');
 var influencerCampaign = require('../page_objects/influencerCampaignPage');
+var influencerWorkroom = require('../page_objects/influencerWorkroomPage.js');
 var Chance = require('chance');
 var chance = new Chance();
 var path = require('path');
 var common = require('./common.js');
 
 exports.gotoCampaign = function(id) {
-    it('Should open campaign', function() {
-        browser.get('portal.html#/influencer-campaign-detail/' + id)
-            .then(function() {
-                browser.getCurrentUrl().then(function(url) {
-                    expect(url).toContain('influencer-campaign-detail');
-                });
+    browser.get('influencer#/influencer-campaign-detail/' + id)
+        .then(function() {
+            browser.getCurrentUrl().then(function(url) {
+                expect(url).toContain('influencer-campaign-detail');
             });
-    });
+        });
 };
 exports.proposeCampaign = function() {
     it('Should open proposal modal', function() {
         influencerCampaign.proposeBtn.click();
-        browser.sleep(2000);
+    });
+    it('Modal should popup successful', function(){
         expect(influencerCampaign.submitProposalBtn.isPresent()).toBe(true);
     });
-
     it('Should submit proposal', function() {
-        influencerCampaign.YtCheckbox.click().then(function () {
+        influencerCampaign.socialCheckbox.click().then(function () {
             influencerCampaign.description.sendKeys(chance.paragraph({ sentences: 5 }));
-            influencerCampaign.price.sendKeys(proposedPrice);
+            influencerCampaign.price.sendKeys('1000');
             influencerCampaign.completionTime.sendKeys("2");
             influencerCampaign.submitProposalBtn.click();
-            browser.sleep(2000);
-
-            browser.getCurrentUrl().then(function(url) {
-                expect(url).toContain('influencer-workroom');
-            });
         });
+    });
+    it('Should submit proposal successful', function(){
+        browser.sleep(1000);
+        browser.getCurrentUrl().then(function(url) {
+            expect(url).toContain('influencer-workroom');
+        });
+    });
+    it('Should popup modal in workroom', function(){
+        expect(influencerWorkroom.modalWorkroomBtn.isPresent()).toBe(true);
+        expect(influencerWorkroom.hideCheckbox.isPresent()).toBe(true);
+        influencerWorkroom.hideCheckbox.click();
+        influencerWorkroom.modalWorkroomBtn.click();
     });
 };
 
@@ -116,12 +122,12 @@ exports.loginSuccess = function () {
 
 exports.logout = function(){
     it('Should have dropdown header', function(){
-        expect(influencerHeader.profileDropdownBtn.isPresent()).toBe(true);
-        influencerHeader.profileDropdownBtn.click();
+        expect(influencerHeaderPage.profileDropdownBtn.isPresent()).toBe(true);
+        influencerHeaderPage.profileDropdownBtn.click();
     });
     it('Should have sign out button', function(){
-        expect(influencerHeader.signoutBtn.isPresent()).toBe(true);
-        influencerHeader.signoutBtn.click();
+        expect(influencerHeaderPage.signoutBtn.isPresent()).toBe(true);
+        influencerHeaderPage.signoutBtn.click();
     });
     it('Should logout success', function(){
         browser.sleep(1000);

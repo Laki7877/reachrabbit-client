@@ -98,6 +98,9 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.common.servic
                 return "nc-dt-button";
             }
         });
+        $scope.getObjectiveDescription = function (id) {
+            return TextBroker.th["brand-campaign-detail-draft"].objectives[id];
+        };
 
         $scope.budgetDisplayAs = function (budgetObject) {
             return "สูงสุด " + $filter('number')(budgetObject.toBudget) + " บาท";

@@ -11209,6 +11209,9 @@ div:focus {
 .modal-instagram .modal-body .btn-primary {
   margin-top: 20px;
 }
+.modal-instagram .alert .alert-icon {
+  display: none;
+}
 /*---Other debugging stuff---*/
 .api_override_box {
   position: absolute;

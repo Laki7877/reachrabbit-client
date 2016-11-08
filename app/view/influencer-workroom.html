@@ -5,143 +5,143 @@
         <div class="zone-body">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-9">
-                        <div class="chatbox-card">
-                            <div class="chatbox-header">
-                                <h3>{{ proposal.campaign.brand.brandName | truncate: 50 }}</h3>
-                                <a class="link-view-profile" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId, proposalId: proposal.proposalId })">
-                                  ดูโปรไฟล์
-                                </a>
-                                <div class="chatbox-status">
-                                  <span class="color-grey">สถานะ: </span>
-                                  <span class="color-green" ng-if="proposal.status == 'Selection'">รอการคัดเลือก</span>
-                                  <!-- tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ รอการคัดเลือกจาก Brand" -->
-                                  <span class="color-green" ng-if="proposal.status == 'Working'">รอคุณส่งงาน</span>
-                                  <!-- tooltip-placement="bottom" uib-tooltip="ทำงานตามที่ได้ตกลงกัน และส่งงานให้ Brand อนุมัติ"  -->
-                                  <span class="color-green" ng-if="proposal.status == 'Complete'">ได้รับเงิน</span>
-                                  <!-- tooltip-placement="bottom" uib-tooltip="งานเสร็จแล้ว คุณสามารถถอนเงินจากระบบได้เมื่อต้องการ" -->
-                                </div>
-                            </div>
-                            <div class="message-area" scroll-glue="scroll">
-                                <cute-bunny></cute-bunny>
-                                <div cute-bunny-hide>
-                                    <card-influencer-profile ng-model="proposal.influencer" show-all-data="false">
-                                      <div class="for-proposal-detail">
-                                        <small>ช่องทางที่จะโปรโมทให้</small>
-                                        <div ng-repeat="imedia in intersectMedia(proposal.media, proposal.influencer.influencerMedias)">
-                                            <span class="icon-{{imedia.mediaId}} social-icon"></span> {{ imedia.followerCount | number }} คน
-                                        </div>
-                                        <small>จะส่งงานภายใน</small>
-                                        <span>{{proposal.completionTime.completionTime}}</span>
-                                        <small>ราคาที่เสนอ</small>
-                                        <h4 class="highlight">{{proposal.price | number}} บาท</h4>
-                                      </div>
-                                      <a ui-sref="influencer-profile" class="link-to-profile">แก้ไขโปรไฟล์ของคุณ</a>
-                                    </card-influencer-profile>
+                  <div class="col-xs-3">
 
-                                    <div class="message-past" ng-if="hasPastMessage()">
-                                        <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
-                                    </div>
-                                    <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
-                                    <div nc-alert="alert"></div>
-                                </div>
-                            </div>
-                            <div class="message-input">
-                                <textarea chatarea="sendMessage(formData.messageStr, formData.resources)" class="form-control" rows="4" ng-model="formData.messageStr"
-                                    placeholder="พิมพ์ข้อความ..." autofocus maxlength="1000"></textarea>
-                                <!-- <div class="pull-left">
-                                    <div>{{formData.messageStr.length || '0'}}/1000</div>
-                                </div> -->
-                                <div class="pull-right" form-error="form.resource">
-                                    <div input-error class="pull-left"></div>
+                    <card-workroom-campaign-thumbnail
+                      ng-model="proposal"
+                      ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })"
+                      cute-bunny-hide>
+                    </card-workroom-campaign-thumbnail>
 
-                                    <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png" ngf-max-files="1" ngf-pattern="'.jpg,.png'" ngf-max-size="10MB" is-loading="formData.isLoading"></uploader-multi>
+                    <card-proposal-detail ng-model="proposal" cute-bunny-hide>
 
-                                    <button class="btn-secondary-highlight btn-width-md btn-minimal" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
-                                        <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
-                                    </button>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
+                        <div ng-if="proposal.status == 'Selection'" >
+                          <div class="how-to-text">
+                            <ol>
+                              <li>ตกลงขอบเขตงานให้ชัดเจน</li>
+                              <li>แก้ไขข้อเสนอตามความเหมาะสม</li>
+                              <li>รอ Brand ตัดสินใจว่าจะได้รับงานหรือไม่</li>
+                            </ol>
+                            <p>
+                              หากคุณผ่านการคัดเลือก เราจะแจ้งคุณทางอีเมล หรือเช็คได้บนเว็บของเรา
+                            </p>
+                          </div>
+                          <button ng-if="proposal.status == 'Selection' && !hasCart(proposal)" class="btn-secondary btn-width-max" ng-click="editProposal()">แก้ไขข้อเสนอ</button>
                         </div>
-                    </div>
-                    <div class="col-xs-3">
 
-                      <card-workroom-campaign-thumbnail
-                        ng-model="proposal"
-                        ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })"
-                        cute-bunny-hide>
-                      </card-workroom-campaign-thumbnail>
-
-                      <card-proposal-detail ng-model="proposal" cute-bunny-hide>
-
-                          <div ng-if="proposal.status == 'Selection'" >
-                            <div class="how-to-text">
-                              <ol>
-                                <li>ตกลงขอบเขตงานให้ชัดเจน</li>
-                                <li>แก้ไขข้อเสนอตามความเหมาะสม</li>
-                                <li>รอ Brand ตัดสินใจว่าจะได้รับงานหรือไม่</li>
-                              </ol>
-                              <p>
-                                หากคุณผ่านการคัดเลือก เราจะแจ้งคุณทางอีเมล หรือเช็คได้บนเว็บของเรา
-                              </p>
-                            </div>
-                            <button ng-if="proposal.status == 'Selection' && !hasCart(proposal)" class="btn-secondary btn-width-max" ng-click="editProposal()">แก้ไขข้อเสนอ</button>
+                        <div ng-if="proposal.status == 'Working'" >
+                          <div class="how-to-text">
+                            <ol>
+                              <li>ส่งงานตามที่ตกลงกันภายใน {{ proposal.dueDate | date }}</li>
+                              <li>ให้ Brand ตรวจสอบก่อน<br>โพสลงโซเชียล</li>
+                              <li>โพสงานบนโซเชียลและส่งรูปหลักฐานการโพสให้ Brand</li>
+                              <li>ขอให้ Brand "อนุมัติงาน"</li>
+                            </ol>
+                            <p>
+                              คุณจะได้รับเงินในระบบ หลังจาก Brand กด "อนุมัติงาน" ซึ่งสามารถถอนเข้าบัญชีคุณได้เมื่อต้องการ
+                            </p>
                           </div>
+                        </div>
 
-                          <div ng-if="proposal.status == 'Working'" >
-                            <div class="how-to-text">
-                              <ol>
-                                <li>ส่งงานตามที่ตกลงกันภายใน {{ proposal.dueDate | date }}</li>
-                                <li>ให้ Brand ตรวจสอบก่อน<br>โพสลงโซเชียล</li>
-                                <li>โพสงานบนโซเชียลและส่งรูปหลักฐานการโพสให้ Brand</li>
-                                <li>ขอให้ Brand "อนุมัติงาน"</li>
-                              </ol>
-                              <p>
-                                คุณจะได้รับเงินในระบบ หลังจาก Brand กด "อนุมัติงาน" ซึ่งสามารถถอนเข้าบัญชีคุณได้เมื่อต้องการ
-                              </p>
-                            </div>
+                        <div ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'WaitForPayout'" >
+                          <div class="how-to-text">
+                            <p>
+                              ยินดีด้วย งานคุณเสร็จสิ้นแล้ว!
+                            </p>
+                            <p>
+                              คุณสามารถถอนเงินจากงานนี้ได้เลย หรือรอถอนรวมกับงานอื่นทีเดียว
+                            </p>
                           </div>
+                          <button ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'WaitForPayout'" class="btn-primary btn-width-max" ui-sref="influencer-wallet">ถอนเงิน</button>
+                        </div>
 
-                          <div ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'WaitForPayout'" >
-                            <div class="how-to-text">
-                              <p>
-                                ยินดีด้วย งานคุณเสร็จสิ้นแล้ว!
-                              </p>
-                              <p>
-                                คุณสามารถถอนเงินจากงานนี้ได้เลย หรือรอถอนรวมกับงานอื่นทีเดียว
-                              </p>
-                            </div>
-                            <button ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'WaitForPayout'" class="btn-primary btn-width-max" ui-sref="influencer-wallet">ถอนเงิน</button>
+                        <div ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'Pending'">
+                          <div class="how-to-text">
+                            <p>
+                              ยินดีด้วย งานคุณเสร็จสิ้นแล้ว!
+                            </p>
+                            <p>
+                              ระบบกำลังดำเนินการโอนเงิน
+                            </p>
                           </div>
+                          <button class="btn-secondary btn-width-max" ui-sref="influencer-payout-detail({walletId: proposal.wallet.walletId})">ดูรายการถอนเงิน</button>
+                        </div>
 
-                          <div ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'Pending'">
-                            <div class="how-to-text">
-                              <p>
-                                ยินดีด้วย งานคุณเสร็จสิ้นแล้ว!
-                              </p>
-                              <p>
-                                ระบบกำลังดำเนินการโอนเงิน
-                              </p>
-                            </div>
-                            <button class="btn-secondary btn-width-max" ui-sref="influencer-payout-detail({walletId: proposal.wallet.walletId})">ดูรายการถอนเงิน</button>
+                        <div ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'Paid'">
+                          <div class="how-to-text">
+                            <p>
+                              ยินดีด้วย งานคุณเสร็จสิ้นแล้ว!
+                            </p>
+                            <p>
+                              คุณได้รับเงินจากงานนี้แล้ว
+                            </p>
                           </div>
+                          <button class="btn-secondary btn-width-max" ui-sref="influencer-payout-detail({walletId: proposal.wallet.walletId})">ดูหลักฐานการโอน</button>
+                        </div>
 
-                          <div ng-if="proposal.status == 'Complete' && proposal.wallet.status === 'Paid'">
-                            <div class="how-to-text">
-                              <p>
-                                ยินดีด้วย งานคุณเสร็จสิ้นแล้ว!
-                              </p>
-                              <p>
-                                คุณได้รับเงินจากงานนี้แล้ว
-                              </p>
-                            </div>
-                            <button class="btn-secondary btn-width-max" ui-sref="influencer-payout-detail({walletId: proposal.wallet.walletId})">ดูหลักฐานการโอน</button>
+                    </card-proposal-detail>
+
+                  </div>
+                  <div class="col-xs-9">
+                      <div class="chatbox-card">
+                          <div class="chatbox-header">
+                              <h3>{{ proposal.campaign.brand.brandName | truncate: 50 }}</h3>
+                              <a class="link-view-profile" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId, proposalId: proposal.proposalId })">
+                                ดูโปรไฟล์
+                              </a>
+                              <div class="chatbox-status">
+                                <span class="color-grey">สถานะ: </span>
+                                <span class="color-green" ng-if="proposal.status == 'Selection'">รอการคัดเลือก</span>
+                                <!-- tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ รอการคัดเลือกจาก Brand" -->
+                                <span class="color-green" ng-if="proposal.status == 'Working'">รอคุณส่งงาน</span>
+                                <!-- tooltip-placement="bottom" uib-tooltip="ทำงานตามที่ได้ตกลงกัน และส่งงานให้ Brand อนุมัติ"  -->
+                                <span class="color-green" ng-if="proposal.status == 'Complete'">ได้รับเงิน</span>
+                                <!-- tooltip-placement="bottom" uib-tooltip="งานเสร็จแล้ว คุณสามารถถอนเงินจากระบบได้เมื่อต้องการ" -->
+                              </div>
                           </div>
+                          <div class="message-area" scroll-glue="scroll">
+                              <cute-bunny></cute-bunny>
+                              <div cute-bunny-hide>
+                                  <card-influencer-profile ng-model="proposal.influencer" show-all-data="false">
+                                    <div class="for-proposal-detail">
+                                      <small>ช่องทางที่จะโปรโมทให้</small>
+                                      <div ng-repeat="imedia in intersectMedia(proposal.media, proposal.influencer.influencerMedias)">
+                                          <span class="icon-{{imedia.mediaId}} social-icon"></span> {{ imedia.followerCount | number }} คน
+                                      </div>
+                                      <small>จะส่งงานภายใน</small>
+                                      <span>{{proposal.completionTime.completionTime}}</span>
+                                      <small>ราคาที่เสนอ</small>
+                                      <h4 class="highlight">{{proposal.price | number}} บาท</h4>
+                                    </div>
+                                    <a ui-sref="influencer-profile" class="link-to-profile">แก้ไขโปรไฟล์ของคุณ</a>
+                                  </card-influencer-profile>
 
-                      </card-proposal-detail>
+                                  <div class="message-past" ng-if="hasPastMessage()">
+                                      <button class="btn-secondary-highlight btn-width-lg" ng-click="loadPastMessage()">แสดงข้อความก่อนหน้านี้</button>
+                                  </div>
+                                  <message ng-repeat="x in msglist" message-data="x" class="message-wrapper"></message>
+                                  <div nc-alert="alert"></div>
+                              </div>
+                          </div>
+                          <div class="message-input">
+                              <textarea chatarea="sendMessage(formData.messageStr, formData.resources)" class="form-control" rows="4" ng-model="formData.messageStr"
+                                  placeholder="พิมพ์ข้อความ..." autofocus maxlength="1000"></textarea>
+                              <!-- <div class="pull-left">
+                                  <div>{{formData.messageStr.length || '0'}}/1000</div>
+                              </div> -->
+                              <div class="pull-right" form-error="form.resource">
+                                  <div input-error class="pull-left"></div>
 
-                    </div>
+                                  <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png" ngf-max-files="1" ngf-pattern="'.jpg,.png'" ngf-max-size="10MB" is-loading="formData.isLoading"></uploader-multi>
+
+                                  <button class="btn-secondary-highlight btn-width-md btn-minimal" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
+                                      <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
+                                  </button>
+                              </div>
+                              <div class="clear"></div>
+                          </div>
+                      </div>
+                  </div>
                 </div>
             </div>
         </div>

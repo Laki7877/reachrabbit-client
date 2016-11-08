@@ -24,4 +24,3 @@ tmp
 .project
 .vscode
 .wercker
-app/config.json

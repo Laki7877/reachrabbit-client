@@ -41,7 +41,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.common.servic
     .controller('CampaignExampleController', function ($scope, $stateParams, ExampleCampaigns) {
         $scope.exampleCampaign = ExampleCampaigns[$stateParams.exampleId];
     })
-    .controller('CampaignDetailController', function ($scope, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, $uibModal, NcAlert, validator, $state, util) {
+    .controller('CampaignDetailController', function ($scope, TextBroker, $rootScope, $stateParams, CampaignService, DataService, $filter, UserProfile, $uibModal, NcAlert, validator, $state, util) {
             //initial form data
             $scope.alert = new NcAlert();
             $scope.editOpenState = $stateParams.editOpenState;
@@ -83,6 +83,10 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.common.servic
             DataService.getBudgets().then(function (resp) {
                 $scope.budgets = resp.data;
             });
+
+            $scope.getObjectiveDescription = function(id){
+                return TextBroker.th["brand-campaign-detail-draft"]["objectives"][id];
+            }
 
             $scope.dateOptions = _.extend({}, $rootScope.dateOptions, {
                 minDate: new Date(),

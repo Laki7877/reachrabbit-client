@@ -9,6 +9,9 @@
 
 angular.module('reachRabbitApp.common.service', ['satellizer'])
     .constant('Config', require('../config.json'))
+    .constant('TextBroker', {
+        'th':  require('../texts/th.json')
+    })
     .run(function (Config, $window, $location) {
         if ($window.sessionStorage.API_OVERRIDE) {
             Config.API_BASE_URI = $window.sessionStorage.API_OVERRIDE;

@@ -1,6 +1,6 @@
 var express = require("express");
-var app     = express();
-var path    = require("path");
+var app = express();
+var path = require("path");
 var https = require('https');
 var fs = require('fs');
 
@@ -20,7 +20,7 @@ app.get('/:name',function(req,res){
 // Redirect http to https
 var http = require('http');
 http.createServer(function (req, res) {
-    res.writeHead(301, { "Location": "https://www" + req.host + ":" + (process.env.HTTPS_PORT || 8080)  + req.originalUrl });
+    res.writeHead(301, { "Location": "https://" + req.headers.host + req.url });
     res.end();
 }).listen(process.env.HTTP_PORT || 8080);
 

@@ -11,16 +11,16 @@
 
             <div class="card">
                 <div class="card-header">
-                   รายได้ที่ยังไม่ได้ถอนออก
+                   รายการถอน
                 </div>
 
                 <div class="card-body">
                     <table class="table with-no-margin">
                       <thead>
                         <th>ชื่องาน</th>
-                        <th class="text-align-right">ราคาที่เสนอ</th>
+                        <th class="text-align-right">ราคาที่เสนอ (บาท)</th>
                         <th class="text-align-right hide">หักภาษี ณ ที่จ่าย</th>
-                        <th class="text-align-right">รายได้ <a><i class="fa fa-question-circle color-grey" uib-tooltip="รายได้ของคุณได้ทำการหักค่าธรรมเนียมในการใช้ระบบ 18% และ หักภาษี ณ ที่จ่าย เราจะใช้ค่าธรรมเนียม เพื่อพัฒนาระบบ และหางานให้คุณอย่างต่อเนื่องค่ะ"
+                        <th class="text-align-right">รายได้ (บาท) <a><i class="fa fa-question-circle color-grey" uib-tooltip="รายได้ของคุณได้ทำการหักค่าธรรมเนียมในการใช้ระบบ 18% และ หักภาษี ณ ที่จ่าย เราจะใช้ค่าธรรมเนียม เพื่อพัฒนาระบบ และหางานให้คุณอย่างต่อเนื่องค่ะ"
                           tooltip-placement="left"></i></a></th>
                       </thead>
                       <tbody>
@@ -135,7 +135,7 @@
                       ค่าธรรมเนียมการโอน
                     </td>
                     <td class="text-align-right">
-                      {{transferFeeDoc.amount*-1| number}} บาท
+                      -{{transferFeeDoc.amount*-1| number}} บาท
                     </td>
                   </tr>
                   <tr class="color-green">

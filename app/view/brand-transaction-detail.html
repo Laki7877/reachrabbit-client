@@ -109,7 +109,7 @@
                     <tr class="total-price border-dashed" ng-if="taxDocument">
                       <td colspan="3">
                         <span class="total-price-label">หักภาษี ณ ที่จ่าย (3%) :</span>
-                        <span class="total-price-number">{{ -taxDocument.amount  | number:0 }}</span>
+                        <span class="total-price-number">-{{ -taxDocument.amount  | number:0 }}</span>
                       </td>
                     </tr>
                     <tr class="total-price border-dashed">

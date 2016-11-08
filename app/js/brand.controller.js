@@ -84,10 +84,6 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.common.servic
             $scope.budgets = resp.data;
         });
 
-        $scope.getObjectiveDescription = function (id) {
-            return TextBroker.th["brand-campaign-detail-draft"]["objectives"][id];
-        }
-
         $scope.dateOptions = _.extend({}, $rootScope.dateOptions, {
             minDate: new Date(),
             customClass: function (object) {
@@ -136,8 +132,6 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.common.servic
             .then(function (response) {
                 $scope.categories = response.data;
             });
-
-
 
 
         $scope.formData.brand = UserProfile.get().brand;
@@ -205,6 +199,7 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.common.servic
             getOne(campaignId);
         } else {
             $scope.createMode = true;
+            
         }
         var today = moment();
 

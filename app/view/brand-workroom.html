@@ -57,7 +57,7 @@
                                     <uploader-multi name="resource" template="components/templates/uploader-chat.html" ng-model="formData.resources" accept=".jpg,.png"
                                         ngf-pattern="'.jpg,.png'" ngf-max-size="10MB" ngf-max-files="1" is-loading="formData.isLoading"></uploader-multi>
 
-                                    <button class="btn-secondary-highlight btn-width-md btn-minimal" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
+                                    <button id="brand-workroom-submit-btn" class="btn-secondary-highlight btn-width-md btn-minimal" ng-click="sendMessage(formData.messageStr, formData.resources)" ng-disabled="formData.isLoading">
                                     <i class="fa fa-paper-plane" aria-hidden="true"></i> ส่งข้อความ
                                   </button>
                                 </div>

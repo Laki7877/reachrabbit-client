@@ -3,12 +3,44 @@ var campaignDraft = require('../page_objects/brandCampaignDraftPage.js');
 var campaignDetail = require('../page_objects/brandCampaignDetailPage.js');
 var brandHeader = require('../page_objects/brandHeaderPage.js');
 var brandProfile = require('../page_objects/brandProfilePage.js');
+var brandInbox = require('../page_objects/brandInboxPage.js');
+var brandWorkroom = require('../page_objects/brandWorkroomPage.js');
 var loginPage = require('../page_objects/brandLoginPage.js');
 var signUpPage = require('../page_objects/brandSignUpPage.js');
 var Chance = require('chance');
 var chance = new Chance();
 var path = require('path');
 var common = require('./common.js');
+
+exports.gotoInboxSelection = function() {
+    it('Should enter selection inbox', function() {
+        brandHeader.clickInboxSelection();
+        browser.sleep(1000);
+        browser.getCurrentUrl().then(function(url) {
+            expect(url).toContain('Selection');
+        });
+    });
+};
+
+exports.gotoWorkroom = function() {
+    it('Should enter workroom', function() {
+        brandInbox.gotoWorkroom(0);
+        browser.sleep(2000);
+        browser.getCurrentUrl().then(function(url) {
+            expect(url).toContain('brand-workroom');
+        });
+    });
+};
+
+exports.chatWorkroom = function() {
+    it('Should chat with influencer', function() {
+        var word = chance.word();
+        brandWorkroom.messageTextarea.sendKeys(word);
+        brandWorkroom.submitBtn.click();
+        browser.sleep(2000);
+        expect(brandWorkroom.items.last().element(by.css('.my-message-content')).getText()).toEqual(word);
+    });
+};
 
 exports.hideRabbitModel = function() {
     it('Modal component should exist', function(){

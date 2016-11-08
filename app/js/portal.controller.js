@@ -22,7 +22,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                         "user": $scope.formData.username,
                         "type": "Brand"
                     });
-
+                    mixpanel.identify($scope.formData.username);
                     mixpanel.track("User Login", {
                         user: $scope.formData.username,
                         "type": "Brand"
@@ -33,7 +33,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                     UserProfile.set(profileResp.data);
                     //Tell raven about the user
                     // Raven.setUserContext(UserProfile.get());
-
+                    mixpanel.people.set(profileResp.data);
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal#/brand-login");
                     var bounce = '/brand#/brand-campaign-list';
@@ -107,15 +107,18 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                         "user": $scope.formData.username,
                         "type": "Influencer"
                     });
+                    mixpanel.identify($scope.formData.username);
 
                     mixpanel.track("User Login", {
                         user: $scope.formData.username,
                         "type": "Influencer"
                     });
 
+
                     return AccountService.getProfile();
                 })
                 .then(function (profileResp) {
+                    mixpanel.people.set(profileResp.data);
                     $window.localStorage.profile = JSON.stringify(profileResp.data);
                     //Tell raven about the user
                     Raven.setUserContext(UserProfile.get());
@@ -236,7 +239,8 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                                         "user": $scope.formData.username,
                                         "type": "Influencer"
                                     });
-
+                                    mixpanel.identify($scope.formData.username);
+                                    mixpanel.people.set(profileResp.data);
                                     mixpanel.track("User Login", {
                                         user: $scope.formData.username,
                                         "type": "Influencer"

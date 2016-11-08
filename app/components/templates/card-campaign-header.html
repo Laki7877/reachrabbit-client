@@ -1,6 +1,11 @@
 <div class="card-campaign-header">
   <div class="card-body">
     <div class="card-image">
+      <div class="flag">
+        <span ng-if="campaign.status === 'Open'" class="status status-open">เปิดรับข้อเสนอ</span>
+        <span ng-if="campaign.status === 'Draft'" class="status status-draft">ฉบับร่าง</span>
+        <span ng-if="campaign.status !== 'Draft' && $root.isExpired(campaign.proposalDeadline)" class="status status-closed">ปิดรับข้อเสนอ</span>
+      </div>
       <img ng-src="{{campaign.mainResource.url || 'images/placeholder-campaign.png'}}" class="img-responsive"/>
     </div>
     <div ng-if="removeable()" ng-click="remove()" class="card-corner color-grey">

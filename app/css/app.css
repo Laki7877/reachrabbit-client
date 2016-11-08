@@ -8643,6 +8643,10 @@ input:-moz-placeholder {
 .card-campaign-header .card-image img {
   width: 100%;
 }
+.card-campaign-header .card-image .flag .status {
+  top: 15px;
+  padding-left: 15px;
+}
 .card-campaign-header .card-campaign-header-content {
   position: relative;
   float: left;
@@ -10514,6 +10518,23 @@ fieldset[disabled] .btn-clear.active {
   height: 6px;
   width: 6px;
   border-radius: 3px;
+  animation: bouncing 1s infinite;
+  -webkit-animation: bouncing 1s infinite;
+}
+@keyframes bouncing {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0px);
+  }
+  40% {
+    transform: translateY(-4px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
 }
 .main-nav .steps .step:hover img {
   opacity: 1;

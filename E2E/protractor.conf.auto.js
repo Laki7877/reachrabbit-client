@@ -5,7 +5,7 @@ exports.config = {
     allScriptsTimeout: 120000,
 
     specs: [
-        './e2e-tests/*.js'
+        './e2e-tests/influencer*.js'
     ],
 
     capabilities: {

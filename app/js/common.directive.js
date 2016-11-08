@@ -83,6 +83,17 @@ function dashboardLinkFn(metricOptions, datasetOptions) {
 }
 
 angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.service'])
+    .filter('htmlLink', function() {
+        var fn = function(text) {
+            if(/https?:\/\//.test(text)) {
+                return '<a href="' + text + '" target="_blank">' + text + '</a>';
+            }
+            return '<a href="http://' + text + '" target="_blank">' + text + '</a>';
+        };
+        return function(input) {
+            return input.replace(/(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/g, fn);
+        };
+    })
     .directive('dashboardFacebook', ['$state', function ($state) {
         return {
               restrict: 'EA',

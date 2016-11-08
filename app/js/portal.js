@@ -96,7 +96,6 @@ angular.module('reachRabbitApp', [
   })
   .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce', '$state',
     function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
-
       //Date override
       $rootScope.$state = $state;
       $rootScope.go = function (url) {

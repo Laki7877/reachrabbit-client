@@ -14,6 +14,7 @@
                 <th sort="referralId">Referral ID</th>
                 <th class="text-center" sort="influencer.isVerify">Verification</th>
                 <th class="col-button"></th>
+                <th class="col-button"></th>
               </tr>
             </thead>
             <tbody>
@@ -25,6 +26,9 @@
                 <td class="color-green text-center" ng-if="user.influencer.isVerify">Yes</td>
                 <td>
                   <button ui-sref="admin-influencer-detail({userId: user.userId})" class="btn btn-secondary btn-width-md">ดูรายละเอียด</button>
+                </td>
+                <td>
+                  <button ng-click="loginAs(user)" class="btn btn-secondary btn-width-md">Login As</button>
                 </td>
               </tr>
             </tbody>

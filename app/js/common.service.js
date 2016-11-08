@@ -163,6 +163,9 @@ angular.module('reachRabbitApp.common.service', ['satellizer'])
     })
     .factory('AccountService', function ($http, $q) {
         return {
+            loginAs: function(id) {
+                return $http.get('/users/' + id + '/loginas');
+            },
             getUser: function (id) {
                 return $http({
                     url: '/users/' + id

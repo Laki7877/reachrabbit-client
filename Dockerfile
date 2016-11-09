@@ -1,4 +1,17 @@
-# Build myapp server Docker container
-FROM httpd:2.4
-COPY ./app /usr/local/apache2/htdocs/
-RUN sed -i "s#http://bella.reachrabbit.com:8080#http://app.reachrabbit.com:8080#g" /usr/local/apache2/htdocs/js/service.js
+FROM node:argon
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY package.json /usr/src/app/
+RUN npm install
+RUN npm install -g grunt-cli
+
+# Bundle app source
+COPY . /usr/src/app
+RUN grunt production
+
+EXPOSE 443 80
+
+CMD [ "node", "server.js" ]

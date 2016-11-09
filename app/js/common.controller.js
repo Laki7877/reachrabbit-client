@@ -79,7 +79,7 @@ angular.module('reachRabbitApp.common.controller', ['reachRabbitApp.common.servi
                 });
         };
     })
-    .controller('ProposalModalController', function ($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal, validator, util, BusinessConfig) {
+    .controller('ProposalModalController', function ($scope, DataService, CampaignService, ProposalService, campaign, $state, NcAlert, $uibModalInstance, $rootScope, proposal, validator, util, BusinessConfig, UserProfile) {
         $scope.completionTimes = [];
         $scope.medium = [];
         $scope.formData = {
@@ -153,9 +153,9 @@ angular.module('reachRabbitApp.common.controller', ['reachRabbitApp.common.servi
 
         $scope.$watch('formData.price', function (pp) {
             if ($scope.campaign.brand.isCompany) {
-                $scope.proposalNetPrice = (Number(pp) * (1 - BusinessConfig.INFLUENCER_FEE)) - (Number(pp) * BusinessConfig.BRAND_TAX_FEE);
+                $scope.proposalNetPrice = (Number(pp) * (1 - (UserProfile.get().influencer.commission / 100) )) - (Number(pp) * BusinessConfig.BRAND_TAX_FEE);
             } else {
-                $scope.proposalNetPrice = Number(pp) * (1 - BusinessConfig.INFLUENCER_FEE);
+                $scope.proposalNetPrice = Number(pp) * (1 - (UserProfile.get().influencer.commission / 100));
             }
 
         });

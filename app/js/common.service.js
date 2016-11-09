@@ -273,6 +273,11 @@ angular.module('reachRabbitApp.common.service', ['satellizer'])
                     username: username,
                     password: password
                 });
+            },            
+            saveCommission: function(id, com){
+                return $http.put("/users/" + id + "/commission", {
+                    commission: com
+                });
             }
         };
     })

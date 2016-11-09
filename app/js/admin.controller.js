@@ -112,7 +112,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.common.servic
                 $scope.alert.danger(err.data.message);
             });
     })
-    .controller('AdminInfluencerListController', function($scope, AccountService, $window, UserProfile) {        
+    .controller('AdminInfluencerListController', function($scope, AccountService, $window, UserProfile, NcAlert) {        
         $scope.loginAs = function(item) {
             AccountService.loginAs(item.userId)
                 .then(function (response) {
@@ -132,6 +132,13 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.common.servic
                     }
                     $window.location.href = bounce;
                 });
+        };
+        $scope.alert = new NcAlert();
+        $scope.updateCommission = function (user){
+            AccountService.saveCommission(user.userId,user.influencer.commission)
+                .then( function(response) {
+                $scope.alert.success('บันทึกสําเร็จ');
+            });
         };
         //Load campaign data
         $scope.load = function (data) {

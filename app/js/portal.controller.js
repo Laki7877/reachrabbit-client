@@ -398,7 +398,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                     return AccountService.getProfile();
                 })
                 .then(function (profileResp) {
-                    $rootScope.setUnauthorizedRoute("/portal#/influencer-portal");
+                    $rootScope.setUnauthorizedRoute("/portal#/influencer-login");
                     UserProfile.set(profileResp.data);
 
                     mixpanel.identify($scope.formData.email);

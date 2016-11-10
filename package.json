@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "browserify-ngannotate": "^2.0.0",
+    "compression": "^1.6.2",
     "express": "^4.14.0",
     "moniker": "^0.1.2",
     "randomstring": "^1.1.5",

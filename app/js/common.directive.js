@@ -90,8 +90,9 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
             }
             return '<a href="http://' + text + '" target="_blank">' + text + '</a>';
         };
+        var regex = /((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z0-9\&\.\/\?\:@\-_=#])*/g;
         return function(input) {
-            return input.replace(/(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/g, fn);
+            return input.replace(regex, fn);
         };
     })
     .directive('dashboardFacebook', ['$state', function ($state) {

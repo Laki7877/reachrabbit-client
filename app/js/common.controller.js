@@ -347,7 +347,7 @@ angular.module('reachRabbitApp.common.controller', ['reachRabbitApp.common.servi
                             }
                             if (res.data[i].referenceId && !_.isNil($scope.msgHash[res.data[i].referenceId])) {
                                 if(_.isNil($scope.msgHash[res.data[i].referenceId].messageId)) {
-                                    $scope.totalElements++;    
+                                    $scope.totalElements++;
                                 }
                                 _.extend($scope.msgHash[res.data[i].referenceId], res.data[i]);
                             } else {
@@ -393,6 +393,7 @@ angular.module('reachRabbitApp.common.controller', ['reachRabbitApp.common.servi
             ProposalService.sendMessage(_.extend(_.omit(msg, 'user'), { proposal: { proposalId: $scope.proposalId } }))
                 .then(function (resp) {
                     _.extend(msg, resp.data);
+                    $scope.totalElements++;
                     $scope.formData = {
                         resources: []
                     };

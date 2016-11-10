@@ -90,7 +90,7 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
             }
             return '<a href="http://' + text + '" target="_blank">' + text + '</a>';
         };
-        var regex = /((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z0-9\&\.\/\?\:@\-_=#])*/g;
+        var regex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
         return function(input) {
             return input.replace(regex, fn);
         };

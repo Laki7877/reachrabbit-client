@@ -18,17 +18,14 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 .then(function (response) {
                     var token = response.data.token;
                     $window.localStorage.token = token;
-                    mixpanel.identify($scope.formData.username);
-                    mixpanel.track("User Login", {
-                        user: $scope.formData.username,
-                        "type": "Brand"
-                    });
                     return AccountService.getProfile();
                 })
                 .then(function (profileResp) {
                     UserProfile.set(profileResp.data);
 
                     mixpanel.identify($scope.formData.username);
+                    //PNP wants brand name instead
+                    profileResp.data.name = profileResp.data.brand.brandName;
                     mixpanel.people.set(profileResp.data);
                     mixpanel.track("User Login", {
                         user: $scope.formData.username,
@@ -101,14 +98,6 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 .then(function (response) {
                     var token = response.data.token;
                     $window.localStorage.token = token;
-
-                    mixpanel.identify($scope.formData.username);
-
-                    mixpanel.track("User Login", {
-                        user: $scope.formData.username,
-                        "type": "Influencer"
-                    });
-
 
                     return AccountService.getProfile();
                 })
@@ -448,6 +437,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 .then(function (profileResp) {
                     UserProfile.set(profileResp.data);
                     mixpanel.identify($scope.formData.email);
+                    profileResp.data.name = profileResp.data.brand.brandName;
                     mixpanel.people.set(profileResp.data);
                     mixpanel.track("User Signup", {
                         user: $scope.formData.email,

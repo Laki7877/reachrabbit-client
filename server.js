@@ -9,9 +9,9 @@ var options = {
   cert: fs.readFileSync('keys/app.reachrabbit.com.crt')
 };
 
-
 var port = process.env.HTTPS_PORT || 443;
-app.use(express.static('app/'));
+app.use(express.compress());
+app.use(express.static('app/', { maxAge: 86400000 }));
 app.get('/:name',function(req,res){
   res.sendFile(path.join(__dirname+'/app/' + req.params.name + '.html'));
 });

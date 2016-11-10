@@ -203,6 +203,9 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                         AccountService.getProfile()
                             .then(function (profileResp) {
                                 UserProfile.set(profileResp.data);
+                                mixpanel.identify(profileResp.data.email);
+                                mixpanel.people.set(profileResp.data);
+                                
 
                                 //Redirect change app
                                 var bounce = '/influencer#/influencer-campaign-list';
@@ -210,11 +213,10 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                                     bounce = '/influencer#/' + $scope.bounce_route;
                                 }
 
-                                mixpanel.identify(profileResp.data.email);
-                                mixpanel.people.set(profileResp.data);
-                                mixpanel.track("User Login");
 
-                                $window.location.href = bounce;
+                                mixpanel.track("User Login", {}, function(){
+                                    $window.location.href = bounce;
+                                });
                             });
                     } else {
                         if (mediaId == 'facebook') {

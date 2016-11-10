@@ -112,7 +112,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.common.servic
                 $scope.alert.danger(err.data.message);
             });
     })
-    .controller('AdminInfluencerListController', function($scope, AccountService, $window, UserProfile, NcAlert) {        
+    .controller('AdminInfluencerListController', function($rootScope,$scope, $location, AccountService, $window, UserProfile, NcAlert) {        
         $scope.loginAs = function(item) {
             AccountService.loginAs(item.userId)
                 .then(function (response) {
@@ -131,6 +131,9 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.common.servic
                         bounce = '/influencer#' + $location.search().bounce_route;
                     }
                     $window.location.href = bounce;
+                })
+                .catch(function(e) {
+                    console.log(e);
                 });
         };
         $scope.alert = new NcAlert();
@@ -153,7 +156,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.common.servic
             sort: 'updatedAt,desc'
         });
     })
-    .controller('AdminBrandListController', function($scope, AccountService, $window, UserProfile) {
+    .controller('AdminBrandListController', function($rootScope, $scope, $location, AccountService, $window, UserProfile) {
         $scope.loginAs = function(item) {
             AccountService.loginAs(item.userId)
                 .then(function(res) {
@@ -174,6 +177,9 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.common.servic
                     }
                     $window.location.href = bounce;
 
+                })
+                .catch(function(e) {
+                    console.log(e);
                 });
         };
         //Load campaign data

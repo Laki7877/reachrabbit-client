@@ -27,7 +27,7 @@ angular.module('reachRabbitApp.common.controller', ['reachRabbitApp.common.servi
                 .then(function (transaction) {
                     $scope.transaction = transaction.data;
 
-                    if ($scope.isExpired()) {
+                    if ($scope.isExpired() && $scope.transaction.status !== 'Complete') {
                         $scope.alert.warning("การสั่งซื้อนี้ได้หมดอายุลงแล้ว");
                     }
                     _.forEach($scope.transaction.brandTransactionDocument, function (document) {
@@ -298,7 +298,7 @@ angular.module('reachRabbitApp.common.controller', ['reachRabbitApp.common.servi
         $scope.hasPastMessage = function () {
             if (!$scope.msglist) return false;
             if ($scope.msglist.length === 0) return false;
-            return $scope.totalElements > $scope.msglist.length;
+            return $scope.totalElements > $scope.msglist.length && $scope.msglist.length >= $scope.msgLimit;
         };
 
         $scope.loadPastMessage = function () {
@@ -341,16 +341,19 @@ angular.module('reachRabbitApp.common.controller', ['reachRabbitApp.common.servi
                 })
                 .then(function (res) {
                     if (res && res.data) {
-                        $scope.totalElements += res.data.length;
                         for (var i = res.data.length - 1; i >= 0; i--) {
                             if ($scope.msglist.length >= $scope.msgLimit) {
                                 $scope.msglist.shift();
                             }
                             if (res.data[i].referenceId && !_.isNil($scope.msgHash[res.data[i].referenceId])) {
+                                if(_.isNil($scope.msgHash[res.data[i].referenceId].messageId)) {
+                                    $scope.totalElements++;    
+                                }
                                 _.extend($scope.msgHash[res.data[i].referenceId], res.data[i]);
                             } else {
                                 // from server
                                 $scope.msglist.push(res.data[i]);
+                                $scope.totalElements++;
                                 $scope.msgHash[res.data[i].referenceId] = res.data[i];
                             }
                         }

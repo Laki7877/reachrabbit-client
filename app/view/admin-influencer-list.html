@@ -17,8 +17,8 @@
                 <th class="text-center" sort="influencer.isVerify">Verification</th>
                 <th >Commission</th>
                 <th class="col-button"></th>
-                <th class="col-button"></th>
-                <th class="col-button"></th>
+                <th class="col-button">View Detail</th>
+                <th class="col-button">Login As</th>
               </tr>
             </thead>
             <tbody>
@@ -28,15 +28,16 @@
                 <td class="color-red text-center" ng-if="!user.influencer.isVerify">No</td>
                 <td class="color-green text-center" ng-if="user.influencer.isVerify">Yes</td>
                 <td class="col-md-1">
-                    <input class="form-control" type="text" ng-model="user.influencer.commission" required maxlength="3" ng-pattern-restrict="^[0-9]*$"></input></td>
+                    <input class="form-control" type="text" ng-model="user.influencer.commission" required maxlength="3" ng-pattern-restrict="^[0-9]*$"></input>
+                </td>
+                <td>
+                  <button ng-click="updateCommission(user)" class="btn btn-secondary btn-width-md">Update</button>
+                </td>
                 <td>
                   <button ui-sref="admin-influencer-detail({userId: user.userId})" class="btn btn-secondary btn-width-md">ดูรายละเอียด</button>
                 </td>
                 <td>
                   <button ng-click="loginAs(user)" class="btn btn-secondary btn-width-md">Login As</button>
-                </td>
-                <td>
-                  <button ng-click="updateCommission(user)" class="btn btn-secondary btn-width-md">Update</button>
                 </td>
               </tr>
             </tbody>

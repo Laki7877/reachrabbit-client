@@ -222,18 +222,22 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.common.servic
             return $scope.formData.status === 'Open';
         };
 
-        $scope.$watch('formData.objectiveArray+formData.productName', function (t) {
+        $scope.$watch('formData.productName', function (t) {
             $scope.formData.title = $scope.formData.productName;
             if ($scope.formData.objectiveArray && $scope.formData.objectiveArray.length > 0) {
                 $scope.formData.title = $scope.formData.objectiveArray[0].objectiveName.replace("สินค้า", "") + ' ' + $scope.formData.productName;
             }
-
-        });
+        }, true);
+        $scope.$watch('formData.objectiveArray', function (t) {
+            $scope.formData.title = $scope.formData.productName;
+            if ($scope.formData.objectiveArray && $scope.formData.objectiveArray.length > 0) {
+                $scope.formData.title = $scope.formData.objectiveArray[0].objectiveName.replace("สินค้า", "") + ' ' + $scope.formData.productName;
+            }
+        }, true);
 
         $scope.save = function (formData, mediaBooleanDict, mediaObjectDict, status) {
             formData.brand = UserProfile.get().brand;
             formData.status = status;
-
             if (formData.objectiveArray.length > 0) {
                 formData.objective = formData.objectiveArray[0];
             } else {

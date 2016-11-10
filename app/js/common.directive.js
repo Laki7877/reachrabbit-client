@@ -90,7 +90,7 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
             }
             return '<a href="http://' + text + '" target="_blank">' + text + '</a>';
         };
-        var regex = /(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig;
+        var regex = /(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?/ig;
         return function(input) {
             return input.replace(regex, fn);
         };

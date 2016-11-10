@@ -1138,7 +1138,6 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
             },
             templateUrl: 'components/templates/card-campaign-list-item.html',
             link: function (scope, element, attrs, ctrl, transclude) {
-
             }
         };
     }])

@@ -29,7 +29,7 @@
                   <span class="color-grey" ng-if="isExpired(transaction)"><i class="fa fa-ban"></i> หมดอายุ</span>
                 </td>
                 <td class="text-center" ng-bind="transaction.transactionNumber"></td>
-                <td class="text-center">{{ transaction.brandTransactionDocument[0].cart.proposals.length || '0' }}</td>
+                <td class="text-center">{{ transaction.brandTransactionDocument[0].cart.proposals.length || 'N/A' }}</td>
                 <td class="col-price">{{ transaction.amount | currency: '': 0 }}</td>
                 <td class="col-button">
                   <button class="btn-secondary btn-minimal" ui-sref="admin-transaction-detail({cartId: transaction.brandTransactionDocument[0].cart.cartId })">ดูรายละเอียด</button>

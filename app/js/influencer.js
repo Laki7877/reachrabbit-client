@@ -195,6 +195,7 @@ angular.module('reachRabbitApp', [
       //Global function helpers
       $rootScope.getProfile = UserProfile.get;
       $rootScope.signOut = function (bounce_route) {
+        mixpanel.track("User Logout");
         //clear localstorage
         var ur = $window.localStorage.unauthorized_route;
         if (!ur) {

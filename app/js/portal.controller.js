@@ -18,22 +18,16 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 .then(function (response) {
                     var token = response.data.token;
                     $window.localStorage.token = token;
-                    mixpanel.identify($scope.formData.username);
-                    mixpanel.track("User Login", {
-                        user: $scope.formData.username,
-                        "type": "Brand"
-                    });
                     return AccountService.getProfile();
                 })
                 .then(function (profileResp) {
                     UserProfile.set(profileResp.data);
 
                     mixpanel.identify($scope.formData.username);
+                    //PNP wants brand name instead
+                    profileResp.data.name = profileResp.data.brand.brandName;
                     mixpanel.people.set(profileResp.data);
-                    mixpanel.track("User Login", {
-                        user: $scope.formData.username,
-                        "type": "Brand"
-                    }); 
+                    mixpanel.track("User Login");
                     
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal#/brand-login");
@@ -102,23 +96,12 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                     var token = response.data.token;
                     $window.localStorage.token = token;
 
-                    mixpanel.identify($scope.formData.username);
-
-                    mixpanel.track("User Login", {
-                        user: $scope.formData.username,
-                        "type": "Influencer"
-                    });
-
-
                     return AccountService.getProfile();
                 })
                 .then(function (profileResp) {
-                    mixpanel.identify($scope.formData.username);
+                    mixpanel.identify(username);
                     mixpanel.people.set(profileResp.data);
-                    mixpanel.track("User Login", {
-                        user: $scope.formData.username,
-                        "type": "Influencer"
-                    }); 
+                    mixpanel.track("User Login"); 
                     
                     $window.localStorage.profile = JSON.stringify(profileResp.data);
                     //Redirect
@@ -220,6 +203,9 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                         AccountService.getProfile()
                             .then(function (profileResp) {
                                 UserProfile.set(profileResp.data);
+                                mixpanel.identify(profileResp.data.email);
+                                mixpanel.people.set(profileResp.data);
+                                
 
                                 //Redirect change app
                                 var bounce = '/influencer#/influencer-campaign-list';
@@ -227,14 +213,10 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                                     bounce = '/influencer#/' + $scope.bounce_route;
                                 }
 
-                                mixpanel.identify($scope.formData.username);
-                                mixpanel.people.set(profileResp.data);
-                                mixpanel.track("User Login", {
-                                    user: $scope.formData.username,
-                                    "type": "Influencer"
-                                });
 
-                                $window.location.href = bounce;
+                                mixpanel.track("User Login", {}, function(){
+                                    $window.location.href = bounce;
+                                });
                             });
                     } else {
                         if (mediaId == 'facebook') {
@@ -319,10 +301,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
 
                     mixpanel.identify($scope.formData.email);
                     mixpanel.people.set(profileResp.data);
-                    mixpanel.track("User Signup", {
-                        user: $scope.formData.email,
-                        "type": "Influencer"
-                    });
+                    mixpanel.track("User Signup");
 
                     $scope.form.$setPristine();
                     //Redirect change app
@@ -403,10 +382,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
 
                     mixpanel.identify($scope.formData.email);
                     mixpanel.people.set(profileResp.data);
-                    mixpanel.track("User Signup", {
-                        user: $scope.formData.email,
-                        "type": "Influencer"
-                    });
+                    mixpanel.track("User Signup");
 
                     $scope.form.$setPristine();
 
@@ -448,11 +424,9 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 .then(function (profileResp) {
                     UserProfile.set(profileResp.data);
                     mixpanel.identify($scope.formData.email);
+                    profileResp.data.name = profileResp.data.brand.brandName;
                     mixpanel.people.set(profileResp.data);
-                    mixpanel.track("User Signup", {
-                        user: $scope.formData.email,
-                        "type": "Brand"
-                    });
+                    mixpanel.track("User Signup");
 
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal#/brand-login");

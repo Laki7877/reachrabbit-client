@@ -169,6 +169,8 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.common.s
             $scope.params = data;
             CampaignService.getOpenCampaigns(data).then(function (response) {
                 $scope.campaigns = response.data;
+                //Track mp
+                mixpanel.track("List Campaign");
             })
                 .catch(function (err) {
                     if (err.data.statusCode == 400) {

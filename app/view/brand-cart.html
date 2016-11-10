@@ -34,7 +34,7 @@
                         <tr class="total-price">
                           <td colspan="3">
                             <strong>ราคารวม ({{cart.proposals.length || 0}} รายการ) : {{ totalPrice(cart.proposals)  | number:0 }} บาท</strong>
-                            <a ui-sref="brand-inbox">เลือกข้อเสนอเพิ่ม</a>
+                            <a ng-if="inbox.selection.proposalCount > cart.proposals.length" ui-sref="brand-inbox">เลือกข้อเสนอเพิ่ม</a>
                           </td>
                         </tr>
                       </tbody>

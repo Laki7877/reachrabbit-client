@@ -684,12 +684,9 @@ angular.module('reachRabbitApp.brand.controller', ['reachRabbitApp.common.servic
         $scope.load({
             sort: ['messageUpdatedAt,desc']
         })
-            .then(function () {
-                return $scope.loadProposalCounts();
-            })
-            .then(function () {
-                $scope.httpPending = false;
-            });
+        .then(function () {
+            $scope.httpPending = false;
+        });
 
     })
     .controller('CartController', function ($scope, $rootScope, $state, NcAlert, BrandAccountService, ProposalService, TransactionService, $stateParams, UserProfile, BusinessConfig) {

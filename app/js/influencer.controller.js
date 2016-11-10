@@ -322,8 +322,6 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.common.s
         $scope.showStickyToolbar = false;
         $scope.search = {};
 
-
-
         if ($stateParams.status) {
             $scope.statusFilter = $stateParams.status;
         }
@@ -376,7 +374,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.common.s
             sort: ['messageUpdatedAt,desc']
         });
 
-        $scope.loadProposalCounts();
+        //$scope.loadProposalCounts();
 
     })
     .controller('PublicCampaignController', function ($scope, $stateParams, PublicService) {

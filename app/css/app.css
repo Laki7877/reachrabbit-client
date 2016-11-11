@@ -10283,6 +10283,9 @@ fieldset[disabled] .btn-clear.active {
 .btn-with-margin {
   margin: 7.5px;
 }
+.btn-with-count {
+  position: relative;
+}
 /*---Alert Box---*/
 .alert {
   height: 60px;
@@ -10818,15 +10821,14 @@ div:focus {
 .table .col-button {
   width: 130px;
   text-align: center;
-  position: relative;
 }
 .table .col-button button {
   width: 100px;
 }
 .table .col-button .message-count {
   position: absolute;
-  top: 4px;
-  right: 1px;
+  top: -8px;
+  right: -9px;
   background: #ff0000;
   font-size: 12px;
   color: #ffffff;

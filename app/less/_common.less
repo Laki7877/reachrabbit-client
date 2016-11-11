@@ -1369,6 +1369,9 @@ input:-moz-placeholder {
 .btn-with-margin{
   margin: 7.5px;
 }
+.btn-with-count{
+  position: relative;
+}
 
 /*---Alert Box---*/
 .alert{
@@ -1870,14 +1873,13 @@ div:focus{
   .col-button{
     width: 130px;
     text-align: center;
-    position: relative;
     button{
       width: 100px;
     }
     .message-count{
       position: absolute;
-      top:4px;
-      right: 1px;
+      top:-8px;
+      right:-9px;
       background: @color-red;
       font-size: 12px;
       color:@color-white;

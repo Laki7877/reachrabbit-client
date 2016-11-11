@@ -28,12 +28,11 @@
                   <div class="card-info-label">
                     สถานะ
                   </div>
-              </div>
-                <div class="card-info-content">
-                  <span class="color-yellow" ng-if="!isExpired() && transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
-                  <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span>
-                   <span class="color-grey" ng-if="isExpired() && transaction.status !== 'Complete'"><i class="fa fa-ban"></i> หมดอายุ</span>
-                </div>
+                  <div class="card-info-content">
+                    <span class="color-yellow" ng-if="!isExpired() && transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
+                    <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span>
+                     <span class="color-grey" ng-if="isExpired() && transaction.status !== 'Complete'"><i class="fa fa-ban"></i> หมดอายุ</span>
+                  </div>
                 </div>
                 <div class="card-info">
                   <div class="card-info-label">

@@ -1,4 +1,5 @@
 /**
+  WARNING: Deprecated
  * App
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
@@ -203,6 +204,7 @@ angular.module('reachRabbitApp', [
       //Global function helpers
       $rootScope.getProfile = UserProfile.get;
       $rootScope.signOut = function (bounce_route) {
+        mixpanel.track("User Logout");
         //clear localstorage
         var ur = $window.localStorage.unauthorized_route;
         if (!ur) {
@@ -228,7 +230,7 @@ angular.module('reachRabbitApp', [
         if ($location.absUrl().includes("brand.html") || $location.absUrl().includes("brand#")) {
           $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
         } else if ($location.absUrl().includes("influencer.html") || $location.absUrl().includes("influencer#")) {
-          $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+          $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
         } else if ($location.absUrl().includes("admin.html") || $location.absUrl().includes("admin#")) {
           $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
         }
@@ -247,10 +249,12 @@ angular.module('reachRabbitApp', [
       $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams, options) {
 
-          //in case of brand
           if (!UserProfile.get()) {
             return;
           }
+
+          console.log("Mix Panelling");
+          mixpanel.track("Navigated to" + toState);
 
           //TODO: move to resolver
           //Other role specific functions

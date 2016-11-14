@@ -9,6 +9,9 @@
 
 angular.module('reachRabbitApp.common.service', ['satellizer'])
     .constant('Config', require('../config.json'))
+    .constant('TextBroker', {
+        'th':  require('../texts/th.json')
+    })
     .run(function (Config, $window, $location) {
         if ($window.sessionStorage.API_OVERRIDE) {
             Config.API_BASE_URI = $window.sessionStorage.API_OVERRIDE;
@@ -98,7 +101,7 @@ angular.module('reachRabbitApp.common.service', ['satellizer'])
                     if ($location.absUrl().includes("brand.html") || $location.absUrl().includes("brand#")) {
                         $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
                     } else if ($location.absUrl().includes("influencer.html") || $location.absUrl().includes("influencer#")) {
-                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+                        $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
                     } else if ($location.absUrl().includes("admin.html") || $location.absUrl().includes("admin#")) {
                         $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
                     }
@@ -160,6 +163,9 @@ angular.module('reachRabbitApp.common.service', ['satellizer'])
     })
     .factory('AccountService', function ($http, $q) {
         return {
+            loginAs: function(id) {
+                return $http.get('/users/' + id + '/loginas');
+            },
             getUser: function (id) {
                 return $http({
                     url: '/users/' + id
@@ -266,6 +272,11 @@ angular.module('reachRabbitApp.common.service', ['satellizer'])
                 return $http.post("/profile/instagram/validate", {
                     username: username,
                     password: password
+                });
+            },            
+            saveCommission: function(id, com){
+                return $http.put("/users/" + id + "/commission", {
+                    commission: com
                 });
             }
         };

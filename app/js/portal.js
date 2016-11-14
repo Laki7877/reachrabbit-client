@@ -96,7 +96,6 @@ angular.module('reachRabbitApp', [
   })
   .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce', '$state',
     function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
-
       //Date override
       $rootScope.$state = $state;
       $rootScope.go = function (url) {
@@ -220,7 +219,7 @@ angular.module('reachRabbitApp', [
         if ($location.absUrl().includes("brand.html") || $location.absUrl().includes("brand#")) {
           $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
         } else if ($location.absUrl().includes("influencer.html") || $location.absUrl().includes("influencer#")) {
-          $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+          $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
         } else if ($location.absUrl().includes("admin.html") || $location.absUrl().includes("admin#")) {
           $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
         }

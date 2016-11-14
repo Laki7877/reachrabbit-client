@@ -29,12 +29,17 @@
                         <div class="card-body-content">
                            <choice-picker
                             max-columns="4"
+                            default-to-first="createMode == true"
                             display-by="objectiveName"
                             max-selected="1"
                             base-class="btn-width-max btn-objective"
                             endpoint-name="Objectives"
                             ng-model="formData.objectiveArray">
                             </choice-picker>
+                            <div class="multi-tag-selector-description" ng-if="formData.objectiveArray[0]['objectiveId']">
+                              <i class="fa fa-info-circle"></i> 
+                              {{getObjectiveDescription(formData.objectiveArray[0]['objectiveId'])}}
+                            </div>
                         </div>
                     </div>
 

@@ -112,7 +112,37 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.common.servic
                 $scope.alert.danger(err.data.message);
             });
     })
-    .controller('AdminInfluencerListController', function($scope, AccountService) {
+    .controller('AdminInfluencerListController', function($rootScope,$scope, $location, AccountService, $window, UserProfile, NcAlert) {        
+        $scope.loginAs = function(item) {
+            AccountService.loginAs(item.userId)
+                .then(function (response) {
+                    var token = response.data.token;
+                    $window.localStorage.token = token;
+                    return AccountService.getProfile();
+                })
+                .then(function (profileResp) {
+                    $window.localStorage.profile = JSON.stringify(profileResp.data);
+                    //Tell raven about the user
+                    Raven.setUserContext(UserProfile.get());
+                    //Redirect
+                    $rootScope.setUnauthorizedRoute("/portal#/influencer-login");
+                    var bounce = '/influencer#/influencer-campaign-list';
+                    if ($location.search().bounce_route) {
+                        bounce = '/influencer#' + $location.search().bounce_route;
+                    }
+                    $window.location.href = bounce;
+                })
+                .catch(function(e) {
+                    console.log(e);
+                });
+        };
+        $scope.alert = new NcAlert();
+        $scope.updateCommission = function (user){
+            AccountService.saveCommission(user.userId,user.influencer.commission)
+                .then( function(response) {
+                $scope.alert.success('บันทึกสําเร็จ');
+            });
+        };
         //Load campaign data
         $scope.load = function (data) {
             $scope.params = data;
@@ -126,8 +156,32 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.common.servic
             sort: 'updatedAt,desc'
         });
     })
-    .controller('AdminBrandListController', function($scope, AccountService) {
+    .controller('AdminBrandListController', function($rootScope, $scope, $location, AccountService, $window, UserProfile) {
+        $scope.loginAs = function(item) {
+            AccountService.loginAs(item.userId)
+                .then(function(res) {
+                    var token = res.data.token;
+                    $window.localStorage.token = token;
+                    return AccountService.getProfile();
+                })
+                .then(function (profileResp) {
+                    UserProfile.set(profileResp.data);
+                    //Tell raven about the user
+                    Raven.setUserContext(UserProfile.get());
 
+                    //Redirect
+                    $rootScope.setUnauthorizedRoute("/portal#/brand-login");
+                    var bounce = '/brand#/brand-campaign-list';
+                    if ($location.search().bounce_route) {
+                        bounce = ('/brand#' + $location.search().bounce_route);
+                    }
+                    $window.location.href = bounce;
+
+                })
+                .catch(function(e) {
+                    console.log(e);
+                });
+        };
         //Load campaign data
         $scope.load = function (data) {
             $scope.params = data;

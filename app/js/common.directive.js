@@ -83,6 +83,18 @@ function dashboardLinkFn(metricOptions, datasetOptions) {
 }
 
 angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.service'])
+    .filter('htmlLink', function() {
+        var fn = function(text) {
+            if(/https?:\/\//.test(text)) {
+                return '<a href="' + text + '" target="_blank">' + text + '</a>';
+            }
+            return '<a href="http://' + text + '" target="_blank">' + text + '</a>';
+        };
+        var regex = /(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?/ig;
+        return function(input) {
+            return input.replace(regex, fn);
+        };
+    })
     .directive('dashboardFacebook', ['$state', function ($state) {
         return {
               restrict: 'EA',
@@ -1126,7 +1138,6 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
             },
             templateUrl: 'components/templates/card-campaign-list-item.html',
             link: function (scope, element, attrs, ctrl, transclude) {
-
             }
         };
     }])
@@ -1379,6 +1390,7 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
         return {
             restrict: 'AE',
             scope: {
+                defaultToFirst: '=?',
                 singularEndpointName: '@singularEndpointName',
                 displayBy: "@displayBy", //key to display the Object by (ex. Category endpoint, show by 'categoryName')
                 endpointName: '@endpointName',
@@ -1418,6 +1430,7 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
                         return;
                     }
                     console.log(scope.model, scope.chunk);
+                    var i = 0;
                     _.forEach(scope.chunk, function (chunk) {
                         _.forEach(chunk, function (so) {
                             if (_.findIndex(scope.model, function (e) {
@@ -1427,6 +1440,10 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
                             } else {
                                 so._selected = false;
                             }
+                            if(scope.defaultToFirst && i === 0){
+                                scope.activate(so);
+                            }
+                            i++;
                         });
                     });
                 };

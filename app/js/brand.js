@@ -63,6 +63,7 @@ angular.module('reachRabbitApp', [
       mainResource: {
         url: 'images/example-campaign/main-picture.png'
       },
+      status: 'Open',
       title: 'รีวิว Rabbit Lipstick 7 Days 7 Looks',
       media: [
         { mediaId: 'facebook' },
@@ -195,6 +196,7 @@ angular.module('reachRabbitApp', [
       //Global function helpers
       $rootScope.getProfile = UserProfile.get;
       $rootScope.signOut = function (bounce_route) {
+        mixpanel.track("User Logout");
         //clear localstorage
         var ur = $window.localStorage.unauthorized_route;
         if (!ur) {
@@ -220,7 +222,7 @@ angular.module('reachRabbitApp', [
         if ($location.absUrl().includes("brand.html") || $location.absUrl().includes("brand#")) {
           $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
         } else if ($location.absUrl().includes("influencer.html") || $location.absUrl().includes("influencer#")) {
-          $rootScope.setUnauthorizedRoute("/portal.html#/influencer-portal");
+          $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
         } else if ($location.absUrl().includes("admin.html") || $location.absUrl().includes("admin#")) {
           $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
         }

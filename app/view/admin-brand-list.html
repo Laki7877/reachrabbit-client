@@ -14,17 +14,21 @@
                 <th sort="referralId">Referral ID</th>
                 <th class="text-center" sort="brand.isCompany">เป็นนิติบุคคล</th>
                 <th class="col-button"></th>
+                <th class="col-button"></th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="user in users.content">
                 <td>{{user.brand.brandName}}</td>
                 <td>{{user.brand.user.email}}</td>
-                <td>{{user.brand.user.referralId}}</td>
+                <td>{{user.referral.referralId}}</td>
                 <td class="color-red text-center" ng-if="!user.brand.isCompany">No</td>
                 <td class="color-green text-center" ng-if="user.brand.isCompany">Yes</td>
                 <td>
                   <button ui-sref="admin-brand-detail({userId: user.userId})" class="btn btn-secondary btn-width-md">ดูรายละเอียด</button>
+                </td>
+                <td>
+                  <button ng-click="loginAs(user)" class="btn btn-secondary btn-width-md">Login As</button>
                 </td>
               </tr>
             </tbody>

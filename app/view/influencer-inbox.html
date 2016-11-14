@@ -10,9 +10,9 @@
         </form>
       </div>
     </div>
-    <h1 ng-if="statusFilter == 'Selection'">รอการคัดเลือก <span ng-if="statusCounts.selection.proposalCount >= 0">({{statusCounts.selection.proposalCount || '0'}})</span></h1>
-    <h1 ng-if="statusFilter == 'Working'">รอคุณส่งงาน <span ng-if="statusCounts.working.proposalCount >= 0">({{statusCounts.working.proposalCount || '0'}})</span></h1>
-    <h1 ng-if="statusFilter == 'Complete'">ได้รับเงิน <span ng-if="statusCounts.complete.proposalCount >= 0">({{statusCounts.complete.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Selection'">รอการคัดเลือก <span ng-if="inbox.selection.proposalCount >= 0">({{inbox.selection.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Working'">รอคุณส่งงาน <span ng-if="inbox.working.proposalCount >= 0">({{inbox.working.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Complete'">ได้รับเงิน <span ng-if="inbox.complete.proposalCount >= 0">({{inbox.complete.proposalCount || '0'}})</span></h1>
   </zone-header>
 
   <div class="zone-body">
@@ -73,8 +73,7 @@
                 <td ng-if="params.status == 'Complete'">{{ proposal.completeDate | date }}</td>
                 <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
                 <td class="col-button">
-                  <span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span>
-                  <button class="btn-secondary btn-minimal" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">คุยงาน</button>
+                  <button class="btn-secondary btn-minimal btn-with-count" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">คุยงาน<span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span></button>
                   <button class="btn-secondary btn-minimal" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId, proposalId: proposal.proposalId })">ดูโปรไฟล์</button>
                 </td>
               </tr>

@@ -15,7 +15,8 @@
     </div>
     <div class="message-content">
       <div class="pre" ng-transclude></div>
-      <span class="my-message-content" ng-bind="message.message"></span>
+      <span class="my-message-content" ng-bind-html="message.message | htmlLink"></span>
+      <a ng-if="message.user.role == 'Bot'" href="javascript:window.location.reload()">&nbsp;<i class="fa fa-refresh"></i> กดที่นี่เพื่อรีเฟรช</a>
       <img ng-repeat="resource in message.resources" ng-src="{{resource.url}}">
     </div>
   </div>

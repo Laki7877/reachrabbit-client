@@ -20,7 +20,7 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.common.s
             $scope.wallet = walletResponse.data;
         });
 
-        
+
 
         DataService.getBanks().then(function (bankResponse) {
             $scope.bankOptions = bankResponse.data;
@@ -32,11 +32,11 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.common.s
         //$scope.InfluencerFee = BusinessConfig.INFLUENCER_FEE;
 
 
-        $scope.calculateIncome = function(proposal) {
-            if(!proposal) {
+        $scope.calculateIncome = function (proposal) {
+            if (!proposal) {
                 return 0;
             }
-            if(proposal.campaign.brand.isCompany){
+            if (proposal.campaign.brand.isCompany) {
                 var tax = proposal.price * $scope.BrandTaxFee;
                 return proposal.price - tax - proposal.fee;
             } else {
@@ -110,6 +110,11 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.common.s
                 if (!proposal || !proposal.proposalId) {
                     return;
                 }
+
+                mixpanel.track("Applied for campaign", {
+                    campaignId: $stateParams.campaignId
+                });
+
                 $state.go('influencer-workroom', { proposalId: proposal.proposalId });
             });
         };
@@ -129,8 +134,12 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.common.s
                 $scope.isApply = $scope.campaignNee.isApply;
                 $scope.proposal = $scope.campaignNee.proposal;
 
-                if(showDialog){
-                  $scope.sendProposal();
+                mixpanel.track("View campaign", {
+                    campaignId: $stateParams.campaignId
+                });
+
+                if (showDialog) {
+                    $scope.sendProposal();
                 }
 
             })
@@ -139,179 +148,179 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.common.s
             });
     })
     .controller('InfluencerCampaignListController', function ($scope, $state, CampaignService, DataService, ExampleCampaigns, $rootScope, UserProfile) {
-            $scope.params = {};
-            $scope.filter = {};
-            $scope.hasMedia = UserProfile.get().influencer.influencerMedias.length === 0 ? false : true; 
+        $scope.params = {};
+        $scope.filter = {};
+        $scope.hasMedia = UserProfile.get().influencer.influencerMedias.length === 0 ? false : true;
 
-            $scope.handleUserClickThumbnail = function (c) {
-                //expire campaign cannot click
-                if(c.isApply || !$rootScope.isExpired(c.proposalDeadline)){
-                    $state.go('influencer-campaign-detail', {
-                        campaignId: c.campaignId
-                    });
-                }
-            };
-            $scope.$watch('filter.value', function () {
-                $scope.load(_.extend($scope.params, { mediaId: $scope.filter.value }));
-            });
+        $scope.handleUserClickThumbnail = function (c) {
+            //expire campaign cannot click
+            if (c.isApply || !$rootScope.isExpired(c.proposalDeadline)) {
+                $state.go('influencer-campaign-detail', {
+                    campaignId: c.campaignId
+                });
+            }
+        };
+        $scope.$watch('filter.value', function () {
+            $scope.load(_.extend($scope.params, { mediaId: $scope.filter.value }));
+        });
 
-            //Load campaign data
-            $scope.load = function (data) {
-                $scope.params = data;
-                CampaignService.getOpenCampaigns(data).then(function (response) {
-                    $scope.campaigns = response.data;
-                })
+        //Load campaign data
+        $scope.load = function (data) {
+            $scope.params = data;
+            CampaignService.getOpenCampaigns(data).then(function (response) {
+                $scope.campaigns = response.data;
+                //Track mp
+                mixpanel.track("List Campaign");
+            })
                 .catch(function (err) {
                     if (err.data.statusCode == 400) {
                         $scope.hasMedia = false;
                     }
                 });
-            };
-            //Init
-            $scope.load({
-                size: 15,
-                sort: 'campaignId,desc'
-            });
+        };
+        //Init
+        $scope.load({
+            size: 15,
+            sort: 'campaignId,desc'
+        });
 
-            //Init media data
-            DataService.getMedium()
-                .then(function (response) {
-                    $scope.filters = _.map(response.data, function (e) {
-                        e.mediaName = 'แสดงเฉพาะ ' + e.mediaName;
-                        return e;
-                    });
-                    $scope.filters.unshift({
-                        mediaId: undefined,
-                        mediaName: 'แสดงทั้งหมด'
-                    });
+        //Init media data
+        DataService.getMedium()
+            .then(function (response) {
+                $scope.filters = _.map(response.data, function (e) {
+                    e.mediaName = 'แสดงเฉพาะ ' + e.mediaName;
+                    return e;
                 });
-        }
+                $scope.filters.unshift({
+                    mediaId: undefined,
+                    mediaName: 'แสดงทั้งหมด'
+                });
+            });
+    }
     )
     .controller('InfluencerProfileController', function ($scope, $window, $stateParams, AccountService, NcAlert, UserProfile, validator, util, $anchorScroll, $timeout) {
-            util.warnOnExit($scope);
-            $scope.showStickyToolbar = !_.isNil($stateParams.showToolbar);
-            $scope.form = {};
-            $scope.formData = {};
-            $scope.alert = new NcAlert();
-            $scope.genderOptions = [{
-                name: 'ชาย',
-                value: 'Male'
-            }, {
-                    name: 'หญิง',
-                    value: 'Female'
-                }, {
-                    name: 'อื่นๆ',
-                    value: 'NotSpecified'
-                }];
-            $scope.isValidate = function (model, error) {
-                if (error === 'required' && model.$name === 'profilePicture') {
-                    return $scope.form.$submitted;
-                }
-                return true;
-            };
-            $scope.saveProfile = function (profile, bypass, rollback) {
-                var o = validator.formValidate($scope.form);
-                if (o && !bypass) {
-                    return $scope.alert.danger(o.message);
-                }
+        util.warnOnExit($scope);
+        $scope.showStickyToolbar = !_.isNil($stateParams.showToolbar);
+        $scope.form = {};
+        $scope.formData = {};
+        $scope.alert = new NcAlert();
+        $scope.genderOptions = [{
+            name: 'ชาย',
+            value: 'Male'
+        }, {
+            name: 'หญิง',
+            value: 'Female'
+        }, {
+            name: 'อื่นๆ',
+            value: 'NotSpecified'
+        }];
+        $scope.isValidate = function (model, error) {
+            if (error === 'required' && model.$name === 'profilePicture') {
+                return $scope.form.$submitted;
+            }
+            return true;
+        };
+        $scope.saveProfile = function (profile, bypass, rollback) {
+            var o = validator.formValidate($scope.form);
+            if (o && !bypass) {
+                return $scope.alert.danger(o.message);
+            }
 
-                if (profile.influencer.web && profile.influencer.web.length > 1 && !profile.influencer.web.startsWith("http")) {
-                    profile.influencer.web = "http://" + profile.influencer.web;
-                }
+            if (profile.influencer.web && profile.influencer.web.length > 1 && !profile.influencer.web.startsWith("http")) {
+                profile.influencer.web = "http://" + profile.influencer.web;
+            }
 
-                AccountService.saveProfile(profile)
-                    .then(function (response) {
-                        // delete response.data.password;
-                        // $scope.formData = response.data;
-                        //set back to localstorage
-                        UserProfile.set(response.data);
-
-                        $scope.form.$setPristine();
-                        $scope.success = true;
-                        $scope.alert.success('บันทึกข้อมูลเรียบร้อย!');
-                        $scope.profile = _.merge({}, $scope.formData);
-                    })
-                    .catch(function (err) {
-                        if (rollback) {
-                            $scope.rollBack();
-                        }
-                        $scope.alert.danger(err.data.message);
-                    });
-            };
-            $scope.hasMedia = function (mediaId) {
-                for (var i = 0; i < _.get($scope.formData, 'influencer.influencerMedias', []).length; i++) {
-                    if ($scope.formData.influencer.influencerMedias[i].media.mediaId == mediaId) {
-                        return true;
-                    }
-                }
-                return false;
-            };
-            $scope.linkDone = function (err) {
-                if (err) {
-                    $scope.alert.danger(err.data.message);
-                } else {
-                    $scope.saveProfile($scope.formData, true, true);
-                }
-            };
-            $scope.rollBack = function () {
-                $scope.formData = _.merge({}, $scope.profile);
-            };
-
-            // fetch profile
-            AccountService.getProfile()
+            AccountService.saveProfile(profile)
                 .then(function (response) {
-                    $scope.formData = response.data;
-                    $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
-                    $scope.formData.influencer.user = { name: $scope.formData.name, profilePicture: $scope.formData.profilePicture };
+                    // delete response.data.password;
+                    // $scope.formData = response.data;
+                    //set back to localstorage
+                    UserProfile.set(response.data);
 
-                    // fetch each media
-                    if ($scope.hasMedia('google')) {
-                        AccountService.getYouTubeProfile()
-                            .then(function (response) {
-                                $scope.youtube = response.data;
-                            });
-                    }
-                    if ($scope.hasMedia('facebook')) {
-                        AccountService.getFacebookProfile()
-                            .then(function (response) {
-                                $scope.facebook = response.data;
-                            });
-                    }
-                    if ($scope.hasMedia('instagram')) {
-                        AccountService.getInstagramProfile()
-                            .then(function (response) {
-                                $scope.instagram = response.data;
-                            });
-                    }
-
-                    // assign categories
-                    _.forEach($scope.formData.influencer.categories, function (r) {
-                        r._selected = true;
-                    });
-
-                    //save state
+                    $scope.form.$setPristine();
+                    $scope.success = true;
+                    $scope.alert.success('บันทึกข้อมูลเรียบร้อย!');
                     $scope.profile = _.merge({}, $scope.formData);
-
-                    if($stateParams.showVerify) {
-                        var container = $('html, body');
-                        var scrollTo = $('#showVerify');
-                        container.animate({
-                            scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
-                        }, 700);
-                    }
                 })
                 .catch(function (err) {
+                    if (rollback) {
+                        $scope.rollBack();
+                    }
                     $scope.alert.danger(err.data.message);
                 });
-        }
+        };
+        $scope.hasMedia = function (mediaId) {
+            for (var i = 0; i < _.get($scope.formData, 'influencer.influencerMedias', []).length; i++) {
+                if ($scope.formData.influencer.influencerMedias[i].media.mediaId == mediaId) {
+                    return true;
+                }
+            }
+            return false;
+        };
+        $scope.linkDone = function (err) {
+            if (err) {
+                $scope.alert.danger(err.data.message);
+            } else {
+                $scope.saveProfile($scope.formData, true, true);
+            }
+        };
+        $scope.rollBack = function () {
+            $scope.formData = _.merge({}, $scope.profile);
+        };
+
+        // fetch profile
+        AccountService.getProfile()
+            .then(function (response) {
+                $scope.formData = response.data;
+                $scope.formData.influencer.categories = $scope.formData.influencer.categories || [];
+                $scope.formData.influencer.user = { name: $scope.formData.name, profilePicture: $scope.formData.profilePicture };
+
+                // fetch each media
+                if ($scope.hasMedia('google')) {
+                    AccountService.getYouTubeProfile()
+                        .then(function (response) {
+                            $scope.youtube = response.data;
+                        });
+                }
+                if ($scope.hasMedia('facebook')) {
+                    AccountService.getFacebookProfile()
+                        .then(function (response) {
+                            $scope.facebook = response.data;
+                        });
+                }
+                if ($scope.hasMedia('instagram')) {
+                    AccountService.getInstagramProfile()
+                        .then(function (response) {
+                            $scope.instagram = response.data;
+                        });
+                }
+
+                // assign categories
+                _.forEach($scope.formData.influencer.categories, function (r) {
+                    r._selected = true;
+                });
+
+                //save state
+                $scope.profile = _.merge({}, $scope.formData);
+
+                if ($stateParams.showVerify) {
+                    var container = $('html, body');
+                    var scrollTo = $('#showVerify');
+                    container.animate({
+                        scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+                    }, 700);
+                }
+            })
+            .catch(function (err) {
+                $scope.alert.danger(err.data.message);
+            });
+    }
     )
     .controller('InfluencerInboxController', function ($scope, $filter, $stateParams, ProposalService, moment) {
         $scope.statusCounts = {};
         $scope.statusFilter = 'Selection';
         $scope.showStickyToolbar = false;
         $scope.search = {};
-
-
 
         if ($stateParams.status) {
             $scope.statusFilter = $stateParams.status;
@@ -358,19 +367,19 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.common.s
             }
             return $filter('amCalendar')(proposal.messageUpdatedAt);
         };
-        $scope.$watch('search.value', function(e) {
+        $scope.$watch('search.value', function (e) {
             $scope.load($scope.params, { search: e });
         });
         $scope.load({
             sort: ['messageUpdatedAt,desc']
         });
 
-        $scope.loadProposalCounts();
+        //$scope.loadProposalCounts();
 
     })
-    .controller('PublicCampaignController', function ($scope,$stateParams, PublicService) {
+    .controller('PublicCampaignController', function ($scope, $stateParams, PublicService) {
         $scope.campaignNee = null;
-        PublicService.getCampaign($stateParams.campaignId).then(function(x){
+        PublicService.getCampaign($stateParams.campaignId).then(function (x) {
             $scope.campaignNee = x.data;
         });
     });

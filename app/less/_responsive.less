@@ -27,32 +27,10 @@
   .mobile-only{
     display:inherit;
   }
-
-  /*---Layout Portal---*/
-  .layout-portal{
-    .container{
-      max-width: auto;
-    }
-    .card-portal{
-      .card-body{
-        padding: 15px;
-      }
-      .logo{
-        width: 230px;
-        margin-top: 5px;
-        h3{
-          margin-top: 5px;
-          margin-bottom: 10px;
-        }
-      }
-    }
-    .view-brand-login{
-      margin-top: 30px;
-    }
-    .view-brand-signup{
-      margin-top: 15px;
-    }
+  h1{
+    font-size: 24px;
   }
+
   /*---Button---*/
   .btn-mobile-menu{
     .button-variant(@color-white, @color-black, @color-grey);
@@ -186,15 +164,38 @@
     width:inherit;
   }
   .zone-header{
-    .page-header{
-      h1{
-        font-size: 24px;
-      }
-    }
     .action-btn-for-header{
       display: none;
     }
   }
+
+  /*---Specific Card---*/
+  .card-campaign-list-item{
+    .card-title{
+      .make-xs-column(12);
+      margin: 15px 0px 15px 0px;
+      text-align: center;
+      .card-title-content{
+        border-bottom: 0px;
+        a{
+          color: @color-black;
+        }
+      }
+    }
+    .card-image{
+      .make-xs-column(12);
+      height: auto;
+    }
+    .card-button{
+      .make-xs-column(12);
+      margin-top: 0px;
+    }
+    .card-button.status-draft{
+      margin-top: 0px;
+    }
+  }
+
+
 
 
   /*---Contact Us---*/
@@ -210,6 +211,62 @@
     margin-left: -115px;
     -webkit-animation:fadeIn 0.5s ease forwards;
     animation:fadeIn 0.5s ease forwards;
+  }
+
+  /*---Layout Portal---*/
+  .layout-portal{
+    .container{
+      max-width: auto;
+    }
+    .card-portal{
+      .card-body{
+        padding: 15px;
+      }
+      .logo{
+        width: 230px;
+        margin-top: 5px;
+        h3{
+          margin-top: 5px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    .view-brand-login{
+      margin-top: 30px;
+    }
+    .view-brand-signup{
+      margin-top: 15px;
+    }
+  }
+
+  /*---Layout Brand---*/
+  .layout-brand{
+    .view-brand-campaign-list{
+      .page-header{
+        margin-top: 20px;
+        margin-bottom: 5px;
+      }
+      .empty-state{
+        text-align: center;
+        height: auto;
+        padding: 50px 30px;
+        line-height: 24px;
+        img{
+          transform: translateY(0px);
+          margin: auto;
+          margin-bottom: 5px;
+        }
+        .btn{
+          margin-top: 20px;
+        }
+      }
+      .example-campaign{
+        margin-top: 30px;
+        .page-header{
+          margin-bottom: 5px;
+        }
+      }
+    }
   }
 
 }

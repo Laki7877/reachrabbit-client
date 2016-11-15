@@ -96,6 +96,22 @@ module.exports = function (grunt) {
         options: {
           transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
         }
+      },
+      brand: {
+        files: {
+          'app/dist/bundle.brand.js': ['app/js/brand.js'],
+        },
+        options: {
+          transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
+        }
+      },
+      influencer: {
+        files: {
+          'app/dist/bundle.influencer.js': ['app/js/influencer.js'],
+        },
+        options: {
+          transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
+        }
       }
     },
     concurrent: {
@@ -230,7 +246,6 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['jshint', 'checksum', 'concurrent:dev']);
   grunt.registerTask('test', ['concurrent:test']);
   grunt.registerTask('build', ['browserify:src']);
-  grunt.registerTask('build:dev', ['browserify:test']);
 
   grunt.registerTask('edward', ['copy:edward', 'browserify', 'uglify:vendor']);
   grunt.registerTask('bella', ['copy:bella', 'browserify', 'uglify:vendor']);

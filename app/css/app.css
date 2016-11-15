@@ -11460,10 +11460,24 @@ ul.payment-methods {
 .no-padding {
   padding: 0 !important;
 }
+<<<<<<< HEAD
+.text-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.no-gutter > [class*='col-'] {
+  padding-right: 0;
+  padding-left: 0;
+}
 /* Transition animations */
 .fade.ng-enter {
   transition: 0.5s linear all;
   opacity: 1;
+=======
+.uib-centerize {
+  margin: auto;
+>>>>>>> ee7677e60e92355c90e949b8ccdbd1389c8e5706
 }
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
@@ -11810,7 +11824,7 @@ tags-input .autocomplete .suggestion-item em {
 @media only screen and (min-width: 768px) {
   /*---Global---*/
   .mobile-only {
-    display: none;
+    display: none !important;
   }
   .layout-brand .container,
   .layout-influencer .container {
@@ -11829,7 +11843,7 @@ tags-input .autocomplete .suggestion-item em {
     position: relative;
   }
   .desktop-only {
-    display: none;
+    display: none !important;
   }
   .mobile-only {
     display: inherit;
@@ -11970,8 +11984,8 @@ tags-input .autocomplete .suggestion-item em {
     background: #3e4a5e;
     height: 100%;
     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-    -webkit-animation: slideIn 0.5s ease forwards;
-    animation: slideIn 0.5s ease forwards;
+    /*-webkit-animation:slideIn 0.5s ease forwards;
+    animation:slideIn 0.5s ease forwards;*/
   }
   .mobile-menu .logo {
     height: 20px;
@@ -12170,5 +12184,82 @@ tags-input .autocomplete .suggestion-item em {
   .layout-brand .view-brand-campaign-list .example-campaign .page-header {
     margin-bottom: 5px;
   }
+  /*--- search bar ---*/
+  .input-dropdown .form-control.filter {
+    width: 100% !important;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  .list .list-item {
+    width: 100%;
+    border-bottom: 2px solid #d8dfe7;
+    padding: 10px 16px;
+  }
+  .list .list-item-info {
+    vertical-align: middle;
+    margin-top: 5px;
+  }
+  .list .list-item-info .profile-name {
+    font-size: 15px;
+    vertical-align: top;
+  }
+  .list .list-item-info .profile-price {
+    color: #8692a8;
+    display: block;
+  }
+  .list .list-item-btn button {
+    float: right;
+    margin-top: 10px;
+    font-size: 16px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .list .profile-picture {
+    border-radius: 50%;
+    width: 56px;
+  }
+  .card-body.mobile-only {
+    padding: 0 !important;
+  }
+  .empty-state {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    padding: 30px 5px 20px;
+  }
+  .empty-state-message {
+    padding-top: 3px;
+  }
 }
 /*--End of Extra Small devices (XS)--*/
+.ngafade.ng-enter {
+  transition: 0.3s linear all;
+  opacity: 0;
+}
+/* The finishing CSS styles for the enter animation */
+.ngafade.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.ngafade.ng-leave {
+  transition: 0.3s linear all;
+  opacity: 1;
+}
+.ngafade.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.ngaslideright.ng-enter {
+  transition: 0.1s linear all;
+  transform: translateX(-100px);
+}
+/* The finishing CSS styles for the enter animation */
+.ngaslideright.ng-enter.ng-enter-active {
+  transform: translateX(0);
+}
+.ngaslideright.ng-leave {
+  transition: 0.1s linear all;
+  transform: translateX(0);
+  opacity: 1;
+}
+.ngaslideright.ng-leave.ng-leave-active {
+  transform: translateX(-100px);
+  opacity: 0;
+}

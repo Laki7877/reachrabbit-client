@@ -94,8 +94,18 @@ angular.module('reachRabbitApp', [
     PROTRACTOR_PORT: 9900,
     NO_POLL_WHITELIST: ["-portal", "-login", "-signup", "public-campaign-detail"]
   })
-  .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce', '$state',
-    function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
+  .run(function ($rootScope, $uibModal, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
+
+      $rootScope.openHelp = function () {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          templateUrl: 'components/templates/contact-us.html',
+          size: 'sm',
+          windowClass: 'uib-centerize',
+          openedClass: 'uib-centerize'
+        });
+      };
+
 
       //Date override
       $rootScope.$state = $state;
@@ -232,7 +242,7 @@ angular.module('reachRabbitApp', [
           $rootScope.signOut(bounce_url);
         }
       };
-      
+
       $rootScope.$on("$stateChangeError", function () {
         $rootScope.bounceLogout();
       });
@@ -306,4 +316,4 @@ angular.module('reachRabbitApp', [
         $rootScope.pollInbox(true);
 
       }
-    }]);
+    });

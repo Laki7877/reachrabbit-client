@@ -247,7 +247,7 @@ module.exports = function (grunt) {
   grunt.registerTask('edward', ['copy:edward', 'browserify', 'uglify:vendor']);
   grunt.registerTask('bella', ['copy:bella', 'browserify', 'uglify:vendor']);
   grunt.registerTask('eclipse', ['copy:eclipse', 'browserify', 'uglify:vendor']);
-  grunt.registerTask('production', ['copy:production', 'browserify', 'uglify:vendor']);
+  grunt.registerTask('production', ['copy:production', 'browserify:src', 'uglify:vendor']);
 
   grunt.registerTask('vendor', ['uglify:vendor']);
 

@@ -1,4 +1,5 @@
 {
+        "CONFIG_NAME": "production",
         "API_BASE_URI": "https://app.reachrabbit.com:8443",
         "FACEBOOK_APP_ID": "295474977484568",
         "INSTAGRAM_APP_ID": "a6f7209e17af45259b61ba189bf9502e",

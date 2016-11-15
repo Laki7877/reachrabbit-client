@@ -1,7 +1,7 @@
 require('./common.service');
 
 angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.service'])
-    .controller('BrandSigninController', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
+    .controller('BrandSigninController', function ($scope, $rootScope, Config, $location, AccountService, UserProfile, $window, NcAlert) {
         var u = UserProfile.get();
         $scope.formData = {};
 
@@ -24,11 +24,16 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                     UserProfile.set(profileResp.data);
 
                     mixpanel.identify($scope.formData.username);
+                    mixpanel.register({
+                        "server": Config.CONFIG_NAME
+                    });
+
                     //PNP wants brand name instead
                     profileResp.data.name = profileResp.data.brand.brandName;
+                    profileResp.data.server = Config.CONFIG_NAME;
                     mixpanel.people.set(profileResp.data);
                     mixpanel.track("User Login");
-                    
+
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal#/brand-login");
                     var bounce = '/brand#/brand-campaign-list';
@@ -100,9 +105,13 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 })
                 .then(function (profileResp) {
                     mixpanel.identify(username);
+                    profileResp.data.server = Config.CONFIG_NAME;
                     mixpanel.people.set(profileResp.data);
-                    mixpanel.track("User Login"); 
-                    
+                    mixpanel.track("User Login");
+                    mixpanel.register({
+                        "server": Config.CONFIG_NAME
+                    });
+
                     $window.localStorage.profile = JSON.stringify(profileResp.data);
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal#/influencer-login");
@@ -204,8 +213,11 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                             .then(function (profileResp) {
                                 UserProfile.set(profileResp.data);
                                 mixpanel.identify(profileResp.data.email);
+                                profileResp.data.server = Config.CONFIG_NAME;
                                 mixpanel.people.set(profileResp.data);
-                                
+                                mixpanel.register({
+                                    "server": Config.CONFIG_NAME
+                                });
 
                                 //Redirect change app
                                 var bounce = '/influencer#/influencer-campaign-list';
@@ -214,7 +226,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                                 }
 
 
-                                mixpanel.track("User Login", {}, function(){
+                                mixpanel.track("User Login", {}, function () {
                                     $window.location.href = bounce;
                                 });
                             });
@@ -300,8 +312,12 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                     UserProfile.set(profileResp.data);
 
                     mixpanel.identify($scope.formData.email);
+                    profileResp.data.server = Config.CONFIG_NAME;
                     mixpanel.people.set(profileResp.data);
                     mixpanel.track("User Signup");
+                    mixpanel.register({
+                        "server": Config.CONFIG_NAME
+                    });
 
                     $scope.form.$setPristine();
                     //Redirect change app
@@ -379,10 +395,19 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 .then(function (profileResp) {
                     $rootScope.setUnauthorizedRoute("/portal#/influencer-login");
                     UserProfile.set(profileResp.data);
-
+                    
+                    //identify -> assign primary key to mixpanel session
                     mixpanel.identify($scope.formData.email);
+                    //tell that people is associated to which server config
+                    profileResp.data.server = Config.CONFIG_NAME;
+                    //set profile detail for this primary key
                     mixpanel.people.set(profileResp.data);
+                    //tack event as signup
                     mixpanel.track("User Signup");
+                    //track event
+                    mixpanel.register({
+                        "server": Config.CONFIG_NAME
+                    });
 
                     $scope.form.$setPristine();
 
@@ -423,8 +448,14 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 })
                 .then(function (profileResp) {
                     UserProfile.set(profileResp.data);
+                    //identify -> assign primary key to mixpanel session
                     mixpanel.identify($scope.formData.email);
+                    mixpanel.register({
+                        "server": Config.CONFIG_NAME
+                    });
+                    //Duplicate brandname as name
                     profileResp.data.name = profileResp.data.brand.brandName;
+                    profileResp.data.server = Config.CONFIG_NAME;
                     mixpanel.people.set(profileResp.data);
                     mixpanel.track("User Signup");
 

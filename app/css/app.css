@@ -8007,7 +8007,7 @@ ol {
 .signup-pill {
   text-align: center;
   padding: 5px;
-  margin: 25px auto 0 auto;
+  margin: 25px auto 25px auto;
   width: 250px;
   color: white;
   background-color: rgba(62, 74, 94, 0.8);
@@ -11381,10 +11381,10 @@ ul.payment-methods {
 .layout-portal .view-brand-signup .info-text {
   margin-top: 10px;
 }
-.layout-portal .view-influencer-portal {
+.layout-portal .view-influencer-signup {
   margin-top: 140px;
 }
-.layout-portal .view-influencer-portal .info-text {
+.layout-portal .view-influencer-signup .info-text {
   margin-top: 10px;
 }
 .layout-portal .view-influencer-login {
@@ -11724,6 +11724,27 @@ tags-input .autocomplete .suggestion-item em {
   .mobile-only {
     display: inherit;
   }
+  /*---Layout Portal---*/
+  .layout-portal .container {
+    max-width: auto;
+  }
+  .layout-portal .card-portal .card-body {
+    padding: 15px;
+  }
+  .layout-portal .card-portal .logo {
+    width: 230px;
+    margin-top: 5px;
+  }
+  .layout-portal .card-portal .logo h3 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .layout-portal .view-brand-login {
+    margin-top: 30px;
+  }
+  .layout-portal .view-brand-signup {
+    margin-top: 15px;
+  }
   /*---Button---*/
   .btn-mobile-menu {
     color: #ffffff;
@@ -11926,6 +11947,23 @@ tags-input .autocomplete .suggestion-item em {
     background: rgba(0, 0, 0, 0.8);
     -webkit-animation: fadeIn 0.5s ease forwards;
     animation: fadeIn 0.5s ease forwards;
+  }
+  /*---Alert Box---*/
+  .alert {
+    height: 36px;
+  }
+  .alert .close {
+    margin-top: 6px;
+    margin-right: 5px;
+  }
+  .alert .alert-icon {
+    display: none;
+  }
+  .alert .alert-text {
+    display: inline-block;
+    float: left;
+    margin-top: 8px;
+    margin-left: 8px;
   }
   /*---Zone---*/
   .zone-alert {

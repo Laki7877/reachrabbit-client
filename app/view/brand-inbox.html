@@ -1,6 +1,6 @@
 <div class="viewport view-brand-inbox" ng-cloak>
   <zone-header>
-  <div class="action-btn-for-header">
+  <div class="action-btn-for-header desktop-only">
     <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" novalidate>
       <div class="input-dropdown">
         <input class="form-control filter" ng-model="search.value" placeholder="ค้นหาด้วย ชื่องาน"/>
@@ -13,32 +13,16 @@
   </zone-header>
   <div class="zone-body">
     <div class="container">
+      <div class="mobile-only">
+        <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" novalidate>
+          <div class="input-dropdown">
+            <input class="form-control filter" ng-model="search.value" placeholder="ค้นหาด้วย ชื่องาน"/>
+          </div>
+        </form>
+      </div>
       <cute-bunny></cute-bunny>
       <div class="card-inbox" cute-bunny-hide>
-        <!-- <div class="tab-selector">
-          <div class="tab" ui-sref="brand-inbox({status: 'Selection'})" ng-class="{'active': params.status == 'Selection'}">
-            <h5 ng-class="{ 'proposal-alert' : statusCounts.selection.unreadMessageCount > 0 }">คัดเลือก<div></div>
-            </h5>
-            <h3 ng-bind="statusCounts.selection.proposalCount || '-'">-</h3>
-          </div>
-          <div class="tab-next-step">
-            <i class="fa fa-angle-right fa-2x"></i>
-          </div>
-          <div class="tab" ui-sref="brand-inbox({status: 'Working'})" ng-class="{'active': params.status == 'Working'}">
-            <h5 ng-class="{ 'proposal-alert' : statusCounts.working.unreadMessageCount > 0 }">ดำเนินการ<div></div>
-            </h5>
-            <h3 ng-bind="statusCounts.working.proposalCount || '-'">-</h3>
-          </div>
-          <div class="tab-next-step">
-            <i class="fa fa-angle-right fa-2x"></i>
-          </div>
-          <div class="tab" ui-sref="brand-inbox({status: 'Complete'})" ng-class="{'active': params.status == 'Complete'}">
-            <h5 ng-class="{ 'proposal-alert' : statusCounts.complete.unreadMessageCount > 0 }">เสร็จสิ้น<div></div>
-            </h5>
-            <h3 ng-bind="statusCounts.complete.proposalCount || '-'">-</h3>
-          </div>
-        </div> -->
-        <div class="card-body">
+        <div class="card-body desktop-only">
           <table ng-if="proposals.numberOfElements > 0" class="table" sorter ng-model="proposals" callback="load">
             <thead>
               <tr>
@@ -96,6 +80,45 @@
           <table-static ng-if="proposals.totalElements == 0 && params.search.length > 0">
             <div class="empty-state">
               <img src="images/icon-empty-folder.png"/>ไม่พบห้องคุยงานที่คุณค้นหา
+            </div>
+          </table-static>
+        </div>
+        <div class="card-body mobile-only">
+          <div class="list">
+            <div class="list-item container no-gutter" ng-repeat="proposal in proposals.content">
+              <div class="col-xs-3">
+                <img ng-src="{{proposal.influencer.user.profilePicture.url  || 'images/placeholder-profile-picture.png'}}" class="profile-picture" />
+              </div>
+              <div class="list-item-info col-xs-6">
+                <div class="profile-name text-ellipsis">{{proposal.influencer.user.name}}</div>
+                <div class="profile-price">ราคา: {{proposal.price | number}}</div>
+              </div>
+              <div class="list-item-btn col-xs-3">
+                  <button class="btn-secondary btn-minimal btn-workroom btn-with-count" ui-sref="brand-workroom({proposalId: proposal.proposalId})">คุยงาน<span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span></button>
+              </div>
+            </div>
+          </div>
+          <table-static ng-if="proposals.totalElements == 0 && params.search.length <= 0">
+            <div class="empty-state">
+              <div ng-if="params.status == 'Selection'">
+                <img src="images/icon-empty-folder.png"/>
+                <div class="empty-state-message">ยังไม่มีข้อเสนอให้คุณคัดเลือก <br/>กรุณารอ Influencer ส่งข้อเสนอให้คุณก่อนค่ะ</div>
+              </div>
+              <div ng-if="params.status == 'Working'">
+                <img src="images/icon-empty-folder.png"/>
+                <div class="empty-state-message">ยังไม่มีงานให้คุณอนุมัติ <br/>กรุณาคัดเลือก Influencer ที่ชอบและชำระเงินก่อนค่ะ
+                </div>
+              </div>
+              <div ng-if="params.status == 'Complete'">
+                <img src="images/icon-empty-folder.png"/>
+                <div class="empty-state-message">ยังไม่มีงานที่เสร็จสิ้น <br/>กรุณาอนุมัติงานของ Influencer เพื่อปิดงานค่ะ
+                </div>
+              </div>
+            </div>
+          </table-static>
+          <table-static ng-if="proposals.totalElements == 0 && params.search.length > 0">
+            <div class="empty-state">
+              <img src="images/icon-empty-folder.png"/><div class="empty-state-message">ไม่พบห้องคุยงานที่คุณค้นหา</div>
             </div>
           </table-static>
         </div>

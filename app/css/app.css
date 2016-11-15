@@ -11824,7 +11824,7 @@ tags-input .autocomplete .suggestion-item em {
 @media only screen and (min-width: 768px) {
   /*---Global---*/
   .mobile-only {
-    display: none;
+    display: none !important;
   }
   .layout-brand .container,
   .layout-influencer .container {
@@ -11843,7 +11843,7 @@ tags-input .autocomplete .suggestion-item em {
     position: relative;
   }
   .desktop-only {
-    display: none;
+    display: none !important;
   }
   .mobile-only {
     display: inherit;

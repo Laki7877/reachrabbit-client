@@ -104,6 +104,14 @@ module.exports = function (grunt) {
         options: {
           transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
         }
+      },
+      influencer: {
+        files: {
+          'app/dist/bundle.influencer.js': ['app/js/influencer.js'],
+        },
+        options: {
+          transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
+        }
       }
     },
     concurrent: {

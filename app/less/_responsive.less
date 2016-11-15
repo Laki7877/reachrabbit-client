@@ -27,6 +27,32 @@
   .mobile-only{
     display:inherit;
   }
+
+  /*---Layout Portal---*/
+  .layout-portal{
+    .container{
+      max-width: auto;
+    }
+    .card-portal{
+      .card-body{
+        padding: 15px;
+      }
+      .logo{
+        width: 230px;
+        margin-top: 5px;
+        h3{
+          margin-top: 5px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    .view-brand-login{
+      margin-top: 30px;
+    }
+    .view-brand-signup{
+      margin-top: 15px;
+    }
+  }
   /*---Button---*/
   .btn-mobile-menu{
     .button-variant(@color-white, @color-black, @color-grey);
@@ -134,6 +160,24 @@
     background: rgba(0,0,0,.8);
     -webkit-animation:fadeIn 0.5s ease forwards;
     animation:fadeIn 0.5s ease forwards;
+  }
+
+  /*---Alert Box---*/
+  .alert{
+    height: 36px;
+    .close{
+      margin-top: 6px;
+      margin-right: 5px;
+    }
+    .alert-icon{
+      display: none;
+    }
+    .alert-text{
+      display: inline-block;
+      float: left;
+      margin-top: 8px;
+      margin-left: 8px;
+    }
   }
 
   /*---Zone---*/

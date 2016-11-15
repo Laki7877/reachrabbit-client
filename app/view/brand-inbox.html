@@ -62,7 +62,8 @@
                       <img ng-src="{{proposal.influencer.user.profilePicture.url  || 'images/placeholder-profile-picture.png'}}" class="profile-picture" />
                     </div>
                     <div class="media-body media-middle">
-                      {{proposal.influencer.user.name}}
+                      <div>{{proposal.influencer.user.name}}</div>
+                      <div ng-if="params.status == 'Selection' && proposal.cart" class="color-green">เลือกแล้ว <i class="fa fa-check"></i></div>
                     </div>
                   </div>
                 </td>

@@ -396,10 +396,15 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                     $rootScope.setUnauthorizedRoute("/portal#/influencer-login");
                     UserProfile.set(profileResp.data);
                     
+                    //identify -> assign primary key to mixpanel session
                     mixpanel.identify($scope.formData.email);
+                    //tell that people is associated to which server config
                     profileResp.data.server = Config.CONFIG_NAME;
+                    //set profile detail for this primary key
                     mixpanel.people.set(profileResp.data);
+                    //tack event as signup
                     mixpanel.track("User Signup");
+                    //track event
                     mixpanel.register({
                         "server": Config.CONFIG_NAME
                     });
@@ -443,6 +448,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 })
                 .then(function (profileResp) {
                     UserProfile.set(profileResp.data);
+                    //identify -> assign primary key to mixpanel session
                     mixpanel.identify($scope.formData.email);
                     mixpanel.register({
                         "server": Config.CONFIG_NAME

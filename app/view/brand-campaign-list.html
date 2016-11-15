@@ -20,7 +20,11 @@
       <cute-bunny></cute-bunny>
 
       <div cute-bunny-hide class="empty-state" ng-if="myCampaign.totalElements == 0">
+        <img src="images/icon-create-new-campaign.png" class="mobile-only" alt="Empty State" />
         ลงประกาศงานใหม่ เพื่อเปิดรับข้อเสนอจาก Influencer
+        <button id="brand-campaign-list-new-campaign-btn" class="btn-primary btn-width-lg mobile-only" ui-sref="brand-campaign-detail-draft">
+            <i class="fa fa-plus"></i> ลงประกาศงาน
+        </button>
       </div>
 
       <div cute-bunny-hide ng-repeat="x in myCampaign.content">

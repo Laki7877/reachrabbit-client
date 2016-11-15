@@ -48,7 +48,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 });
         };
     })
-    .controller('AdminSigninController', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
+    .controller('AdminSigninController', function ($scope, $rootScope, Config, $location, AccountService, UserProfile, $window, NcAlert) {
         var u = UserProfile.get();
 
         $scope.formData = {};
@@ -87,7 +87,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 });
         };
     })
-    .controller('InfluencerSigninController', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert, $auth, $state) {
+    .controller('InfluencerSigninController', function ($scope, $rootScope, Config, $location, AccountService, UserProfile, $window, NcAlert, $auth, $state) {
         var u = UserProfile.get();
         $scope.formData = {};
         $window.localStorage.removeItem('token');
@@ -165,7 +165,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 });
         };
     })
-    .controller('InfluencerJesusController', function ($scope, $rootScope, $location, AccountService, UserProfile, $window, NcAlert) {
+    .controller('InfluencerJesusController', function ($scope, $rootScope,Config, $location, AccountService, UserProfile, $window, NcAlert) {
         //For influencer gods
         $scope.alert = new NcAlert();
         $scope.login = function (username, password) {
@@ -187,7 +187,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 });
         };
     })
-    .controller('InfluencerPortalController', function ($scope, $rootScope, NcAlert, $location, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {
+    .controller('InfluencerPortalController', function ($scope, $rootScope, Config, NcAlert, $location, $auth, $state, $stateParams, AccountService, UserProfile, $window, BusinessConfig) {
         $scope.alert = new NcAlert();
         $scope.minFollower = BusinessConfig.MIN_FOLLOWER_COUNT;
 
@@ -247,7 +247,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
         };
     }
     )
-    .controller('InfluencerFacebookPageSelectionController', function ($scope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, BusinessConfig) {
+    .controller('InfluencerFacebookPageSelectionController', function ($scope, Config, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, BusinessConfig) {
         var authData = $stateParams.authData;
         var bounce = $stateParams.bounce_route;
 
@@ -283,7 +283,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
             });
         };
     })
-    .controller('InfluencerSignUpEmailController', function ($scope, $location, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
+    .controller('InfluencerSignUpEmailController', function ($scope, $location, Config, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
         $scope.alert = new NcAlert();
         $scope.formData = {};
         $scope.bounce_route = $stateParams.bounce_route;
@@ -334,7 +334,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                 });
         };
     })
-    .controller('InfluencerSignUpController', function ($scope, $location, $rootScope, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
+    .controller('InfluencerSignUpController', function ($scope, $location, $rootScope, Config, NcAlert, $auth, $state, $stateParams, InfluencerAccountService, AccountService, UserProfile, $window, ResourceService, BusinessConfig, validator, util) {
         var profile = $stateParams.authData;
         $scope.alert = new NcAlert();
         $scope.form = {};
@@ -421,7 +421,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
         };
     }
     )
-    .controller('BrandSignupController', function ($scope, $location, $state, $rootScope, BrandAccountService, AccountService, UserProfile, $window, NcAlert, util) {
+    .controller('BrandSignupController', function ($scope, $location, $state, $rootScope, Config, BrandAccountService, AccountService, UserProfile, $window, NcAlert, util) {
 
         $scope.formData = {};
         $scope.form = {};

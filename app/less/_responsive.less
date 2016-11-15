@@ -2,7 +2,7 @@
 @media only screen and (min-width: 768px) {
   /*---Global---*/
   .mobile-only{
-    display: none;
+    display: none !important;
   }
 
   
@@ -24,7 +24,7 @@
     position: relative;
   }
   .desktop-only{
-    display: none;
+    display: none !important;
   }
   .mobile-only{
     display:inherit;
@@ -42,9 +42,7 @@
     padding: 3px;
     margin: 10px;
   }
-  .btn-width-lg{
-    width: 100%;
-  }
+
   /*---Navigation Bar---*/
   .navbar{
     .step-mushroom{
@@ -169,6 +167,14 @@
     }
   }
 
+  /*---Card---*/
+  .card-body{
+    .card-body-content-label{
+      text-align: left;
+    }
+  }
+
+
   /*---Specific Card---*/
   .card-campaign-list-item{
     .card-title{
@@ -195,7 +201,18 @@
     }
   }
 
+  .card-campaign-description{
 
+  }
+
+  /*---Floating Bart---*/
+  .floating-bar{
+    z-index: 800;
+    padding: 7.5px 15px;
+  }
+  .btn-width-lg{
+
+  }
 
 
   /*---Contact Us---*/
@@ -210,12 +227,12 @@
     left: 50%;
     margin-left: -115px;
   }
-  
+
 
   /*---Layout Portal---*/
   .layout-portal{
     .container{
-      max-width: auto;
+      max-width: 370px;
     }
     .card-portal{
       .card-body{

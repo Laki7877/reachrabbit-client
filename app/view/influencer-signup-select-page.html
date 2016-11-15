@@ -9,12 +9,15 @@
         <div class="scrollable-radio">
           <div class="radio-card" ng-repeat="page in pages | orderBy:'count':true track by $index">
             <label>
-              <input type="radio"  ng-value="page" ng-model="formData.selectedPage" ng-disabled="page.count < minFollower">
+              <input type="radio"  ng-value="page" ng-model="formData.selectedPage" ng-disabled="page.count < minFollower && page.isPage">
               <div class="radio-label">
                 {{ page.name }}
               </div>
-              <div class="radio-info">
+              <div ng-if="page.isPage" class="radio-info">
                 มีผู้ติดตาม {{page.count | number}} คน
+              </div>
+              <div ng-if="!page.isPage" class="radio-info">
+                บัญชีส่วนบุคคล
               </div>
               <img class="radio-image" ng-src="{{ page.picture }}" />
             </label>

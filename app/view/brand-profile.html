@@ -79,7 +79,8 @@
                 </div>
               </div>
               <div class="card-row" form-error="form.companyTaxId" ng-if="formData.brand.isCompany">
-                <div class="card-body-content-label with-input no-padding">เลขประจำตัวผู้เสียภาษี</div>
+                <div class="desktop-only card-body-content-label with-input no-padding">เลขประจำตัวผู้เสียภาษี</div>
+                <div class="mobile-only card-body-content-label with-input">เลขประจำตัวผู้เสียภาษี</div>
                 <div class="card-body-content">
                   <input name="companyTaxId" class="form-control" required ng-model="formData.brand.companyTaxId">
                   <div input-error></div>
@@ -127,23 +128,6 @@
                 </div>
                 <div class="card-body-content">
                   <input type="text" name="email" ng-model="formData.email" class="form-control" maxlength="100">
-                  <div input-error></div>
-                </div>
-              </div>
-              <div class="card-row" ng-if="!showPassword" form-error="form.email">
-                 <div class="card-body-content-label with-input">
-
-                </div>
-                <div class="card-body-content">
-                  <a ng-click="setShowPassword()"><i class="fa fa-lock"></i> ตั้งรหัสผ่านใหม่</a>
-                </div>
-              </div>
-              <div class="card-row" ng-if="showPassword" form-error="form.password">
-                <div class="card-body-content-label with-input">
-                  ตั้งรหัสผ่านใหม่
-                </div>
-                <div class="card-body-content">
-                  <input type="password" name="password" ng-model="formData.password" class="form-control" ng-minlength="8" maxlength="100" placeholder="ความยาวอย่างน้อย 8 ตัวอักษร">
                   <div input-error></div>
                 </div>
               </div>

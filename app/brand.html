@@ -14,14 +14,14 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Brand</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=970, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="bower_components/json-formatter/dist/json-formatter.min.css">
     <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
     <link rel="stylesheet" href="bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.css">
     <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
-    
+
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -40,15 +40,9 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
         <span class="label label-danger">APIO</span>
     </div>
 
-    <nav class="navbar" ng-cloak>
+    <nav class="navbar desktop-only" ng-cloak>
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
                 <a class="navbar-brand" ui-sref="brand-campaign-list"><img src="images/logo-brand.png" alt="ReachRabbit" /></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -68,9 +62,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
                     </li>
                 </ul>
             </div>
-            <!--/.nav-collapse -->
         </div>
-        <!--/.container-fluid -->
 
         <div class="main-nav">
           <div class="steps">
@@ -122,8 +114,69 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
             </div>
           </div>
         </div>
-
     </nav>
+
+
+
+    <div class="mobile-menu mobile-only" ng-cloak ng-show="showMenu">
+      <img src="images/logo-brand.png" class="logo" alt="ReachRabbit" /></a>
+      <div class="menu-section">
+        เมนูหลัก
+      </div>
+      <ul class="menu-item">
+        <li class="active">
+          <span class="number-circle">1</span><span class="menu-text">ลงประกาศงาน</span>
+        </li>
+        <li>
+          <span class="number-circle">2</span><span class="menu-text">คัดเลือก (1)<span class="step-mushroom"></span></span>
+        </li>
+        <li>
+          <span class="number-circle">3</span><span class="menu-text">ชำระเงิน (1)</span>
+        </li>
+        <li>
+          <span class="number-circle">4</span><span class="menu-text">อนุมัติงาน (1)</span>
+        </li>
+        <li>
+          <span class="number-circle">5</span><span class="menu-text">เสร็จสิ้น (1)</span>
+        </li>
+      </ul>
+      <div class="menu-section">
+        เมนูอื่นๆ
+      </div>
+      <ul class="menu-item">
+        <li>
+          <i class="fa fa-pencil fa-fw"></i><span class="menu-text">แก้ไข Profile ของฉัน</span>
+        </li>
+        <li>
+          <i class="fa fa-list fa-fw"></i><span class="menu-text">รายการสั่งซื้อ</span>
+        </li>
+        <li>
+          <i class="fa fa-sign-out fa-fw"></i><span class="menu-text">ออกจากระบบ</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="backdrop mobile-only" ng-cloak ng-show="showMenu || showHelp" ng-click="showMenu=false; showHelp=false;">
+    </div>
+
+    <nav class="navbar mobile-only" ng-cloak>
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <div class="left-navbar">
+            <button type="button" name="button" class="btn btn-mobile-menu btn-with-count pull-left" ng-click="showMenu=true">เมนู<span class="step-mushroom"></span></button>
+          </div>
+          <div class="center-navbar">
+            <img src="images/logo-nav-inverse.png" class="logo img-responsive" alt="ReachRabbit" />
+          </div>
+          <div class="right-navbar">
+            <button type="button" name="button" class="btn btn-mobile-menu pull-right" ng-click="showHelp=true">Help</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+
 
 
 
@@ -133,7 +186,8 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
 
     <div ui-view ng-cloak></div>
 
-    <contact-us></contact-us>
+    <contact-us class="desktop-only"></contact-us>
+    <contact-us class="mobile-only" ng-show="showHelp"></contact-us>
 
     <div ng-include="'components/templates/debugga.html'"></div>
     <!-- In production use:

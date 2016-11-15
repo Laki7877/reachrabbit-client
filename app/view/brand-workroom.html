@@ -26,7 +26,7 @@
                                 "เลือกข้อเสนอ" ใส่ตะกร้าเมื่อคุณพอใจ คุณสามารถแก้ไขตะกร้าได้ภายหลัง
                               </p>
                             </div>
-                            <button class="btn-primary btn-width-max" ng-click="selectProposal(proposal)">&nbsp เลือกข้อเสนอ <i class="fa fa-arrow-right"></i></button>
+                            <button class="btn-primary btn-width-max" ng-click="selectProposal(proposal)">&nbsp; เลือกข้อเสนอ <i class="fa fa-arrow-right"></i></button>
                           </div>
 
                           <div ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Incart'">
@@ -38,7 +38,7 @@
                                 คุณสามารถชำระเงินได้ทันที หรือ เลือกข้อเสนออื่นเพื่อชำระทีเดียว
                               </p>
                             </div>
-                            <button class="btn-primary btn-width-max" ui-sref="brand-cart">&nbsp ดูตะกร้า <i class="fa fa-arrow-right"></i></button>
+                            <button class="btn-primary btn-width-max" ui-sref="brand-cart">&nbsp; ดูตะกร้า <i class="fa fa-arrow-right"></i></button>
                           </div>
 
                           <div ng-if="proposal.status == 'Selection' && proposal.cart.status == 'Checkout'">
@@ -63,7 +63,7 @@
                                 กด "อนุมัติงาน" เมื่อคุณพอใจกับโพสของ Influencer แล้ว
                               </p>
                             </div>
-                            <button class="btn-primary btn-width-max" ng-click="approveProposal(proposal)">&nbsp อนุมัติงาน <i class="fa fa-arrow-right"></i></button>
+                            <button class="btn-primary btn-width-max" ng-click="approveProposal(proposal)">&nbsp; อนุมัติงาน <i class="fa fa-arrow-right"></i></button>
                           </div>
 
                           <div ng-if="proposal.status == 'Complete'" >

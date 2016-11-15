@@ -1561,6 +1561,16 @@ input:-moz-placeholder {
     }
   }
 }
+.step-mushroom{
+  position: absolute;
+  display: block;
+  background: @color-red;
+  height: 6px;
+  width: 6px;
+  border-radius: 3px;
+  animation: bouncing 1s infinite;
+  -webkit-animation: bouncing 1s infinite;
+}
 
 /*---Main Navigation---*/
 .main-nav{
@@ -1600,25 +1610,6 @@ input:-moz-placeholder {
       .step-mushroom{
         top: 40px;
         right: -8px;
-        position: absolute;
-        display: block;
-        background: @color-red;
-        height: 6px;
-        width: 6px;
-        border-radius: 3px;
-        animation: bouncing 1s infinite;
-        -webkit-animation: bouncing 1s infinite;
-      }
-      @keyframes bouncing {
-        0%, 20%, 50%, 80%, 100%  {
-        	transform:translateY(0px);
-        }
-        40% {
-          	transform:translateY(-4px);
-        }
-        60% {
-          	transform:translateY(-2px);
-        }
       }
       &:hover{
         img{
@@ -1666,7 +1657,7 @@ input:-moz-placeholder {
   background: @color-white;
   text-align: center;
   box-shadow: 0px -1px 4px 0px rgba(0,0,0,0.20);
-  padding: 7.5px 0px;
+  padding: 7.5px;
 }
 
 /*---Date Picker---*/

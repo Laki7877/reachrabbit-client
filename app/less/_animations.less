@@ -1,0 +1,37 @@
+.ngafade.ng-enter {
+  transition:0.3s linear all;
+  opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.ngafade.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.ngafade.ng-leave {
+  transition:0.3s linear all;
+  opacity:1;
+}
+.ngafade.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.ngaslideright.ng-enter {
+  transition:0.1s linear all;
+  transform:translateX(-100px);
+}
+
+/* The finishing CSS styles for the enter animation */
+.ngaslideright.ng-enter.ng-enter-active {
+  transform:translateX(0);
+} 
+
+.ngaslideright.ng-leave {
+  transition:0.1s linear all;
+  transform:translateX(0);
+  opacity:1;
+}
+.ngaslideright.ng-leave.ng-leave-active {
+  transform:translateX(-100px);
+  opacity:0;
+}

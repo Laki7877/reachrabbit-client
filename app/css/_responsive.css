@@ -1,0 +1,31 @@
+/*---Responsive (Bootstrap Standard)---*/
+/* Only Large devices (LG) */
+@media only screen and (min-width: 1201px) {
+  .mobile-only {
+    display: none;
+  }
+}
+/* Only Medium devices (MD) */
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+  .mobile-only {
+    display: none;
+  }
+}
+/* Only Small devices (SM) */
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: inherit;
+  }
+}
+/* Only Extra Small devices (XS) */
+@media only screen and (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: inherit;
+  }
+}

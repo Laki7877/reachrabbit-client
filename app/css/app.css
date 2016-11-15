@@ -11460,10 +11460,8 @@ ul.payment-methods {
 .no-padding {
   padding: 0 !important;
 }
-/* Transition animations */
-.fade.ng-enter {
-  transition: 0.5s linear all;
-  opacity: 1;
+.uib-centerize {
+  margin: auto;
 }
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
@@ -11974,8 +11972,8 @@ tags-input .autocomplete .suggestion-item em {
     background: #3e4a5e;
     height: 100%;
     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-    -webkit-animation: slideIn 0.5s ease forwards;
-    animation: slideIn 0.5s ease forwards;
+    /*-webkit-animation:slideIn 0.5s ease forwards;
+    animation:slideIn 0.5s ease forwards;*/
   }
   .mobile-menu .logo {
     height: 20px;
@@ -12167,3 +12165,35 @@ tags-input .autocomplete .suggestion-item em {
   }
 }
 /*--End of Extra Small devices (XS)--*/
+.ngafade.ng-enter {
+  transition: 0.3s linear all;
+  opacity: 0;
+}
+/* The finishing CSS styles for the enter animation */
+.ngafade.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.ngafade.ng-leave {
+  transition: 0.3s linear all;
+  opacity: 1;
+}
+.ngafade.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.ngaslideright.ng-enter {
+  transition: 0.1s linear all;
+  transform: translateX(-100px);
+}
+/* The finishing CSS styles for the enter animation */
+.ngaslideright.ng-enter.ng-enter-active {
+  transform: translateX(0);
+}
+.ngaslideright.ng-leave {
+  transition: 0.1s linear all;
+  transform: translateX(0);
+  opacity: 1;
+}
+.ngaslideright.ng-leave.ng-leave-active {
+  transform: translateX(-100px);
+  opacity: 0;
+}

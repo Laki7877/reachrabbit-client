@@ -96,6 +96,14 @@ module.exports = function (grunt) {
         options: {
           transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
         }
+      },
+      brand: {
+        files: {
+          'app/dist/bundle.brand.js': ['app/js/brand.js'],
+        },
+        options: {
+          transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
+        }
       }
     },
     concurrent: {

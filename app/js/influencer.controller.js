@@ -214,6 +214,10 @@ angular.module('reachRabbitApp.influencer.controller', ['reachRabbitApp.common.s
             name: 'อื่นๆ',
             value: 'NotSpecified'
         }];
+        $scope.setShowPassword = function () {
+            $scope.showPassword = true;
+        };
+
         $scope.isValidate = function (model, error) {
             if (error === 'required' && model.$name === 'profilePicture') {
                 return $scope.form.$submitted;

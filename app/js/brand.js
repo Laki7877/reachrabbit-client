@@ -25,6 +25,7 @@ angular.module('reachRabbitApp', [
   'ngImgCrop',
   'jsonFormatter',
   'chart.js',
+  'ngAnimate',
   'reachRabbitApp.common.directives',
   'reachRabbitApp.common.routes',
   'reachRabbitApp.common.controller',

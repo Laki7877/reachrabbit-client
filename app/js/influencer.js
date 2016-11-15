@@ -95,7 +95,19 @@ angular.module('reachRabbitApp', [
     NO_POLL_WHITELIST: ["-portal", "-login", "-signup", "public-campaign-detail"]
   })
   .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce', '$state',
-    function ($rootScope, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
+    function ($rootScope, $uibModal, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
+
+      $rootScope.openHelp = function () {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          templateUrl: 'components/templates/contact-us.html',
+          size: 'sm',
+          windowClass: 'uib-centerize',
+          windowTopClass: 'uib-centerize',
+          openedClass: 'uib-centerize'
+        });
+      };
+
 
       //Date override
       $rootScope.$state = $state;
@@ -232,7 +244,7 @@ angular.module('reachRabbitApp', [
           $rootScope.signOut(bounce_url);
         }
       };
-      
+
       $rootScope.$on("$stateChangeError", function () {
         $rootScope.bounceLogout();
       });

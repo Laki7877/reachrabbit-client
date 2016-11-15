@@ -96,18 +96,6 @@ module.exports = function (grunt) {
         options: {
           transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
         }
-      },
-      test: {
-        files: {
-          'app/dist/bundle.admin.js': ['app/js/admin.js'],
-          'app/dist/bundle.influencer.js': ['app/js/influencer.js'],
-          'app/dist/bundle.brand.js': ['app/js/brand.js'],
-          'app/dist/bundle.portal.js': ['app/js/portal.js'],
-          'app/dist/bundle.public.js': ['app/js/public.js']
-        },
-        options: {
-          transform: [require('browserify-ngannotate'),  require('uglifyify')]
-        }
       }
     },
     concurrent: {
@@ -247,7 +235,7 @@ module.exports = function (grunt) {
   grunt.registerTask('edward', ['copy:edward', 'browserify', 'uglify:vendor']);
   grunt.registerTask('bella', ['copy:bella', 'browserify', 'uglify:vendor']);
   grunt.registerTask('eclipse', ['copy:eclipse', 'browserify', 'uglify:vendor']);
-  grunt.registerTask('production', ['copy:production', 'browserify', 'uglify:vendor']);
+  grunt.registerTask('production', ['copy:production', 'browserify:src', 'uglify:vendor']);
 
   grunt.registerTask('vendor', ['uglify:vendor']);
 

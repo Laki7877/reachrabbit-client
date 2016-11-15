@@ -156,7 +156,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
       </ul>
     </div>
 
-    <div class="backdrop mobile-only" ng-cloak ng-show="showMenu || showHelp" ng-click="showMenu=false; showHelp=false;">
+    <div class="backdrop mobile-only fade" ng-cloak ng-show="showMenu || showHelp" ng-click="showMenu=false; showHelp=false;">
     </div>
 
     <nav class="navbar mobile-only" ng-cloak>
@@ -187,12 +187,10 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
     <div ui-view ng-cloak></div>
 
     <contact-us class="desktop-only"></contact-us>
-    <contact-us class="mobile-only" ng-show="showHelp"></contact-us>
+    <contact-us class="mobile-only fade" ng-if="showHelp"></contact-us>
 
     <div ng-include="'components/templates/debugga.html'"></div>
-    <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
+
     <script src="/dist/vendor.js"></script>
     <script src="/dist/bundle.brand.js"></script>
     <script src="https://cdn.ravenjs.com/3.1.1/raven.min.js"></script>

@@ -8007,7 +8007,7 @@ ol {
 .signup-pill {
   text-align: center;
   padding: 5px;
-  margin: 25px auto 0 auto;
+  margin: 25px auto 25px auto;
   width: 250px;
   color: white;
   background-color: rgba(62, 74, 94, 0.8);
@@ -8083,14 +8083,18 @@ ol {
   margin-top: -15px;
 }
 .zone-header .step {
-  float: left;
-  width: 25%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   position: relative;
   margin-top: 35px;
   text-align: center;
+}
+@media (min-width: 768px) {
+  .zone-header .step {
+    float: left;
+    width: 25%;
+  }
 }
 .zone-header .step h3 {
   margin-top: 10px;
@@ -8373,53 +8377,72 @@ input:-moz-placeholder {
 }
 .card-body .card-row-2-column .col {
   position: relative;
-  float: left;
-  width: 50%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   padding: 0px 7.5px;
+}
+@media (min-width: 768px) {
+  .card-body .card-row-2-column .col {
+    float: left;
+    width: 50%;
+  }
 }
 .card-body .card-row-2-column .col .checkbox {
   margin-top: 32px;
 }
 .card-body .card-body-content-label {
   position: relative;
-  float: left;
-  width: 16.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   text-align: right;
+}
+@media (min-width: 768px) {
+  .card-body .card-body-content-label {
+    float: left;
+    width: 16.66666667%;
+  }
 }
 .card-body .card-body-content-label .fa-question-circle {
   color: #8692a8;
 }
 .card-body .card-body-content {
   position: relative;
-  float: left;
-  width: 66.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
+@media (min-width: 768px) {
+  .card-body .card-body-content {
+    float: left;
+    width: 66.66666667%;
+  }
+}
 .card-body .card-button-primary,
 .card-body .card-button-secondary {
   position: relative;
-  float: left;
-  width: 25%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   text-align: center;
   margin-top: 10px;
 }
+@media (min-width: 768px) {
+  .card-body .card-button-primary,
+  .card-body .card-button-secondary {
+    float: left;
+    width: 25%;
+  }
+}
 .card-body .card-button-primary .info-text,
 .card-body .card-button-secondary .info-text {
   margin-top: 10px;
 }
-.card-body .card-button-primary {
-  margin-left: 16.66666667%;
+@media (min-width: 768px) {
+  .card-body .card-button-primary {
+    margin-left: 16.66666667%;
+  }
 }
 .card-body.with-extra-padding {
   padding: 30px 15px;
@@ -8436,20 +8459,28 @@ input:-moz-placeholder {
 }
 .card-image {
   position: relative;
-  float: left;
-  width: 25%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   overflow: hidden;
 }
+@media (min-width: 768px) {
+  .card-image {
+    float: left;
+    width: 25%;
+  }
+}
 .card-title {
   position: relative;
-  float: left;
-  width: 100%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .card-title {
+    float: left;
+    width: 100%;
+  }
 }
 .card-title .card-title-content {
   padding-bottom: 5px;
@@ -8468,11 +8499,15 @@ input:-moz-placeholder {
 }
 .card-button {
   position: relative;
-  float: left;
-  width: 16.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .card-button {
+    float: left;
+    width: 16.66666667%;
+  }
 }
 /*---Specific Card---*/
 .card-portal {
@@ -8489,7 +8524,7 @@ input:-moz-placeholder {
 }
 .card-portal .logo h3 {
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-style: italic;
   color: #8692a8;
 }
@@ -8539,20 +8574,28 @@ input:-moz-placeholder {
 }
 .card-campaign-list-item .card-info {
   position: relative;
-  float: left;
-  width: 16.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   margin-top: 38px;
 }
+@media (min-width: 768px) {
+  .card-campaign-list-item .card-info {
+    float: left;
+    width: 16.66666667%;
+  }
+}
 .card-campaign-list-item .card-info-3 {
   position: relative;
-  float: left;
-  width: 25%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .card-campaign-list-item .card-info-3 {
+    float: left;
+    width: 25%;
+  }
 }
 .card-campaign-list-item .card-button {
   margin-top: 20px;
@@ -8568,11 +8611,15 @@ input:-moz-placeholder {
 }
 .card-campaign-list-item .card-title {
   position: relative;
-  float: left;
-  width: 75%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .card-campaign-list-item .card-title {
+    float: left;
+    width: 75%;
+  }
 }
 .card-campaign-list-item .card-image {
   height: 136px;
@@ -8589,20 +8636,28 @@ input:-moz-placeholder {
 }
 .card-profile .card-image {
   position: relative;
-  float: left;
-  width: 16.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
+@media (min-width: 992px) {
+  .card-profile .card-image {
+    float: left;
+    width: 16.66666667%;
+  }
+}
 .card-profile .card-title {
   position: relative;
-  float: left;
-  width: 83.33333333%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   margin-bottom: 15px;
+}
+@media (min-width: 768px) {
+  .card-profile .card-title {
+    float: left;
+    width: 83.33333333%;
+  }
 }
 .card-profile .card-title .card-title-vertified {
   position: absolute;
@@ -8668,13 +8723,17 @@ input:-moz-placeholder {
 }
 .card-campaign-header .card-image {
   position: relative;
-  float: left;
-  width: 33.33333333%;
   min-height: 1px;
   padding-left: 15px;
   height: 198px;
   padding: 0px;
   padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .card-campaign-header .card-image {
+    float: left;
+    width: 33.33333333%;
+  }
 }
 .card-campaign-header .card-image img {
   width: 100%;
@@ -8685,19 +8744,27 @@ input:-moz-placeholder {
 }
 .card-campaign-header .card-campaign-header-content {
   position: relative;
-  float: left;
-  width: 66.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
+@media (min-width: 768px) {
+  .card-campaign-header .card-campaign-header-content {
+    float: left;
+    width: 66.66666667%;
+  }
+}
 .card-campaign-header .card-info {
   position: relative;
-  float: left;
-  width: 33.33333333%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .card-campaign-header .card-info {
+    float: left;
+    width: 33.33333333%;
+  }
 }
 .card-campaign-header .card-title {
   padding-right: 0px;
@@ -8841,11 +8908,15 @@ input:-moz-placeholder {
 }
 .card-transaction-header .card-info {
   position: relative;
-  float: left;
-  width: 25%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .card-transaction-header .card-info {
+    float: left;
+    width: 25%;
+  }
 }
 .card-transaction-header .card-info .card-info-content {
   color: #3e4a5e;
@@ -8873,11 +8944,21 @@ input:-moz-placeholder {
 .instagram-dashboard .card-overview .card-info,
 .youtube-dashboard .card-overview .card-info {
   position: relative;
-  float: left;
-  width: 16.66666667%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .social-media-profile .card-overview .card-info,
+  .facebook-profile .card-overview .card-info,
+  .instagram-profile .card-overview .card-info,
+  .youtube-profile .card-overview .card-info,
+  .facebook-dashboard .card-overview .card-info,
+  .instagram-dashboard .card-overview .card-info,
+  .youtube-dashboard .card-overview .card-info {
+    float: left;
+    width: 16.66666667%;
+  }
 }
 .social-media-profile .card-overview .card-info strong,
 .facebook-profile .card-overview .card-info strong,
@@ -8915,11 +8996,21 @@ input:-moz-placeholder {
 .instagram-dashboard .card-overview .card-button,
 .youtube-dashboard .card-overview .card-button {
   position: relative;
-  float: left;
-  width: 33.33333333%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .social-media-profile .card-overview .card-button,
+  .facebook-profile .card-overview .card-button,
+  .instagram-profile .card-overview .card-button,
+  .youtube-profile .card-overview .card-button,
+  .facebook-dashboard .card-overview .card-button,
+  .instagram-dashboard .card-overview .card-button,
+  .youtube-dashboard .card-overview .card-button {
+    float: left;
+    width: 33.33333333%;
+  }
 }
 .social-media-profile .card-gallery .card-gallery-item,
 .facebook-profile .card-gallery .card-gallery-item,
@@ -9128,12 +9219,22 @@ input:-moz-placeholder {
 .social-dashboard-wrapper .instagram-dashboard .dashboard-graph,
 .social-dashboard-wrapper .youtube-dashboard .dashboard-graph {
   position: relative;
-  float: left;
-  width: 100%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   margin: 15px 0px 20px 0px;
+}
+@media (min-width: 768px) {
+  .social-dashboard-wrapper .social-media-profile .dashboard-graph,
+  .social-dashboard-wrapper .facebook-profile .dashboard-graph,
+  .social-dashboard-wrapper .instagram-profile .dashboard-graph,
+  .social-dashboard-wrapper .youtube-profile .dashboard-graph,
+  .social-dashboard-wrapper .facebook-dashboard .dashboard-graph,
+  .social-dashboard-wrapper .instagram-dashboard .dashboard-graph,
+  .social-dashboard-wrapper .youtube-dashboard .dashboard-graph {
+    float: left;
+    width: 100%;
+  }
 }
 .social-dashboard-wrapper .social-media-profile .dashboard-graph .empty-state,
 .social-dashboard-wrapper .facebook-profile .dashboard-graph .empty-state,
@@ -9231,11 +9332,15 @@ input:-moz-placeholder {
 /*---Thumbnail---*/
 .thumbnail-column {
   position: relative;
-  float: left;
-  width: 33.33333333%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .thumbnail-column {
+    float: left;
+    width: 33.33333333%;
+  }
 }
 /*---Button---*/
 .btn,
@@ -10594,7 +10699,7 @@ fieldset[disabled] .btn-clear.active {
 }
 /*---Floating Bar---*/
 .floating-bar {
-  z-index: 9;
+  z-index: 90;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -11257,7 +11362,7 @@ div:focus {
 }
 /*---Contact Us---*/
 .contact-us {
-  z-index: 10;
+  z-index: 900;
   cursor: pointer;
   transition: 1s;
   background: #019386;
@@ -11355,6 +11460,11 @@ ul.payment-methods {
 .no-padding {
   padding: 0 !important;
 }
+/* Transition animations */
+.fade.ng-enter {
+  transition: 0.5s linear all;
+  opacity: 1;
+}
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
 .layout-portal {
@@ -11381,10 +11491,10 @@ ul.payment-methods {
 .layout-portal .view-brand-signup .info-text {
   margin-top: 10px;
 }
-.layout-portal .view-influencer-portal {
+.layout-portal .view-influencer-signup {
   margin-top: 140px;
 }
-.layout-portal .view-influencer-portal .info-text {
+.layout-portal .view-influencer-signup .info-text {
   margin-top: 10px;
 }
 .layout-portal .view-influencer-login {
@@ -11724,6 +11834,9 @@ tags-input .autocomplete .suggestion-item em {
   .mobile-only {
     display: inherit;
   }
+  h1 {
+    font-size: 24px;
+  }
   /*---Button---*/
   .btn-mobile-menu {
     color: #ffffff;
@@ -11828,10 +11941,6 @@ tags-input .autocomplete .suggestion-item em {
     color: #3e4a5e;
     background-color: #ffffff;
   }
-  .btn-width-lg,
-  .layout-portal .view-influencer-signup-select-page button {
-    width: 100%;
-  }
   /*---Navigation Bar---*/
   .navbar .step-mushroom {
     top: 5px;
@@ -11924,18 +12033,73 @@ tags-input .autocomplete .suggestion-item em {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
-    -webkit-animation: fadeIn 0.5s ease forwards;
-    animation: fadeIn 0.5s ease forwards;
+  }
+  /*---Alert Box---*/
+  .alert {
+    height: 36px;
+  }
+  .alert .close {
+    margin-top: 6px;
+    margin-right: 5px;
+  }
+  .alert .alert-icon {
+    display: none;
+  }
+  .alert .alert-text {
+    display: inline-block;
+    float: left;
+    margin-top: 8px;
+    margin-left: 8px;
   }
   /*---Zone---*/
   .zone-alert {
     width: inherit;
   }
-  .zone-header .page-header h1 {
-    font-size: 24px;
-  }
   .zone-header .action-btn-for-header {
     display: none;
+  }
+  /*---Specific Card---*/
+  .card-campaign-list-item .card-title {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 15px 0px 15px 0px;
+    text-align: center;
+  }
+  .card-campaign-list-item .card-title .card-title-content {
+    border-bottom: 0px;
+  }
+  .card-campaign-list-item .card-title .card-title-content a {
+    color: #3e4a5e;
+  }
+  .card-campaign-list-item .card-image {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: auto;
+  }
+  .card-campaign-list-item .card-button {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 0px;
+  }
+  .card-campaign-list-item .card-button.status-draft {
+    margin-top: 0px;
+  }
+  /*---Floating Bart---*/
+  .floating-bar {
+    z-index: 800;
+    padding: 7.5px 15px;
   }
   /*---Contact Us---*/
   .contact-us {
@@ -11948,8 +12112,59 @@ tags-input .autocomplete .suggestion-item em {
     bottom: auto;
     left: 50%;
     margin-left: -115px;
-    -webkit-animation: fadeIn 0.5s ease forwards;
-    animation: fadeIn 0.5s ease forwards;
+  }
+  /*---Layout Portal---*/
+  .layout-portal .container {
+    max-width: 370px;
+  }
+  .layout-portal .card-portal .card-body {
+    padding: 15px;
+  }
+  .layout-portal .card-portal .logo {
+    width: 230px;
+    margin-top: 5px;
+  }
+  .layout-portal .card-portal .logo h3 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .layout-portal .view-brand-login {
+    margin-top: 30px;
+  }
+  .layout-portal .view-brand-signup {
+    margin-top: 15px;
+  }
+  /*---Layout Brand---*/
+  .layout-brand .view-brand-campaign-list .page-header {
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  .layout-brand .view-brand-campaign-list .empty-state {
+    text-align: center;
+    height: auto;
+    padding: 50px 30px;
+    line-height: 24px;
+  }
+  .layout-brand .view-brand-campaign-list .empty-state img {
+    transform: translateY(0px);
+    margin: auto;
+    margin-bottom: 5px;
+  }
+  .layout-brand .view-brand-campaign-list .empty-state .btn,
+  .layout-brand .view-brand-campaign-list .empty-state .btn-primary,
+  .layout-brand .view-brand-campaign-list .empty-state .btn-secondary,
+  .layout-brand .view-brand-campaign-list .empty-state .btn-secondary-highlight,
+  .layout-brand .view-brand-campaign-list .empty-state .btn-secondary-active,
+  .layout-brand .view-brand-campaign-list .empty-state .btn-clean,
+  .layout-brand .view-brand-campaign-list .empty-state .btn-trace,
+  .layout-brand .view-brand-campaign-list .empty-state .btn-social {
+    margin-top: 20px;
+  }
+  .layout-brand .view-brand-campaign-list .example-campaign {
+    margin-top: 30px;
+  }
+  .layout-brand .view-brand-campaign-list .example-campaign .page-header {
+    margin-bottom: 5px;
   }
 }
 /*--End of Extra Small devices (XS)--*/

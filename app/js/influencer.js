@@ -94,8 +94,7 @@ angular.module('reachRabbitApp', [
     PROTRACTOR_PORT: 9900,
     NO_POLL_WHITELIST: ["-portal", "-login", "-signup", "public-campaign-detail"]
   })
-  .run(['$rootScope', 'InfluencerAccountService', 'LongPollingService', '$location', '$window', 'NcAlert', 'UserProfile', 'BrandAccountService', 'ProposalService', 'amMoment', '$interval', 'BusinessConfig', '$sce', '$state',
-    function ($rootScope, $uibModal, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
+  .run(function ($rootScope, $uibModal, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
 
       $rootScope.openHelp = function () {
         var modalInstance = $uibModal.open({
@@ -103,7 +102,6 @@ angular.module('reachRabbitApp', [
           templateUrl: 'components/templates/contact-us.html',
           size: 'sm',
           windowClass: 'uib-centerize',
-          windowTopClass: 'uib-centerize',
           openedClass: 'uib-centerize'
         });
       };
@@ -318,4 +316,4 @@ angular.module('reachRabbitApp', [
         $rootScope.pollInbox(true);
 
       }
-    }]);
+    });

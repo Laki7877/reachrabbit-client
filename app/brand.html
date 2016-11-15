@@ -154,30 +154,23 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
       </ul>
     </div>
 
-    <div class="backdrop mobile-only" ng-cloak ng-show="showMenu" ng-click="showMenu=false;">
-    </div>
+    <div class="backdrop mobile-only" ng-cloak ng-show="showMenu" ng-click="showMenu=false;"></div>
 
     <nav class="navbar mobile-only" ng-cloak>
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <div class="left-navbar">
-            <button type="button" name="menubtn" class="btn btn-mobile-menu btn-with-count pull-left" ng-click="showMenu=true">เมนู<span class="step-mushroom"></span></button>
-          </div>
-          <div class="center-navbar">
-            <img src="images/logo-nav-inverse.png" class="logo img-responsive" alt="ReachRabbit" />
-          </div>
-          <div class="right-navbar">
-            <button type="button" name="helpbtn" class="btn btn-mobile-menu pull-right" ng-click="$root.openHelp()">Help</button>
-          </div>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="left-navbar">
+                    <button type="button" name="menubtn" class="btn btn-mobile-menu btn-with-count pull-left" ng-click="showMenu=true">เมนู<span class="step-mushroom"></span></button>
+                </div>
+                <div class="center-navbar">
+                    <img src="images/logo-nav-inverse.png" class="logo img-responsive" alt="ReachRabbit" />
+                </div>
+                <div class="right-navbar">
+                    <button type="button" name="helpbtn" class="btn btn-mobile-menu pull-right" ng-click="$root.openHelp()">Help</button>
+                </div>
+            </div>
         </div>
-      </div>
     </nav>
-
-
-
-
-
-
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->

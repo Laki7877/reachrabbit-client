@@ -79,7 +79,8 @@
                 </div>
               </div>
               <div class="card-row" form-error="form.companyTaxId" ng-if="formData.brand.isCompany">
-                <div class="card-body-content-label with-input no-padding">เลขประจำตัวผู้เสียภาษี</div>
+                <div class="desktop-only card-body-content-label with-input no-padding">เลขประจำตัวผู้เสียภาษี</div>
+                <div class="mobile-only card-body-content-label with-input">เลขประจำตัวผู้เสียภาษี</div>
                 <div class="card-body-content">
                   <input name="companyTaxId" class="form-control" required ng-model="formData.brand.companyTaxId">
                   <div input-error></div>

@@ -10,26 +10,28 @@
           <table ng-if="transactions.numberOfElements > 0" class="table" sorter ng-model="transactions" callback="load">
             <thead>
               <tr>
-                <th class="col-name" sort="updatedAt">วันที่แกไขล่าสุด</th>
-                <th sort="status">สถานะ</th>
-                <th class="text-center" sort="transactionId">หมายเลขการสั่งซื้อ</th>
-                <th class="col-rabbit-score" sort="proposals">จำนวนข้อเสนอ</th>
-                <th class="col-time" sort="amount">ราคารวม (บาท)</th>
+                <th class="desktop-only col-name" sort="updatedAt">วันที่แกไขล่าสุด</th>
+                <th class="desktop-only" sort="status">สถานะ</th>
+                <th class="desktop-only text-center" sort="transactionId">หมายเลขการสั่งซื้อ</th>
+                <th class="mobile-only col-name" sort="transactionId">หมายเลขการสั่งซื้อ</th>
+                <th class="desktop-only col-rabbit-score" sort="proposals">จำนวนข้อเสนอ</th>
+                <th class="desktop-only col-time" sort="amount">ราคารวม (บาท)</th>
                 <th class="col-button"></th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="transaction in transactions.content">
-                <td class="col-name">{{ transaction.updatedAt | amDateFormat : 'll' }}</td>
-                <td>
+                <td class="desktop-only col-name">{{ transaction.updatedAt | amDateFormat : 'll' }}</td>
+                <td class="desktop-only">
                   <span class="color-yellow" ng-if="transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอการชำระเงิน</span>
                   <!-- For other status -->
                   <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ชำระแล้ว</span>
                    <span class="color-grey" ng-if="transaction.status == 'Expired'"><i class="fa fa-ban"></i> หมดอายุ</span>
                 </td>
-                <td class="text-center">{{ transaction.transactionNumber }}</td>
-                <td class="col-rabbit-score">{{ transaction.brandTransactionDocument[0].cart.proposals.length || '0' }}</td>
-                <td class="col-time">{{ transaction.amount | currency: '': 0 }}</td>
+                <td class="desktop-only text-center">{{ transaction.transactionNumber }}</td>
+                <td class="mobile-only col-name">{{ transaction.transactionNumber }} <div class="col-info-label">{{ transaction.amount | currency: '': 0 }} บาท</div> </td>
+                <td class="desktop-only col-rabbit-score">{{ transaction.brandTransactionDocument[0].cart.proposals.length || '0' }}</td>
+                <td class="desktop-only col-time">{{ transaction.amount | currency: '': 0 }}</td>
                 <td class="col-button">
                   <button class="btn-secondary btn-minimal" ui-sref="brand-transaction-detail({cartId: transaction.brandTransactionDocument[0].cart.cartId})">ดูรายละเอียด</button>
                 </td>

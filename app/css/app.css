@@ -11460,8 +11460,24 @@ ul.payment-methods {
 .no-padding {
   padding: 0 !important;
 }
+<<<<<<< HEAD
+.text-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.no-gutter > [class*='col-'] {
+  padding-right: 0;
+  padding-left: 0;
+}
+/* Transition animations */
+.fade.ng-enter {
+  transition: 0.5s linear all;
+  opacity: 1;
+=======
 .uib-centerize {
   margin: auto;
+>>>>>>> ee7677e60e92355c90e949b8ccdbd1389c8e5706
 }
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
@@ -12167,6 +12183,51 @@ tags-input .autocomplete .suggestion-item em {
   }
   .layout-brand .view-brand-campaign-list .example-campaign .page-header {
     margin-bottom: 5px;
+  }
+  /*--- search bar ---*/
+  .input-dropdown .form-control.filter {
+    width: 100% !important;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  .list .list-item {
+    width: 100%;
+    border-bottom: 2px solid #d8dfe7;
+    padding: 10px 16px;
+  }
+  .list .list-item-info {
+    vertical-align: middle;
+    margin-top: 5px;
+  }
+  .list .list-item-info .profile-name {
+    font-size: 15px;
+    vertical-align: top;
+  }
+  .list .list-item-info .profile-price {
+    color: #8692a8;
+    display: block;
+  }
+  .list .list-item-btn button {
+    float: right;
+    margin-top: 10px;
+    font-size: 16px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .list .profile-picture {
+    border-radius: 50%;
+    width: 56px;
+  }
+  .card-body.mobile-only {
+    padding: 0 !important;
+  }
+  .empty-state {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    padding: 30px 5px 20px;
+  }
+  .empty-state-message {
+    padding-top: 3px;
   }
 }
 /*--End of Extra Small devices (XS)--*/

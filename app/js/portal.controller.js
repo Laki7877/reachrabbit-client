@@ -442,6 +442,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
                     mixpanel.register({
                         "server": Config.CONFIG_NAME
                     });
+                    //Duplicate brandname as name
                     profileResp.data.name = profileResp.data.brand.brandName;
                     mixpanel.people.set(profileResp.data);
                     mixpanel.track("User Signup");

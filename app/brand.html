@@ -116,32 +116,32 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
         </div>
     </nav>
 
-    <div class="mobile-menu mobile-only ngaslideright" ng-cloak ng-if="showMenu">
+    <div class="mobile-menu mobile-only ngaslideright" ng-cloak ng-if="showMenu" onclick="dismissMenu();">
       <img src="images/logo-brand.png" class="logo" alt="ReachRabbit" /></a>
       <div class="menu-section">
         เมนูหลัก
       </div>
       <ul class="menu-item">
-        <li ui-sref="brand-campaign-list" onclick="dismissMenu();" ng-class="{ 'active':
+        <li ui-sref="brand-campaign-list" ng-class="{ 'active':
             ('brand-campaign-list' | isState) ||
             ('brand-campaign-detail-draft' | isState) ||
             ('brand-campaign-detail-edit' | isState) ||
             ('brand-campaign-detail-published' | isState) }">
           <span class="number-circle">1</span><span class="menu-text">ลงประกาศงาน</span>
         </li>
-        <li ui-sref="brand-inbox({status:'Selection'})" onclick="dismissMenu();" ng-class="{
+        <li ui-sref="brand-inbox({status:'Selection'})" ng-class="{
             'active':
             ('brand-inbox' | isState: {status: 'Selection'}) ||
             (('brand-workroom' | isState) && proposal.status === 'Selection')}">
           <span class="number-circle">2</span><span class="menu-text">คัดเลือก ({{inbox.selection.proposalCount || '0'}})
           <div ng-if="inbox.selection.unreadMessageCount > 0" class="step-mushroom"></div>
         </li>
-        <li ui-sref="brand-cart" onclick="dismissMenu();" ng-class="{ 'active':
+        <li ui-sref="brand-cart" ng-class="{ 'active':
             ('brand-cart' | isState) ||
             ('brand-transaction-detail' | isState) }">
           <span class="number-circle">3</span><span class="menu-text">ชำระเงิน ({{inbox.cart || '0'}})</span>
         </li>
-        <li ui-sref="brand-inbox({status:'Working'})" onclick="dismissMenu();" ng-class="{ 'active':
+        <li ui-sref="brand-inbox({status:'Working'})" ng-class="{ 'active':
             ('brand-inbox' | isState : {status: 'Working'}) ||
             (('brand-workroom' | isState) &&  proposal.status === 'Working')}"  >
           <span class="number-circle">4</span><span class="menu-text">อนุมัติงาน ({{inbox.working.proposalCount || '0'}})</span>
@@ -158,11 +158,11 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
         เมนูอื่นๆ
       </div>
       <ul class="menu-item">
-        <li ui-sref="brand-profile" onclick="dismissMenu();" ng-class="{ 'active':
+        <li ui-sref="brand-profile" ng-class="{ 'active':
             ('brand-profile' | isState) }" >
           <i class="fa fa-pencil fa-fw"></i><span class="menu-text">แก้ไข Profile ของฉัน</span>
         </li>
-        <li ui-sref="brand-transaction-history" onclick="dismissMenu();"  ng-class="{ 'active':
+        <li ui-sref="brand-transaction-history"  ng-class="{ 'active':
             ('brand-transaction-history' | isState) }">
           <i class="fa fa-list fa-fw"></i><span class="menu-text">รายการสั่งซื้อ</span>
         </li>

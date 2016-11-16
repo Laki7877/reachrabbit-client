@@ -96,7 +96,12 @@ angular.module('reachRabbitApp', [
     PROTRACTOR_PORT: 9900,
     NO_POLL_WHITELIST: ["-portal", "-login", "-signup", "public-campaign-detail"]
   })
-  .run(function ($rootScope, $uibModal, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
+  .run(function ($rootScope, $uibModal, InfluencerAccountService,$timeout, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
+    $rootScope.hideMenu = function(delay){
+      $timeout(function(){
+        $rootScope.showMenu = false;
+      }, delay);
+    };
 
     $rootScope.openHelp = function () {
       var modalInstance = $uibModal.open({

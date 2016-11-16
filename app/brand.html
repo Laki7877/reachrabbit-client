@@ -180,7 +180,9 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
         <div class="container-fluid">
             <div class="navbar-header">
                 <div class="left-navbar">
-                    <button type="button" name="menubtn" class="btn btn-mobile-menu btn-with-count pull-left" ng-click="$root.showMenu=true">เมนู<span class="step-mushroom"></span></button>
+                    <button type="button" name="menubtn" class="btn btn-mobile-menu btn-with-count pull-left" ng-click="$root.showMenu=true">
+                      เมนู
+                    <span class="step-mushroom" ng-if="(inbox.working.unreadMessageCount+inbox.complete.unreadMessageCount+inbox.selection.unreadMessageCount) > 0"></span></button>
                 </div>
                 <div class="center-navbar">
                     <img src="images/logo-nav-inverse.png" class="logo img-responsive" alt="ReachRabbit" />

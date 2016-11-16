@@ -12253,6 +12253,11 @@ tags-input .autocomplete .suggestion-item em {
   .table .col-bank-name img {
     margin-bottom: 5px;
   }
+  /*---Empty State---*/
+  .empty-state {
+    height: auto;
+    padding: 30px 5px;
+  }
   /*---Layout Portal---*/
   .layout-portal .container {
     max-width: 370px;

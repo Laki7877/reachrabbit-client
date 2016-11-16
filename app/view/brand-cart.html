@@ -7,88 +7,88 @@
   </zone-header>
   <div class="zone-body">
     <div class="container">
-      <div class="desktop-only row">
-        <div class="col-xs-8">
-            <div class="card">
-                <div class="card-header">
-                   ข้อเสนอในตระกร้าของคุณ
-                </div>
-                <div class="card-body">
-                    <table class="table with-no-margin" ng-if="cart">
-                      <thead>
-                        <th>Influencer</th>
-                        <th>ชื่องาน</th>
-                        <th class="text-align-right">ราคา (บาท)</th>
-                      </thead>
-                      <tbody>
-                        <tr ng-repeat="proposal in cart.proposals">
-                          <td class="col-name">
-                            <a ui-sref="brand-workroom({proposalId: proposal.proposalId})">
-                              <img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="profile-picture"/>
-                               {{ proposal.influencer.user.name }}
-                            </a>
-                          </td>
-                          <td class="col-campaign-name">{{ proposal.campaign.title}}</td>
-                          <td class="text-align-right">{{ proposal.price | number: 0 }} <a><i ng-click="removeFromCart(proposal)" class="fa fa-times-circle color-grey"></i></a> </td>
-                        </tr>
-                        <tr class="total-price">
-                          <td colspan="3">
-                            <strong>ราคารวม ({{cart.proposals.length || 0}} รายการ) : {{ totalPrice(cart.proposals)  | number:0 }} บาท</strong>
-                            <a ng-if="inbox.selection.proposalCount > cart.proposals.length" ui-sref="brand-inbox">เลือกข้อเสนอเพิ่ม</a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table-static ng-if="!cart">
-                      <div class="empty-state">
-                        <img src="images/icon-empty-folder.png"/>ยังไม่มีรายการในตะกร้าของคุณ <a ui-sref="brand-transaction-history">ดูประวัติการสั่งซื้อ</a>
-                      </div>
-                    </table-static>
-                </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="card">
+            <div class="card-header">
+              ขั้นตอนการชำระเงิน
             </div>
-            <div class="card">
-              <div class="card-header">
-                ขั้นตอนการชำระเงิน
-              </div>
-              <div class="card-body with-extra-padding">
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">1</span>
-                    </div>
-                    <div class="media-body">
-                      กด “ชำระเงิน” เมื่อคุณพอใจกับข้อเสนอทั้งหมดในตระก้าสินค้าของคุณ
-                    </div>
+            <div class="card-body with-extra-padding">
+                <div class="media">
+                  <div class="media-left">
+                    <span class="number-circle">1</span>
                   </div>
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">2</span>
-                    </div>
-                    <div class="media-body">
-                      จ่ายเงินด้วยการโอนเงินผ่านบัญชีธนาคาร
-                    </div>
+                  <div class="media-body">
+                    กด “ชำระเงิน” เมื่อคุณพอใจกับข้อเสนอทั้งหมดในตระก้าสินค้าของคุณ
                   </div>
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">3</span>
-                    </div>
-                    <div class="media-body">
-                        Influencer จะเริ่มงานทันที่เมือเราได้รับเงินจากคุณ
-                    </div>
+                </div>
+                <div class="media">
+                  <div class="media-left">
+                    <span class="number-circle">2</span>
                   </div>
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">4</span>
-                    </div>
-                    <div class="media-body">
-                        Influnecer จะได้รับเงินเมื่อคุณอนุมัติงานของพวกเขา หาก Influencer ไม่สามารถส่งงานให้คุณภายในเวลาที่กำหนดคุณจะได้รับเงินคืน 100% <a href="http://www.reachrabbit.com/refund-policy.html" target="_blank">ดูรายละเอียดการคืนเงินได้ที่นี่ </a>
-                    </div>
+                  <div class="media-body">
+                    จ่ายเงินด้วยการโอนเงินผ่านบัญชีธนาคาร
                   </div>
+                </div>
+                <div class="media">
+                  <div class="media-left">
+                    <span class="number-circle">3</span>
+                  </div>
+                  <div class="media-body">
+                      Influencer จะเริ่มงานทันที่เมือเราได้รับเงินจากคุณ
+                  </div>
+                </div>
+                <div class="media">
+                  <div class="media-left">
+                    <span class="number-circle">4</span>
+                  </div>
+                  <div class="media-body">
+                      Influnecer จะได้รับเงินเมื่อคุณอนุมัติงานของพวกเขา หาก Influencer ไม่สามารถส่งงานให้คุณภายในเวลาที่กำหนดคุณจะได้รับเงินคืน 100% <br class="mobile-only"><a href="http://www.reachrabbit.com/refund-policy.html" target="_blank">ดูรายละเอียดการคืนเงินได้ที่นี่ </a>
+                  </div>
+                </div>
 
-              </div>
             </div>
+          </div>
+          <div class="card">
+              <div class="card-header">
+                 ข้อเสนอในตระกร้าของคุณ
+              </div>
+              <div class="card-body">
+                  <table class="table with-no-margin" ng-if="cart">
+                    <thead>
+                      <th>Influencer</th>
+                      <th>ชื่องาน</th>
+                      <th class="text-align-right">ราคา (บาท)</th>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="proposal in cart.proposals">
+                        <td class="col-name">
+                          <a ui-sref="brand-workroom({proposalId: proposal.proposalId})">
+                            <img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="profile-picture"/>
+                             {{ proposal.influencer.user.name }}
+                          </a>
+                        </td>
+                        <td class="col-campaign-name">{{ proposal.campaign.title}}</td>
+                        <td class="text-align-right">{{ proposal.price | number: 0 }} <a><i ng-click="removeFromCart(proposal)" class="fa fa-times-circle color-grey"></i></a> </td>
+                      </tr>
+                      <tr class="total-price">
+                        <td colspan="3">
+                          <strong>ราคารวม ({{cart.proposals.length || 0}} รายการ) : {{ totalPrice(cart.proposals)  | number:0 }} บาท</strong>
+                          <a ng-if="inbox.selection.proposalCount > cart.proposals.length" ui-sref="brand-inbox">เลือกข้อเสนอเพิ่ม</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table-static ng-if="!cart">
+                    <div class="empty-state">
+                      <img src="images/icon-empty-folder.png"/>ยังไม่มีรายการในตะกร้าของคุณ <br class="mobile-only"><a ui-sref="brand-transaction-history">ดูประวัติการสั่งซื้อ</a>
+                    </div>
+                  </table-static>
+              </div>
+          </div>
         </div>
 
-        <div class="col-xs-4">
+        <div class="col-sm-4">
             <div class="card">
               <div class="card-header text-center">
                 สรุปการสั่งซื้อ
@@ -130,138 +130,7 @@
                   </tr>
                 </table>
                 <p>
-                  <button ng-disabled="!cart" ng-click="createTransaction(cart.proposals)" class="btn btn-primary btn-width-max">&nbsp ชำระเงิน <i class="fa fa-arrow-right"></i></button>
-                </p>
-                <div class="text-center">
-                  <a ui-sref="brand-transaction-history">ดูประวัติการสั่งซื้อ</a>
-                </div>
-              </div>
-            </div>
-        </div>
-      </div>
-      <div class="mobile-only row">
-        <div class="col-xs-12">
-          <div class="card">
-              <div class="card-header">
-                ขั้นตอนการชำระเงิน
-              </div>
-              <div class="card-body with-extra-padding">
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">1</span>
-                    </div>
-                    <div class="media-body">
-                      กด “ชำระเงิน” เมื่อคุณพอใจกับข้อเสนอทั้งหมดในตระก้าสินค้าของคุณ
-                    </div>
-                  </div>
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">2</span>
-                    </div>
-                    <div class="media-body">
-                      จ่ายเงินด้วยการโอนเงินผ่านบัญชีธนาคาร
-                    </div>
-                  </div>
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">3</span>
-                    </div>
-                    <div class="media-body">
-                        Influencer จะเริ่มงานทันที่เมือเราได้รับเงินจากคุณ
-                    </div>
-                  </div>
-                  <div class="media">
-                    <div class="media-left">
-                      <span class="number-circle">4</span>
-                    </div>
-                    <div class="media-body">
-                        Influnecer จะได้รับเงินเมื่อคุณอนุมัติงานของพวกเขา หาก Influencer ไม่สามารถส่งงานให้คุณภายในเวลาที่กำหนดคุณจะได้รับเงินคืน 100% <a href="http://www.reachrabbit.com/refund-policy.html" target="_blank">ดูรายละเอียดการคืนเงินได้ที่นี่ </a>
-                    </div>
-                  </div>
-
-              </div>
-            </div>
-        </div>
-        <div class="col-xs-12">
-          <div class="card">
-                <div class="card-header">
-                   ข้อเสนอในตระกร้าของคุณ
-                </div>
-                <div class="card-body">
-                    <table class="table with-no-margin" ng-if="cart">
-                      <thead>
-                        <th>Influencer</th>
-                        <th class="text-align-right">ราคา (บาท)</th>
-                      </thead>
-                      <tbody>
-                        <tr ng-repeat="proposal in cart.proposals">
-                          <td class="col-name">
-                            <a ui-sref="brand-workroom({proposalId: proposal.proposalId})">
-                              <img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="profile-picture"/>
-                               {{ proposal.influencer.user.name }}
-                            </a>
-                          </td>
-                          <td class="text-align-right">{{ proposal.price | number: 0 }} <a><i ng-click="removeFromCart(proposal)" class="fa fa-times-circle color-grey"></i></a> </td>
-                        </tr>
-                        <tr class="total-price">
-                          <td colspan="3">
-                            <strong>ราคารวม ({{cart.proposals.length || 0}} รายการ) : {{ totalPrice(cart.proposals)  | number:0 }} บาท</strong>
-                            <a ng-if="inbox.selection.proposalCount > cart.proposals.length" ui-sref="brand-inbox">เลือกข้อเสนอเพิ่ม</a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <table-static ng-if="!cart">
-                      <div class="empty-state">
-                        <img src="images/icon-empty-folder.png"/>ยังไม่มีรายการในตะกร้าของคุณ <a ui-sref="brand-transaction-history">ดูประวัติการสั่งซื้อ</a>
-                      </div>
-                    </table-static>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12">
-          <div class="card">
-              <div class="card-header text-center">
-                สรุปการสั่งซื้อ
-              </div>
-              <div class="card-body">
-                 <table class="table">
-                  <tr>
-                    <td class="no-top-border">
-                      ราคารวม
-                    </td>
-                    <td class="text-align-right no-top-border">
-                      {{ totalPrice(cart.proposals)  | number:0 }} บาท
-                    </td>
-                  </tr>
-                  <tr ng-if="user.brand.isCompany" class="border-dashed">
-                    <td>
-                      หักภาษี ณ ที่จ่าย (3%)
-                    </td>
-                    <td class="text-align-right" >
-                      -{{ totalTax(cart.proposals)  | number:0 }} บาท
-                    </td>
-                  </tr>
-                  <tr>
-                  <tr class="border-dashed">
-                    <td>
-                      ค่าธรรมเนียม
-                    </td>
-                    <td class="text-align-right">
-                      ฟรี
-                    </td>
-                  </tr>
-                  <tr class="color-green">
-                    <td>
-                      <strong>ยอดสุทธิ</strong>
-                    </td>
-                    <td class="text-align-right">
-                      <strong>{{ totalPriceWithTax(cart.proposals)  | number:0 }} บาท</strong>
-                    </td>
-                  </tr>
-                </table>
-                <p>
-                  <button ng-disabled="!cart" ng-click="createTransaction(cart.proposals)" class="btn btn-primary btn-width-max">&nbsp ชำระเงิน <i class="fa fa-arrow-right"></i></button>
+                  <button ng-disabled="!cart" ng-click="createTransaction(cart.proposals)" class="btn btn-primary btn-width-max">&nbsp; ชำระเงิน <i class="fa fa-arrow-right"></i></button>
                 </p>
                 <div class="text-center">
                   <a ui-sref="brand-transaction-history">ดูประวัติการสั่งซื้อ</a>

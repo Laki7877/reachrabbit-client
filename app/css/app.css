@@ -12063,6 +12063,9 @@ tags-input .autocomplete .suggestion-item em {
   .zone-alert {
     width: inherit;
   }
+  .zone-alert .alert {
+    transform: translateY(20px);
+  }
   .zone-header .action-btn-for-header {
     display: none;
   }
@@ -12076,6 +12079,10 @@ tags-input .autocomplete .suggestion-item em {
   /*---Card---*/
   .card-body .card-body-content-label {
     text-align: left;
+    margin-bottom: 5px;
+  }
+  .card-body .card-row {
+    margin-bottom: 15px;
   }
   .card-body .card-info .card-info-label {
     margin-top: 20px;
@@ -12125,6 +12132,12 @@ tags-input .autocomplete .suggestion-item em {
   .floating-bar {
     z-index: 800;
     padding: 7.5px 15px;
+  }
+  .btn-with-margin {
+    margin: 0px;
+  }
+  .btn-max-width-mobile {
+    width: 100%;
   }
   /*---Modal---*/
   .modal-dialog.modal-sm {

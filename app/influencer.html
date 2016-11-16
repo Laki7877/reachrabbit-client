@@ -40,6 +40,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
     <div class="api_override_box" ng-cloak ng-if="API_OVERRIDE_ACTIVE">
         <span class="label label-danger">API OVERRIDE ON</span>
     </div>
+
     <nav class="navbar desktop-only" ng-cloak>
         <div class="container-fluid">
             <div class="navbar-header">
@@ -182,7 +183,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
       </ul>
     </div>
 
-    <div class="backdrop mobile-only" ng-cloak ng-show="showMenu" ng-click="showMenu=false;"></div>
+    <div id="backdropId" class="backdrop mobile-only" ng-cloak ng-show="$root.showMenu" ng-click="$root.hideMenu(0)"></div>
 
     <nav class="navbar mobile-only" ng-cloak>
         <div class="container-fluid">
@@ -209,9 +210,6 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
 
     <contact-us class="desktop-only"></contact-us>
     <div ng-include="'components/templates/debugga.html'" class="desktop-only"></div>
-    <!-- In production use:
-      <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-    -->
     <script src="/dist/vendor.js"></script>
     <script src="/dist/bundle.influencer.js"></script>
     <script src="https://cdn.ravenjs.com/3.1.1/raven.min.js"></script>

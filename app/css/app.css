@@ -12197,7 +12197,9 @@ tags-input .autocomplete .suggestion-item em {
     margin-bottom: 10px;
   }
   .layout-portal .view-brand-login {
-    margin-top: 30px;
+    position: absolute;
+    top: 50%;
+    margin-top: -180px;
   }
   .layout-portal .view-brand-signup {
     margin-top: 15px;

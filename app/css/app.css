@@ -8049,6 +8049,9 @@ ol {
   transform: translateY(-4px);
   margin-right: 10px;
 }
+.no-scroll {
+  overflow: hidden;
+}
 /*---Zone---*/
 .zone-alert {
   width: 970px;
@@ -11968,7 +11971,8 @@ tags-input .autocomplete .suggestion-item em {
     margin: 15px auto;
   }
   .mobile-menu {
-    position: fixed;
+    position: absolute;
+    overflow-y: scroll;
     font-family: 'Kanit', sans-serif;
     font-size: 16px;
     color: #ffffff;

@@ -35,7 +35,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
 
 </head>
 
-<body class="layout-brand">
+<body class="layout-brand" ng-class="{'no-scroll':$root.showMenu}">
     <div class="api_override_box" ng-cloak ng-if="API_OVERRIDE_ACTIVE">
         <span class="label label-danger">APIO</span>
     </div>

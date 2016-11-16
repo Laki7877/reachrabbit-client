@@ -101,8 +101,7 @@ angular.module('reachRabbitApp', [
           animation: true,
           templateUrl: 'components/templates/contact-us.html',
           size: 'sm',
-          windowClass: 'uib-centerize',
-          openedClass: 'uib-centerize'
+          windowClass: 'modal-help-open'
         });
       };
 

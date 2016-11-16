@@ -103,7 +103,7 @@ angular.module('reachRabbitApp', [
         animation: true,
         templateUrl: 'components/templates/contact-us.html',
         size: 'sm',
-        openedClass: 'modal-help-open'
+        windowClass: 'modal-help-open',
       });
     };
 

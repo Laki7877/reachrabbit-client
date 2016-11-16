@@ -133,8 +133,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
             'active':
             ('brand-inbox' | isState: {status: 'Selection'}) ||
             (('brand-workroom' | isState) && proposal.status === 'Selection')}">
-          <span class="number-circle">2</span><span class="menu-text">
-            คัดเลือก ({{inbox.selection.proposalCount || '0'}})
+          <span class="number-circle">2</span><span class="menu-text">คัดเลือก ({{inbox.selection.proposalCount || '0'}})
             <span ng-if="inbox.selection.unreadMessageCount > 0" class="step-mushroom"></span>
             </span>
         </li>
@@ -151,7 +150,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
           <span class="number-circle">5</span><span class="menu-text">เสร็จสิ้น ({{inbox.complete.proposalCount || '0'}})
             <span ng-if="inbox.complete.unreadMessageCount > 0" class="step-mushroom"></span>
           </span>
-          
+
         </li>
       </ul>
       <div class="menu-section">

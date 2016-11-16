@@ -116,7 +116,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
         </div>
     </nav>
 
-    <div class="mobile-menu mobile-only ngaslideright" ng-cloak ng-if="showMenu" onclick="dismissMenu();">
+    <div class="mobile-menu mobile-only ngaslideright" ng-cloak ng-if="$root.showMenu" ng-click="$root.hideMenu(250)">
       <img src="images/logo-brand.png" class="logo" alt="ReachRabbit" /></a>
       <div class="menu-section">
         เมนูหลัก
@@ -147,7 +147,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
           <span class="number-circle">4</span><span class="menu-text">อนุมัติงาน ({{inbox.working.proposalCount || '0'}})</span>
           <span ng-if="inbox.working.unreadMessageCount > 0" class="step-mushroom"></span>
         </li>
-        <li ui-sref="brand-inbox({status:'Complete'})" onclick="dismissMenu();" ng-class="{ 'active':
+        <li ui-sref="brand-inbox({status:'Complete'})" ng-class="{ 'active':
             ('brand-inbox' | isState: {status:'Complete'}) ||
             (('brand-workroom' | isState) &&  proposal.status === 'Complete')}" >
           <span class="number-circle">5</span><span class="menu-text">เสร็จสิ้น ({{inbox.complete.proposalCount || '0'}})
@@ -172,13 +172,13 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
       </ul>
     </div>
 
-    <div id="backdropId" class="backdrop mobile-only" ng-cloak ng-show="showMenu" ng-click="showMenu=false;"></div>
+    <div id="backdropId" class="backdrop mobile-only" ng-cloak ng-show="$root.showMenu" ng-click="$root.hideMenu(0)"></div>
 
     <nav class="navbar mobile-only" ng-cloak>
         <div class="container-fluid">
             <div class="navbar-header">
                 <div class="left-navbar">
-                    <button type="button" name="menubtn" class="btn btn-mobile-menu btn-with-count pull-left" ng-click="showMenu=true">เมนู<span class="step-mushroom"></span></button>
+                    <button type="button" name="menubtn" class="btn btn-mobile-menu btn-with-count pull-left" ng-click="$root.showMenu=true">เมนู<span class="step-mushroom"></span></button>
                 </div>
                 <div class="center-navbar">
                     <img src="images/logo-nav-inverse.png" class="logo img-responsive" alt="ReachRabbit" />
@@ -198,13 +198,6 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
     <contact-us class="desktop-only"></contact-us>
 
     <div ng-include="'components/templates/debugga.html'"></div>
-    <script>
-     function dismissMenu(){
-       setTimeout(function() {
-         document.getElementById("backdropId").click();
-       }, 100);
-     }
-    </script>
     <script src="/dist/vendor.js"></script>
     <script src="/dist/bundle.brand.js"></script>
     <script src="https://cdn.ravenjs.com/3.1.1/raven.min.js"></script>

@@ -12066,9 +12066,22 @@ tags-input .autocomplete .suggestion-item em {
   .zone-header .action-btn-for-header {
     display: none;
   }
+  .zone-header .page-header {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .zone-header .back-btn-for-header {
+    margin-top: 0px;
+  }
   /*---Card---*/
   .card-body .card-body-content-label {
     text-align: left;
+  }
+  .card-body .card-info .card-info-label {
+    margin-top: 20px;
+  }
+  .card-body .card-info:first-child .card-info-label {
+    margin-top: 0px;
   }
   /*---Specific Card---*/
   .card-campaign-list-item .card-title {

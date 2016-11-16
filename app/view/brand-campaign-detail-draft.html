@@ -37,7 +37,7 @@
                             ng-model="formData.objectiveArray">
                             </choice-picker>
                             <div class="multi-tag-selector-description" ng-if="formData.objectiveArray[0]['objectiveId']">
-                              <i class="fa fa-info-circle"></i> 
+                              <i class="fa fa-info-circle"></i>
                               {{getObjectiveDescription(formData.objectiveArray[0]['objectiveId'])}}
                             </div>
                         </div>
@@ -275,9 +275,9 @@
 
 
     <div class="floating-bar">
-      <button class="btn-secondary btn-width-lg  btn-with-margin" ng-if="!editOpenState" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Draft')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกข้อมูล</button>
-      <button class="btn-primary btn-width-lg btn-with-margin" ng-if="!editOpenState" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">ลงประกาศ</button>
-      <button class="btn-primary btn-width-lg  btn-with-margin" ng-if="editOpenState" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกการแก้ไข</button>
+      <button class="btn-secondary btn-width-lg  btn-with-margin btn-half-width-mobile" ng-if="!editOpenState" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Draft')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกข้อมูล</button>
+      <button class="btn-primary btn-width-lg btn-with-margin btn-half-width-mobile" ng-if="!editOpenState" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">ลงประกาศ</button>
+      <button class="btn-primary btn-width-lg  btn-with-margin btn-max-width-mobile" ng-if="editOpenState" ng-click="save(formData, mediaBooleanDict,mediaObjectDict, 'Open')" ng-disabled="formData.loadingImage1 || formData.loadingImage2">บันทึกการแก้ไข</button>
     </div>
 
 </form>

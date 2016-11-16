@@ -10458,30 +10458,35 @@ fieldset[disabled] .btn-clear.active {
 }
 .alert-success {
   background: #d8f0dd;
+  color: #019386;
 }
 .alert-success .alert-icon {
   background: url("../images/icon-rabbit-happy.png") 0 0 no-repeat #16bbac;
 }
 .alert-danger {
   background: #ffcccb;
+  color: #cb0000;
 }
 .alert-danger .alert-icon {
   background: url("../images/icon-rabbit-confuse.png") 0 0 no-repeat #ff0000;
 }
 .alert-danger-minimal {
   background: #ffcccb;
+  color: #cb0000;
 }
 .alert-danger-minimal .alert-icon {
   display: none;
 }
 .alert-info {
   background: #bfd5fa;
+  color: #3b5998;
 }
 .alert-info .alert-icon {
   background: url("../images/icon-rabbit-happy.png") 0 0 no-repeat #648acb;
 }
 .alert-warning {
   background: #ffebce;
+  color: #ba5b0c;
 }
 .alert-warning .alert-icon {
   background: url("../images/icon-rabbit-confuse.png") 0 0 no-repeat #f5a623;
@@ -11953,6 +11958,17 @@ tags-input .autocomplete .suggestion-item em {
     color: #3e4a5e;
     background-color: #ffffff;
   }
+  .btn-with-margin {
+    margin: 0px;
+  }
+  .btn-max-width-mobile {
+    width: 100%;
+  }
+  .btn-half-width-mobile {
+    width: 45%;
+    min-width: 134px;
+    margin: 0px 7.5px;
+  }
   /*---Navigation Bar---*/
   .navbar .step-mushroom {
     top: 5px;
@@ -12081,6 +12097,9 @@ tags-input .autocomplete .suggestion-item em {
   .zone-header .back-btn-for-header {
     margin-top: 0px;
   }
+  .zone-body {
+    padding-bottom: 50px;
+  }
   /*---Card---*/
   .card-body .card-body-content-label {
     text-align: left;
@@ -12133,16 +12152,69 @@ tags-input .autocomplete .suggestion-item em {
   .card-campaign-list-item .card-button.status-draft {
     margin-top: 0px;
   }
+  .card-campaign-description .checkbox-inline {
+    display: block;
+    margin-left: 0px;
+  }
+  .card-campaign-header .card-image {
+    height: auto;
+    padding: 15px;
+  }
+  .card-campaign-header .card-image .flag .status {
+    top: 30px;
+  }
+  .card-campaign-header .card-campaign-header-content {
+    padding-left: 0px;
+  }
+  .card-campaign-header .card-title {
+    padding-right: 0px;
+  }
+  .card-campaign-header .card-title .card-title-content {
+    margin-top: 5px;
+    padding-bottom: 0px;
+    border-bottom: 0px;
+    color: #3e4a5e;
+  }
+  .card-campaign-header .card-info-1 {
+    margin-top: 0px;
+  }
+  .card-campaign-header .card-info-2,
+  .card-campaign-header .card-info-3,
+  .card-campaign-header .card-info-4,
+  .card-campaign-header .card-info-5 {
+    margin-top: 20px;
+  }
+  .card-campaign-header .card-info-5 {
+    margin-bottom: 20px;
+  }
+  .card-campaign-header .card-corner {
+    display: none;
+  }
+  .card-profile .card-image-mobile {
+    width: 100px;
+    margin: 10px auto 20px auto;
+  }
+  /*---Mutli Selector---*/
+  .multi-tag-selector .with-input {
+    margin-top: 0px;
+  }
+  .multi-tag-selector .with-input .col {
+    width: 50%;
+  }
+  /*---Cropper---*/
+  .cropArea {
+    height: 200px;
+  }
   /*---Floating Bart---*/
   .floating-bar {
     z-index: 800;
     padding: 7.5px 15px;
   }
-  .btn-with-margin {
-    margin: 0px;
+  .floating-bar .btn-half-width-mobile:first-child {
+    margin-left: 0px;
   }
-  .btn-max-width-mobile {
-    width: 100%;
+  .floating-bar .btn-half-width-mobile:last-child {
+    margin-right: 0px;
   }
   /*---Modal---*/
   .modal-dialog.modal-sm {
@@ -12206,7 +12278,7 @@ tags-input .autocomplete .suggestion-item em {
   }
   /*---Layout Brand---*/
   .layout-brand .view-brand-campaign-list .page-header {
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 5px;
   }
   .layout-brand .view-brand-campaign-list .empty-state {
@@ -12236,11 +12308,15 @@ tags-input .autocomplete .suggestion-item em {
   .layout-brand .view-brand-campaign-list .example-campaign .page-header {
     margin-bottom: 5px;
   }
+  .layout-brand .view-brand-detail-draft,
+  .layout-brand .view-brand-campaign-detail-published {
+    padding-bottom: 0px;
+  }
   .col-info-label {
     font-size: 12px;
     color: #8692a8;
   }
-  /*--- PoomWWW Speacial Code ---*/
+  /*--- Poon WWW Speacial Code ---*/
   .input-dropdown .form-control.filter {
     width: 100% !important;
     margin-bottom: 20px;

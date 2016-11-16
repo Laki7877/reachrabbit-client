@@ -1090,7 +1090,7 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
                 remove: "&?",
                 removeable: "&?",
                 viewable: "&?",
-                view: "&?" 
+                view: "&?"
             },
             templateUrl: 'components/templates/card-campaign-header.html',
             link: function (scope, element, attrs, ctrl, transclude) {
@@ -1408,7 +1408,7 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
                 if(!scope.singularEndpointName){
                     scope.singularEndpointName = scope.endpointName.toLowerCase().replace(/ies$/, 'y').replace(/s$/,'');
                 }
-                
+
                 if(!scope.baseClass){
                     scope.baseClass = 'btn-width-max btn-minimal';
                 }
@@ -1478,7 +1478,7 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
                 };
 
                 scope.getValue = function (obj) {
-                    
+
                     return _.get(obj, scope.displayBy);
                 };
             }

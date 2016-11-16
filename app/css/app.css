@@ -11482,6 +11482,12 @@ ul.payment-methods {
 .uib-centerize {
   margin: auto;
 }
+.jumping-load {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 50px;
+}
 /*---End of the CSS World---*/
 /*---Layout Portal---*/
 .layout-portal {

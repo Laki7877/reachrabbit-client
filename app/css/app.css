@@ -11585,9 +11585,6 @@ ul.payment-methods {
   background-color: #f9f9fb;
   /* Specific View in Layout Influencer */
 }
-.layout-influencer .container {
-  width: 970px;
-}
 .layout-influencer .view-influencer-campaign-list .card-thumbnail,
 .layout-influencer .view-influencer-campaign-list .workroom .card-campaign-thumbnail {
   margin-bottom: 30px;
@@ -12273,12 +12270,18 @@ tags-input .autocomplete .suggestion-item em {
     margin-top: 5px;
     margin-bottom: 10px;
   }
-  .layout-portal .view-brand-login {
+  .layout-portal .view-brand-login,
+  .layout-portal .view-influencer-signup {
     position: absolute;
     top: 50%;
     margin-top: -180px;
   }
-  .layout-portal .view-brand-signup {
+  .layout-portal .view-brand-signup,
+  .layout-portal .view-influencer-login,
+  .layout-portal .view-influencer-signup-select-page,
+  .layout-portal .view-influencer-signup-confirmation,
+  .layout-portal .view-influencer-signup-email,
+  .layout-portal .view-admin-login {
     margin-top: 15px;
   }
   /*---Layout Brand---*/

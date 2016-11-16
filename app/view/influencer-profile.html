@@ -94,6 +94,23 @@
             </div>
           </div>
 
+          <div class="card-row" ng-if="!showPassword">
+             <div class="card-body-content-label with-input">
+            </div>
+            <div class="card-body-content">
+              <a ng-click="setShowPassword()"><i class="fa fa-lock"></i> ตั้งรหัสผ่านใหม่</a>
+            </div>
+          </div>
+          <div class="card-row" ng-if="showPassword" form-error="form.password">
+            <div class="card-body-content-label with-input">
+              ตั้งรหัสผ่านใหม่
+            </div>
+            <div class="card-body-content">
+              <input type="password" name="password" ng-model="formData.password" class="form-control" ng-minlength="8" maxlength="100" placeholder="ความยาวอย่างน้อย 8 ตัวอักษร">
+              <div input-error></div>
+            </div>
+          </div>
+
           <div class="card-row" form-error="form.phoneNumber">
             <div class="card-body-content-label with-input">
               เบอร์ติดต่อ
@@ -131,22 +148,6 @@
                 <select class="form-control" name="gender" ng-model="formData.influencer.gender" ng-options="x.value as x.name for x in genderOptions" ng-default="-- เลือกเพศ --"></select>
                 <i class="fa fa-caret-down"></i>
               </div>
-            </div>
-          </div>
-          <div class="card-row" ng-if="!showPassword">
-             <div class="card-body-content-label with-input">
-            </div>
-            <div class="card-body-content">
-              <a ng-click="setShowPassword()"><i class="fa fa-lock"></i> ตั้งรหัสผ่านใหม่</a>
-            </div>
-          </div>
-          <div class="card-row" ng-if="showPassword" form-error="form.password">
-            <div class="card-body-content-label with-input">
-              ตั้งรหัสผ่านใหม่
-            </div>
-            <div class="card-body-content">
-              <input type="password" name="password" ng-model="formData.password" class="form-control" ng-minlength="8" maxlength="100" placeholder="ความยาวอย่างน้อย 8 ตัวอักษร">
-              <div input-error></div>
             </div>
           </div>
 

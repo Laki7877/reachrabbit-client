@@ -8050,8 +8050,8 @@ ol {
   margin-right: 10px;
 }
 .no-scroll {
-  overflow: hidden;
-  position: fixed;
+  overflow: hidden !important;
+  position: fixed !important;
 }
 /*---Zone---*/
 .zone-alert {

@@ -127,31 +127,33 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
             ('brand-campaign-detail-draft' | isState) ||
             ('brand-campaign-detail-edit' | isState) ||
             ('brand-campaign-detail-published' | isState) }">
-          <span class="number-circle">1</span><span class="menu-text">ลงประกาศงาน</span>
+          <span class="number-circle">1</span>
+          <span class="menu-text">ลงประกาศงาน</span>
         </li>
         <li ui-sref="brand-inbox({status:'Selection'})" ng-class="{
             'active':
             ('brand-inbox' | isState: {status: 'Selection'}) ||
             (('brand-workroom' | isState) && proposal.status === 'Selection')}">
-          <span class="number-circle">2</span><span class="menu-text">คัดเลือก ({{inbox.selection.proposalCount || '0'}})
-          <div ng-if="inbox.selection.unreadMessageCount > 0" class="step-mushroom"></div>
+          <span class="number-circle">2</span>
+          <span class="menu-text">คัดเลือก ({{inbox.selection.proposalCount || '0'}})<div class="step-mushroom" ng-if="inbox.selection.unreadMessageCount > 0"></div></span>
         </li>
         <li ui-sref="brand-cart" ng-class="{ 'active':
             ('brand-cart' | isState) ||
             ('brand-transaction-detail' | isState) }">
-          <span class="number-circle">3</span><span class="menu-text">ชำระเงิน ({{inbox.cart || '0'}})</span>
+          <span class="number-circle">3</span>
+          <span class="menu-text">ชำระเงิน ({{inbox.cart || '0'}}</span>
         </li>
         <li ui-sref="brand-inbox({status:'Working'})" ng-class="{ 'active':
             ('brand-inbox' | isState : {status: 'Working'}) ||
             (('brand-workroom' | isState) &&  proposal.status === 'Working')}"  >
-          <span class="number-circle">4</span><span class="menu-text">อนุมัติงาน ({{inbox.working.proposalCount || '0'}})</span>
-          <span ng-if="inbox.working.unreadMessageCount > 0" class="step-mushroom"></span>
+          <span class="number-circle">4</span>
+          <span class="menu-text">อนุมัติงาน ({{inbox.working.proposalCount || '0'}})<div class="step-mushroom" ng-if="inbox.working.unreadMessageCount > 0"></div></span>
         </li>
         <li ui-sref="brand-inbox({status:'Complete'})" ng-class="{ 'active':
             ('brand-inbox' | isState: {status:'Complete'}) ||
             (('brand-workroom' | isState) &&  proposal.status === 'Complete')}" >
-          <span class="number-circle">5</span><span class="menu-text">เสร็จสิ้น ({{inbox.complete.proposalCount || '0'}})
-          <div ng-if="inbox.complete.unreadMessageCount > 0" class="step-mushroom"></div>
+          <span class="number-circle">5</span>
+          <span class="menu-text">เสร็จสิ้น ({{inbox.complete.proposalCount || '0'}})<div class="step-mushroom" ng-if="inbox.complete.unreadMessageCount > 0"></div></span>
         </li>
       </ul>
       <div class="menu-section">

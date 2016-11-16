@@ -10,6 +10,19 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    clean: ['app/dist'],
+    rev: {
+      assets:{
+       files: [
+         {
+           src: ['app/dist/bundle.*.js']
+         },
+         {
+           src: ['app/dist/vendor.js']
+         }
+       ]
+      }
+    },
     copy: {
       production: {
         files: {
@@ -240,17 +253,17 @@ module.exports = function (grunt) {
         var md5FileName = 'app/components/templates/app-checksum.html';
         grunt.file.write(md5FileName, md5Hash);
         grunt.log.write('File "' + md5FileName + '" created.').verbose.write('...').ok();
+        grunt.file.write('hash.txt', md5Hash);
   });
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'checksum', 'concurrent:dev']);
   grunt.registerTask('test', ['concurrent:test']);
   grunt.registerTask('build', ['browserify:src']);
-
   grunt.registerTask('edward', ['copy:edward', 'browserify', 'uglify:vendor']);
   grunt.registerTask('bella', ['copy:bella', 'browserify', 'uglify:vendor']);
   grunt.registerTask('eclipse', ['copy:eclipse', 'browserify', 'uglify:vendor']);
-  grunt.registerTask('production', ['copy:production', 'browserify:src', 'uglify:vendor']);
+  grunt.registerTask('production', ['clean', 'copy:production', 'browserify:src', 'uglify:vendor', 'rev']);
 
   grunt.registerTask('vendor', ['uglify:vendor']);
 

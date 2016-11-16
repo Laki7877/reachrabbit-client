@@ -210,8 +210,8 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
 
     <contact-us class="desktop-only"></contact-us>
     <div ng-include="'components/templates/debugga.html'" class="desktop-only"></div>
-    <script src="/dist/vendor.js"></script>
-    <script src="/dist/bundle.influencer.js"></script>
+    <script src="/dist/<%- bundles['vendor.js'] %>"></script>
+    <script src="/dist/<%- bundles['bundle.influencer.js'] %>"></script>
     <script src="https://cdn.ravenjs.com/3.1.1/raven.min.js"></script>
 
 </body>

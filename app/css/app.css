@@ -8051,6 +8051,7 @@ ol {
 }
 .no-scroll {
   overflow: hidden;
+  position: fixed;
 }
 /*---Zone---*/
 .zone-alert {

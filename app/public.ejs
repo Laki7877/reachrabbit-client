@@ -37,6 +37,10 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
 </head>
 
 <body class="layout-influencer">
+    <div class="jumping-load">
+      <img src="images/Jumping.gif" class="img-circle" alt="" />
+    </div>
+
     <div class="api_override_box" ng-cloak ng-if="API_OVERRIDE_ACTIVE">
         <span class="label label-danger">API OVERRIDE ON</span>
     </div>
@@ -69,7 +73,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
     <div ng-include="'components/templates/debugga.html'"></div>
     <script src="/dist/<%- bundles['vendor.js'] %>"></script>
     <script src="/dist/<%- bundles['bundle.public.js'] %>"></script>
-    <script src="https://cdn.ravenjs.com/3.1.1/raven.min.js"></script>
+  <script>$('.jumping-load').hide()</script>
 
 </body>
 

@@ -56,5 +56,5 @@ angular.module('reachRabbitApp', [
   .config(['$locationProvider', 'cfpLoadingBarProvider', function ($locationProvider, cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
   }])
-  .constant('BusinessConfig', require('../business.json'))
-  .run(require('./run'));
+  .constant('BusinessConfig', require('../business.json'));
+require('./run');

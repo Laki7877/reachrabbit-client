@@ -59,5 +59,6 @@ angular.module('reachRabbitApp', [
     // $routeProvider.otherwise({redirectTo: '/404'});
     cfpLoadingBarProvider.includeSpinner = false;
   }])
-  .constant('BusinessConfig', require('../business.json'))
-  .run(require('./run'));
+  .constant('BusinessConfig', require('../business.json'));
+
+require('./run');

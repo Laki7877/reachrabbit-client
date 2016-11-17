@@ -261,10 +261,13 @@ module.exports = function (grunt) {
   grunt.registerTask('test', ['concurrent:test']);
   grunt.registerTask('build', ['browserify:src']);
 
-  grunt.registerTask('edward', ['clean', 'copy:edward', 'browserify', 'uglify:vendor', 'rev']);
-  grunt.registerTask('bella', ['clean', 'copy:bella', 'browserify', 'uglify:vendor', 'rev']);
-  grunt.registerTask('eclipse', ['clean', 'copy:eclipse', 'browserify', 'uglify:vendor', 'rev']);
-  grunt.registerTask('production', ['clean', 'copy:production', 'browserify:src', 'uglify:vendor', 'rev']);
+  grunt.registerTask('edward', ['clean', 'uglify:vendor', 'copy:edward', 'browserify', 'uglify:vendor', 'rev']);
+  grunt.registerTask('bella', ['clean', 'uglify:vendor', 'copy:bella', 'browserify', 'uglify:vendor', 'rev']);
+  grunt.registerTask('eclipse', ['clean', 'uglify:vendor', 'copy:eclipse', 'browserify', 'uglify:vendor', 'rev']);
+  grunt.registerTask('production', ['clean', 'uglify:vendor', 'copy:production', 'browserify:src', 'uglify:vendor', 'rev']);
+
+  //bella without minify (max)
+  grunt.registerTask('bella_max', ['clean', 'uglify:vendor', 'copy:bella', 'browserify', 'rev']);
 
   grunt.registerTask('vendor', ['uglify:vendor']);
 

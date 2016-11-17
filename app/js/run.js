@@ -1,4 +1,5 @@
-module.exports = function ($rootScope, $uibModal, $timeout, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
+angular.module('reachRabbitApp')
+.run(function ($rootScope, $uibModal, $timeout, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
 
   $rootScope.hideMenu = function (delay) {
     $timeout(function () {
@@ -225,4 +226,4 @@ module.exports = function ($rootScope, $uibModal, $timeout, InfluencerAccountSer
     $rootScope.pollInbox(true);
 
   }
-}
+});

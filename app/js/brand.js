@@ -32,32 +32,6 @@ angular.module('reachRabbitApp', [
   'reachRabbitApp.brand.controller',
   'reachRabbitApp.brand.routes',
 ])
-  //Mock data for testing
-  .constant('MockData', {
-    categories: [
-      {
-        categoryName: 'ความงาม'
-      },
-      {
-        categoryName: 'ความแมว'
-      },
-      {
-        categoryName: 'ไก่ทอด'
-      },
-      {
-        categoryName: 'แพทฟอม'
-      },
-      {
-        categoryName: 'พารวย'
-      },
-      {
-        categoryName: 'Double A'
-      },
-      {
-        categoryName: 'CP ALL'
-      }
-    ]
-  })
   //Example Campaign Constants (not mock)
   .constant('ExampleCampaigns', [
     {
@@ -87,5 +61,6 @@ angular.module('reachRabbitApp', [
     // $routeProvider.otherwise({redirectTo: '/404'});
     cfpLoadingBarProvider.includeSpinner = false;
   }])
-  .constant('BusinessConfig', require('../business.json'))
-  .run(require('./run'));
+  .constant('BusinessConfig', require('../business.json'));
+
+require('./run');

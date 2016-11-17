@@ -222,10 +222,21 @@
 
   /*---Specific Card---*/
   .card-inbox {
+    min-height: auto;
     .card-body {
       padding: 0px 0px 0px 0px;
+      .empty-state{
+        padding-top: 20px;
+        margin: 15px;
+        img{
+          display: none;
+        }
+      }
     }
     table{
+      tbody tr:first-child td{
+        border-top: 0px;
+      }
       .col-name{
         white-space:normal;
         overflow: hidden;
@@ -240,6 +251,7 @@
         width: 80px;
         .btn{
           width: 80px;
+          margin-bottom: 0px !important;
         }
       }
     }

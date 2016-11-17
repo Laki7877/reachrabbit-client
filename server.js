@@ -7,7 +7,7 @@ var compression = require('compression')
 
 
 var bundles = {};
-fs.readdir(__dirname+'/app/dist', function(err, files){
+fs.readdir(__dirname+'/app/dist', {}, function(err, files){
   files.forEach(function(item){
     var unhashed_items = item.split(".");
     unhashed_items.shift();

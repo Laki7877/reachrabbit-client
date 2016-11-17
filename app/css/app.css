@@ -11136,6 +11136,7 @@ div:focus {
 }
 .chatbox-card .message-area .message .message-body .message-heading .message-time {
   float: right;
+  margin-top: 3px;
 }
 .chatbox-card .message-area .message .message-body .message-content {
   color: #8692a8;
@@ -12324,8 +12325,23 @@ tags-input .autocomplete .suggestion-item em {
     display: none;
     margin: 0px;
   }
+  .workroom .chatbox-header h3 {
+    max-width: 185px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .workroom .chatbox-card {
+    margin-bottom: 0px;
+  }
   .workroom .chatbox-card .message-area .message .message-left {
     display: none;
+  }
+  .workroom .chatbox-card .message-area .message .message-body .message-heading h4 {
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .workroom .chatbox-card .message-input .pull-right {
     float: left !important;

@@ -423,11 +423,30 @@
         margin: 0px;
       }
     }
+    .chatbox-header{
+      h3{
+        max-width: 185px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
     .chatbox-card{
+      margin-bottom: 0px;
       .message-area{
         .message{
           .message-left{
             display: none;
+          }
+          .message-body{
+            .message-heading{
+              h4{
+                max-width: 140px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
+            }
           }
         }
       }

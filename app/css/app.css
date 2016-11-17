@@ -12132,8 +12132,45 @@ tags-input .autocomplete .suggestion-item em {
     margin-top: 0px;
   }
   /*---Specific Card---*/
+  .card-inbox {
+    min-height: auto;
+  }
   .card-inbox .card-body {
     padding: 0px 0px 0px 0px;
+  }
+  .card-inbox .card-body .empty-state {
+    padding-top: 20px;
+    margin: 15px;
+  }
+  .card-inbox .card-body .empty-state img {
+    display: none;
+  }
+  .card-inbox table tbody tr:first-child td {
+    border-top: 0px;
+  }
+  .card-inbox table .col-name {
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: inherit;
+  }
+  .card-inbox table .col-name .profile-picture {
+    width: 40px;
+    margin-right: 0px;
+  }
+  .card-inbox table .col-button {
+    padding-left: 10px;
+    width: 80px;
+  }
+  .card-inbox table .col-button .btn,
+  .card-inbox table .col-button .btn-primary,
+  .card-inbox table .col-button .btn-secondary,
+  .card-inbox table .col-button .btn-secondary-highlight,
+  .card-inbox table .col-button .btn-secondary-active,
+  .card-inbox table .col-button .btn-clean,
+  .card-inbox table .col-button .btn-trace,
+  .card-inbox table .col-button .btn-social {
+    width: 80px;
+    margin-bottom: 0px !important;
   }
   .card-campaign-list-item .card-title {
     position: relative;

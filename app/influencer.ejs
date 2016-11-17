@@ -14,7 +14,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Influencer</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="bower_components/json-formatter/dist/json-formatter.min.css">
@@ -193,7 +193,9 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
         <div class="container-fluid">
             <div class="navbar-header">
                 <div class="left-navbar">
-                    <button type="button" name="menubtn" class="btn btn-mobile-menu btn-with-count pull-left" ng-click="showMenu=true">เมนู<span class="step-mushroom"></span></button>
+                    <button type="button" name="menubtn" class="btn btn-mobile-menu btn-with-count pull-left" ng-click="showMenu=true">
+                      เมนู
+                    <span class="step-mushroom" ng-if="(inbox.working.unreadMessageCount+inbox.complete.unreadMessageCount+inbox.selection.unreadMessageCount) > 0"></span></button>
                 </div>
                 <div class="center-navbar">
                     <img src="images/logo-nav-inverse.png" class="logo img-responsive" alt="ReachRabbit" />

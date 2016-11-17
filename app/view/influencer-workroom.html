@@ -5,12 +5,14 @@
         <div class="zone-body">
             <div class="container">
                 <div class="row">
-                  <div class="col-xs-3">
+                  <div class="col-sm-3">
 
                     <card-workroom-campaign-thumbnail
                       ng-model="proposal"
                       ui-sref="influencer-campaign-detail({campaignId: proposal.campaign.campaignId })"
-                      cute-bunny-hide>
+                      cute-bunny-hide
+                      class="desktop-only"
+                      >
                     </card-workroom-campaign-thumbnail>
 
                     <card-proposal-detail ng-model="proposal" cute-bunny-hide>
@@ -82,14 +84,14 @@
                     </card-proposal-detail>
 
                   </div>
-                  <div class="col-xs-9">
+                  <div class="col-sm-9">
                       <div class="chatbox-card">
                           <div class="chatbox-header">
                               <h3>{{ proposal.campaign.brand.brandName | truncate: 50 }}</h3>
                               <a class="link-view-profile" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId, proposalId: proposal.proposalId })">
                                 ดูโปรไฟล์
                               </a>
-                              <div class="chatbox-status">
+                              <div class="chatbox-status desktop-only">
                                 <span class="color-grey">สถานะ: </span>
                                 <span class="color-green" ng-if="proposal.status == 'Selection'">รอการคัดเลือก</span>
                                 <!-- tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ รอการคัดเลือกจาก Brand" -->

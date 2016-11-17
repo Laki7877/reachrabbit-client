@@ -11851,6 +11851,7 @@ tags-input .autocomplete .suggestion-item em {
   }
   .layout-brand,
   .layout-influencer {
+    padding-top: 50px;
     position: relative;
   }
   .desktop-only {
@@ -12388,9 +12389,6 @@ tags-input .autocomplete .suggestion-item em {
     max-height: 280px;
   }
   /*---Layout Brand---*/
-  .layout-brand {
-    padding-top: 50px;
-  }
   .layout-brand .view-brand-campaign-list .page-header {
     margin-top: 20px;
     margin-bottom: 5px;

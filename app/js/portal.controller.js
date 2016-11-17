@@ -4,7 +4,7 @@ angular.module('reachRabbitApp.portal.controller', ['reachRabbitApp.common.servi
     .controller('BrandSigninController', function ($scope, $rootScope, Config, $location, AccountService, UserProfile, $window, NcAlert) {
         var u = UserProfile.get();
         $scope.formData = {};
-        
+
         $window.localStorage.removeItem('token');
         UserProfile.clear();
 

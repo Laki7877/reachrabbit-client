@@ -10,7 +10,14 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    clean: ['app/dist'],
+    clean: {
+      all: ['app/dist/*'],
+      bundle: ['app/dist/*.bundle.*'],
+      brand: ['app/dist/*.bundle.brand.js'], 
+      admin: ['app/dist/*.bundle.admin.js'],
+      portal: ['app/dist/*.bundle.portal.js'],
+      influencer: ['app/dist/*.bundle.influencer.js'] 
+    },
     rev: {
       assets:{
        files: [
@@ -121,6 +128,22 @@ module.exports = function (grunt) {
       influencer: {
         files: {
           'app/dist/bundle.influencer.js': ['app/js/influencer.js'],
+        },
+        options: {
+          transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
+        }
+      },
+      admin: {
+        files: {
+          'app/dist/bundle.admin.js': ['app/js/admin.js'],
+        },
+        options: {
+          transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
+        }
+      },
+      portal: {
+        files: {
+          'app/dist/bundle.portal.js': ['app/js/portal.js'],
         },
         options: {
           transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
@@ -261,13 +284,16 @@ module.exports = function (grunt) {
   grunt.registerTask('test', ['concurrent:test']);
   grunt.registerTask('build', ['browserify:src']);
 
-  grunt.registerTask('edward', ['clean', 'uglify:vendor', 'copy:edward', 'browserify', 'uglify:vendor', 'rev']);
-  grunt.registerTask('bella', ['clean', 'uglify:vendor', 'copy:bella', 'browserify', 'uglify:vendor', 'rev']);
-  grunt.registerTask('eclipse', ['clean', 'uglify:vendor', 'copy:eclipse', 'browserify', 'uglify:vendor', 'rev']);
-  grunt.registerTask('production', ['clean', 'uglify:vendor', 'copy:production', 'browserify:src', 'uglify:vendor', 'rev']);
+  grunt.registerTask('edward', ['clean:all', 'uglify:vendor', 'copy:edward', 'browserify', 'uglify:vendor', 'rev']);
+  grunt.registerTask('bella', ['clean:all', 'uglify:vendor', 'copy:bella', 'browserify', 'uglify:vendor', 'rev']);
+  grunt.registerTask('eclipse', ['clean:all', 'uglify:vendor', 'copy:eclipse', 'browserify', 'uglify:vendor', 'rev']);
+  grunt.registerTask('production', ['clean:all', 'uglify:vendor', 'copy:production', 'browserify:src', 'uglify:vendor', 'rev']);
 
-  //bella without minify (max)
-  grunt.registerTask('bella_max', ['clean', 'uglify:vendor', 'copy:bella', 'browserify', 'rev']);
+  grunt.registerTask('bella-dev-all', ['clean:bundle', 'copy:bella', 'browserify', 'rev']);
+  grunt.registerTask('bella-dev-influencer', ['clean:influencer', 'copy:bella', 'browserify:influencer', 'rev']);
+  grunt.registerTask('bella-dev-brand', ['clean:brand', 'copy:bella', 'browserify:brand', 'rev']);
+  grunt.registerTask('bella-dev-admin', ['clean:admin', 'copy:bella', 'browserify:admin', 'rev']);
+  grunt.registerTask('bella-dev-portal', ['clean:portal', 'copy:bella', 'browserify:portal', 'rev']);
 
   grunt.registerTask('vendor', ['uglify:vendor']);
 

@@ -10,24 +10,27 @@
           <table ng-if="transactions.numberOfElements > 0" class="table" sorter ng-model="transactions" callback="load">
             <thead>
               <tr>
-                <th class="col-name" sort="updatedAt">วันที่แก้ไขล่าสุด</th>
-                <th class="col-status" sort="status">สถานะ</th>
+                <th class="desktop-only col-name" sort="updatedAt">วันที่แก้ไขล่าสุด</th>
+                <th class="desktop-only col-status" sort="status">สถานะ</th>
                 <th sort="transactionId">รหัสการถอนเงิน</th>
-                <th class="col-rabbit-score" sort="proposals">จำนวนรายการ</th>
-                <th class="col-time" sort="amount">ยอดถอน (บาท)</th>
+                <th class="desktop-only col-rabbit-score" sort="proposals">จำนวนรายการ</th>
+                <th class="desktop-only col-time" sort="amount">ยอดถอน (บาท)</th>
                 <th class="col-button"></th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="transaction in transactions.content">
-                <td class="col-name">{{ transaction.updatedAt | date }}</td>
-                <td class="col-status">
+                <td class="desktop-only col-name">{{ transaction.updatedAt | date }}</td>
+                <td class="desktop-only col-status">
                   <span class="color-yellow" ng-if="transaction.status == 'Pending'"><i class="fa fa-clock-o"></i> รอรับเงิน</span>
                   <span class="color-green" ng-if="transaction.status == 'Complete'"><i class="fa fa-check-circle-o"></i> ได้รับเงินแล้ว</span>
                 </td>
-                <td>{{ transaction.transactionNumber }}</td>
-                <td class="col-rabbit-score">{{ transaction.proposalCount || '-' }}</td>
-                <td class="col-time">{{ transaction.amount | number: 0 }}</td>
+                <td>
+                  <div> {{ transaction.transactionNumber }} </div>
+                  <div class="mobile-only col-info-label">{{ transaction.amount | currency: '': 0 }} บาท</div>
+                </td>
+                <td class="desktop-only col-rabbit-score">{{ transaction.proposalCount || '-' }}</td>
+                <td class="desktop-only col-time">{{ transaction.amount | number: 0 }}</td>
                 <td class="col-button">
                   <button class="btn-secondary btn-minimal" ui-sref="influencer-payout-detail({walletId: transaction.influencerTransactionDocument[0].walletId })">ดูรายละเอียด</button>
                 </td>

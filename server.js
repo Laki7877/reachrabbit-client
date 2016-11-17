@@ -36,6 +36,11 @@ app.use(compression({filter: shouldCompress}));
 app.use(express.static('app/', { maxage: '24h' }));
 
 app.get('/?', function(req,res){
+  //for facebook
+  if(req.url.includes("?code=")){
+    return res.send("");
+  }
+
   if(req.host == "app.reachrabbit.com"){
     res.redirect("http://www.reachrabbit.com");
   }else{

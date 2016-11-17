@@ -35,7 +35,14 @@ var port = process.env.HTTPS_PORT || 443;
 app.use(compression({filter: shouldCompress}));
 app.use(express.static('app/', { maxage: '24h' }));
 
-console.log(bundles);
+app.get('/?', function(req,res){
+  if(req.host == "app.reachrabbit.com"){
+    res.redirect("http://www.reachrabbit.com");
+  }else{
+    res.redirect("https://" + req.host + "/fake-landing")
+  }
+});
+
 app.get('/:name',function(req,res){
   if(req.params.name.endsWith(".html")){
      req.params.name = req.params.name.replace(/\.html$/, '');
@@ -43,6 +50,10 @@ app.get('/:name',function(req,res){
   res.render(path.join(__dirname+'/app/' + req.params.name), {
     "bundles": bundles
   });
+});
+
+app.use(function(err, req, res, next){
+  res.render(path.join(__dirname+'/app/error'), { status: 404, url: req.url });
 });
 
 // Redirect http to https

@@ -11535,7 +11535,7 @@ ul.payment-methods {
   font-style: normal;
   margin-bottom: 10px;
 }
-.layout-portal .view-influencer-signup-select-page .card-body {
+.layout-portal .view-influencer-signup-select-page .card-portal .card-body {
   padding-bottom: 0px;
 }
 .layout-portal .view-influencer-signup-confirmation,
@@ -12339,6 +12339,12 @@ tags-input .autocomplete .suggestion-item em {
   .layout-portal .view-influencer-signup-email,
   .layout-portal .view-admin-login {
     margin-top: 15px;
+  }
+  .layout-portal .view-influencer-signup-select-page .card-portal .card-body {
+    padding-bottom: 0px;
+  }
+  .layout-portal .view-influencer-signup-select-page .scrollable-radio {
+    max-height: 280px;
   }
   /*---Layout Brand---*/
   .layout-brand {

@@ -37,6 +37,9 @@ app.use(express.static('app/', { maxage: '24h' }));
 
 console.log(bundles);
 app.get('/:name',function(req,res){
+  if(req.params.name.endsWith(".html")){
+     req.params.name = req.params.name.replace(/\.html$/, '');
+  }
   res.render(path.join(__dirname+'/app/' + req.params.name), {
     "bundles": bundles
   });

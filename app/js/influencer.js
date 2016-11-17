@@ -87,7 +87,7 @@ angular.module('reachRabbitApp', [
     cfpLoadingBarProvider.includeSpinner = false;
   }])
   .constant('BusinessConfig', {
-    MIN_FOLLOWER_COUNT: 1,
+    MIN_FOLLOWER_COUNT: 0,
     INFLUENCER_FEE: 0.18,
     BRAND_TAX_FEE: 0.03,
     INFLUENCER_BANK_TF_FEE: 30,

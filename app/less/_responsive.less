@@ -39,7 +39,7 @@
     text-align: center;
     background: none;
     padding: 3px;
-    margin: 10px;
+    margin: 10px 0px;
   }
   .btn-with-margin{
     margin: 0px;
@@ -55,6 +55,13 @@
 
   /*---Navigation Bar---*/
   .navbar{
+    position: fixed;
+    width: 100%;
+    z-index: 800;
+    top: 0px;
+    .navbar-header{
+      margin: 0px -5px;
+    }
     .step-mushroom{
       top: 5px;
       right: 8px;
@@ -450,6 +457,7 @@
 
   /*---Layout Brand---*/
   .layout-brand{
+    padding-top: 50px;
     .view-brand-campaign-list{
       .page-header{
         margin-top: 20px;

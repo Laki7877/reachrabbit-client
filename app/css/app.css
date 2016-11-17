@@ -11871,7 +11871,7 @@ tags-input .autocomplete .suggestion-item em {
     text-align: center;
     background: none;
     padding: 3px;
-    margin: 10px;
+    margin: 10px 0px;
   }
   .btn-mobile-menu:focus,
   .btn-mobile-menu.focus {
@@ -11978,6 +11978,15 @@ tags-input .autocomplete .suggestion-item em {
     margin: 0px 7.5px;
   }
   /*---Navigation Bar---*/
+  .navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 800;
+    top: 0px;
+  }
+  .navbar .navbar-header {
+    margin: 0px -5px;
+  }
   .navbar .step-mushroom {
     top: 5px;
     right: 8px;
@@ -12123,6 +12132,9 @@ tags-input .autocomplete .suggestion-item em {
     margin-top: 0px;
   }
   /*---Specific Card---*/
+  .card-inbox .card-body {
+    padding: 0px 0px 0px 0px;
+  }
   .card-campaign-list-item .card-title {
     position: relative;
     float: left;
@@ -12329,6 +12341,9 @@ tags-input .autocomplete .suggestion-item em {
     margin-top: 15px;
   }
   /*---Layout Brand---*/
+  .layout-brand {
+    padding-top: 50px;
+  }
   .layout-brand .view-brand-campaign-list .page-header {
     margin-top: 20px;
     margin-bottom: 5px;

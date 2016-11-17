@@ -214,6 +214,11 @@
   }
 
   /*---Specific Card---*/
+  .card-inbox {
+    .card-body {
+      padding: 0px 0px 0px 0px;
+    }
+  }
   .card-campaign-list-item{
     .card-title{
       .make-xs-column(12);
@@ -359,6 +364,52 @@
     .col-bank-name{
       img{
         margin-bottom: 5px;
+      }
+    }
+  }
+
+  /*---Workroom---*/
+  .workroom{
+    .card-profile{
+      .card-image{
+        width: 100px;
+        margin: 0px auto 0px auto;
+      }
+      .card-title-content{
+        display: none;
+        margin: 0px;
+      }
+    }
+    .chatbox-card{
+      .message-area{
+        .message{
+          .message-left{
+            display: none;
+          }
+        }
+      }
+      .message-input{
+        .pull-right{
+          float: left !important;
+        }
+        button{
+          margin: 0px;
+          width: 122px;
+          &.btn-secondary{
+            margin-right: 10px;
+          }
+        }
+        .loading{
+          display: block;
+        }
+        .preview-item{
+          display: block;
+          margin-bottom: 10px;
+          margin-right: 10px;
+          img{
+            margin-left: 0px;
+          }
+        }
       }
     }
   }

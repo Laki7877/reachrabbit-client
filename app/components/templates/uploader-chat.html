@@ -4,5 +4,10 @@
         <img ng-src="{{accessor(m)}}" />
     </div>
 </div>
-<i class="fa fa-spinner fa-spin image-uploading" ng-if="loadingImage"></i>
+<div class="mobile-only" ng-if="loadingImage">
+  <p>
+    <i class="fa fa-spinner fa-spin image-uploading"></i> Loading<br>
+  </p>
+</div>
+<i class="fa fa-spinner fa-spin image-uploading desktop-only" ng-if="loadingImage"></i>
 <button ngf-select="upload($file)" ngf-accept="accept" class="btn-secondary btn-width-md btn-minimal"><i class="fa fa-paperclip fa-flip-horizontal" aria-hidden="true"></i> อัพโหลดไฟล์</button>

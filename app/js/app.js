@@ -1,5 +1,5 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /**
+  WARNING: Deprecated
  * App
  *
  * @author     Pat Sabpisal <ecegrid@gmail.com>
@@ -32,11 +32,13 @@ angular.module('reachRabbitApp', [
   'reachRabbitApp.brand.controller',
   'reachRabbitApp.influencer.controller',
   'reachRabbitApp.admin.controller',
+  'reachRabbitApp.public.controller',
   //Routes
   'reachRabbitApp.portal.routes',
   'reachRabbitApp.brand.routes',
   'reachRabbitApp.influencer.routes',
-  'reachRabbitApp.admin.routes'
+  'reachRabbitApp.admin.routes',
+  'reachRabbitApp.public.routes',
 ])
   //Mock data for testing
   .constant('MockData', {
@@ -202,6 +204,7 @@ angular.module('reachRabbitApp', [
       //Global function helpers
       $rootScope.getProfile = UserProfile.get;
       $rootScope.signOut = function (bounce_route) {
+        mixpanel.track("User Logout");
         //clear localstorage
         var ur = $window.localStorage.unauthorized_route;
         if (!ur) {
@@ -246,10 +249,12 @@ angular.module('reachRabbitApp', [
       $rootScope.$on('$stateChangeStart',
         function (event, toState, toParams, fromState, fromParams, options) {
 
-          //in case of brand
           if (!UserProfile.get()) {
             return;
           }
+
+          console.log("Mix Panelling");
+          mixpanel.track("Navigated to" + toState);
 
           //TODO: move to resolver
           //Other role specific functions
@@ -313,5 +318,3 @@ angular.module('reachRabbitApp', [
 
       }
     }]);
-
-},{}]},{},[1]);

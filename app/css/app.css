@@ -10981,6 +10981,7 @@ div:focus {
   background: url("../images/bg-layout-login.png") #019386;
 }
 .workroom .zone-header .page-header {
+  color: #ffffff;
   padding-bottom: 5px;
   margin-top: 20px;
   margin-bottom: 0px;
@@ -10998,6 +10999,7 @@ div:focus {
 .workroom .card-proposal-detail .nav-pills li {
   margin-left: 0px;
   text-align: center;
+  width: 50%;
 }
 .workroom .card-proposal-detail .nav-pills li a {
   color: #3e4a5e;
@@ -11005,7 +11007,6 @@ div:focus {
   border-radius: 0px;
   font-family: 'Kanit', sans-serif;
   padding-top: 13px;
-  width: 105px;
   height: 50px;
 }
 .workroom .card-proposal-detail .nav-pills li:first-child {
@@ -12259,6 +12260,39 @@ tags-input .autocomplete .suggestion-item em {
   /*---Table---*/
   .table .col-bank-name img {
     margin-bottom: 5px;
+  }
+  /*---Workroom---*/
+  .workroom .card-profile .card-image {
+    width: 100px;
+    margin: 0px auto 0px auto;
+  }
+  .workroom .card-profile .card-title-content {
+    display: none;
+    margin: 0px;
+  }
+  .workroom .chatbox-card .message-area .message .message-left {
+    display: none;
+  }
+  .workroom .chatbox-card .message-input .pull-right {
+    float: left !important;
+  }
+  .workroom .chatbox-card .message-input button {
+    margin: 0px;
+    width: 122px;
+  }
+  .workroom .chatbox-card .message-input button.btn-secondary {
+    margin-right: 10px;
+  }
+  .workroom .chatbox-card .message-input .loading {
+    display: block;
+  }
+  .workroom .chatbox-card .message-input .preview-item {
+    display: block;
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
+  .workroom .chatbox-card .message-input .preview-item img {
+    margin-left: 0px;
   }
   /*---Empty State---*/
   .empty-state {

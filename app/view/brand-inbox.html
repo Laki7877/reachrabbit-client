@@ -22,19 +22,19 @@
       </div>
       <cute-bunny></cute-bunny>
       <div class="card-inbox" cute-bunny-hide>
-        <div class="card-body desktop-only">
+        <div class="card-body">
           <table ng-if="proposals.numberOfElements > 0" class="table" sorter ng-model="proposals" callback="load">
-            <thead>
+            <thead class="desktop-only">
               <tr>
                 <th class="col-name" sort="influencer.influencerId">Influencer</th>
-                <th class="col-campaign-name" sort="campaign.campaignId">ชื่องาน</th>
-                <th class="col-price" sort="price">ราคา (บาท)</th>
-                <th ng-if="params.status == 'Working'">วันที่กำหนดส่ง</th>
-                <th ng-if="params.status == 'Complete'">วันที่เสร็จงาน</th>
-                <th ng-if="params.status == 'Selection'" class="col-rabbit-score" sort="score">
+                <th class="desktop-only col-campaign-name" sort="campaign.campaignId">ชื่องาน</th>
+                <th class="desktop-only col-price" sort="price">ราคา (บาท)</th>
+                <th class="desktop-only" ng-if="params.status == 'Working'">วันที่กำหนดส่ง</th>
+                <th class="desktop-only" ng-if="params.status == 'Complete'">วันที่เสร็จงาน</th>
+                <th class="desktop-only col-rabbit-score" ng-if="params.status == 'Selection'"  sort="score">
                   Reach <i uib-tooltip="Reach ถูกคำนวณโดยการเอา ผู้ติดตามทุกช่องทาง มาบวกรวมกัน" tooltip-placement="top" class="fa fa-question-circle"></i>
                 </th>
-                <th class="col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
+                <th class="desktop-only col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
                 <th class="col-button"></th>
               </tr>
             </thead>
@@ -47,19 +47,20 @@
                     </div>
                     <div class="media-body media-middle">
                       <div>{{proposal.influencer.user.name}}</div>
+                      <div class="mobile-only col-info-label">{{proposal.price | currency:'':0 }} บาท</div>
                       <div ng-if="params.status == 'Selection' && proposal.cart" class="color-green">เลือกแล้ว <i class="fa fa-check"></i></div>
                     </div>
                   </div>
                 </td>
-                <td class="col-campaign-name">{{proposal.campaign.title}}</td>
-                <td class="col-price">{{proposal.price | currency:'':0 }}</td>
-                <td ng-if="params.status == 'Working'">{{ proposal.dueDate | date }}</td>
-                <td ng-if="params.status == 'Complete'">{{ proposal.completeDate | date }}</td>
-                <td ng-if="params.status == 'Selection'" class="col-rabbit-score">{{ calculateReach(proposal) | number: 0}} คน</td>
-                <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
+                <td class="desktop-only col-campaign-name">{{proposal.campaign.title}}</td>
+                <td class="desktop-only col-price">{{proposal.price | currency:'':0 }}</td>
+                <td class="desktop-only" ng-if="params.status == 'Working'">{{ proposal.dueDate | date }}</td>
+                <td class="desktop-only" ng-if="params.status == 'Complete'">{{ proposal.completeDate | date }}</td>
+                <td class="desktop-only" ng-if="params.status == 'Selection'" class="col-rabbit-score">{{ calculateReach(proposal) | number: 0}} คน</td>
+                <td class="desktop-only" class="col-time">{{lastMessageUpdated(proposal)}}</td>
                 <td class="col-button">
                   <button class="btn-secondary btn-minimal btn-workroom btn-with-count" ui-sref="brand-workroom({proposalId: proposal.proposalId})">คุยงาน<span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span></button>
-                  <button class="btn-secondary btn-minimal" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId, proposalId: proposal.proposalId })">ดูโปรไฟล์</button>
+                  <button class="desktop-only btn-secondary btn-minimal" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId, proposalId: proposal.proposalId })">ดูโปรไฟล์</button>
                 </td>
               </tr>
             </tbody>
@@ -80,45 +81,6 @@
           <table-static ng-if="proposals.totalElements == 0 && params.search.length > 0">
             <div class="empty-state">
               <img src="images/icon-empty-folder.png"/>ไม่พบห้องคุยงานที่คุณค้นหา
-            </div>
-          </table-static>
-        </div>
-        <div class="card-body mobile-only">
-          <div class="list">
-            <div class="list-item container no-gutter" ng-repeat="proposal in proposals.content">
-              <div class="col-xs-3">
-                <img ng-src="{{proposal.influencer.user.profilePicture.url  || 'images/placeholder-profile-picture.png'}}" class="profile-picture" />
-              </div>
-              <div class="list-item-info col-xs-6">
-                <div class="profile-name text-ellipsis">{{proposal.influencer.user.name}}</div>
-                <div class="profile-price">ราคา: {{proposal.price | number}}</div>
-              </div>
-              <div class="list-item-btn col-xs-3">
-                  <button class="btn-secondary btn-minimal btn-workroom btn-with-count" ui-sref="brand-workroom({proposalId: proposal.proposalId})">คุยงาน<span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span></button>
-              </div>
-            </div>
-          </div>
-          <table-static ng-if="proposals.totalElements == 0 && params.search.length <= 0">
-            <div class="empty-state">
-              <div ng-if="params.status == 'Selection'">
-                <img src="images/icon-empty-folder.png"/>
-                <div class="empty-state-message">ยังไม่มีข้อเสนอให้คุณคัดเลือก <br/>กรุณารอ Influencer ส่งข้อเสนอให้คุณก่อนค่ะ</div>
-              </div>
-              <div ng-if="params.status == 'Working'">
-                <img src="images/icon-empty-folder.png"/>
-                <div class="empty-state-message">ยังไม่มีงานให้คุณอนุมัติ <br/>กรุณาคัดเลือก Influencer ที่ชอบและชำระเงินก่อนค่ะ
-                </div>
-              </div>
-              <div ng-if="params.status == 'Complete'">
-                <img src="images/icon-empty-folder.png"/>
-                <div class="empty-state-message">ยังไม่มีงานที่เสร็จสิ้น <br/>กรุณาอนุมัติงานของ Influencer เพื่อปิดงานค่ะ
-                </div>
-              </div>
-            </div>
-          </table-static>
-          <table-static ng-if="proposals.totalElements == 0 && params.search.length > 0">
-            <div class="empty-state">
-              <img src="images/icon-empty-folder.png"/><div class="empty-state-message">ไม่พบห้องคุยงานที่คุณค้นหา</div>
             </div>
           </table-static>
         </div>

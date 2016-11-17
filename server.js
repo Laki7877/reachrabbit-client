@@ -36,10 +36,14 @@ app.use(compression({filter: shouldCompress}));
 app.use(express.static('app/', { maxage: '24h' }));
 
 app.get('/?', function(req,res){
-  if(req.host == "app.reachrabbit.com"){
+  if(Object.keys(req.query).length > 0){
+    return res.send("Processing..");
+  }
+
+  if(req.hostname == "app.reachrabbit.com"){
     res.redirect("http://www.reachrabbit.com");
   }else{
-    res.redirect("https://" + req.host + "/fake-landing")
+    res.redirect("https://" + req.hostname + "/fake-landing")
   }
 });
 

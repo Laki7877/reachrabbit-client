@@ -39,7 +39,7 @@
     text-align: center;
     background: none;
     padding: 3px;
-    margin: 10px;
+    margin: 10px 0px;
   }
   .btn-with-margin{
     margin: 0px;
@@ -55,6 +55,13 @@
 
   /*---Navigation Bar---*/
   .navbar{
+    position: fixed;
+    width: 100%;
+    z-index: 800;
+    top: 0px;
+    .navbar-header{
+      margin: 0px -5px;
+    }
     .step-mushroom{
       top: 5px;
       right: 8px;
@@ -217,6 +224,24 @@
   .card-inbox {
     .card-body {
       padding: 0px 0px 0px 0px;
+    }
+    table{
+      .col-name{
+        white-space:normal;
+        overflow: hidden;
+        text-overflow:inherit;
+        .profile-picture {
+          width: 40px !important;
+          margin-right: 0px;
+        }
+      }
+      .col-button{
+        padding-left: 10px;
+        width: 80px;
+        .btn{
+          width: 80px;
+        }
+      }
     }
   }
   .card-campaign-list-item{
@@ -446,10 +471,21 @@
     .view-brand-signup, .view-influencer-login, .view-influencer-signup-select-page, .view-influencer-signup-confirmation, .view-influencer-signup-email, .view-admin-login{
       margin-top: 15px;
     }
+    .view-influencer-signup-select-page{
+      .card-portal{
+        .card-body{
+          padding-bottom: 0px;
+        }
+      }
+      .scrollable-radio{
+        max-height: 280px;
+      }
+    }
   }
 
   /*---Layout Brand---*/
   .layout-brand{
+    padding-top: 50px;
     .view-brand-campaign-list{
       .page-header{
         margin-top: 20px;

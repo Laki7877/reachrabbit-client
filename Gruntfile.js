@@ -260,9 +260,10 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['jshint', 'checksum', 'concurrent:dev']);
   grunt.registerTask('test', ['concurrent:test']);
   grunt.registerTask('build', ['browserify:src']);
-  grunt.registerTask('edward', ['copy:edward', 'browserify', 'uglify:vendor']);
-  grunt.registerTask('bella', ['copy:bella', 'browserify', 'uglify:vendor']);
-  grunt.registerTask('eclipse', ['copy:eclipse', 'browserify', 'uglify:vendor']);
+
+  grunt.registerTask('edward', ['clean', 'copy:edward', 'browserify', 'uglify:vendor', 'rev']);
+  grunt.registerTask('bella', ['clean', 'copy:bella', 'browserify', 'uglify:vendor', 'rev']);
+  grunt.registerTask('eclipse', ['clean', 'copy:eclipse', 'browserify', 'uglify:vendor', 'rev']);
   grunt.registerTask('production', ['clean', 'copy:production', 'browserify:src', 'uglify:vendor', 'rev']);
 
   grunt.registerTask('vendor', ['uglify:vendor']);

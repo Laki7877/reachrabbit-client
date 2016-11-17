@@ -1,16 +1,19 @@
 <form name="form" novalidate>
     <div class="viewport view-brand-workroom workroom">
       <zone-header historyback="true">
+        <h1 class="mobile-only">{{proposal.campaign.title}}</h1>
       </zone-header>
         <div class="zone-body">
             <div class="container">
                 <div class="row">
-                  <div class="col-xs-3">
+                  <div class="col-sm-3">
 
                       <card-workroom-campaign-thumbnail
                         ng-model="proposal"
                         ui-sref="brand-campaign-detail-published({campaignId: proposal.campaign.campaignId })"
-                        cute-bunny-hide>
+                        cute-bunny-hide
+                        class="desktop-only"
+                        >
                       </card-workroom-campaign-thumbnail>
 
                       <card-proposal-detail ng-model="proposal" cute-bunny-hide>
@@ -81,14 +84,14 @@
                       </card-proposal-detail>
 
                   </div>
-                  <div class="col-xs-9">
+                  <div class="col-sm-9">
                       <div class="chatbox-card">
                           <div class="chatbox-header">
                               <h3>{{ proposal.influencer.user.name | truncate: 50 }} </h3>
                               <a class="link-view-profile" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId, proposalId: proposal.proposalId })">
                                 ดูโปรไฟล์
                               </a>
-                              <div class="chatbox-status">
+                              <div class="chatbox-status desktop-only">
                                   <span class="color-grey">สถานะ: </span>
                                   <span class="color-green" ng-if="proposal.status == 'Selection'">รอคุณคัดเลือก</span>
                                   <!-- tooltip-placement="bottom" uib-tooltip="ตกลงขอบเขตการทำงาน และ เลือกข้อเสนอ เพื่อชำระเงิน" -->

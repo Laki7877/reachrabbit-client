@@ -1,6 +1,6 @@
 angular.module('reachRabbitApp')
 .run(function ($rootScope, $uibModal, $timeout, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
-
+  
   $rootScope.hideMenu = function (delay) {
     $timeout(function () {
       $rootScope.showMenu = false;
@@ -226,4 +226,15 @@ angular.module('reachRabbitApp')
     $rootScope.pollInbox(true);
 
   }
+})
+.factory('$exceptionHandler',  function($log) {
+    return function myExceptionHandler(exception, cause) {
+      
+      mixpanel.track('Uncaught frontend exception', {
+        exception: exception.stack,
+        cause: cause
+      });
+
+      $log.warn(exception, cause);
+    };
 });

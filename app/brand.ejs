@@ -35,7 +35,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
 
 </head>
 
-<body class="layout-brand" ng-class="{'no-scroll':$root.showMenu}">
+<body class="layout-brand" ng-class="{'no-scroll':$root.showMenu}" ng-swipe-left="$root.hideMenu();">
     <div class="jumping-load">
       <img src="images/Jumping.gif" class="img-circle" alt="" />
     </div>
@@ -212,7 +212,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
     <div class="desktop-only" ng-include="'components/templates/debugga.html'"></div>
     <script src="/dist/<%- bundles['vendor.js'] %>"></script>
     <script src="/dist/<%- bundles['bundle.brand.js'] %>"></script>
-  <script>$('.jumping-load').hide()</script>
+    <script>$('.jumping-load').hide()</script>
 
 </body>
 

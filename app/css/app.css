@@ -12257,8 +12257,8 @@ tags-input .autocomplete .suggestion-item em {
     width: 100px;
     margin: 10px auto 20px auto;
   }
-  .card-thumbnail:hover,
-  .workroom .card-campaign-thumbnail:hover {
+  .card-thumbnail,
+  .workroom .card-campaign-thumbnail {
     pointer-events: none;
   }
   /*---Mutli Selector---*/

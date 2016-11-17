@@ -7,29 +7,29 @@
           </div>
         </div>
       </div>
-      <div class="card-overview card-row ">
-      	<div class="card-info">
+      <div class="card-overview card-row">
+      	<div class="card-info" ng-if="data.isPage">
       		<div class="card-info-label">จำนวนคน Like เพจ</div>
       		<div class="card-content">
       			<strong>{{data.likes | currency:'':0}}</strong>
       			<small>คน</small>
       		</div>
       	</div>
-      	<div class="card-info">
+      	<div class="card-info" ng-if="data.isPage">
       		<div class="card-info-label" uib-tooltip="ค่าเฉลี่ย Like ถูกคำนวณจาก 20 วิดีโอล่าสุด" tooltip-placement="top">ค่าเฉลี่ย Like</div>
       		<div class="card-content">
       			<strong>{{data.averageLikes | currency:'':0}}</strong>
       			<i class="fa fa-thumbs-up"></i>
       		</div>
       	</div>
-      	<div class="card-info">
+      	<div class="card-info" ng-if="data.isPage">
       		<div class="card-info-label" uib-tooltip="ค่าเฉลี่ย Comment ถูกคำนวณจาก 20 วิดีโอล่าสุด" tooltip-placement="top">ค่าเฉลี่ย Comment <i class="fa fa-question-circle"></i></div>
       		<div class="card-content">
       			<strong>{{data.averageComments | currency:'':0}}</strong>
       			<i class="fa fa-commenting"></i>
       		</div>
       	</div>
-      	<div class="card-info">
+      	<div class="card-info" ng-if="data.isPage">
       		<div class="card-info-label" uib-tooltip="ค่าเฉลี่ย Share ถูกคำนวณจาก 20 วิดีโอล่าสุด" tooltip-placement="top">ค่าเฉลี่ย Share <i class="fa fa-question-circle"></i></div>
       		<div class="card-content">
       			<strong>{{data.averageShares | currency:'':0}}</strong>
@@ -37,7 +37,9 @@
       		</div>
       	</div>
       	<div class="card-button">
-	      	<button ng-click="gotoPage()" class="btn-secondary pull-right btn-width-md">ดูบน Facebook</button>
+	      	<button ng-click="gotoPage()" class="btn-secondary btn-width-md" ng-class="{
+          'pull-right': data.isPage
+        }">ดูบน Facebook</button>
 	    	</div>
       </div>
       <div class="card-gallery">

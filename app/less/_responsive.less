@@ -40,7 +40,11 @@
     background: none;
     padding: 3px;
     margin: 10px 0px;
+    
   }
+  .btn-mobile-menu:focus{
+    outline: 0 !important;
+   }
   .btn-with-margin{
     margin: 0px;
   }
@@ -238,9 +242,7 @@
         border-top: 0px;
       }
       .col-name{
-        white-space:normal;
-        overflow: hidden;
-        text-overflow:inherit;
+        max-width: 180px;
         .profile-picture {
           width: 40px !important;
           margin-right: 0px;
@@ -252,6 +254,9 @@
         .btn{
           width: 80px;
           margin-bottom: 0px !important;
+        }
+        .message-count{
+          right: -6px;
         }
       }
     }

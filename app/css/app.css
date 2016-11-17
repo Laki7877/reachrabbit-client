@@ -11966,6 +11966,9 @@ tags-input .autocomplete .suggestion-item em {
     color: #3e4a5e;
     background-color: #ffffff;
   }
+  .btn-mobile-menu:focus {
+    outline: 0 !important;
+  }
   .btn-with-margin {
     margin: 0px;
   }
@@ -12149,12 +12152,10 @@ tags-input .autocomplete .suggestion-item em {
     border-top: 0px;
   }
   .card-inbox table .col-name {
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: inherit;
+    max-width: 180px;
   }
   .card-inbox table .col-name .profile-picture {
-    width: 40px;
+    width: 40px !important;
     margin-right: 0px;
   }
   .card-inbox table .col-button {
@@ -12171,6 +12172,9 @@ tags-input .autocomplete .suggestion-item em {
   .card-inbox table .col-button .btn-social {
     width: 80px;
     margin-bottom: 0px !important;
+  }
+  .card-inbox table .col-button .message-count {
+    right: -6px;
   }
   .card-campaign-list-item .card-title {
     position: relative;

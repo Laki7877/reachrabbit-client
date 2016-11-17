@@ -12257,6 +12257,10 @@ tags-input .autocomplete .suggestion-item em {
     width: 100px;
     margin: 10px auto 20px auto;
   }
+  .card-thumbnail:hover,
+  .workroom .card-campaign-thumbnail:hover {
+    pointer-events: none;
+  }
   /*---Mutli Selector---*/
   .multi-tag-selector .with-input {
     margin-top: 0px;

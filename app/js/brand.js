@@ -31,6 +31,7 @@ angular.module('reachRabbitApp', [
   'reachRabbitApp.common.controller',
   'reachRabbitApp.brand.controller',
   'reachRabbitApp.brand.routes',
+  'ngTouch',
 ])
   //Example Campaign Constants (not mock)
   .constant('ExampleCampaigns', [

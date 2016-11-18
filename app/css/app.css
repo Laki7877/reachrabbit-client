@@ -8675,16 +8675,16 @@ input:-moz-placeholder {
     width: 83.33333333%;
   }
 }
-.card-profile .card-title .card-title-vertified {
+.card-profile .card-title-verified {
   position: absolute;
   top: 0px;
   right: 15px;
 }
-.card-profile .card-title .card-title-vertified img {
+.card-profile .card-title-verified img {
   transform: translateY(-2px);
   margin-right: 3px;
 }
-.card-profile .card-title .card-title-vertified strong {
+.card-profile .card-title-verified strong {
   font-style: italic;
   color: #f5a623;
   margin-right: 5px;
@@ -12294,6 +12294,12 @@ tags-input .autocomplete .suggestion-item em {
   .card-profile .card-image {
     width: 130px;
     margin: 0px auto 10px auto;
+  }
+  .card-profile .card-title-verified {
+    position: relative;
+    top: auto;
+    right: auto;
+    color: #8692a8;
   }
   .card-clickable,
   .card-thumbnail,

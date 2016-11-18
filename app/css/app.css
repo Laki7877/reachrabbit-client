@@ -12370,7 +12370,19 @@ tags-input .autocomplete .suggestion-item em {
   .table thead > tr > th {
     padding-top: 0px;
   }
+  .table .col-bank-name {
+    text-align: center;
+    padding: 10px 0px;
+    border-bottom: 1px #d8dfe7 solid;
+  }
   .table .col-bank-name img {
+    margin-left: 0px;
+    margin-bottom: 5px;
+  }
+  .table .col-bank-name .col-bank-name-info {
+    width: 220px;
+  }
+  .table .col-bank-name .col-bank-name-info h3 {
     margin-bottom: 5px;
   }
   /*---Workroom---*/

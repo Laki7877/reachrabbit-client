@@ -8355,20 +8355,14 @@ input:-moz-placeholder {
   border-radius: 0px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
-.card-clickable,
-.card-thumbnail,
-.workroom .card-campaign-thumbnail {
+.card-clickable {
   transition: all 0.3s;
   cursor: pointer;
 }
-.card-clickable:hover,
-.card-thumbnail:hover,
-.workroom .card-campaign-thumbnail:hover {
+.card-clickable:hover {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.card-clickable:active,
-.card-thumbnail:active,
-.workroom .card-campaign-thumbnail:active {
+.card-clickable:active {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 .card-header,
@@ -12272,10 +12266,6 @@ tags-input .autocomplete .suggestion-item em {
   .card-profile .card-image-mobile {
     width: 100px;
     margin: 10px auto 20px auto;
-  }
-  .card-thumbnail,
-  .workroom .card-campaign-thumbnail {
-    pointer-events: none;
   }
   /*---Mutli Selector---*/
   .multi-tag-selector .with-input {

@@ -33,7 +33,7 @@ function shouldCompress (req, res) {
 
 var port = process.env.HTTPS_PORT || 443;
 app.use(compression({filter: shouldCompress}));
-app.use(express.static('app/', { maxage: '24h' }));
+app.use(express.static('app/', { maxage: '1m' }));
 
 app.get('/?', function(req,res){
   if(Object.keys(req.query).length > 0){

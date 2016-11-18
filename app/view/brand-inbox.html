@@ -1,25 +1,18 @@
 <div class="viewport view-brand-inbox" ng-cloak>
   <zone-header>
-  <div class="action-btn-for-header desktop-only">
-    <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" novalidate>
-      <div class="input-dropdown">
-        <input class="form-control filter" ng-model="search.value" placeholder="ค้นหาด้วย ชื่องาน"/>
-      </div>
-    </form>
-  </div>
-  <h1 ng-if="statusFilter == 'Selection'">รอคุณคัดเลือกข้อเสนอ <span ng-if="inbox.selection.proposalCount >= 0">({{inbox.selection.proposalCount || '0'}})</span></h1>
-  <h1 ng-if="statusFilter == 'Working'">รอคุณอนุมัติงาน <span ng-if="inbox.working.proposalCount >= 0">({{inbox.working.proposalCount || '0'}})</span></h1>
-  <h1 ng-if="statusFilter == 'Complete'">เสร็จสิ้น <span ng-if="inbox.complete.proposalCount >= 0">({{inbox.complete.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Selection'">รอคุณคัดเลือกข้อเสนอ <span ng-if="inbox.selection.proposalCount >= 0">({{inbox.selection.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Working'">รอคุณอนุมัติงาน <span ng-if="inbox.working.proposalCount >= 0">({{inbox.working.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Complete'">เสร็จสิ้น <span ng-if="inbox.complete.proposalCount >= 0">({{inbox.complete.proposalCount || '0'}})</span></h1>
+    <div class="action-btn-for-header">
+      <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" novalidate>
+        <div class="input-dropdown">
+          <input class="form-control filter" ng-model="search.value" placeholder="ค้นหาด้วย ชื่องาน"/>
+        </div>
+      </form>
+    </div>
   </zone-header>
   <div class="zone-body">
     <div class="container">
-      <div class="mobile-only">
-        <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" novalidate>
-          <div class="input-dropdown">
-            <input class="form-control filter" ng-model="search.value" placeholder="ค้นหาด้วย ชื่องาน"/>
-          </div>
-        </form>
-      </div>
       <cute-bunny></cute-bunny>
       <div class="card-inbox" cute-bunny-hide>
         <div class="card-body">

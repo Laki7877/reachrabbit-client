@@ -16,7 +16,7 @@
                 <input type="checkbox" ng-model="selectedMedia[media.mediaId]" ng-disabled="!profileHasMedia(media.mediaId)"/>
                 <span ng-if="profileHasMedia(media.mediaId)"><img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" /> {{ media.mediaName }}</span>
                 <span ng-if="!profileHasMedia(media.mediaId)"><img ng-src="images/icon-{{ media.mediaId }}-lg.png" class="profile-social-media-icon" />  {{media.mediaName}}
-                    คุณยังไม่ได้เชื่อมต่อ <a ng-click="$close()" ui-sref="influencer-profile">เชื่อมต่อช่องทางนี้</a></span>
+                    <span class="desktop-only">คุณยังไม่ได้เชื่อมต่อ</span> <a ng-click="$close()" ui-sref="influencer-profile">เชื่อมต่อช่องทางนี้</a></span>
             </label>
         </div>
 
@@ -65,13 +65,13 @@
 
         <div class="card-row-basic text-center" ng-if="!isEditMode">
             <div class="button-bar">
-                <button  id="influencer-proposal-modal-submit-btn" class="btn-primary btn-width-lg" ng-click="submit(formData)" ng-disabled="formData.media.length < 1">ส่งข้อเสนอ</button>
+                <button  id="influencer-proposal-modal-submit-btn" class="btn-primary btn-width-lg btn-max-width-mobile" ng-click="submit(formData)" ng-disabled="formData.media.length < 1">ส่งข้อเสนอ</button>
                 <p class="hint-block">ข้อเสนอนี้จะสามารถแก้ไขได้ภายหลัง</p>
             </div>
         </div>
         <div class="card-row-basic text-center" ng-if="isEditMode">
             <div class="button-bar">
-                <button id="influencer-proposal-modal-submit-btn" class="btn-primary btn-width-lg" ng-click="submit(formData)" ng-disabled="formData.media.length < 1">แก้ไขข้อเสนอ</button>
+                <button id="influencer-proposal-modal-submit-btn" class="btn-primary btn-width-lg btn-max-width-mobile" ng-click="submit(formData)" ng-disabled="formData.media.length < 1">แก้ไขข้อเสนอ</button>
                 <p class="hint-block">Brand จะได้รับแจ้งหลังคุณแก้ไขข้อเสนอ</p>
             </div>
         </div>

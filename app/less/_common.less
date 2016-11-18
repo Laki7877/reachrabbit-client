@@ -185,18 +185,23 @@ ol{
   //   margin-top: 30px;
   // }
   .page-header{
-    margin: 40px 0px 15px 0px;
+    margin-top: 40px;
   }
-  .with-history-back{
-    h1{
-      &:extend(h2);
-      margin-top: 5px;
-      margin-bottom: 0px;
-    }
+  h1{
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 25px;
   }
   h2{
     margin-top: 5px;
     margin-bottom: 0px;
+  }
+  .with-history-back{
+    h1{
+      &:extend(h2);
+      margin-top: 1px;
+      margin-bottom: 15px;
+    }
   }
   .back-btn-for-header{
     margin-top: 25px;
@@ -210,7 +215,7 @@ ol{
   .action-btn-for-header{
     float: right;
     &.with-back-btn{
-      margin-top: -15px;
+      margin-top: -16px;
     }
   }
   .step{

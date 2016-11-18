@@ -1,6 +1,9 @@
 <div class="viewport view-influencer-inbox" ng-cloak>
 
   <zone-header>
+    <h1 ng-if="statusFilter == 'Selection'">รอการคัดเลือก <span ng-if="inbox.selection.proposalCount >= 0">({{inbox.selection.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Working'">รอคุณส่งงาน <span ng-if="inbox.working.proposalCount >= 0">({{inbox.working.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Complete'">ได้รับเงิน <span ng-if="inbox.complete.proposalCount >= 0">({{inbox.complete.proposalCount || '0'}})</span></h1>
     <div class="action-btn-for-header">
       <div class="input-dropdown">
         <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" novalidate>
@@ -10,9 +13,6 @@
         </form>
       </div>
     </div>
-    <h1 ng-if="statusFilter == 'Selection'">รอการคัดเลือก <span ng-if="inbox.selection.proposalCount >= 0">({{inbox.selection.proposalCount || '0'}})</span></h1>
-    <h1 ng-if="statusFilter == 'Working'">รอคุณส่งงาน <span ng-if="inbox.working.proposalCount >= 0">({{inbox.working.proposalCount || '0'}})</span></h1>
-    <h1 ng-if="statusFilter == 'Complete'">ได้รับเงิน <span ng-if="inbox.complete.proposalCount >= 0">({{inbox.complete.proposalCount || '0'}})</span></h1>
   </zone-header>
 
   <div class="zone-body">

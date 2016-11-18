@@ -41,7 +41,7 @@
     background: none;
     padding: 3px;
     margin: 10px 0px;
-    
+
   }
   .btn-mobile-menu:focus{
     outline: 0 !important;
@@ -189,12 +189,27 @@
     }
   }
   .zone-header{
-    .action-btn-for-header{
-      display: none;
-    }
     .page-header{
       margin-top: 20px;
       margin-bottom: 10px;
+      h1{
+        float: none;
+      }
+      .action-btn-for-header{
+        float:none;
+        .btn{
+          display: none;
+        }
+        .form-group, .filter{
+          display: block;
+          float:none;
+          width: 100%;
+          margin: 10px 0px 5px 0px;
+        }
+        &.with-back-btn{
+          margin-top: 0px;
+        }
+      }
     }
     .back-btn-for-header{
       margin-top: 0px;
@@ -372,6 +387,9 @@
   .modal-dialog.modal-sm{
     width: auto;
   }
+  .modal-dialog.modal-md{
+    width: auto;
+  }
   .modal-help-open{
     .modal-dialog{
       margin: 40px 30px;
@@ -380,6 +398,11 @@
         box-shadow: none;
         border: 0px;
       }
+    }
+  }
+  .message-modal{
+    .modal-dialog{
+      margin-top: 110px;
     }
   }
 
@@ -408,6 +431,10 @@
 
   /*---Table---*/
   .table{
+    margin-bottom: 0px;
+    thead > tr > th{
+      padding-top: 0px;
+    }
     .col-bank-name{
       img{
         margin-bottom: 5px;
@@ -563,11 +590,11 @@
   }
 
   /*--- Poon WWW Speacial Code ---*/
-  .input-dropdown .form-control.filter {
-    width: 100% !important;
-    margin-bottom: 20px;
-    font-size: 16px;
-  }
+  // .input-dropdown .form-control.filter {
+  //   width: 100% !important;
+  //   margin-bottom: 20px;
+  //   font-size: 16px;
+  // }
 
   .list {
     .list-item {

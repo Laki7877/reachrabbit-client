@@ -12380,7 +12380,8 @@ tags-input .autocomplete .suggestion-item em {
     margin-bottom: 5px;
   }
   .table .col-bank-name .col-bank-name-info {
-    width: 220px;
+    width: 600px;
+    margin: auto;
   }
   .table .col-bank-name .col-bank-name-info h3 {
     margin-bottom: 5px;
@@ -12457,7 +12458,13 @@ tags-input .autocomplete .suggestion-item em {
   .layout-portal .view-influencer-signup {
     position: absolute;
     top: 50%;
+    left: 50%;
     margin-top: -180px;
+    margin-left: -160px;
+  }
+  .layout-portal .view-brand-login .container,
+  .layout-portal .view-influencer-signup .container {
+    max-width: 320px;
   }
   .layout-portal .view-brand-signup,
   .layout-portal .view-influencer-login,

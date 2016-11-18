@@ -12080,7 +12080,8 @@ tags-input .autocomplete .suggestion-item em {
   }
   /*---Alert Box---*/
   .alert {
-    height: 36px;
+    height: auto;
+    overflow: auto;
   }
   .alert .close {
     margin-top: 6px;
@@ -12092,8 +12093,7 @@ tags-input .autocomplete .suggestion-item em {
   .alert .alert-text {
     display: inline-block;
     float: left;
-    margin-top: 8px;
-    margin-left: 8px;
+    margin: 8px;
   }
   /*---Zone---*/
   .zone-alert {
@@ -12151,6 +12151,15 @@ tags-input .autocomplete .suggestion-item em {
   }
   .card-body .card-info:first-child .card-info-label {
     margin-top: 0px;
+  }
+  .card-body .card-row-2-column {
+    margin: 0px;
+  }
+  .card-body .card-row-2-column .col {
+    padding: 0px 0px 15px 0px;
+  }
+  .card-body .card-row-2-column .col .checkbox {
+    margin: 0px;
   }
   /*---Specific Card---*/
   .card-inbox {
@@ -12317,6 +12326,10 @@ tags-input .autocomplete .suggestion-item em {
   }
   .modal-dialog.modal-md {
     width: auto;
+  }
+  .modal-dialog .btn-width-md {
+    width: 110px;
+    margin: 2.5px;
   }
   .modal-help-open .modal-dialog {
     margin: 40px 30px;
@@ -12488,6 +12501,7 @@ tags-input .autocomplete .suggestion-item em {
     font-size: 12px;
     color: #8692a8;
   }
+  /*---Layout Influencer---*/
   /*--- Poon WWW Speacial Code ---*/
   .list .list-item {
     width: 100%;

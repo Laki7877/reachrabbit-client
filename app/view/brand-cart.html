@@ -57,7 +57,7 @@
                   <table class="table with-no-margin" ng-if="cart">
                     <thead>
                       <th>Influencer</th>
-                      <th>ชื่องาน</th>
+                      <th class="desktop-only">ชื่องาน</th>
                       <th class="text-align-right">ราคา (บาท)</th>
                     </thead>
                     <tbody>
@@ -68,7 +68,7 @@
                              {{ proposal.influencer.user.name }}
                           </a>
                         </td>
-                        <td class="col-campaign-name">{{ proposal.campaign.title}}</td>
+                        <td class="col-campaign-name desktop-only">{{ proposal.campaign.title}}</td>
                         <td class="text-align-right">{{ proposal.price | number: 0 }} <a><i ng-click="removeFromCart(proposal)" class="fa fa-times-circle color-grey"></i></a> </td>
                       </tr>
                       <tr class="total-price">

@@ -14,7 +14,7 @@
       <div class="container">
         <cute-bunny></cute-bunny>
         <div class="row" cute-bunny-hide>
-          <div class="col-xs-8">
+          <div class="col-sm-8">
             <div class="card">
               <div class="card-header">
                 รายได้ที่ยังไม่ได้ถอนออก
@@ -24,14 +24,14 @@
                 <table class="table with-no-margin" ng-if="wallet.proposals">
                   <thead>
                     <th>ชื่องาน</th>
-                    <th class="text-align-right">ราคาที่เสนอ (บาท)</th>
+                    <th class="text-align-right desktop-only">ราคาที่เสนอ (บาท)</th>
                     <th class="text-align-right">รายได้ (บาท) <a><i uib-tooltip="รายได้ของคุณได้ทำการหักค่าธรรมเนียมในการใช้ และ หักภาษี ณ ที่จ่าย เราจะใช้ค่าธรรมเนียม เพื่อพัฒนาระบบ และหางานให้คุณอย่างต่อเนื่องค่ะ"
                       tooltip-placement="left" class="fa fa-question-circle color-grey"></i></a></th>
                   </thead>
                   <tbody>
                     <tr ng-repeat="proposal in wallet.proposals">
                       <td class="col-campaign-name">{{proposal.campaign.title}}</td>
-                      <td class="text-align-right">{{ proposal.price | number:0 }}</td>
+                      <td class="text-align-right desktop-only">{{ proposal.price | number:0 }}</td>
                       <td class="text-align-right" ng-init='proposal.income = calculateIncome(proposal)'>{{ proposal.income | number :0 }}</td>
                     </tr>
                     <tr class="total-price">
@@ -116,7 +116,7 @@
             </div>
           </div>
 
-          <div class="col-xs-4">
+          <div class="col-sm-4">
             <div class="card">
               <div class="card-header text-center">
                 สรุปการถอนเงิน

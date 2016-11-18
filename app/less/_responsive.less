@@ -163,7 +163,8 @@
 
   /*---Alert Box---*/
   .alert{
-    height: 36px;
+    height: auto;
+    overflow: auto;
     .close{
       margin-top: 6px;
       margin-right: 5px;
@@ -174,8 +175,7 @@
     .alert-text{
       display: inline-block;
       float: left;
-      margin-top: 8px;
-      margin-left: 8px;
+      margin: 8px;
     }
   }
 
@@ -236,6 +236,15 @@
     .card-info:first-child{
       .card-info-label{
         margin-top: 0px;
+      }
+    }
+    .card-row-2-column{
+      margin: 0px;
+      .col{
+        padding: 0px 0px 15px 0px;
+        .checkbox{
+          margin: 0px;
+        }
       }
     }
   }
@@ -352,10 +361,6 @@
     }
   }
 
-  .card-thumbnail{
-    // pointer-events: none;
-  }
-
   .card-clickable{
     transition: none;
     cursor: pointer;
@@ -395,11 +400,17 @@
   }
 
   /*---Modal---*/
-  .modal-dialog.modal-sm{
-    width: auto;
-  }
-  .modal-dialog.modal-md{
-    width: auto;
+  .modal-dialog{
+    &.modal-sm{
+      width: auto;
+    }
+    &.modal-md{
+      width: auto;
+    }
+    .btn-width-md{
+      width: 110px;
+      margin: 2.5px;
+    }
   }
   .modal-help-open{
     .modal-dialog{
@@ -600,13 +611,12 @@
     color: @color-grey-darker;
   }
 
-  /*--- Poon WWW Speacial Code ---*/
-  // .input-dropdown .form-control.filter {
-  //   width: 100% !important;
-  //   margin-bottom: 20px;
-  //   font-size: 16px;
-  // }
+  /*---Layout Influencer---*/
+  .layout-influencer{
 
+  }
+
+  /*--- Poon WWW Speacial Code ---*/
   .list {
     .list-item {
       width: 100%;

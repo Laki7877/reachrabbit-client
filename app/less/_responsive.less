@@ -356,6 +356,17 @@
     // pointer-events: none;
   }
 
+  .card-clickable{
+    transition: none;
+    cursor: pointer;
+    &:hover{
+      box-shadow: @global-shadow-depth-1;
+    };
+    &:active{
+      box-shadow: @global-shadow-depth-1;
+    };
+  }
+
   /*---Mutli Selector---*/
   .multi-tag-selector{
     .with-input{

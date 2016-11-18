@@ -166,8 +166,7 @@
     height: auto;
     overflow: auto;
     .close{
-      margin-top: 6px;
-      margin-right: 5px;
+      display: none;
     }
     .alert-icon{
       display: none;
@@ -175,7 +174,7 @@
     .alert-text{
       display: inline-block;
       float: left;
-      margin: 8px;
+      margin: 8px 10px;
     }
   }
 
@@ -245,6 +244,11 @@
         .checkbox{
           margin: 0px;
         }
+      }
+    }
+    .password-checkbox{
+      .card-body-content-label{
+        margin: 0px;
       }
     }
   }
@@ -629,7 +633,16 @@
 
   /*---Layout Influencer---*/
   .layout-influencer{
-
+    .view-influencer-profile{
+      padding-bottom: 0px;
+      .media{
+        margin-top: 5px;
+      }
+      .media-close {
+        margin-top: 5px;
+        margin-left: 0px;
+      }
+    }
   }
 
   /*--- Poon WWW Speacial Code ---*/

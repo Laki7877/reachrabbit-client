@@ -1752,6 +1752,7 @@ pre code {
 }
 .row,
 .card-body .card-row,
+.card-body .card-row-small,
 .card-body .card-row-2-column,
 .thumbnails {
   margin-left: -15px;
@@ -7535,6 +7536,8 @@ button.close {
 .card-body:after,
 .card-body .card-row:before,
 .card-body .card-row:after,
+.card-body .card-row-small:before,
+.card-body .card-row-small:after,
 .card-body .card-row-2-column:before,
 .card-body .card-row-2-column:after,
 .thumbnails:before,
@@ -7561,6 +7564,7 @@ button.close {
 .zone-alert:after,
 .card-body:after,
 .card-body .card-row:after,
+.card-body .card-row-small:after,
 .card-body .card-row-2-column:after,
 .thumbnails:after {
   clear: both;
@@ -8380,6 +8384,9 @@ input:-moz-placeholder {
 }
 .card-body .card-row {
   margin-bottom: 20px;
+}
+.card-body .card-row-small {
+  margin-bottom: 10px;
 }
 .card-body .card-row-2-column {
   margin: 15px -7.5px;
@@ -12084,8 +12091,7 @@ tags-input .autocomplete .suggestion-item em {
     overflow: auto;
   }
   .alert .close {
-    margin-top: 6px;
-    margin-right: 5px;
+    display: none;
   }
   .alert .alert-icon {
     display: none;
@@ -12093,7 +12099,7 @@ tags-input .autocomplete .suggestion-item em {
   .alert .alert-text {
     display: inline-block;
     float: left;
-    margin: 8px;
+    margin: 8px 10px;
   }
   /*---Zone---*/
   .zone-alert {
@@ -12159,6 +12165,9 @@ tags-input .autocomplete .suggestion-item em {
     padding: 0px 0px 15px 0px;
   }
   .card-body .card-row-2-column .col .checkbox {
+    margin: 0px;
+  }
+  .card-body .password-checkbox .card-body-content-label {
     margin: 0px;
   }
   /*---Specific Card---*/
@@ -12521,6 +12530,17 @@ tags-input .autocomplete .suggestion-item em {
     color: #8692a8;
   }
   /*---Layout Influencer---*/
+  .layout-influencer .view-influencer-profile {
+    padding-bottom: 0px;
+  }
+  .layout-influencer .view-influencer-profile .media,
+  .layout-influencer .view-influencer-profile .chatbox-card .message-area .message {
+    margin-top: 5px;
+  }
+  .layout-influencer .view-influencer-profile .media-close {
+    margin-top: 5px;
+    margin-left: 0px;
+  }
   /*--- Poon WWW Speacial Code ---*/
   .list .list-item {
     width: 100%;

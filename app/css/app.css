@@ -8656,7 +8656,7 @@ input:-moz-placeholder {
   padding-left: 15px;
   padding-right: 15px;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .card-profile .card-image {
     float: left;
     width: 16.66666667%;
@@ -12291,6 +12291,10 @@ tags-input .autocomplete .suggestion-item em {
     width: 100px;
     margin: 10px auto 20px auto;
   }
+  .card-profile .card-image {
+    width: 130px;
+    margin: 0px auto 10px auto;
+  }
   .card-clickable,
   .card-thumbnail,
   .workroom .card-campaign-thumbnail {
@@ -12319,14 +12323,17 @@ tags-input .autocomplete .suggestion-item em {
     height: 200px;
   }
   /*---Floating Bart---*/
-  .floating-bar {
+  .floating-bar,
+  .sticky-toolbar {
     z-index: 800;
     padding: 7.5px 15px;
   }
-  .floating-bar .btn-half-width-mobile:first-child {
+  .floating-bar .btn-half-width-mobile:first-child,
+  .sticky-toolbar .btn-half-width-mobile:first-child {
     margin-left: 0px;
   }
-  .floating-bar .btn-half-width-mobile:last-child {
+  .floating-bar .btn-half-width-mobile:last-child,
+  .sticky-toolbar .btn-half-width-mobile:last-child {
     margin-right: 0px;
   }
   /*---Modal---*/
@@ -12350,6 +12357,12 @@ tags-input .autocomplete .suggestion-item em {
   }
   .message-modal .modal-dialog {
     margin-top: 110px;
+  }
+  .modal-instagram .modal-body {
+    padding: 0px 20px 20px 20px;
+  }
+  .modal-instagram .modal-body .logos img {
+    margin-top: 0px;
   }
   /*---Contact Us---*/
   .contact-us {
@@ -12571,15 +12584,7 @@ tags-input .autocomplete .suggestion-item em {
     width: 56px;
   }
   .card-body.mobile-only {
-    padding: 0 !important;
-  }
-  .empty-state {
-    padding-top: 30px;
-    padding-bottom: 20px;
-    padding: 30px 5px 20px;
-  }
-  .empty-state-message {
-    padding-top: 3px;
+    padding: 0;
   }
 }
 /*--End of Extra Small devices (XS)--*/

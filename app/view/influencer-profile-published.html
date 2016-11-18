@@ -57,11 +57,15 @@
   </div>
 </div>
 
-<div cute-bunny-hide class="container-fluid sticky-toolbar text-center" ng-if="showStickyToolbar">
+<div cute-bunny-hide class="desktop-only container-fluid sticky-toolbar text-center" ng-if="showStickyToolbar">
   <div class="container">
     <div class="info">คุณสามารถกลับมาแก้ไข Profile ของคุณภายหลังได้</div>
     <div class="container">
-      <button class="btn btn-primary btn-width-lg" ui-sref="influencer-campaign-list">&nbsp ดูงานที่เปิดรับสมัคร <i class="fa fa-arrow-right"></i></button>
+      <button class="btn btn-primary btn-width-lg" ui-sref="influencer-campaign-list">&nbsp; ดูงานที่เปิดรับสมัคร <i class="fa fa-arrow-right"></i></button>
     </div>
   </div>
+</div>
+
+<div cute-bunny-hide class="mobile-only container-fluid sticky-toolbar text-center" ng-if="showStickyToolbar">
+  <button class="btn btn-primary btn-width-lg btn-max-width-mobile" ui-sref="influencer-campaign-list">&nbsp; ดูงานที่เปิดรับสมัคร <i class="fa fa-arrow-right"></i></button>
 </div>

@@ -363,6 +363,10 @@
       width: 100px;
       margin: 10px auto 20px auto;
     }
+    .card-image{
+      width: 130px;
+      margin: 0px auto 10px auto;
+    }
   }
 
   .card-clickable{
@@ -402,6 +406,9 @@
       margin-right: 0px;
     }
   }
+  .sticky-toolbar{
+    &:extend(.floating-bar all);
+  }
 
   /*---Modal---*/
   .modal-dialog{
@@ -431,7 +438,16 @@
       margin-top: 110px;
     }
   }
-
+  .modal-instagram{
+    .modal-body {
+      padding: 0px 20px 20px 20px;
+      .logos{
+        img{
+          margin-top: 0px;
+        }
+      }
+    }
+  }
   /*---Contact Us---*/
   .contact-us{
     z-index: 1000;
@@ -679,15 +695,7 @@
     }
   }
   .card-body.mobile-only {
-    padding: 0 !important;
-  }
-  .empty-state {
-    padding-top: 30px;
-    padding-bottom: 20px;
-    padding: 30px 5px 20px;
-  }
-  .empty-state-message {
-    padding-top: 3px;
+    padding: 0;
   }
 }
 /*--End of Extra Small devices (XS)--*/

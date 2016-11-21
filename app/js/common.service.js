@@ -278,6 +278,9 @@ angular.module('reachRabbitApp.common.service', ['satellizer'])
                 return $http.put("/users/" + id + "/commission", {
                     commission: com
                 });
+            },
+            logout: function(){
+                return $http.get('/logout');
             }
         };
     })

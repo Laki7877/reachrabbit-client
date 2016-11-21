@@ -1,5 +1,5 @@
 angular.module('reachRabbitApp')
-.run(function ($rootScope, $uibModal, $timeout, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
+.run(function ($rootScope, $uibModal, $timeout, AccountService, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
   
   $rootScope.checkFacebookPrivate = function(e) {
       if(e.media.mediaId === 'facebook' && !e.pageId) {
@@ -122,16 +122,24 @@ angular.module('reachRabbitApp')
   $rootScope.getProfile = UserProfile.get;
   $rootScope.signOut = function (bounce_route) {
     mixpanel.track("User Logout");
-    //clear localstorage
-    var ur = $window.localStorage.unauthorized_route;
-    if (!ur) {
-      ur = "/";
-    }
-    var redirTo = ur + (bounce_route ? '?bounce_route=' + bounce_route : '');
-    $window.localStorage.clear();
-    //navigate to login
-    $window.location.href = redirTo;
+    AccountService.logout().then(function() {
+      doLogout(bounce_route);
+    }).catch(function(e) {
+      doLogout(bounce_route);
+    });
   };
+
+  var doLogout = function(bounce_route){
+    //clear localstorage
+      var ur = $window.localStorage.unauthorized_route;
+      if (!ur) {
+        ur = "/";
+      }
+      var redirTo = ur + (bounce_route ? '?bounce_route=' + bounce_route : '');
+      $window.localStorage.clear();
+      //navigate to login
+      $window.location.href = redirTo;
+  }
 
   $rootScope.goTo = function (path) {
     console.error("$root.goTo is deprecated. Please stahp using it.");

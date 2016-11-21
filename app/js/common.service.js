@@ -118,7 +118,7 @@ angular.module('reachRabbitApp.common.service', ['satellizer'])
                 }
 
                 if (!response.data) {
-                    response.data = { message: "External error" };
+                    response.data = { message: "[ERRCON] ระบบมีปัญหา ขออภัยในความไม่สะดวก" };
                 }
 
                 return $q.reject(response);

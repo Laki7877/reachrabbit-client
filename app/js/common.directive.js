@@ -937,6 +937,13 @@ angular.module('reachRabbitApp.common.directives', ['reachRabbitApp.common.servi
                     scope.isInfluencer = true;
                 }
 
+                scope.checkFacebookPrivate = function(e) {
+                    if(e.media.mediaId === 'facebook' && !e.pageId) {
+                        return true;
+                    }
+                    return false;
+                };
+
                 scope.joinCat = function (A) {
                     return A.map(function (o) {
                         return o.categoryName;

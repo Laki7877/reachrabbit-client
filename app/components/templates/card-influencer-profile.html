@@ -40,7 +40,9 @@
         <h4>
           <span ng-if="profile.influencerMedias.length == 0">-</span>
            <span ng-repeat="imedia in profile.influencerMedias" class="social-info">
-             <span class="icon-{{imedia.media.mediaId}} social-icon"></span> {{ imedia.followerCount | number }} คน
+            <span class="icon-{{imedia.media.mediaId}} social-icon"></span> 
+            <span ng-if="!checkFacebookPrivate(imedia)">{{ imedia.followerCount | number }} คน</span>
+            <span ng-if="checkFacebookPrivate(imedia)">บัญชีส่วนตัว</span>
            </span>
         </h4>
 

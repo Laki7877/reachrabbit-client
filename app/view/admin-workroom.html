@@ -92,7 +92,9 @@
                                       <div class="for-proposal-detail">
                                         <small>ช่องทางที่จะโปรโมทให้</small>
                                         <div ng-repeat="imedia in intersectMedia(proposal.media, proposal.influencer.influencerMedias)">
-                                            <span class="icon-{{imedia.mediaId}} social-icon"></span> {{ imedia.followerCount | number }} คน
+                                            <span class="icon-{{imedia.mediaId}} social-icon"></span>
+                                            <span ng-if="!checkFacebookPrivate(imedia)">{{ imedia.followerCount | number }} คน</span>
+                                            <span ng-if="checkFacebookPrivate(imedia)">บัญชีส่วนตัว</span>
                                         </div>
                                         <small>จะส่งงานภายใน</small>
                                         <span>{{proposal.completionTime.completionTime}}</span>

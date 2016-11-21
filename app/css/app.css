@@ -9200,7 +9200,7 @@ input:-moz-placeholder {
   background-color: #ffffff;
   border: 0px;
   margin-bottom: 0px;
-  padding-bottom: 15px;
+  padding-bottom: 17px;
   border-bottom: 0px;
   cursor: pointer;
 }
@@ -12349,6 +12349,11 @@ tags-input .autocomplete .suggestion-item em {
   }
   .nav-tabs li a {
     padding: 8px 12px;
+  }
+  .nav-tabs .nav-tabs > li.active > a,
+  .nav-tabs .nav-tabs > li.active > a:hover,
+  .nav-tabs .nav-tabs > li.active > a:focus {
+    padding-bottom: 15px;
   }
   .social-media-profile .card-overview .card-button,
   .facebook-profile .card-overview .card-button,

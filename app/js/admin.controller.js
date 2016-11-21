@@ -123,7 +123,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.common.servic
                 .then(function (profileResp) {
                     $window.localStorage.profile = JSON.stringify(profileResp.data);
                     //Tell raven about the user
-                    Raven.setUserContext(UserProfile.get());
+                    //Raven.setUserContext(UserProfile.get());
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal#/influencer-login");
                     var bounce = '/influencer#/influencer-campaign-list';
@@ -167,7 +167,7 @@ angular.module('reachRabbitApp.admin.controller', ['reachRabbitApp.common.servic
                 .then(function (profileResp) {
                     UserProfile.set(profileResp.data);
                     //Tell raven about the user
-                    Raven.setUserContext(UserProfile.get());
+                    //Raven.setUserContext(UserProfile.get());
 
                     //Redirect
                     $rootScope.setUnauthorizedRoute("/portal#/brand-login");

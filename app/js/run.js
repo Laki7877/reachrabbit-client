@@ -1,6 +1,12 @@
 angular.module('reachRabbitApp')
 .run(function ($rootScope, $uibModal, $timeout, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
   
+  $rootScope.checkFacebookPrivate = function(e) {
+      if(e.media.mediaId === 'facebook' && !e.pageId) {
+          return true;
+      }
+      return false;
+  };
   $rootScope.hideMenu = function (delay) {
     $timeout(function () {
       $rootScope.showMenu = false;

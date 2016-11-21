@@ -1,12 +1,12 @@
-<div class="viewport view-influencer-campaign-detail">
+<div class="viewport view-public-campaign-detail">
 
   <zone-header historyback="false">
     <div class="action-btn-for-header with-back-btn" cute-bunny-hide>
-        <a class="btn-primary btn-width-lg" ng-href="/portal#/influencer-login?bounce_route=influencer-campaign-detail/{{campaignNee.campaignId}}">
-                สมัคร และ ยื่นข้อเสนอ
-            </a>
+        <a class="btn-primary btn-width-md" ng-href="/portal#/influencer-login?bounce_route=influencer-campaign-detail/{{campaignNee.campaignId}}">
+          <i class="fa fa-paper-plane"></i> ส่งข้อเสนอ
+        </a>
     </div>
-    <h2 ng-bind="campaignNee.title | truncate: 60"></h2>
+    <h1 ng-bind="campaignNee.title | truncate: 60"></h1>
 
   </zone-header>
   <div class="zone-body">
@@ -102,14 +102,21 @@
 
       <card-brand-profile cute-bunny-hide ng-model="campaignNee.brand"></card-brand-profile>
 
-      <div cute-bunny-hide class="card">
+      <div cute-bunny-hide class="card desktop-only">
         <div class="card-body text-center">
             <a class="btn-primary btn-width-lg btn-with-margin" ng-href="/portal#/influencer-login?bounce_route=influencer-campaign-detail/{{campaignNee.campaignId}}">
-                สมัคร และ ยื่นข้อเสนอ
+                <i class="fa fa-paper-plane"></i> ส่งข้อเสนอ
             </a>
         </div>
       </div>
 
     </div>
   </div>
+
+  <div class="floating-bar mobile-only">
+    <a class="btn-primary btn-width-lg btn-with-margin btn-max-width-mobile" ng-href="/portal#/influencer-login?bounce_route=influencer-campaign-detail/{{campaignNee.campaignId}}">
+        <i class="fa fa-paper-plane"></i> ส่งข้อเสนอ
+    </a>
+  </div>
+
 </div>

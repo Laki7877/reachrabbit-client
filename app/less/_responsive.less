@@ -401,6 +401,83 @@
     height: 200px;
   }
 
+  /*---Tabs---*/
+  .nav-tabs{
+    margin-top: 20px;
+    li{
+      min-width: auto;
+      margin-bottom: -2px;
+      a{
+        padding: 8px 12px;
+      }
+    }
+  }
+  .social-media-profile{
+    .card-overview{
+      .card-button{
+        margin-top: 15px;
+        .pull-right{
+          float: left !important;
+        }
+      }
+    }
+    .card-gallery{
+      .card-info{
+        .card-info-label{
+          margin-top: 0px;
+        }
+      }
+    }
+  }
+  .facebook-profile{
+    &:extend(.social-media-profile all);
+    .card-gallery {
+      -webkit-column-count: 1;
+      -webkit-column-fill: auto;
+      -moz-column-count: 1;
+      -moz-column-fill: auto;
+      column-count: 1;
+    }
+  }
+  .instagram-profile{
+    .card-gallery{
+      .card-gallery-item{
+        width:100%;
+        height: auto;
+        .card-gallery-video{
+          width: 100%;
+          height: auto;
+          video{
+            width: 100%;
+            height: auto;
+          }
+        }
+        .card-gallery-image{
+          width: 100%;
+          height: auto;
+          img{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+          }
+        }
+      }
+    }
+  }
+  .youtube-profile{
+    .card-gallery{
+      .card-gallery-item{
+        .card-gallery-video{
+          min-height: auto;
+        }
+      }
+    }
+  }
+
   /*---Floating Bart---*/
   .floating-bar{
     z-index: 800;

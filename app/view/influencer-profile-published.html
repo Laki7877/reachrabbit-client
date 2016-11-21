@@ -24,7 +24,12 @@
       <uib-tabset cute-bunny-hide active="activePill" type="tabs">
         <uib-tab ng-if="hasMedia('facebook')" index="0" heading="Facebook" class="facebook-tab">
           <uib-tab-heading>
-            <span class="icon-facebook"></span>Facebook
+            <div class="desktop-only">
+              <span class="icon-facebook"></span> Facebook
+            </div>
+            <div class="mobile-only">
+              <img src="images/icon-facebook-lg.png" />
+            </div>
           </uib-tab-heading>
           <div class="social-media-profile-wrapper">
             <facebook-profile ng-model="facebook"></facebook-profile>
@@ -32,7 +37,12 @@
         </uib-tab>
         <uib-tab ng-if="hasMedia('instagram')" index="1" heading="Instagram" class="instagram-tab">
           <uib-tab-heading>
-            <span class="icon-instagram"></span> Instagram
+            <div class="desktop-only">
+              <span class="icon-instagram"></span> Instagram
+            </div>
+            <div class="mobile-only">
+              <img src="images/icon-instagram-lg.png" />
+            </div>
           </uib-tab-heading>
           <div class="social-media-profile-wrapper">
             <instagram-profile ng-model="instagram"></instagram-profile>
@@ -40,13 +50,18 @@
         </uib-tab>
         <uib-tab ng-if="hasMedia('google')" index="2" heading="YouTube" class="youtube-tab">
           <uib-tab-heading>
-            <span class="icon-youtube"></span> YouTube
+            <div class="desktop-only">
+              <span class="icon-youtube"></span> YouTube
+            </div>
+            <div class="mobile-only">
+              <img src="images/icon-youtube-lg.png" />
+            </div>
           </uib-tab-heading>
           <div class="social-media-profile-wrapper">
             <youtube-profile ng-model="youtube"></youtube-profile>
           </div>
         </uib-tab>
-        <uib-tab ng-if="formData.influencer.influencerMedias.length < 3 && formData.influencer.influencerMedias.length > 0" index="3" heading="+ เชื่อมต่อช่องทางอื่น" class="plain-link" ui-sref="influencer-profile">
+        <uib-tab class="desktop-only" ng-if="formData.influencer.influencerMedias.length < 3 && formData.influencer.influencerMedias.length > 0" index="3" heading="+ เชื่อมต่อช่องทางอื่น" class="plain-link" ui-sref="influencer-profile">
           <uib-tab-heading>
             + เชื่อมต่อช่องทางอื่น
           </uib-tab-heading>

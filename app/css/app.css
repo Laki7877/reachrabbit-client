@@ -12328,6 +12328,82 @@ tags-input .autocomplete .suggestion-item em {
   .cropArea {
     height: 200px;
   }
+  /*---Tabs---*/
+  .nav-tabs {
+    margin-top: 20px;
+  }
+  .nav-tabs li {
+    min-width: auto;
+    margin-bottom: -2px;
+  }
+  .nav-tabs li a {
+    padding: 8px 12px;
+  }
+  .social-media-profile .card-overview .card-button,
+  .facebook-profile .card-overview .card-button,
+  .facebook-profile .card-overview .card-button,
+  .instagram-profile .card-overview .card-button,
+  .youtube-profile .card-overview .card-button,
+  .facebook-dashboard .card-overview .card-button,
+  .instagram-dashboard .card-overview .card-button,
+  .youtube-dashboard .card-overview .card-button {
+    margin-top: 15px;
+  }
+  .social-media-profile .card-overview .card-button .pull-right,
+  .facebook-profile .card-overview .card-button .pull-right,
+  .facebook-profile .card-overview .card-button .pull-right,
+  .instagram-profile .card-overview .card-button .pull-right,
+  .youtube-profile .card-overview .card-button .pull-right,
+  .facebook-dashboard .card-overview .card-button .pull-right,
+  .instagram-dashboard .card-overview .card-button .pull-right,
+  .youtube-dashboard .card-overview .card-button .pull-right {
+    float: left !important;
+  }
+  .social-media-profile .card-gallery .card-info .card-info-label,
+  .facebook-profile .card-gallery .card-info .card-info-label,
+  .facebook-profile .card-gallery .card-info .card-info-label,
+  .instagram-profile .card-gallery .card-info .card-info-label,
+  .youtube-profile .card-gallery .card-info .card-info-label,
+  .facebook-dashboard .card-gallery .card-info .card-info-label,
+  .instagram-dashboard .card-gallery .card-info .card-info-label,
+  .youtube-dashboard .card-gallery .card-info .card-info-label {
+    margin-top: 0px;
+  }
+  .facebook-profile .card-gallery {
+    -webkit-column-count: 1;
+    -webkit-column-fill: auto;
+    -moz-column-count: 1;
+    -moz-column-fill: auto;
+    column-count: 1;
+  }
+  .instagram-profile .card-gallery .card-gallery-item {
+    width: 100%;
+    height: auto;
+  }
+  .instagram-profile .card-gallery .card-gallery-item .card-gallery-video {
+    width: 100%;
+    height: auto;
+  }
+  .instagram-profile .card-gallery .card-gallery-item .card-gallery-video video {
+    width: 100%;
+    height: auto;
+  }
+  .instagram-profile .card-gallery .card-gallery-item .card-gallery-image {
+    width: 100%;
+    height: auto;
+  }
+  .instagram-profile .card-gallery .card-gallery-item .card-gallery-image img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  .youtube-profile .card-gallery .card-gallery-item .card-gallery-video {
+    min-height: auto;
+  }
   /*---Floating Bart---*/
   .floating-bar,
   .sticky-toolbar {

@@ -10,6 +10,24 @@
       width: @max-container-width;
     }
   }
+
+  /*---Public Campaign---*/
+  .view-public-campaign-detail{
+    .zone-header{
+      color: @color-white;
+      height: 150px;
+      background-image: url("../images/bg-header.png");
+      background-position: top center;
+      background-size: auto;
+      background-color: @color-theme-secondary;
+      h1, .action-btn-for-header.with-back-btn{
+        margin-top: 0px;
+      }
+    }
+    .zone-body{
+      margin-top: -40px;
+    }
+  }
 }
 
 /*---Mobile = Extra Small devices (XS)---*/
@@ -81,6 +99,9 @@
       .logo{
         height: 20px;
         margin: 15px auto;
+      }
+      &.no-menu{
+        width: 100%;
       }
     }
   }
@@ -410,6 +431,9 @@
       a{
         padding: 8px 12px;
       }
+    }
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+        padding-bottom: 15px;
     }
   }
   .social-media-profile{

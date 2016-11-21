@@ -14,7 +14,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Influencer</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=970, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="bower_components/json-formatter/dist/json-formatter.min.css">
@@ -36,11 +36,16 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
 
 </head>
 
-<body class="layout-influencer">
+<body class="layout-influencer" ng-class="{'no-scroll':$root.showMenu}" ng-swipe-left="$root.hideMenu();">
+    <div class="jumping-load">
+      <img src="images/Jumping.gif" class="img-circle" alt="" />
+    </div>
+
     <div class="api_override_box" ng-cloak ng-if="API_OVERRIDE_ACTIVE">
         <span class="label label-danger">API OVERRIDE ON</span>
     </div>
-    <nav class="navbar" ng-cloak>
+
+    <nav class="navbar desktop-only" ng-cloak>
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -120,7 +125,87 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
         </div>
     </nav>
 
+    <div class="mobile-menu mobile-only ngaslideright" ng-cloak ng-if="$root.showMenu" ng-click="$root.hideMenu(250)">
+      <img src="images/logo-influencer.png" class="logo" alt="ReachRabbit" /></a>
+      <div class="menu-section">
+        เมนูหลัก
+      </div>
+      <ul class="menu-item">
+        <li ui-sref="influencer-campaign-list" ng-class="{ 'active':
+          ('influencer-campaign-list' | isState) ||
+          ('influencer-campaign-detail' | isState) }">
+          <span class="number-circle">1</span>
+          <span class="menu-text">ส่งข้อเสนอ</span>
+        </li>
+        <li ui-sref="influencer-inbox({status:'Selection'})" ng-class="{ 'active':
+          ('influencer-inbox' | isState:{status:'Selection'}) ||
+          (('influencer-workroom' | isState) &&  proposal.status === 'Selection') }">
+          <span class="number-circle">2</span>
+          <span class="menu-text">รอการคัดเลือก ({{inbox.selection.proposalCount || '0'}})<div class="step-mushroom" ng-if="inbox.selection.unreadMessageCount > 0"></div></span>
+        </li>
+        <li ui-sref="influencer-inbox({status:'Working'})" ng-class="{ 'active':
+          ('influencer-inbox' | isState: {status:'Working'}) ||
+          (('influencer-workroom' | isState) &&  proposal.status === 'Working')}">
+          <span class="number-circle">3</span>
+          <span class="menu-text">ส่งงาน ({{inbox.working.proposalCount || '0'}})<div class="step-mushroom" ng-if="inbox.working.unreadMessageCount > 0"></div></span>
+        </li>
+        <li ui-sref="influencer-inbox({status:'Complete'})" ng-class="{ 'active':
+          ('influencer-inbox' | isState: {status:'Complete'}) ||
+          (('influencer-workroom' | isState) &&  proposal.status === 'Complete')}" >
+          <span class="number-circle">4</span>
+          <span class="menu-text">ได้รับเงิน ({{inbox.complete.proposalCount || '0'}})<div class="step-mushroom" ng-if="inbox.complete.unreadMessageCount > 0"></div></span>
+        </li>
+      </ul>
+      <div class="menu-section">
+        My Wallet
+      </div>
+      <ul class="menu-item">
+        <li ui-sref="influencer-wallet" ng-class="{ 'active':
+            ('influencer-wallet' | isState) }" >
+          <i class="fa fa-folder fa-fw"></i><span ng-bind="($root.walletBalance || 0) | number: 0"></span> บาท</span>
+        </li>
+      </ul>
+      <div class="menu-section">
+        เมนูอื่นๆ
+      </div>
+      <ul class="menu-item">
+        <li ui-sref="influencer-profile-published" ng-class="{ 'active':
+            ('influencer-profile-published' | isState) }" >
+          <i class="fa fa-eye fa-fw"></i> ดู Profile ของฉัน</a>
+        </li>
+        <li ui-sref="influencer-profile"  ng-class="{ 'active':
+            ('influencer-profile' | isState) }">
+          <i class="fa fa-pencil fa-fw"></i> แก้ไข Profile ของฉัน</a></li>
+        </li>
+        <li ui-sref="influencer-payout-history"  ng-class="{ 'active':
+            ('influencer-payout-history' | isState) }">
+          <i class="fa fa-list fa-fw"></i> ประวัติการถอนเงิน</a></li>
+        </li>
+        <li ng-click="$root.signOut()">
+          <i class="fa fa-sign-out fa-fw"></i><span class="menu-text">ออกจากระบบ</span>
+        </li>
+      </ul>
+    </div>
 
+    <div id="backdropId" class="backdrop mobile-only" ng-cloak ng-show="$root.showMenu" ng-click="$root.hideMenu(0)"></div>
+
+    <nav class="navbar mobile-only" ng-cloak>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="left-navbar">
+                    <button type="button" name="menubtn" class="btn btn-mobile-menu btn-with-count pull-left" ng-click="showMenu=true">
+                      เมนู
+                    <span class="step-mushroom" ng-if="(inbox.working.unreadMessageCount+inbox.complete.unreadMessageCount+inbox.selection.unreadMessageCount) > 0"></span></button>
+                </div>
+                <div class="center-navbar">
+                    <img src="images/logo-nav-inverse.png" class="logo img-responsive" alt="ReachRabbit" />
+                </div>
+                <div class="right-navbar">
+                    <button type="button" name="helpbtn" class="btn btn-mobile-menu pull-right" ng-click="$root.openHelp()">Help</button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -129,16 +214,12 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
     <div nc-alert="$root.rootError"></div>
     <div ui-view ng-cloak></div>
 
-    <contact-us></contact-us>
-
-    <div ng-include="'components/templates/debugga.html'"></div>
-    <!-- In production use:
-      <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-    -->
-    <script src="/dist/vendor.js"></script>
-    <script src="/dist/bundle.influencer.js"></script>
-    <script src="https://cdn.ravenjs.com/3.1.1/raven.min.js"></script>
-
+    <contact-us class="desktop-only"></contact-us>
+    <div ng-include="'components/templates/debugga.html'" class="desktop-only"></div>
+    <script src="/dist/<%- bundles['vendor.js'] %>"></script>
+    <script src="/dist/<%- bundles['bundle.influencer.js'] %>"></script>
+    <script>$('.jumping-load').hide()</script>
+  
 </body>
 
 </html>

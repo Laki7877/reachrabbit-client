@@ -5,7 +5,7 @@
     <div class="card-body-content">
         <label>คุณจะได้รับคำชวนตามสิ่งที่คุณเลือก (เลือกได้อีก  {{ maxSelected - model.length }}  หัวข้อ)</label>
         <div class="row" ng-repeat="chunk in categoriesChunk">
-            <div class="col-xs-{{ 12/maxColumns }} col" ng-repeat="btn in chunk">
+            <div class="col-sm-{{ 12/maxColumns }} col" ng-repeat="btn in chunk">
                 <button ng-disabled="!btn._selected && model.length >= maxSelected"
                 class="btn-width-max btn-minimal" ng-click="activate(btn)"
                 ng-class="{'btn-secondary-active': btn._selected, 'btn-secondary': !btn._selected}">
@@ -15,4 +15,3 @@
         </div>
     </div>
 </div>
- 

@@ -1,8 +1,8 @@
 <div class="row" ng-repeat="ch in chunk">
-	<div class="col-xs-{{ 12/maxColumns }} col" ng-repeat="btn in ch">
+	<div class="col-sm-{{ 12/maxColumns }} col-xs-{{ (12/maxColumns)*2 }} col" ng-repeat="btn in ch">
 		<button class="{{baseClass}}" ng-click="activate(btn)"
-			ng-class="{'btn-secondary-active': btn._selected, 
-			'btn-secondary': !btn._selected, 
+			ng-class="{'btn-secondary-active': btn._selected,
+			'btn-secondary': !btn._selected,
 			'disabled' : isDisabled(btn)
 			}">
             {{ getValue(btn) }}

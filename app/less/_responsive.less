@@ -1,0 +1,808 @@
+/* Desktop = Large devices (LG) + Medium devices (MD) + Small devices (SM)  */
+@media only screen and (min-width: 768px) {
+  /*---Global---*/
+  .mobile-only{
+    display: none !important;
+  }
+
+  .layout-brand,.layout-influencer{
+    .container{
+      width: @max-container-width;
+    }
+  }
+
+  /*---Public Campaign---*/
+  .view-public-campaign-detail{
+    .zone-header{
+      color: @color-white;
+      height: 150px;
+      background-image: url("../images/bg-header.png");
+      background-position: top center;
+      background-size: auto;
+      background-color: @color-theme-secondary;
+      h1, .action-btn-for-header.with-back-btn{
+        margin-top: 0px;
+      }
+    }
+    .zone-body{
+      margin-top: -40px;
+    }
+  }
+}
+
+/*---Mobile = Extra Small devices (XS)---*/
+@media only screen and (max-width: 767px) {
+
+  /*---Global---*/
+  html,body{
+    height: 100%;
+  }
+  .layout-brand,.layout-influencer{
+    padding-top: 50px;
+    position: relative;
+  }
+  .desktop-only{
+    display: none !important;
+  }
+  .mobile-only{
+    display:inherit;
+  }
+  h1{
+    font-size: 24px;
+  }
+
+  /*---Button---*/
+  .btn-mobile-menu{
+    .button-variant(@color-white, @color-black, @color-grey);
+    width: 60px;
+    text-align: center;
+    background: none;
+    padding: 3px;
+    margin: 10px 0px;
+
+  }
+  .btn-mobile-menu:focus{
+    outline: 0 !important;
+   }
+  .btn-with-margin{
+    margin: 0px;
+  }
+  .btn-max-width-mobile{
+    width: 100%;
+  }
+  .btn-half-width-mobile{
+    width: 45%;
+    min-width: 134px;
+    margin: 0px 7.5px;
+  }
+
+  /*---Navigation Bar---*/
+  .navbar{
+    position: fixed;
+    width: 100%;
+    z-index: 800;
+    top: 0px;
+    .navbar-header{
+      margin: 0px -5px;
+    }
+    .step-mushroom{
+      top: 5px;
+      right: 8px;
+    }
+    .left-navbar,.right-navbar{
+      float: left;
+      width: 25%;
+    }
+    .center-navbar{
+      float: left;
+      width: 50%;
+      .logo{
+        height: 20px;
+        margin: 15px auto;
+      }
+      &.no-menu{
+        width: 100%;
+      }
+    }
+  }
+  .mobile-menu{
+    position:absolute;
+    overflow-y: scroll;
+    font-family: @font-primary;
+    font-size: 16px;
+    color: @color-white;
+    top:0px;
+    left:0px;
+    z-index: 999;
+    background: @color-black;
+    height: 100%;
+    box-shadow: @global-shadow-depth-3;
+    /*-webkit-animation:slideIn 0.5s ease forwards;
+    animation:slideIn 0.5s ease forwards;*/
+    .logo{
+      height: 20px;
+      margin: 15px;
+    }
+    .menu-section{
+      background: @color-grey-darker;
+      padding: 3px 15px;
+    }
+    .menu-item{
+      list-style: none;
+      -webkit-padding-start: 0px;
+      margin: 0px;
+      li{
+        border-bottom: 1px solid @color-grey-darker;
+        position: relative;
+        .number-circle{
+          font-size: 14px;
+          font-family: @font-secondary;
+          text-align: center;
+          width: 20px;
+          margin:14px 15px;
+        }
+        .fa{
+          width: 20px;
+          height: 20px;
+          margin:16px 15px 14px 15px;
+          text-align: center;
+        }
+        .menu-text{
+          position: relative;
+          .step-mushroom{
+            top: 0px;
+            right: -10px;
+          }
+        }
+        &.active{
+          color: @color-theme-primary;
+        }
+      }
+      li:after{
+        position: absolute;
+        opacity: 0.6;
+        content: '';
+        background: url("../images/icon-mobile-menu-arrow.png") 0 0 no-repeat;
+        display: block;
+        height: 40px;
+        width: 40px;
+        top:4px;
+        right:0px;
+      }
+    }
+  }
+  .backdrop{
+    position:fixed;
+    top:0px;
+    left:0px;
+    z-index: 998;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.8);
+  }
+
+  /*---Alert Box---*/
+  .alert{
+    height: auto;
+    overflow: auto;
+    .close{
+      display: none;
+    }
+    .alert-icon{
+      display: none;
+    }
+    .alert-text{
+      display: inline-block;
+      float: left;
+      margin: 8px 10px;
+    }
+  }
+
+
+  /*---Zone---*/
+  .zone-alert{
+    &:extend(.container);
+    width:inherit;
+    .alert{
+      transform: translateY(20px);
+    }
+  }
+  .zone-header{
+    .page-header{
+      margin-top: 20px;
+      margin-bottom: 10px;
+      h1{
+        float: none;
+      }
+      .action-btn-for-header{
+        float:none;
+        .btn{
+          display: none;
+        }
+        .form-group, .filter{
+          display: block;
+          float:none;
+          width: 100%;
+          margin: 10px 0px 5px 0px;
+        }
+        &.with-back-btn{
+          margin-top: 0px;
+        }
+      }
+    }
+    .back-btn-for-header{
+      margin-top: 0px;
+    }
+  }
+  .zone-body{
+    padding-bottom: 50px;
+  }
+
+  /*---Card---*/
+  .card-body{
+    .card-body-content-label{
+      text-align: left;
+      margin-bottom: 5px;
+    }
+    .card-row{
+      margin-bottom: 15px;
+    }
+    .card-info{
+      .card-info-label{
+        margin-top: 20px;
+      }
+    }
+    .card-info:first-child{
+      .card-info-label{
+        margin-top: 0px;
+      }
+    }
+    .card-row-2-column{
+      margin: 0px;
+      .col{
+        padding: 0px 0px 15px 0px;
+        .checkbox{
+          margin: 0px;
+        }
+      }
+    }
+    .password-checkbox{
+      .card-body-content-label{
+        margin: 0px;
+      }
+    }
+  }
+
+  /*---Specific Card---*/
+  .card-inbox {
+    min-height: auto;
+    .card-body {
+      padding: 0px 0px 0px 0px;
+      .empty-state{
+        padding-top: 20px;
+        margin: 15px;
+        img{
+          display: none;
+        }
+      }
+    }
+    table{
+      tbody tr:first-child td{
+        border-top: 0px;
+      }
+      .col-name{
+        max-width: 180px;
+        .profile-picture {
+          width: 40px !important;
+          margin-right: 0px;
+        }
+      }
+      .col-button{
+        padding-left: 10px;
+        width: 80px;
+        .btn{
+          width: 80px;
+          margin-bottom: 0px !important;
+        }
+        .message-count{
+          right: -6px;
+        }
+      }
+    }
+  }
+  .card-campaign-list-item{
+    .card-title{
+      .make-xs-column(12);
+      margin: 15px 0px 15px 0px;
+      text-align: center;
+      .card-title-content{
+        border-bottom: 0px;
+        a{
+          color: @color-black;
+        }
+      }
+    }
+    .card-image{
+      .make-xs-column(12);
+      height: auto;
+    }
+    .card-button{
+      .make-xs-column(12);
+      margin-top: 0px;
+    }
+    .card-button.status-draft{
+      margin-top: 0px;
+    }
+  }
+
+  .card-campaign-description{
+    .checkbox-inline{
+      display: block;
+      margin-left: 0px;
+    }
+  }
+
+  .card-campaign-header{
+    .card-image{
+      height: auto;;
+      padding: 15px;
+      .flag{
+        .status{
+          top: 30px;
+        }
+      }
+    }
+    .card-campaign-header-content{
+      padding-left: 0px;
+    }
+    .card-title{
+      padding-right: 0px;
+      .card-title-content{
+        margin-top: 5px;
+        padding-bottom: 0px;
+        border-bottom: 0px;
+        color: @color-black;
+      }
+    }
+    .card-info-1{
+      margin-top: 0px;
+    }
+    .card-info-2, .card-info-3,.card-info-4, .card-info-5{
+      margin-top: 20px;
+    }
+    .card-info-5{
+      margin-bottom: 20px;
+    }
+    .card-corner {
+      display: none;
+    }
+  }
+
+  .card-profile{
+    .card-image-mobile{
+      width: 100px;
+      margin: 10px auto 20px auto;
+    }
+    .card-image{
+      width: 130px;
+      margin: 0px auto 10px auto;
+    }
+    .card-title-verified{
+      position: relative;
+      top: auto;
+      right: auto;
+      color:@color-grey-darker;
+    }
+  }
+
+  .card-clickable{
+    transition: none;
+    cursor: pointer;
+    &:hover{
+      box-shadow: @global-shadow-depth-1;
+    };
+    &:active{
+      box-shadow: @global-shadow-depth-1;
+    };
+  }
+
+  /*---Mutli Selector---*/
+  .multi-tag-selector{
+    .with-input{
+      margin-top: 0px;
+      .col{
+        width: 50%;
+      }
+    }
+  }
+
+  /*---Cropper---*/
+  .cropArea{
+    height: 200px;
+  }
+
+  /*---Tabs---*/
+  .nav-tabs{
+    margin-top: 20px;
+    li{
+      min-width: auto;
+      margin-bottom: -2px;
+      a{
+        padding: 8px 12px;
+      }
+    }
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+        padding-bottom: 15px;
+    }
+  }
+  .social-media-profile{
+    .card-overview{
+      .card-button{
+        margin-top: 15px;
+        .pull-right{
+          float: left !important;
+        }
+      }
+    }
+    .card-gallery{
+      .card-info{
+        .card-info-label{
+          margin-top: 0px;
+        }
+      }
+    }
+  }
+  .facebook-profile{
+    &:extend(.social-media-profile all);
+    .card-gallery {
+      -webkit-column-count: 1;
+      -webkit-column-fill: auto;
+      -moz-column-count: 1;
+      -moz-column-fill: auto;
+      column-count: 1;
+    }
+  }
+  .instagram-profile{
+    .card-gallery{
+      .card-gallery-item{
+        width:100%;
+        height: auto;
+        .card-gallery-video{
+          width: 100%;
+          height: auto;
+          video{
+            width: 100%;
+            height: auto;
+          }
+        }
+        .card-gallery-image{
+          width: 100%;
+          height: auto;
+          img{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+          }
+        }
+      }
+    }
+  }
+  .youtube-profile{
+    .card-gallery{
+      .card-gallery-item{
+        .card-gallery-video{
+          min-height: auto;
+        }
+      }
+    }
+  }
+
+  /*---Floating Bart---*/
+  .floating-bar{
+    z-index: 800;
+    padding: 7.5px 15px;
+    .btn-half-width-mobile:first-child{
+      margin-left: 0px;
+    }
+    .btn-half-width-mobile:last-child{
+      margin-right: 0px;
+    }
+  }
+  .sticky-toolbar{
+    &:extend(.floating-bar all);
+  }
+
+  /*---Modal---*/
+  .modal-dialog{
+    &.modal-sm{
+      width: auto;
+    }
+    &.modal-md{
+      width: auto;
+    }
+    .btn-width-md{
+      width: 110px;
+      margin: 2.5px;
+    }
+  }
+  .modal-help-open{
+    .modal-dialog{
+      margin: 40px 30px;
+      .modal-content{
+        background: none;
+        box-shadow: none;
+        border: 0px;
+      }
+    }
+  }
+  .message-modal{
+    .modal-dialog{
+      margin-top: 110px;
+    }
+  }
+  .modal-instagram{
+    .modal-body {
+      padding: 0px 20px 20px 20px;
+      .logos{
+        img{
+          margin-top: 0px;
+        }
+      }
+    }
+  }
+  /*---Contact Us---*/
+  .contact-us{
+    z-index: 1000;
+    position:relative;
+    margin: auto;
+    width: 230px;
+    border-radius: 5px;
+    padding: 10px 30px 5px 30px;
+    right: auto;
+    bottom: auto;
+    .close{
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      opacity: 0.3;
+    }
+    &:hover{
+      bottom: auto;
+      box-shadow: @global-shadow-depth-1;
+    }
+  }
+
+
+  /*---Table---*/
+  .table{
+    margin-bottom: 0px;
+    thead > tr > th{
+      padding-top: 0px;
+    }
+    .col-bank-name{
+      text-align: center;
+      padding: 10px 0px;
+      border-bottom: 1px @color-grey solid;
+      img{
+        margin-left: 0px;
+        margin-bottom: 5px;
+      }
+      .col-bank-name-info{
+        width: 600px;
+        margin: auto;
+        h3{
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  /*---Workroom---*/
+  .workroom{
+    .card-profile{
+      .card-image{
+        width: 100px;
+        margin: 0px auto 0px auto;
+      }
+      .card-title-content{
+        display: none;
+        margin: 0px;
+      }
+    }
+    .chatbox-header{
+      h3{
+        max-width: 185px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    .chatbox-card{
+      margin-bottom: 0px;
+      .message-area{
+        .message{
+          .message-left{
+            display: none;
+          }
+          .message-body{
+            .message-heading{
+              h4{
+                max-width: 140px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
+            }
+          }
+        }
+      }
+      .message-input{
+        .pull-right{
+          float: left !important;
+        }
+        button{
+          margin: 0px;
+          width: 122px;
+          &.btn-secondary{
+            margin-right: 10px;
+          }
+        }
+        .loading{
+          display: block;
+        }
+        .preview-item{
+          display: block;
+          margin-bottom: 10px;
+          margin-right: 10px;
+          img{
+            margin-left: 0px;
+          }
+        }
+      }
+    }
+  }
+
+  /*---Empty State---*/
+  .empty-state{
+    height: auto;
+    padding: 30px 5px;
+  }
+
+  /*---Layout Portal---*/
+  .layout-portal{
+    .container{
+      max-width: 370px;
+    }
+    .card-portal{
+      .card-body{
+        padding: 15px;
+      }
+      .logo{
+        width: 230px;
+        margin-top: 5px;
+        h3{
+          margin-top: 5px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    .view-brand-login, .view-influencer-signup{
+      .container{
+        max-width: 320px;
+      }
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -180px;
+      margin-left: -160px;
+    }
+    .view-brand-signup, .view-influencer-login, .view-influencer-signup-select-page, .view-influencer-signup-confirmation, .view-influencer-signup-email, .view-admin-login{
+      margin-top: 15px;
+    }
+    .view-influencer-signup-select-page{
+      .card-portal{
+        .card-body{
+          padding-bottom: 0px;
+        }
+      }
+      .scrollable-radio{
+        max-height: 280px;
+      }
+    }
+  }
+
+  /*---Layout Brand---*/
+  .layout-brand{
+    .view-brand-campaign-list{
+      .page-header{
+        margin-top: 20px;
+        margin-bottom: 5px;
+      }
+      .empty-state{
+        text-align: center;
+        height: auto;
+        padding: 50px 30px;
+        line-height: 24px;
+        img{
+          transform: translateY(0px);
+          margin: auto;
+          margin-bottom: 5px;
+        }
+        .btn{
+          margin-top: 20px;
+        }
+      }
+      .example-campaign{
+        margin-top: 30px;
+        .page-header{
+          margin-bottom: 5px;
+        }
+      }
+    }
+    .view-brand-detail-draft,.view-brand-campaign-detail-published{
+      padding-bottom: 0px;
+    }
+  }
+
+  .col-info-label{
+    font-size: 12px;
+    color: @color-grey-darker;
+  }
+
+  /*---Layout Influencer---*/
+  .layout-influencer{
+    .view-influencer-profile{
+      padding-bottom: 0px;
+      .media{
+        margin-top: 5px;
+      }
+      .media-close {
+        margin-top: 5px;
+        margin-left: 0px;
+      }
+    }
+  }
+
+  /*--- Poon WWW Speacial Code ---*/
+  .list {
+    .list-item {
+      width: 100%;
+      border-bottom: 2px solid @color-grey;
+      padding: 10px 16px;
+    }
+    .list-item-info {
+      vertical-align: middle;
+      margin-top:5px;
+      .profile-name {
+        font-size: 15px;
+        vertical-align: top;
+      }
+      .profile-price {
+        color: @color-grey-darker;
+        display: block;
+      }
+    }
+    .list-item-btn {
+      button {
+        float: right;
+        margin-top:10px;
+        font-size: 16px;
+        padding-left:12px;
+        padding-right:12px;
+      }
+    }
+    .profile-picture {
+      border-radius: 50%;
+      width: 56px;
+    }
+  }
+  .card-body.mobile-only {
+    padding: 0;
+  }
+}
+/*--End of Extra Small devices (XS)--*/

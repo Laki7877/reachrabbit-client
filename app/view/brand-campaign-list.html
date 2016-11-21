@@ -1,6 +1,6 @@
 <div class="viewport view-brand-campaign-list">
 
-  <zone-header historyback="false">
+  <zone-header>
     <h1>ประกาศงาน</h1>
     <div class="action-btn-for-header">
         <!-- <div class="form-group">
@@ -20,7 +20,11 @@
       <cute-bunny></cute-bunny>
 
       <div cute-bunny-hide class="empty-state" ng-if="myCampaign.totalElements == 0">
+        <img src="images/icon-create-new-campaign.png" class="mobile-only" alt="Empty State" />
         ลงประกาศงานใหม่ เพื่อเปิดรับข้อเสนอจาก Influencer
+        <button id="brand-campaign-list-new-campaign-btn-mobile-empty" class="btn-primary btn-width-lg mobile-only" ui-sref="brand-campaign-detail-draft">
+            <i class="fa fa-plus"></i> ลงประกาศงาน
+        </button>
       </div>
 
       <div cute-bunny-hide ng-repeat="x in myCampaign.content">
@@ -40,4 +44,11 @@
       </div>
     </div>
   </div>
+
+  <div class="floating-bar mobile-only" ng-if="myCampaign.totalElements > 0">
+    <button id="brand-campaign-list-new-campaign-btn-mobile" class="btn-primary btn-width-lg btn-with-margin btn-max-width-mobile" ui-sref="brand-campaign-detail-draft">
+        <i class="fa fa-plus"></i> ลงประกาศงาน
+    </button>
+  </div>
+
 </div>

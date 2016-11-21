@@ -65,18 +65,12 @@
           </div>
         </div>
       </div>
-
-
       <card-payment-method
         ng-if="transaction.status != 'Complete'"
         ng-model="transaction">
       </card-payment-method>
-
-
         <div class="card">
-
             <div class="card-body">
-
                 <div class="card-row">
                   <div class="card-title col-xs-12">
                     <div class="card-title-content">
@@ -84,11 +78,10 @@
                     </div>
                   </div>
                 </div>
-
                 <table class="table with-no-margin">
                   <thead>
                     <th>Influencer</th>
-                    <th>ชื่องาน</th>
+                    <th class="desktop-only">ชื่องาน</th>
                     <th class="text-align-right">ราคา (บาท)</th>
                   </thead>
                   <tbody>
@@ -97,7 +90,7 @@
                         <img ng-src="{{ proposal.influencer.user.profilePicture.url || 'images/placeholder-profile-picture.png' }}" class="profile-picture"/>
                          {{ proposal.influencer.user.name | truncate: 15 }}
                       </td>
-                      <td class="col-campaign-name">{{ proposal.campaign.title}}</td>
+                      <td class="desktop-only col-campaign-name">{{ proposal.campaign.title}}</td>
                       <td class="text-align-right">{{ proposal.price | number: 0 }} </td>
                     </tr>
                     <tr class="total-price">

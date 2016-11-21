@@ -118,7 +118,7 @@ angular.module('reachRabbitApp.common.service', ['satellizer'])
                 }
 
                 if (!response.data) {
-                    response.data = { message: "External error" };
+                    response.data = { message: "[ERRCON] ระบบมีปัญหา ขออภัยในความไม่สะดวก" };
                 }
 
                 return $q.reject(response);
@@ -278,6 +278,9 @@ angular.module('reachRabbitApp.common.service', ['satellizer'])
                 return $http.put("/users/" + id + "/commission", {
                     commission: com
                 });
+            },
+            logout: function(){
+                return $http.get('/logout');
             }
         };
     })

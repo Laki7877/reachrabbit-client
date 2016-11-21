@@ -2,7 +2,7 @@
   <div class="viewport view-brand-profile">
     <div class="zone-alert">
       <div nc-alert="alert"></div>
-      <div nc-alert type="info" closable="false">
+      <div class="desktop-only" nc-alert type="info" closable="false">
         ยิ่งใส่ข้อมูลครบ คนยิ่งสนใจงานที่คุณลงประกาศไว้มากขึ้น
       </div>
     </div>
@@ -79,7 +79,8 @@
                 </div>
               </div>
               <div class="card-row" form-error="form.companyTaxId" ng-if="formData.brand.isCompany">
-                <div class="card-body-content-label with-input no-padding">เลขประจำตัวผู้เสียภาษี</div>
+                <div class="desktop-only card-body-content-label with-input no-padding">เลขประจำตัวผู้เสียภาษี</div>
+                <div class="mobile-only card-body-content-label with-input">เลขประจำตัวผู้เสียภาษี</div>
                 <div class="card-body-content">
                   <input name="companyTaxId" class="form-control" required ng-model="formData.brand.companyTaxId">
                   <div input-error></div>
@@ -121,7 +122,7 @@
                   <div input-error></div>
                 </div>
               </div>
-              <div class="card-row" form-error="form.email">
+              <div class="card-row-small" form-error="form.email">
                 <div class="card-body-content-label with-input">
                   อีเมล
                 </div>
@@ -130,9 +131,8 @@
                   <div input-error></div>
                 </div>
               </div>
-              <div class="card-row" ng-if="!showPassword" form-error="form.email">
+              <div class="card-row password-checkbox" ng-if="!showPassword">
                  <div class="card-body-content-label with-input">
-
                 </div>
                 <div class="card-body-content">
                   <a ng-click="setShowPassword()"><i class="fa fa-lock"></i> ตั้งรหัสผ่านใหม่</a>
@@ -147,15 +147,14 @@
                   <div input-error></div>
                 </div>
               </div>
-              <div class="card-row">
-                <div class="card-button-primary">
-                  <button class="btn-primary btn-width-max" ng-click="saveProfile(form, formData)">บันทึกข้อมูล</button>
-                </div>
-              </div>
+
             </div>
           </div>
         </form>
       </div>
     </div>
+  </div>
+  <div class="floating-bar">
+    <button class="btn-primary btn-width-lg btn-max-width-mobile btn-with-margin" ng-click="saveProfile(form, formData)">บันทึกข้อมูล</button>
   </div>
 </form>

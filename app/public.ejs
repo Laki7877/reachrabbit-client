@@ -14,7 +14,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Influencer</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=970, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="bower_components/json-formatter/dist/json-formatter.min.css">
@@ -37,10 +37,14 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
 </head>
 
 <body class="layout-influencer">
+    <div class="jumping-load">
+      <img src="images/Jumping.gif" class="img-circle" alt="" />
+    </div>
+
     <div class="api_override_box" ng-cloak ng-if="API_OVERRIDE_ACTIVE">
         <span class="label label-danger">API OVERRIDE ON</span>
     </div>
-    <nav class="navbar" ng-cloak>
+    <nav class="navbar desktop-only" ng-cloak>
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -61,15 +65,25 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
         <!--/.container-fluid -->
     </nav>
 
+    <nav class="navbar mobile-only" ng-cloak>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="center-navbar no-menu">
+                    <img src="images/logo-nav-inverse.png" class="logo img-responsive" alt="ReachRabbit" />
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <div nc-alert="$root.rootError"></div>
     <div ui-view ng-cloak></div>
 
-    <contact-us></contact-us>
+    <contact-us class="desktop-only"></contact-us>
 
-    <div ng-include="'components/templates/debugga.html'"></div>
-   <script src="/dist/vendor.js"></script>
-    <script src="/dist/bundle.public.js"></script>
-    <script src="https://cdn.ravenjs.com/3.1.1/raven.min.js"></script>
+    <div ng-include="'components/templates/debugga.html'" class="desktop-only"></div>
+    <script src="/dist/<%- bundles['vendor.js'] %>"></script>
+    <script src="/dist/<%- bundles['bundle.public.js'] %>"></script>
+    <script>$('.jumping-load').hide()</script>
 
 </body>
 

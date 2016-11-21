@@ -1,6 +1,9 @@
 <div class="viewport view-influencer-inbox" ng-cloak>
 
   <zone-header>
+    <h1 ng-if="statusFilter == 'Selection'">รอการคัดเลือก <span ng-if="inbox.selection.proposalCount >= 0">({{inbox.selection.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Working'">รอคุณส่งงาน <span ng-if="inbox.working.proposalCount >= 0">({{inbox.working.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Complete'">ได้รับเงิน <span ng-if="inbox.complete.proposalCount >= 0">({{inbox.complete.proposalCount || '0'}})</span></h1>
     <div class="action-btn-for-header">
       <div class="input-dropdown">
         <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" novalidate>
@@ -10,9 +13,6 @@
         </form>
       </div>
     </div>
-    <h1 ng-if="statusFilter == 'Selection'">รอการคัดเลือก <span ng-if="inbox.selection.proposalCount >= 0">({{inbox.selection.proposalCount || '0'}})</span></h1>
-    <h1 ng-if="statusFilter == 'Working'">รอคุณส่งงาน <span ng-if="inbox.working.proposalCount >= 0">({{inbox.working.proposalCount || '0'}})</span></h1>
-    <h1 ng-if="statusFilter == 'Complete'">ได้รับเงิน <span ng-if="inbox.complete.proposalCount >= 0">({{inbox.complete.proposalCount || '0'}})</span></h1>
   </zone-header>
 
   <div class="zone-body">
@@ -44,14 +44,14 @@
         </div> -->
         <div class="card-body">
           <table ng-if="proposals.numberOfElements > 0" class="table" sorter ng-model="proposals" callback="load">
-            <thead>
+            <thead class="desktop-only">
               <tr>
                 <th class="col-name" sort="brand.brandId">Brand</th>
-                <th class="col-campaign-name" sort="campaign.campaignId">ชื่องาน</th>
-                <th class="col-price" sort="price">ราคา (บาท)</th>
-                <th ng-if="params.status == 'Working'">วันที่กำหนดส่ง</th>
-                <th ng-if="params.status == 'Complete'">วันที่เสร็จงาน</th>
-                <th class="col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
+                <th class="desktop-only col-campaign-name" sort="campaign.campaignId">ชื่องาน</th>
+                <th class="desktop-only col-price" sort="price">ราคา (บาท)</th>
+                <th class="desktop-only" ng-if="params.status == 'Working'">วันที่กำหนดส่ง</th>
+                <th class="desktop-only" ng-if="params.status == 'Complete'">วันที่เสร็จงาน</th>
+                <th class="desktop-only" class="col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
                 <th class="col-button"></th>
               </tr>
             </thead>
@@ -63,18 +63,19 @@
                       <img ng-src="{{proposal.campaign.brand.user.profilePicture.url || 'images/placeholder-profile-picture.png'}}" class="profile-picture" />
                     </div>
                     <div class="media-body media-middle">
-                      {{proposal.campaign.brand.brandName}}
+                      <div> {{proposal.campaign.brand.brandName}} </div>
+                      <div class="mobile-only col-info-label">{{proposal.price | currency:'':0 }} บาท</div>
                     </div>
                   </div>
                 </td>
-                <td class="col-campaign-name">{{proposal.campaign.title}}</td>
-                <td class="col-price">{{proposal.price | currency:'':0 }}</td>
-                <td ng-if="params.status == 'Working'">{{ proposal.dueDate | date }}</td>
-                <td ng-if="params.status == 'Complete'">{{ proposal.completeDate | date }}</td>
-                <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
+                <td class="desktop-only col-campaign-name">{{proposal.campaign.title}}</td>
+                <td class="desktop-only col-price">{{proposal.price | currency:'':0 }}</td>
+                <td class="desktop-only" ng-if="params.status == 'Working'">{{ proposal.dueDate | date }}</td>
+                <td class="desktop-only" ng-if="params.status == 'Complete'">{{ proposal.completeDate | date }}</td>
+                <td class="desktop-only" class="col-time">{{lastMessageUpdated(proposal)}}</td>
                 <td class="col-button">
                   <button class="btn-secondary btn-minimal btn-with-count" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">คุยงาน<span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span></button>
-                  <button class="btn-secondary btn-minimal" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId, proposalId: proposal.proposalId })">ดูโปรไฟล์</button>
+                  <button class="desktop-only btn-secondary btn-minimal" ui-sref="influencer-brand-profile({brandId: proposal.campaign.brand.brandId, proposalId: proposal.proposalId })">ดูโปรไฟล์</button>
                 </td>
               </tr>
             </tbody>

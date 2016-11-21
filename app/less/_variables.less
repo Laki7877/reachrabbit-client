@@ -26,12 +26,16 @@
 
 //General Color
 @color-red:#FF0000;
+@color-red-darker:#CB0000;
 @color-red-lighter:#FFCCCB;
 @color-blue:#648ACB;
+@color-blue-darker:#3B5998;
 @color-blue-lighter:#BFD5FA;
 @color-green:#16BBAC;
+@color-green-darker:#019386;
 @color-green-lighter:#D8F0DD;
 @color-yellow:#F5A623;
+@color-yellow-darker:#BA5B0C;
 @color-yellow-lighter:#FFEBCE;
 
 //Specific Color
@@ -46,3 +50,28 @@
 @global-shadow-depth-1: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 @global-shadow-depth-2: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 @global-shadow-depth-3: 0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+//Animation
+@keyframes bouncing {
+  0%, 20%, 50%, 80%, 100%  {
+    transform:translateY(0px);
+  }
+  40% {
+      transform:translateY(-4px);
+  }
+  60% {
+      transform:translateY(-2px);
+  }
+}
+@keyframes fadeIn{
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeOut{
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes slideIn{
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0px); }
+}

@@ -10,6 +10,26 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    clean: {
+      all: ['app/dist/*'],
+      bundle: ['app/dist/*.bundle.*'],
+      brand: ['app/dist/*.bundle.brand.js'], 
+      admin: ['app/dist/*.bundle.admin.js'],
+      portal: ['app/dist/*.bundle.portal.js'],
+      influencer: ['app/dist/*.bundle.influencer.js'] 
+    },
+    rev: {
+      assets:{
+       files: [
+         {
+           src: ['app/dist/bundle.*.js']
+         },
+         {
+           src: ['app/dist/vendor.js']
+         }
+       ]
+      }
+    },
     copy: {
       production: {
         files: {
@@ -97,16 +117,36 @@ module.exports = function (grunt) {
           transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
         }
       },
-      test: {
+      brand: {
         files: {
-          'app/dist/bundle.admin.js': ['app/js/admin.js'],
-          'app/dist/bundle.influencer.js': ['app/js/influencer.js'],
           'app/dist/bundle.brand.js': ['app/js/brand.js'],
-          'app/dist/bundle.portal.js': ['app/js/portal.js'],
-          'app/dist/bundle.public.js': ['app/js/public.js']
         },
         options: {
-          transform: [require('browserify-ngannotate'),  require('uglifyify')]
+          transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
+        }
+      },
+      influencer: {
+        files: {
+          'app/dist/bundle.influencer.js': ['app/js/influencer.js'],
+        },
+        options: {
+          transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
+        }
+      },
+      admin: {
+        files: {
+          'app/dist/bundle.admin.js': ['app/js/admin.js'],
+        },
+        options: {
+          transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
+        }
+      },
+      portal: {
+        files: {
+          'app/dist/bundle.portal.js': ['app/js/portal.js'],
+        },
+        options: {
+          transform: [require('browserify-ngannotate'), require('stripify'), require('uglifyify')]
         }
       }
     },
@@ -236,18 +276,24 @@ module.exports = function (grunt) {
         var md5FileName = 'app/components/templates/app-checksum.html';
         grunt.file.write(md5FileName, md5Hash);
         grunt.log.write('File "' + md5FileName + '" created.').verbose.write('...').ok();
+        grunt.file.write('hash.txt', md5Hash);
   });
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'checksum', 'concurrent:dev']);
   grunt.registerTask('test', ['concurrent:test']);
   grunt.registerTask('build', ['browserify:src']);
-  grunt.registerTask('build:dev', ['browserify:test']);
 
-  grunt.registerTask('edward', ['copy:edward', 'browserify', 'uglify:vendor']);
-  grunt.registerTask('bella', ['copy:bella', 'browserify', 'uglify:vendor']);
-  grunt.registerTask('eclipse', ['copy:eclipse', 'browserify', 'uglify:vendor']);
-  grunt.registerTask('production', ['copy:production', 'browserify', 'uglify:vendor']);
+  grunt.registerTask('edward', ['clean:all', 'uglify:vendor', 'copy:edward', 'browserify', 'uglify:vendor', 'rev']);
+  grunt.registerTask('bella', ['clean:all', 'uglify:vendor', 'copy:bella', 'browserify', 'uglify:vendor', 'rev']);
+  grunt.registerTask('eclipse', ['clean:all', 'uglify:vendor', 'copy:eclipse', 'browserify', 'uglify:vendor', 'rev']);
+  grunt.registerTask('production', ['clean:all', 'uglify:vendor', 'copy:production', 'browserify:src', 'uglify:vendor', 'rev']);
+
+  grunt.registerTask('bella-dev-all', ['clean:bundle', 'copy:bella', 'browserify', 'rev']);
+  grunt.registerTask('bella-dev-influencer', ['clean:influencer', 'copy:bella', 'browserify:influencer', 'rev']);
+  grunt.registerTask('bella-dev-brand', ['clean:brand', 'copy:bella', 'browserify:brand', 'rev']);
+  grunt.registerTask('bella-dev-admin', ['clean:admin', 'copy:bella', 'browserify:admin', 'rev']);
+  grunt.registerTask('bella-dev-portal', ['clean:portal', 'copy:bella', 'browserify:portal', 'rev']);
 
   grunt.registerTask('vendor', ['uglify:vendor']);
 

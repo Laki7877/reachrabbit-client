@@ -1,56 +1,33 @@
 <div class="viewport view-brand-inbox" ng-cloak>
   <zone-header>
-  <div class="action-btn-for-header">
-    <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" novalidate>
-      <div class="input-dropdown">
-        <input class="form-control filter" ng-model="search.value" placeholder="ค้นหาด้วย ชื่องาน"/>
-      </div>
-    </form>
-  </div>
-  <h1 ng-if="statusFilter == 'Selection'">รอคุณคัดเลือกข้อเสนอ <span ng-if="inbox.selection.proposalCount >= 0">({{inbox.selection.proposalCount || '0'}})</span></h1>
-  <h1 ng-if="statusFilter == 'Working'">รอคุณอนุมัติงาน <span ng-if="inbox.working.proposalCount >= 0">({{inbox.working.proposalCount || '0'}})</span></h1>
-  <h1 ng-if="statusFilter == 'Complete'">เสร็จสิ้น <span ng-if="inbox.complete.proposalCount >= 0">({{inbox.complete.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Selection'">รอคุณคัดเลือกข้อเสนอ <span ng-if="inbox.selection.proposalCount >= 0">({{inbox.selection.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Working'">รอคุณอนุมัติงาน <span ng-if="inbox.working.proposalCount >= 0">({{inbox.working.proposalCount || '0'}})</span></h1>
+    <h1 ng-if="statusFilter == 'Complete'">เสร็จสิ้น <span ng-if="inbox.complete.proposalCount >= 0">({{inbox.complete.proposalCount || '0'}})</span></h1>
+    <div class="action-btn-for-header">
+      <form ng-submit="load(params, { search: search.value })" ng-model-options="{ debounce : { default : 500, blur : 0 }, allowInvalid: true}" novalidate>
+        <div class="input-dropdown">
+          <input class="form-control filter" ng-model="search.value" placeholder="ค้นหาด้วย ชื่องาน"/>
+        </div>
+      </form>
+    </div>
   </zone-header>
   <div class="zone-body">
     <div class="container">
       <cute-bunny></cute-bunny>
       <div class="card-inbox" cute-bunny-hide>
-        <!-- <div class="tab-selector">
-          <div class="tab" ui-sref="brand-inbox({status: 'Selection'})" ng-class="{'active': params.status == 'Selection'}">
-            <h5 ng-class="{ 'proposal-alert' : statusCounts.selection.unreadMessageCount > 0 }">คัดเลือก<div></div>
-            </h5>
-            <h3 ng-bind="statusCounts.selection.proposalCount || '-'">-</h3>
-          </div>
-          <div class="tab-next-step">
-            <i class="fa fa-angle-right fa-2x"></i>
-          </div>
-          <div class="tab" ui-sref="brand-inbox({status: 'Working'})" ng-class="{'active': params.status == 'Working'}">
-            <h5 ng-class="{ 'proposal-alert' : statusCounts.working.unreadMessageCount > 0 }">ดำเนินการ<div></div>
-            </h5>
-            <h3 ng-bind="statusCounts.working.proposalCount || '-'">-</h3>
-          </div>
-          <div class="tab-next-step">
-            <i class="fa fa-angle-right fa-2x"></i>
-          </div>
-          <div class="tab" ui-sref="brand-inbox({status: 'Complete'})" ng-class="{'active': params.status == 'Complete'}">
-            <h5 ng-class="{ 'proposal-alert' : statusCounts.complete.unreadMessageCount > 0 }">เสร็จสิ้น<div></div>
-            </h5>
-            <h3 ng-bind="statusCounts.complete.proposalCount || '-'">-</h3>
-          </div>
-        </div> -->
         <div class="card-body">
           <table ng-if="proposals.numberOfElements > 0" class="table" sorter ng-model="proposals" callback="load">
-            <thead>
+            <thead class="desktop-only">
               <tr>
                 <th class="col-name" sort="influencer.influencerId">Influencer</th>
-                <th class="col-campaign-name" sort="campaign.campaignId">ชื่องาน</th>
-                <th class="col-price" sort="price">ราคา (บาท)</th>
-                <th ng-if="params.status == 'Working'">วันที่กำหนดส่ง</th>
-                <th ng-if="params.status == 'Complete'">วันที่เสร็จงาน</th>
-                <th ng-if="params.status == 'Selection'" class="col-rabbit-score" sort="score">
+                <th class="desktop-only col-campaign-name" sort="campaign.campaignId">ชื่องาน</th>
+                <th class="desktop-only col-price" sort="price">ราคา (บาท)</th>
+                <th class="desktop-only" ng-if="params.status == 'Working'">วันที่กำหนดส่ง</th>
+                <th class="desktop-only" ng-if="params.status == 'Complete'">วันที่เสร็จงาน</th>
+                <th class="desktop-only col-rabbit-score" ng-if="params.status == 'Selection'"  sort="score">
                   Reach <i uib-tooltip="Reach ถูกคำนวณโดยการเอา ผู้ติดตามทุกช่องทาง มาบวกรวมกัน" tooltip-placement="top" class="fa fa-question-circle"></i>
                 </th>
-                <th class="col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
+                <th class="desktop-only col-time" sort="messageUpdatedAt">ข้อความล่าสุด</th>
                 <th class="col-button"></th>
               </tr>
             </thead>
@@ -62,19 +39,21 @@
                       <img ng-src="{{proposal.influencer.user.profilePicture.url  || 'images/placeholder-profile-picture.png'}}" class="profile-picture" />
                     </div>
                     <div class="media-body media-middle">
-                      {{proposal.influencer.user.name}}
+                      <div>{{proposal.influencer.user.name}}</div>
+                      <div class="mobile-only col-info-label">ราคา: {{proposal.price | currency:'':0 }}</div>
+                      <div ng-if="params.status == 'Selection' && proposal.cart" class="color-green">เลือกแล้ว <i class="fa fa-check"></i></div>
                     </div>
                   </div>
                 </td>
-                <td class="col-campaign-name">{{proposal.campaign.title}}</td>
-                <td class="col-price">{{proposal.price | currency:'':0 }}</td>
-                <td ng-if="params.status == 'Working'">{{ proposal.dueDate | date }}</td>
-                <td ng-if="params.status == 'Complete'">{{ proposal.completeDate | date }}</td>
-                <td ng-if="params.status == 'Selection'" class="col-rabbit-score">{{ calculateReach(proposal) | number: 0}} คน</td>
-                <td class="col-time">{{lastMessageUpdated(proposal)}}</td>
+                <td class="desktop-only col-campaign-name">{{proposal.campaign.title}}</td>
+                <td class="desktop-only col-price">{{proposal.price | currency:'':0 }}</td>
+                <td class="desktop-only" ng-if="params.status == 'Working'">{{ proposal.dueDate | date }}</td>
+                <td class="desktop-only" ng-if="params.status == 'Complete'">{{ proposal.completeDate | date }}</td>
+                <td class="desktop-only" ng-if="params.status == 'Selection'" class="col-rabbit-score">{{ calculateReach(proposal) | number: 0}} คน</td>
+                <td class="desktop-only" class="col-time">{{lastMessageUpdated(proposal)}}</td>
                 <td class="col-button">
                   <button class="btn-secondary btn-minimal btn-workroom btn-with-count" ui-sref="brand-workroom({proposalId: proposal.proposalId})">คุยงาน<span class="message-count" ng-if="proposal.unread > 0">{{proposal.unread > 99 ? '99+' : proposal.unread}}</span></button>
-                  <button class="btn-secondary btn-minimal" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId, proposalId: proposal.proposalId })">ดูโปรไฟล์</button>
+                  <button class="desktop-only btn-secondary btn-minimal" ui-sref="brand-influencer-profile({influencerId: proposal.influencer.influencerId, proposalId: proposal.proposalId })">ดูโปรไฟล์</button>
                 </td>
               </tr>
             </tbody>

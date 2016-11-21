@@ -1,13 +1,13 @@
 <div class="viewport view-influencer-wallet">
   <zone-header historyback="true">
-    <h1>รายละเอียดการถอนเงิน (รหัส: {{ payout.transactionNumber }})</h1>
+    <h1>รายละเอียดการถอนเงิน <br class="mobile-only">(รหัส: {{ payout.transactionNumber }})</h1>
   </zone-header>
   <div class="zone-body">
 
     <div class="container">
 
       <div class="row">
-        <div class="col-xs-8">
+        <div class="col-sm-8">
 
             <div class="card">
                 <div class="card-header">
@@ -18,7 +18,7 @@
                     <table class="table with-no-margin">
                       <thead>
                         <th>ชื่องาน</th>
-                        <th class="text-align-right">ราคาที่เสนอ (บาท)</th>
+                        <th class="text-align-right desktop-only">ราคาที่เสนอ (บาท)</th>
                         <th class="text-align-right hide">หักภาษี ณ ที่จ่าย</th>
                         <th class="text-align-right">รายได้ (บาท) <a><i class="fa fa-question-circle color-grey" uib-tooltip="รายได้ของคุณได้ทำการหักค่าธรรมเนียมในการใช้ระบบ 18% และ หักภาษี ณ ที่จ่าย เราจะใช้ค่าธรรมเนียม เพื่อพัฒนาระบบ และหางานให้คุณอย่างต่อเนื่องค่ะ"
                           tooltip-placement="left"></i></a></th>
@@ -26,7 +26,7 @@
                       <tbody>
                         <tr ng-repeat="row in tDoc">
                           <td class="col-campaign-name">{{row.title}}</td>
-                          <td class="text-align-right">{{row.price | number:0}}</td>
+                          <td class="text-align-right desktop-only">{{row.price | number:0}}</td>
                           <!-- Taxes Cannot be deleted - hidden is the solution for now -->
                           <td ng-if="row.tax" class="text-align-right hide">{{-row.tax | number:0}}</td>
                           <td ng-if="!row.tax" class="text-align-right hide">-</td>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="media-body">
                       <div class="card-row">
-                        <div class="col-xs-12">
+                        <div class="col-sm-12">
                           ระบุข้อมูลบัญชีที่ต้องการให้โอน
                         </div>
                       </div>
@@ -102,7 +102,7 @@
             </div>
         </div>
 
-        <div class="col-xs-4">
+        <div class="col-sm-4">
             <div class="card">
               <div class="card-header text-center">
                 สรุปการถอนเงิน

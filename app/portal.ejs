@@ -12,7 +12,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ReachRabbit</title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="css/app.css">
   <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
@@ -30,7 +30,9 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
 
 </head>
 <body class="layout-portal">
-
+  <div class="jumping-load">
+    <img src="images/Jumping.gif" class="img-circle" alt="" />
+  </div>
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
@@ -40,14 +42,11 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
   </div>
   <div ui-view></div>
 
-  <contact-us></contact-us>
+  <contact-us class="desktop-only"></contact-us>
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="/dist/vendor.js"></script>
-  <script src="/dist/bundle.portal.js"></script>
-  <script src="https://cdn.ravenjs.com/3.1.1/raven.min.js"></script>
-
+  <script src="/dist/<%- bundles['vendor.js'] %>"></script>
+  <script src="/dist/<%- bundles['bundle.portal.js'] %>"></script>
+  <script>$('.jumping-load').hide()</script>
+  
 </body>
 </html>

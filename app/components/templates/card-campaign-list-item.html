@@ -13,17 +13,17 @@
       <div class="card-title-content" ui-sref="brand-campaign-detail-draft({campaignId: campaign.campaignId})">
         <a ng-if="campaign.title">{{campaign.title | truncate: 60}}</a>
         <a ng-if="!campaign.title">ประกาศงาน</a>
-        <span ng-repeat="media in campaign.media" class="icon-{{ media.mediaId }}"></span>
+        <span ng-repeat="media in campaign.media" class="icon-{{ media.mediaId }} desktop-only"></span>
       </div>
     </div>
     <div class="card-title" ng-if="(campaign.status == 'Open')">
       <div class="card-title-content" ui-sref="brand-campaign-detail-published({campaignId: campaign.campaignId})">
         <a ng-if="campaign.title">{{campaign.title | truncate: 60}}</a>
         <a ng-if="!campaign.title">ประกาศงาน</a>
-        <span ng-repeat="media in campaign.media" class="icon-{{ media.mediaId }}"></span>
+        <span ng-repeat="media in campaign.media" class="icon-{{ media.mediaId }} desktop-only"></span>
       </div>
     </div>
-    <div class="card-info card-info-1">
+    <div class="card-info card-info-1 desktop-only">
       <div class="card-info-label">
         ค่าตอบแทน (บาท)
       </div>
@@ -32,7 +32,7 @@
         <span ng-if="!campaign.budget">-</span>
       </div>
     </div>
-    <div class="card-info card-info-2">
+    <div class="card-info card-info-2 desktop-only">
       <div class="card-info-label">
         เปิดรับข้อเสนอถึง
       </div>
@@ -41,11 +41,11 @@
         <span ng-if="!campaign.proposalDeadline">-</span>
       </div>
     </div>
-    <div class="card-info card-info-3">
+    <div class="card-info card-info-3 desktop-only">
       <div class="card-info-label">
         หมวดหมู่
       </div>
-      <div class="card-info-content">
+      <div class="card-info-content desktop-only">
         <span ng-if="campaign.category.categoryName">{{campaign.category.categoryName}}</span>
         <span ng-if="!campaign.category.categoryName">-</span>
       </div>
@@ -58,7 +58,7 @@
     </div>
     <div class="card-button" ng-if="(campaign.status == 'Open')">
       <button class="btn-secondary btn-width-max btn-minimal" ui-sref="brand-campaign-detail-published({campaignId: campaign.campaignId})"><i class="fa fa-file-text fa-fw"></i> ดูรายละเอียด</button><br>
-      <button class="btn-secondary btn-width-max btn-minimal btn-open-dashboard" ui-sref="brand-dashboard({campaignId: campaign.campaignId})"><i class="fa fa-line-chart fa-fw"></i> ดู Dashboard</button>
+      <button class="btn-secondary btn-width-max btn-minimal btn-open-dashboard desktop-only" ui-sref="brand-dashboard({campaignId: campaign.campaignId})"><i class="fa fa-line-chart fa-fw"></i> ดู Dashboard</button>
     </div>
   </div>
 </div>

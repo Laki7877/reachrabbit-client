@@ -4,17 +4,17 @@
     <div nc-alert="appliedAlert"></div>
     <div nc-alert="alert"></div>
     <div nc-alert type="success" closable="true" ng-if="isApply">
-      คุณได้สมัครและส่งข้อเสนอให้ Campaign นี้แล้ว
+      คุณได้ส่งข้อเสนอให้ Campaign นี้แล้ว
     </div>
     <div ng-if="!isApply && $root.isExpired(campaignNee.proposalDeadline)" nc-alert type="warning" closable="false">
-            ประกาศงานนี้ได้ปิดรับข้อเสนอแล้วค่ะ
+      ประกาศงานนี้ได้ปิดรับข้อเสนอแล้วค่ะ
     </div>
   </div>
 
   <zone-header historyback="true">
     <div class="action-btn-for-header with-back-btn" cute-bunny-hide>
         <button id="influencer-campaign-detail-propose-btn" class="btn-primary btn-width-md" ng-if="!isApply && !$root.isExpired(campaignNee.proposalDeadline)" ng-click="sendProposal()">
-            <i class="fa fa-paper-plane"></i> ยื่นข้อเสนอ
+            <i class="fa fa-paper-plane"></i> ส่งข้อเสนอ
         </button>
         <button class="btn-primary btn-width-md" ng-if="isApply" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">
             <i class="fa fa-paper-plane"></i> ส่งข้อความ
@@ -113,14 +113,14 @@
 
       </div>
       <card-brand-profile cute-bunny-hide ng-model="campaignNee.brand"></card-brand-profile>
-      <div cute-bunny-hide class="card">
+      <div cute-bunny-hide class="card desktop-only">
         <div class="card-body text-center">
             <button class="btn-secondary btn-width-lg btn-with-margin" ui-sref="influencer-campaign-list">
               กลับไปดูงานทั้งหมด
             </button>
 
             <button class="btn-primary btn-width-lg btn-with-margin" ng-if="!isApply && !$root.isExpired(campaignNee.proposalDeadline)" ng-click="sendProposal()">
-                <i class="fa fa-paper-plane"></i> ยื่นข้อเสนอ
+                <i class="fa fa-paper-plane"></i> ส่งข้อเสนอ
             </button>
             <button class="btn-primary btn-width-lg" ng-if="isApply" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">
               <i class="fa fa-paper-plane"></i> ส่งข้อความ
@@ -129,5 +129,13 @@
       </div>
 
     </div>
+  </div>
+  <div class="floating-bar mobile-only">
+    <button id="influencer-campaign-detail-propose-btn-mobile" class="btn-primary btn-width-lg btn-with-margin btn-max-width-mobile" ng-if="!isApply && !$root.isExpired(campaignNee.proposalDeadline)" ng-click="sendProposal()">
+        <i class="fa fa-paper-plane"></i> ส่งข้อเสนอ
+    </button>
+    <button class="btn-primary btn-width-lg btn-with-margin btn-max-width-mobile" ng-if="isApply" ui-sref="influencer-workroom({proposalId: proposal.proposalId})">
+        <i class="fa fa-paper-plane"></i> ส่งข้อความ
+    </button>
   </div>
 </div>

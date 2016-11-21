@@ -23,7 +23,7 @@
       margin-top: 10px;
     }
   }
-  .view-influencer-portal{
+  .view-influencer-signup{
     margin-top: 140px;
     .info-text{
       margin-top: 10px;
@@ -38,8 +38,10 @@
       font-style: normal;
       margin-bottom: 10px;
     }
-    .card-body{
-      padding-bottom: 0px;
+    .card-portal{
+      .card-body{
+        padding-bottom: 0px;
+      }
     }
     button{
       &:extend(.btn-width-lg);
@@ -56,19 +58,9 @@
 /*---Layout Brand---*/
 .layout-brand{
   background-color: @color-grey-lighter;
-  .container{
-    width: @max-container-width;
-  }
   /* Specific View in Layout Brand */
 
   .view-brand-campaign-list{
-    .page-header{
-          margin-top: 50px;
-          margin-bottom: 10px;
-      .form-group, .btn{
-        transform: translateY(-7px);
-      }
-    }
     .empty-state{
       border: 1px dashed @color-grey;
       &:extend(h3);
@@ -107,10 +99,6 @@
 /*---Layout Influencer---*/
 .layout-influencer{
   background-color: @color-grey-lighter;
-  .container{
-    width: @max-container-width;
-  }
-
   /* Specific View in Layout Influencer */
   .view-influencer-campaign-list{
     .card-thumbnail{
@@ -140,22 +128,23 @@
     }
   }
   .view-public-campaign-detail{
-    .zone-header{
-      color: @color-white;
-      height: 150px;
-      background-image: url("../images/bg-header.png");
-      background-position: top center;
-      background-size: auto;
-      background-color: @color-theme-secondary;
-      h1{
-        margin-top: 30px;
-      }
-    }
-    .zone-body{
-      margin-top: -80px;
-    }
     .card-corner{
       display: none;
+    }
+    .card-campaign-header{
+      .flag{
+        display: none;
+      }
+    }
+    .btn-primary{
+      color: @color-white !important;
+    }
+  }
+  .view-influencer-campaign-detail{
+    .card-campaign-header{
+      .flag{
+        display: none;
+      }
     }
   }
 }

@@ -1,0 +1,254 @@
+angular.module('reachRabbitApp')
+.run(function ($rootScope, $uibModal, $timeout, AccountService, InfluencerAccountService, LongPollingService, $location, $window, NcAlert, UserProfile, BrandAccountService, ProposalService, amMoment, $interval, BusinessConfig, $sce, $state) {
+  
+  $rootScope.checkFacebookPrivate = function(e) {
+      if(e.media.mediaId === 'facebook' && !e.pageId) {
+          return true;
+      }
+      return false;
+  };
+  $rootScope.hideMenu = function (delay) {
+    $timeout(function () {
+      $rootScope.showMenu = false;
+    }, delay);
+  };
+
+  $rootScope.openHelp = function () {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'components/templates/contact-us.html',
+      size: 'sm',
+      windowClass: 'modal-help-open'
+    });
+  };
+
+
+  //Date override
+  $rootScope.$state = $state;
+  $rootScope.go = function (url) {
+    $state.go(url);
+  };
+
+  Date.prototype.toJSON = function () {
+    return moment(this).format();
+  };
+  Date.prototype.toISOString = function () {
+    return moment(this).format();
+  };
+
+  function removeParam(key, sourceURL) {
+    var rtn = sourceURL.split("?")[0],
+      param,
+      params_arr = [],
+      queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+    if (queryString !== "") {
+      params_arr = queryString.split("&");
+      for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+        param = params_arr[i].split("=")[0];
+        if (param === key) {
+          params_arr.splice(i, 1);
+        }
+      }
+      rtn = rtn + "?" + params_arr.join("&");
+    }
+    return rtn;
+  }
+  $rootScope.trustSrc = function (src) {
+    return $sce.trustAsResourceUrl(removeParam('autoplay', src));
+  };
+
+  $rootScope.API_OVERRIDE_ACTIVE = $window.sessionStorage.API_OVERRIDE;
+  $rootScope.SHOW_DEBUGGA = false;
+
+  //check if we are in dev environment
+  //TODO we will move all this to Config.json when
+  //we later implement webpack
+  if (BusinessConfig.DEV_ENV_HOST.indexOf($location.host()) !== -1) {
+    $rootScope.SHOW_DEBUGGA = true;
+  }
+  $rootScope.proposal = {};
+
+  //Configure angular moment
+  amMoment.changeLocale('th', {
+    monthsShort: 'ม.ค._ก.พ._มี.ค._เม.ย._พ.ค._มิ.ย._ก.ค._ส.ค._ก.ย._ต.ค._พ.ย._ธ.ค.'.split('_'),
+    longDateFormat: {
+      LT: 'H:mm',
+      LTS: 'H:m:s',
+      L: 'YYYY/MM/DD',
+      LL: 'D MMMM YYYY',
+      LLL: 'D MMMM YYYY เวลา H:m',
+      LLLL: 'วันddddที่ D MMMM YYYY เวลา H:m'
+    },
+    calendar: {
+      sameDay: '[วันนี้] LT',
+      nextDay: '[พรุ่งนี้] LT',
+      nextWeek: 'dddd[หน้า] LT',
+      lastDay: '[เมื่อวานนี้] LT',
+      lastWeek: '[วัน]dddd[ที่แล้ว] LT',
+      sameElse: 'L'
+    },
+  });
+
+  //Take Sum of Array
+  //Using value of property path PropertyString
+  $rootScope.sumReduce = function (Array, PropertyString) {
+    if (!Array) {
+      return 0;
+    }
+
+    return Array.reduce(function (p, c) {
+      return p + _.get(c, PropertyString);
+    }, 0);
+  };
+
+  //Configure Raven in production mode
+  // Raven.config('http://7ee88ec43e8c4a27bd097ee60bd0435d@54.169.237.222/2').install();
+
+  $rootScope.setUnauthorizedRoute = function (textString) {
+    $window.localStorage.unauthorized_route = textString;
+  };
+
+  //Configure global deafult date options for date picker
+  $rootScope.dateOptions = {
+    formatYear: 'yy',
+    startingDay: 1,
+    showWeeks: false
+  };
+
+  $rootScope.formats = ['dd MMMM yyyy', 'dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate', 'LT - D MMM YY'];
+  $rootScope.format = $rootScope.formats[0];
+
+  //Global function helpers
+  $rootScope.getProfile = UserProfile.get;
+  $rootScope.signOut = function (bounce_route) {
+    mixpanel.track("User Logout");
+    AccountService.logout().then(function() {
+      doLogout(bounce_route);
+    }).catch(function(e) {
+      doLogout(bounce_route);
+    });
+  };
+
+  var doLogout = function(bounce_route){
+    //clear localstorage
+      var ur = $window.localStorage.unauthorized_route;
+      if (!ur) {
+        ur = "/";
+      }
+      var redirTo = ur + (bounce_route ? '?bounce_route=' + bounce_route : '');
+      $window.localStorage.clear();
+      //navigate to login
+      $window.location.href = redirTo;
+  }
+
+  $rootScope.goTo = function (path) {
+    console.error("$root.goTo is deprecated. Please stahp using it.");
+  };
+
+  $rootScope.getPath = function () {
+    return $location.path();
+  };
+  $rootScope.rootError = new NcAlert();
+
+  //Path based logout
+  $rootScope.bounceLogout = function () {
+    if ($location.absUrl().includes("brand.html") || $location.absUrl().includes("brand#")) {
+      $rootScope.setUnauthorizedRoute("/portal.html#/brand-login");
+    } else if ($location.absUrl().includes("influencer.html") || $location.absUrl().includes("influencer#")) {
+      $rootScope.setUnauthorizedRoute("/portal.html#/influencer-login");
+    } else if ($location.absUrl().includes("admin.html") || $location.absUrl().includes("admin#")) {
+      $rootScope.setUnauthorizedRoute("/portal.html#/admin-login");
+    }
+    var bounce_url = $location.path();
+    if ($location.absUrl().includes($location.path())) {
+      $rootScope.signOut();
+    } else {
+      $rootScope.signOut(bounce_url);
+    }
+  };
+
+  $rootScope.$on("$stateChangeError", function () {
+    $rootScope.bounceLogout();
+  });
+
+  $rootScope.$on('$stateChangeStart',
+    function (event, toState, toParams, fromState, fromParams, options) {
+
+      //in case of brand
+      if (!UserProfile.get()) {
+        return;
+      }
+
+      //TODO: move to resolver
+      //Other role specific functions
+      if (UserProfile.get().role === "Brand") {
+        BrandAccountService.getCart()
+          .then(function (cart) {
+            $rootScope.cartCount = (cart.data.proposals || []).length;
+          });
+      } else if (UserProfile.get().role === "Influencer") {
+        $rootScope.walletBalance = 0;
+        InfluencerAccountService.getWalletBalance()
+          .then(function (walletResponse) {
+            var k = walletResponse.data.amount;
+            if (!k) {
+              $rootScope.walletBalance = 0;
+              return;
+            }
+            $rootScope.walletBalance = k;
+          });
+      }
+
+      $rootScope.debuggah = {};
+    });
+
+  $rootScope.isExpired = function (datestr) {
+    if (!datestr) {
+      return false;
+    }
+    var d = moment(datestr, 'YYYY-MM-DD HH:mm').toDate();
+    return d.getTime() <= (new Date()).getTime();
+  };
+
+  //Only init polling if User is logged in
+  if (BusinessConfig.NO_POLL_WHITELIST.reduce(function (p, c) {
+    return p && !$location.absUrl().includes(c);
+  }, true)) {
+    $rootScope.pollPending = false;
+    $rootScope.pollInbox = function (immediately) {
+      var profile = $rootScope.getProfile();
+      if (profile) {
+        var imm = immediately;
+        $interval(function () {
+          if ($rootScope.pollPending) {
+            return;
+          }
+          $rootScope.pollPending = true;
+          LongPollingService.countInbox({
+            immediate: imm
+          }).then(function (res) {
+            imm = false;
+            if (res && !_.isNil(res.data) && !_.isEmpty(res.data)) {
+              $rootScope.inbox = res.data;
+            }
+            $rootScope.pollPending = false;
+            // $rootScope.pollInbox(false);
+          });
+        }, 1000);
+      }
+    };
+    $rootScope.pollInbox(true);
+
+  }
+})
+.factory('$exceptionHandler',  function($log) {
+    return function myExceptionHandler(exception, cause) {
+      
+      mixpanel.track('Uncaught frontend exception', {
+        exception: exception.stack,
+        cause: cause
+      });
+
+      $log.warn(exception, cause);
+    };
+});

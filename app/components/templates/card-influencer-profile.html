@@ -9,15 +9,15 @@
         ข้อเสนอจาก {{ profile.user.name }}
       </div>
     </div>
-    <div class="card-title" ng-show="showAllData">
+    <div class="card-title desktop-only" ng-show="showAllData">
       <div class="card-title-content">
         {{ profile.user.name }}
       </div>
-      <div class="card-title-vertified" ng-show="profile.isVerify">
+      <div class="card-title-verified" ng-show="profile.isVerify">
         <img src="images/icon-vertified.png"/><strong>Verified</strong> ได้ผ่านการตรวจบัตรประชาชนแล้ว
       </div>
     </div>
-    <div class="col-xs-10">
+    <div class="col-sm-10">
       <small>เกี่ยวกับ {{ profile.user.name }}</small>
       <p ng-if="profile.about.length > 0" >
         <span ng-bind-html="profile.about | newlinify">
@@ -32,13 +32,17 @@
       <p ng-if="isInfluencer && (!profile.about || profile.about.length == 0)">
         "ยังไม่มีข้อมูล" คุณสามารถเพิ่มข้อมูลเกี่ยวกับตัวคุณเพื่อช่วยในการตัดสินใจของ Brand</span>
       </p>
-
+      <p class="card-title-verified mobile-only" ng-show="profile.isVerify">
+        <img src="images/icon-vertified.png"/><strong>Verified</strong> ได้ผ่านการตรวจบัตรประชาชน
+      </p>
       <div ng-show="showAllData">
         <small>จำนวนผู้ติดตาม</small>
         <h4>
           <span ng-if="profile.influencerMedias.length == 0">-</span>
            <span ng-repeat="imedia in profile.influencerMedias" class="social-info">
-             <span class="icon-{{imedia.media.mediaId}} social-icon"></span> {{ imedia.followerCount | number }} คน
+            <span class="icon-{{imedia.media.mediaId}} social-icon"></span> 
+            <span ng-if="!$root.checkFacebookPrivate(imedia)">{{ imedia.followerCount | number }} คน</span>
+            <span ng-if="$root.checkFacebookPrivate(imedia)">บัญชีส่วนตัว</span>
            </span>
         </h4>
 

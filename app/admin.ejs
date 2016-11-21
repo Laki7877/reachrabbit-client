@@ -9,19 +9,20 @@
 0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
 for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
 mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Brand</title>
+    <title>Admin</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=970, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="bower_components/json-formatter/dist/json-formatter.min.css">
     <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
     <link rel="stylesheet" href="bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.css">
     <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
-    
+
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -35,9 +36,13 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
 
 </head>
 
-<body class="layout-brand">
-    <div class="api_override_box" ng-cloak ng-if="API_OVERRIDE_ACTIVE">
-        <span class="label label-danger">APIO</span>
+<body class="layout-admin">
+    <div class="jumping-load">
+      <img src="images/Jumping.gif" class="img-circle" alt="" />
+    </div>
+
+    <div class="api_override_box" ng-cloak cute-bunny-hide ng-if="API_OVERRIDE_ACTIVE">
+        <span class="label label-danger">API OVERRIDE ON</span>
     </div>
 
     <nav class="navbar" ng-cloak>
@@ -49,21 +54,41 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-                <a class="navbar-brand" ui-sref="brand-campaign-list"><img src="images/logo-brand.png" alt="ReachRabbit" /></a>
+                <a class="navbar-brand" ui-sref="admin-transaction-history"><img src="images/logo-nav-inverse.png" alt="ReachRabbit" /></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown" ng-class="{ 'active':
-                    ('brand-profile' | isState) ||
-                    ('brand-transaction-history' | isState) }">
-                      <a class="id-brand-nav-profile-dropdown profile-dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
-                          <span ng-bind="$root.getProfile().brand.brandName | truncate: 15"></span><span class="caret"></span>
+                <ul class="nav navbar-nav">
+                    <li id="admin-transaction-history-btn" ui-sref-active="active"><a ui-sref="admin-transaction-history">Transaction History</a></li>
+                    <li id="admin-payout-history-btn" ui-sref-active="active"><a ui-sref="admin-payout-history">Payout Requests</a></li>
+                    <li id="admin-campaign-list-btn" ui-sref-active="active"><a ui-sref="admin-campaign-list">All Campaigns</a></li>
+                    <li id="admin-inbox-btn" ui-sref-active="active"><a ui-sref="admin-inbox">All Inbox</a></li>
+                    <li id="admin-user-dropdown-btn" class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          All Users </span><span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu">
-                          <li class="id-brand-nav-profile"><a ui-sref="brand-profile"><i class="fa fa-pencil fa-fw"></i> แก้ไข Profile ของฉัน</a></li>
-                          <li class="id-brand-nav-transaction-history"><a ui-sref="brand-transaction-history"><i class="fa fa-list fa-fw"></i> รายการสั่งซื้อ</a></li>
-                          <li class="id-brand-nav-signout"><a ng-click="$root.signOut()"><i class="fa fa-sign-out fa-fw"></i> ออกจากระบบ</a></li>
+                        <li id="admin-brand-list-btn" ui-sref-active="active"><a ui-sref="admin-brand-list">All Brands</a></li>
+                        <li id="admin-influencer-list-btn" ui-sref-active="active"><a ui-sref="admin-influencer-list">All Influencers</a></li>
+                      </ul>
+                    </li>
+                    <li id="admin-referral-dropdown-btn" class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          Referral </span><span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li id="admin-referral-code-list-btn" ui-sref-active="active"><a ui-sref="admin-referral-code-list">Referral Code</a></li>
+                        <li id="admin-referral-payment-list-btn" ui-sref-active="active"><a ui-sref="admin-referral-payment-list">Referral Payment</a></li>
+                      </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                      <a id="admin-profile-dropdown-btn" class="profile-dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
+                          <span ng-bind="$root.getProfile().email | truncate: 15"></span><span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li id="admin-profile-signout-btn"><a ng-click="$root.signOut()"><i class="fa fa-sign-out fa-fw"></i> ออกจากระบบ</a></li>
                       </ul>
                     </li>
                 </ul>
@@ -71,61 +96,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
             <!--/.nav-collapse -->
         </div>
         <!--/.container-fluid -->
-
-        <div class="main-nav">
-          <div class="steps">
-            <div id="brand-header-brand-campaign-list" class="step" ui-sref="brand-campaign-list" ng-class="{ 'active':
-            ('brand-campaign-list' | isState) ||
-            ('brand-campaign-detail-draft' | isState) ||
-            ('brand-campaign-detail-edit' | isState) ||
-            ('brand-campaign-detail-published' | isState) }">
-              <img src="images/brand-onboarding-1.png"/>
-              <span class="step-text">
-                ลงประกาศงาน
-              </span>
-            </div>
-            <div id="brand-header-brand-inbox-selection" class="step" ui-sref="brand-inbox({status:'Selection'})" ng-class="{
-            'active':
-            ('brand-inbox' | isState: {status: 'Selection'}) ||
-            (('brand-workroom' | isState) && proposal.status === 'Selection')}">
-              <img src="images/brand-onboarding-2.png" />
-              <span class="step-text">
-                คัดเลือก ({{inbox.selection.proposalCount || '0'}})
-              </span>
-              <div ng-if="inbox.selection.unreadMessageCount > 0" class="step-mushroom"></div>
-            </div>
-            <div id="brand-header-brand-cart" class="step" ui-sref="brand-cart" ng-class="{ 'active':
-            ('brand-cart' | isState) ||
-            ('brand-transaction-detail' | isState) }">
-              <img src="images/brand-onboarding-3.png"/>
-              <span class="step-text">
-                ชำระเงิน ({{inbox.cart || '0'}})
-              </span>
-            </div>
-            <div id="brand-header-brand-inbox-working" class="step" ui-sref="brand-inbox({status:'Working'})" ng-class="{ 'active':
-            ('brand-inbox' | isState : {status: 'Working'}) ||
-            (('brand-workroom' | isState) &&  proposal.status === 'Working')}">
-              <img src="images/brand-onboarding-4.png"/>
-              <span class="step-text">
-                อนุมัติงาน ({{inbox.working.proposalCount || '0'}})
-              </span>
-              <div ng-if="inbox.working.unreadMessageCount > 0" class="step-mushroom"></div>
-            </div>
-            <div id="brand-header-brand-inbox-complete" class="step" ui-sref="brand-inbox({status:'Complete'})" ng-class="{ 'active':
-            ('brand-inbox' | isState: {status:'Complete'}) ||
-            (('brand-workroom' | isState) &&  proposal.status === 'Complete')}">
-              <img src="images/brand-onboarding-5.png"/>
-              <span class="step-text">
-                เสร็จสิ้น ({{inbox.complete.proposalCount || '0'}})
-              </span>
-              <div ng-if="inbox.complete.unreadMessageCount > 0" class="step-mushroom"></div>
-            </div>
-          </div>
-        </div>
-
     </nav>
-
-
 
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -133,15 +104,14 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
 
     <div ui-view ng-cloak></div>
 
-    <contact-us></contact-us>
-
     <div ng-include="'components/templates/debugga.html'"></div>
+
     <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
-    <script src="/dist/vendor.js"></script>
-    <script src="/dist/bundle.brand.js"></script>
-    <script src="https://cdn.ravenjs.com/3.1.1/raven.min.js"></script>
+    <script src="/dist/<%- bundles['vendor.js'] %>"></script>
+    <script src="/dist/<%- bundles['bundle.admin.js'] %>"></script>
+    <script>$('.jumping-load').hide()</script>
 
 </body>
 

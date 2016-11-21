@@ -11622,22 +11622,14 @@ ul.payment-methods {
 .layout-influencer .view-influencer-profile .btn-secondary-active[disabled] {
   opacity: 1;
 }
-.layout-influencer .view-public-campaign-detail .zone-header {
-  color: #ffffff;
-  height: 150px;
-  background-image: url("../images/bg-header.png");
-  background-position: top center;
-  background-size: auto;
-  background-color: #16bbac;
-}
-.layout-influencer .view-public-campaign-detail .zone-header h1 {
-  margin-top: 30px;
-}
-.layout-influencer .view-public-campaign-detail .zone-body {
-  margin-top: -80px;
-}
 .layout-influencer .view-public-campaign-detail .card-corner {
   display: none;
+}
+.layout-influencer .view-public-campaign-detail .card-campaign-header .flag {
+  display: none;
+}
+.layout-influencer .view-public-campaign-detail .btn-primary {
+  color: #ffffff !important;
 }
 .layout-influencer .view-influencer-campaign-detail .card-campaign-header .flag {
   display: none;
@@ -11842,6 +11834,22 @@ tags-input .autocomplete .suggestion-item em {
   .layout-influencer .container {
     width: 970px;
   }
+  /*---Public Campaign---*/
+  .view-public-campaign-detail .zone-header {
+    color: #ffffff;
+    height: 150px;
+    background-image: url("../images/bg-header.png");
+    background-position: top center;
+    background-size: auto;
+    background-color: #16bbac;
+  }
+  .view-public-campaign-detail .zone-header h1,
+  .view-public-campaign-detail .zone-header .action-btn-for-header.with-back-btn {
+    margin-top: 0px;
+  }
+  .view-public-campaign-detail .zone-body {
+    margin-top: -40px;
+  }
 }
 /*---Mobile = Extra Small devices (XS)---*/
 @media only screen and (max-width: 767px) {
@@ -12008,6 +12016,9 @@ tags-input .autocomplete .suggestion-item em {
   .navbar .center-navbar .logo {
     height: 20px;
     margin: 15px auto;
+  }
+  .navbar .center-navbar.no-menu {
+    width: 100%;
   }
   .mobile-menu {
     position: absolute;

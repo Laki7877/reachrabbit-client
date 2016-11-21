@@ -25,7 +25,9 @@
         </div>
         <div class="card-info-content" ng-repeat="imedia in intersectMedia(proposal.media, proposal.influencer.influencerMedias)">
             <div class="social-info">
-                <span class="icon-{{imedia.mediaId}}"></span> {{ imedia.followerCount | number }} คน
+                <span class="icon-{{imedia.mediaId}}"></span>
+                <span ng-if="!checkFacebookPrivate(imedia)">{{ imedia.followerCount | number }} คน</span>
+                <span ng-if="checkFacebookPrivate(imedia)">บัญชีส่วนตัว</span>
             </div>
         </div>
         <div class="card-info-label" ng-if="proposal.status == 'Selection'">

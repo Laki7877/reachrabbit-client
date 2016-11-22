@@ -12490,6 +12490,9 @@ tags-input .autocomplete .suggestion-item em {
   .table thead > tr > th {
     padding-top: 0px;
   }
+  .table .col-name {
+    max-width: 175px;
+  }
   .table .col-bank-name {
     text-align: center;
     padding: 10px 0px;

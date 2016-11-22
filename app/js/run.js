@@ -139,7 +139,7 @@ angular.module('reachRabbitApp')
       $window.localStorage.clear();
       //navigate to login
       $window.location.href = redirTo;
-  }
+  };
 
   $rootScope.goTo = function (path) {
     console.error("$root.goTo is deprecated. Please stahp using it.");

@@ -17,7 +17,8 @@ fs.readdir(__dirname+'/app/dist', {}, function(err, files){
 
 var options = {
   key: fs.readFileSync('keys/app_reachrabbit_com.key'),
-  cert: fs.readFileSync('keys/app.reachrabbit.com.crt')
+  cert: fs.readFileSync('keys/app.reachrabbit.com.crt'),
+  ca: fs.readFileSync('keys/app.reachrabbit.com.ca-bundle')
 };
 
 app.set('view engine', 'ejs')

@@ -41,6 +41,12 @@ angular.module('reachRabbitApp.portal.routes', ['ui.router'])
                 controller: 'InfluencerSignUpEmailController',
                 params: { bounce_route: null}
             })
+	        .state('influencer-portal-alias', {
+                url: "/influencer-portal?ref",
+                templateUrl: "view/influencer-signup.html",
+                controller: 'InfluencerPortalController',
+                params: { alert: null }
+            })
             .state('influencer-login', {
                 url: '/influencer-login',
                 templateUrl: 'view/influencer-login.html',

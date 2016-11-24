@@ -46,7 +46,11 @@
     "moniker": "^0.1.2",
     "morgan": "^1.1.1",
     "random-number": "0.0.7",
-    "randomstring": "^1.1.5"
+    "randomstring": "^1.1.5",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-rev": "^0.1.0",
+    "browserify-ngannotate": "^2.0.0",
+     "stripify": "^6.0.0"
   },
   "scripts": {
     "postinstall": "bower install && grunt copy:hooks",
@@ -60,17 +64,10 @@
     "update-index-async": "node -e \"var fs=require('fs'),indexFile='app/index-async.html',loaderFile='app/bower_components/angular-loader/angular-loader.min.js',loaderText=fs.readFileSync(loaderFile,'utf-8').split(/sourceMappingURL=angular-loader.min.js.map/).join('sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map'),indexText=fs.readFileSync(indexFile,'utf-8').split(/\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/).join('//@@NG_LOADER_START@@\\n'+loaderText+'    //@@NG_LOADER_END@@');fs.writeFileSync(indexFile,indexText);\""
   },
   "dependencies": {
-    "browserify-ngannotate": "^2.0.0",
     "compression": "^1.6.2",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "glob": "^7.1.1",
-    "grunt-contrib-clean": "^1.0.0",
-    "grunt-hash": "^0.5.0",
-    "grunt-rev": "^0.1.0",
-    "moniker": "^0.1.2",
-    "randomstring": "^1.1.5",
-    "redirect-https": "^1.1.0",
-    "stripify": "^6.0.0"
+    "redirect-https": "^1.1.0"
   }
 }

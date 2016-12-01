@@ -8014,7 +8014,7 @@ ol {
   margin: 25px auto 25px auto;
   width: 250px;
   color: white;
-  background-color: rgba(62, 74, 94, 0.8);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 25px;
 }
 .pagination li > a {
@@ -11511,6 +11511,9 @@ ul.payment-methods {
 .layout-portal {
   background: url("../images/bg-layout-login.png") #019386;
   /* Specific View in Layout Portal */
+}
+.layout-portal.influencer-portal {
+  background: url("../images/bg-layout-login-influencer.png") #3e4a5e;
 }
 .layout-portal .container {
   max-width: 430px;

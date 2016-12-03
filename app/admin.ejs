@@ -15,7 +15,7 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=970">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="bower_components/json-formatter/dist/json-formatter.min.css">
@@ -58,13 +58,13 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li id="admin-transaction-history-btn" ui-sref-active="active"><a ui-sref="admin-transaction-history">Transaction History</a></li>
-                    <li id="admin-payout-history-btn" ui-sref-active="active"><a ui-sref="admin-payout-history">Payout Requests</a></li>
-                    <li id="admin-campaign-list-btn" ui-sref-active="active"><a ui-sref="admin-campaign-list">All Campaigns</a></li>
-                    <li id="admin-inbox-btn" ui-sref-active="active"><a ui-sref="admin-inbox">All Inbox</a></li>
+                    <li id="admin-transaction-history-btn" ui-sref-active="active"><a ui-sref="admin-transaction-history">Transaction</a></li>
+                    <li id="admin-payout-history-btn" ui-sref-active="active"><a ui-sref="admin-payout-history">Payout</a></li>
+                    <li id="admin-campaign-list-btn" ui-sref-active="active"><a ui-sref="admin-campaign-list">Campaigns</a></li>
+                    <li id="admin-inbox-btn" ui-sref-active="active"><a ui-sref="admin-inbox">Inbox</a></li>
                     <li id="admin-user-dropdown-btn" class="dropdown">
                       <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          All Users </span><span class="caret"></span>
+                        Users </span><span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu">
                         <li id="admin-brand-list-btn" ui-sref-active="active"><a ui-sref="admin-brand-list">All Brands</a></li>
@@ -84,8 +84,8 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                       <a id="admin-profile-dropdown-btn" class="profile-dropdown dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" />
-                          <span ng-bind="$root.getProfile().email | truncate: 15"></span><span class="caret"></span>
+                          <!-- <img ng-src="{{  $root.getProfile().profilePicture.url || 'images/placeholder-profile-picture.png' }}" alt="" class="profile-picture" /> -->
+                          <span ng-bind="$root.getProfile().email | truncate: 5"></span><span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu">
                           <li id="admin-profile-signout-btn"><a ng-click="$root.signOut()"><i class="fa fa-sign-out fa-fw"></i> ออกจากระบบ</a></li>

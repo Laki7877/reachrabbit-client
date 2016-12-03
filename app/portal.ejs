@@ -29,7 +29,12 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
   </script>
 
 </head>
-<body class="layout-portal">
+<body class="layout-portal" ng-class="{ 'influencer-portal':
+('influencer-login' | isState) ||
+('influencer-portal' | isState) ||
+('influencer-signup-confirmation' | isState) ||
+('influencer-signup-email' | isState) ||
+('influencer-signup-select-page' | isState) }">
   <div class="jumping-load">
     <img src="images/Jumping.gif" class="img-circle" alt="" />
   </div>
@@ -47,6 +52,6 @@ mixpanel.init("77a68c054c14ba91d6178dab5ba54312");</script><!-- end Mixpanel -->
   <script src="/dist/<%- bundles['vendor.js'] %>"></script>
   <script src="/dist/<%- bundles['bundle.portal.js'] %>"></script>
   <script>$('.jumping-load').hide()</script>
-  
+
 </body>
 </html>
